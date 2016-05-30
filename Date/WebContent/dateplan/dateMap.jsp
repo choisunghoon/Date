@@ -102,10 +102,10 @@
         <div id="pagination"></div>
     </div>
     <ul id="category">
-        <li id="CE7" data-order="0"> 
-            <span class="category_bg bank"></span>
+        <li id="CE7" data-order="4"> 
+            <span class="category_bg cafe"></span>
             카페
-        </li>       
+        </li>        
         <li id="CT1" data-order="1"> 
             <span class="category_bg mart"></span>
             문화시설
