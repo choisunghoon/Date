@@ -42,10 +42,10 @@
 
 
 
-.placeinfov {width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;float:left;}
-.placeinfov_wrap {width:200px;}
+.placeinfov {width:200px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;float:left;margin-right: 20px; }
+.placeinfov_wrap {position:absolute;bottom:28px;width:100%;}
 
-.placeinfov {border:0; box-shadow:0px 1px 2px #888;}
+.placeinfov:nth-of-type(n){border:0; box-shadow:0px 1px 2px #888;}
 .placeinfov_wrap .after {content:'';margin-left:-12px;left:50%;width:22px;height:12px;background:url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
 .placeinfov a, .placeinfov a:hover, .placeinfov a:active{color:#fff;text-decoration: none;}
 .placeinfov a, .placeinfov span {display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
@@ -328,7 +328,7 @@ function displayPlaces2(places) {
     map.setBounds(bounds);
 }
 // 지도에 마커를 표출하는 함수입니다
-var kor;
+var kor='';
 function displayPlaces(places) {
 
     // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
@@ -372,7 +372,7 @@ function displayPlaces(places) {
     			kor += '    <span class="tel">' + place.phone + '</span>' + 
              		   '</div>' + 
              		   '<div class="afterv" style="float:left;"></div>';
-	
+				
     			document.getElementById("img").innerHTML = kor;
                 });
             })(marker, places[i]);
