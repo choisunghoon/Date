@@ -501,8 +501,7 @@ function removeAllChildNods(el) {
     }
 }
 </script>
-<input type="text" id="search" value="search" />
-<input type="button" onclick="Search()"/>
+
 </body>
 
 </html>
