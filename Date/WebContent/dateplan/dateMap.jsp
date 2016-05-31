@@ -132,6 +132,7 @@
 </div>
 
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=9be7455c7d33a4e2b750d3537e1179d8&libraries=services"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 
@@ -328,7 +329,17 @@ function displayPlaces2(places) {
     map.setBounds(bounds);
 }
 // 지도에 마커를 표출하는 함수입니다
-var kor='';
+var kor=[];
+var kortmp='';
+var j = 1;
+function deldiv(i){
+
+	 $("#"+i).empty();
+}
+function isEmpty( el ){
+    return !$.trim(el.html())
+}
+
 function displayPlaces(places) {
 
     // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
@@ -348,7 +359,7 @@ function displayPlaces(places) {
     
 
     for ( var i=0; i<places.length; i++ ) {
-
+			
             // 마커를 생성하고 지도에 표시합니다
             var marker = addMarker(new daum.maps.LatLng(places[i].latitude, places[i].longitude), order),
            	    itemEl = getListItem(i, places[i], marker);
@@ -359,21 +370,33 @@ function displayPlaces(places) {
             (function(marker, place) {
                 daum.maps.event.addListener(marker, 'rightclick', function() {
                 	
-                	kor += '<div class="placeinfov" style="float:left;">' +
+                	kor[j] = '<div onclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
                     '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
-
+                	
     			if (place.newAddress) {
-    				kor += '    <span title="' + place.newAddress + '">' + place.newAddress + '</span>' +
+    				kor[j] += '    <span title="' + place.newAddress + '">' + place.newAddress + '</span>' +
                     '  <span class="jibun" title="' + place.address + '">(지번 : ' + place.address + ')</span>';
     			}  else {
-    				kor += '    <span title="' + place.address + '">' + place.address + '</span>';
+    				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
    			    }                
   
-    			kor += '    <span class="tel">' + place.phone + '</span>' + 
+    			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
              		   '</div>' + 
              		   '<div class="afterv" style="float:left;"></div>';
-				
-    			document.getElementById("img").innerHTML = kor;
+             		  
+                
+               
+	             	for ( var z =1; z<=j; z++){
+	             		kortmp+=kor[z];
+	                }
+	             	
+                
+             	document.getElementById("img").innerHTML = kortmp;
+             	
+             	
+             	kortmp='';
+    			j++;
+    			
                 });
             })(marker, places[i]);
             (function(marker, place) {
@@ -454,7 +477,7 @@ function removeMarker() {
     }   
     markers = [];
 }
-function displayPagination(pagination) {
+function displayPagination(pagination,place) {
     var paginationEl = document.getElementById('pagination'),
         fragment = document.createDocumentFragment(),
         i; 
@@ -541,7 +564,7 @@ function removeAllChildNods(el) {
 }
 </script>
 <div id="img" class="placeinfov_wrap">
-
+	
 </div>
 </body>
 
