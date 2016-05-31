@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+	<select id="getEventList" resultClass="project.bean.EventDataBean" >
+		select * from event where edate>=sysdate
+	</select>
+	
+	<select id="eventCount" resultClass="int" parameterClass="project.bean.EventDataBean">
+		select count(*) from event where edate>=sysdate 
+	</select>
+	
+	<insert id="addEvent" parameterClass="project.bean.EventDataBean">
+		insert into event (enumber, ename, eimg, sdate, edate, regdate) values 
+		(event_seq.nextval, #ename#, #eimg#, #sdate#, #edate#, sysdate)
+	</insert>
+</sqlMap>
