@@ -9,7 +9,7 @@
 		select count(*) from event where edate>=sysdate 
 	</select>
 	
-	<insert id="addEvent" parameterClass="project.event.bean.EventDataBeanbean.EventDataBean">
+	<insert id="addEvent" parameterClass="event.bean.EventDataBean">
 		insert into event (enumber, ename, eimg, sdate, edate, regdate) values 
 		(event_seq.nextval, #ename#, #eimg#, #sdate#, #edate#, sysdate)
 	</insert>
