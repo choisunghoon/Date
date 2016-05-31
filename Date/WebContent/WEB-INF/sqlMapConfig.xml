@@ -7,7 +7,7 @@
 
 	
 	
-	
+	<sqlMap resource="/sql/eventSQL.xml"/>
 	<sqlMap resource="/sql/dateSQL.xml"/>
 	<sqlMap resource="/sql/diarySQL.xml"/>
 	
