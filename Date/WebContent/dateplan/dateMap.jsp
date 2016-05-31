@@ -92,9 +92,9 @@
     <div id="menu_wrap" class="bg_white">
         <div class="option">
             <p>
-                <form onsubmit="searchPlaces2(); return false;">
+                
                 키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
-                <button type="submit">검색하기</button> 
+                <button type="button" onclick="searchPlaces2(); return false;">검색하기</button> 
             </p>
         </div>
         <hr>
@@ -331,10 +331,13 @@ function displayPlaces2(places) {
 // 지도에 마커를 표출하는 함수입니다
 var kor=[];
 var kortmp='';
+var hidden=[];
 var j = 1;
 function deldiv(i){
 
-	 $("#"+i).empty();
+	 $("#"+i).remove();
+	j = j-1;
+	
 }
 function isEmpty( el ){
     return !$.trim(el.html())
@@ -359,7 +362,7 @@ function displayPlaces(places) {
     
 
     for ( var i=0; i<places.length; i++ ) {
-			
+    	
             // 마커를 생성하고 지도에 표시합니다
             var marker = addMarker(new daum.maps.LatLng(places[i].latitude, places[i].longitude), order),
            	    itemEl = getListItem(i, places[i], marker);
@@ -369,7 +372,7 @@ function displayPlaces(places) {
            
             (function(marker, place) {
                 daum.maps.event.addListener(marker, 'rightclick', function() {
-                	
+
                 	kor[j] = '<div onclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
                     '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
                 	
@@ -383,15 +386,26 @@ function displayPlaces(places) {
     			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
              		   '</div>' + 
              		   '<div class="afterv" style="float:left;"></div>';
-             		  
+    			
+                 if(j>5){               	 
+             		j=6;
+             		alert("5개 이상 선택 하실수 없습니다.");
+             		return;
+    			 }
+                hidden[j]='<input type="hidden" name="placeplaceUrl" value="'+place.placeUrl+'" />'+
+                		  '<input type="hidden" name="placenewAddress" value="'+place.newAddress+'" />'+
+                		  '<input type="hidden" name="placeaddress" value="'+place.address +'" />'+
+                		  '<input type="hidden" name="placeid" value="'+place.id +'" />'+
+                		  '<input type="hidden" name="placephone" value="'+place.phone +'" />';
+                
+                
                 
                
-	             	for ( var z =1; z<=j; z++){
-	             		kortmp+=kor[z];
-	                }
 	             	
-                
-             	document.getElementById("img").innerHTML = kortmp;
+	             	
+                $("#img").append(kor[j]);
+                $("#img").append(hidden[j]);
+             	
              	
              	
              	kortmp='';
@@ -563,9 +577,14 @@ function removeAllChildNods(el) {
     }
 }
 </script>
+<form action="datePlan.nhn">
+
 <div id="img" class="placeinfov_wrap">
 	
 </div>
+
+</form>
+<input type="submit" value="저장" />
 </body>
 
 </html>

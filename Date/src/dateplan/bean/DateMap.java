@@ -1,7 +1,7 @@
 package dateplan.bean;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.ibatis.SqlMapClientTemplate;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,8 +13,9 @@ public class DateMap {
 	public String dateMap() throws Exception{
 		return "/dateplan/dateMap.jsp";
 	}
-	@RequestMapping("DateMap2.nhn")
-	public String dateMap2() throws Exception{
-		return "/dateplan/dateMap2.jsp";
+	@RequestMapping("datePlan.nhn")
+	public String dateMap2(HttpServletRequest request,DTO dto) throws Exception{
+		request.setAttribute("dto", dto);
+		return "/dateplan/datePlan.jsp";
 	}
 }
