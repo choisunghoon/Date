@@ -9,7 +9,8 @@
 	li{list-style:none;}
 
 		#css_tabs {
-		    font-family:'nanumgothic', '나눔고딕', 'malgun gothic', '맑은 고딕', 'dotum', '돋움', sans-serif
+			width:100%;
+		    font-family:'nanumgothic', '나눔고딕', 'malgun gothic', '맑은 고딕', 'dotum', '돋움', sans-serif		
 		}
 		/* 탭 선택 시 표시할 요소(div) 정의(1번 탭 선택 시 첫 번째 div 요소 표시) */
 		#css_tabs input:nth-of-type(1), #css_tabs input:nth-of-type(1) ~ div:nth-of-type(1), #css_tabs input:nth-of-type(2), #css_tabs input:nth-of-type(2) ~ div:nth-of-type(2), #css_tabs input:nth-of-type(3), #css_tabs input:nth-of-type(3) ~ div:nth-of-type(3), #css_tabs input:nth-of-type(4), #css_tabs input:nth-of-type(4) ~ div:nth-of-type(4) {
@@ -39,7 +40,7 @@
 		    cursor:pointer
 		}
 		#css_tabs label[for=tab1] {
-		    margin-left:10em
+		    margin-left:50px;
 		}
 		/* 선택된 라벨, 커서를 올린 라벨 스타일 지정 */
 		#css_tabs input:nth-of-type(1):checked ~ label:nth-of-type(1), #css_tabs > label[for=tab1]:hover {
@@ -60,9 +61,9 @@
 		}
 		/* 실제 내용이 담긴 div 요소 스타일 지정 */
 		#css_tabs .tab1_content, #css_tabs .tab2_content, #css_tabs .tab3_content, #css_tabs .tab4_content {
-		    padding:1em;
+		
 		    border:1px solid #ddd;
-		    width:1200px;
+		    width:100%;
 		    height:1000px
 		}
 			
@@ -95,7 +96,7 @@
     <label for="tab2">커플 하트 나무</label>     
     <div class="tab1_content">
 		<div class="sub_photo">
-			 <div class="title_area">
+			 <div class="title_area" style="border:1px solid;">
 				 <c:forEach var="diary" items="${diary}">
 					<ul>
 						<li>
