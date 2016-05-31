@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+
+	<typeAlias alias="dto" type="ch11.logon.LogonDataBean" />
+
+		<!-- 리절트 맵 정의 -->
+	  	<resultMap id="dtoRes" class="dto">
+		  	<result property="id" column="id"/>
+		  	<result property="pw" column="pw"/>
+		  	<result property="nickname" column="nickname"/>
+		  	<result property="location" column="location"/>
+		  	<result property="couple" column="couple"/>
+		</resultMap>
+		
+		
+		
+		<!-- insert 쿼리문 정의 -->
+		<insert id="insertMember" parameterClass="dto">
+		
+      		INSERT INTO dc_member
+      		
+                	 VALUES (
+                	 		#id#,
+                	 		#pw#,
+                         	#nickname#,
+                         	#location#,
+                         	#couple#
+                             )
+		</insert>
+		<update id="updateMember" parameterClass="dto">
+			UPDATE dc_member
+                	 set 
+                	 		pw=#pw#,
+                         	nickname=#nickname#,
+                         	location=#location#,
+                         	couple=#couple#
+                     where id=#id#
+                            
+		</update>
+		<delete id="deleteMember" parameterClass="String">
+			delete from dc_member
+                	 
+                     where id=#id#
+                            
+		</delete>
+		<select id="getMember" parameterClass="String" resultMap="dtoRes">
+			SELECT *from dc_member where id=#id#
+		</select>
+		<select id="getCouple" parameterClass="String" resultClass="int">
+			SELECT count(*) from dc_couple where id1=#id# or id2=#id#
+		</select>
+		<select id="confirmId" parameterClass="String" resultClass="int">
+			SELECT count(*) FROM dc_member where id=#id# 
+		</select>
+		<select id="confirmNickname" parameterClass="String" resultClass="int">
+			SELECT count(*) FROM dc_member where nickname=#nickname# 
+		</select>
+		<select id="userCheck" parameterClass="dto" resultClass="int">
+			SELECT count(*) FROM dc_member where id=#id# and pw=#pw#
+		</select>
+		<select id="nickCheck" parameterClass="String" resultClass="int">
+			SELECT count(*) FROM dc_member where id=#id# and nickname is null
+		</select>
+		<select id="FBuserCheck" parameterClass="String" resultClass="int">
+			SELECT count(*) FROM dc_member where id=#id#
+		</select>
+		<!-- select 쿼리문 정의 -->
+		<select id="selectAll" resultMap="dtoRes">
+			SELECT * FROM dc_member 
+		</select>
+		
+		
+
+</sqlMap>
+

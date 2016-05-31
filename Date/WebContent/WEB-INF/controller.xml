@@ -17,7 +17,7 @@
 	
 	
 	
-	
+	<context:component-scan base-package="login.bean" />
 	<context:component-scan base-package="dateplan.bean" />
 	<context:component-scan base-package="upload.bean" />
 	
@@ -37,7 +37,7 @@
                            destroy-method="close"
                            p:driverClassName="oracle.jdbc.driver.OracleDriver"
                            p:url="jdbc:oracle:thin:@khmaster.iptime.org:7000:orcl"
-                           p:username="web10" p:password="web10" />
+                           p:username="web07" p:password="web07" />
     
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
     	<property name="maxUploadSize" value="-1" />
