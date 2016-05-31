@@ -37,7 +37,7 @@ public class Upload {
 		int hhd = 220;
 		int check;
 		String couplename = "dfg";
-		String RealPath = request.getRealPath("\\sy0525");
+		String RealPath = request.getRealPath("\\syimage");
 		
 		if(w <= wwd && h <= hhd){
 		MultipartFile file = request.getFile("save");
@@ -92,7 +92,7 @@ public class Upload {
 	public String DiaryModifyPro(MultipartHttpServletRequest request,DiaryDataBean ddb)throws Exception{
 		String couplename = "dfg";
 		
-		String RealPath = request.getRealPath("\\sy0525");
+		String RealPath = request.getRealPath("\\syimage");
 		int num = Integer.parseInt(request.getParameter("num"));
 		String pool = request.getParameter("pool");
 		MultipartFile file = request.getFile("save");
@@ -137,7 +137,7 @@ public class Upload {
 	public String updateImage(MultipartHttpServletRequest request,CoupleDataBean cdb)throws Exception{
 
 		String couplename = "dfg";
-		String RealPath = request.getRealPath("\\sy0525");
+		String RealPath = request.getRealPath("\\syimage");
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
 		cdb.setCoupleimage(orgName);
