@@ -70,10 +70,10 @@
 <div style="width:400px; height:280;">
 	<div style="border:1px solid; width:200px; height:200px; float:left;">
 		<c:if test="${cdb.coupleimage eq null }">
-		<img src="sy0525/couple.png" class="img-circle">
+		<img src="syimage/couple.png" class="img-circle">
 		</c:if>
 		<c:if test="${cdb.coupleimage ne null }">
-		<img src="sy0525/${cdb.coupleimage }" width="200px" height="200px">
+		<img src="syimage/${cdb.coupleimage }" width="200px" height="200px">
 		</c:if>
 	</div>
 	<center>
@@ -99,7 +99,7 @@
 				 <c:forEach var="diary" items="${diary}">
 					<ul>
 						<li>
-							<img src="sy0525/${diary.img }">
+							<img src="syimage/${diary.img }">
 						</li>
 						<li>
 						${diary.content}
@@ -127,7 +127,7 @@
 			var a = Math.floor(gap/100);
 			if(b<1){
 				
-				document.write('<img src="sy0525/a'+a+'.jpg" width="500" height="600"/>');
+				document.write('<img src="syimage/a'+a+'.jpg" width="500" height="600"/>');
 			}
 		   
 		  
