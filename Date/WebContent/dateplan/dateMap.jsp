@@ -135,7 +135,7 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-      $("#button").click(function(){
+      $("#save").click(function(){
           callAjax();
       });
     });
@@ -144,18 +144,18 @@
 	        type: "post",
 	        url : "datePlan.nhn",
 	        data: {	// url 페이지도 전달할 파라미터
-	        	number : $('#place').val(),
-       			id : $('#id').val(),
-	        	comment : $('#comment').val()
+	        	placenewAddress : $('#placenewAddress').val()
 	        },
 	        success: test,	// 페이지요청 성공시 실행 함수
 	        error: whenError	//페이지요청 실패시 실행함수
      	});
     }
+    
     function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
         $("#ajaxReturn").html(aaa);
         console.log(resdata);
     }
+    
     function whenError(){
         alert("Error");
     }
@@ -406,12 +406,16 @@ function displayPlaces(places) {
     			}  else {
     				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
    			    }                
-  
+  				
     			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
-    			'<input type="hidden" name="placeplaceUrl" value="'+place.placeUrl+'" />'+
-      		  '<input type="hidden" name="placenewAddress" value="'+place.newAddress+'" />'+
-      		  '<input type="hidden" name="placeaddress" value="'+place.address +'" />'+
-      		  '<input type="hidden" name="placeid" value="'+place.id +'" />'+
+    			'<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
+      		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
+      		  '<input type="hidden" name="placeaddress" id="placeaddress" value="'+place.address +'" />'+
+      		  '<input type="hidden" name="placeid"  id="placeid" value="'+place.id +'" />'+
+      		
+      		  '<input type="hidden" name="placelatitude" id="placelatitude" value="'+place.latitude +'" />'+
+    		  '<input type="hidden" name="placelongitude" id="placelongitude" value="'+place.longitude +'" />'+
+      		  
       		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
              		   '</div>' + 
              		   '<div class="afterv" style="float:left;"></div>';
@@ -624,9 +628,9 @@ function removeAllChildNods(el) {
 <div id="img" class="placeinfov_wrap">
 	
 </div>
-<input type="submit" value="저장" />
+<input type="submit"  value="저장" />
 </form>
-
+<div id="ajaxReturn"></div> <!-- 요기에 -->
 </body>
 
 </html>
