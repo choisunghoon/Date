@@ -118,20 +118,4 @@ public class InputBean {
 		System.out.println("마페아이디"+id);
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("sidemenu.nhn")
-	public String sidemenu(HttpSession session,HttpServletRequest request) throws Exception{
-		String check =(String)session.getAttribute("fbcheck");
-		
-		System.out.println("마페 체크값"+check);
-		request.setAttribute("check", check);
-		
-		return "/dc/sidemenu.jsp";
-	}
-	@RequestMapping("mypageForm.nhn")
-	public String mypageForm(HttpSession session,HttpServletRequest request) throws Exception{
-		String check =(String)session.getAttribute("fbcheck");
-		System.out.println("마페 체크값"+check);
-		request.setAttribute("check", check);
-		return "/dc/mypageForm.jsp";
-	}
 }
