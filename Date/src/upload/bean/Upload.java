@@ -155,4 +155,40 @@ public class Upload {
 
 		return "/sy0525/asd.jsp";
 	}
+	
+	@RequestMapping("/main22.nhn")
+	public String main(){
+
+		return "/sy0526/main.jsp";
+	}
+	
+	@RequestMapping("/couple.nhn")
+	public String couple(){
+
+		return "/sy0526/couple.jsp";
+	}
+	
+	@RequestMapping("/share.nhn")
+	public String share(){
+
+		return "/sy0526/share.jsp";
+	}
+	
+	@RequestMapping("/theme.nhn")
+	public String theme(){
+
+		return "/sy0526/theme.jsp";
+	}
+	
+	@RequestMapping("/event.nhn")
+	public String event(){
+
+		return "/sy0526/event.jsp";
+	}
+	
+	@RequestMapping("/personal.nhn")
+	public String personal(){
+
+		return "/sy0526/personal.jsp";
+	}
 }
