@@ -51,6 +51,14 @@ public class InputBean {
 		return "/dc/confirmNickname.jsp";
 	}
 	
+	@RequestMapping("modify.nhn")
+	public String modify(HttpServletRequest request,HttpSession session) throws Exception{
+		String check =(String)session.getAttribute("fbcheck");
+		System.out.println("ㅁ인 체크값"+check);
+		request.setAttribute("check", check);
+	    
+		return "/dc/modify.jsp";
+	}
 	
 	@RequestMapping("modifyForm.nhn")
 	public String modifyForm(HttpServletRequest request,HttpSession session) throws Exception{

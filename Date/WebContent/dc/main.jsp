@@ -1,12 +1,11 @@
 <%@ page  contentType="text/html;charset=UTF-8"    pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="color.jsp"%>
 <script language="javascript" src="http://connect.facebook.net/ko_KR/all.js" type="text/javascript"></script>
 
 <html xmlns:fb="http://ogp.me/ns/fb#">
 <head><title>메인입니다..</title>
-<link href="style.css" rel="stylesheet" type="text/css">
+
 </head>
 
 

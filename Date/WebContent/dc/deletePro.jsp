@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"    pageEncoding="UTF-8" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<%@ include file="color.jsp"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -14,20 +14,20 @@
 	<c:if test="${ check==1}">
 		<% session.invalidate();%>
 
-<body bgcolor="<%=bodyback_c%>">
+<body>
 <form method="post" action="main.nhn" name="userinput" >
 <table width="270" border="0" cellspacing="0" cellpadding="5" align="center">
-  <tr bgcolor="<%=title_c%>"> 
+  <tr> 
     <td height="39" align="center">
 	  <font size="+1" ><b>회원정보가 삭제되었습니다.</b></font></td>
   </tr>
-  <tr bgcolor="<%=value_c%>">
+  <tr>
     <td align="center"> 
       <p>흑흑.... 서운합니다. 안녕히 가세요.</p>
       <meta http-equiv="Refresh" content="5;url=main.nhn" >
     </td>
   </tr>
-  <tr bgcolor="<%=value_c%>">
+  <tr>
     <td align="center"> 
       <input type="submit" value="확인">
     </td>
