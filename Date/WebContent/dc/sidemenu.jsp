@@ -67,15 +67,15 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 <div class="menutitle">회원정보</div>
 <ul>
 <li><a href="modifyForm.nhn" target="body">회원정보 변경</a></li>
+<c:if test="${check eq 'no' }">
 <li><a href="deleteForm.nhn" target="body">회원 탈퇴</a></li>
+</c:if>
 </ul>
 
 <div class="menutitle">커플정보</div>
 <ul>
 <li><a href="" target="body">커플 신청 & 수락</a></li>
-<c:if test="${check eq 'no' }">
 <li><a href="" target="body">커플 삭제</a></li>
-</c:if>
 </ul>
 <div class="menutitle">마이코스</div>
 <ul>

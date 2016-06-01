@@ -176,20 +176,20 @@
 
 
 
-<body bgcolor="<%=bodyback_c%>">
+<body>
 <form method="post" action="modifyPro.nhn" name="userinput" onsubmit="return checkIt()">
 
   <table width="600" border="1" cellspacing="0" cellpadding="3"  align="center">
     <tr > 
-      <td  colspan="2" height="39" bgcolor="<%=title_c%>" align="center">
+      <td  colspan="2" height="39" align="center">
 	     <font size="+1" ><b>회원 정보수정</b></font></td>
     </tr>
     <tr>
       <td colspan="2" class="normal" align="center">회원의 정보를 수정합니다.</td>
     </tr>
      <tr> 
-      <td width="200" bgcolor="<%=value_c%>"><b>아이디 입력</b></td>
-      <td width="400" bgcolor="<%=value_c%>">&nbsp;</td>
+      <td width="200"><b>아이디 입력</b></td>
+      <td width="400" >&nbsp;</td>
     <tr>  
 
     <tr> 
@@ -214,8 +214,8 @@
       <input type="hidden" name="pw" size="10" maxlength="10" value="fbuser">
     </c:if>  
     <tr> 
-      <td  width="200" bgcolor="<%=value_c%>"><b>개인정보 입력</b></td>
-      <td width="400" bgcolor="<%=value_c%>">&nbsp;</td>
+      <td  width="200" ><b>개인정보 입력</b></td>
+      <td width="400" >&nbsp;</td>
     <tr>  
     <tr> 
       <td   width="200">사용자 별명</td>
@@ -241,9 +241,9 @@
     </tr>
         
     <tr> 
-      <td colspan="2" align="center" bgcolor="<%=value_c%>"> 
+      <td colspan="2" align="center" > 
        <input type="submit" name="modify" value="수   정" >
-       <input type="button" value="취  소" onclick="javascript:window.location='main.nhn'">      
+       <input type="button" value="취  소" onclick="javascript:window.location='mypageForm.nhn'">      
       </td>
     </tr>
   </table>

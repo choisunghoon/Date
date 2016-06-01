@@ -74,7 +74,7 @@ public class LoginBean {
 	public String logout(HttpSession session) throws Exception{
 		session.invalidate();
 		
-		return "/dc/main.jsp";
+		return  "redirect:main.nhn";
 	}
 	
 	

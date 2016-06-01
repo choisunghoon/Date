@@ -80,27 +80,27 @@ window.fbAsyncInit = function() {
 </c:if>
 <c:if test="${id eq null }">
 
-<body onLoad="focusIt();" bgcolor="<%=bodyback_c%>">
-  <table width="500" cellpadding="0" cellspacing="0"  align="center" border="1" >
+<body onLoad="focusIt();" >
+  <table width="500" cellpadding="0" cellspacing="0"  align="center" >
        <form name="inform" method="post" action="loginForm.nhn"  onSubmit="return checkIt();">
            
      
-          <td colspan="3" bgcolor="<%=title_c%>"   align="center">
+          <td colspan="3"   align="center">
             <input type="submit" value="일반로그인">
 			<input type="button"  value="회원가입" onclick="javascript:window.location='inputForm.nhn'">
             <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
           </td></tr></table></form>
           </body></c:if>
      <c:if test="${(id ne null) and (check eq 'yes')}">
-       <table width="500" cellpadding="0" cellspacing="0"  align="center" border="1" >
+       <table width="500" cellpadding="0" cellspacing="0"  align="center" >
          <tr>
-           <td width="300" bgcolor="<%=bodyback_c%>" height="20">하하하</td>
+      
 
-           <td rowspan="3" bgcolor="<%=value_c%>" align="center">
-            ${ id}님이 <br>
-             방문하셨습니다<br>
+           <td rowspan="3"  align="center">
+            ${ id}님 환영합니다.<br/>
+     
              <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
-             <input type="button" value="마이페이지" onclick="javascript:window.location='mypage.nhn?fbcheck=yes'">
+             <input type="button" value="마이페이지" onclick="javascript:window.location='mypage.nhn?fbcheck=yes&id=${id}'">
          </td>
         </tr>
        
@@ -108,16 +108,14 @@ window.fbAsyncInit = function() {
      <br>
  </c:if>
  <c:if test="${(id ne null) and (check eq 'no')}">
-       <table width="500" cellpadding="0" cellspacing="0"  align="center" border="1" >
+       <table width="500" cellpadding="0" cellspacing="0"  align="center">
          <tr>
-           <td width="300" bgcolor="<%=bodyback_c%>" height="20">하하하</td>
-
-           <td rowspan="3" bgcolor="<%=value_c%>" align="center">
-            ${ id}님이 <br>
-             방문하셨습니다<br>
+           <td rowspan="3"  align="center">
+            ${ id}님 환영합니다.
+            
              <form  method="post" action="logout.nhn">  
              <input type="submit"  value="로그아웃">
-             <input type="button" value="마이페이지" onclick="javascript:window.location='mypage.nhn?fbcheck=no'">
+             <input type="button" value="마이페이지" onclick="javascript:window.location='mypage.nhn?fbcheck=no&id=${id}'">
              </form>
          </td>
         </tr>
