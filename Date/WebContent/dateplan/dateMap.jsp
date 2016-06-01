@@ -24,7 +24,7 @@
 #category li .category_bg {background:url(http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
 #category li .bank {background-position: -10px 0;}
 #category li .mart {background-position: -10px -36px;}
-#category li .pharmacy {background-position: -10px -72px;}
+#category li .food {background-position: -10px -72px;}
 #category li .oil {background-position: -10px -108px;}
 #category li .cafe {background-position: -10px -144px;}
 #category li .store {background-position: -10px -180px;}
@@ -110,8 +110,8 @@
             <span class="category_bg mart"></span>
             문화시설
         </li>  
-        <li id="FD6" data-order="2"> 
-            <span class="category_bg pharmacy"></span>
+        <li id="FD6" data-order="3"> 
+            <span class="category_bg oil"></span>
             음식점
         </li>
      <!--   
@@ -133,6 +133,33 @@
 
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=9be7455c7d33a4e2b750d3537e1179d8&libraries=services"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#button").click(function(){
+          callAjax();
+      });
+    });
+    function callAjax(){
+        $.ajax({
+	        type: "post",
+	        url : "datePlan.nhn",
+	        data: {	// url 페이지도 전달할 파라미터
+	        	number : $('#place').val(),
+       			id : $('#id').val(),
+	        	comment : $('#comment').val()
+	        },
+	        success: test,	// 페이지요청 성공시 실행 함수
+	        error: whenError	//페이지요청 실패시 실행함수
+     	});
+    }
+    function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $("#ajaxReturn").html(aaa);
+        console.log(resdata);
+    }
+    function whenError(){
+        alert("Error");
+    }
+  </script>
 <script>
 // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 
@@ -339,9 +366,6 @@ function deldiv(i){
 	j = j-1;
 	
 }
-function isEmpty( el ){
-    return !$.trim(el.html())
-}
 
 function displayPlaces(places) {
 
@@ -384,6 +408,11 @@ function displayPlaces(places) {
    			    }                
   
     			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
+    			'<input type="hidden" name="placeplaceUrl" value="'+place.placeUrl+'" />'+
+      		  '<input type="hidden" name="placenewAddress" value="'+place.newAddress+'" />'+
+      		  '<input type="hidden" name="placeaddress" value="'+place.address +'" />'+
+      		  '<input type="hidden" name="placeid" value="'+place.id +'" />'+
+      		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
              		   '</div>' + 
              		   '<div class="afterv" style="float:left;"></div>';
     			
@@ -392,19 +421,15 @@ function displayPlaces(places) {
              		alert("5개 이상 선택 하실수 없습니다.");
              		return;
     			 }
-                hidden[j]='<input type="hidden" name="placeplaceUrl" value="'+place.placeUrl+'" />'+
-                		  '<input type="hidden" name="placenewAddress" value="'+place.newAddress+'" />'+
-                		  '<input type="hidden" name="placeaddress" value="'+place.address +'" />'+
-                		  '<input type="hidden" name="placeid" value="'+place.id +'" />'+
-                		  '<input type="hidden" name="placephone" value="'+place.phone +'" />';
-                
+               
                 
                 
                
 	             	
 	             	
                 $("#img").append(kor[j]);
-                $("#img").append(hidden[j]);
+                
+                
              	
              	
              	
@@ -418,6 +443,23 @@ function displayPlaces(places) {
                     displayPlaceInfo(place);
                 });
             })(marker, places[i]);
+            (function(marker, title) {
+                daum.maps.event.addListener(marker, 'mouseover', function() {
+                    displayInfowindow(marker, title);
+                });
+
+                daum.maps.event.addListener(marker, 'mouseout', function() {
+                    infowindow.close();
+                });
+
+                itemEl.onmouseover =  function () {
+                    displayInfowindow(marker, title);
+                };
+
+                itemEl.onmouseout =  function () {
+                    infowindow.close();
+                };
+            })(marker, places[i].title);
             fragment.appendChild(itemEl);
     }
     listEl.appendChild(fragment);
@@ -582,9 +624,9 @@ function removeAllChildNods(el) {
 <div id="img" class="placeinfov_wrap">
 	
 </div>
-
-</form>
 <input type="submit" value="저장" />
+</form>
+
 </body>
 
 </html>
