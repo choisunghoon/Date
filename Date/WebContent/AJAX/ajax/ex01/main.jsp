@@ -5,7 +5,8 @@
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
-    $('#execute').click(function(){  // �±� Ŭ����(execute) ã�� Ŭ���̺�Ʈ�߻��� ����
+    $('#execute').click(function(){
+    	alert("asdfasdf");// �±� Ŭ����(execute) ã�� Ŭ���̺�Ʈ�߻��� ����
         $.ajax({
             url:'index.jsp?id=java',	//������ ������ ������.
             type:'post',				//���۹���
