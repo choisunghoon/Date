@@ -2,7 +2,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@include file="/dc/main.jsp" %>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<<<<<<< HEAD
 <style type="text/css">
+=======
+
+<div >
+>>>>>>> branch 'master' of https://github.com/choisunghoon/Date.git
 
 /*Credits: Dynamic Drive CSS Library */
 /*URL: http://www.dynamicdrive.com/style/ */
@@ -73,9 +78,26 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 <li><a href="#">코스 리스트</a></li>
 </ul>
 </div>
+<<<<<<< HEAD
 <td>
 <td>
 <iframe src="#"width=700 height=400 name="if"></iframe>
 </td>
 </tr>
 </table>
+=======
+<p>time : <span id="time"></span></p>
+
+<script>
+    $('#execute').click(function(){
+    	alert("asdfasdf");// 占승깍옙 클占쏙옙占쏙옙(execute) 찾占쏙옙 클占쏙옙占싱븝옙트占쌩삼옙占쏙옙 占쏙옙占쏙옙
+        $.ajax({
+            url:'/Date/dc/index.jsp?id=java',	//占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙.
+            type:'post',				//占쏙옙占쌜뱄옙占쏙옙
+            success:function(data){		//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙..占쏙옙占쏙옙占싹댐옙 占쌉쇽옙..
+                $('#time').append('<font color=red>'+data+'</font>');
+            }
+        })
+    })
+</script>
+>>>>>>> branch 'master' of https://github.com/choisunghoon/Date.git
