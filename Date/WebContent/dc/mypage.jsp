@@ -2,12 +2,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@include file="/dc/main.jsp" %>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<<<<<<< HEAD
-<style type="text/css">
-=======
 
-<div >
->>>>>>> branch 'master' of https://github.com/choisunghoon/Date.git
+<style type="text/css">
+
 
 /*Credits: Dynamic Drive CSS Library */
 /*URL: http://www.dynamicdrive.com/style/ */
@@ -56,15 +53,17 @@ background-color: black;
 font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 }
 
-</style><table>
+</style>
+<form>
+<table>
 <tr><td>
 <div id="ddblueblockmenu">
 
 <div  class="menutitle">회원정보</div>
 <ul>
-<li><a href="modifyForm.nhn" target="if">회원정보변경</a></li>
+<li id="modifyForm.nhn"><a>회원정보변경</a></li>
 <c:if test="${check eq 'no' }">
-<li><a href="deleteForm.nhn" target="if">회원 탈퇴</a></li>
+<li id="deleteForm.nhn"><a>회원 탈퇴</a></li>
 </c:if>
 </ul>
 
@@ -78,26 +77,33 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 <li><a href="#">코스 리스트</a></li>
 </ul>
 </div>
-<<<<<<< HEAD
 <td>
-<td>
-<iframe src="#"width=700 height=400 name="if"></iframe>
+<td width="600" height="400" align="center">
+<span id="content"></span>
 </td>
 </tr>
 </table>
-=======
-<p>time : <span id="time"></span></p>
+</form>
+
 
 <script>
-    $('#execute').click(function(){
-    	alert("asdfasdf");// 占승깍옙 클占쏙옙占쏙옙(execute) 찾占쏙옙 클占쏙옙占싱븝옙트占쌩삼옙占쏙옙 占쏙옙占쏙옙
-        $.ajax({
-            url:'/Date/dc/index.jsp?id=java',	//占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙.
-            type:'post',				//占쏙옙占쌜뱄옙占쏙옙
-            success:function(data){		//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙..占쏙옙占쏙옙占싹댐옙 占쌉쇽옙..
-                $('#time').append('<font color=red>'+data+'</font>');
-            }
-        })
-    })
+$('ul li').click(function(){
+	url=$(this).attr("id");
+	callAjax(url); 
+});
+function callAjax(url){
+	 $.ajax({
+	        type: "post",
+	        url : url,
+	        success: test,	// 페이지요청 성공시 실행 함수
+	        error: whenError	//페이지요청 실패시 실행함수
+  	});
+}
+function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+    $("#content").html(aaa);	//id가 ajaxReturn인 부분에 넣어라
+}
+function whenError(){
+    alert("Error");
+}
 </script>
->>>>>>> branch 'master' of https://github.com/choisunghoon/Date.git
+
