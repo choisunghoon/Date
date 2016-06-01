@@ -1,7 +1,15 @@
 package dateplan.bean;
 
 public class DTO {
-	String placeplaceUrl,placenewAddress,placeaddress,placeid,placephone;
+	String placeplaceUrl,placenewAddress,placeaddress,placeid,placephone,placetitle;
+
+	public String getPlacetitle() {
+		return placetitle;
+	}
+
+	public void setPlacetitle(String placetitle) {
+		this.placetitle = placetitle;
+	}
 
 	public String getPlaceplaceUrl() {
 		return placeplaceUrl;

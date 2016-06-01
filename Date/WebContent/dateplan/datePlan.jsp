@@ -5,3 +5,4 @@ ${dto.placeplaceUrl} <br />
 ${dto.placenewAddress} <br />
 ${dto.placeaddress} <br />
 ${dto.placephone} <br />
+${dto.placetitle}
