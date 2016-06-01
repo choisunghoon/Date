@@ -17,7 +17,7 @@ public class DateMap {
 	public String dateMap2(HttpServletRequest request,DTO dto) throws Exception{
 		
 		request.setAttribute("dto", dto);
-		System.out.println(dto.getPlaceid());
+		
 		return "/dateplan/datePlan.jsp";
 	}
 }
