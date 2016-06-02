@@ -187,8 +187,9 @@ function addEventHandle(target, type, callback) {
 
 // 카테고리 검색을 요청하는 함수입니다
 function searchPlaces3(){
-	var adress = "${dto.placetitle}";
-	var ad = adress.split(",");
+	var title = "${dto.placetitle}";
+	
+	var ad = title.split(",");
 	for(var i = 0;i<ad.length;i++){
 		ps.keywordSearch(ad[i], placesSearchCB3);  
 	}
@@ -325,6 +326,56 @@ function displayPlaces2(places) {
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
+        (function(marker, place) {
+                daum.maps.event.addListener(marker, 'click', function() {
+                    displayPlaceInfo(place);
+                });
+            })(marker, places[i]);
+        (function(marker, place) {
+            daum.maps.event.addListener(marker, 'rightclick', function() {
+
+            	kor[j] = '<div onclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
+                '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
+            	
+			if (place.newAddress) {
+				kor[j] += '    <span title="' + place.newAddress + '">' + place.newAddress + '</span>' +
+                '  <span class="jibun" title="' + place.address + '">(지번 : ' + place.address + ')</span>';
+			}  else {
+				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
+			    }                
+				
+			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
+		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
+  		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
+  		  '<input type="hidden" name="placeaddress" id="placeaddress" value="'+place.address +'" />'+
+  		  '<input type="hidden" name="placeid"  id="placeid" value="'+place.id +'" />'+
+  		  '<input type="hidden" name="placetitle"  id="placeid" value="'+place.title +'" />'+
+  		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
+         		   '</div>' + 
+         		   '<div class="afterv" style="float:left;"></div>';
+			
+             if(j>5){               	 
+         		j=6;
+         		alert("5개 이상 선택 하실수 없습니다.");
+         		return;
+			 }
+           
+            
+            
+           
+             	
+             	
+            $("#img").append(kor[j]);
+            
+            
+         	
+         	
+         	
+         	kortmp='';
+			j++;
+			
+            });
+        })(marker, places[i]);
         (function(marker, title) {
             daum.maps.event.addListener(marker, 'mouseover', function() {
                 displayInfowindow(marker, title);
@@ -353,6 +404,11 @@ function displayPlaces2(places) {
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
 }
+var checkidtmp="${dto.placeid}"
+var checkid = checkidtmp.split(",");
+var index=0;
+
+
 function displayPlaces3(places) {
 
     var listEl = document.getElementById('placesList'), 
@@ -368,19 +424,104 @@ function displayPlaces3(places) {
     
     
     for ( var i=0; i<places.length; i++ ) {
-    	alert(places[i].id);	
+    	
+    	if(checkidtmp.indexOf(places[i].id)>-1){
         // 마커를 생성하고 지도에 표시합니다
-        var placePosition = new daum.maps.LatLng(places[0].latitude, places[0].longitude),
-            marker = addMarker2(placePosition, 0), 
-            itemEl = getListItem(i, places[0], marker); // 검색 결과 항목 Element를 생성합니다
-
+        
+        var placePosition = new daum.maps.LatLng(places[i].latitude, places[i].longitude),
+            marker = addMarker2(placePosition, index), 
+            itemEl = getListItem(index, places[i], marker); // 검색 결과 항목 Element를 생성합니다
+            index++;
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
-
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
+        (function(marker, place) {
+            daum.maps.event.addListener(marker, 'rightclick', function() {
+
+            	kor[j] = '<div onclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
+                '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
+            	
+			if (place.newAddress) {
+				kor[j] += '    <span title="' + place.newAddress + '">' + place.newAddress + '</span>' +
+                '  <span class="jibun" title="' + place.address + '">(지번 : ' + place.address + ')</span>';
+			}  else {
+				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
+			    }                
+				
+			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
+		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
+  		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
+  		  '<input type="hidden" name="placeaddress" id="placeaddress" value="'+place.address +'" />'+
+  		  '<input type="hidden" name="placeid"  id="placeid" value="'+place.id +'" />'+
+  		  '<input type="hidden" name="placetitle"  id="placeid" value="'+place.title +'" />'+
+  		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
+         		   '</div>' + 
+         		   '<div class="afterv" style="float:left;"></div>';
+			
+             if(j>5){               	 
+         		j=6;
+         		alert("5개 이상 선택 하실수 없습니다.");
+         		return;
+			 }
+           
+            
+            
+           
+             	
+             	
+            $("#img").append(kor[j]);
+            
+            
+         	
+         	
+         	
+         	kortmp='';
+			j++;
+			
+            });
+        })(marker, places[i]);
+        (function(marker, place) {
+                	
+                	kor[j] = '<div onclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
+                    '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
+                	
+    			if (place.newAddress) {
+    				kor[j] += '    <span title="' + place.newAddress + '">' + place.newAddress + '</span>' +
+                    '  <span class="jibun" title="' + place.address + '">(지번 : ' + place.address + ')</span>';
+    			}  else {
+    				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
+   			    }                
+  				
+    			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
+    			'<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
+      		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
+      		  '<input type="hidden" name="placeaddress" id="placeaddress" value="'+place.address +'" />'+
+      		  '<input type="hidden" name="placeid" name="placeid" id="placeid" value="'+place.id +'" />'+
+      		  '<input type="hidden" name="placetitle"  id="placetitle" value="'+place.title +'" />'+
+      		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
+             		   '</div>' + 
+             		   '<div class="afterv" style="float:left;"></div>';
+    			
+                 if(j>5){               	 
+             		j=6;
+             		alert("5개 이상 선택 하실수 없습니다.");
+             		return;
+    			 }
+	             	
+                $("#img").append(kor[j]);
+                
+             	kortmp='';
+    			j++;
+        
+            })(marker, places[i]);
+        (function(marker, place) {
+            daum.maps.event.addListener(marker, 'click', function() {
+                displayPlaceInfo(place);
+            });
+        })(marker, places[i]);
         (function(marker, title) {
             daum.maps.event.addListener(marker, 'mouseover', function() {
                 displayInfowindow(marker, title);
@@ -400,14 +541,16 @@ function displayPlaces3(places) {
         })(marker, places[i].title);
 
         fragment.appendChild(itemEl);
-    }
-
+    	
+    
     // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
     listEl.appendChild(fragment);
     menuEl.scrollTop = 0;
 
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
+    	}
+    }
 }
 // 지도에 마커를 표출하는 함수입니다
 var kor=[];
@@ -462,10 +605,11 @@ function displayPlaces(places) {
    			    }                
   				
     			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
-    			'<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
+    		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
       		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
       		  '<input type="hidden" name="placeaddress" id="placeaddress" value="'+place.address +'" />'+
-      		  '<input type="hidden" name="placeid" name="placeid" id="placeid" value="'+place.id +'" />'+
+      		  '<input type="hidden" name="placeid"  id="placeid" value="'+place.id +'" />'+
+      		  '<input type="hidden" name="placetitle"  id="placeid" value="'+place.title +'" />'+
       		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
              		   '</div>' + 
              		   '<div class="afterv" style="float:left;"></div>';
@@ -692,12 +836,12 @@ function removeAllChildNods(el) {
     }
 }
 </script>
-<form action="datePlan.nhn">
-
+<form action="cosUpdate.nhn">
+<input type="hidden" value="up" name="btcheck" />
 <div id="img" class="placeinfov_wrap">
 	
 </div>
-<input type="button" id="save" value="저장" />
+<input type="submit"  value="수정" />
 </form>
 
 </body>
