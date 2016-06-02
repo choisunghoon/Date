@@ -148,10 +148,8 @@
 				    }
 				   }
 				   document.frmSet.listMore.value = last;
-				
 				   if (totalCnt <= last)
-				   {
-					   
+				   {	
 				    document.getElementById("dispMore").style.display = 'none'; //더보기 버튼이 최대갯수보다 크거나 작으면 none 처리
 				   }
 				  }
