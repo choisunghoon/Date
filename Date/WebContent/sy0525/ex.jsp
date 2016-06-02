@@ -57,8 +57,8 @@ function readImage(file) {
             var w = this.width,
                 h = this.height,
                 n = file.name
-                var wwd=420;  
-                var hhd=200;  
+                var wwd=1000;  
+                var hhd=1000;  
            document.getElementById('w').value=w;
            document.getElementById('h').value=h;
           if(w > wwd || h > hhd)

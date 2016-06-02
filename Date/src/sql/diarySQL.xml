@@ -3,11 +3,16 @@
 <sqlMap>
 
 	<select id="myDiary" resultClass="upload.bean.DiaryDataBean" parameterClass="upload.bean.DiaryDataBean">
-		select * from dc_diary where couplename = #couplename#
+		select * from dc_diary where couplename = #couplename# order by num
+	</select>
+	
+	<select id="myDiary1" resultClass="int" parameterClass="upload.bean.DiaryDataBean">
+		select count(*) from dc_diary where couplename = #couplename#
 	</select>
 	
 	<insert id="insertDiary" parameterClass="upload.bean.DiaryDataBean">
-		insert into dc_diary(couplename,subject,content,img,regdate,pool) values(
+		insert into dc_diary(num,couplename,subject,content,img,regdate,pool) values(
+		dc_diary_seq.nextval,
 		#couplename#,
 		#subject#,
 		#content#,

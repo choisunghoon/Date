@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
-	
+	<insert id="insertcos" parameterClass="dateplan.bean.DTO">
+		insert into dc_dc(num,placetitle,placeid) values(dc_dc_seq.nextval,#placetitle#,#placeid#)
+	</insert>
+	<select id="selectcos" resultClass="dateplan.bean.DTO" parameterClass="dateplan.bean.DTO">
+		select * from dc_dc
+	</select>
+	<update id="updatecos" parameterClass="dateplan.bean.DTO">
+		update dc_dc set placetitle=#placetitle#,placeid=#placeid# where num=#num#
+	</update>
 </sqlMap>
 

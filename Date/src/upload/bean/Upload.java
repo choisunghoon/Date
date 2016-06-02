@@ -33,8 +33,8 @@ public class Upload {
 	public String upload(MultipartHttpServletRequest request,DiaryDataBean ddb) throws Exception{
 		int w = Integer.parseInt(request.getParameter("w"));
 		int h = Integer.parseInt(request.getParameter("h"));
-		int wwd= 420;
-		int hhd = 220;
+		int wwd= 1000;
+		int hhd = 1000;
 		int check;
 		String couplename = "dfg";
 		String RealPath = request.getRealPath("\\syimage");
@@ -66,12 +66,16 @@ public class Upload {
 	@RequestMapping("/diaryMenu.nhn")
 	public String diaryMenu(HttpServletRequest request,DiaryDataBean ddb, CoupleDataBean cdb){
 		List diary =null;
+		int listMore = 3;
 		String couplename = "dfg";
 		ddb.setCouplename(couplename);
 		diary = sqlMap.queryForList("myDiary", ddb);
 		cdb.setCouplename(couplename);
 		cdb = (CoupleDataBean)sqlMap.queryForObject("diaryImage", cdb);
+		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
 		
+		request.setAttribute("listMore", listMore);
+		request.setAttribute("totalCnt", totalCnt);
 		request.setAttribute("diary", diary);
 		request.setAttribute("cdb", cdb);
 		return "/sy0525/diaryMenu.jsp";
@@ -154,5 +158,41 @@ public class Upload {
 	public String asd(HttpServletRequest request, CoupleDataBean cdb){
 
 		return "/sy0525/asd.jsp";
+	}
+	
+	@RequestMapping("/main22.nhn")
+	public String main(){
+
+		return "/sy0526/main.jsp";
+	}
+	
+	@RequestMapping("/couple.nhn")
+	public String couple(){
+
+		return "/sy0526/couple.jsp";
+	}
+	
+	@RequestMapping("/share.nhn")
+	public String share(){
+
+		return "/sy0526/share.jsp";
+	}
+	
+	@RequestMapping("/theme.nhn")
+	public String theme(){
+
+		return "/sy0526/theme.jsp";
+	}
+	
+	@RequestMapping("/event.nhn")
+	public String event(){
+
+		return "/sy0526/event.jsp";
+	}
+	
+	@RequestMapping("/personal.nhn")
+	public String personal(){
+
+		return "/sy0526/personal.jsp";
 	}
 }
