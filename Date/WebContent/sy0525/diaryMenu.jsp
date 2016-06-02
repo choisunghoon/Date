@@ -117,8 +117,8 @@
             
                </ul>
             </c:forEach>
-            <div id="dispMore" style="display:none">
-             <a href="#" onclick="listMore(${totalCnt})" style="margin-left:50%; padding-bottom:100px;">더보기</a>
+            <div id="dispMore" style="display:none;padding-bottom:100px;">
+             <a href="#" onclick="listMore(${totalCnt})" style="margin-left:50%; ">더보기</a>
             </div>
             <c:forEach end="${totalCnt}" begin="1" var="i">
                <c:if test="${i<=listMore }">
