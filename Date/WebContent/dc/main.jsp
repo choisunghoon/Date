@@ -74,20 +74,18 @@ window.fbAsyncInit = function() {
 
 <body onLoad="focusIt();" >
   <table width="500" cellpadding="0" cellspacing="0"  align="center" >
-       <form name="inform" method="post" action="loginForm.nhn"  onSubmit="return checkIt();">
+       <form name="inform" method="post" action="loginForm.nhn">
            
      
           <td colspan="3"   align="center">
-            <input type="submit" value="일반로그인">
-			<input type="button"  value="회원가입" onclick="javascript:window.location='inputForm.nhn'">
+            <a href="loginForm.nhn">일반로그인</a>
+			<a href="inputForm.nhn">회원가입</a>
             <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
           </td></tr></table></form>
           </body></c:if>
      <c:if test="${(id ne null) and (check eq 'yes')}">
        <table width="500" cellpadding="0" cellspacing="0"  align="center" >
          <tr>
-      
-
            <td rowspan="3"  align="center">
             ${ id}님 환영합니다.<br/>
      
@@ -105,8 +103,8 @@ window.fbAsyncInit = function() {
            <td rowspan="3"  align="center">
             ${ id}님 환영합니다.
             
-             <form  method="post" action="logout.nhn">  
-             <input type="submit"  value="로그아웃">
+             logout.nhn
+          <a href="logout.nhn">로그아웃</a>
              <input type="button" value="마이페이지" onclick="javascript:window.location='mypage.nhn?fbcheck=no&id=${id}'">
              </form>
          </td>
