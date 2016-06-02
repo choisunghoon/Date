@@ -6,6 +6,10 @@
 		select * from dc_diary where couplename = #couplename#
 	</select>
 	
+	<select id="myDiary1" resultClass="int" parameterClass="upload.bean.DiaryDataBean">
+		select count(*) from dc_diary where couplename = #couplename#
+	</select>
+	
 	<insert id="insertDiary" parameterClass="upload.bean.DiaryDataBean">
 		insert into dc_diary(num,couplename,subject,content,img,regdate,pool) values(
 		dc_diary_seq.nextval,
