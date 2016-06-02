@@ -11,7 +11,8 @@
 	</select>
 	
 	<insert id="insertDiary" parameterClass="upload.bean.DiaryDataBean">
-		insert into dc_diary(couplename,subject,content,img,regdate,pool) values(
+		insert into dc_diary(num,couplename,subject,content,img,regdate,pool) values(
+		dc_diary_seq.nextval,
 		#couplename#,
 		#subject#,
 		#content#,

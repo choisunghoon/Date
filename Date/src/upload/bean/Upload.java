@@ -33,8 +33,8 @@ public class Upload {
 	public String upload(MultipartHttpServletRequest request,DiaryDataBean ddb) throws Exception{
 		int w = Integer.parseInt(request.getParameter("w"));
 		int h = Integer.parseInt(request.getParameter("h"));
-		int wwd= 420;
-		int hhd = 220;
+		int wwd= 1000;
+		int hhd = 1000;
 		int check;
 		String couplename = "dfg";
 		String RealPath = request.getRealPath("\\syimage");
