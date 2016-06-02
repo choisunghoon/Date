@@ -66,12 +66,16 @@ public class Upload {
 	@RequestMapping("/diaryMenu.nhn")
 	public String diaryMenu(HttpServletRequest request,DiaryDataBean ddb, CoupleDataBean cdb){
 		List diary =null;
+		int listMore = 3;
 		String couplename = "dfg";
 		ddb.setCouplename(couplename);
 		diary = sqlMap.queryForList("myDiary", ddb);
 		cdb.setCouplename(couplename);
 		cdb = (CoupleDataBean)sqlMap.queryForObject("diaryImage", cdb);
+		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
 		
+		request.setAttribute("listMore", listMore);
+		request.setAttribute("totalCnt", totalCnt);
 		request.setAttribute("diary", diary);
 		request.setAttribute("cdb", cdb);
 		return "/sy0525/diaryMenu.jsp";
