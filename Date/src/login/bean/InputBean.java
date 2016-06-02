@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ch11.logon.LogonDataBean;
+
+import ch11.logon.*;
 
 @Controller
 public class InputBean {
@@ -49,6 +50,20 @@ public class InputBean {
 	    request.setAttribute("nickname", nickname);
 	    request.setAttribute("check", check);
 		return "/dc/confirmNickname.jsp";
+	}
+	@RequestMapping("searchNickname.nhn")
+	public String searchNickname(String nickname,HttpServletRequest request) throws Exception{
+	    int check = (Integer)sqlMapper.queryForObject("confirmNickname",nickname);
+	    request.setAttribute("nickname", nickname);
+	    request.setAttribute("check", check);
+		return "/dc/searchNickname.jsp";
+	}
+	@RequestMapping("confirmCoupleName.nhn")
+	public String confirmCoupleName(String coupleName,HttpServletRequest request) throws Exception{
+	    int check = (Integer)sqlMapper.queryForObject("confirmCoupleName",coupleName);
+	    request.setAttribute("coupleName", coupleName);
+	    request.setAttribute("check", check);
+		return "/dc/confirmCoupleName.jsp";
 	}
 	
 	
@@ -109,5 +124,36 @@ public class InputBean {
 		request.setAttribute("id", id);
 		System.out.println("마페아이디"+id);
 		return "/dc/mypage.jsp";
+	}
+	@RequestMapping("couple.nhn")
+	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
+		
+		String id=request.getParameter("id");
+		System.out.println("커플아이디"+id);
+		LogonDataBean dto=new LogonDataBean();
+		int check1 = (Integer)sqlMapper.queryForObject("coupleCheck1", id);
+		int check2 = (Integer)sqlMapper.queryForObject("coupleCheck2", id);
+		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);
+		request.setAttribute("id", id);
+		request.setAttribute("couple", dto);
+		request.setAttribute("check1", check1);
+		request.setAttribute("check2", check2);
+		return "/dc/couple.jsp";
+	}
+	@RequestMapping("coupleSearchPro.nhn")
+	public String coupleSearchPro(HttpSession session,HttpServletRequest request) throws Exception{
+		
+		String id=request.getParameter("id");
+		System.out.println("커플서치 아이디"+id);
+		String nickname=request.getParameter("nickname");
+		String coupleName=request.getParameter("coupleName");
+		LogonDataBean dto=new LogonDataBean();
+		dto = (LogonDataBean)sqlMapper.queryForObject("getMemberbyn", nickname);
+		System.out.println("dto아이디"+dto.getId());
+		CoupleDataBean cdto=new CoupleDataBean();
+		cdto.setId1(id);
+		cdto.setId2(dto.getId());
+		
+		return "/dc/coupleSearchPro.jsp";
 	}
 }

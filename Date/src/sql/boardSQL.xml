@@ -47,6 +47,9 @@
 		<select id="getMember" parameterClass="String" resultMap="dtoRes">
 			SELECT *from dc_member where id=#id#
 		</select>
+		<select id="getMemberbyn" parameterClass="String" resultMap="dtoRes">
+			SELECT *from dc_member where nickname=#nickname#
+		</select>
 		<select id="getCouple" parameterClass="String" resultClass="int">
 			SELECT count(*) from dc_couple where id1=#id# or id2=#id#
 		</select>
@@ -56,6 +59,9 @@
 		<select id="confirmNickname" parameterClass="String" resultClass="int">
 			SELECT count(*) FROM dc_member where nickname=#nickname# 
 		</select>
+		<select id="confirmCoupleName" parameterClass="String" resultClass="int">
+			SELECT count(*) FROM dc_couple where coupleName=#coupleName# 
+		</select>
 		<select id="userCheck" parameterClass="dto" resultClass="int">
 			SELECT count(*) FROM dc_member where id=#id# and pw=#pw#
 		</select>
@@ -64,6 +70,12 @@
 		</select>
 		<select id="FBuserCheck" parameterClass="String" resultClass="int">
 			SELECT count(*) FROM dc_member where id=#id#
+		</select>
+		<select id="coupleCheck1" parameterClass="String" resultClass="int">
+			SELECT count(*) FROM dc_couple where id1=#id#
+		</select>
+		<select id="coupleCheck2" parameterClass="String" resultClass="int">
+			SELECT count(*) FROM dc_couple where id2=#id#
 		</select>
 		<!-- select 쿼리문 정의 -->
 		<select id="selectAll" resultMap="dtoRes">

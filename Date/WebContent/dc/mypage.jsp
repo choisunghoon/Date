@@ -59,22 +59,22 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 <tr><td>
 <div id="ddblueblockmenu">
 
-<div  class="menutitle">회원정보</div>
+<div  class="menutitle">회원 정보</div>
 <ul>
-<li id="modifyForm.nhn"><a>회원정보변경</a></li>
+<li id="modifyForm.nhn"><a>회원 정보 변경</a></li>
 <c:if test="${check eq 'no' }">
 <li id="deleteForm.nhn"><a>회원 탈퇴</a></li>
 </c:if>
 </ul>
 
-<div class="menutitle">커플정보</div>
+<div class="menutitle">커플 정보</div>
 <ul>
-<li><a href="#">커플 신청 & 수락</a></li>
-<li><a href="#">커플 삭제</a></li>
+<li id="couple.nhn?id=${id }"><a>커플 정보 변경</a></li>
+<li id="coupleDelete.nhn"><a>커플 삭제</a></li>
 </ul>
 <div class="menutitle">마이코스</div>
 <ul>
-<li><a href="#">코스 리스트</a></li>
+<li><a>코스 리스트</a></li>
 </ul>
 </div>
 <td>

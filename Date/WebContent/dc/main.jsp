@@ -54,14 +54,7 @@ window.fbAsyncInit = function() {
      js.src = "//connect.facebook.net/ko_KR/all.js";
      ref.parentNode.insertBefore(js);
    }(document));
-	function getMyProfile() {
-		FB.api('/me', function(user) {
-			var myId = user.id;
-			window.location.href = 'main.nhn?id=' + myId;
-		});
-
-	}
-
+	
 	function focusIt() {
 		document.inform.id.focus();
 	}

@@ -243,7 +243,7 @@
     <tr> 
       <td colspan="2" align="center" > 
        <input type="submit" name="modify" value="수   정" >
-       <input type="button" value="취  소" onclick="javascript:window.location='mypageForm.nhn'">      
+       <input type="button" value="취  소" onclick="javascript:window.location='mypage.nhn'">      
       </td>
     </tr>
   </table>
