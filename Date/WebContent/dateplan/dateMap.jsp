@@ -142,9 +142,11 @@
     function callAjax(){
         $.ajax({
 	        type: "post",
-	        url : "datePlan.nhn",
+	        url : "cosSave.nhn",
+	        dataType:'json',
 	        data: {	// url 페이지도 전달할 파라미터
-	        	placenewAddress : $('#placenewAddress').val()
+	        	placetitle : $('#placetitle').val(),
+	        	placeid : $('#placeid').val()
 	        },
 	        success: test,	// 페이지요청 성공시 실행 함수
 	        error: whenError	//페이지요청 실패시 실행함수
@@ -411,8 +413,8 @@ function displayPlaces(places) {
     			'<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
       		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
       		  '<input type="hidden" name="placeaddress" id="placeaddress" value="'+place.address +'" />'+
+      		  '<input type="hidden" name="placetitle"  id="placetitle" value="'+place.title +'" />'+
       		  '<input type="hidden" name="placeid"  id="placeid" value="'+place.id +'" />'+
-      		
       		  '<input type="hidden" name="placelatitude" id="placelatitude" value="'+place.latitude +'" />'+
     		  '<input type="hidden" name="placelongitude" id="placelongitude" value="'+place.longitude +'" />'+
       		  
@@ -623,14 +625,14 @@ function removeAllChildNods(el) {
     }
 }
 </script>
-<form action="datePlan.nhn">
-
+<form action="cosSave.nhn">
+<input type="hidden" value="sa" name="btcheck" />
 <div id="img" class="placeinfov_wrap">
 	
 </div>
 <input type="submit"  value="저장" />
 </form>
-<div id="ajaxReturn"></div> <!-- 요기에 -->
+
 </body>
 
 </html>
