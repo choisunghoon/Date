@@ -100,10 +100,12 @@
           <div class="title_area">
              <a href="ex.nhn" style="margin-left:80%;">게시물 작성</a><br/>
              <form name="frmSet">
-             <input type="hidden" id="aa" name="listMore" value="${listMore }"/>
+             <input type="hidden" id="aa" name="listMore" value="${listMore}"/>
             </form>
+            <c:set var="i" value="1"/>
              <c:forEach var="diary" items="${diary}">
-               <ul class="tbl_area" id="dispRow${diary.num}" style="margin-left:30%;display:none">
+               <ul class="tbl_area" id="dispRow${i }" style="margin-left:30%;display:none">
+               		<c:set var="i" value="${i+1 }" />
                   <li style="padding-top:10px;">
                      <center><img src="syimage/${diary.img }"></center>
                   </li>
