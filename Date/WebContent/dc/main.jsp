@@ -55,9 +55,6 @@ window.fbAsyncInit = function() {
      ref.parentNode.insertBefore(js);
    }(document));
 	
-	function focusIt() {
-		document.inform.id.focus();
-	}
 </script>
 <c:if test="${id eq 'undefined' }">
 <% 
@@ -72,46 +69,27 @@ window.fbAsyncInit = function() {
 </c:if>
 <c:if test="${id eq null }">
 
-<body onLoad="focusIt();" >
-  <table width="500" cellpadding="0" cellspacing="0"  align="center" >
-       <form name="inform" method="post" action="loginForm.nhn">
-           
-     
-          <td colspan="3"   align="center">
             <a href="loginForm.nhn">일반로그인</a>
 			<a href="inputForm.nhn">회원가입</a>
             <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
-          </td></tr></table></form>
-          </body></c:if>
+</c:if>
      <c:if test="${(id ne null) and (check eq 'yes')}">
-       <table width="500" cellpadding="0" cellspacing="0"  align="center" >
-         <tr>
-           <td rowspan="3"  align="center">
+
             ${ id}님 환영합니다.<br/>
      
              <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
              <input type="button" value="마이페이지" onclick="javascript:window.location='mypage.nhn?fbcheck=yes&id=${id}'">
-         </td>
-        </tr>
-       
-     </table>
+
      <br>
  </c:if>
  <c:if test="${(id ne null) and (check eq 'no')}">
-       <table width="500" cellpadding="0" cellspacing="0"  align="center">
-         <tr>
-           <td rowspan="3"  align="center">
+
             ${ id}님 환영합니다.
             
-             logout.nhn
+
           <a href="logout.nhn">로그아웃</a>
-             <input type="button" value="마이페이지" onclick="javascript:window.location='mypage.nhn?fbcheck=no&id=${id}'">
-             </form>
-         </td>
-        </tr>
-       
-     </table>
-     <br>
+          <a href="mypage.nhn?fbcheck=no&id=${id}">마이페이지</a>
+
  </c:if>
 </div>
 </html>

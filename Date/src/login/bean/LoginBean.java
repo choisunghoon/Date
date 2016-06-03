@@ -51,7 +51,7 @@ public class LoginBean {
 				if(dto.getId().equals("undefined")){
 					session.invalidate();
 				}
-				return "redirect:main.nhn";
+				return "redirect:couple.nhn";
 			}
 			
 			request.setAttribute("check", check);

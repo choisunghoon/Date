@@ -125,7 +125,7 @@ public class InputBean {
 		System.out.println("마페아이디"+id);
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("couple.nhn")
+	@RequestMapping("couple3.nhn")
 	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id=request.getParameter("id");
