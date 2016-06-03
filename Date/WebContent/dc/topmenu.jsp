@@ -33,7 +33,7 @@ window.fbAsyncInit = function() {
     	FB.api('/me', function(user) {
             if (user) {
 
-                window.location.href = 'loginPro.action?fbid=' + user.id+'&hidden=fb';
+                window.location.href = 'loginPro.nhn?fbid=' + user.id+'&hidden=fb';
                 
             }
         }); 
