@@ -124,7 +124,7 @@ a:hover{
 
             ${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
      
-             <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
+             <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;&nbsp;
              <a href="mypage.nhn?fbcheck=yes&id=${id}">개인페이지</a>
 
      <br>
@@ -134,7 +134,7 @@ a:hover{
             ${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
             
 
-          <a href="logout.nhn">로그아웃</a>
+          <a href="logout.nhn">로그아웃</a>&nbsp;&nbsp;
           <a href="mypage.nhn?fbcheck=no&id=${id}">개인페이지</a>
 
  </c:if>

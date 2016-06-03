@@ -125,7 +125,7 @@ public class InputBean {
 		System.out.println("마페아이디"+id);
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("couple3.nhn")
+	@RequestMapping("coupleinfo.nhn")
 	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id=request.getParameter("id");
@@ -138,7 +138,7 @@ public class InputBean {
 		request.setAttribute("couple", dto);
 		request.setAttribute("check1", check1);
 		request.setAttribute("check2", check2);
-		return "/dc/couple.jsp";
+		return "/dc/coupleinfo.jsp";
 	}
 	@RequestMapping("coupleSearchPro.nhn")
 	public String coupleSearchPro(HttpSession session,HttpServletRequest request) throws Exception{
