@@ -23,7 +23,7 @@ window.fbAsyncInit = function() {
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
         	
-              
+           
              
         } else if (response.status === 'not_authorized') {
         	
@@ -37,7 +37,7 @@ window.fbAsyncInit = function() {
     FB.Event.subscribe('auth.login', function(response) {
     	FB.api('/me', function(user) {
             if (user) {
-
+				alert("asdfasdfdsaf");
                 window.location.href = 'loginPro.nhn?fbid=' + user.id+'&hidden=fb';
                 
             }
