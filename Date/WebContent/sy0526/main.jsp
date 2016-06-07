@@ -56,5 +56,6 @@ a:hover{
 	<img src="sy0526/text.jpg" style="opacity:0.7; margin-left:37%; margin-top:732px;">
 	</a>
 </div>
+
 </body>
 </html>

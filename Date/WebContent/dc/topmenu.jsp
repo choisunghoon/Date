@@ -34,9 +34,15 @@ window.fbAsyncInit = function() {
     FB.Event.subscribe('auth.login', function(response) {
     	FB.api('/me', function(user) {
             if (user) {
+<<<<<<< HEAD
             	
             	
                 window.location.href = 'loginPro.nhn?fbid='+user.id+'&hidden=fb';
+=======
+
+
+                window.location.href = 'loginPro.action?fbid=' + user.id+'&hidden=fb';
+>>>>>>> branch 'master' of https://github.com/choisunghoon/Date.git
                 
             }
         }); 
@@ -128,6 +134,109 @@ a:hover{
 
             ${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
      
+             <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
+             <a href="mypage.nhn?fbcheck=yes&id=${id}">개인페이지</a>
+
+     <br>
+ </c:if>
+ <c:if test="${(id ne null) and (check eq 'no')}">
+
+            ${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
+            
+
+          <a href="logout.nhn">로그아웃</a>
+
+                window.location.href = 'loginPro.nhn?fbid=' + user.id+'&hidden=fb';
+                
+            }
+        }); 
+    	
+    	//document.location.reload();
+    });
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(myId)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/ko_KR/all.js";
+     ref.parentNode.insertBefore(js);
+   }(document));
+</c:if>
+</script>
+<c:if test="${id eq 'undefined' }">
+<% 
+	session.invalidate();
+	response.sendRedirect("main.nhn");
+	%>
+</c:if>
+<c:if test="${id ne null and nickcheck eq 1}">
+<script>
+	alert("별명을 입력하지 않으시면 사이트 이용에 제한이 됩니다.회원정보 변경 메뉴에서 별명을 입력해주세요");
+</script>
+</c:if>
+    <style type="text/css">
+#topclass{
+	width:1335px;
+	height:630px;}
+
+#topmenu{
+	background-color:#FFFFFF !important; 
+	margin-top:50px;
+	width:1335px; 
+	height:45px; 
+	opacity:0.7;}
+.top{
+	padding-left:373px;}
+.top1{
+	float:left; 
+	list-style:none; 
+	padding-right:10px; 
+	height:10px; 
+	line-height:50px; 
+	font-size:15px;
+	}
+.top2{
+	float:left;
+	list-style:none; 
+	padding-left:80px;
+	height:10px;
+	line-height:50px;
+	font-size:15px;}
+a{ 
+	border:0;
+	}
+a:link, a:visited{ 
+	color:#000; 
+	text-decoration:none;
+	}
+a:hover{ 
+	font-weight:bold;
+	}
+
+</style>
+<div id="topclass">
+<div id="topmenu">
+
+<ul class="top">
+		<li class="top1"><a href="couple.nhn">커플 페이지</a>&nbsp; /</li>
+		<li class="top1"><a href="share.nhn">정보공유게시판</a>&nbsp; /</li>
+		<li class="top1"><a href="theme.nhn">테마별 데이트코스</a>&nbsp; /</li>
+		<li class="top1"><a href="event.nhn">이벤트 페이지</a>&nbsp; /</li>
+		<li class="top2">
+<body>
+<c:if test="${id eq null }">
+
+            <a href="loginForm.nhn">일반로그인</a>&nbsp;
+            <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
+			&nbsp;&nbsp;&nbsp;&nbsp;<a href="inputForm.nhn">회원가입</a>
+            
+</c:if>
+     <c:if test="${(id ne null) and (check eq 'yes')}">
+
+            ${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
+     
              <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;&nbsp;
              <a href="mypage.nhn?fbcheck=yes&id=${id}">개인페이지</a>
 
@@ -139,6 +248,7 @@ a:hover{
             
 		  
           <a href="logout.nhn">로그아웃</a>&nbsp;&nbsp;
+
           <a href="mypage.nhn?fbcheck=no&id=${id}">개인페이지</a>
 
  </c:if>
