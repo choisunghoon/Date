@@ -3,10 +3,10 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">
-    function asdf(){
+    function asdf(nhn){
         $.ajax({
 	        type: "post",
-	        url : "inputForm.nhn",
+	        url : nhn,
 	        
 	        success: test,	// 페이지요청 성공시 실행 함수
 	        error: whenError	//페이지요청 실패시 실행함수
@@ -81,7 +81,10 @@ a:hover{
 </div>
 
 
+
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
 
 
 <div id="topclass">
@@ -93,7 +96,7 @@ a:hover{
 		<li class="top1"><a href="theme.nhn">테마별 데이트코스</a>&nbsp; /</li>
 		<li class="top1"><a href="event.nhn">이벤트 페이지</a>&nbsp; /</li>
 		<li class="top1"><a href="personal.nhn">개인 페이지</a></li>
-		<li class="top2"><a href="#" >로그인</a>&nbsp; /&nbsp; <a href="#" onclick="asdf()" data-toggle="modal" data-target="#myModal" >회원가입</a></li>
+		<li class="top2"><a href="#" onclick="asdf('loginForm.nhn')" data-toggle="modal" data-target="#myModal" >로그인</a>&nbsp; /&nbsp; <a href="#" onclick="asdf('inputForm.nhn')" data-toggle="modal" data-target="#myModal" >회원가입</a></li>
 		
 </ul>
 </div>
