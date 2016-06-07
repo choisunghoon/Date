@@ -71,19 +71,19 @@ table.gradienttable td p{
 
 <!-- Table goes in the document BODY -->
 <table class="gradienttable">
-<tr>
-	<th><p>아이디</p></th><th><p>닉네임</p></th><th><p>관심지역</p></th><th><p>커플</p></th>
-</tr>
-<c:forEach var="dto" items="${dto}">
-
-<tr>
-	<td><p>${dto.id}</p></td>
-	<td><p>${dto.nickname}</p></td>
-	<td><p>${dto.location}</p></td>
-	<td><p>${dto.couple}</p></td>
-</tr>
-
-
-
-</c:forEach>
+	<tr>
+		<th><p></p></th><th><p>아이디</p></th><th><p>닉네임</p></th><th><p>관심지역</p></th><th><p>커플</p></th><th><p>탈퇴</p></th>
+	</tr>
+	<c:forEach var="dto" items="${dto}">
+	
+	<tr>
+		<td><p><input type="checkbox" /></p></td>	
+		<td><p>${dto.id}</p></td>
+		<td><p>${dto.nickname}</p></td>
+		<td><p>${dto.location}</p></td>
+		<td><p>${dto.couple}</p></td>
+		<td><p><input type="button" value="강퇴" /></p></td>
+	</tr>
+	
+	</c:forEach>
 </table>
