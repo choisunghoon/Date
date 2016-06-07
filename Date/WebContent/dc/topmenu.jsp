@@ -26,13 +26,16 @@ window.fbAsyncInit = function() {
         	
         } else {
         	
+        	session.invalidate();
+        	
         }
     });
-	
+   
     FB.Event.subscribe('auth.login', function(response) {
     	FB.api('/me', function(user) {
             if (user) {
-
+            	
+            	
                 window.location.href = 'loginPro.nhn?fbid=' + user.id+'&hidden=fb';
                 
             }
@@ -133,7 +136,7 @@ a:hover{
 
             ${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
             
-
+		  
           <a href="logout.nhn">로그아웃</a>&nbsp;&nbsp;
           <a href="mypage.nhn?fbcheck=no&id=${id}">개인페이지</a>
 
