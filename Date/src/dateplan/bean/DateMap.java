@@ -15,8 +15,7 @@ public class DateMap {
 	
 	@RequestMapping("DateMap.nhn")
 	public String dateMap(HttpServletRequest request) throws Exception{
-		
-		
+				
 		return "/dateplan/dateMap.jsp";
 	}
 	@RequestMapping("datePlan.nhn")

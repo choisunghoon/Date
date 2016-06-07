@@ -33,7 +33,7 @@ window.fbAsyncInit = function() {
     	FB.api('/me', function(user) {
             if (user) {
 
-<<<<<<< HEAD
+
                 window.location.href = 'loginPro.action?fbid=' + user.id+'&hidden=fb';
                 
             }
@@ -136,7 +136,7 @@ a:hover{
             
 
           <a href="logout.nhn">로그아웃</a>
-=======
+
                 window.location.href = 'loginPro.nhn?fbid=' + user.id+'&hidden=fb';
                 
             }
@@ -154,7 +154,7 @@ a:hover{
      js.src = "//connect.facebook.net/ko_KR/all.js";
      ref.parentNode.insertBefore(js);
    }(document));
-	
+</c:if>
 </script>
 <c:if test="${id eq 'undefined' }">
 <% 
@@ -239,7 +239,7 @@ a:hover{
             
 
           <a href="logout.nhn">로그아웃</a>&nbsp;&nbsp;
->>>>>>> branch 'master' of https://github.com/choisunghoon/Date.git
+
           <a href="mypage.nhn?fbcheck=no&id=${id}">개인페이지</a>
 
  </c:if>
