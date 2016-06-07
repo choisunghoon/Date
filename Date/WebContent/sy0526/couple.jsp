@@ -16,15 +16,15 @@
         $.ajax({
 	        type: "post",
 	        url : nhn,
-	        success: test,	// 페이지요청 성공시 실행 함수
-	        error: whenError	//페이지요청 실패시 실행함수
+	        success: refresh,	// 페이지요청 성공시 실행 함수
+	        error: whenError2	//페이지요청 실패시 실행함수
      	});
     }
-    function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+    function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
         $("#subMain").html(aaa);
         
     }
-    function whenError(){
+    function whenError2(){
         alert("Error");
     }
   </script>
