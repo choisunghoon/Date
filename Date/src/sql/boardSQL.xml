@@ -12,7 +12,17 @@
 		  	<result property="location" column="location"/>
 		  	<result property="couple" column="couple"/>
 		</resultMap>
-		
+	<typeAlias alias="cdto" type="ch11.logon.CoupleDataBean" />
+
+		<!-- 리절트 맵 정의 -->
+	  	<resultMap id="cdtoRes" class="cdto">
+		  	<result property="coupleName" column="coupleName"/>
+		  	<result property="coupleDate" column="coupleDate"/>
+		  	<result property="id1" column="id1"/>
+		  	<result property="id2" column="id2"/>
+		  	<result property="point" column="point"/>
+		  	<result property="coupleImage" column="coupleImage"/>
+		</resultMap>
 		
 		
 		<!-- insert 쿼리문 정의 -->
@@ -26,6 +36,19 @@
                          	#nickname#,
                          	#location#,
                          	#couple#
+                             )
+		</insert>
+		<insert id="insertCouple" parameterClass="cdto">
+		
+      		INSERT INTO dc_couple
+      		
+                	 VALUES (
+                	 		#coupleName#,
+                	 		#coupleDate#,
+                         	#id1#,
+                         	#id2#,
+                         	#point#,
+                         	#coupleImage#
                              )
 		</insert>
 		<update id="updateMember" parameterClass="dto">

@@ -23,6 +23,7 @@ public class LoginBean {
 		String id = (String)session.getAttribute("memId");
 		String check =(String)session.getAttribute("fbcheck");
 		System.out.println("ㅁ인 체크값"+check);
+		System.out.println("ㅁ인 아이디값"+id);
 		request.setAttribute("check", check);
 		
 			request.setAttribute("id", id);
@@ -48,10 +49,8 @@ public class LoginBean {
 			if(check==1){
 				session.setAttribute("memId",dto.getId());
 				session.setAttribute("fbcheck", "no");
-				if(dto.getId().equals("undefined")){
-					session.invalidate();
-				}
-				return "redirect:couple.nhn";
+				
+				return "redirect:main.nhn";
 			}
 			
 			request.setAttribute("check", check);

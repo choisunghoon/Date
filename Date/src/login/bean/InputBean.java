@@ -32,7 +32,7 @@ public class InputBean {
 		if(nomal.equals("fb")){
 			String id=request.getParameter("fbid");
 			dto.setId(id);	
-		}
+		}dto.setCouple("0");
 		sqlMapper.insert("insertMember", dto);
 		return "/dc/inputPro.jsp";
 	}
@@ -125,7 +125,7 @@ public class InputBean {
 		System.out.println("마페아이디"+id);
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("couple3.nhn")
+	@RequestMapping("coupleinfo.nhn")
 	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id=request.getParameter("id");
@@ -138,7 +138,8 @@ public class InputBean {
 		request.setAttribute("couple", dto);
 		request.setAttribute("check1", check1);
 		request.setAttribute("check2", check2);
-		return "/dc/couple.jsp";
+		System.out.println("check1:"+check1+"check2:"+check2);
+		return "/dc/coupleinfo.jsp";
 	}
 	@RequestMapping("coupleSearchPro.nhn")
 	public String coupleSearchPro(HttpSession session,HttpServletRequest request) throws Exception{
@@ -153,7 +154,9 @@ public class InputBean {
 		CoupleDataBean cdto=new CoupleDataBean();
 		cdto.setId1(id);
 		cdto.setId2(dto.getId());
-		
-		return "/dc/coupleSearchPro.jsp";
+		cdto.setCoupleName(coupleName);
+		request.setAttribute("id", id);
+		sqlMapper.insert("insertCouple", cdto);
+		return "/dc/mypage.jsp";
 	}
 }

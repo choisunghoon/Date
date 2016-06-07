@@ -56,16 +56,18 @@
 
 
 <body>
+<form action="#" method="post">
 <c:if test="${check1 eq 0 and check2 eq 0}">
 <%@include file="/dc/coupleSearch.jsp" %>
 </c:if>
 <c:if test="${check1 eq 1 and couple.couple eq '0'}">
-상대방의 수락을 기다리는 중입니다.
+상대방의 수락을 기다리는 중입니다.<br>
+커플 신청을 취소하려면 버튼을 클릭하세요.<br><input type="button" value="커플 신청 취소"onclick="javascript:window.location='couplex.nhn?&id=${id}">
 </c:if>
 <c:if test="${check2 eq 1 and couple.couple eq '0'}">
-커플신청이 왔습니다.
+커플 신청이 왔습니다.
 </c:if>
-
+</form>
 
 </body>
 
