@@ -4,6 +4,7 @@
 <script language="javascript" src="http://connect.facebook.net/ko_KR/all.js" type="text/javascript"></script>
 
 <html xmlns:fb="http://ogp.me/ns/fb#">
+<body>
 <div id="fb-root"></div>
 <script language="javascript" type="text/javascript">
 
@@ -21,38 +22,38 @@ window.fbAsyncInit = function() {
         	
         	
         } else if (response.status === 'not_authorized') {
-        	
+        
         	
         	
         } else {
         	
-        	session.invalidate();
         	
         }
     });
-   
+    
     FB.Event.subscribe('auth.login', function(response) {
     	FB.api('/me', function(user) {
             if (user) {
             	
             	
-                window.location.href = 'loginPro.nhn?fbid=' + user.id+'&hidden=fb';
+                window.location.href = 'loginPro.nhn?fbid='+user.id+'&hidden=fb';
                 
             }
         }); 
     	
     	//document.location.reload();
     });
-  };
+    FB.Event.subscribe('auth.logout', function(response) {
+    	
+    	
+    	session.invalidate();
+    	document.location.href='main.nhn';
+	});
+   
+  }
 
   // Load the SDK Asynchronously
-  (function(d){
-     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-     if (d.getElementById(myId)) {return;}
-     js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/ko_KR/all.js";
-     ref.parentNode.insertBefore(js);
-   }(document));
+ 
 	
 </script>
 <c:if test="${id eq 'undefined' }">
@@ -115,7 +116,7 @@ a:hover{
 		<li class="top1"><a href="theme.nhn">테마별 데이트코스</a>&nbsp; /</li>
 		<li class="top1"><a href="event.nhn">이벤트 페이지</a>&nbsp; /</li>
 		<li class="top2">
-<body>
+
 <c:if test="${id eq null }">
 
             <a href="loginForm.nhn">일반로그인</a>&nbsp;

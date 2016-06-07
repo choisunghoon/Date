@@ -65,7 +65,9 @@
 커플 신청을 취소하려면 버튼을 클릭하세요.<br><input type="button" value="커플 신청 취소"onclick="javascript:window.location='couplex.nhn?&id=${id}">
 </c:if>
 <c:if test="${check2 eq 1 and couple.couple eq '0'}">
-커플 신청이 왔습니다.
+<b>${couple1.nickname }</b>(${couple1.id})님으로 부터 커플명 <b>${coupleData.coupleName }</b> (으)로 커플 신청이 왔습니다.
+수락하시려면 버튼을 클릭하세요.<br><input type="button" value="커플 수락"onclick="javascript:window.location='coupleInput.nhn?&id=${id}">
+<input type="button" value="커플 거부"onclick="javascript:window.location='couplex.nhn?&id=${id}">
 </c:if>
 </form>
 

@@ -18,19 +18,19 @@ public class LoginBean {
 	private SqlMapClientTemplate sqlMapper;
 	
 	@RequestMapping("main.nhn")
-	public String main(HttpSession session,LogonDataBean dto,HttpServletRequest request) throws Exception{
+	public String main() throws Exception{
 		
-		String id = (String)session.getAttribute("memId");
-		String check =(String)session.getAttribute("fbcheck");
-		System.out.println("ㅁ인 체크값"+check);
-		System.out.println("ㅁ인 아이디값"+id);
-		request.setAttribute("check", check);
+		//String id = (String)session.getAttribute("memId");
+		//String check =(String)session.getAttribute("fbcheck");
+		//System.out.println("ㅁ인 체크값"+check);
+		//System.out.println("ㅁ인 아이디값"+id);
+		//request.setAttribute("check", check);
 		
-			request.setAttribute("id", id);
+			//request.setAttribute("id", id);
 		
-			int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);
+		//	int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);
 		
-			request.setAttribute("nickcheck", nickcheck);
+		//	request.setAttribute("nickcheck", nickcheck);
 		
 			return "/dc/main.jsp";
 		
@@ -47,8 +47,8 @@ public class LoginBean {
 			int check = (Integer)sqlMapper.queryForObject("userCheck", dto);
 			System.out.println(dto.getId()+dto.getPw());
 			if(check==1){
-				session.setAttribute("memId",dto.getId());
-				session.setAttribute("fbcheck", "no");
+				session.setAttribute("id",dto.getId());
+				session.setAttribute("check", "no");
 				
 				return "redirect:main.nhn";
 			}
@@ -57,8 +57,8 @@ public class LoginBean {
 		}
 		else{
 			int check = (Integer)sqlMapper.queryForObject("FBuserCheck", fb);
-			session.setAttribute("memId", fb);
-			session.setAttribute("fbcheck", "yes");
+			session.setAttribute("id", fb);
+			session.setAttribute("check", "yes");
 			if(check==1){
 				return "redirect:main.nhn";
 			}

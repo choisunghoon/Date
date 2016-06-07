@@ -61,9 +61,9 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 
 <div  class="menutitle">회원 정보</div>
 <ul>
-<li id="modifyForm.nhn"><a>회원 정보 변경</a></li>
+<li id="modifyForm.nhn?id=${id }"><a>회원 정보 변경</a></li>
 <c:if test="${check eq 'no' }">
-<li id="deleteForm.nhn"><a>회원 탈퇴</a></li>
+<li id="deleteForm.nhn?id=${id }"><a>회원 탈퇴</a></li>
 </c:if>
 </ul>
 

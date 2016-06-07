@@ -70,13 +70,12 @@ public class InputBean {
 	@RequestMapping("modifyForm.nhn")
 	public String modifyForm(HttpServletRequest request,HttpSession session) throws Exception{
 				
-		String id = (String)session.getAttribute("memId");
+		String id = (String)session.getAttribute("id");
 		LogonDataBean dto = new LogonDataBean();
 		String check =(String)session.getAttribute("fbcheck");
 		System.out.println("ㅁ인 체크값"+check);
 		request.setAttribute("check", check);
 		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);
-		
 	    request.setAttribute("dto", dto);
 	    
 		return "/dc/modifyForm.jsp";
@@ -129,13 +128,19 @@ public class InputBean {
 	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id=request.getParameter("id");
-		System.out.println("커플아이디"+id);
 		LogonDataBean dto=new LogonDataBean();
+		LogonDataBean dto1=new LogonDataBean();
+		CoupleDataBean cdto=new CoupleDataBean();
 		int check1 = (Integer)sqlMapper.queryForObject("coupleCheck1", id);
 		int check2 = (Integer)sqlMapper.queryForObject("coupleCheck2", id);
 		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);
+		cdto= (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
+		System.out.println("cdto아이디"+cdto.getId1());
+		dto1= (LogonDataBean)sqlMapper.queryForObject("getMember", (String)cdto.getId1());
 		request.setAttribute("id", id);
 		request.setAttribute("couple", dto);
+		request.setAttribute("couple1", dto1);
+		request.setAttribute("coupleData", cdto);
 		request.setAttribute("check1", check1);
 		request.setAttribute("check2", check2);
 		System.out.println("check1:"+check1+"check2:"+check2);
@@ -157,6 +162,14 @@ public class InputBean {
 		cdto.setCoupleName(coupleName);
 		request.setAttribute("id", id);
 		sqlMapper.insert("insertCouple", cdto);
+		return "/dc/mypage.jsp";
+	}
+	@RequestMapping("couplex.nhn")
+	public String couplex(HttpSession session,HttpServletRequest request) throws Exception{
+		String id =request.getParameter("id");
+		CoupleDataBean cdto=new CoupleDataBean();
+		sqlMapper.update("deleteCouple", id);
+		request.setAttribute("id", id);
 		return "/dc/mypage.jsp";
 	}
 }
