@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<%@include file="/dc/topmenu.jsp" %>
+<%@include file="/sy0526/topmenu.jsp" %>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <style type="text/css">
@@ -89,6 +89,7 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 <script>
 $('ul li').click(function(){
 	url=$(this).attr("id");
+	
 	callAjax(url); 
 });
 function callAjax(url){

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -12,9 +12,9 @@ body{
 	}
 
 
-	/*background-repeat: repeat-x; Ã³À½À§Ä¡¿¡¼­ ÀÌ¹ÌÁö°¡ ¼öÆòÀ¸·Î ¹İº¹*/
-	/* background-repeat: repeat-y; */ /*Ã³À½À§Ä¡¿¡¼­ ÀÌ¹ÌÁö°¡ ¼öÁ÷À¸·Î ¹İº¹*/
-	/* background-repeat: no-repeat; */ /*ÀÌ¹ÌÁö°¡ ¹İº¹µÇÁö ¾Ê°í ÇÏ³ªÀÇ ÀÌ¹ÌÁö¸¸ Ç¥½Ã*/
+	/*background-repeat: repeat-x; ì²˜ìŒìœ„ì¹˜ì—ì„œ ì´ë¯¸ì§€ê°€ ìˆ˜í‰ìœ¼ë¡œ ë°˜ë³µ*/
+	/* background-repeat: repeat-y; */ /*ì²˜ìŒìœ„ì¹˜ì—ì„œ ì´ë¯¸ì§€ê°€ ìˆ˜ì§ìœ¼ë¡œ ë°˜ë³µ*/
+	/* background-repeat: no-repeat; */ /*ì´ë¯¸ì§€ê°€ ë°˜ë³µë˜ì§€ ì•Šê³  í•˜ë‚˜ì˜ ì´ë¯¸ì§€ë§Œ í‘œì‹œ*/
 
 a{ 
 	border:0;

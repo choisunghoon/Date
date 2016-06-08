@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <style>
 	body{
 		top:0px;
@@ -16,11 +16,11 @@
         $.ajax({
 	        type: "post",
 	        url : nhn,
-	        success: refresh,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
-	        error: whenError2	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+	        success: refresh,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+	        error: whenError2	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
      	});
     }
-    function refresh(aaa){	// ¿äÃ»¼º°øÇÑ ÆäÀÌÁöÁ¤º¸°¡ aaa º¯¼ö·Î Äİ¹éµÈ´Ù. 
+    function refresh(aaa){	// ìš”ì²­ì„±ê³µí•œ í˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
         $("#subMain").html(aaa);
         
     }
@@ -31,8 +31,8 @@
 
 <body>
 <br /><br />
- <div id="sub_wrap" width="1335px">
-	<div style="width:100%;">
+ 
+	<div style="width:100%;float:left;" >
 		<div style="width:12%;float:left;">
 			<a href="#"><img src="sy0526/aa.png"></a>
 			<a href="#" onclick="callAjax('datePlan.nhn')"><img src="sy0526/mycourse.png"></a>
@@ -41,5 +41,5 @@
 		<div id="subMain" style="float:left;width:86%">		
 		</div>
 	</div>
- </div>
+ 
 </body>

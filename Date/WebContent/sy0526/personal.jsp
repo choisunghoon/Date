@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     
-    °³ΐΞΖδΐΜΑφ ΐΤ΄Ο΄Ω.
+    κ°μΈνμ΄μ§€ μ…λ‹λ‹¤.

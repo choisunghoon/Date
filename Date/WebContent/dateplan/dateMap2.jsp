@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <!DOCTYPE html>
 <html>
   <head>
@@ -159,7 +159,7 @@ function codeAddress(){
                 r.appendChild(li);  
             }             
         } else {  
-            r.innerHTML = "°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù."+status;              
+            r.innerHTML = "ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤."+status;              
         }  
     });  
 }  

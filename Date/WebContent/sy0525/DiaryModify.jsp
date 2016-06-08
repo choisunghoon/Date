@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,7 +14,7 @@
 	<table border="1" colspadding="0" cellspacing="0">
 		<tr>	
 			<td>
-				Á¦¸ñ 
+				ì œëª© 
 			</td>
 			<td>
 				<input type="text" name="subject" value="${ddb.subject}"/>
@@ -22,24 +22,24 @@
 		</tr>
 		<tr>
     		<td>
-    			Ã·ºÎÆÄÀÏ
+    			ì²¨ë¶€íŒŒì¼
     		</td>  
     		<td>
     			<input type="file" name="save" id="choose" multiple="multiple" /><br/>
     			<c:if test="${ddb.img != null }">
-				&nbsp; * ${ddb.img } ÆÄÀÏÀÌ µî·ÏµÇ¾î ÀÖ½À´Ï´Ù. ´Ù½Ã ¾÷·ÎµåÇÏ¸é ±âÁ¸ÀÇ ÆÄÀÏÀº »èÁ¦µË´Ï´Ù.
+				&nbsp; * ${ddb.img } íŒŒì¼ì´ ë“±ë¡ë˜ì–´ ìžˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì—…ë¡œë“œí•˜ë©´ ê¸°ì¡´ì˜ íŒŒì¼ì€ ì‚­ì œë©ë‹ˆë‹¤.
 				</c:if>
 			</td>    	
     	</tr>
     	<tr align="right">
     		<td colspan="2">
     			<input type="checkbox" name="pool" id="pool" value="1">
-    			<label for="pool">°øÀ¯ÇÏ±â&nbsp;&nbsp;&nbsp;</label>
+    			<label for="pool">ê³µìœ í•˜ê¸°&nbsp;&nbsp;&nbsp;</label>
     		</td>
     	</tr>
     	<tr>
     		<td>
-    			³»¿ë
+    			ë‚´ìš©
     		</td>
     		<td>
     			<textarea name="content" theme="simple" cols="50" rows="10" >${ddb.content }</textarea>
@@ -102,8 +102,8 @@ $("#choose").change(function (e) {
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
 
-<input type="submit" value="¼öÁ¤" />
-<input type="button" value="Ãë¼Ò" onClick="javascript:location.href='diaryMenu.nhn'" />
+<input type="submit" value="ìˆ˜ì •" />
+<input type="button" value="ì·¨ì†Œ" onClick="javascript:location.href='diaryMenu.nhn'" />
 </form>
 
 </body>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -10,16 +10,16 @@
 
       #css_tabs {
          width:100%;
-          font-family:'nanumgothic', '³ª´®°íµñ', 'malgun gothic', '¸¼Àº °íµñ', 'dotum', 'µ¸¿ò', sans-serif      
+          font-family:'nanumgothic', 'ë‚˜ëˆ”ê³ ë”•', 'malgun gothic', 'ë§‘ì€ ê³ ë”•', 'dotum', 'ë‹ì›€', sans-serif      
       }
-      /* ÅÇ ¼±ÅÃ ½Ã Ç¥½ÃÇÒ ¿ä¼Ò(div) Á¤ÀÇ(1¹ø ÅÇ ¼±ÅÃ ½Ã Ã¹ ¹øÂ° div ¿ä¼Ò Ç¥½Ã) */
+      /* íƒ­ ì„ íƒ ì‹œ í‘œì‹œí•  ìš”ì†Œ(div) ì •ì˜(1ë²ˆ íƒ­ ì„ íƒ ì‹œ ì²« ë²ˆì§¸ div ìš”ì†Œ í‘œì‹œ) */
       #css_tabs input:nth-of-type(1), #css_tabs input:nth-of-type(1) ~ div:nth-of-type(1), #css_tabs input:nth-of-type(2), #css_tabs input:nth-of-type(2) ~ div:nth-of-type(2), #css_tabs input:nth-of-type(3), #css_tabs input:nth-of-type(3) ~ div:nth-of-type(3), #css_tabs input:nth-of-type(4), #css_tabs input:nth-of-type(4) ~ div:nth-of-type(4) {
           display:none
       }
       #css_tabs input:nth-of-type(1):checked ~ div:nth-of-type(1), #css_tabs input:nth-of-type(2):checked ~ div:nth-of-type(2), #css_tabs input:nth-of-type(3):checked ~ div:nth-of-type(3), #css_tabs input:nth-of-type(4):checked ~ div:nth-of-type(4) {
           display:block
       }
-      /* ¶óº§ ±âº» ½ºÅ¸ÀÏ ÁöÁ¤ */
+      /* ë¼ë²¨ ê¸°ë³¸ ìŠ¤íƒ€ì¼ ì§€ì • */
       #css_tabs > label {
           display:inline-block;
           font-variant:small-caps;
@@ -42,7 +42,7 @@
       #css_tabs label[for=tab1] {
           margin-left:35%
       }
-      /* ¼±ÅÃµÈ ¶óº§, Ä¿¼­¸¦ ¿Ã¸° ¶óº§ ½ºÅ¸ÀÏ ÁöÁ¤ */
+      /* ì„ íƒëœ ë¼ë²¨, ì»¤ì„œë¥¼ ì˜¬ë¦° ë¼ë²¨ ìŠ¤íƒ€ì¼ ì§€ì • */
       #css_tabs input:nth-of-type(1):checked ~ label:nth-of-type(1), #css_tabs > label[for=tab1]:hover {
           background:tomato;
           color:#fff
@@ -59,7 +59,7 @@
           background:green;
           color:#fff
       }
-      /* ½ÇÁ¦ ³»¿ëÀÌ ´ã±ä div ¿ä¼Ò ½ºÅ¸ÀÏ ÁöÁ¤ */
+      /* ì‹¤ì œ ë‚´ìš©ì´ ë‹´ê¸´ div ìš”ì†Œ ìŠ¤íƒ€ì¼ ì§€ì • */
       #css_tabs .tab1_content, #css_tabs .tab2_content, #css_tabs .tab3_content, #css_tabs .tab4_content {
       
           border:1px solid #ddd;
@@ -69,7 +69,7 @@
          
 </style>
 <div style="width:200px; height:280; margin-left:44%;">
-   <center>»ç±Ï ³¯Â¥ : <fmt:formatDate value="${cdb.coupledate }" pattern="YYYY-MM-dd" /></center>
+   <center>ì‚¬ê·„ ë‚ ì§œ : <fmt:formatDate value="${cdb.coupledate }" pattern="YYYY-MM-dd" /></center>
    <div style="border:1px solid; width:200px; height:200px; float:left;">
       <c:if test="${cdb.coupleimage eq null }">
       <img src="syimage/couple.png" class="img-circle">
@@ -79,9 +79,9 @@
       </c:if>
    </div>
    <center>
-      <a href="diary.nhn" >ÀÌ¹ÌÁö º¯°æ</a>
+      <a href="diary.nhn" >ì´ë¯¸ì§€ ë³€ê²½</a>
       
-      <a href="#">Æ÷ÅäºÏ ½ÅÃ»</a><br/>
+      <a href="#">í¬í† ë¶ ì‹ ì²­</a><br/>
    </center>
    
 </div>
@@ -93,12 +93,12 @@
 <div id="css_tabs">
     <input id="tab1" type="radio" name="tab" checked="checked" />
     <input id="tab2" type="radio" name="tab" />
-    <label for="tab1">Ä¿ÇÃ ´ÙÀÌ¾î¸®</label>
-    <label for="tab2">Ä¿ÇÃ ÇÏÆ® ³ª¹«</label>     
+    <label for="tab1">ì»¤í”Œ ë‹¤ì´ì–´ë¦¬</label>
+    <label for="tab2">ì»¤í”Œ í•˜íŠ¸ ë‚˜ë¬´</label>     
     <div class="tab1_content">
       <div class="sub_photo">
           <div class="title_area">
-             <a href="ex.nhn" style="margin-left:80%;">°Ô½Ã¹° ÀÛ¼º</a><br/>
+             <a href="ex.nhn" style="margin-left:80%;">ê²Œì‹œë¬¼ ì‘ì„±</a><br/>
              <form name="frmSet">
              <input type="hidden" id="aa" name="listMore" value="${listMore}"/>
             </form>
@@ -113,46 +113,46 @@
                   <center>${diary.content}</center>
                   </li>
                   <li style="margin-left:40%;">
-                     <button onClick="javascript:location.href='DiaryModify.nhn?num=${diary.num}'">¼öÁ¤</button>
-                     <button onClick="javascript:location.href='DiaryDelete.nhn?num=${diary.num}'">»èÁ¦</button>
+                     <button onClick="javascript:location.href='DiaryModify.nhn?num=${diary.num}'">ìˆ˜ì •</button>
+                     <button onClick="javascript:location.href='DiaryDelete.nhn?num=${diary.num}'">ì‚­ì œ</button>
                   </li>
             
                </ul>
             </c:forEach>
             <div id="dispMore" style="display:none;padding-bottom:100px;">
-             <a href="#" onclick="listMore(${totalCnt})" style="margin-left:50%; ">´õº¸±â</a>
+             <a href="#" onclick="listMore(${totalCnt})" style="margin-left:50%; ">ë”ë³´ê¸°</a>
             </div>
             <c:forEach end="${totalCnt}" begin="1" var="i">
                <c:if test="${i<=listMore }">
                   <script>
-                    document.getElementById("dispRow${i}").style.display = 'block'; //ÃÖ´ë °¹¼ö º¸´Ù ÀÛ°Å³ª °°À¸¸é ÀÌ¹ÌÁö¸¦ º¸¿©ÁØ´Ù
+                    document.getElementById("dispRow${i}").style.display = 'block'; //ìµœëŒ€ ê°¯ìˆ˜ ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ìœ¼ë©´ ì´ë¯¸ì§€ë¥¼ ë³´ì—¬ì¤€ë‹¤
                   </script>
                </c:if> 
             </c:forEach>
             <c:if test="${totalCnt > listMore }">
                <script>
-                 document.getElementById("dispMore").style.display = 'block'; //ÃÖ´ë°¹¼öº¸´Ù È­¸é¿¡ º¸¿©ÁÖ´Â ÀÌ¹ÌÁö °¹¼öº¸´Ù ÀÛÀ¸¸é ´õº¸±â ¹öÆ°À» º¸¿©ÁØ´Ù
+                 document.getElementById("dispMore").style.display = 'block'; //ìµœëŒ€ê°¯ìˆ˜ë³´ë‹¤ í™”ë©´ì— ë³´ì—¬ì£¼ëŠ” ì´ë¯¸ì§€ ê°¯ìˆ˜ë³´ë‹¤ ì‘ìœ¼ë©´ ë”ë³´ê¸° ë²„íŠ¼ì„ ë³´ì—¬ì¤€ë‹¤
                </script>
             </c:if>
             <script type="text/javascript"> 
-              function listMore(totalCnt) //´õº¸±â ¹öÆ°À» ´­·¶À»¶§ ½ÇÇàµÇ´Â ÇÔ¼ö
+              function listMore(totalCnt) //ë”ë³´ê¸° ë²„íŠ¼ì„ ëˆŒë €ì„ë•Œ ì‹¤í–‰ë˜ëŠ” í•¨ìˆ˜
               {
                  
-               var listMore = document.frmSet.listMore.value; //ÇöÀç È­¸é¿¡ º¸¿©Áö´Â ¸®½ºÆ® °¹¼ö¸¦ °¡Á®¿Â´Ù(3°³)
+               var listMore = document.frmSet.listMore.value; //í˜„ì¬ í™”ë©´ì— ë³´ì—¬ì§€ëŠ” ë¦¬ìŠ¤íŠ¸ ê°¯ìˆ˜ë¥¼ ê°€ì ¸ì˜¨ë‹¤(3ê°œ)
                
-               var last = Number(listMore) + 3; //´õº¸±â¸¦ ´©¸£¸é 3°³¾¿ Ãß°¡ µÈ´Ù
+               var last = Number(listMore) + 3; //ë”ë³´ê¸°ë¥¼ ëˆ„ë¥´ë©´ 3ê°œì”© ì¶”ê°€ ëœë‹¤
                
-               for (i=Number(listMore)+1;i<=totalCnt;i++) // i=(3+1) -> ÃÖÃÊ3°³¸¸ º¸¿©ÁÖ´Ï±î ´ÙÀ½ºÎÅÏ 4ºÎÅÍ 6±îÁö; 4º¸´Ù ÃÖ´ë °¹¼ö°¡ °°°Å³ª Å¬¶§ ±îÁö; i= 4++
+               for (i=Number(listMore)+1;i<=totalCnt;i++) // i=(3+1) -> ìµœì´ˆ3ê°œë§Œ ë³´ì—¬ì£¼ë‹ˆê¹Œ ë‹¤ìŒë¶€í„´ 4ë¶€í„° 6ê¹Œì§€; 4ë³´ë‹¤ ìµœëŒ€ ê°¯ìˆ˜ê°€ ê°™ê±°ë‚˜ í´ë•Œ ê¹Œì§€; i= 4++
                {
-                if (i<=last) // i°¡ 6º¸´Ù ÀÛ°Å³ª °°À»°æ¿ì
+                if (i<=last) // iê°€ 6ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ì„ê²½ìš°
                 {
-                 document.getElementById("dispRow"+i).style.display = 'block'; //dispRow6 ±îÁö block Ã³¸®¸¦ ÇÑ´Ù
+                 document.getElementById("dispRow"+i).style.display = 'block'; //dispRow6 ê¹Œì§€ block ì²˜ë¦¬ë¥¼ í•œë‹¤
                 }
                }
                document.frmSet.listMore.value = last;
                if (totalCnt <= last)
                {   
-                document.getElementById("dispMore").style.display = 'none'; //´õº¸±â ¹öÆ°ÀÌ ÃÖ´ë°¹¼öº¸´Ù Å©°Å³ª ÀÛÀ¸¸é none Ã³¸®
+                document.getElementById("dispMore").style.display = 'none'; //ë”ë³´ê¸° ë²„íŠ¼ì´ ìµœëŒ€ê°¯ìˆ˜ë³´ë‹¤ í¬ê±°ë‚˜ ì‘ìœ¼ë©´ none ì²˜ë¦¬
                }
               }
             </script>

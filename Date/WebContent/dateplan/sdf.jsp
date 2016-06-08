@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <script>
@@ -20,62 +20,62 @@ $(document).ready(function() {
 <div class="contentwrap">
   <article class="container">
     <div class="page-header">
-	  <h1>È¸¿ø°¡ÀÔ <small>ÀÏ¹ÝÈ¸¿ø°¡ÀÔ</small></h1>
+	  <h1>íšŒì›ê°€ìž… <small>ì¼ë°˜íšŒì›ê°€ìž…</small></h1>
     </div>
     
     <form class="form-horizontal">
     
     <div class="form-group">
-    <label for="inputNumber" class="col-sm-2 control-label">»ç¿ëÀÚ ID</label>
+    <label for="inputNumber" class="col-sm-2 control-label">ì‚¬ìš©ìž ID</label>
     <div class="col-sm-4">
-    <input type="text" class="form-control" id="inputNumber" placeholder="¾ÆÀÌµð¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä">
+    <input type="text" class="form-control" id="inputNumber" placeholder="ì•„ì´ë””ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”">
       
     </div>
       <div class="col-sm-2">
-      <a class="btn btn-default" href="#" role="button">¾ÆÀÌµð Áßº¹ È®ÀÎ</a>
+      <a class="btn btn-default" href="#" role="button">ì•„ì´ë”” ì¤‘ë³µ í™•ì¸</a>
       </div>
     </div>
     
     <div class="form-group">
-    <label for="inputPassword" class="col-sm-2 control-label">ºñ¹Ð¹øÈ£</label>
+    <label for="inputPassword" class="col-sm-2 control-label">ë¹„ë°€ë²ˆí˜¸</label>
     <div class="col-sm-6">
-    <input type="password" class="form-control" id="inputPassword" placeholder="ºñ¹Ð¹øÈ£">
+    <input type="password" class="form-control" id="inputPassword" placeholder="ë¹„ë°€ë²ˆí˜¸">
     
     </div>
     </div>
        <div class="form-group">
-    <label for="inputPasswordCheck" class="col-sm-2 control-label">ºñ¹Ð¹øÈ£ È®ÀÎ</label>
+    <label for="inputPasswordCheck" class="col-sm-2 control-label">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</label>
     <div class="col-sm-6">
-    <input type="password" class="form-control" id="inputPasswordCheck" placeholder="ºñ¹Ð¹øÈ£ È®ÀÎ">
-      <p class="help-block">ºñ¹Ð¹øÈ£¸¦ ÇÑ¹ø ´õ ÀÔ·ÂÇØÁÖ¼¼¿ä.</p>
+    <input type="password" class="form-control" id="inputPasswordCheck" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸">
+      <p class="help-block">ë¹„ë°€ë²ˆí˜¸ë¥¼ í•œë²ˆ ë” ìž…ë ¥í•´ì£¼ì„¸ìš”.</p>
     </div>
     </div>
      <div class="form-group">
-    <label for="inputNumber" class="col-sm-2 control-label">»ç¿ëÀÚ º°¸í</label>
+    <label for="inputNumber" class="col-sm-2 control-label">ì‚¬ìš©ìž ë³„ëª…</label>
     <div class="col-sm-4">
-    <input type="text" class="form-control" id="inputNumber" placeholder="¾ÆÀÌµð¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä">
+    <input type="text" class="form-control" id="inputNumber" placeholder="ì•„ì´ë””ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”">
       
     </div>
       <div class="col-sm-2">
-      <a class="btn btn-default" href="#" role="button">º°¸í Áßº¹ È®ÀÎ</a>
+      <a class="btn btn-default" href="#" role="button">ë³„ëª… ì¤‘ë³µ í™•ì¸</a>
       </div>
     </div>
    
     
     
       <div class="form-group">
-    <label for="inputAgree" class="col-sm-2 control-label">°ü½ÉÁö¿ª</label>
+    <label for="inputAgree" class="col-sm-2 control-label">ê´€ì‹¬ì§€ì—­</label>
     <div class="col-sm-6 checkbox">
       
       <td width="400" id="location1"> 
         <select name="location1" onchange="javascript:option(this);">
-        	<option value="non">Áö¿ªÀ» ¼±ÅÃÇØÁÖ¼¼¿ä</option>
-        	<option value="¼­¿ï">¼­¿ï</option>
-        	<option value="°æ±âµµ">°æ±âµµ</option>
-        	<option value="°­¿øµµ">°­¿øµµ</option>
-        	<option value="ÃæÃ»µµ">ÃæÃ»µµ</option>
-        	<option value="Àü¶óµµ">Àü¶óµµ</option>
-        	<option value="°æ»óµµ">°æ»óµµ</option>
+        	<option value="non">ì§€ì—­ì„ ì„ íƒí•´ì£¼ì„¸ìš”</option>
+        	<option value="ì„œìš¸">ì„œìš¸</option>
+        	<option value="ê²½ê¸°ë„">ê²½ê¸°ë„</option>
+        	<option value="ê°•ì›ë„">ê°•ì›ë„</option>
+        	<option value="ì¶©ì²­ë„">ì¶©ì²­ë„</option>
+        	<option value="ì „ë¼ë„">ì „ë¼ë„</option>
+        	<option value="ê²½ìƒë„">ê²½ìƒë„</option>
         </select>
       </td>
     </div>
@@ -83,7 +83,7 @@ $(document).ready(function() {
     <div class="form-group">
     <label for="inputName" class="col-sm-2 control-label"></label>
     <div class="col-sm-6">
-      <button type="submit" class="btn btn-primary">È¸¿ø°¡ÀÔ</button>
+      <button type="submit" class="btn btn-primary">íšŒì›ê°€ìž…</button>
     </div>
     </div>
     </form>
