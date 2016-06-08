@@ -30,7 +30,7 @@ public class InputBean {
 		String nomal=request.getParameter("hidden");
 		System.out.println("input nomal"+nomal);
 		if(nomal.equals("fb")){
-			String id=request.getParameter("fbid");
+			String id=request.getParameter("id");
 			dto.setId(id);	
 		}dto.setCouple("0");
 		sqlMapper.insert("insertMember", dto);
