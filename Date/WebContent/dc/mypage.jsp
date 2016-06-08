@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"  pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<%@include file="/dc/main.jsp" %>
+<%@include file="/dc/topmenu.jsp" %>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <style type="text/css">
@@ -70,7 +70,7 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 <div class="menutitle">커플 정보</div>
 <ul>
 <li id="coupleinfo.nhn?id=${id }"><a>커플 정보 변경</a></li>
-<li id="coupleDelete.nhn"><a>커플 삭제</a></li>
+<li id="coupleDelete.nhn?id=${id }"><a>커플 삭제</a></li>
 </ul>
 <div class="menutitle">마이코스</div>
 <ul>

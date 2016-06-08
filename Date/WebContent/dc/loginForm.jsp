@@ -47,7 +47,7 @@
       <input type="hidden" name="hidden" id="hidden" value="nomal">
       <INPUT type=submit value="로그인"> 
       <INPUT type=reset value="다시입력">
-      <input type="button" value="회원가입" onclick="javascript:window.location='inputForm.nhn'"></TD></TR>
+     </TD></TR>
 </TABLE>
 </form>
 

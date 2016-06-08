@@ -115,7 +115,7 @@ a:hover{
 		<li class="top1"><a href="share.nhn">정보공유게시판</a>&nbsp; /</li>
 		<li class="top1"><a href="theme.nhn">테마별 데이트코스</a>&nbsp; /</li>
 		<li class="top1"><a href="event.nhn">이벤트 페이지</a>&nbsp; /</li>
-		<li class="top2">
+		<li class="top1">
 
 <c:if test="${id eq null }">
 
@@ -130,8 +130,6 @@ a:hover{
      
              <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;&nbsp;
              <a href="mypage.nhn?fbcheck=yes&id=${id}">개인페이지</a>
-
-     <br>
  </c:if>
  <c:if test="${(id ne null) and (check eq 'no')}">
 

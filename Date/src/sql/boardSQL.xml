@@ -61,6 +61,18 @@
                      where id=#id#
                             
 		</update>
+		<update id="memCouple1" parameterClass="String">
+			UPDATE dc_member
+				set
+					couple='1'
+				where id=#id#
+		</update>
+		<update id="memCouple0" parameterClass="String">
+			UPDATE dc_member
+				set
+					couple='0'
+				where id=#id#
+		</update>
 		<delete id="deleteMember" parameterClass="String">
 			delete from dc_member
                 	 
@@ -78,6 +90,9 @@
 		</select>
 		<select id="getMemberbyn" parameterClass="String" resultMap="dtoRes">
 			SELECT *from dc_member where nickname=#nickname#
+		</select>
+		<select id="getMemberbync" parameterClass="String" resultClass="int">
+			SELECT count(*)from dc_member where nickname=#nickname#
 		</select>
 		<select id="getCouple" parameterClass="String" resultClass="int">
 			SELECT count(*) from dc_couple where id1=#id# or id2=#id#
