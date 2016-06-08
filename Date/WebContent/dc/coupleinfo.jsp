@@ -48,6 +48,32 @@
        open(url, "confirm", 
        "toolbar=no, location1=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
    }
+   function openCCName(userinput) {
+       // 커플명을 입력했는지 검사
+       if (userinput.coupleName.value == "") {
+           alert("커플명을 입력하세요");
+           return;
+       }
+       // url과 사용자 입력 id를 조합합니다.
+       url = "confirmCoupleName.nhn?coupleName=" + userinput.coupleName.value ;
+       
+       // 새로운 윈도우를 엽니다.
+       open(url, "confirm", 
+       "toolbar=no, location1=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
+   }
+   function openCoupleImage(userinput) {
+       // 커플명을 입력했는지 검사
+       if (userinput.coupleImage.value == "") {
+           alert("커플명을 입력하세요");
+           return;
+       }
+       // url과 사용자 입력 id를 조합합니다.
+       url = "confirmCoupleName.nhn?coupleName=" + userinput.coupleName.value ;
+       
+       // 새로운 윈도우를 엽니다.
+       open(url, "confirm", 
+       "toolbar=no, location1=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
+   }
 -->
 </script>
 
@@ -55,19 +81,45 @@
 
 
 
-<body>
-<form action="#" method="post">
+
 <c:if test="${check1 eq 0 and check2 eq 0}">
 <%@include file="/dc/coupleSearch.jsp" %>
 </c:if>
+<body align="center">
+<form action="#" method="post">
 <c:if test="${check1 eq 1 and couple.couple eq '0'}">
 상대방의 수락을 기다리는 중입니다.<br>
-커플 신청을 취소하려면 버튼을 클릭하세요.<br><input type="button" value="커플 신청 취소"onclick="javascript:window.location='couplex.nhn?&id=${id}">
+커플 신청을 취소하려면 버튼을 클릭하세요.<br><input type="button" value="커플 신청 취소"onclick="window.location='couplex.nhn?&id=${id}'">
 </c:if>
 <c:if test="${check2 eq 1 and couple.couple eq '0'}">
 <b>${couple1.nickname }</b>(${couple1.id})님으로 부터 커플명 <b>${coupleData.coupleName }</b> (으)로 커플 신청이 왔습니다.
-수락하시려면 버튼을 클릭하세요.<br><input type="button" value="커플 수락"onclick="javascript:window.location='coupleInput.nhn?&id=${id}">
-<input type="button" value="커플 거부"onclick="javascript:window.location='couplex.nhn?&id=${id}">
+수락하시려면 버튼을 클릭하세요.<br><input type="button" value="커플 수락" onclick="window.location='coupleInput.nhn?&id=${id}'">
+<input type="button" value="커플 거부" onclick="javascript:window.location='couplex.nhn?&id=${id}'">
+</c:if>
+<c:if test="${couple.couple eq '1' }">
+
+	<b>${couple.nickname }</b>(${couple.id})님과 <b>${couple1.nickname }</b>(${couple1.id})님의 커플 정보 입니다.
+   <div style="width:200px; height:280; margin-left:44%;">
+ 
+   <center>사귄 날짜 : <fmt:formatDate value="${coupleData.coupleDate }" pattern="YYYY-MM-dd" /></center>
+   <div style="border:1px solid; width:200px; height:200px; float:left;">
+      <c:if test="${coupleData.coupleImage eq null }">
+      <img src="syimage/couple.png" class="img-circle">
+      </c:if>
+      <c:if test="${coupleData.coupleImage ne null }">
+      <img src="syimage/${coupleData.coupleImage }" width="200px" height="200px">
+      </c:if>
+   </div>
+   <center>
+      <%@include file="/dc/diary.jsp" %><br>
+      커플명 : <input type="text" name="coupleName" size="30" maxlength="30" value="${coupleData.coupleName}">     
+      	<input type="button" value="커플명 중복확인" OnClick="openCCName(this.form)">
+      <br/>
+   </center>
+   
+</div>
+    
+  
 </c:if>
 </form>
 

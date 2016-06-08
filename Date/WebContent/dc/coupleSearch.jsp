@@ -31,7 +31,7 @@
        "toolbar=no, location1=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
    }
    function openCCName(userinput) {
-       // 별명을 입력했는지 검사
+       // 커플명을 입력했는지 검사
        if (userinput.coupleName.value == "") {
            alert("커플명을 입력하세요");
            return;
@@ -51,7 +51,7 @@
 
 
 <body>
-<form method="post" action="coupleSearchPro.nhn?id=${id }" name="userinput" onsubmit="return checkIt()">
+<form method="post"  action="coupleSearchPro.nhn?id=${id }"name="userinput" onsubmit="return checkIt()">
 
   <table width="600" border="1" cellspacing="0" cellpadding="3"  align="center">
     <tr > 
@@ -78,7 +78,7 @@
     </tr>
   <tr> 
       <td colspan="2" align="center" > 
-       <input type="submit" value="커플 신청" >
+       <input type="submit" value="커플 신청">
        <input type="button" value="취  소" onclick="javascript:window.location='mypage.nhn'">      
       </td>
     </tr>

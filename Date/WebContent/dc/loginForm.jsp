@@ -47,7 +47,11 @@
       <input type="hidden" name="hidden" id="hidden" value="nomal">
       <INPUT type=submit value="로그인"> 
       <INPUT type=reset value="다시입력">
+<<<<<<< HEAD
+     </TD></TR>
+=======
       </TD></TR>
+>>>>>>> branch 'master' of https://github.com/choisunghoon/Date.git
 </TABLE>
 </form>
 
