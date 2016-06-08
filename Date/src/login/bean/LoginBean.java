@@ -18,9 +18,9 @@ public class LoginBean {
 	private SqlMapClientTemplate sqlMapper;
 	
 	@RequestMapping("main.nhn")
-	public String main() throws Exception{
+	public String main(HttpSession session,HttpServletRequest request) throws Exception{
 		
-		//String id = (String)session.getAttribute("memId");
+		String id = (String)session.getAttribute("id");
 		//String check =(String)session.getAttribute("fbcheck");
 		//System.out.println("ㅁ인 체크값"+check);
 		//System.out.println("ㅁ인 아이디값"+id);
@@ -28,10 +28,10 @@ public class LoginBean {
 		
 			//request.setAttribute("id", id);
 		
-		//	int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);
+			int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);
 		
-		//	request.setAttribute("nickcheck", nickcheck);
-		
+			request.setAttribute("nickcheck", nickcheck);
+
 			return "/sy0526/main.jsp";
 		
 		
