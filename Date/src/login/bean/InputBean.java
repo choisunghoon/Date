@@ -201,6 +201,6 @@ public class InputBean {
 		}
 		request.setAttribute("ccheck", check);
 		request.setAttribute("id", id);
-		return "/dc/mypage.jsp";
+		return "/dc/coupleDelete.jsp";
 	}
 }

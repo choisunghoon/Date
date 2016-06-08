@@ -54,12 +54,7 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 }
 
 </style>
-<c:if test="${ccheck eq 1 }">
- <script>alert("성공적으로 헤어졌습니다.");</script>
-</c:if>
-<c:if test="${ccheck eq 0 }">
- <script>alert("헤어질 상대가 없습니다.");</script>
-</c:if>
+
 <form>
 <table>
 <tr><td>
