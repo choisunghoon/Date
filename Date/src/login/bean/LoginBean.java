@@ -32,7 +32,7 @@ public class LoginBean {
 		
 		//	request.setAttribute("nickcheck", nickcheck);
 		
-			return "/dc/main.jsp";
+			return "/sy0526/main.jsp";
 		
 		
 	}
@@ -40,9 +40,12 @@ public class LoginBean {
 	@RequestMapping("loginPro.nhn")
 	public String loginPro(HttpSession session,LogonDataBean dto,HttpServletRequest request) throws Exception{
 		String nomal=request.getParameter("hidden");
-		String fb=request.getParameter("fbid");
-		System.out.println("페북아이디:"+fb);
-		System.out.println("노말값:"+nomal);
+		String id=request.getParameter("id");
+		System.out.println("아이디:"+id);
+		System.out.println("페북판별값:"+nomal);
+		int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);
+		request.setAttribute("nickcheck", nickcheck);
+		
 		if(nomal.equals("nomal")){
 			int check = (Integer)sqlMapper.queryForObject("userCheck", dto);
 			System.out.println(dto.getId()+dto.getPw());
@@ -56,14 +59,14 @@ public class LoginBean {
 			request.setAttribute("check", check);
 		}
 		else{
-			int check = (Integer)sqlMapper.queryForObject("FBuserCheck", fb);
-			session.setAttribute("id", fb);
+			int check = (Integer)sqlMapper.queryForObject("FBuserCheck", id);
+			session.setAttribute("id", id);
 			session.setAttribute("check", "yes");
 			if(check==1){
 				return "redirect:main.nhn";
 			}
 			else{
-				return "redirect:inputPro.nhn?fbid="+fb+"&hidden=fb";
+				return "redirect:inputPro.nhn?id="+id+"&hidden=fb";
 			}
 		}
 		return "/dc/loginPro.jsp";

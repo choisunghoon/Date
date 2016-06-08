@@ -30,7 +30,7 @@ public class InputBean {
 		String nomal=request.getParameter("hidden");
 		System.out.println("input nomal"+nomal);
 		if(nomal.equals("fb")){
-			String id=request.getParameter("fbid");
+			String id=request.getParameter("id");
 			dto.setId(id);	
 		}dto.setCouple("0");
 		sqlMapper.insert("insertMember", dto);
@@ -134,13 +134,17 @@ public class InputBean {
 		int check1 = (Integer)sqlMapper.queryForObject("coupleCheck1", id);
 		int check2 = (Integer)sqlMapper.queryForObject("coupleCheck2", id);
 		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);
-		cdto= (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
-		System.out.println("cdto아이디"+cdto.getId1());
-		dto1= (LogonDataBean)sqlMapper.queryForObject("getMember", (String)cdto.getId1());
+		if(check1==1 || check2==1){
+			cdto= (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
+
+			dto1= (LogonDataBean)sqlMapper.queryForObject("getMember", (String)cdto.getId1());
+			request.setAttribute("coupleData", cdto);
+		}
+		
 		request.setAttribute("id", id);
 		request.setAttribute("couple", dto);
 		request.setAttribute("couple1", dto1);
-		request.setAttribute("coupleData", cdto);
+		
 		request.setAttribute("check1", check1);
 		request.setAttribute("check2", check2);
 		System.out.println("check1:"+check1+"check2:"+check2);
@@ -154,11 +158,13 @@ public class InputBean {
 		String nickname=request.getParameter("nickname");
 		String coupleName=request.getParameter("coupleName");
 		LogonDataBean dto=new LogonDataBean();
-		dto = (LogonDataBean)sqlMapper.queryForObject("getMemberbyn", nickname);
-		System.out.println("dto아이디"+dto.getId());
 		CoupleDataBean cdto=new CoupleDataBean();
+		int check=(Integer)sqlMapper.queryForObject("getMemberbync", nickname);
+		if(check==1){
+			dto = (LogonDataBean)sqlMapper.queryForObject("getMemberbyn", nickname);
+			cdto.setId2(dto.getId());
+		}
 		cdto.setId1(id);
-		cdto.setId2(dto.getId());
 		cdto.setCoupleName(coupleName);
 		request.setAttribute("id", id);
 		sqlMapper.insert("insertCouple", cdto);
@@ -167,7 +173,23 @@ public class InputBean {
 	@RequestMapping("couplex.nhn")
 	public String couplex(HttpSession session,HttpServletRequest request) throws Exception{
 		String id =request.getParameter("id");
+		sqlMapper.update("deleteCouple", id);
+		request.setAttribute("id", id);
+		return "/dc/mypage.jsp";
+	}
+	@RequestMapping("coupleInput.nhn")
+	public String coupleInput(HttpSession session,HttpServletRequest request) throws Exception{
+		String id =request.getParameter("id");
 		CoupleDataBean cdto=new CoupleDataBean();
+		cdto = (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
+		sqlMapper.update("memCouple1", cdto.getId1());
+		sqlMapper.update("memCouple1", cdto.getId2());
+		request.setAttribute("id", id);
+		return "/dc/mypage.jsp";
+	}
+	@RequestMapping("coupleDelete.nhn")
+	public String coupleDelete(HttpSession session,HttpServletRequest request) throws Exception{
+		String id =request.getParameter("id");
 		sqlMapper.update("deleteCouple", id);
 		request.setAttribute("id", id);
 		return "/dc/mypage.jsp";
