@@ -4,7 +4,49 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script language="javascript" src="http://connect.facebook.net/ko_KR/all.js" type="text/javascript"></script>
+<style type="text/css">
+	#topclass{
+		width:100%;
+		}
+	
+	#topmenu{
+		background-color:#FFFFFF !important; 
+		width:100%; 
+		height:45px; 
+		opacity:0.7;}
+	.top{
+		padding-left:350px;	
+		}
+	.top1{
+		float:left; 
+		list-style:none; 
+		padding-right:10px; 
+		height:10px; 
+		line-height:50px; 
+		font-size:15px;
+		}
+	.top2{
+		float:left;
+		list-style:none; 
+		padding-left:80px;
+		height:10px;
+		line-height:50px;
+		font-size:15px;}
+	a{ 
+		border:0;
+		}
+	a:link, a:visited{ 
+		color:#000; 
+		text-decoration:none;
+		}
+	a:hover{ 
+		font-weight:bold;
+		}
+	body{
+		background-color:#FAE6E6;
+		}
 
+</style>
 <html xmlns:fb="http://ogp.me/ns/fb#">
     <div id="fb-root"></div>
   <script type="text/javascript">
@@ -85,46 +127,8 @@
         alert("Error");
     }
   </script>
-    <style type="text/css">
-#topclass{
-	width:1335px;
-	}
-
-#topmenu{
-	background-color:#FFFFFF !important; 
-	margin-top:50px;
-	width:1335px; 
-	height:45px; 
-	opacity:0.7;}
-.top{
-	padding-left:373px;}
-.top1{
-	float:left; 
-	list-style:none; 
-	padding-right:10px; 
-	height:10px; 
-	line-height:50px; 
-	font-size:15px;
-	}
-.top2{
-	float:left;
-	list-style:none; 
-	padding-left:80px;
-	height:10px;
-	line-height:50px;
-	font-size:15px;}
-a{ 
-	border:0;
-	}
-a:link, a:visited{ 
-	color:#000; 
-	text-decoration:none;
-	}
-a:hover{ 
-	font-weight:bold;
-	}
-
-</style>
+   
+<body>
 <div class="container">
 
 	<!-- 모달 팝업 -->
@@ -151,7 +155,7 @@ a:hover{
 
 
 
-
+<center><a href="main22.nhn"><img src="mainimg/slogo.png" style="margin-top:10px;"></a></center>
 <div id="topclass">
 <div id="topmenu">
 
@@ -190,3 +194,4 @@ a:hover{
 		
 </ul>
 </div>
+</body>
