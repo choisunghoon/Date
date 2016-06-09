@@ -4,4 +4,7 @@
 	<select id="selectMember" resultClass="ch11.logon.LogonDataBean">
 		select * from dc_member
 	</select>
+	<delete id="memberDelete" parameterClass="ch11.logon.LogonDataBean">
+		delete from dc_member where id = #id#
+	</delete>
 </sqlMap>
