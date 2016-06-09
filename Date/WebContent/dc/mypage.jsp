@@ -3,6 +3,13 @@
 <%@include file="/dc/topmenu.jsp" %>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
+<style>
+	body{
+		top:0px;
+		background-image: url("sy0526/sub.jpg");
+		background-repeat: no-repeat;
+		}
+</style>
 <style type="text/css">
 
 
