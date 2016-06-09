@@ -1,94 +1,75 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<script>
-$(document).ready(function() {
-    
-    $(window).on('resize load', function() {
-	$('.contentwrap').css({"padding-top": $(".navbar").height() + "px"});
-	});
-});
-</script>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-<div class="contentwrap">
-  <article class="container">
-    <div class="page-header">
-	  <h1>È¸¿ø°¡ÀÔ <small>ÀÏ¹İÈ¸¿ø°¡ÀÔ</small></h1>
-    </div>
-    
-    <form class="form-horizontal">
-    
-    <div class="form-group">
-    <label for="inputNumber" class="col-sm-2 control-label">»ç¿ëÀÚ ID</label>
-    <div class="col-sm-4">
-    <input type="text" class="form-control" id="inputNumber" placeholder="¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä">
-      
-    </div>
-      <div class="col-sm-2">
-      <a class="btn btn-default" href="#" role="button">¾ÆÀÌµğ Áßº¹ È®ÀÎ</a>
-      </div>
-    </div>
-    
-    <div class="form-group">
-    <label for="inputPassword" class="col-sm-2 control-label">ºñ¹Ğ¹øÈ£</label>
-    <div class="col-sm-6">
-    <input type="password" class="form-control" id="inputPassword" placeholder="ºñ¹Ğ¹øÈ£">
-    
-    </div>
-    </div>
-       <div class="form-group">
-    <label for="inputPasswordCheck" class="col-sm-2 control-label">ºñ¹Ğ¹øÈ£ È®ÀÎ</label>
-    <div class="col-sm-6">
-    <input type="password" class="form-control" id="inputPasswordCheck" placeholder="ºñ¹Ğ¹øÈ£ È®ÀÎ">
-      <p class="help-block">ºñ¹Ğ¹øÈ£¸¦ ÇÑ¹ø ´õ ÀÔ·ÂÇØÁÖ¼¼¿ä.</p>
-    </div>
-    </div>
-     <div class="form-group">
-    <label for="inputNumber" class="col-sm-2 control-label">»ç¿ëÀÚ º°¸í</label>
-    <div class="col-sm-4">
-    <input type="text" class="form-control" id="inputNumber" placeholder="¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä">
-      
-    </div>
-      <div class="col-sm-2">
-      <a class="btn btn-default" href="#" role="button">º°¸í Áßº¹ È®ÀÎ</a>
-      </div>
-    </div>
-   
-    
-    
-      <div class="form-group">
-    <label for="inputAgree" class="col-sm-2 control-label">°ü½ÉÁö¿ª</label>
-    <div class="col-sm-6 checkbox">
-      
-      <td width="400" id="location1"> 
-        <select name="location1" onchange="javascript:option(this);">
-        	<option value="non">Áö¿ªÀ» ¼±ÅÃÇØÁÖ¼¼¿ä</option>
-        	<option value="¼­¿ï">¼­¿ï</option>
-        	<option value="°æ±âµµ">°æ±âµµ</option>
-        	<option value="°­¿øµµ">°­¿øµµ</option>
-        	<option value="ÃæÃ»µµ">ÃæÃ»µµ</option>
-        	<option value="Àü¶óµµ">Àü¶óµµ</option>
-        	<option value="°æ»óµµ">°æ»óµµ</option>
-        </select>
-      </td>
-    </div>
-    </div>
-    <div class="form-group">
-    <label for="inputName" class="col-sm-2 control-label"></label>
-    <div class="col-sm-6">
-      <button type="submit" class="btn btn-primary">È¸¿ø°¡ÀÔ</button>
-    </div>
-    </div>
-    </form>
-  </article>
-</div>
+<%@ page import="java.util.*" %>
+<%
+    Calendar cal = Calendar.getInstance();
+    int year = request.getParameter("y") == null ? cal.get(Calendar.YEAR) : Integer.parseInt(request.getParameter("y"));
+    int month = request.getParameter("m") == null ? cal.get(Calendar.MONTH) : (Integer.parseInt(request.getParameter("m")) - 1);
 
-</body>
-</html>
+    // ì‹œì‘ìš”ì¼ í™•ì¸
+    // - Calendar MONTHëŠ” 0-11ê¹Œì§€ì„
+    cal.set(year, month, 1);
+    int bgnWeek = cal.get(Calendar.DAY_OF_WEEK);
+
+    // ë‹¤ìŒ/ì´ì „ì›” ê³„ì‚°
+    // - MONTH ê³„ì‚°ì‹œ í‘œê¸°ì›”ë¡œ ê³„ì‚°í•˜ê¸° ë•Œë¬¸ì— +1ì„ í•œ ìƒíƒœì—ì„œ ê³„ì‚°í•¨
+    int prevYear = year;
+    int prevMonth = (month + 1) - 1;
+    int nextYear = year;
+    int nextMonth = (month  + 1) + 1;
+
+    // 1ì›”ì¸ ê²½ìš° ì´ì „ë…„ 12ì›”ë¡œ ì§€ì •
+    if (prevMonth < 1) {
+        prevYear--;
+        prevMonth = 12;
+    }
+
+    // 12ì›”ì¸ ê²½ìš° ë‹¤ìŒë…„ 1ì›”ë¡œ ì§€ì •
+    if (nextMonth > 12) {
+        nextYear++;
+        nextMonth = 1;
+    }
+%>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+    <td align="center"><a href="./calendar.jsp?y=<%=prevYear%>&m=<%=prevMonth%>">â—</a> <%=year%>ë…„ <%=month+1%>ì›” <a href="./calendar.jsp?y=<%=nextYear%>&m=<%=nextMonth%>">â–·</a></td>
+</tr>
+<tr>
+    <td>
+
+        <table border="1">
+        <tr>
+            <td>ì¼</td>
+            <td>ì›”</td>
+            <td>í™”</td>
+            <td>ìˆ˜</td>
+            <td>ëª©</td>
+            <td>ê¸ˆ</td>
+            <td>í† </td>
+        </tr>
+        <tr>
+<%
+    // ì‹œì‘ìš”ì¼ê¹Œì§€ ì´ë™
+    for (int i=1; i<bgnWeek; i++) out.println("<td>&nbsp;</td>");
+
+    // ì²«ë‚ ~ë§ˆì§€ë§‰ë‚ ê¹Œì§€ ì²˜ë¦¬
+    // - ë‚ ì§œë¥¼ í•˜ë£¨ì”© ì´ë™í•˜ì—¬ ì›”ì´ ë°”ë€”ë•Œê¹Œì§€ ê·¸ë¦°ë‹¤
+    while (cal.get(Calendar.MONTH) == month) {
+        out.println("<td>" + cal.get(Calendar.DATE) + "</td>");
+
+        // í† ìš”ì¼ì¸ ê²½ìš° ë‹¤ìŒì¤„ë¡œ ìƒì„±
+        if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) out.println("</tr><tr>");
+
+        // ë‚ ì§œ ì¦ê°€ì‹œí‚¤ì§€
+        cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE)+1);
+    }
+
+    // ëë‚ ë¶€í„° í† ìš”ì¼ê¹Œì§€ ë¹ˆì¹¸ìœ¼ë¡œ ì²˜ë¦¬
+    for (int i=cal.get(Calendar.DAY_OF_WEEK); i<=7; i++) out.println("<td>&nbsp;</td>");
+%>
+        </tr>
+        </table>
+
+    </td>
+</tr>
+</table>

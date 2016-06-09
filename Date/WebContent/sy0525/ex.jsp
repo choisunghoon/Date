@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +13,7 @@
 	<table border="1" colspadding="0" cellspacing="0">
 		<tr>	
 			<td>
-				力格 
+				鞝滊 
 			</td>
 			<td>
 				<input type="text" name="subject"/>
@@ -21,7 +21,7 @@
 		</tr>
 		<tr>
     		<td>
-    			梅何颇老
+    			觳秬韺岇澕
     		</td>  
     		<td>
     			<input type="file" name="save" id="choose" multiple="multiple" />
@@ -30,12 +30,12 @@
     	<tr align="right">
     		<td colspan="2">
     			<input type="checkbox" name="pool" id="pool" value="1">
-    			<label for="pool">傍蜡窍扁&nbsp;&nbsp;&nbsp;</label>
+    			<label for="pool">瓿奠湢頃橁赴&nbsp;&nbsp;&nbsp;</label>
     		</td>
     	</tr>
     	<tr>
     		<td>
-    			郴侩
+    			雮挫毄
     		</td>
     		<td>
     			<textarea name="content" theme="simple" cols="50" rows="10" ></textarea>
@@ -98,9 +98,9 @@ $("#choose").change(function (e) {
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
 
-<input type="submit" value="殿废" />
-<input type="reset" value="促矫累己"/>
-<input type="button" value="秒家" onClick="javascript:location.href='diaryMenu.nhn'" />
+<input type="submit" value="霌彪" />
+<input type="reset" value="雼れ嫓鞛戩劚"/>
+<input type="button" value="旆唽" onClick="javascript:location.href='diaryMenu.nhn'" />
 </form>
 
 </body>

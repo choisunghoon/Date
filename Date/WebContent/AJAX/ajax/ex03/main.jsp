@@ -5,6 +5,7 @@
   <script type="text/javascript">
     $(document).ready(function(){
     	window.setInterval('callAjax()', 1000); //3초마다한번씩 함수를 실행한다..!! 
+
     });
     function callAjax(){
     	 $.ajax({

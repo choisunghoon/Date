@@ -1,11 +1,53 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script language="javascript" src="http://connect.facebook.net/ko_KR/all.js" type="text/javascript"></script>
+<style type="text/css">
+	#topclass{
+		width:100%;
+		}
+	
+	#topmenu{
+		background-color:#FFFFFF !important; 
+		width:100%; 
+		height:45px; 
+		opacity:0.7;}
+	.top{
+		padding-left:350px;	
+		}
+	.top1{
+		float:left; 
+		list-style:none; 
+		padding-right:10px; 
+		height:10px; 
+		line-height:50px; 
+		font-size:15px;
+		}
+	.top2{
+		float:left;
+		list-style:none; 
+		padding-left:80px;
+		height:10px;
+		line-height:50px;
+		font-size:15px;}
+	a{ 
+		border:0;
+		}
+	a:link, a:visited{ 
+		color:#000; 
+		text-decoration:none;
+		}
+	a:hover{ 
+		font-weight:bold;
+		}
+	body{
+		background-color:#FAE6E6;
+		}
 
+</style>
 <html xmlns:fb="http://ogp.me/ns/fb#">
     <div id="fb-root"></div>
 
@@ -19,9 +61,9 @@
 
   window.fbAsyncInit = function() {
 	    FB.init({
-	      appId      : '1136320869764141', // ¾Û ID
-	      status     : true,          // ·Î±×ÀÎ »óÅÂ¸¦ È®ÀÎ
-	      cookie     : true,          // ÄíÅ°Çã¿ë
+	      appId      : '1136320869764141', // ì•± ID
+	      status     : true,          // ë¡œê·¸ì¸ ìƒíƒœë¥¼ í™•ì¸
+	      cookie     : true,          // ì¿ í‚¤í—ˆìš©
 	      xfbml      : true           // parse XFBML
 	    });
 	   
@@ -73,7 +115,7 @@
 	</c:if>
 	<c:if test="${id ne null and nickcheck eq 1}">
 	<script>
-		alert("º°¸íÀ» ÀÔ·ÂÇÏÁö ¾ÊÀ¸½Ã¸é »çÀÌÆ® ÀÌ¿ë¿¡ Á¦ÇÑÀÌ µË´Ï´Ù.È¸¿øÁ¤º¸ º¯°æ ¸Ş´º¿¡¼­ º°¸íÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+		alert("ë³„ëª…ì„ ì…ë ¥í•˜ì§€ ì•Šìœ¼ì‹œë©´ ì‚¬ì´íŠ¸ ì´ìš©ì— ì œí•œì´ ë©ë‹ˆë‹¤.íšŒì›ì •ë³´ ë³€ê²½ ë©”ë‰´ì—ì„œ ë³„ëª…ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
 	</script>
 	</c:if>
    <script type="text/javascript">
@@ -82,11 +124,11 @@
 	        type: "post",
 	        url : nhn,
 	        
-	        success: test,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
-	        error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+	        success: test,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+	        error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
      	});
     }
-    function test(aaaa){	// ¿äÃ»¼º°øÇÑ ÆäÀÌÁöÁ¤º¸°¡ aaa º¯¼ö·Î Äİ¹éµÈ´Ù. 
+    function test(aaaa){	// ìš”ì²­ì„±ê³µí•œ í˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
         $(".modal-body").html(aaaa);
         
     }
@@ -94,55 +136,17 @@
         alert("Error");
     }
   </script>
-    <style type="text/css">
-#topclass{
-	width:1335px;
-	height:630px;}
-
-#topmenu{
-	background-color:#FFFFFF !important; 
-	margin-top:50px;
-	width:1335px; 
-	height:45px; 
-	opacity:0.7;}
-.top{
-	padding-left:373px;}
-.top1{
-	float:left; 
-	list-style:none; 
-	padding-right:10px; 
-	height:10px; 
-	line-height:50px; 
-	font-size:15px;
-	}
-.top2{
-	float:left;
-	list-style:none; 
-	padding-left:80px;
-	height:10px;
-	line-height:50px;
-	font-size:15px;}
-a{ 
-	border:0;
-	}
-a:link, a:visited{ 
-	color:#000; 
-	text-decoration:none;
-	}
-a:hover{ 
-	font-weight:bold;
-	}
-
-</style>
+   
+<body>
 <div class="container">
 
-	<!-- ¸ğ´Ş ÆË¾÷ -->
+	<!-- ëª¨ë‹¬ íŒì—… -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-	  <div class="modal-dialog">
+	  <div class="modal-dialog" style="width:80%">
 	    <div class="modal-content">
 	      <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">¡¿</span><span class="sr-only">Close</span></button>
-		<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">Ã—</span><span class="sr-only">Close</span></button>
+		
 	      </div>
 	      <div class="modal-body">
 		
@@ -160,38 +164,38 @@ a:hover{
 
 
 
-
+<center><a href="main22.nhn"><img src="mainimg/slogo.png" style="margin-top:10px;"></a></center>
 <div id="topclass">
 <div id="topmenu">
 
 <ul class="top">
-		<li class="top1"><a href="couple.nhn">Ä¿ÇÃ ÆäÀÌÁö</a>&nbsp; /</li>
-		<li class="top1"><a href="share.nhn">Á¤º¸°øÀ¯°Ô½ÃÆÇ</a>&nbsp; /</li>
-		<li class="top1"><a href="theme.nhn">Å×¸¶º° µ¥ÀÌÆ®ÄÚ½º</a>&nbsp; /</li>
-		<li class="top1"><a href="event.nhn">ÀÌº¥Æ® ÆäÀÌÁö</a>&nbsp; /</li>
+		<li class="top1"><a href="couple.nhn">ì»¤í”Œ í˜ì´ì§€</a>&nbsp; /</li>
+		<li class="top1"><a href="share.nhn">ì •ë³´ê³µìœ ê²Œì‹œíŒ</a>&nbsp; /</li>
+		<li class="top1"><a href="theme.nhn">í…Œë§ˆë³„ ë°ì´íŠ¸ì½”ìŠ¤</a>&nbsp; /</li>
+		<li class="top1"><a href="event.nhn">ì´ë²¤íŠ¸ í˜ì´ì§€</a>&nbsp; /</li>
 		
 		<li class="top1">
 		<c:if test="${id eq null }">
 
-            <a href="#" onclick="asdf('loginForm.nhn')" data-toggle="modal" data-target="#myModal" >·Î±×ÀÎ</a>&nbsp; /&nbsp; <a href="#" onclick="asdf('inputForm.nhn')" data-toggle="modal" data-target="#myModal" >È¸¿ø°¡ÀÔ</a>&nbsp; /  &nbsp; 
+            <a href="#" onclick="asdf('loginForm.nhn')" data-toggle="modal" data-target="#myModal" >ë¡œê·¸ì¸</a>&nbsp; /&nbsp; <a href="#" onclick="asdf('inputForm.nhn')" data-toggle="modal" data-target="#myModal" >íšŒì›ê°€ì…</a>&nbsp; /  &nbsp; 
             <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
 			
             
 </c:if>
      <c:if test="${(id ne null) and (check eq 'yes')}">
 
-            ${ id}´Ô È¯¿µÇÕ´Ï´Ù.&nbsp;&nbsp;&nbsp;&nbsp;
+            ${ id}ë‹˜ í™˜ì˜í•©ë‹ˆë‹¤.&nbsp;&nbsp;&nbsp;&nbsp;
      
              <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;&nbsp;
-             <a href="mypage.nhn?fbcheck=yes&id=${id}">°³ÀÎÆäÀÌÁö</a>
+             <a href="mypage.nhn?fbcheck=yes&id=${id}">ê°œì¸í˜ì´ì§€</a>
  </c:if>
  <c:if test="${(id ne null) and (check eq 'no')}">
 
-            ${ id}´Ô È¯¿µÇÕ´Ï´Ù.&nbsp;&nbsp;&nbsp;&nbsp;
+            ${ id}ë‹˜ í™˜ì˜í•©ë‹ˆë‹¤.&nbsp;&nbsp;&nbsp;&nbsp;
             
 		  
-          <a href="logout.nhn">·Î±×¾Æ¿ô</a>&nbsp;&nbsp;
-          <a href="mypage.nhn?fbcheck=no&id=${id}">°³ÀÎÆäÀÌÁö</a>
+          <a href="logout.nhn">ë¡œê·¸ì•„ì›ƒ</a>&nbsp;&nbsp;
+          <a href="mypage.nhn?fbcheck=no&id=${id}">ê°œì¸í˜ì´ì§€</a>
 
  </c:if>
 </div>
@@ -199,3 +203,4 @@ a:hover{
 		
 </ul>
 </div>
+</body>

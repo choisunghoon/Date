@@ -17,9 +17,27 @@ public class AdminBean {
 	private SqlMapClientTemplate sqlMap;//자동으로 값 받아줌
 	
 	@RequestMapping("AdminMember.nhn")
-	public String dateMap(HttpServletRequest request) throws Exception{
+	public String adminMember(HttpServletRequest request) throws Exception{
 		ArrayList dto = (ArrayList)sqlMap.queryForList("selectMember",null);
 		request.setAttribute("dto", dto);
 		return "/AdminMember/member.jsp";
 	}
+	
+
+	@RequestMapping("AdminMemberPro.nhn")
+	public String adminMember2(HttpServletRequest request,LogonDataBean dto) throws Exception{
+		sqlMap.delete("memberDelete", dto);
+		
+		
+		return "/AdminMember/member.jsp";
+	}
+
+	@RequestMapping("AdminMember.nhn")
+	public String memberPro(HttpServletRequest request) throws Exception{
+		
+		
+		return "/AdminMember/member.jsp";
+	}
+	
+
 }

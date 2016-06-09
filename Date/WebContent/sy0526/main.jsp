@@ -1,20 +1,39 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <html>
 <head>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
+<script type="text/javascript">
+    function asdf(nhn){
+        $.ajax({
+	        type: "post",
+	        url : nhn,
+	        
+	        success: test,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+	        error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
+     	});
+    }
+    function test(aaaa){	// ìš”ì²­ì„±ê³µí•œ í˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
+        $(".modal-body").html(aaaa);
+        
+    }
+    function whenError(){
+        alert("Error");
+    }
+  </script>
 <style type="text/css">
 body{
 	top:0px;
 	height:1750px;
-	background-image: url("sy0526/ASD.jpg");
+	background-image: url("mainimg/ASD.png");
 	background-repeat: no-repeat;
 	}
-
-
-	/*background-repeat: repeat-x; Ã³À½À§Ä¡¿¡¼­ ÀÌ¹ÌÁö°¡ ¼öÆòÀ¸·Î ¹İº¹*/
-	/* background-repeat: repeat-y; */ /*Ã³À½À§Ä¡¿¡¼­ ÀÌ¹ÌÁö°¡ ¼öÁ÷À¸·Î ¹İº¹*/
-	/* background-repeat: no-repeat; */ /*ÀÌ¹ÌÁö°¡ ¹İº¹µÇÁö ¾Ê°í ÇÏ³ªÀÇ ÀÌ¹ÌÁö¸¸ Ç¥½Ã*/
+	/*background-repeat: repeat-x; ì²˜ìŒìœ„ì¹˜ì—ì„œ ì´ë¯¸ì§€ê°€ ìˆ˜í‰ìœ¼ë¡œ ë°˜ë³µ*/
+	/* background-repeat: repeat-y; */ /*ì²˜ìŒìœ„ì¹˜ì—ì„œ ì´ë¯¸ì§€ê°€ ìˆ˜ì§ìœ¼ë¡œ ë°˜ë³µ*/
+	/* background-repeat: no-repeat; */ /*ì´ë¯¸ì§€ê°€ ë°˜ë³µë˜ì§€ ì•Šê³  í•˜ë‚˜ì˜ ì´ë¯¸ì§€ë§Œ í‘œì‹œ*/
 
 a{ 
 	border:0;
@@ -27,33 +46,98 @@ a:hover{
 	font-weight:bold;
 	}
 #bestcourse{
-	width:1335px;
+	width:100%;
 	height:290px;
 	}
 #recentcourse{
-	width:1335px;
+	width:100%;
 	height:290px;
 	}
 #bestcouple{
-	width:1335px;
+	width:100%;
 	height:290px;
 	}
-
+#menu {
+	width:100%;
+	height:200px;
+	}
+#menu ul li{
+	float:left;
+	width:240px;
+		}
+li{
+	list-style:none;
+	color:#8C8C8C;
+	}
+#topmenu {
+	margin-top:5px;
+	margin-left:82%;
+	}
+#topmenu ul li{
+	font-size:15px;
+	}
+	img {
+		border:0}
 </style>
 </head>
 <body>
-<%@include file="/sy0526/topmenu.jsp" %>
 
+<div id="topmenu">
+	<ul>
+		<li class="top2"><a href="#"onclick="asdf('loginForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">ë¡œê·¸ì¸</a> &nbsp;|&nbsp;
+		 <a href="#" onclick="asdf('inputForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">íšŒì›ê°€ì…</a></li>
+		
+	</ul>
+</div>
+<div class="container">
+
+	<!-- ëª¨ë‹¬ íŒì—… -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	  <div class="modal-dialog" style="width:80%">
+	    <div class="modal-content">
+	      <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">Ã—</span><span class="sr-only">Close</span></button>
+		
+	      </div>
+	      <div class="modal-body">
+		
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+
+</div>
+<div id="menu">
+	<ul style="margin-left:5%; margin-top:35%;">
+		<li>
+			<a href="couple.nhn"><img src="mainimg/as.png" onmouseover='this.src="mainimg/as1.png"' onmouseout='this.src="mainimg/as.png"' ></a>
+		</li>
+		<li>
+			<a href="share.nhn"><img src="mainimg/as3.png" onmouseover='this.src="mainimg/as4.png"' onmouseout='this.src="mainimg/as3.png"'></a>
+		</li>
+		<li>
+			<a href="theme.nhn"><img src="mainimg/as5.png" onmouseover='this.src="mainimg/as6.png"' onmouseout='this.src="mainimg/as5.png"'></a>
+		</li>
+		<li>
+			<a href="event.nhn"><img src="mainimg/as7.png" onmouseover='this.src="mainimg/as8.png"' onmouseout='this.src="mainimg/as7.png"'></a>
+		</li>
+		<li>
+			<a href="personal.nhn"><img src="mainimg/as9.png" onmouseover='this.src="mainimg/as10.png"' onmouseout='this.src="mainimg/as9.png"'></a>
+		</li>
+	</ul>
+</div>
 
 <div id="bestcourse">
-	<a href="#"><img src="sy0526/bestcourse.jpg" style="margin-top:650px; margin-left:48%; opacity:0.7;"></a>
+	<a href="#"><img src="sy0526/bestcourse.jpg" style="margin-top:4.4%; margin-left:48%; opacity:0.7;"></a>
 </div>
 <div id="recentcourse">	
-	<a href="#"><img src="sy0526/recentcourse.jpg" style="margin-top:690px; margin-left:22%; opacity:0.7;"></a>
+	<a href="#"><img src="mainimg/recentcourse.jpg" style="margin-top:7.4%; margin-left:22%; opacity:0.7;"></a>
 </div>
+
 <div id="bestcouple">
 	<a href="#">
-	<img src="sy0526/text.jpg" style="opacity:0.7; margin-left:37%; margin-top:732px;">
+	<img src="mainimg/text.jpg" style="opacity:0.7; margin-left:37%; margin-top:14.5%;">
 	</a>
 </div>
 

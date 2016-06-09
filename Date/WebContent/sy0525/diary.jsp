@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <style>
 	img{
 		width:200px; height:200px;}
@@ -10,7 +10,7 @@
 		var frm = eval("document.rg");
 		
 		if(!frm.save.value){
-			alert("ÀÌ¹ÌÁö¸¦ µî·ÏÇÏ¼¼¿ä!");
+			alert("ì´ë¯¸ì§€ë¥¼ ë“±ë¡í•˜ì„¸ìš”!");
 			return false;
 		}		
 	}
@@ -54,6 +54,6 @@ $("#choose").change(function (e) {
 
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
-<input type="submit" value="Àü¼Û"/>
-<input type="button" value="Ãë¼Ò" onClick="javascript:location.href='diaryMenu.nhn'"/>
+<input type="submit" value="ì „ì†¡"/>
+<input type="button" value="ì·¨ì†Œ" onClick="javascript:location.href='diaryMenu.nhn'"/>
 </form>
