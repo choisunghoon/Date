@@ -82,7 +82,7 @@ table.gradienttable td p{
 		<td><p>${dto.nickname}</p></td>
 		<td><p>${dto.location}</p></td>
 		<td><p>${dto.couple}</p></td>
-		<td><p><input type="button" value="°­Åð" /></p></td>
+		<td><p><input type="button" onclick="" value="°­Åð" /></p></td>
 	</tr>
 	
 	</c:forEach>
