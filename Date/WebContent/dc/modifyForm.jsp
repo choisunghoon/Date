@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"    pageEncoding="UTF-8" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
@@ -179,7 +179,7 @@
 <body>
 <form method="post" action="modifyPro.nhn" name="userinput" onsubmit="return checkIt()">
 
-  <table width="600" border="1" cellspacing="0" cellpadding="3"  align="center">
+  <table class="table table-bordered" >
     <tr > 
       <td  colspan="2" height="39" align="center">
 	     <font size="+1" ><b>회원 정보수정</b></font></td>

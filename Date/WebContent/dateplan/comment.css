@@ -1,0 +1,94 @@
+/* 댓글 관련 설정 */
+/* 댓글 상자 안쪽 여백 및 하단 바깥 여백 설정 */
+.comment > .commentList > [id^=comment].well { 
+	padding: 1rem;
+	margin-bottom: 1.5rem;
+}
+/* 댓글의 댓글 상자 안쪽과 바깥여백 및 배경색 설정 */
+.comment > .commentList > [id^=comment].well > [id^=comment].well { 
+	padding: 1rem;
+	margin: 1.5rem 0 0 2rem;
+	background: rgba(0,0,0,.075);
+}
+/* 댓글과 댓글의 댓글상자의 좌측 이미지 영역의 우측 여백 설정 */
+.comment > .commentList > [id^=comment].well > .media > .media-left,
+.comment > .commentList > [id^=comment].well > [id^=comment].well > .media > .media-left {
+	padding-right: 1rem;
+}
+/* 댓글과 댓글의 댓글상자의 좌측 본문 영역의 좌측 여백 및 이미지 영역과 본문 영역 사이 분리선 설정 */
+.comment > .commentList > [id^=comment].well > .media > .media-body,
+.comment > .commentList > [id^=comment].well > [id^=comment].well > .media > .media-body {
+	border-left: dotted 1px rgba(0,64,0,.25);
+	padding-left: 1rem;
+}
+/* 손님 또는 아이콘 설정이 없는 사용자에 대한 아이콘 설정 */
+.comment > .commentList > [id^=comment].well > .media > .media-left > .guest-icon {
+	position: relative;
+	width: 10rem;
+	height: 10rem;
+	border: 0;
+	overflow: hidden;
+	z-index: 1;
+}
+.comment > .commentList > [id^=comment].well > [id^=comment].well > .media > .media-left > .guest-icon {
+	position: relative;
+	width: 7rem;
+	height: 7rem;
+	border: 0;
+	overflow: hidden;
+	z-index: 1;
+}
+/* 사용자 아이콘 상자 설정 */
+/* 유저 아이콘만을 표현하기 위해 우선 모든 내용을 숨긴다. */
+.comment > .commentList > [id^=comment].well > .media > .media-left > .user-icon > *,
+.comment > .commentList > [id^=comment].well > [id^=comment].well > .media > .media-left > .user-icon > * {
+	display: none;
+}
+/* 유저 아이콘 상자의 특성을 설정한다. */
+.comment > .commentList > [id^=comment].well > .media > .media-left > .user-icon {
+	display: block;
+	z-index: 2;
+	top: -10rem;
+	position: relative;
+	font-size: 0;
+}
+.comment > .commentList > [id^=comment].well > [id^=comment].well > .media > .media-left > .user-icon {
+	display: block;
+	z-index: 2;
+	top: -7rem;
+	position: relative;
+	font-size: 0;
+}
+/* 유저 아이콘만을 숨김 해제하고 크기를 설정한다. */
+.comment > .commentList > [id^=comment].well > .media > .media-left > .user-icon > img[alt='BlogIcon'] {
+	display: block;
+	width: 10rem;
+	height: 10rem;
+	border: 0;
+	position: absolute;
+}
+.comment > .commentList > [id^=comment].well > [id^=comment].well > .media > .media-left > .user-icon > img[alt='BlogIcon'] {
+	display: block;
+	width: 7rem;
+	height: 7rem;
+	border: 0;
+	position: absolute;
+}
+/* 본문영역의 상요자 이름 부분에서 모든 이미지를 숨긴다. */
+.comment > .commentList > [id^=comment].well > .media > .media-body > H4 > img,
+.comment > .commentList > [id^=comment].well > [id^=comment].well > .media > .media-body > H4 > img {
+	display:none;
+}
+/* 사용자 이름 부분의 글꼴과 자간거리 조정 */
+.comment > .commentList > [id^=comment].well > .media > .media-body > H4,
+.comment > .commentList > [id^=comment].well > [id^=comment].well > .media > .media-body > H4 {
+	font-family: 'Lobster', 'Nanum Gothic', sans-serif, cursive;
+	letter-spacing: .2rem;
+}
+/* 댓글 주소를 숨긴다. (댓글 펼침 설정이 되어있지 않다면 작동하지 않는다.) */
+.comment > .commentList > [id^=comment].well > .media > .media-body > p.rp-address,
+.comment > .commentList > [id^=comment].well > [id^=comment].well > .media > .media-body > p.rp-address {
+	display:none;
+}
+/* 댓글 쓰기의 폼 그룹 하단 바깥 여백 설정 */
+.comment .form-group {margin-bottom: 1rem;}
