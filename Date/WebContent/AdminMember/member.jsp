@@ -1,6 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<html>
+<head>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+	function memberDelete(id){
+		
+		$.ajax({
+	        type: "post",
+	        url : "AdminMemberPro.nhn?id="+id,
+	        	 
+     	});
+		history.pushState(null, null, "AdminMember.nhn");
+    }
+    
+</script>
+</head>
 <!-- This goes in the document HEAD so IE7 and IE8 don't cry -->
 	<!--[if lt IE 9]>
 	<style type="text/css">
@@ -82,8 +99,9 @@ table.gradienttable td p{
 		<td><p>${dto.nickname}</p></td>
 		<td><p>${dto.location}</p></td>
 		<td><p>${dto.couple}</p></td>
-		<td><p><input type="button" value="°­Åð" /></p></td>
+		<td><p><input type="button" onclick="memberDelete(${dto.id})" value="°­Åð" /></p></td>
 	</tr>
 	
 	</c:forEach>
 </table>
+</html>
