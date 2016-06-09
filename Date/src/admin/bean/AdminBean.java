@@ -23,6 +23,15 @@ public class AdminBean {
 		return "/AdminMember/member.jsp";
 	}
 	
+
+	@RequestMapping("AdminMemberPro.nhn")
+	public String adminMember2(HttpServletRequest request,LogonDataBean dto) throws Exception{
+		sqlMap.delete("memberDelete", dto);
+		
+		
+		return "/AdminMember/member.jsp";
+	}
+
 	@RequestMapping("AdminMember.nhn")
 	public String memberPro(HttpServletRequest request) throws Exception{
 		
@@ -30,4 +39,5 @@ public class AdminBean {
 		return "/AdminMember/member.jsp";
 	}
 	
+
 }
