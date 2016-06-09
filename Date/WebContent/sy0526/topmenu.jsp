@@ -2,6 +2,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script language="javascript" src="http://connect.facebook.net/ko_KR/all.js" type="text/javascript"></script>
 <style type="text/css">
@@ -49,7 +50,15 @@
 </style>
 <html xmlns:fb="http://ogp.me/ns/fb#">
     <div id="fb-root"></div>
+
+ 
+
+
+
   <script type="text/javascript">
+  
+
+
   window.fbAsyncInit = function() {
 	    FB.init({
 	      appId      : '1136320869764141', // 앱 ID
@@ -60,7 +69,7 @@
 	   
 	    FB.getLoginStatus(function(response) {
 	        if (response.status === 'connected') {
-	        	
+	        	 
 	        	
 	        	
 	        } else if (response.status === 'not_authorized') {

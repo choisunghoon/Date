@@ -1,18 +1,40 @@
-<%@ page contentType="text/html;charset=UTF-8"    pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8"    pageEncoding="UTF-8" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+
+
+
 
 <html>
 <head>
 <title>커플 정보</title>
+<script>
+
+$(function() {
+	$("#datepicker1").datepicker({
+		    dateFormat: 'yy-mm-dd', 
+		    prevText: '이전 달', 
+		    nextText: '다음 달',  
+		    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		    dayNames: ['일','월','화','수','목','금','토'],
+		    dayNamesShort: ['일','월','화','수','목','금','토'],
+		    dayNamesMin: ['일','월','화','수','목','금','토'],
+		    showMonthAfterYear: true,
+		    yearSuffix: '년'
+		  });
+		});
+
+</script>
 
 
 <script>
-
-	
-</script>
-<script language="JavaScript">
 
 
    <!-- 
@@ -75,6 +97,7 @@
        "toolbar=no, location1=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
    }
 -->
+
 </script>
 
 
@@ -86,6 +109,7 @@
 <%@include file="/dc/coupleSearch.jsp" %>
 </c:if>
 <body align="center">
+<p>Date: <input type="text" id="datepicker1"></p>
 <form action="#" method="post">
 <c:if test="${check1 eq 1 and couple.couple eq '0'}">
 상대방의 수락을 기다리는 중입니다.<br>
@@ -101,8 +125,10 @@
 	<b>${couple.nickname }</b>(${couple.id})님과 <b>${couple1.nickname }</b>(${couple1.id})님의 커플 정보 입니다.
    <div style="width:200px; height:280; margin-left:44%;">
  
-   <center>사귄 날짜 : <fmt:formatDate value="${coupleData.coupleDate }" pattern="YYYY-MM-dd" /></center>
-   <div style="border:1px solid; width:200px; height:200px; float:left;">
+   <center>사귄 날짜 : <fmt:formatDate value="${coupleData.coupleDate }" pattern="YYYY-MM-dd" />
+   	<p>Date: <input type="text" id="datepicker1"></p>
+   </center>
+    <div style="border:1px solid; width:200px; height:200px; float:left;">
       <c:if test="${coupleData.coupleImage eq null }">
       <img src="syimage/couple.png" class="img-circle">
       </c:if>
@@ -112,7 +138,7 @@
    </div>
    <center>
       <%@include file="/dc/diary.jsp" %><br>
-      커플명 : <input type="text" name="coupleName" size="30" maxlength="30" value="${coupleData.coupleName}">     
+      커플명 :  <input type="text" name="coupleName" size="30" maxlength="30" value="${coupleData.coupleName}">     
       	<input type="button" value="커플명 중복확인" OnClick="openCCName(this.form)">
       <br/>
    </center>
