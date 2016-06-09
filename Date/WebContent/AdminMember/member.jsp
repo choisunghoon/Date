@@ -99,7 +99,11 @@ table.gradienttable td p{
 		<td><p>${dto.nickname}</p></td>
 		<td><p>${dto.location}</p></td>
 		<td><p>${dto.couple}</p></td>
+<<<<<<< HEAD
 		<td><p><input type="button" onclick="memberDelete(${dto.id})" value="°­Åð" /></p></td>
+=======
+		<td><p><input type="button" onclick="" value="°­Åð" /></p></td>
+>>>>>>> branch 'master' of https://github.com/choisunghoon/Date.git
 	</tr>
 	
 	</c:forEach>

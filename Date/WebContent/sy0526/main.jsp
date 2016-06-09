@@ -70,7 +70,7 @@ li{
 	color:#8C8C8C;
 	}
 #topmenu {
-	margin-top:0px;
+	margin-top:5px;
 	margin-left:82%;
 	}
 #topmenu ul li{
@@ -109,7 +109,7 @@ li{
 
 </div>
 <div id="menu">
-	<ul style="margin-left:5%; margin-top:36%;">
+	<ul style="margin-left:5%; margin-top:35%;">
 		<li>
 			<a href="couple.nhn"><img src="mainimg/as.png" onmouseover='this.src="mainimg/as1.png"' onmouseout='this.src="mainimg/as.png"' ></a>
 		</li>
@@ -129,15 +129,15 @@ li{
 </div>
 
 <div id="bestcourse">
-	<a href="#"><img src="sy0526/bestcourse.jpg" style="margin-top:4.5%; margin-left:48%; opacity:0.7;"></a>
+	<a href="#"><img src="sy0526/bestcourse.jpg" style="margin-top:4.4%; margin-left:48%; opacity:0.7;"></a>
 </div>
 <div id="recentcourse">	
-	<a href="#"><img src="mainimg/recentcourse.jpg" style="margin-top:7.5%; margin-left:22%; opacity:0.7;"></a>
+	<a href="#"><img src="mainimg/recentcourse.jpg" style="margin-top:7.4%; margin-left:22%; opacity:0.7;"></a>
 </div>
 
 <div id="bestcouple">
 	<a href="#">
-	<img src="mainimg/text.jpg" style="opacity:0.7; margin-left:37%; margin-top:15%;">
+	<img src="mainimg/text.jpg" style="opacity:0.7; margin-left:37%; margin-top:14.5%;">
 	</a>
 </div>
 
