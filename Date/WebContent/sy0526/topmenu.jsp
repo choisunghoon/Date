@@ -144,14 +144,14 @@
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 	  <div class="modal-dialog" style="width:80%">
 	    <div class="modal-content">
-	      
-	      <div class="modal-body">
-		
-	      </div>
 	      <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" tabindex="1"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 		
 	      </div>
+	      <div class="modal-body">
+		
+	      </div>
+	      
 	    </div>
 	  </div>
 	</div>
