@@ -68,6 +68,7 @@
       }
          
 </style>
+
 <div style="width:200px; height:280; margin-left:44%;">
    <center>사귄 날짜 : <fmt:formatDate value="${cdb.coupledate }" pattern="YYYY-MM-dd" /></center>
    <div style="border:1px solid; width:200px; height:200px; float:left;">
