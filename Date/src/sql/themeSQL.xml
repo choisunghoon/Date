@@ -81,7 +81,7 @@
         select count(*) from dc_member where id = #id# and pw = #pw#
     </select>
     
-    <delete id="deleteCtg" parameterClass="ch11.logon.CtgDataBean">
+    <delete id="deleteCtg" parameterClass="themeDTO.CtgDataBean">
         delete from ctg where ctg_num = #ctg_num#
     </delete>
     
