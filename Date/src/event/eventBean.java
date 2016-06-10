@@ -173,7 +173,7 @@ public class eventBean {
 	    MultipartFile multipartFile = null;
 	    String originalFileName = null;
 	    String[] src = new String[2];
-	    String path = "C:\\Users\\user2\\workspace\\Spring\\WebContent\\project";
+	    String path = "C:\\Users\\user2\\git\\Date\\Date\\WebContent\\event";
 	    int i = 0;	     
 		while (iterator.hasNext()) {
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -289,7 +289,7 @@ public class eventBean {
 	    String setsrc = null;	
 	    String[] srclist = null;		
 	    String[] src = new String[2];
-	    String path = "C:\\Users\\user2\\workspace\\Spring\\WebContent\\project";
+	    String path = "C:\\Users\\user2\\git\\Date\\Date\\WebContent\\event";
 	    int i = 0;	  
 		while (iterator.hasNext()) {
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
