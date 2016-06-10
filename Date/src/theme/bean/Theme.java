@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import themeDTO.CourseDataBean;
 import themeDTO.CtgDataBean;
 import themeDTO.LocationDataBean;
+import ch11.logon.LogonDataBean;
 
 @Controller
 public class Theme {
@@ -55,6 +57,15 @@ public class Theme {
 		List ctgList = null;
 		int count = 0;
 		
+		String pageNum = request.getParameter("pageNum");
+		int pageSize = 6;
+		if(pageNum == null){
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;	
+		
 		String[] srclist = null;
 		String path = request.getContextPath() +"/theme/";
 		ctgList = sqlMap.queryForList("getCtgList", null);
@@ -67,7 +78,11 @@ public class Theme {
 		}
 		
 		request.setAttribute("ctgList", ctgList);
-		request.setAttribute("count", (Integer)count);
+		request.setAttribute("count", count);
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("startRow",startRow);
+		request.setAttribute("endRow", endRow);
+		request.setAttribute("pageSize", pageSize);
 		
 		return "/theme/addCtgView.jsp";
 	}
@@ -75,6 +90,27 @@ public class Theme {
 	@RequestMapping("ctgModify.nhn")
 	public String ctgModify(){
 		return "/theme/ctgModify.jsp";
+	}
+	
+	@RequestMapping("ctgDel.nhn")
+	public String ctgDel(){
+		return "/theme/ctgDel.jsp";
+	}
+	
+	@RequestMapping("ctgDelPro.nhn")
+	public String ctgDelPro(HttpSession session,HttpServletRequest request,LogonDataBean dto){
+		session = request.getSession();
+		String id = (String)session.getAttribute("memId");
+		String pw = request.getParameter("pw");
+		dto.setId(id);
+		dto.setPw(pw);
+		int check = (Integer)sqlMap.queryForObject("deleteProck",dto);
+		if(check == 1){
+			sqlMap.delete("deleteCtg",dto);
+			session.invalidate();
+		}
+		request.setAttribute("check", check);
+		return "/theme/ctgDelPro.jsp";
 	}
 	
 	@RequestMapping("addCourse.nhn")
