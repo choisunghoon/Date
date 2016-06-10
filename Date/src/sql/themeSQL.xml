@@ -6,17 +6,6 @@
         select c_tab2_seq.currval from dual
     </select>
     
-    <insert id="insertCourse" parameterClass="themeDTO.ThemeDataBean" >
-        insert into c_tab2(num, ctg, course, pic, name, rate, coment) values(
-        	c_tab2_seq.NEXTVAL,
-        	#ctg#,
-        	#course#,
-        	#pic#,
-        	#name#,
-        	#rate#,
-        	#coment#
-        )
-    </insert>
     
     <insert id="insertCtg" parameterClass="themeDTO.CtgDataBean" >
         insert into ctg values(
@@ -56,10 +45,7 @@
     <select id="selectlocnum" resultClass="Integer">
  		select loc_seq.currval from dual
     </select>
-    <select id="getCourse" resultClass="themeDTO.ThemeDataBean" parameterClass="int">
-        select * from c_tab2 where num = #num#
-    </select>
-    
+ 
     <select id="getCtgList" resultClass="themeDTO.CtgDataBean">
         select * from ctg
     </select>
