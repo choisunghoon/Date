@@ -1,21 +1,23 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"    pageEncoding="UTF-8" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<html>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
  <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
 
 
 
 
-<html>
-<head>
-<title>커플 정보</title>
-<script>
 
+<head>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+
+<script type="text/javascript">
+<!--
 $(function() {
 	$("#datepicker1").datepicker({
 		    dateFormat: 'yy-mm-dd', 
@@ -30,8 +32,10 @@ $(function() {
 		    yearSuffix: '년'
 		  });
 		});
-
+-->
 </script>
+
+ 
 
 
 <script>
@@ -100,8 +104,8 @@ $(function() {
 
 </script>
 
-
-
+<title>커플 정보</title>
+</head>
 
 
 
