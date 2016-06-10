@@ -8,10 +8,11 @@
 <%@include file="/sy0526/topmenu.jsp" %>
 <script type="text/javascript">
 	function checked(){		
-		var sum=0;
-		if($("input:checkbox[name=photocheck]").is(":checked"))==false){
-			alert("");
-		}	
+		var i = $('input:checkbox:checked').length;
+		if(i==0){
+			alert("사진을 선택해 주세요!");
+			return false;
+		}
 	}
 </script>
  <style>
@@ -22,17 +23,17 @@
     	<input type="hidden" id="aa" name="listMore" value="${listMore}"/>
 	</form>
 	<form name="ff" action="adminphoto.nhn?couplename=dfg" method="post" onsubmit="return checked();">
-	<input type="submit" value="포토북 신청" style="margin-left:50%"/>
+	<input type="submit" value="포토북 신청" style="margin-left:70%;"/>
 	
 	<c:set var="i" value="1"/>
 		<c:forEach var="diary" items="${diary}">
-			<ul class="tbl_area" id="dispRow${i }" style="display:none; margin-left:40%;">	
+			<ul class="tbl_area" id="dispRow${i }" style="display:none; width:800px; margin-left:18%; margin-top:1%;">	
 				<c:set var="i" value="${i+1 }" />
                		<li>
-               			<input type="checkbox" name="photocheck" value="${diary.num }">
-				                	<img src="syimage/${diary.img }">
-				                	${diary.subject}
-				                	<fmt:formatDate value="${diary.regdate }" pattern="YYYY-MM-dd" />
+               			<input type="checkbox" name="photocheck" value="${diary.num }" style="width:100px;">
+				        <img src="syimage/${diary.img }" style="width:400px; height:400px;">
+				        ${diary.subject}
+				        <fmt:formatDate value="${diary.regdate }" pattern="YYYY-MM-dd" />
                   </li>
 			</ul>
 		</c:forEach>
