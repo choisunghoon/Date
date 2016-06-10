@@ -228,7 +228,7 @@ public class Upload {
 		for(int i =0;i<str.length;i++){
 			ddb.setNum(Integer.parseInt(str[i]));
 			ddb = (DiaryDataBean)sqlMap.queryForObject("num",ddb);
-			pdb.setContent(ddb.getContent());
+			pdb.setContent(ddb.getSubject());
 			pdb.setCouplename(ddb.getCouplename());
 			pdb.setImg(ddb.getImg());
 			pdb.setWriteday(String.valueOf(ddb.getRegdate()));

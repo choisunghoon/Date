@@ -2,11 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <%@include file="/sy0526/topmenu.jsp" %>
-
+<script type="text/javascript">
+	function checked(){		
+		var sum=0;
+		if($("input:checkbox[name=photocheck]").is(":checked"))==false){
+			alert("");
+		}	
+	}
+</script>
  <style>
  	li{list-style:none;}
  </style>
@@ -14,22 +21,23 @@
 	<form name="frmSet">
     	<input type="hidden" id="aa" name="listMore" value="${listMore}"/>
 	</form>
-	<form action="adminphoto.nhn?couplename=dfg" method="post">
-	<input type="submit" value="포토북 신청"/>
+	<form name="ff" action="adminphoto.nhn?couplename=dfg" method="post" onsubmit="return checked();">
+	<input type="submit" value="포토북 신청" style="margin-left:50%"/>
+	
 	<c:set var="i" value="1"/>
 		<c:forEach var="diary" items="${diary}">
-			<ul class="tbl_area" id="dispRow${i }" style="display:none">	
+			<ul class="tbl_area" id="dispRow${i }" style="display:none; margin-left:40%;">	
 				<c:set var="i" value="${i+1 }" />
                		<li>
                			<input type="checkbox" name="photocheck" value="${diary.num }">
 				                	<img src="syimage/${diary.img }">
-				                	${diary.content}
+				                	${diary.subject}
 				                	<fmt:formatDate value="${diary.regdate }" pattern="YYYY-MM-dd" />
                   </li>
 			</ul>
 		</c:forEach>
 	<div id="dispMore" style="display:none;">
-		<a href="#" onclick="listMore(${totalCnt})" style="margin-left:50%; ">더보기</a>
+		<a href="#" onclick="listMore(${totalCnt})" style="margin-left:50%;">더보기</a>
 	</div>
 	<c:forEach end="${totalCnt}" begin="1" var="i">
 		<c:if test="${i<=listMore }">
