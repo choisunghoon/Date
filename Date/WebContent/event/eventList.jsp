@@ -1,99 +1,86 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+
 <head>
 <style>
-/* 폰트안보이게(배경깔때) */
-.blind{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0}
+.gallery {
+	display: block;
+	width: 100%;
+	line-height: 1.6em;
+}
 
- 
+.gallery ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
 
-/* 메인 타이틀 */
-.title_area{float:none;position:relative;*height:34px;*zoom:1}
-.title_area:after{display:block;clear:both;content:''}
+.gallery li {
+	display: block;
+	float: left;
+	width: 350px;
+	margin: 35px 5px 5px 35px;
+	padding: 0;
+}
 
-.obj_section .title_area h4{float:left;height:21px;margin:5px 10px 0 0;background:url(htp://제목이배경으로 깔리는 이미지 주소) no-repeat -9999px -9999px}
-.obj_section .title_area h4.hh_photo{width:54px;background-position:0 -88px}
+.gallery li.last {
+	margin-right: 0;
+}
 
- 
+.gallery li.page {
+	margin-left: 50%;
+}
 
-/* 갤러리 */ 
-.sub_photo li{float:left;position:relative;width:160px;margin-right:8px; margin-bottom:30px; display:block;}
-.sub_photo li.last{margin-right:0}
-.sub_photo li a strong{display:block;overflow:hidden;padding-right:8px;white-space:nowrap;text-overflow:ellipsis; font-size:14px;}
-.sub_photo li img{width:160px; height:120px;}
-.sub_photo p.thmb{margin-bottom:3px}
-.sub_photo .tx_brief{margin-top:2px;padding-right:13px}
-.sub_photo .tx_brief a{color:#666}
-/* //갤러리 */ 
-
- 
-
-/* 각게시판 페이징 */
-.paginate{ padding:16px 0 0;text-align:center; }
-.paginate a,.paginate strong{display:inline-block;position:relative;_width /**/:17px;margin-right:1px;padding:2px 4px 3px;border:1px solid #f5f2ed;color:#666;font-family:Verdana;font-size:11px;font-weight:bold;line-height:normal;text-decoration:none}
-.paginate strong{border:1px solid #928070;color:#f52d2d !important}
-.paginate .pre{margin-right:6px;padding:5px 6px 2px 14px;_padding-bottom:1px;background:url(http://static.naver.com/common/paginate/bu_pg3_l_off.gif) no-repeat 6px 5px !important;letter-spacing:-1px}
-.paginate .next{margin-left:4px;padding:5px 14px 2px 6px;_padding-bottom:1px;background:url(http://static.naver.com/common/paginate/bu_pg3_r_off.gif) no-repeat 62px 5px !important;letter-spacing:-1px}
-.paginate a.pre{background:url(http://static.naver.com/common/paginate/bu_pg3_l_on.gif) no-repeat 6px 6px !important}
-.paginate a.next{background:url(http://static.naver.com/common/paginate/bu_pg3_r_on.gif) no-repeat 33px 6px !important}
-.paginate .pre,.paginate .next{display:inline-block;position:relative;top:0;_top:-2px;_width:75px;border:1px solid #b4b4b4;color:#ccc;font-family:'돋움',Dotum;font-size:11px;line-height:normal}
-.paginate a.pre,.paginate a.next{color:#565656}
-.paginate a:hover{border:1px solid #e9e9e9; color:#FFF; background-color:#939393 !important}
-/* //각게시판 페이징 */
-
-
+.gallery li img {
+	display: block;
+	width: 340px;
+	height: 430px;
+}
 </style>
 </head>
 <body>
-<!-- 갤러리시작 -->
-<div class="sub_photo">
-    <div class="title_area">
-        <h4 class="hh_photo"><strong class="blind">갤러리</strong></h4>
-    </div>
-    <ul>
-    <li>
-        <p class="thmb">
-            <a href="#">
-                <img src="http://그림주소가 들어갑니다" alt="">  
-            </a>
-        </p>
-        <a href="#"><strong>제목부분</strong></a>
-        <p class="tx_brief">2014-01-28</p>
-    </li>
-      <li>
-        <p class="thmb">
-            <a href="#">
-                <img src="http://그림주소가 들어갑니다" alt="">  
-            </a>
-        </p>
-        <a href="#"><strong>제목부분</strong></a>
-        <p class="tx_brief">2014-01-28</p>
-    </li>
-    <!-- li가 게시판 1개글입니다 보일 갤러리 갯수만큼 li반복합니다.-->
-    </ul>
-</div>
-<!-- 갤러리끝 -->
+	<div class="gallery">
+		<ul>
+			<c:set var="i" value="1" />
+			<c:forEach var="eventList" items="${eventList}">
+				<c:if test="${(i%3)!=0}">
+					<li><a href="eventContent.nhn?enumber=${eventList.enumber}"><img
+							src="${eventList.eimg}" alt=""></a>${eventList.ename}
+						ī��Ʈ:${count} i:${i} teb: ${teb}</li>
+				</c:if>
+				<c:if test="${(i%3)==0}">
+					<li class="last"><a href="eventContent.nhn"><img
+							src="${eventList.eimg}" alt=""></a>${eventList.ename}
+						ī��Ʈ:${count} i:${i}</li>
+				</c:if>
+				<c:set var="i" value="${i+1}" />
+			</c:forEach>
+			<li class="page"><c:if test="${count > 0}">
+					<c:set var="pageCount"
+						value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}" />
+					<c:set var="pageBlock" value="${10}" />
+					<fmt:parseNumber var="result" value="${currentPage / 10}"
+						integerOnly="true" />
+					<c:set var="startPage" value="${result * 10 + 1}" />
+					<c:set var="endPage" value="${startPage + pageBlock-1}" />
+					<c:if test="${endPage > pageCount}">
+						<c:set var="endPage" value="${pageCount}" />
+					</c:if>
 
+					<c:if test="${startPage > 10}">
+						<a href="eventTeb.nhn?pageNum=${startPage - 10 }">[����]</a>
+					</c:if>
 
-<!-- 페이징시작 -->
-<div class="paginate">
-<a class="pre" href="#">이전</a>
-<a href="#">1</a>
-<a href="#">2</a>
-<a href="#">3</a>
-<a href="#">4</a>
-<strong>5</strong> <!-- 선택된페이지 -->
-<a href="#">6</a>
-<a href="#">7</a>
-<a href="#">8</a>
-<a href="#">9</a>
-<a href="#">10</a>
-<a class="next" href="#">다음</a>
-</div>
-<!-- 페이징끝 --> 
+					<c:forEach var="i" begin="${startPage}" end="${endPage}">
+						<a href="eventTeb.nhn?pageNum=${i}">[${i}]</a>
+					</c:forEach>
 
- 
+					<c:if test="${endPage < pageCount}">
+						<a href="eventTeb.nhn?pageNum=${startPage + 10}">[����]</a>
+					</c:if>
+				</c:if></li>
+		</ul>
+	</div>
 </body>
-
-

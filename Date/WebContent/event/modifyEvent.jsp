@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -388,31 +389,33 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
 }
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>이벤트 수정</title>
 </head>
 <body>
-<form method="post" name="addEvent" enctype="multipart/form-data" action="addEventPro.nhn">
-<table border="1" width="500" cellpadding="0" cellspacing="0" align="center"> 
+<form method="post" name="modifyEvent" enctype="multipart/form-data" action="modifyEventPro.nhn">
+<table border="1" width="600" cellpadding="0" cellspacing="0" align="center"> 
     <tr height="30"> 
-      <td align="center"  width="100">이벤트 이름</td>
-      <td align="center"><input type="text" name="ename">
+      <td align="center"  width="200">이벤트 이름</td>
+      <td align="center"><input type="text" name="ename" value="${eto.ename}">
+      					<input type="hidden" name="enumber" value="${eto.enumber}">
      </tr>
      <tr>
-      <td align="center" width="100">이벤트 대표 이미지</td>
-      <td align="center"><input type="file" name="upload[1]"></td>
+      <td align="center" width="200">이벤트 대표 이미지</td>
+      <td align="center"><img src="${src1}"/><input type="file" name="upload[1]"></td>
     </tr>
     <tr>
-      <td align="center" width="100">이벤트 상세 이미지</td>
-      <td align="center"><input type="file" name="upload[2]"></td>
+      <td align="center" width="200">이벤트 상세 이미지</td>
+      <td align="center"><img src="${src2}"/><input type="file" name="upload[2]"></td>
     </tr>
      <tr>
       <td align="center" width="100">진행 날짜</td>
-      <td align="center" width="100">시작 날짜<input type="text" id="start_day" name="sdate" class="forms" style="width:80px;" />
-      								  종료 날짜<input type="text" id="end_day" name="edate" class="forms" style="width:80px;"  />
+      <td align="center" >시작 날짜<input type="text" id="start_day" name="sdate" class="forms" style="width:80px;" value="${eto.sdate}" />
+      								  종료 날짜<input type="text" id="end_day" name="edate" class="forms" style="width:80px;" value="${eto.edate}"/>
       								 <a href="#" onclick="miniSetCalendar(event,'start_day','end_day');return false;">[검색달력]</a>
       </td>
     </tr>
     <tr>
-     <td colspan=2 align="center"><input type="submit" value="전송"></td>
+     <td colspan=2 align="center"><input type="submit" value="수정"></td>
     </tr>
 </table>
 </form>
