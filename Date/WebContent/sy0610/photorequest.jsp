@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <%@include file="/sy0526/topmenu.jsp" %>
@@ -8,21 +10,21 @@
  <style>
  	li{list-style:none;}
  </style>
-<form action="adminphoto.nhn">
-	<input type="submit" value="포토북 신청"/>
+
 	<form name="frmSet">
-		<input type="hidden" id="aa" name="listMore" value="${listMore}"/>
+    	<input type="hidden" id="aa" name="listMore" value="${listMore}"/>
 	</form>
+	<form action="adminphoto.nhn?couplename=dfg" method="post">
+	<input type="submit" value="포토북 신청"/>
 	<c:set var="i" value="1"/>
 		<c:forEach var="diary" items="${diary}">
 			<ul class="tbl_area" id="dispRow${i }" style="display:none">	
 				<c:set var="i" value="${i+1 }" />
                		<li>
                			<input type="checkbox" name="photocheck" value="${diary.num }">
-							 <label for="${diary.num }">
-				                <img src="syimage/${diary.img }">
-				                ${diary.content}
-			                  </label>
+				                	<img src="syimage/${diary.img }">
+				                	${diary.content}
+				                	<fmt:formatDate value="${diary.regdate }" pattern="YYYY-MM-dd" />
                   </li>
 			</ul>
 		</c:forEach>

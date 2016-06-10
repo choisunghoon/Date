@@ -129,7 +129,7 @@ li{
 </div>
 
 <div id="bestcourse">
-	<a href="#"><img src="sy0526/bestcourse.jpg" style="margin-top:4.4%; margin-left:48%; opacity:0.7;"></a>
+	<a href="#"><img src="mainimg/bestcourse.jpg" style="margin-top:4.4%; margin-left:48%; opacity:0.7;"></a>
 </div>
 <div id="recentcourse">	
 	<a href="#"><img src="mainimg/recentcourse.jpg" style="margin-top:7.4%; margin-left:22%; opacity:0.7;"></a>
