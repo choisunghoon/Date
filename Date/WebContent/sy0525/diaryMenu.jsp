@@ -82,7 +82,7 @@
    <center>
       <a href="diary.nhn" >이미지 변경</a>
       
-      <a href="#">포토북 신청</a><br/>
+      <a href="photo.nhn">포토북 신청</a><br/>
    </center>
    
 </div>
