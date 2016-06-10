@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+    
+    <select id="getNum" resultClass="int">
+        select c_tab2_seq.currval from dual
+    </select>
+    
+    <insert id="insertCourse" parameterClass="themeDTO.ThemeDataBean" >
+        insert into c_tab2(num, ctg, course, pic, name, rate, coment) values(
+        	c_tab2_seq.NEXTVAL,
+        	#ctg#,
+        	#course#,
+        	#pic#,
+        	#name#,
+        	#rate#,
+        	#coment#
+        )
+    </insert>
+    
+    <insert id="insertCtg" parameterClass="themeDTO.CtgDataBean" >
+        insert into ctg values(
+        	#ctg_num#,
+        	#ctg_name#,
+        	#ctg_img#
+        )
+    </insert>
+    
+    <insert id="insertCos" parameterClass="themeDTO.CourseDataBean">
+        insert into course values(
+        	#ctg_num#,
+        	#cos_num#,
+        	#cos_name#,
+        	#cos_img#,
+        	#map_img#,
+        	#content#,
+        	#readCount#,
+        	#likeCount#
+        )
+    </insert>
+    <insert id="insertLoc" parameterClass="themeDTO.LocationDataBean">
+        insert into Location(ctg_num, cos_num, loc_num, step_num, loc_name, loc_content, loc_pic, loc_pic1, rate, readCount, likeCount) values(
+        	#ctg_num#,
+        	#cos_num#,
+        	loc_seq.NEXTVAL,
+        	#step_num#,
+        	#loc_name#,
+        	#loc_content#,
+        	#loc_pic#,
+        	#loc_pic1#,
+        	#rate#,
+        	#readCount#,
+        	#likeCount#
+        )
+    </insert>
+    <select id="selectlocnum" resultClass="Integer">
+ 		select loc_seq.currval from dual
+    </select>
+    <select id="getCourse" resultClass="themeDTO.ThemeDataBean" parameterClass="int">
+        select * from c_tab2 where num = #num#
+    </select>
+    
+    <select id="getCtgList" resultClass="themeDTO.CtgDataBean">
+        select * from ctg
+    </select>
+    
+    <select id="getCourseList" resultClass="themeDTO.CourseDataBean" parameterClass="int">
+        select * from course where ctg_num = #ctg_num#
+    </select>
+    
+    <select id="ctgCount" resultClass="int" parameterClass="themeDTO.CtgDataBean">
+        select count(*) from ctg
+    </select>
+    
+    <select id="placeCount" resultClass="int" parameterClass="java.util.Map">
+        select count(step_num) from location where ctg_num=#ctg_num# and cos_num=#cos_num#
+    </select>
+    
+    <select id="courseCount" resultClass="int" parameterClass="int">
+        select count(*) from course where ctg_num = #ctg_num#
+    </select>
+    
+    <select id="getCos" resultClass="themeDTO.CourseDataBean" parameterClass="int">
+        select cos_name, map_img, content from course where cos_num = #cos_num#
+    </select>
+    
+    <select id="getPlace" resultClass="themeDTO.LocationDataBean" parameterClass="java.util.Map">
+        select ctg_num , cos_num , loc_num, step_num, loc_pic from location where ctg_num = #ctg_num# and cos_num = #cos_num# order by #step_num# desc
+    </select>
+    
+    <select id="getPlace1" resultClass="themeDTO.LocationDataBean" parameterClass="int">
+        select loc_name, loc_content, rate, loc_pic, loc_pic1 from location where loc_num = #loc_num#
+    </select>
+    
+
+</sqlMap>
