@@ -1,6 +1,7 @@
 package upload.bean;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -217,5 +218,13 @@ public class Upload {
 		request.setAttribute("listMore", listMore);
 		
 		return "/sy0610/photorequest.jsp";
+	}
+	
+	@RequestMapping("/adminphoto.nhn")
+	public String adminphoto(HttpServletRequest request){
+		String[] str = request.getParameterValues("photocheck");
+		System.out.println(str[0]);
+		
+		return "/sy0610/adminphoto.jsp";
 	}
 }
