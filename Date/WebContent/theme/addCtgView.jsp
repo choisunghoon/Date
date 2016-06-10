@@ -12,10 +12,10 @@
  	        error: whenError	//페이지요청 실패시 실행함수
       	});
     }
-    function callContent1(ctg_num, cos_num){    
+    function callContent1(ctg_num){    
     	 $.ajax({    		
     	 	 type: "post", 	 
-    	 	 url : "addPlace.nhn?ctg_num="+ctg_num+"&cos_num="+cos_num,
+    	 	 url : "ctgDel.nhn?ctg_num="+ctg_num,
     	 	 success: test,	// 페이지요청 성공시 실행 함수
     	 	 error: whenError	//페이지요청 실패시 실행함수
     	 });
