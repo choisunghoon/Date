@@ -1,16 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
-	<select id="getEventList" resultClass="event.EventDataBean" >
-		select * from event where edate>=sysdate
+	<sql id="getEventList">
+		select enumber, ename, eimg, sdate, edate, wcouples, regdate, r from 
+		(select enumber, ename, eimg, sdate, edate, wcouples, regdate, rownum r from 
+		(select enumber, ename, eimg, sdate, edate, wcouples, regdate from event 
+	</sql>
+	
+	<select id="eventIng" resultClass="project.bean.EventDataBean" parameterClass="java.util.Map">
+		<include refid="getEventList"/> where <![CDATA[sdate<=to_char(sysdate,'yyyy-mm-dd')]]> and edate>=to_char(sysdate,'yyyy-mm-dd')) order by enumber asc) 
+		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
 	</select>
 	
-	<select id="eventCount" resultClass="int" parameterClass="event.EventDataBean">
-		select count(*) from event where edate>=sysdate 
+	<select id="eventEnd" resultClass="project.bean.EventDataBean" parameterClass="java.util.Map">
+		<include refid="getEventList"/> where <![CDATA[sdate<=to_char(sysdate,'yyyy-mm-dd')]]> and <![CDATA[edate<=to_char(sysdate,'yyyy-mm-dd')]]> ) order by enumber asc) 
+		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
 	</select>
 	
-	<insert id="addEvent" parameterClass="event.EventDataBean">
+	<select id="upcomingEvent" resultClass="project.bean.EventDataBean" parameterClass="java.util.Map">
+		<include refid="getEventList"/> where sdate>to_char(sysdate,'yyyy-mm-dd')) order by enumber asc) 
+		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
+	</select>
+	
+	<select id="eventCount" resultClass="int" parameterClass="project.bean.EventDataBean">
+		select count(*) from event where <![CDATA[sdate<=to_char(sysdate,'yyyy-mm-dd')]]> and edate>=to_char(sysdate,'yyyy-mm-dd')
+	</select>	
+	
+	<insert id="addEvent" parameterClass="project.bean.EventDataBean">
 		insert into event (enumber, ename, eimg, sdate, edate, regdate) values 
 		(event_seq.nextval, #ename#, #eimg#, #sdate#, #edate#, sysdate)
 	</insert>
+	
+	<select id="eventContent" resultClass="project.bean.EventDataBean" parameterClass="int">
+		select * from event where enumber=#enumber#
+	</select>	
+	
+	<sql id="getAppList">
+		select appnumber, enumber, couplename, appsubject, appcomment, appimg, apppw, regdate, r from 
+		(select appnumber, enumber, couplename, appsubject, appcomment, appimg, apppw, regdate, rownum r from 
+		(select appnumber, enumber, couplename, appsubject, appcomment, appimg, apppw, regdate from app_event 
+	</sql>
+	
+	<select id="eventApp" resultClass="project.bean.EventDataBean" parameterClass="java.util.Map">
+		<include refid="getAppList"/> where enumber=#enumber#) order by appnumber desc) 
+		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
+	</select>
+	
+	<select id="eventAppCount" resultClass="int" >
+		select count(*) from app_event where enumber=#enumber#
+	</select>	
+
+	<insert id="addApp" parameterClass="project.bean.EventDataBean">
+		insert into app_event (appnumber, enumber, couplename, appsubject, appcomment, apppw, regdate) values (app_event_seq.nextval, #enumber#, #couplename#, #appsubject#, #appcomment#, #apppw#, sysdate)
+	</insert>
+	
+	<select id="cnCon" resultClass="int" parameterClass="String"> 
+		select count(*) from app_event where couplename=#couplename#
+	</select>	
+	
+	<select id="getAppContent" resultClass="project.bean.EventDataBean" parameterClass="int">
+		select * from app_event where appnumber=#appnumber#
+	</select>
+	
+	<update id="modifyEvent" parameterClass="project.bean.EventDataBean">
+		update event set ename=#ename#, eimg=#eimg#, sdate=#sdate#, edate=#edate#, regdate=sysdate where enumber=#enumber#
+	</update>
+	
+	<delete id="deleteEvent" parameterClass="int">
+		delete from event where enumber=#enumber#
+	</delete>
+		
+	<select id="eventImg" resultClass="String" parameterClass="int">
+		select eimg from event where enumber=#enumber#
+	</select>
+	
 </sqlMap>
