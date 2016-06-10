@@ -195,4 +195,27 @@ public class Upload {
 
 		return "/sy0526/personal.jsp";
 	}
+	
+	@RequestMapping("/photo.nhn")
+	public String photo(){
+
+		return "/sy0610/photo.jsp";
+	}
+	
+	@RequestMapping("/photorequest.nhn")
+	public String photorequest(HttpServletRequest request,DiaryDataBean ddb){
+		String couplename = request.getParameter("couplename");
+		List diary = null;
+		int listMore = 3;
+		
+		ddb.setCouplename(couplename);
+		diary = sqlMap.queryForList("myDiary", ddb);
+		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
+		request.setAttribute("diary", diary);
+		request.setAttribute("couplename", couplename);
+		request.setAttribute("totalCnt", totalCnt);
+		request.setAttribute("listMore", listMore);
+		
+		return "/sy0610/photorequest.jsp";
+	}
 }
