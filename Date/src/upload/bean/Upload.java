@@ -221,10 +221,19 @@ public class Upload {
 	}
 	
 	@RequestMapping("/adminphoto.nhn")
-	public String adminphoto(HttpServletRequest request){
+	public String adminphoto(HttpServletRequest request, DiaryDataBean ddb, PhotoDataBean pdb){
+		String couplename = request.getParameter("couplename");
 		String[] str = request.getParameterValues("photocheck");
-		System.out.println(str[0]);
-		
+		ddb.setCouplename(couplename);
+		for(int i =0;i<str.length;i++){
+			ddb.setNum(Integer.parseInt(str[i]));
+			ddb = (DiaryDataBean)sqlMap.queryForObject("num",ddb);
+			pdb.setContent(ddb.getContent());
+			pdb.setCouplename(ddb.getCouplename());
+			pdb.setImg(ddb.getImg());
+			pdb.setWriteday(String.valueOf(ddb.getRegdate()));
+			sqlMap.insert("photo", pdb);
+		}
 		return "/sy0610/adminphoto.jsp";
 	}
 }
