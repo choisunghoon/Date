@@ -117,7 +117,7 @@ li{
 			<a href="share.nhn"><img src="mainimg/as3.png" onmouseover='this.src="mainimg/as4.png"' onmouseout='this.src="mainimg/as3.png"'></a>
 		</li>
 		<li>
-			<a href="theme.nhn"><img src="mainimg/as5.png" onmouseover='this.src="mainimg/as6.png"' onmouseout='this.src="mainimg/as5.png"'></a>
+			<a href="addCtgView.nhn"><img src="mainimg/as5.png" onmouseover='this.src="mainimg/as6.png"' onmouseout='this.src="mainimg/as5.png"'></a>
 		</li>
 		<li>
 			<a href="event.nhn"><img src="mainimg/as7.png" onmouseover='this.src="mainimg/as8.png"' onmouseout='this.src="mainimg/as7.png"'></a>

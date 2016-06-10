@@ -100,10 +100,14 @@ public class Theme {
 	@RequestMapping("ctgDelPro.nhn")
 	public String ctgDelPro(HttpSession session,HttpServletRequest request,LogonDataBean dto){
 		session = request.getSession();
-		String id = (String)session.getAttribute("memId");
-		String pw = request.getParameter("pw");
+		String id = (String)session.getAttribute("id");
+		
+		//여기에 셀렉트문을 하나 써서 DTO로 id정보를 가져오면 된다!
 		dto.setId(id);
-		dto.setPw(pw);
+		//String pw = sqlMap.queryForObject(statementName, parameterObject);
+		System.out.println(id);
+		//System.out.println(pw);
+
 		int check = (Integer)sqlMap.queryForObject("deleteProck",dto);
 		if(check == 1){
 			sqlMap.delete("deleteCtg",dto);

@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=euc-kr"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
-<head><title>Ä«Å×°í¸® »èÁ¦</title>
+<head><title>ì¹´í…Œê³ ë¦¬ ì‚­ì œ</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 
    <script language="javascript">
@@ -12,7 +14,7 @@
 
        function checkIt(){
 		  if(!document.myform.passwd.value){
-           alert("ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇÏÁö ¾ÊÀ¸¼Ì½À´Ï´Ù.");
+           alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì§€ ì•Šìœ¼ì…¨ìŠµë‹ˆë‹¤.");
            document.myform.passwd.focus();
            return false;
          }
@@ -21,21 +23,21 @@
    </script>
 </head>
 <BODY onload="begin()">
-<form name="myform" action="ctgDelPro" method="post" onSubmit="return checkIt()">
+<form name="myform" action="ctgDelPro.nhn" method="post" onSubmit="return checkIt()">
 <TABLE cellSpacing=1 cellPadding=1 width="260" border=1 align="center" >
   
   <TR height="30">
     <TD colspan="2" align="middle">
-	  <font size="+1" ><b>Ä«Å×°í¸® »èÁ¦</b></font></TD></TR>
+	  <font size="+1" ><b>ì¹´í…Œê³ ë¦¬ ì‚­ì œ</b></font></TD></TR>
   
   <TR height="30">
-    <TD width="110" align=center>ºñ¹Ð¹øÈ£</TD>
+    <TD width="110" align=center>ë¹„ë°€ë²ˆí˜¸</TD>
     <TD width="150" align=center>
       <INPUT type=password name="passwd"  size="15" maxlength="12"></TD></TR>
   <TR height="30">
     <TD colspan="2" align="middle">
-      <INPUT type=submit value="Ä«Å×°í¸® »èÁ¦"> 
-      <!--<input type="button" value="Ãë  ¼Ò" onclick="javascript:window.location='main.jsp'">--></TD></TR>
+      <INPUT type=submit value="ì¹´í…Œê³ ë¦¬ ì‚­ì œ"> 
+      <!--<input type="button" value="ì·¨  ì†Œ" onclick="javascript:window.location='main.jsp'">--></TD></TR>
 </TABLE>
 </form>
 </BODY>
