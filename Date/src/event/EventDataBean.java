@@ -9,26 +9,71 @@ public class EventDataBean {
 	private int enumber;
 	private String ename;
 	private String eimg;
-	private Timestamp sdate;
-	private Timestamp edate;
+	private String sdate;
+	private String edate;
 	private Timestamp regdate;
 	private String wcouples;
-	private String comment;
-	private List<MultipartFile> upfile;
+	//private String comment;
+	private int appnumber;
+	private String couplename;
+	private String appsubject;
+	private String appcomment;
+	private String appimg;	
+	private int apppw;
 
 	
-	public String getComment() {
+	public int getApppw() {
+		return apppw;
+	}
+	public void setApppw(int apppw) {
+		this.apppw = apppw;
+	}
+	public int getAppnumber() {
+		return appnumber;
+	}
+	public void setAppnumber(int appnumber) {
+		this.appnumber = appnumber;
+	}
+	public String getCouplename() {
+		return couplename;
+	}
+	public void setCouplename(String couplename) {
+		this.couplename = couplename;
+	}
+	public String getAppsubject() {
+		return appsubject;
+	}
+	public void setAppsubject(String appsubject) {
+		this.appsubject = appsubject;
+	}
+	public String getAppcomment() {
+		return appcomment;
+	}
+	public void setAppcomment(String appcomment) {
+		this.appcomment = appcomment;
+	}
+	public String getAppimg() {
+		return appimg;
+	}
+	public void setAppimg(String appimg) {
+		this.appimg = appimg;
+	}
+	public List<MultipartFile> getUpload() {
+		return upload;
+	}
+	public void setUpload(List<MultipartFile> upload) {
+		this.upload = upload;
+	}
+	private List<MultipartFile> upload;
+
+	
+	/*public String getComment() {
 		return comment;
 	}
 	public void setComment(String comment) {
 		this.comment = comment;
-	}
-	public List<MultipartFile> getUpfile() {
-		return upfile;
-	}
-	public void setUpfile(List<MultipartFile> upfile) {
-		this.upfile = upfile;
-	}
+	}*/
+
 	public int getEnumber() {
 		return enumber;
 	}
@@ -47,16 +92,17 @@ public class EventDataBean {
 	public void setEimg(String eimg) {
 		this.eimg = eimg;
 	}
-	public Timestamp getSdate() {
+
+	public String getSdate() {
 		return sdate;
 	}
-	public void setSdate(Timestamp sdate) {
+	public void setSdate(String sdate) {
 		this.sdate = sdate;
 	}
-	public Timestamp getEdate() {
+	public String getEdate() {
 		return edate;
 	}
-	public void setEdate(Timestamp edate) {
+	public void setEdate(String edate) {
 		this.edate = edate;
 	}
 	public Timestamp getRegdate() {
