@@ -2,10 +2,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@include file="/sy0526/topmenu.jsp" %>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <style>
-   ul {width:500px;}
+.tbl_area{width:500px;}
    li{list-style:none;}
 
       #css_tabs {
@@ -73,7 +74,7 @@
    <center>사귄 날짜 : <fmt:formatDate value="${cdb.coupledate }" pattern="YYYY-MM-dd" /></center>
    <div style="border:1px solid; width:200px; height:200px; float:left;">
       <c:if test="${cdb.coupleimage eq null }">
-      <img src="syimage/couple.png" class="img-circle">
+      <img src="syimage/couple.png">
       </c:if>
       <c:if test="${cdb.coupleimage ne null }">
       <img src="syimage/${cdb.coupleimage }" width="200px" height="200px">
@@ -81,8 +82,6 @@
    </div>
    <center>
       <a href="diary.nhn" >이미지 변경</a>
-      
-      <a href="photo.nhn">포토북 신청</a><br/>
    </center>
    
 </div>
@@ -108,7 +107,7 @@
                <ul class="tbl_area" id="dispRow${i }" style="margin-left:30%;display:none">
                		<c:set var="i" value="${i+1 }" />
                   <li style="padding-top:10px;">
-                     <center><img src="syimage/${diary.img }"></center>
+                     <center><img src="syimage/${diary.img }" style="width:500px; height:500px;"></center>
                   </li>
                   <li>
                   <center>${diary.content}</center>
