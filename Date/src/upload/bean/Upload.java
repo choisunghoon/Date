@@ -205,12 +205,17 @@ public class Upload {
 	}
 	
 	@RequestMapping("/photorequest.nhn")
-	public String photorequest(HttpServletRequest request,DiaryDataBean ddb){
+	public String photorequest(HttpServletRequest request,DiaryDataBean ddb, CoupleDataBean cdb){
 		String couplename = request.getParameter("couplename");
 		List diary = null;
 		int listMore = 3;
-		
 		ddb.setCouplename(couplename);
+		cdb.setCouplename(couplename);
+		
+		int point = (Integer)sqlMap.queryForObject("getpoint", cdb);
+		int point1 = point - 100;
+		cdb.setPoint(point1);
+		sqlMap.update("photopoint", cdb);
 		diary = sqlMap.queryForList("myDiary", ddb);
 		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
 		request.setAttribute("diary", diary);
@@ -293,12 +298,21 @@ public class Upload {
 	
 	@RequestMapping("/photocontent.nhn")
 	public String photocontent(HttpServletRequest request,PhotoDataBean pdb){
-		String couplename = request.getParameter("couplename");
-		String regdate = String.valueOf(request.getParameter("regdate"));
-		request.setAttribute("couplename", couplename);
-		request.setAttribute("regdate", regdate);
-		System.out.println(regdate);
-		System.out.println(couplename);
+		String couplename = request.getParameter("couplename1");
+		String regdate = String.valueOf(request.getParameter("regdate1"));	
+		pdb.setCouplename(couplename);
+		pdb.setRegdate(Timestamp.valueOf(regdate));
+		pdb = (PhotoDataBean)sqlMap.queryForObject("photocontent", pdb);
+		
+		String[] content = pdb.getImg().split(",");
+		String[] content1 = pdb.getContent().split(",");
+		String[] content2 = pdb.getWriteday().split(",");
+		
+		request.setAttribute("pdb", pdb);
+		request.setAttribute("content", content);
+		request.setAttribute("content1", content1);
+		request.setAttribute("content2", content2);
+		
 		return "/sy0610/photocontent.jsp";
 	}
 

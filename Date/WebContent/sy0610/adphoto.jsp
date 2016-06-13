@@ -13,8 +13,9 @@
 	    open(url, "confirm", 
 	    "toolbar=no, location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
 	}
+	
 	function content(regdate,couplename){
-		 url = "photocontent.nhn?couplename="+couplename+"&regdate="+regdate;
+		 url = "photocontent.nhn?couplename1="+couplename+"&regdate1="+regdate;
 		window.location.href = url;
 	}
 </script>  
