@@ -4,12 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<<<<<<< HEAD
-=======
-
-
-<%@include file="/sy0526/topmenu.jsp" %>
->>>>>>> branch 'master' of https://github.com/choisunghoon/Date.git
 <script type="text/javascript">
 	function checked(){		
 		var i = $('input:checkbox:checked').length;
@@ -19,12 +13,8 @@
 		}
 	}
 </script>
-<<<<<<< HEAD
-<style>
-=======
 
- <style>
->>>>>>> branch 'master' of https://github.com/choisunghoon/Date.git
+<style>
  	li{list-style:none;}
  </style>
 	<form name="frmSet">
@@ -35,7 +25,7 @@
 	
 	<c:set var="i" value="1"/>
 		<c:forEach var="diary" items="${diary}">
-			<ul class="tbl_area" id="dispRow${i }" style="display:none; width:800px; margin-left:16%; margin-top:1%;">	
+			<ul class="tbl_area" id="dispRow${i }" style="display:none; width:800px; margin-left:13%; margin-top:1%;">	
 				<c:set var="i" value="${i+1 }" />
                		<li>
                			
