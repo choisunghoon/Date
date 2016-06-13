@@ -18,6 +18,11 @@ public class DateMap {
 				
 		return "/dateplan/dateMap.jsp";
 	}
+	@RequestMapping("index.nhn")
+	public String dateBoard(HttpServletRequest request) throws Exception{
+				
+		return "/dateboard/test.jsp";
+	}
 	@RequestMapping("datePlan.nhn")
 	public String dateMap2(HttpServletRequest request,DTO dto) throws Exception{
 		

@@ -34,7 +34,7 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <h1 class="page-header">ì½ì¤ ê²ìí</h1>
+                <h1 class="page-header">코스 게시판</h1>
             </div>
 
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">

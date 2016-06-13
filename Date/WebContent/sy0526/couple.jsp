@@ -32,7 +32,7 @@
 	<div style="width:100%;float:left;" >
 		<div style="width:12%;float:left;">
 			<a href="#" onclick="callAjax('diaryMenu.nhn')">커플다이이어리</a>
-			<a href="#" onclick="callAjax('datePlan.nhn')">코스짜기</a>
+			<a href="#" onclick="callAjax('DateMap.nhn')">코스짜기</a>
 		</div>
 		<div style="float:left;width:2%">&nbsp;&nbsp;&nbsp;</div>
 		<div id="subMain" style="float:left;width:86%">		

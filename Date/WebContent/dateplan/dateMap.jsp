@@ -330,6 +330,56 @@ function displayPlaces2(places) {
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
+        (function(marker, place) {
+                daum.maps.event.addListener(marker, 'click', function() {
+                    displayPlaceInfo(place);
+                });
+            })(marker, places[i]);
+        (function(marker, place) {
+            daum.maps.event.addListener(marker, 'rightclick', function() {
+
+            	kor[j] = '<div onclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
+                '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
+            	
+			if (place.newAddress) {
+				kor[j] += '    <span title="' + place.newAddress + '">' + place.newAddress + '</span>' +
+                '  <span class="jibun" title="' + place.address + '">(지번 : ' + place.address + ')</span>';
+			}  else {
+				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
+			    }                
+				
+			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
+		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
+  		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
+  		  '<input type="hidden" name="placeaddress" id="placeaddress" value="'+place.address +'" />'+
+  		  '<input type="hidden" name="placeid"  id="placeid" value="'+place.id +'" />'+
+  		  '<input type="hidden" name="placetitle"  id="placeid" value="'+place.title +'" />'+
+  		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
+         		   '</div>' + 
+         		   '<div class="afterv" style="float:left;"></div>';
+			
+             if(j>5){               	 
+         		j=6;
+         		alert("5개 이상 선택 하실수 없습니다.");
+         		return;
+			 }
+           
+            
+            
+           
+             	
+             	
+            $("#img").append(kor[j]);
+            
+            
+         	
+         	
+         	
+         	kortmp='';
+			j++;
+			
+            });
+        })(marker, places[i]);
         (function(marker, title) {
             daum.maps.event.addListener(marker, 'mouseover', function() {
                 displayInfowindow(marker, title);
