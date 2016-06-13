@@ -164,7 +164,7 @@
 
 
 
-<center><a href="main22.nhn"><img src="mainimg/slogo.png" style="margin-top:10px;"></a></center>
+<a href="main22.nhn"><img src="mainimg/slogo.png" style="margin-top:10px; margin-left:525px;"></a>
 <div id="topclass">
 <div id="topmenu">
 
