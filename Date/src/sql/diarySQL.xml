@@ -58,5 +58,9 @@
 		select * from dc_photo
 	</select>
 	
+	<update id="updatestate" parameterClass="upload.bean.PhotoDataBean">
+		update dc_photo set state=#state# where couplename=#couplename# and regdate=#regdate#
+	</update>
+	
 </sqlMap>
 

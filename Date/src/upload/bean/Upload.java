@@ -1,6 +1,7 @@
 package upload.bean;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -226,22 +227,30 @@ public class Upload {
 		String[] str = request.getParameterValues("photocheck");
 		ddb.setCouplename(couplename);
 		String state="신청";
+		String a = "";
+		String b = "";
+		String c = "";
 		for(int i =0;i<str.length;i++){
 			ddb.setNum(Integer.parseInt(str[i]));
 			ddb = (DiaryDataBean)sqlMap.queryForObject("num",ddb);
-			pdb.setContent(ddb.getSubject());
-			pdb.setCouplename(ddb.getCouplename());
-			pdb.setImg(ddb.getImg());
-			pdb.setState(state);
-			pdb.setWriteday(String.valueOf(ddb.getRegdate()));
-			sqlMap.insert("photo", pdb);
+			if(i == str.length-1){
+				a += ddb.getSubject();	
+				b += ddb.getImg();
+				c += String.valueOf(ddb.getRegdate());
+			}else {
+			a += ddb.getSubject()+",";	
+			b += ddb.getImg()+",";
+			c += String.valueOf(ddb.getRegdate())+",";
+			}
+			
 		}
+		pdb.setContent(a);
+		pdb.setCouplename(ddb.getCouplename());
+		pdb.setImg(b);
+		pdb.setState(state);
+		pdb.setWriteday(c);
+		sqlMap.insert("photo", pdb);
 		return "/sy0610/adminphoto.jsp";
-	}
-	
-	@RequestMapping("/hh.nhn")
-	public String hh(){
-		return "/sy0610/hh.jsp";
 	}
 	
 	@RequestMapping("/adphoto.nhn")
@@ -250,6 +259,41 @@ public class Upload {
 		photo = sqlMap.queryForList("adphoto", null);
 		request.setAttribute("photo", photo);
 		return "/sy0610/adphoto.jsp";
+	}
+	
+	@RequestMapping("/state.nhn")
+	public String state(HttpServletRequest request){
+		String couplename = request.getParameter("couplename");
+		String regdate = String.valueOf(request.getParameter("regdate"));
+		request.setAttribute("couplename", couplename);
+		request.setAttribute("regdate", regdate);
+		return "/sy0610/state.jsp";
+	}
+	
+	@RequestMapping("/statepro.nhn")
+	public String statepro(HttpServletRequest request,PhotoDataBean pdb){
+		
+		String couplename1 = request.getParameter("couplename1");
+		String regdate1 = request.getParameter("regdate1");
+		int state = Integer.parseInt(request.getParameter("states"));
+		String states=null;
+		if(state == 1){
+			states = "신청";
+		}else if(state == 2){
+			states ="진행중";
+		}else{
+			states = "진행완료";
+		}
+		pdb.setCouplename(couplename1);
+		pdb.setRegdate(Timestamp.valueOf(regdate1));
+		pdb.setState(states);
+		sqlMap.update("updatestate", pdb);
+		return "/sy0610/statepro.jsp";
+	}
+	
+	@RequestMapping("/photocontent.nhn")
+	public String photocontent(HttpServletRequest request){
+		return "/sy0610/photocontent.jsp";
 	}
 
 }

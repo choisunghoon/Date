@@ -10,6 +10,9 @@
 		if(i==0){
 			alert("사진을 선택해 주세요!");
 			return false;
+		}else if(i>20){
+			alert("사진의 최대 선택 개수는 20장 입니다!");
+			return false;
 		}
 	}
 </script>
