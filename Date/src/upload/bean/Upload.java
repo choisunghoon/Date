@@ -225,15 +225,31 @@ public class Upload {
 		String couplename = request.getParameter("couplename");
 		String[] str = request.getParameterValues("photocheck");
 		ddb.setCouplename(couplename);
+		String state="Ω≈√ª";
 		for(int i =0;i<str.length;i++){
 			ddb.setNum(Integer.parseInt(str[i]));
 			ddb = (DiaryDataBean)sqlMap.queryForObject("num",ddb);
 			pdb.setContent(ddb.getSubject());
 			pdb.setCouplename(ddb.getCouplename());
 			pdb.setImg(ddb.getImg());
+			pdb.setState(state);
 			pdb.setWriteday(String.valueOf(ddb.getRegdate()));
 			sqlMap.insert("photo", pdb);
 		}
 		return "/sy0610/adminphoto.jsp";
 	}
+	
+	@RequestMapping("/hh.nhn")
+	public String hh(){
+		return "/sy0610/hh.jsp";
+	}
+	
+	@RequestMapping("/adphoto.nhn")
+	public String adphoto(HttpServletRequest request){
+		List photo = null;
+		photo = sqlMap.queryForList("adphoto", null);
+		request.setAttribute("photo", photo);
+		return "/sy0610/adphoto.jsp";
+	}
+
 }

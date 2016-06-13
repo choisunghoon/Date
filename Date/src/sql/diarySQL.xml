@@ -51,8 +51,12 @@
 	</select>
 	
 	<insert id="photo" parameterClass="upload.bean.PhotoDataBean">
-		insert into dc_photo values(#couplename#, sysdate, #img#, #content#, #writeday#)		
+		insert into dc_photo values(#couplename#, sysdate, #img#, #content#, #writeday#, #state#)		
 	</insert>
+	
+	<select id="adphoto" resultClass="upload.bean.PhotoDataBean">
+		select * from dc_photo
+	</select>
 	
 </sqlMap>
 
