@@ -1,32 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>д╚ев╟М╦╝ ют╥б</title>
+<title>Л╧╢М┘▄ЙЁ═К╕╛ Л·┘К═╔</title>
 </head>
 <body>
 <form method="post" name="test" action="addCtgPro.nhn" ENCTYPE="multipart/form-data">
 	<table width="500" border="1" cellspacing="0" cellpadding="3" align="center">
     		<tr height="30">
-    			<td align="center" colspan="2"> д╚ев╟М╦╝ ют╥б </td>
+    			<td align="center" colspan="2"> Л╧╢М┘▄ЙЁ═К╕╛ Л·┘К═╔ </td>
     		</tr>
     		<tr>
-				<td align="center" width="50">д╚ев╟М╦╝ ╧Ьхё ют╥б</td>
+				<td align="center" width="50">Л╧╢М┘▄ЙЁ═К╕╛ К╡┬М≤╦ Л·┘К═╔</td>
 				<td align="center"><input type="text" name="ctg_num"></td>
 			</tr>
 				<tr height="30">
-				<td align="center" width="50">д╚ев╟М╦╝ юл╦╖ ют╥б</td>
+				<td align="center" width="50">Л╧╢М┘▄ЙЁ═К╕╛ Л²╢К╕└ Л·┘К═╔</td>
 				<td align="center" width="700"><input type="text" name="ctg_name"></td>
 			</tr>
     		<tr height="30">
-    			<td align="center" width="50">д╚ев╟М╦╝ ╢Кг╔╩ГаЬ</td>
+    			<td align="center" width="50">Л╧╢М┘▄ЙЁ═К╕╛ К▄─М▒°Л┌╛Л╖└</td>
 				<td align="center" width="700"><input type="file" name="save"></td>
 			</tr>
     	</table>
     	<br/>
-    	<center><input type="submit" value="╣Н╥о"></center>
+    	<center><input type="submit" value="К⌠╠К║²"></center>
     </form>
 </body>
 </html>

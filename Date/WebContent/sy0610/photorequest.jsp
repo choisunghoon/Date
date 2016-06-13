@@ -1,67 +1,77 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+
+<%@include file="/sy0526/topmenu.jsp" %>
+<script type="text/javascript">
+	function checked(){		
+		var i = $('input:checkbox:checked').length;
+		if(i==0){
+			alert("ì‚¬ì§„ì„ ì„ íƒí•´ ì£¼ì„¸ìš”!");
+			return false;
+		}
+	}
+</script>
 
  <style>
  	li{list-style:none;}
  </style>
-			<form name="frmSet">
-				 <input type="hidden" id="aa" name="listMore" value="${listMore }"/>
-				</form>
-				 <c:forEach var="diary" items="${diary}">
-				 
-				
-					<ul class="tbl_area" id="dispRow${diary.num}" style="margin-left:30%;display:none">
-						<li>
-							<input type="checkbox" name="${diary.num }" value="${diary.num }"/>
-							 <label for="${diary.num }">
-							<li>
-								<center><img src="syimage/${diary.img }"></center>
-							</li>
-							<li>
-							<center>${diary.content}</center>
-							</li>
-							</label>
-						</li>				
-					</ul>
-				
-				</c:forEach>
-				<div id="dispMore" style="display:none">
-				 <a href="#" onclick="listMore(${totalCnt})" style="margin-left:50%; padding-bottom:100px;">´õº¸±â</a>
-				</div>
-				<c:forEach end="${totalCnt}" begin="1" var="i">
-					<c:if test="${i<=listMore }">
-						<script>
-				        document.getElementById("dispRow${i}").style.display = 'block'; //ÃÖ´ë °¹¼ö º¸´Ù ÀÛ°Å³ª °°À¸¸é ÀÌ¹ÌÁö¸¦ º¸¿©ÁØ´Ù
-						</script>
-					</c:if> 
-				</c:forEach>
-				<c:if test="${totalCnt > listMore }">
-					<script>
-					  document.getElementById("dispMore").style.display = 'block'; //ÃÖ´ë°¹¼öº¸´Ù È­¸é¿¡ º¸¿©ÁÖ´Â ÀÌ¹ÌÁö °¹¼öº¸´Ù ÀÛÀ¸¸é ´õº¸±â ¹öÆ°À» º¸¿©ÁØ´Ù
-					</script>
-				</c:if>
-				<script type="text/javascript"> 
-				  function listMore(totalCnt) //´õº¸±â ¹öÆ°À» ´­·¶À»¶§ ½ÇÇàµÇ´Â ÇÔ¼ö
-				  {
-					  
-				   var listMore = document.frmSet.listMore.value; //ÇöÀç È­¸é¿¡ º¸¿©Áö´Â ¸®½ºÆ® °¹¼ö¸¦ °¡Á®¿Â´Ù(3°³)
-				   
-				   var last = Number(listMore) + 3; //´õº¸±â¸¦ ´©¸£¸é 3°³¾¿ Ãß°¡ µÈ´Ù
-				   
-				   for (i=Number(listMore)+1;i<=totalCnt;i++) // i=(3+1) -> ÃÖÃÊ3°³¸¸ º¸¿©ÁÖ´Ï±î ´ÙÀ½ºÎÅÏ 4ºÎÅÍ 6±îÁö; 4º¸´Ù ÃÖ´ë °¹¼ö°¡ °°°Å³ª Å¬¶§ ±îÁö; i= 4++
-				   {
-				    if (i<=last) // i°¡ 6º¸´Ù ÀÛ°Å³ª °°À»°æ¿ì
-				    {
-				     document.getElementById("dispRow"+i).style.display = 'block'; //dispRow6 ±îÁö block Ã³¸®¸¦ ÇÑ´Ù
-				    }
-				   }
-				   document.frmSet.listMore.value = last;
-				   if (totalCnt <= last)
-				   {	
-				    document.getElementById("dispMore").style.display = 'none'; //´õº¸±â ¹öÆ°ÀÌ ÃÖ´ë°¹¼öº¸´Ù Å©°Å³ª ÀÛÀ¸¸é none Ã³¸®
-				   }
-				  }
-				</script>
+
+	<form name="frmSet">
+    	<input type="hidden" id="aa" name="listMore" value="${listMore}"/>
+	</form>
+	<form name="ff" action="adminphoto.nhn?couplename=dfg" method="post" onsubmit="return checked();">
+	<input type="submit" value="í¬í† ë¶ ì‹ ì²­" style="margin-left:70%;"/>
+	
+	<c:set var="i" value="1"/>
+		<c:forEach var="diary" items="${diary}">
+			<ul class="tbl_area" id="dispRow${i }" style="display:none; width:800px; margin-left:18%; margin-top:1%;">	
+				<c:set var="i" value="${i+1 }" />
+               		<li>
+               			<input type="checkbox" name="photocheck" value="${diary.num }" style="width:100px;">
+				        <img src="syimage/${diary.img }" style="width:400px; height:400px;">
+				        ${diary.subject}
+				        <fmt:formatDate value="${diary.regdate }" pattern="YYYY-MM-dd" />
+                  </li>
+			</ul>
+		</c:forEach>
+	<div id="dispMore" style="display:none;">
+		<a href="#" onclick="listMore(${totalCnt})" style="margin-left:50%;">ë”ë³´ê¸°</a>
+	</div>
+	<c:forEach end="${totalCnt}" begin="1" var="i">
+		<c:if test="${i<=listMore }">
+			<script>
+				document.getElementById("dispRow${i}").style.display = 'block'; //ìµœëŒ€ ê°¯ìˆ˜ ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ìœ¼ë©´ ì´ë¯¸ì§€ë¥¼ ë³´ì—¬ì¤€ë‹¤
+			</script>
+		</c:if> 
+	</c:forEach>
+	<c:if test="${totalCnt > listMore }">
+		<script>
+			document.getElementById("dispMore").style.display = 'block'; //ìµœëŒ€ê°¯ìˆ˜ë³´ë‹¤ í™”ë©´ì— ë³´ì—¬ì£¼ëŠ” ì´ë¯¸ì§€ ê°¯ìˆ˜ë³´ë‹¤ ì‘ìœ¼ë©´ ë”ë³´ê¸° ë²„íŠ¼ì„ ë³´ì—¬ì¤€ë‹¤
+		</script>
+	</c:if>
+	<script type="text/javascript"> 
+		function listMore(totalCnt) //ë”ë³´ê¸° ë²„íŠ¼ì„ ëˆŒë €ì„ë•Œ ì‹¤í–‰ë˜ëŠ” í•¨ìˆ˜
+			{
+                 
+				var listMore = document.frmSet.listMore.value; //í˜„ì¬ í™”ë©´ì— ë³´ì—¬ì§€ëŠ” ë¦¬ìŠ¤íŠ¸ ê°¯ìˆ˜ë¥¼ ê°€ì ¸ì˜¨ë‹¤(3ê°œ)
+				var last = Number(listMore) + 3; //ë”ë³´ê¸°ë¥¼ ëˆ„ë¥´ë©´ 3ê°œì”© ì¶”ê°€ ëœë‹¤
+                for (i=Number(listMore)+1;i<=totalCnt;i++) // i=(3+1) -> ìµœì´ˆ3ê°œë§Œ ë³´ì—¬ì£¼ë‹ˆê¹Œ ë‹¤ìŒë¶€í„´ 4ë¶€í„° 6ê¹Œì§€; 4ë³´ë‹¤ ìµœëŒ€ ê°¯ìˆ˜ê°€ ê°™ê±°ë‚˜ í´ë•Œ ê¹Œì§€; i= 4++
+               {
+                if (i<=last) // iê°€ 6ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ì„ê²½ìš°
+                {
+                 document.getElementById("dispRow"+i).style.display = 'block'; //dispRow6 ê¹Œì§€ block ì²˜ë¦¬ë¥¼ í•œë‹¤
+                }
+               }
+               document.frmSet.listMore.value = last;
+               if (totalCnt <= last)
+               {   
+                document.getElementById("dispMore").style.display = 'none'; //ë”ë³´ê¸° ë²„íŠ¼ì´ ìµœëŒ€ê°¯ìˆ˜ë³´ë‹¤ í¬ê±°ë‚˜ ì‘ìœ¼ë©´ none ì²˜ë¦¬
+               }
+              }
+	</script>
+</form>

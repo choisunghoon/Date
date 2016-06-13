@@ -45,7 +45,14 @@
 	<update id="diaryimgUpdate" parameterClass="upload.bean.CoupleDataBean">
 		update dc_couple set coupleimage = #coupleimage# where couplename=#couplename#
 	</update>
-
+	
+	<select id="num" resultClass="upload.bean.DiaryDataBean" parameterClass="upload.bean.DiaryDataBean">
+		select * from dc_diary where num = #num# and couplename=#couplename#
+	</select>
+	
+	<insert id="photo" parameterClass="upload.bean.PhotoDataBean">
+		insert into dc_photo values(#couplename#, sysdate, #img#, #content#, #writeday#)		
+	</insert>
 	
 </sqlMap>
 

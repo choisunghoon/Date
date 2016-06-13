@@ -6,7 +6,6 @@
         select c_tab2_seq.currval from dual
     </select>
     
-    
     <insert id="insertCtg" parameterClass="themeDTO.CtgDataBean" >
         insert into ctg values(
         	#ctg_num#,
@@ -45,7 +44,7 @@
     <select id="selectlocnum" resultClass="Integer">
  		select loc_seq.currval from dual
     </select>
- 
+    
     <select id="getCtgList" resultClass="themeDTO.CtgDataBean">
         select * from ctg
     </select>
@@ -77,6 +76,14 @@
     <select id="getPlace1" resultClass="themeDTO.LocationDataBean" parameterClass="int">
         select loc_name, loc_content, rate, loc_pic, loc_pic1 from location where loc_num = #loc_num#
     </select>
+    
+    <select id="deleteProck" resultClass="int" parameterClass="ch11.logon.LogonDataBean">
+        select count(*) from dc_member where id = #id# and pw = #pw#
+    </select>
+    
+    <delete id="deleteCtg" parameterClass="themeDTO.CtgDataBean">
+        delete from ctg where ctg_num = #ctg_num#
+    </delete>
     
 
 </sqlMap>

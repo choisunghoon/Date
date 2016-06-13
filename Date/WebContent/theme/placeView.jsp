@@ -1,29 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
  
                 <table width="500" border="1" cellspacing="0" cellpadding="3" align="center">
     				<tr height="30">
-    					<td align="center" colspan="2"> ฤฺฝบ 1 ภิทย </td>
+    					<td align="center" colspan="2"> ์ฝ”์ค 1 ์…๋ ฅ </td>
     				</tr>
     				<tr>
-						<td align="center" width="50">ฤฺฝบ ภฬธง</td>
+						<td align="center" width="50">์ฝ”์ค ์ด๋ฆ</td>
 						<td align="center">${dto.loc_name}</td>
 					</tr>
 					<tr>
-						<td align="center" width="50">วัมูฦ๒</td>
+						<td align="center" width="50">ํ•์คํ</td>
 						<td align="center">${dto.loc_content}</textarea></td>
 					</tr>
 					<tr>
-						<td align="center" width="50">ฦ๒ มก</td>
+						<td align="center" width="50">ํ ์ </td>
 						<td align="center">${dto.rate}
 					</td>
     				<tr height="30">
-    					<td align="center" width="50">ภๅผาป็ม๘</td>
+    					<td align="center" width="50">์ฅ์์ฌ์ง</td>
 						<td align="center" width="700"><img src="theme/${dto.loc_pic}" alt=""></td>
 					</tr>
 					<tr height="30">
-    					<td align="center" width="50">ภๅผาป็ม๘</td>
+    					<td align="center" width="50">์ฅ์์ฌ์ง</td>
 						<td align="center" width="700"><img src="theme/${dto.loc_pic1}" alt=""></td>
 					</tr>
 				</table>

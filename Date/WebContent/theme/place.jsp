@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="/sy0526/topmenu.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -9,16 +10,16 @@
     	 $.ajax({    		
  	        type: "post", 	 
  	        url : "placeView.nhn?ctg_num="+ctg_num+"&cos_num="+cos_num+"&loc_num="+loc_num,
- 	        success: test,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
- 	        error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+ 	        success: test,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+ 	        error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
       	});
     }
     function callContent1(ctg_num, cos_num){    
     	 $.ajax({    		
     	 	 type: "post", 	 
     	 	 url : "addPlace.nhn?ctg_num="+ctg_num+"&cos_num="+cos_num,
-    	 	 success: test,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
-    	 	 error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+    	 	 success: test,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+    	 	 error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
     	 });
 
     	 document.getElementById("enumber2").value=enumber;
@@ -28,15 +29,15 @@
    		//data : {"enumber" : enumber},
 	        type: "post", 	        
 	        url : "addApp.nhn?enumber="+document.getElementById("enumber2").value,
-	        success: test1,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
-	        error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+	        success: test1,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+	        error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
      	});
    }
-    function test(aaa){	// ¿äÃ»¼º°øÇÑ ÆäÀÌÁöÁ¤º¸°¡ aaa º¯¼ö·Î Äİ¹éµÈ´Ù. 
-        $(".modal-body").html(aaa);	//id°¡ ajaxReturnÀÎ ºÎºĞ¿¡ ³Ö¾î¶ó
+    function test(aaa){	// ìš”ì²­ì„±ê³µí•œ í˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
+        $(".modal-body").html(aaa);	//idê°€ ajaxReturnì¸ ë¶€ë¶„ì— ë„£ì–´ë¼
     }
-    function test1(aaa){	// ¿äÃ»¼º°øÇÑ ÆäÀÌÁöÁ¤º¸°¡ aaa º¯¼ö·Î Äİ¹éµÈ´Ù. 
-        $(".modal-body1").html(aaa);	//id°¡ ajaxReturnÀÎ ºÎºĞ¿¡ ³Ö¾î¶ó
+    function test1(aaa){	// ìš”ì²­ì„±ê³µí•œ í˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
+        $(".modal-body1").html(aaa);	//idê°€ ajaxReturnì¸ ë¶€ë¶„ì— ë„£ì–´ë¼
     }
     
     function whenError(){
@@ -85,20 +86,20 @@
 </head>
 <body>
 
-<input type="button" value="Àå¼Ò Ãß°¡" align="center" onclick="callContent1(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal">
-<input type="button" value="Ä«Å×°í¸®·Î" align="center" onclick="document.location.href='addCtgView.nhn'">
-<input type="button" value="ÄÚ½º·Î" align="center" onclick="document.location.href='course.nhn?ctg_num=${ctg_num}'">
+<input type="button" value="ì¥ì†Œ ì¶”ê°€" align="center" onclick="callContent1(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal">
+<input type="button" value="ì¹´í…Œê³ ë¦¬ë¡œ" align="center" onclick="document.location.href='addCtgView.nhn'">
+<input type="button" value="ì½”ìŠ¤ë¡œ" align="center" onclick="document.location.href='course.nhn?ctg_num=${ctg_num}'">
 
 </br>
 		<center><h2>${dto1.cos_name}</h2><center>
 	
 	<table border="1" width="500" cellspacing="0" cellpadding="0" align="center">
 		<tr>
-			<td align="center" width="500">Áöµµ img ÀÔ·Â</td>
+			<td align="center" width="500">ì§€ë„ img ì…ë ¥</td>
 			<td align="center" width="500"><img src="theme/${dto1.cos_img}" alt=""></td>
 		</tr>
 		<tr>
-			<td align="center" width="100">ÇÑÁÙÆò</td>
+			<td align="center" width="100">í•œì¤„í‰</td>
 			<td align="center">${dto1.content}</td>
 		</tr>
 		<input type="hidden" name="ctg_num" value="${ctg_num}" />
@@ -114,13 +115,13 @@
 				<c:forEach var="placeList" items="${placeList}">
 					<c:if test="${(i%3)!=0}">						
 						<li>
-						<h2><center>ÄÚ½º${placeList.step_num}</center></h2>					
+						<h2><center>ì½”ìŠ¤${placeList.step_num}</center></h2>					
 						<img src="theme/${placeList.loc_pic}" onclick="callContent(${placeList.ctg_num},${placeList.cos_num},${placeList.loc_num})" id="test" data-toggle="modal" data-target="#myModal" alt="">
 							</li>
 					</c:if>
 					<c:if test="${(i%3)==0}">
 						<li class="last">
-						<h2><center>ÄÚ½º${placeList.step_num}</center></h2>
+						<h2><center>ì½”ìŠ¤${placeList.step_num}</center></h2>
 						<img src="theme/${placeList.loc_pic}" onclick="callContent(${placeList.ctg_num},${placeList.cos_num},${placeList.loc_num})" id="test" data-toggle="modal" data-target="#myModal" alt="">
 							</li>
 					</c:if>
@@ -128,20 +129,20 @@
 				</c:forEach>
 			</ul>
 	</div>
-<!-- ¸ğ´Ş ÆË¾÷ -->
+<!-- ëª¨ë‹¬ íŒì—… -->
 	
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">¡¿</span><span class="sr-only">´İ±â</span></button>
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">Ã—</span><span class="sr-only">ë‹«ê¸°</span></button>
 		<h4 class="modal-title" id="myModalLabel">Modal titlezzz</h4>
 	      </div>
 	      <div class="modal-body">
 		   
 	      </div>
 	      <div class="modal-footer">
-		<button type="button" class="btn btn-default" data-dismiss="modal">´İ±â</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">ë‹«ê¸°</button>
 	      </div>
 	    </div>
 	  </div>

@@ -117,7 +117,7 @@ li{
 			<a href="share.nhn"><img src="mainimg/as3.png" onmouseover='this.src="mainimg/as4.png"' onmouseout='this.src="mainimg/as3.png"'></a>
 		</li>
 		<li>
-			<a href="theme.nhn"><img src="mainimg/as5.png" onmouseover='this.src="mainimg/as6.png"' onmouseout='this.src="mainimg/as5.png"'></a>
+			<a href="addCtgView.nhn"><img src="mainimg/as5.png" onmouseover='this.src="mainimg/as6.png"' onmouseout='this.src="mainimg/as5.png"'></a>
 		</li>
 		<li>
 			<a href="event.nhn"><img src="mainimg/as7.png" onmouseover='this.src="mainimg/as8.png"' onmouseout='this.src="mainimg/as7.png"'></a>
@@ -129,7 +129,7 @@ li{
 </div>
 
 <div id="bestcourse">
-	<a href="#"><img src="sy0526/bestcourse.jpg" style="margin-top:4.4%; margin-left:48%; opacity:0.7;"></a>
+	<a href="#"><img src="mainimg/bestcourse.jpg" style="margin-top:4.4%; margin-left:48%; opacity:0.7;"></a>
 </div>
 <div id="recentcourse">	
 	<a href="#"><img src="mainimg/recentcourse.jpg" style="margin-top:7.4%; margin-left:22%; opacity:0.7;"></a>

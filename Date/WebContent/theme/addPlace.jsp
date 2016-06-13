@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
- 
+
 <script language="JavaScript">
 	function checkIt(){
 		var addLoc = eval("document.addLoc");
 		
 		if(addLoc.count.value > 2){
-			alert("´õ´Â ÄÚ½º ÀÔ·ÂÀÌ ºÒ°¡´ÉÇÕ´Ï´Ù");
+			alert("ë”ëŠ” ì½”ìŠ¤ ìž…ë ¥ì´ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤");
 			return false;
 		}
 	}
@@ -21,7 +21,7 @@
 	<input type="hidden" name="cos_num" value="${cos_num}" />
 	<input type="hidden" name="count" value="${count}" />
     				<tr height="30">
-    					<td align="center" colspan="2"> ÄÚ½º ÀÔ·Â </td>
+    					<td align="center" colspan="2"> ì½”ìŠ¤ ìž…ë ¥ </td>
     				</tr>
     				<tr>
     					<td align="center" width="50">step</td>
@@ -30,26 +30,26 @@
 						</td>
 					</tr>
     				<tr>
-						<td align="center" width="50">ÄÚ½º ÀÌ¸§</td>
+						<td align="center" width="50">ì½”ìŠ¤ ì´ë¦„</td>
 						<td align="center"><input type="text" name="loc_name"></td>
 					</tr>
 					<tr>
-						<td align="center" width="50">ÇÑÁÙÆò</td>
+						<td align="center" width="50">í•œì¤„í‰</td>
 						<td align="center"><textarea rows="5" cols="40" name="loc_content"></textarea></td>
 					</tr>
 					<tr>
-						<td align="center" width="50">Æò Á¡</td>
+						<td align="center" width="50">í‰ ì </td>
 						<td align="center"><select name="rate"><option>1</option><option>2</option>
 							<option>3</option><option>4</option><option>5</option></select></select>
 					</td>
     				<tr height="30">
-    					<td align="center" width="50">Àå¼Ò»çÁø</td>
+    					<td align="center" width="50">ìž¥ì†Œì‚¬ì§„</td>
 						<td align="center" width="700"><input type="file" name="pho"></td>
 					</tr>
 					<tr height="30">
-    					<td align="center" width="50">Àå¼Ò»çÁø</td>
+    					<td align="center" width="50">ìž¥ì†Œì‚¬ì§„</td>
 						<td align="center" width="700"><input type="file" name="pho1"></td>
 					</tr>
 				</table>
-		<center><input type="submit" value="µî·Ï"></center>
+		<center><input type="submit" value="ë“±ë¡"></center>
 	</form>
