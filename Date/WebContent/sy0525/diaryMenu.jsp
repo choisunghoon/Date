@@ -2,9 +2,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@include file="/sy0526/topmenu.jsp" %>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+         function test(){
+        	 
+            var now = new Date();
+            var then = new Date('${cdb.coupledate }');
+            var gap = now.getTime() - then.getTime();
+            gap = Math.floor(gap / (1000 * 60 * 60 * 24)) + 1;
+            
+           // document.write('<div id="dday">D+<span style="font-size:33px;">' + gap + '</span></div>');
+            var b = (gap/100)-Math.floor(gap/100);
+            
+            
+            var a = Math.floor(gap/100);
+            if(b<1){
+            //   $("#tab2").appendto='<img src="/syimage/a'+a+'.jpg" width="500" height="600"/>';
+            }
+         }
+          </script>
 <style>
 .tbl_area{width:500px;}
    li{list-style:none;}
@@ -69,7 +87,7 @@
       }
          
 </style>
-
+ 
 <div style="width:200px; height:280; margin-left:44%;">
    <center>사귄 날짜 : <fmt:formatDate value="${cdb.coupledate }" pattern="YYYY-MM-dd" /></center>
    <div style="border:1px solid; width:200px; height:200px; float:left;">
@@ -94,7 +112,7 @@
     <input id="tab1" type="radio" name="tab" checked="checked" />
     <input id="tab2" type="radio" name="tab" />
     <label for="tab1">커플 다이어리</label>
-    <label for="tab2">커플 하트 나무</label>     
+    <label for="tab2" onclick="test()">커플 하트 나무</label>     
     <div class="tab1_content">
       <div class="sub_photo">
           <div class="title_area">
@@ -161,22 +179,8 @@
       </div>  
     </div>
     <div class="tab2_content">
-       <div style="margin-left:33%;padding-bottom:60px;">
-         <script type="text/javascript">
-            var now = new Date();
-            var then = new Date('${cdb.coupledate }');
-            var gap = now.getTime() - then.getTime();
-            gap = Math.floor(gap / (1000 * 60 * 60 * 24)) + 1;
-            document.write('<div id="dday">D+<span style="font-size:33px;">' + gap + '</span></div>');
-            var b = (gap/100)-Math.floor(gap/100);
-            
-            
-            var a = Math.floor(gap/100);
-            if(b<1){
-               
-               document.write('<img src="syimage/a'+a+'.jpg" width="500" height="600"/>');
-            }
-          </script>
+       <div id="tab2" style="margin-left:33%;padding-bottom:60px;">
+        
       </div>  
    </div>
 </div>

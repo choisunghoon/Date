@@ -78,7 +78,7 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 <div class="menutitle">커플 정보</div>
 <ul>
 <li id="coupleinfo.nhn?id=${id }"><a>커플 정보 변경</a></li>
-<li id="coupleDelete.nhn?id=${id }"><a>커플 삭제</a></li>
+<li id="coupleDeleteForm.nhn?id=${id }"><a>커플 삭제</a></li>
 </ul>
 <div class="menutitle">마이코스</div>
 <ul>

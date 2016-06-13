@@ -14,7 +14,7 @@
 <c:if test="${check==1 }">
 <table width="270" border="0" cellspacing="0" cellpadding="5">
   <tr> 
-    <td height="39" >${nickname }이미 사용중인 별명입니다.</td>
+    <td height="39" align="center">${nickname }   <br>이미 사용중인 별명입니다.</td>
   </tr>
 </table>
 <form name="checkForm" method="post" action="confirmNickname.nhn">

@@ -8,6 +8,13 @@ public class PhotoDataBean {
 	private String img;
 	private String content;
 	private String writeday;
+	private String state;
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	public String getCouplename() {
 		return couplename;
 	}

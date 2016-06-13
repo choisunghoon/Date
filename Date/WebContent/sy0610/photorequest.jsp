@@ -4,21 +4,22 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<%@include file="/sy0526/topmenu.jsp" %>
 <script type="text/javascript">
 	function checked(){		
 		var i = $('input:checkbox:checked').length;
 		if(i==0){
 			alert("사진을 선택해 주세요!");
 			return false;
+		}else if(i>20){
+			alert("사진의 최대 선택 개수는 20장 입니다!");
+			return false;
 		}
 	}
 </script>
- <style>
+
+<style>
  	li{list-style:none;}
  </style>
-
 	<form name="frmSet">
     	<input type="hidden" id="aa" name="listMore" value="${listMore}"/>
 	</form>
@@ -27,13 +28,15 @@
 	
 	<c:set var="i" value="1"/>
 		<c:forEach var="diary" items="${diary}">
-			<ul class="tbl_area" id="dispRow${i }" style="display:none; width:800px; margin-left:18%; margin-top:1%;">	
+			<ul class="tbl_area" id="dispRow${i }" style="display:none; width:800px; margin-left:13%; margin-top:1%;">	
 				<c:set var="i" value="${i+1 }" />
                		<li>
+               			
                			<input type="checkbox" name="photocheck" value="${diary.num }" style="width:100px;">
-				        <img src="syimage/${diary.img }" style="width:400px; height:400px;">
+				        <img src="syimage/${diary.img }" style="width:400px; height:400px;	">
 				        ${diary.subject}
 				        <fmt:formatDate value="${diary.regdate }" pattern="YYYY-MM-dd" />
+                  		
                   </li>
 			</ul>
 		</c:forEach>

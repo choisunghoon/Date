@@ -114,6 +114,28 @@ public class InputBean {
 	    request.setAttribute("check", new Integer(check));
 		return "/dc/deletePro.jsp";
 	}
+	
+	@RequestMapping("coupleDeleteForm.nhn")
+	public String coupleDeleteForm() throws Exception{
+		
+		return "/dc/coupleDeleteForm.jsp";
+	}
+	@RequestMapping("coupleDelete.nhn")
+	public String coupleDelete(HttpSession session,HttpServletRequest request) throws Exception{
+		String id =request.getParameter("id");
+		int check=(Integer)sqlMapper.queryForObject("getCouple", id);
+		if(check==1){
+			CoupleDataBean cdto=new CoupleDataBean();
+			cdto = (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
+
+			sqlMapper.update("memCouple0", cdto.getId1());
+			sqlMapper.update("memCouple0", cdto.getId2());
+			sqlMapper.update("deleteCouple", id);
+		}
+		request.setAttribute("ccheck", check);
+		request.setAttribute("id", id);
+		return "/dc/coupleDelete.jsp";
+	}
 	@RequestMapping("mypage.nhn")
 	public String mypage(HttpSession session,HttpServletRequest request) throws Exception{
 		String check =(String)session.getAttribute("fbcheck");
@@ -128,21 +150,22 @@ public class InputBean {
 	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id=request.getParameter("id");
-		LogonDataBean dto=new LogonDataBean();
+		LogonDataBean dto2=new LogonDataBean();
 		LogonDataBean dto1=new LogonDataBean();
 		CoupleDataBean cdto=new CoupleDataBean();
 		int check1 = (Integer)sqlMapper.queryForObject("coupleCheck1", id);
 		int check2 = (Integer)sqlMapper.queryForObject("coupleCheck2", id);
-		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);
+	
 		if(check1==1 || check2==1){
 			cdto= (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
-
+			dto2 = (LogonDataBean)sqlMapper.queryForObject("getMember", (String)cdto.getId2());
 			dto1= (LogonDataBean)sqlMapper.queryForObject("getMember", (String)cdto.getId1());
+			
 			request.setAttribute("coupleData", cdto);
 		}
 		
 		request.setAttribute("id", id);
-		request.setAttribute("couple", dto);
+		request.setAttribute("couple2", dto2);
 		request.setAttribute("couple1", dto1);
 		
 		request.setAttribute("check1", check1);
@@ -187,20 +210,5 @@ public class InputBean {
 		request.setAttribute("id", id);
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("coupleDelete.nhn")
-	public String coupleDelete(HttpSession session,HttpServletRequest request) throws Exception{
-		String id =request.getParameter("id");
-		int check=(Integer)sqlMapper.queryForObject("getCouple", id);
-		if(check==1){
-			CoupleDataBean cdto=new CoupleDataBean();
-			cdto = (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
 
-			sqlMapper.update("memCouple0", cdto.getId1());
-			sqlMapper.update("memCouple0", cdto.getId2());
-			sqlMapper.update("deleteCouple", id);
-		}
-		request.setAttribute("ccheck", check);
-		request.setAttribute("id", id);
-		return "/dc/coupleDelete.jsp";
-	}
 }
