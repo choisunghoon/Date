@@ -292,7 +292,13 @@ public class Upload {
 	}
 	
 	@RequestMapping("/photocontent.nhn")
-	public String photocontent(HttpServletRequest request){
+	public String photocontent(HttpServletRequest request,PhotoDataBean pdb){
+		String couplename = request.getParameter("couplename");
+		String regdate = String.valueOf(request.getParameter("regdate"));
+		request.setAttribute("couplename", couplename);
+		request.setAttribute("regdate", regdate);
+		System.out.println(regdate);
+		System.out.println(couplename);
 		return "/sy0610/photocontent.jsp";
 	}
 

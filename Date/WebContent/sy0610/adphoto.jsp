@@ -13,7 +13,10 @@
 	    open(url, "confirm", 
 	    "toolbar=no, location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
 	}
-
+	function content(regdate,couplename){
+		 url = "photocontent.nhn?couplename="+couplename+"&regdate="+regdate;
+		window.location.href = url;
+	}
 </script>  
 <div id="check">  
 포토북 신청 확인
@@ -26,7 +29,7 @@
 	</tr>
 	<c:forEach items="${photo}" var="photo">
 		<tr>
-			<td><a href="photocontent.nhn?couplename=${photo.couplename }">${photo.couplename }</a></td>
+			<td><a href="#" onclick="content('${photo.regdate }','${photo.couplename }')">${photo.couplename }</a></td>
 			<td><fmt:formatDate value="${photo.regdate }" pattern="YYYY-MM-dd" /></td>
 			<td><a href="#" onclick="openState('${photo.regdate }','${photo.couplename }')">${photo.state}</a></td>
 		</tr>
