@@ -6,24 +6,6 @@
 <html>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">  
-    function callContent(ctg_num){    
-    	 $.ajax({    		
- 	        type: "post", 	 
- 	        url : "ctgModify.nhn?ctg_num="+ctg_num,
- 	        success: test,	// 페이지요청 성공시 실행 함수
- 	        error: whenError	//페이지요청 실패시 실행함수
-      	});
-    }
-    function callContent1(ctg_num){    
-    	 $.ajax({    		
-    	 	 type: "post", 	 
-    	 	 url : "ctgDel.nhn?ctg_num="+ctg_num,
-    	 	 success: test,	// 페이지요청 성공시 실행 함수
-    	 	 error: whenError	//페이지요청 실패시 실행함수
-    	 });
-
-    	 document.getElementById("enumber2").value=enumber;
-    }
     function callApp(){    	
    	 $.ajax({
    		//data : {"enumber" : enumber},
@@ -57,7 +39,6 @@
 </head>
 <body>
 <input type="button" value="카테고리 추가" align="center" onclick="document.location.href='addCtg.nhn'">
-<input type="button" value="카테고리 수정" align="center" onclick="callContent(${ctg_num})" id="test" data-toggle="modal" data-target="#myModal">
 
 <div class="gallery"> 
   <ul>

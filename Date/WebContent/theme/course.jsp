@@ -13,6 +13,14 @@
  	        error: whenError	//페이지요청 실패시 실행함수
       	});
     }
+    function callContent1(ctg_num){    
+   	 $.ajax({    		
+	        type: "post", 	 
+	        url : "ctgModify.nhn?ctg_num="+ctg_num,
+	        success: test,	// 페이지요청 성공시 실행 함수
+	        error: whenError	//페이지요청 실패시 실행함수
+     	});
+   }
     function callApp(){    	
    	 $.ajax({
    		//data : {"enumber" : enumber},
@@ -89,6 +97,7 @@
 
 </body>
 
+<input type="button" value="카테고리 수정" align="center" onclick="callContent1(${ctg_num})" id="test" data-toggle="modal" data-target="#myModal">
 <input type="button" value="카테고리 삭제" align="center" onclick="callContent(${ctg_num})" id="test" data-toggle="modal" data-target="#myModal">
 <input type="button" value="코스 추가" align="center" onclick="document.location.href='addCourse.nhn?ctg_num=${ctg_num}'">
 <input type="button" value="카테고리로" align="center" onclick="document.location.href='addCtgView.nhn'">

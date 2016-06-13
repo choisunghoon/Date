@@ -49,6 +49,14 @@
         select * from ctg
     </select>
     
+    <select id="getCtg" resultClass="themeDTO.CtgDataBean" parameterClass="int">
+        select * from ctg where ctg_num = #ctg_num#
+    </select>
+    
+    <select id="getCourse" resultClass="themeDTO.CourseDataBean" parameterClass="java.util.Map">
+        select * from course where ctg_num=#ctg_num# and cos_num=#cos_num#
+    </select>
+    
     <select id="getCourseList" resultClass="themeDTO.CourseDataBean" parameterClass="int">
         select * from course where ctg_num = #ctg_num#
     </select>
@@ -56,6 +64,11 @@
     <select id="ctgCount" resultClass="int" parameterClass="themeDTO.CtgDataBean">
         select count(*) from ctg
     </select>
+    
+    <select id="getPw" resultClass="String" parameterClass="String">
+        select pw from dc_member where id = #id#
+    </select>
+    
     
     <select id="placeCount" resultClass="int" parameterClass="java.util.Map">
         select count(step_num) from location where ctg_num=#ctg_num# and cos_num=#cos_num#
@@ -81,8 +94,20 @@
         select count(*) from dc_member where id = #id# and pw = #pw#
     </select>
     
+    <update id="ctgModify" parameterClass="themeDTO.CtgDataBean">
+        update ctg set ctg_name=#ctg_name#, ctg_img=#ctg_img# where ctg_num=#ctg_num#
+    </update>
+    
+    <update id="courseModify" parameterClass="themeDTO.CourseDataBean">
+        update course set cos_name=#cos_name#, cos_img=#cos_img#, map_img=#map_img#, content=#content# where ctg_num=#ctg_num# and cos_num=#cos_num#
+    </update>
+    
     <delete id="deleteCtg" parameterClass="themeDTO.CtgDataBean">
         delete from ctg where ctg_num = #ctg_num#
+    </delete>
+    
+    <delete id="deleteCos" parameterClass="themeDTO.CourseDataBean">
+        delete from course where ctg_num = #ctg_num# and cos_num = #cos_num#
     </delete>
     
 

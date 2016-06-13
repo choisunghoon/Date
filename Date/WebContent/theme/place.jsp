@@ -22,8 +22,25 @@
     	 	 error: whenError	//페이지요청 실패시 실행함수
     	 });
 
-    	 document.getElementById("enumber2").value=enumber;
     }
+    function callContent2(ctg_num, cos_num){    
+   	 $.ajax({    		
+   	 	 type: "post", 	 
+   	 	 url : "courseModify.nhn?ctg_num="+ctg_num+"&cos_num="+cos_num,
+   	 	 success: test,	// 페이지요청 성공시 실행 함수
+   	 	 error: whenError	//페이지요청 실패시 실행함수
+   	 });
+
+   }
+    function callContent3(ctg_num, cos_num){    
+      	 $.ajax({    		
+      	 	 type: "post", 	 
+      	 	 url : "cosDel.nhn?ctg_num="+ctg_num+"&cos_num="+cos_num,
+      	 	 success: test,	// 페이지요청 성공시 실행 함수
+      	 	 error: whenError	//페이지요청 실패시 실행함수
+      	 });
+
+      }
     function callApp(){    	
    	 $.ajax({
    		//data : {"enumber" : enumber},
@@ -85,7 +102,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 </head>
 <body>
-
+<input type="button" value="코스 삭제" align="center" onclick="callContent3(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal">
+<input type="button" value="코스 수정" align="center" onclick="callContent2(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal">
 <input type="button" value="장소 추가" align="center" onclick="callContent1(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal">
 <input type="button" value="카테고리로" align="center" onclick="document.location.href='addCtgView.nhn'">
 <input type="button" value="코스로" align="center" onclick="document.location.href='course.nhn?ctg_num=${ctg_num}'">

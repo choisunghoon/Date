@@ -88,30 +88,62 @@ public class Theme {
 	}
 	
 	@RequestMapping("ctgModify.nhn")
-	public String ctgModify(){
+	public String ctgModify(HttpServletRequest request,CtgDataBean dto){
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		
+		dto = (CtgDataBean)sqlMap.queryForObject("getCtg", ctg_num);
+		
+		request.setAttribute("dto", dto);
+		request.setAttribute("ctg_num", ctg_num);
+		
 		return "/theme/ctgModify.jsp";
 	}
 	
+	@RequestMapping("ctgModifyPro.nhn")
+	public String ctgModifyPro(MultipartHttpServletRequest request,CtgDataBean dto)throws Exception{
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		
+		MultipartFile file = request.getFile("save");
+		String orgName = file.getOriginalFilename();
+		String RealPath = request.getRealPath("theme");
+		File copy = new File(RealPath+"/"+orgName);
+		
+		file.transferTo(copy);
+		request.setAttribute("pic", orgName);
+		dto.setCtg_img(orgName);
+		dto.setCtg_num(ctg_num);
+		
+		sqlMap.update("ctgModify", dto);
+		request.setAttribute("ctg_num", ctg_num);
+		return "/theme/ctgModifyPro.jsp";
+		
+	}
+	
 	@RequestMapping("ctgDel.nhn")
-	public String ctgDel(){
+	public String ctgDel(HttpSession session,HttpServletRequest request,LogonDataBean dto){
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+
+		request.setAttribute("id", id);
+		request.setAttribute("ctg_num", ctg_num);
+		
 		return "/theme/ctgDel.jsp";
 	}
 	
 	@RequestMapping("ctgDelPro.nhn")
-	public String ctgDelPro(HttpSession session,HttpServletRequest request,LogonDataBean dto){
+	public String ctgDelPro(HttpSession session,HttpServletRequest request,LogonDataBean dto,CtgDataBean dto1){
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		
-		//여기에 셀렉트문을 하나 써서 DTO로 id정보를 가져오면 된다!
+		String pw = request.getParameter("pw");
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+
 		dto.setId(id);
-		//String pw = sqlMap.queryForObject(statementName, parameterObject);
-		System.out.println(id);
-		//System.out.println(pw);
+		dto.setPw(pw);
 
 		int check = (Integer)sqlMap.queryForObject("deleteProck",dto);
 		if(check == 1){
-			sqlMap.delete("deleteCtg",dto);
-			session.invalidate();
+			sqlMap.delete("deleteCtg",dto1);
 		}
 		request.setAttribute("check", check);
 		return "/theme/ctgDelPro.jsp";
@@ -134,7 +166,7 @@ public class Theme {
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String[] src = new String[2];
-		String path = "F:\\workplace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\project2\\theme";
+		String path = "F:\\workplace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Date\\theme";
 		int i = 0;
 		while(iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -157,7 +189,10 @@ public class Theme {
 	}
 	
 	@RequestMapping("course.nhn")
-	public String course(HttpServletRequest request,int ctg_num){
+	public String course(HttpServletRequest request){
+		
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		System.out.println(ctg_num);
 		
 		CourseDataBean dto = new CourseDataBean();
 		List courseList = null;
@@ -183,6 +218,96 @@ public class Theme {
 		request.setAttribute("ctg_num", ctg_num);
 
 		return "/theme/course.jsp";
+	}
+	
+	@RequestMapping("courseModify.nhn")
+	public String courseModify(HttpServletRequest request,CourseDataBean dto){
+		
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
+		
+		HashMap<String, Integer> num = new HashMap<String, Integer>();
+		num.put("ctg_num", ctg_num);
+		num.put("cos_num", cos_num);
+		
+		dto = (CourseDataBean)sqlMap.queryForObject("getCourse", num);
+		
+		request.setAttribute("dto", dto);
+		request.setAttribute("ctg_num", ctg_num);
+		request.setAttribute("cos_num", cos_num);
+		
+		return "/theme/courseModify.jsp";
+	}
+	
+	@RequestMapping("courseModifyPro.nhn")
+	public String courseModifyPro(HttpServletRequest request,CourseDataBean dto)throws Exception{
+		
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+
+		MultipartFile multipartFile = null;
+		String originalFileName = null;
+		String[] src = new String[2];
+		String path = "F:\\workplace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Date\\theme";
+		int i = 0;
+		while(iterator.hasNext()){
+			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+			originalFileName = multipartFile.getOriginalFilename();
+			multipartFile.transferTo(new File(path + originalFileName));
+			src[i] = originalFileName;
+	        i++;
+	    }
+		
+		dto.setCos_img(src[0]);
+		dto.setMap_img(src[1]);
+		dto.setCtg_num(ctg_num);
+		dto.setCos_num(cos_num);
+		
+		sqlMap.update("courseModify", dto);
+		request.setAttribute("ctg_num", ctg_num);
+		request.setAttribute("cos_num", cos_num);
+		
+		return "/theme/courseModifyPro.jsp";
+	}
+	
+	@RequestMapping("cosDel.nhn")
+	public String cosDel(HttpServletRequest request){
+		
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
+		
+		request.setAttribute("ctg_num", ctg_num);
+		request.setAttribute("cos_num", cos_num);
+		
+		return "/theme/cosDel.jsp";
+	}
+	
+	@RequestMapping("cosDelPro.nhn")
+	public String cosDelPro(HttpSession session,HttpServletRequest request,LogonDataBean dto,CourseDataBean dto1){
+		
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String pw = request.getParameter("pw");
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
+		dto.setId(id);
+		dto.setPw(pw);
+		System.out.println(ctg_num);
+		System.out.println(cos_num);
+		dto1.setCtg_num(ctg_num);
+		dto1.setCos_num(cos_num);
+		
+		int check = (Integer)sqlMap.queryForObject("deleteProck",dto);
+		System.out.println(check);
+		if(check == 1){
+			sqlMap.delete("deleteCos",dto1);
+		}
+		request.setAttribute("check", check);
+		request.setAttribute("ctg_num", ctg_num);
+		
+		return "/theme/cosDelPro.jsp";
 	}
 	
 	@RequestMapping("place.nhn")
@@ -252,7 +377,7 @@ public class Theme {
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String[] src = new String[2];
-		String path = "F:\\workplace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\project2\\theme";
+		String path = "F:\\workplace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Date\\theme";
 		int i = 0;
 		while(iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());

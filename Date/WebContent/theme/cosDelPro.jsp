@@ -3,21 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<title>카테고리 삭제</title>
+<title>코스 삭제</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <c:if test="${check==1}">
 <body>
-<form method="post" action="addCtgView.nhn" name="userinput" >
+<form method="post" action="course.nhn?ctg_num=${ctg_num}&cos_num=${cos_num}" name="userinput" >
 <table width="270" border="0" cellspacing="0" cellpadding="5" align="center">
   <tr> 
     <td height="39" align="center">
-	  <font size="+1" ><b>카테고리가 삭제되었습니다.</b></font></td>
+	  <font size="+1" ><b>코스가 삭제되었습니다.</b></font></td>
   </tr>
   <tr>
     <td align="center"> 
       <p>흑흑.... 서운합니다. 안녕히 가세요.</p>
-      <meta http-equiv="Refresh" content="5;url=addCtgView.nhn" >
+      <meta http-equiv="Refresh" content="5;url=course.nhn?ctg_num=${ctg_num}&cos_num=${cos_num}" >
     </td>
   </tr>
   <tr>
