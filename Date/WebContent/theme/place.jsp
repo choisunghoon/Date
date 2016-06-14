@@ -13,6 +13,10 @@
  	        success: test,	// 페이지요청 성공시 실행 함수
  	        error: whenError	//페이지요청 실패시 실행함수
       	});
+    	 document.getElementById("loc_num").value=loc_num;
+    	 document.getElementById("ctg_num").value=ctg_num;
+    	 document.getElementById("cos_num").value=cos_num;
+    	 
     }
     function callContent1(ctg_num, cos_num){    
     	 $.ajax({    		
@@ -41,15 +45,24 @@
       	 });
 
       }
-    function callApp(){    	
+    function callAddApp(){    	
    	 $.ajax({
    		//data : {"enumber" : enumber},
 	        type: "post", 	        
-	        url : "addApp.nhn?enumber="+document.getElementById("enumber2").value,
+	        url : "placeModify.nhn?loc_num="+document.getElementById("loc_num").value + "&ctg_num="+ document.getElementById("ctg_num").value + "&cos_num=" + document.getElementById("cos_num").value,
 	        success: test1,	// 페이지요청 성공시 실행 함수
 	        error: whenError	//페이지요청 실패시 실행함수
      	});
-   }
+   	}
+    function callAddApp1(){    	
+      	 $.ajax({
+      		//data : {"enumber" : enumber},
+   	        type: "post", 	        
+   	        url : "placeDel.nhn?loc_num="+document.getElementById("loc_num").value + "&ctg_num="+ document.getElementById("ctg_num").value + "&cos_num=" + document.getElementById("cos_num").value,
+   	        success: test1,	// 페이지요청 성공시 실행 함수
+   	        error: whenError	//페이지요청 실패시 실행함수
+        	});
+      }
     function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
         $(".modal-body").html(aaa);	//id가 ajaxReturn인 부분에 넣어라
     }
@@ -134,13 +147,13 @@
 					<c:if test="${(i%3)!=0}">						
 						<li>
 						<h2><center>코스${placeList.step_num}</center></h2>					
-						<img src="theme/${placeList.loc_pic}" onclick="callContent(${placeList.ctg_num},${placeList.cos_num},${placeList.loc_num})" id="test" data-toggle="modal" data-target="#myModal" alt="">
+						<img src="theme/${placeList.loc_pic}" onclick="callContent(${placeList.ctg_num},${placeList.cos_num},${placeList.loc_num})" id="test" data-toggle="modal" data-target="#myModal1" alt="">
 							</li>
 					</c:if>
 					<c:if test="${(i%3)==0}">
 						<li class="last">
 						<h2><center>코스${placeList.step_num}</center></h2>
-						<img src="theme/${placeList.loc_pic}" onclick="callContent(${placeList.ctg_num},${placeList.cos_num},${placeList.loc_num})" id="test" data-toggle="modal" data-target="#myModal" alt="">
+						<img src="theme/${placeList.loc_pic}" onclick="callContent(${placeList.ctg_num},${placeList.cos_num},${placeList.loc_num})" id="test" data-toggle="modal" data-target="#myModal1" alt="">
 							</li>
 					</c:if>
 					<c:set var="i" value="${i+1}" />
@@ -166,6 +179,59 @@
 	  </div>
 	</div>
 	
+		<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">닫기</span></button>
+		<h4 class="modal-title" id="myModalLabel">장소 상세 정보</h4>
+	      </div>
+	      <div class="modal-body">
+		   
+	      </div>
+	      <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		<button type="button" class="btn btn-default" data-toggle="modal" href="#appModal" onclick="callAddApp()">정보 수정</button>
+		<button type="button" class="btn btn-default" data-toggle="modal" href="#app1Modal" onclick="callAddApp1()">장소 삭제</button>
+		<input type="hidden" value="" id="loc_num" />
+		<input type="hidden" value="" id="ctg_num" />
+		<input type="hidden" value="" id="cos_num" />
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<div class="modal fade" id="appModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		<h4 class="modal-title" id="myModalLabel">장소 수정</h4>
+	      </div>
+	      <div class="modal-body1">	 
+	      </div>
+	      <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+		<div class="modal fade" id="app1Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		<h4 class="modal-title" id="myModalLabel">장소 삭제</h4>
+	      </div>
+	      <div class="modal-body1">	 
+	      </div>
+	      <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 	
 

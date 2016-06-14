@@ -417,5 +417,101 @@ public class Theme {
 		return "/theme/placeView.jsp";
 	}
 	
+	@RequestMapping("placeModify.nhn")
+	public String placeModify(HttpServletRequest request,LocationDataBean dto){
+		
+		int loc_num = Integer.parseInt(request.getParameter("loc_num"));
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
+		
+		dto = (LocationDataBean)sqlMap.queryForObject("getPlace1", loc_num);
+		
+		request.setAttribute("dto", dto);
+		request.setAttribute("loc_num", loc_num);
+		request.setAttribute("ctg_num", ctg_num);
+		request.setAttribute("cos_num", cos_num);
+			
+		return "/theme/placeModify.jsp";
+	}
+	
+	@RequestMapping("placeModifyPro.nhn")
+	public String placeModifyPro(HttpServletRequest request,LocationDataBean dto) throws Exception{
+		
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
+		int loc_num = Integer.parseInt(request.getParameter("loc_num"));
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+
+		MultipartFile multipartFile = null;
+		String originalFileName = null;
+		String[] src = new String[2];
+		String path = "F:\\workplace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Date\\theme";
+		int i = 0;
+		while(iterator.hasNext()){
+			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+			originalFileName = multipartFile.getOriginalFilename();
+			multipartFile.transferTo(new File(path + originalFileName));
+			src[i] = originalFileName;
+	        i++;
+	    }
+		
+		dto.setLoc_pic(src[0]);
+		dto.setLoc_pic1(src[1]);
+		dto.setCtg_num(ctg_num);
+		dto.setCos_num(cos_num);
+		dto.setLoc_num(loc_num);
+		
+		sqlMap.update("placeModify", dto);
+		request.setAttribute("ctg_num", ctg_num);
+		request.setAttribute("cos_num", cos_num);
+		request.setAttribute("loc_num", loc_num);
+		
+		return "/theme/placeModifyPro.jsp";
+	}
+	
+	@RequestMapping("placeDel.nhn")
+	public String placeDel(HttpServletRequest request){
+		
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
+		int loc_num = Integer.parseInt(request.getParameter("loc_num"));	
+		
+		request.setAttribute("ctg_num", ctg_num);
+		request.setAttribute("cos_num", cos_num);
+		request.setAttribute("loc_num", loc_num);
+		
+		return "/theme/placeDel.jsp";
+	}
+	
+	@RequestMapping("placeDelPro.nhn")
+	public String placeDelPro(HttpSession session,HttpServletRequest request,LogonDataBean dto,LocationDataBean dto1){
+		
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String pw = request.getParameter("pw");
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
+		int loc_num = Integer.parseInt(request.getParameter("loc_num"));
+		dto.setId(id);
+		dto.setPw(pw);
+		System.out.println(ctg_num);
+		System.out.println(cos_num);
+		System.out.println(loc_num);
+		dto1.setCtg_num(ctg_num);
+		dto1.setCos_num(cos_num);
+		dto1.setLoc_num(loc_num);
+		
+		int check = (Integer)sqlMap.queryForObject("deleteProck",dto);
+		System.out.println(check);
+		if(check == 1){
+			sqlMap.delete("deleteLoc",dto1);
+		}
+		request.setAttribute("check", check);
+		request.setAttribute("ctg_num", ctg_num);
+		request.setAttribute("cos_num", cos_num);
+		
+		return "/theme/placeDelPro.jsp";
+	}
 
 }

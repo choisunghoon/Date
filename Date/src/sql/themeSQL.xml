@@ -41,6 +41,7 @@
         	#likeCount#
         )
     </insert>
+    
     <select id="selectlocnum" resultClass="Integer">
  		select loc_seq.currval from dual
     </select>
@@ -68,8 +69,7 @@
     <select id="getPw" resultClass="String" parameterClass="String">
         select pw from dc_member where id = #id#
     </select>
-    
-    
+       
     <select id="placeCount" resultClass="int" parameterClass="java.util.Map">
         select count(step_num) from location where ctg_num=#ctg_num# and cos_num=#cos_num#
     </select>
@@ -87,7 +87,7 @@
     </select>
     
     <select id="getPlace1" resultClass="themeDTO.LocationDataBean" parameterClass="int">
-        select loc_name, loc_content, rate, loc_pic, loc_pic1 from location where loc_num = #loc_num#
+        select step_num, loc_name, loc_content, rate, loc_pic, loc_pic1 from location where loc_num = #loc_num#
     </select>
     
     <select id="deleteProck" resultClass="int" parameterClass="ch11.logon.LogonDataBean">
@@ -102,12 +102,20 @@
         update course set cos_name=#cos_name#, cos_img=#cos_img#, map_img=#map_img#, content=#content# where ctg_num=#ctg_num# and cos_num=#cos_num#
     </update>
     
+    <update id="placeModify" parameterClass="themeDTO.LocationDataBean">
+        update location set loc_name=#loc_name#, loc_content=#loc_content#, loc_pic=#loc_pic#, loc_pic1=#loc_pic1#, rate=#rate# where loc_num=#loc_num#
+    </update>
+    
     <delete id="deleteCtg" parameterClass="themeDTO.CtgDataBean">
         delete from ctg where ctg_num = #ctg_num#
     </delete>
     
     <delete id="deleteCos" parameterClass="themeDTO.CourseDataBean">
         delete from course where ctg_num = #ctg_num# and cos_num = #cos_num#
+    </delete>
+    
+    <delete id="deleteLoc" parameterClass="themeDTO.LocationDataBean">
+        delete from location where loc_num = #loc_num#
     </delete>
     
 
