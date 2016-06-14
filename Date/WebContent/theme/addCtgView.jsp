@@ -9,7 +9,7 @@
   	function callContent(ctg_num){    
  	 $.ajax({    		
  	 	 type: "post", 	 
- 	 	 url : "addPlace.nhn?ctg_num="+ctg_num,
+ 	 	 url : "addCtg.nhn?ctg_num="+ctg_num,
  	 	 success: test,	// 페이지요청 성공시 실행 함수
  	 	 error: whenError	//페이지요청 실패시 실행함수
  	 });
@@ -24,10 +24,14 @@
     function whenError(){
         alert("Error");
     }
+    
+    
+    
   </script>
+
 <head>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<style>
+<style type="text/css">
 .gallery{display :block; width :100%; line-height :1.6em;}
 .gallery ul{margin :0; padding :0; list-style :none;}
 .gallery li{display :block; float :left; width :350px; margin :35px 5px 5px 35px; padding :0;}
@@ -37,9 +41,12 @@
 </style>
 </head>
 <body>
+<div id=divMenu style="top:0px; left:0px; visibility: visible; width: 140px; position: absolute;"> 
 <c:if test="${id == 'admin'}">
-<input type="button" value="카테고리 추가" align="center" onclick="document.location.href='addCtg.nhn'">
+<input type="button" value="카테고리 추가" align="center" onclick="callContent(${ctg_num})" id="test" data-toggle="modal" data-target="#myModal">
 </c:if>
+</div>
+
 
 <div class="gallery"> 
   <ul>
@@ -85,7 +92,7 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">닫기</span></button>
-		<h4 class="modal-title" id="myModalLabel">Modal titlezzz</h4>
+		<h4 class="modal-title" id="myModalLabel">카테고리 추가</h4>
 	      </div>
 	      <div class="modal-body">
 		   
@@ -106,3 +113,55 @@
 <script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script><!-- holder.js --> 
 
 </body>
+</html>
+<SCRIPT LANGUAGE=JAVASCRIPT> 
+<!-- 
+
+    var isDOM = (document.getElementById ? true : false); 
+    var isIE4 = ((document.all && !isDOM) ? true : false); 
+    var isNS4 = (document.layers ? true : false); 
+     
+    function getRef(id) { 
+            if (isDOM) return document.getElementById(id); 
+            if (isIE4) return document.all[id]; 
+            if (isNS4) return document.layers[id]; 
+    } 
+     
+    var isNS = navigator.appName == "Netscape"; 
+    function moveRightEdge() { 
+            var yMenuFrom, yMenuTo, yOffset, timeoutNextCheck; 
+            if (isNS4) { 
+                    yMenuFrom   = divMenu.top; 
+                    yMenuTo     = windows.pageYOffset +10 ;   // 위쪽 위치 
+            } else if (isDOM) { 
+                    yMenuFrom   = parseInt (divMenu.style.top, 10); 
+                    yMenuTo     = (isNS ? window.pageYOffset : document.body.scrollTop) +10; // 위쪽 위치 
+            } 
+            timeoutNextCheck = 500; 
+            if (yMenuFrom != yMenuTo) { 
+                    yOffset = Math.ceil(Math.abs(yMenuTo - yMenuFrom) / 20); 
+                    if (yMenuTo < yMenuFrom) 
+                            yOffset = -yOffset; 
+                    if (isNS4) 
+                            divMenu.top += yOffset; 
+                    else if (isDOM) 
+                            divMenu.style.top = parseInt (divMenu.style.top, 10) + yOffset; 
+                            timeoutNextCheck = 10; 
+            } 
+            setTimeout ("moveRightEdge()", timeoutNextCheck); 
+    } 
+     
+    if (isNS4) { 
+            var divMenu = document["divMenu"]; 
+            divMenu.top = top.pageYOffset +10; 
+            divMenu.visibility = "visible"; 
+            moveRightEdge(); 
+    } else if (isDOM) { 
+            var divMenu = getRef('divMenu'); 
+            divMenu.style.top = (isNS ? window.pageYOffset : document.body.scrollTop) +10; 
+            divMenu.style.visibility = "visible"; 
+            moveRightEdge(); 
+    } 
+
+//--> 
+</SCRIPT> 

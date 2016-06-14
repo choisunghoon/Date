@@ -114,9 +114,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 </head>
 <body>
+<c:if test="${id == 'admin'}">
 <input type="button" value="코스 삭제" align="center" onclick="callContent3(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal">
 <input type="button" value="코스 수정" align="center" onclick="callContent2(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal">
 <input type="button" value="장소 추가" align="center" onclick="callContent1(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal">
+</c:if>
 <input type="button" value="카테고리로" align="center" onclick="document.location.href='addCtgView.nhn'">
 <input type="button" value="코스로" align="center" onclick="document.location.href='course.nhn?ctg_num=${ctg_num}'">
 

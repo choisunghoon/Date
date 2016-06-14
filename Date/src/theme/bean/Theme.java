@@ -193,7 +193,10 @@ public class Theme {
 	}
 	
 	@RequestMapping("course.nhn")
-	public String course(HttpServletRequest request){
+	public String course(HttpServletRequest request,HttpSession session){
+		
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
 		
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
 		System.out.println(ctg_num);
@@ -220,6 +223,7 @@ public class Theme {
 		request.setAttribute("count", (Integer)count);
 		request.setAttribute("cos_num", cos_num);
 		request.setAttribute("ctg_num", ctg_num);
+		request.setAttribute("id", id);
 
 		return "/theme/course.jsp";
 	}
