@@ -46,6 +46,10 @@
 		update dc_couple set coupleimage = #coupleimage# where couplename=#couplename#
 	</update>
 	
+	<select id="getpoint" resultClass="int" parameterClass="upload.bean.CoupleDataBean">
+		select point from dc_couple where couplename = #couplename#
+	</select>
+	
 	<select id="num" resultClass="upload.bean.DiaryDataBean" parameterClass="upload.bean.DiaryDataBean">
 		select * from dc_diary where num = #num# and couplename=#couplename#
 	</select>
@@ -57,6 +61,10 @@
 	<select id="adphoto" resultClass="upload.bean.PhotoDataBean">
 		select * from dc_photo
 	</select>
+	
+	<update id="photopoint" parameterClass="upload.bean.CoupleDataBean">
+		update dc_couple set point = #point# where couplename = #couplename#
+	</update>
 	
 	<update id="updatestate" parameterClass="upload.bean.PhotoDataBean">
 		update dc_photo set state=#state# where couplename=#couplename# and regdate=#regdate#

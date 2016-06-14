@@ -24,7 +24,11 @@
 	<context:component-scan base-package="theme.bean" />
 	
 	
-	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	 	<property name="contentType" value="text/html; charset=UTF-8"/>
+	</bean>
 	
 	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
 		<property name="configLocation"   value="/WEB-INF/sqlMapConfig.xml"/>

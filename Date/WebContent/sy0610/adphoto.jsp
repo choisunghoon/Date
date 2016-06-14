@@ -13,15 +13,21 @@
 	    open(url, "confirm", 
 	    "toolbar=no, location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
 	}
+	
 	function content(regdate,couplename){
-		 url = "photocontent.nhn?couplename="+couplename+"&regdate="+regdate;
+		 url = "photocontent.nhn?couplename1="+couplename+"&regdate1="+regdate;
 		window.location.href = url;
 	}
 </script>  
+<style>
+ td{align:center;}
+ tr{align:center;}
+</style>
+
 <div id="check">  
 포토북 신청 확인
-<form method="post">
-<table border="1px" cellspadding="0" cellspacing="0">
+<form method="post"> 
+<table border="1px" cellspadding="0" cellspacing="0" width="400px" style="align:center;">
 	<tr>
 		<td>커플아이디</td>
 		<td>포토북 신청날짜</td>

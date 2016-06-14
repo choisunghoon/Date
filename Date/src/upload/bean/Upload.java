@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
@@ -163,8 +164,10 @@ public class Upload {
 	}
 	
 	@RequestMapping("/main22.nhn")
-	public String main(){
-
+	public String main(HttpSession session,HttpServletRequest request){
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		request.setAttribute("id", id);
 		return "/sy0526/main.jsp";
 	}
 	
@@ -205,12 +208,17 @@ public class Upload {
 	}
 	
 	@RequestMapping("/photorequest.nhn")
-	public String photorequest(HttpServletRequest request,DiaryDataBean ddb){
+	public String photorequest(HttpServletRequest request,DiaryDataBean ddb, CoupleDataBean cdb){
 		String couplename = request.getParameter("couplename");
 		List diary = null;
 		int listMore = 3;
-		
 		ddb.setCouplename(couplename);
+		cdb.setCouplename(couplename);
+		
+		int point = (Integer)sqlMap.queryForObject("getpoint", cdb);
+		int point1 = point - 100;
+		cdb.setPoint(point1);
+		sqlMap.update("photopoint", cdb);
 		diary = sqlMap.queryForList("myDiary", ddb);
 		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
 		request.setAttribute("diary", diary);
@@ -293,13 +301,32 @@ public class Upload {
 	
 	@RequestMapping("/photocontent.nhn")
 	public String photocontent(HttpServletRequest request,PhotoDataBean pdb){
-		String couplename = request.getParameter("couplename");
-		String regdate = String.valueOf(request.getParameter("regdate"));
-		request.setAttribute("couplename", couplename);
-		request.setAttribute("regdate", regdate);
-		System.out.println(regdate);
-		System.out.println(couplename);
+		String couplename = request.getParameter("couplename1");
+		String regdate = String.valueOf(request.getParameter("regdate1"));	
+		pdb.setCouplename(couplename);
+		pdb.setRegdate(Timestamp.valueOf(regdate));
+		pdb = (PhotoDataBean)sqlMap.queryForObject("photocontent", pdb);
+		List admin = new ArrayList();
+		String[] content = pdb.getImg().split(",");
+		String[] content1 = pdb.getContent().split(",");
+		String[] content2 = pdb.getWriteday().split(",");
+		for(int i=0; i < content.length; i++){
+			
+			pdb.setImg(content[i]);
+			pdb.setContent(content1[i]);
+			pdb.setWriteday(content2[i]);
+			admin.add(pdb);
+		}
+		
+		request.setAttribute("pdb", pdb);
+		request.setAttribute("admin", admin);
+		
 		return "/sy0610/photocontent.jsp";
+	}
+	
+	@RequestMapping("/adminpage.nhn")
+	public String adminpage(){
+		return "/sy0526/AdminPage.jsp";
 	}
 
 }
