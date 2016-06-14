@@ -52,7 +52,10 @@ public class Theme {
 	}
 	
 	@RequestMapping("addCtgView.nhn")
-	public String addCtgView(HttpServletRequest request){
+	public String addCtgView(HttpServletRequest request,HttpSession session){
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
 		CtgDataBean dto = new CtgDataBean();
 		List ctgList = null;
 		int count = 0;
@@ -83,6 +86,7 @@ public class Theme {
 		request.setAttribute("startRow",startRow);
 		request.setAttribute("endRow", endRow);
 		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("id", id);
 		
 		return "/theme/addCtgView.jsp";
 	}

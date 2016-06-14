@@ -6,15 +6,14 @@
 <html>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">  
-    function callApp(){    	
-   	 $.ajax({
-   		//data : {"enumber" : enumber},
-	        type: "post", 	        
-	        url : "addApp.nhn?enumber="+document.getElementById("enumber2").value,
-	        success: test1,	// 페이지요청 성공시 실행 함수
-	        error: whenError	//페이지요청 실패시 실행함수
-     	});
-   }
+  	function callContent(ctg_num){    
+ 	 $.ajax({    		
+ 	 	 type: "post", 	 
+ 	 	 url : "addPlace.nhn?ctg_num="+ctg_num,
+ 	 	 success: test,	// 페이지요청 성공시 실행 함수
+ 	 	 error: whenError	//페이지요청 실패시 실행함수
+ 	 });
+ 	}
     function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
         $(".modal-body").html(aaa);	//id가 ajaxReturn인 부분에 넣어라
     }
@@ -38,7 +37,9 @@
 </style>
 </head>
 <body>
+<c:if test="${id == 'admin'}">
 <input type="button" value="카테고리 추가" align="center" onclick="document.location.href='addCtg.nhn'">
+</c:if>
 
 <div class="gallery"> 
   <ul>

@@ -25,7 +25,6 @@
     	 	 success: test,	// 페이지요청 성공시 실행 함수
     	 	 error: whenError	//페이지요청 실패시 실행함수
     	 });
-
     }
     function callContent2(ctg_num, cos_num){    
    	 $.ajax({    		
