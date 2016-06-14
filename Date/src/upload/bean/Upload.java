@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
@@ -163,8 +164,10 @@ public class Upload {
 	}
 	
 	@RequestMapping("/main22.nhn")
-	public String main(){
-
+	public String main(HttpSession session,HttpServletRequest request){
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		request.setAttribute("id", id);
 		return "/sy0526/main.jsp";
 	}
 	
@@ -303,17 +306,27 @@ public class Upload {
 		pdb.setCouplename(couplename);
 		pdb.setRegdate(Timestamp.valueOf(regdate));
 		pdb = (PhotoDataBean)sqlMap.queryForObject("photocontent", pdb);
-		
+		List admin = new ArrayList();
 		String[] content = pdb.getImg().split(",");
 		String[] content1 = pdb.getContent().split(",");
 		String[] content2 = pdb.getWriteday().split(",");
+		for(int i=0; i < content.length; i++){
+			
+			pdb.setImg(content[i]);
+			pdb.setContent(content1[i]);
+			pdb.setWriteday(content2[i]);
+			admin.add(pdb);
+		}
 		
 		request.setAttribute("pdb", pdb);
-		request.setAttribute("content", content);
-		request.setAttribute("content1", content1);
-		request.setAttribute("content2", content2);
+		request.setAttribute("admin", admin);
 		
 		return "/sy0610/photocontent.jsp";
+	}
+	
+	@RequestMapping("/adminpage.nhn")
+	public String adminpage(){
+		return "/sy0526/AdminPage.jsp";
 	}
 
 }
