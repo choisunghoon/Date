@@ -6,15 +6,33 @@
 <head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
-	function memberDelete(id){
+	function memberDelete(id,nhn){
 		
 		$.ajax({
 	        type: "post",
 	        url : "AdminMemberPro.nhn?id="+id,
 	        	 
      	});
-		history.pushState(null, null, "AdminMember.nhn");
+		reload(nhn);
     }
+function reload(nhn){
+		
+		$.ajax({
+	        type: "post",
+	        url : nhn,
+	        success: refresh,
+	        error: whenError2
+	        	 
+     	});
+		
+    }
+function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+    $("#refresh").html(aaa);
+    
+}
+function whenError2(){
+    alert("Error");
+}
     
 </script>
 </head>
@@ -87,6 +105,7 @@ table.gradienttable td p{
 </style>
 
 <!-- Table goes in the document BODY -->
+<div id="refresh">
 <table class="gradienttable">
 	<tr>
 		<th><p></p></th><th><p>아이디</p></th><th><p>닉네임</p></th><th><p>관심지역</p></th><th><p>커플</p></th><th><p>탈퇴</p></th>
@@ -99,13 +118,14 @@ table.gradienttable td p{
 		<td><p>${dto.nickname}</p></td>
 		<td><p>${dto.location}</p></td>
 		<td><p>${dto.couple}</p></td>
-<<<<<<< HEAD
-		<td><p><input type="button" onclick="memberDelete(${dto.id})" value="강퇴" /></p></td>
-=======
-		<td><p><input type="button" onclick="" value="강퇴" /></p></td>
->>>>>>> branch 'master' of https://github.com/choisunghoon/Date.git
+
+		<td><p><input type="button" onclick="memberDelete('${dto.id}','AdminMember.nhn')" value="강퇴" /></p></td>
+
+		
+
 	</tr>
 	
 	</c:forEach>
 </table>
+</div>
 </html>
