@@ -145,17 +145,19 @@ function date() {
     <div style="border:1px solid; width:200px; height:200px; float:left;">
       <c:if test="${coupleData.coupleImage eq null }">
       <img src="syimage/couple.png" class="img-circle">
+       <%@include file="/dc/diary.jsp" %>
       </c:if>
       <c:if test="${coupleData.coupleImage ne null }">
       <img src="syimage/${coupleData.coupleImage }" width="200px" height="200px">
+       <%@include file="/dc/diary.jsp" %>
       </c:if>
    </div>
    <center>
-      <%@include file="/dc/diary.jsp" %>
+  
+
 
    </center>
-   
-</div>
+  </div> 
     
   
 </c:if>

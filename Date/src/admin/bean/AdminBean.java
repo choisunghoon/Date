@@ -35,12 +35,7 @@ public class AdminBean {
 		return "/AdminMember/member.jsp";
 	}
 
-	@RequestMapping("AdminMember.nhn")
-	public String memberPro(HttpServletRequest request) throws Exception{
-		
-		
-		return "/AdminMember/member.jsp";
-	}
+
 	
 	@RequestMapping("point.nhn")
 	public String point(HttpServletRequest request,HttpSession session,PointDataBean dto) throws Exception{
