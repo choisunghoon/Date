@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<form action="upload2.nhn" method="post" enctype="multipart/form-data" >
+<form action="upload2.nhn?couplename=${couplename }" method="post" enctype="multipart/form-data" >
 	<table border="1" colspadding="0" cellspacing="0">
 		<tr>	
 			<td>

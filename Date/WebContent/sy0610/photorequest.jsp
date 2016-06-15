@@ -8,7 +8,9 @@
 	function checked(point){
 		if(point<100){
 			alert("포인트가 부족합니다!");
+			return false;
 		}
+		else{
 		var i = $('input:checkbox:checked').length;
 		if(i==0){
 			alert("사진을 선택해 주세요!");
@@ -16,6 +18,7 @@
 		}else if(i>20){
 			alert("사진의 최대 선택 개수는 20장 입니다!");
 			return false;
+		}
 		}
 	}
 </script>
@@ -26,7 +29,7 @@
 	<form name="frmSet">
     	<input type="hidden" id="aa" name="listMore" value="${listMore}"/>
 	</form>
-	<form name="ff" action="adminphoto.nhn?couplename=dfg" method="post" onsubmit="return checked(${couple.point});">
+	<form name="ff" action="adminphoto.nhn?couplename=${couplename}" method="post" onsubmit="return checked(${point});">
 	<input type="submit" value="포토북 신청" style="margin-left:70%;"/>
 	
 	<c:set var="i" value="1"/>

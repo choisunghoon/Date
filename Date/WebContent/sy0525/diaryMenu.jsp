@@ -99,7 +99,7 @@
       </c:if>
    </div>
    <center>
-      <a href="diary.nhn" >이미지 변경</a>
+      <a href="diary.nhn?couplename=${couplename }" >이미지 변경</a>
    </center>
    
 </div>
@@ -116,7 +116,7 @@
     <div class="tab1_content">
       <div class="sub_photo">
           <div class="title_area">
-             <a href="ex.nhn" style="margin-left:80%;">게시물 작성</a><br/>
+             <a href="ex.nhn?couplename=${couplename }" style="margin-left:80%;">게시물 작성</a><br/>
              <form name="frmSet">
              <input type="hidden" id="aa" name="listMore" value="${listMore}"/>
             </form>
@@ -131,8 +131,8 @@
                   <center>${diary.content}</center>
                   </li>
                   <li style="margin-left:40%;">
-                     <button onClick="javascript:location.href='DiaryModify.nhn?num=${diary.num}'">수정</button>
-                     <button onClick="javascript:location.href='DiaryDelete.nhn?num=${diary.num}'">삭제</button>
+                     <button onClick="javascript:location.href='DiaryModify.nhn?num=${diary.num}&couplename=${couplename}'">수정</button>
+                     <button onClick="javascript:location.href='DiaryDelete.nhn?num=${diary.num}&couplename=${couplename}'">삭제</button>
                   </li>
             
                </ul>
