@@ -19,7 +19,6 @@
 <form name="rg" action="updateImage.nhn" method="post" enctype="multipart/form-data" onsubmit="return checkfile();">
 <div id="uploadPreview" style="width:200; height:200; border:1px solid;"></div>
 <input type="file" name="save" id="choose"/>
-
 <script type="text/javascript">
 function readImage(file) {
     var reader = new FileReader();
