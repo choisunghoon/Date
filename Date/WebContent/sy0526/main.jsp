@@ -166,13 +166,13 @@ window.fbAsyncInit = function() {
 <c:if test="${id ne null  and (check eq 'yes')}">
 	 ${ id}님 환영합니다.
 		 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;|&nbsp;
-		 <a href="mypage.nhn?fbcheck=yes&id=${id}">개인페이지</a>
+
 </c:if>
 <c:if test="${id ne null  and (check eq 'no')}">
 	 ${ id}님 환영합니다.
 		<li class="top2">
 		 <a href="logout.nhn">로그아웃</a>&nbsp;|&nbsp;
-         <a href="mypage.nhn?fbcheck=no&id=${id}">개인페이지</a>
+
 </c:if>
 		</li>
 	</ul>
