@@ -77,19 +77,40 @@ li{
 #topmenu ul li{
 	font-size:15px;
 	}
+#topmenu1 {
+	margin-top:5px;
+	margin-left:75%;
+	}
+#topmenu1 ul li{
+	font-size:15px;
+	color:#B8B8B8
+	}
 	img {
 		border:0}
 </style>
 </head>
 <body>
-
+<c:if test="${id eq null }">
 <div id="topmenu">
 	<ul>
-		<li class="top2"><a href="#"onclick="asdf('loginForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">로그인</a> &nbsp;|&nbsp;
+		<li class="top2">
+		<a href="#"onclick="asdf('loginForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">로그인</a> &nbsp;|&nbsp;
 		 <a href="#" onclick="asdf('inputForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">회원가입</a></li>
-		
+
+		</li>
 	</ul>
 </div>
+</c:if>
+<c:if test="${id ne null }">
+<div id="topmenu1">
+	<ul>
+		<li class="top2">
+		${ id}님 환영합니다.&nbsp;&nbsp;|&nbsp;&nbsp;
+          <a href="logout.nhn" style="color:#B8B8B8">로그아웃</a>
+         </li>
+	</ul>
+</div>
+</c:if>
 <div class="container">
 
 	<!-- 모달 팝업 -->

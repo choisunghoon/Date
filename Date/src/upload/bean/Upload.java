@@ -67,9 +67,11 @@ public class Upload {
 	
 	
 	@RequestMapping("/diaryMenu.nhn")
-	public String diaryMenu(HttpServletRequest request,DiaryDataBean ddb, CoupleDataBean cdb){
+	public String diaryMenu(HttpSession session,HttpServletRequest request,DiaryDataBean ddb, CoupleDataBean cdb){
 		List diary =null;
 		int listMore = 3;
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
 		String couplename = "dfg";
 		ddb.setCouplename(couplename);
 		diary = sqlMap.queryForList("myDiary", ddb);
@@ -155,12 +157,6 @@ public class Upload {
 		request.setAttribute("orgName", orgName);
 
 		return "/sy0525/updateImage.jsp";
-	}
-	
-	@RequestMapping("/asd.nhn")
-	public String asd(HttpServletRequest request, CoupleDataBean cdb){
-
-		return "/sy0525/asd.jsp";
 	}
 	
 	@RequestMapping("/main22.nhn")

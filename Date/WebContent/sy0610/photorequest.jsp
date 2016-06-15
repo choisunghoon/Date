@@ -5,7 +5,10 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
-	function checked(){		
+	function checked(point){
+		if(point<100){
+			alert("포인트가 부족합니다!");
+		}
 		var i = $('input:checkbox:checked').length;
 		if(i==0){
 			alert("사진을 선택해 주세요!");
@@ -23,7 +26,7 @@
 	<form name="frmSet">
     	<input type="hidden" id="aa" name="listMore" value="${listMore}"/>
 	</form>
-	<form name="ff" action="adminphoto.nhn?couplename=dfg" method="post" onsubmit="return checked();">
+	<form name="ff" action="adminphoto.nhn?couplename=dfg" method="post" onsubmit="return checked(${couple.point});">
 	<input type="submit" value="포토북 신청" style="margin-left:70%;"/>
 	
 	<c:set var="i" value="1"/>

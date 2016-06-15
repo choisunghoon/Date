@@ -198,8 +198,8 @@
           <a href="mypage.nhn?fbcheck=no&id=${id}">마이페이지</a>
           </c:if>
           
-            ${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="logout.nhn">로그아웃</a>&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${ id}님 환영합니다.&nbsp;&nbsp;|&nbsp;&nbsp;
+          <a href="logout.nhn" style="font-size:15px;">로그아웃</a>
           
           
 
