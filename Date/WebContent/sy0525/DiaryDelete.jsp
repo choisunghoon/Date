@@ -3,7 +3,7 @@
 <script type="text/javascript">
 
 		if(confirm("삭제하시겠습니까?")){
-			document.location.href="DiaryDeletePro.nhn?num=${num}";
+			document.location.href="DiaryDeletePro.nhn?num=${num}&couplename=${couplename}";
 		}
 		else{
 			document.location.href="diaryMenu.nhn";

@@ -21,14 +21,11 @@ public class Upload {
 	
 	@Autowired
 	private SqlMapClientTemplate sqlMap;
-	
-	@RequestMapping("/ex1.nhn")
-	public String ex1(){
-		return "/sy0524/ex.jsp";
-	}
-	
+
 	@RequestMapping("/ex.nhn")
-	public String ex(){
+	public String ex(HttpServletRequest request){
+		String couplename = request.getParameter("couplename");
+		request.setAttribute("couplename", couplename);
 		return "/sy0525/ex.jsp";
 	}
 	
@@ -39,7 +36,7 @@ public class Upload {
 		int wwd= 1000;
 		int hhd = 1000;
 		int check;
-		String couplename = "dfg";
+		String couplename = request.getParameter("couplename");
 		String RealPath = request.getRealPath("\\syimage");
 		
 		if(w <= wwd && h <= hhd){
@@ -57,11 +54,14 @@ public class Upload {
 			check = 2;
 		}
 		request.setAttribute("check", check);
+		request.setAttribute("couplename", couplename);
 		return "/sy0525/upload2.jsp";
 	}
 	
 	@RequestMapping("/diary.nhn")
-	public String diary() throws Exception{
+	public String diary(HttpServletRequest request){
+		String couplename= request.getParameter("couplename");
+		request.setAttribute("couplename", couplename);
 		return "/sy0525/diary.jsp";
 	}
 	
@@ -72,13 +72,16 @@ public class Upload {
 		int listMore = 3;
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		String couplename = "dfg";
+		cdb.setId1(id);
+		cdb.setId2(id);
+		String couplename = (String)sqlMap.queryForObject("getcouplename", cdb);
 		ddb.setCouplename(couplename);
 		diary = sqlMap.queryForList("myDiary", ddb);
 		cdb.setCouplename(couplename);
 		cdb = (CoupleDataBean)sqlMap.queryForObject("diaryImage", cdb);
 		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
 		
+		request.setAttribute("couplename", couplename);
 		request.setAttribute("listMore", listMore);
 		request.setAttribute("totalCnt", totalCnt);
 		request.setAttribute("diary", diary);
@@ -88,18 +91,19 @@ public class Upload {
 	
 	@RequestMapping("/DiaryModify.nhn")
 	public String DiaryModify(HttpServletRequest request,DiaryDataBean ddb){
-		String couplename = "dfg";
+		String couplename = request.getParameter("couplename");
 		int num = Integer.parseInt(request.getParameter("num"));
 		ddb.setCouplename(couplename);
 		ddb.setNum(num);
 		ddb = (DiaryDataBean)sqlMap.queryForObject("modifyDiary", ddb);
 		request.setAttribute("ddb", ddb);
+		request.setAttribute("couplename", couplename);
 		return "/sy0525/DiaryModify.jsp";
 	}
 	
 	@RequestMapping("/DiaryModifyPro.nhn")
 	public String DiaryModifyPro(MultipartHttpServletRequest request,DiaryDataBean ddb)throws Exception{
-		String couplename = "dfg";
+		String couplename = request.getParameter("couplename");
 		
 		String RealPath = request.getRealPath("\\syimage");
 		int num = Integer.parseInt(request.getParameter("num"));
@@ -125,9 +129,10 @@ public class Upload {
 	
 	@RequestMapping("/DiaryDelete.nhn")
 	public String DiaryDelete(HttpServletRequest request,DiaryDataBean ddb){
-		String couplename = "dfg";
+		String couplename = request.getParameter("couplename");
 		int num = Integer.parseInt(request.getParameter("num"));
 		request.setAttribute("num", num);
+		request.setAttribute("couplename", couplename);
 		return "/sy0525/DiaryDelete.jsp";
 	}
 	
@@ -135,7 +140,7 @@ public class Upload {
 	public String DiaryDeletePro(HttpServletRequest request,DiaryDataBean ddb){
 		int num = Integer.parseInt(request.getParameter("num"));
 		request.setAttribute("num", num);
-		String couplename = "dfg";
+		String couplename = request.getParameter("couplename");
 		ddb.setCouplename(couplename);
 		ddb.setNum(num);
 		sqlMap.delete("deleteDiary", ddb);
@@ -145,7 +150,7 @@ public class Upload {
 	@RequestMapping("/updateImage.nhn")
 	public String updateImage(MultipartHttpServletRequest request,CoupleDataBean cdb)throws Exception{
 
-		String couplename = "dfg";
+		String couplename = request.getParameter("couplename");
 		String RealPath = request.getRealPath("\\syimage");
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
@@ -204,19 +209,21 @@ public class Upload {
 	}
 	
 	@RequestMapping("/photorequest.nhn")
-	public String photorequest(HttpServletRequest request,DiaryDataBean ddb, CoupleDataBean cdb){
-		String couplename = request.getParameter("couplename");
+	public String photorequest(HttpSession session,HttpServletRequest request,DiaryDataBean ddb, CoupleDataBean cdb){
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		cdb.setId1(id);
+		cdb.setId2(id);
+		String couplename = (String)sqlMap.queryForObject("getcouplename", cdb);
 		List diary = null;
 		int listMore = 3;
 		ddb.setCouplename(couplename);
-		cdb.setCouplename(couplename);
-		
 		int point = (Integer)sqlMap.queryForObject("getpoint", cdb);
-		int point1 = point - 100;
-		cdb.setPoint(point1);
-		sqlMap.update("photopoint", cdb);
+		
 		diary = sqlMap.queryForList("myDiary", ddb);
 		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
+		
+		request.setAttribute("point", point);
 		request.setAttribute("diary", diary);
 		request.setAttribute("couplename", couplename);
 		request.setAttribute("totalCnt", totalCnt);
@@ -226,10 +233,23 @@ public class Upload {
 	}
 	
 	@RequestMapping("/adminphoto.nhn")
-	public String adminphoto(HttpServletRequest request, DiaryDataBean ddb, PhotoDataBean pdb){
+	public String adminphoto(HttpServletRequest request, DiaryDataBean ddb, PhotoDataBean pdb, CoupleDataBean cdb,PointDataBean pidb){
 		String couplename = request.getParameter("couplename");
 		String[] str = request.getParameterValues("photocheck");
 		ddb.setCouplename(couplename);
+		cdb.setCouplename(couplename);
+		int point = (Integer)sqlMap.queryForObject("getpoint", cdb);
+		int point1 = point - 100;
+		cdb.setPoint(point1);
+		sqlMap.update("photopoint", cdb);
+		
+		int usePoint= -100;
+		String place="Æ÷ÅäºÏ";
+		pidb.setCouplename(couplename);
+		pidb.setUsePoint(usePoint);
+		pidb.setPlace(place);
+		
+		sqlMap.insert("insertpoint",pidb );
 		String state="½ÅÃ»";
 		String a = "";
 		String b = "";

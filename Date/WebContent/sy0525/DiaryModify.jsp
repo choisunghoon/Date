@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form action="DiaryModifyPro.nhn?num=${ddb.num}" method="post" enctype="multipart/form-data" >
+<form action="DiaryModifyPro.nhn?num=${ddb.num}&couplename=${couplename}" method="post" enctype="multipart/form-data" >
 	<table border="1" colspadding="0" cellspacing="0">
 		<tr>	
 			<td>

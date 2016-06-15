@@ -74,5 +74,12 @@
 		select * from dc_photo where couplename = #couplename# and regdate=#regdate#
 	</select>
 	
+	<select id="getcouplename" resultClass="String" parameterClass="upload.bean.CoupleDataBean">
+		select couplename from dc_couple where id1 = #id1# or id2 = #id2#
+	</select>
+	
+	<insert id="insertpoint" parameterClass="upload.bean.PointDataBean">
+		insert into dc_point(num,couplename,usePoint,place,regdate) values(dc_point_seq.nextval,#couplename#,#usePoint#,#place#,sysdate)
+	</insert>
 </sqlMap>
 
