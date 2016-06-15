@@ -1,7 +1,9 @@
 package admin.bean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,7 +11,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import ch11.logon.LogonDataBean;
 import upload.bean.PointDataBean;
@@ -42,7 +46,7 @@ public class AdminBean {
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		
-		List pointList = null;
+		List pointList = new ArrayList();
 		int count = 0;
 		
 		String pageNum = request.getParameter("pageNum");
@@ -70,6 +74,25 @@ public class AdminBean {
 		request.setAttribute("id", id);
 		
 		return "/admin/point.jsp";
+	}
+	
+	@RequestMapping("adminEvent.nhn")
+	public String event(){
+		
+		return "/admin/adminEvent.jsp";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public String bbsList(HttpServletRequest request, Model model){
+		
+		String sch_type = request.getParameter("sch_type");
+		String sch_value = request.getParameter("sch_value");
+		Map mapSearch = new HashMap();
+		mapSearch.put("sch_type", sch_type);
+		mapSearch.put("sch_value", sch_value);
+		
+		model.addAttribute("mapSearch",mapSearch);
+		return "bbs.list";
 	}
 	
 

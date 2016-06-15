@@ -67,11 +67,15 @@ public class Theme {
 		}
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * pageSize + 1;
-		int endRow = currentPage * pageSize;	
+		int endRow = currentPage * pageSize;
+		
+		HashMap<String, Integer> num = new HashMap<String, Integer>();
+		num.put("startRow", startRow);
+		num.put("endRow", endRow);
 		
 		String[] srclist = null;
 		String path = request.getContextPath() +"/theme/";
-		ctgList = sqlMap.queryForList("getCtgList", null);
+		ctgList = sqlMap.queryForList("getCtgList", num);
 		count = (Integer)sqlMap.queryForObject("ctgCount", null);
 		
 		for(int i=0; i<count; i++){
