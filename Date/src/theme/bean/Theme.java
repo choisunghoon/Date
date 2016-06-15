@@ -199,7 +199,6 @@ public class Theme {
 		String id = (String)session.getAttribute("id");
 		
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
-		System.out.println(ctg_num);
 		
 		CourseDataBean dto = new CourseDataBean();
 		List courseList = null;
@@ -302,13 +301,10 @@ public class Theme {
 		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
 		dto.setId(id);
 		dto.setPw(pw);
-		System.out.println(ctg_num);
-		System.out.println(cos_num);
 		dto1.setCtg_num(ctg_num);
 		dto1.setCos_num(cos_num);
 		
 		int check = (Integer)sqlMap.queryForObject("deleteProck",dto);
-		System.out.println(check);
 		if(check == 1){
 			sqlMap.delete("deleteCos",dto1);
 		}
@@ -361,8 +357,6 @@ public class Theme {
 		num.put("cos_num", cos_num);
 		
 		count = (Integer)sqlMap.queryForObject("placeCount", num);
-		
-		System.out.println(count);
 		
 		request.setAttribute("ctg_num", ctg_num);
 		request.setAttribute("cos_num", cos_num);
@@ -417,7 +411,6 @@ public class Theme {
 	@RequestMapping("placeView.nhn")
 	public String PlaceView(HttpServletRequest request,LocationDataBean dto){
 		int loc_num = Integer.parseInt(request.getParameter("loc_num"));
-		System.out.println(loc_num);
 		
 		dto = (LocationDataBean)sqlMap.queryForObject("getPlace1" , loc_num);
 		
@@ -503,15 +496,11 @@ public class Theme {
 		int loc_num = Integer.parseInt(request.getParameter("loc_num"));
 		dto.setId(id);
 		dto.setPw(pw);
-		System.out.println(ctg_num);
-		System.out.println(cos_num);
-		System.out.println(loc_num);
 		dto1.setCtg_num(ctg_num);
 		dto1.setCos_num(cos_num);
 		dto1.setLoc_num(loc_num);
 		
 		int check = (Integer)sqlMap.queryForObject("deleteProck",dto);
-		System.out.println(check);
 		if(check == 1){
 			sqlMap.delete("deleteLoc",dto1);
 		}
