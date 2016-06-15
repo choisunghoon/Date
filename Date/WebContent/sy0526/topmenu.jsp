@@ -190,12 +190,18 @@
              <a href="mypage.nhn?fbcheck=yes&id=${id}">마이페이지</a>
  </c:if>
  <c:if test="${(id ne null) and (check eq 'no')}">
-
-            ${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
-            
-		  
-          <a href="logout.nhn">로그아웃</a>&nbsp;&nbsp;
+			
+		<c:if test="${id eq 'admin' }">
+          <a href="adminpage.nhn">관리자페이지</a>
+          </c:if>
+          <c:if test="${id ne 'admin' }">
           <a href="mypage.nhn?fbcheck=no&id=${id}">마이페이지</a>
+          </c:if>
+          
+            ${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="logout.nhn">로그아웃</a>&nbsp;&nbsp;
+          
+          
 
  </c:if>
 </div>
