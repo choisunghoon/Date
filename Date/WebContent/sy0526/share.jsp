@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@include file="/sy0526/topmenu.jsp" %>
+
 <html>
 <head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -24,6 +25,7 @@
   </script>
 </head>
 <body>
+
 <div style="width:100%;float:left;" >
 		<div style="width:12%;float:left;">
 			<a href="#" onclick="callAjax('index.nhn')">코스게시판</a>
@@ -31,7 +33,10 @@
 		</div>
 		<div style="float:left;width:2%">&nbsp;&nbsp;&nbsp;</div>
 		<div id="subMain" style="float:left;width:86%">		
-		</div>
+		</div>	
 	</div>
+
+
+
 </body>
 </html>

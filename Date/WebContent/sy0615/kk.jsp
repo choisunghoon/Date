@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
@@ -35,18 +35,18 @@
 										var txt1 =  $(this).find('tmEf').text().split(' ');
 									if(txt1[1] == '12:00'){
 									
-											if(aa == '±¸¸§¸¹À½' || aa == '±¸¸§¸¹°í ºñ' || aa == '±¸¸§¸¹°í ºñ/´«' || aa == '±¸¸§¸¹°í ´«/ºñ' || aa == '±¸¸§¸¹°í ´«')
+											if(aa == 'êµ¬ë¦„ë§ìŒ' || aa == 'êµ¬ë¦„ë§ê³  ë¹„' || aa == 'êµ¬ë¦„ë§ê³  ë¹„/ëˆˆ' || aa == 'êµ¬ë¦„ë§ê³  ëˆˆ/ë¹„' || aa == 'êµ¬ë¦„ë§ê³  ëˆˆ')
 												{
-												var bb = $('#view').append('<img src="many.png">');	
+												var bb = $('#view').append('&nbsp;&nbsp;&nbsp;<img src="sy0615/many.png">&nbsp;');	
 												}
-											else if(aa == 'Èå¸®°í ºñ' || aa == 'Èå¸²' || aa == 'Èå¸²°í ºñ/´«'){
-												var bb = $('#view').append('<img src="rain.png">');
-											}else if(aa == '¸¼À½'){
-												var bb = $('#view').append('<img src="sun.png">');
-											}else if(aa == '±¸¸§ Á¶±İ'){
-												var bb = $('#view').append('<img src="little.png">');
-											}else if(aa == 'Èå¸²°í ´«/ºñ' || aa == 'Èå¸®°í ´«'){
-												var bb = $('#view').append('<img src="snow.png">');
+											else if(aa == 'íë¦¬ê³  ë¹„' || aa == 'íë¦¼' || aa == 'íë¦¼ê³  ë¹„/ëˆˆ'){
+												var bb = $('#view').append('&nbsp;&nbsp;&nbsp;<img src="sy0615/rain.png">&nbsp;');
+											}else if(aa == 'ë§‘ìŒ'){
+												var bb = $('#view').append('&nbsp;&nbsp;&nbsp;<img src="sy0615/sun.png">&nbsp;');
+											}else if(aa == 'êµ¬ë¦„ ì¡°ê¸ˆ'){
+												var bb = $('#view').append('&nbsp;&nbsp;&nbsp;<img src="sy0615/little.png">&nbsp;');
+											}else if(aa == 'íë¦¼ê³  ëˆˆ/ë¹„' || aa == 'íë¦¬ê³  ëˆˆ'){
+												var bb = $('#view').append('&nbsp;&nbsp;&nbsp;<img src="sy0615/snow.png">&nbsp;');
 											}
 											$('#view').append(txt1[0]+'<br>');
 									}
@@ -65,15 +65,15 @@
 
 </script>
    <body>
-   	<div id=divMenu style="top:0px; left:1200px; visibility: visible; width: 140px; position: absolute; background-color:#F7CBCB;"> 
-		<select id="wheather" style="margin-left:38px; margin-top:5px">
-		</select>
+   	<div id=divMenu style="top:0px; left:1200px; visibility: visible; width: 140px; position: absolute; background-color: rgba(247,203,203,0.8);"> 
+		<select id="wheather" style="margin-left:38px; margin-top:20px">
+		</select><br>
 	   <div id="view">
 	   
 	   </div>
    	<br>
 </div>
-   </body>
+</body>
    
    
    
@@ -82,9 +82,6 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://googledrive.com/host/0B-QKv6rUoIcGREtrRTljTlQ3OTg"></script><!-- ie10-viewport-bug-workaround.js -->
 <script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script><!-- holder.js --> 
-
-</body>
-</html>
 <SCRIPT LANGUAGE=JAVASCRIPT> 
 <!-- 
 
@@ -101,12 +98,13 @@
     var isNS = navigator.appName == "Netscape"; 
     function moveRightEdge() { 
             var yMenuFrom, yMenuTo, yOffset, timeoutNextCheck; 
+            
             if (isNS4) { 
                     yMenuFrom   = divMenu.top; 
-                    yMenuTo     = windows.pageYOffset +10 ;   // À§ÂÊ À§Ä¡ 
+                    yMenuTo     = windows.pageYOffset +10 ;   // ìœ„ìª½ ìœ„ì¹˜ 
             } else if (isDOM) { 
                     yMenuFrom   = parseInt (divMenu.style.top, 10); 
-                    yMenuTo     = (isNS ? window.pageYOffset : document.body.scrollTop) +10; // À§ÂÊ À§Ä¡ 
+                    yMenuTo     = (isNS ? window.pageYOffset : document.body.scrollTop) +10; // ìœ„ìª½ ìœ„ì¹˜ 
             } 
             timeoutNextCheck = 500; 
             if (yMenuFrom != yMenuTo) { 
