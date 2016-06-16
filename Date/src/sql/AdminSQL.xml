@@ -13,6 +13,14 @@
 	    select * from dc_point
 	</select>
 	
+	<select id="winEventCount" resultClass="int">
+	    select count(*) from event
+	</select>
+	
+	<select id="getWinEventList" resultClass="event.EventDataBean">
+	    select * from event
+	</select>
+	
 	<delete id="memberDelete" parameterClass="ch11.logon.LogonDataBean">
 		delete from dc_member where id = #id#
 	</delete>
