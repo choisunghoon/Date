@@ -2,7 +2,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<c:if test="${fnc == 0 }">
+<script>
+	alert("별명을 입력해 주세요!");
+</script>
+</c:if>
 <html>
 <head>
 <title>회원정보수정</title>
@@ -136,7 +140,7 @@
 <script language="JavaScript">
 
 
-   <!-- 
+ 
     function checkIt() {
         var userinput = eval("document.userinput");
                
@@ -150,8 +154,8 @@
             return false;
         }
        
-        if(!userinput.username.value) {
-            alert("사용자 이름을 입력하세요");
+        if(!userinput.nickname.value) {
+            alert("별명을 입력하세요");
             return false;
         }
         
@@ -169,7 +173,7 @@
        open(url, "confirm", 
        "toolbar=no, location1=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
    }
--->
+
 </script>
 
 

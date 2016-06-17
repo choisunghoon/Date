@@ -29,7 +29,7 @@ public class LoginBean {
 			//request.setAttribute("id", id);
 		
 			int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);
-		    session.setAttribute("id", id);
+		
 			request.setAttribute("nickcheck", nickcheck);
 
 			return "/sy0526/main.jsp";

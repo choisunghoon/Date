@@ -4,6 +4,23 @@
 	<select id="selectMember" resultClass="ch11.logon.LogonDataBean">
 		select * from dc_member
 	</select>
+	
+	<select id="pointCount" resultClass="int" parameterClass="upload.bean.PointDataBean">
+		select count(*) from dc_point    
+	</select>
+	
+	<select id="getPointList" resultClass="upload.bean.PointDataBean">
+	    select * from dc_point
+	</select>
+	
+	<select id="winEventCount" resultClass="int">
+	    select count(*) from event
+	</select>
+	
+	<select id="getWinEventList" resultClass="event.EventDataBean">
+	    select * from event
+	</select>
+	
 	<delete id="memberDelete" parameterClass="ch11.logon.LogonDataBean">
 		delete from dc_member where id = #id#
 	</delete>

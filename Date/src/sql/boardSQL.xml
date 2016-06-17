@@ -121,6 +121,12 @@
 		<select id="coupleCheck2" parameterClass="String" resultClass="int">
 			SELECT count(*) FROM dc_couple where id2=#id#
 		</select>
+		<select id="fbNickCheck" parameterClass="String" resultClass="int">
+			SELECT count(nickname) from dc_member where id=#id#
+		</select>
+		<select id="searchNickCheck" parameterClass="dto" resultClass="int">
+			SELECT count(*) FROM dc_member where id=#id# and nickname=#nickname#
+		</select>
 		<!-- select 쿼리문 정의 -->
 		<select id="selectAll" resultMap="dtoRes">
 			SELECT * FROM dc_member 

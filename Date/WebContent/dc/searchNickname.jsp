@@ -29,6 +29,7 @@
 </table>
 </form>
 </c:if>
+
 <c:if test="${check==1 }">
 <table width="270" border="0" cellspacing="0" cellpadding="5">
   <tr> 
@@ -38,6 +39,28 @@
     </td>
   </tr>
 </table>
+</c:if>
+
+<c:if test="${ccheck==1 }">
+<table width="270" border="0" cellspacing="0" cellpadding="5">
+  <tr> 
+    <td align="center"> 
+      <p>자기 자신에게는 할수 없습니다.  </p>
+      <input type="button" value="닫기" onclick="setnickname()">
+    </td>
+  </tr>
+</table>
+<form name="checkForm" method="post" action="searchNickname.nhn">
+<table width="270" border="0" cellspacing="0" cellpadding="5">
+  <tr>
+    <td align="center"> 
+       다른 별명 선택하세요.<p>
+       <input type="text" size="10" maxlength="12" name="nickname"> 
+       <input type="submit" value="별명 확인">
+    </td>
+  </tr>
+</table>
+</form>
 </c:if>
 </body>
 </html>

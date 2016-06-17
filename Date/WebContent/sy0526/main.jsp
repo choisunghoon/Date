@@ -2,7 +2,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script language="javascript" src="http://connect.facebook.net/ko_KR/all.js" type="text/javascript"></script>
-
 <html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -123,6 +122,7 @@ window.fbAsyncInit = function() {
             if (user) {
             	
             	
+            	
                 window.location.href = 'loginPro.nhn?fbid='+user.id+'&hidden=fb';
                 
             }
@@ -143,7 +143,7 @@ window.fbAsyncInit = function() {
  
 	
 </script>
-<c:if test="${id eq 'undefined' or id eq 'null'}">
+<c:if test="${id eq 'undefined'}">
 <% 
 	session.invalidate();
 	response.sendRedirect("main.nhn");
@@ -160,19 +160,18 @@ window.fbAsyncInit = function() {
 <c:if test="${id eq null }">
 
 		<a href="#"onclick="asdf('loginForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">일반로그인</a> &nbsp;|&nbsp;
-		 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;|&nbsp;
-		 <a href="#" onclick="asdf('inputForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">회원가입</a>
+		 <a href="#" onclick="asdf('inputForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">회원가입</a>&nbsp;|&nbsp;
+		 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
 </c:if>
 <c:if test="${id ne null  and (check eq 'yes')}">
+<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
 	 ${ id}님 환영합니다.
-		 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;|&nbsp;
-		 <a href="mypage.nhn?fbcheck=yes&id=${id}">개인페이지</a>
+		 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;|&nbsp;	 
 </c:if>
 <c:if test="${id ne null  and (check eq 'no')}">
+<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
 	 ${ id}님 환영합니다.
-		<li class="top2">
-		 <a href="logout.nhn">로그아웃</a>&nbsp;|&nbsp;
-         <a href="mypage.nhn?fbcheck=no&id=${id}">개인페이지</a>
+		 <a href="logout.nhn">로그아웃</a> 
 </c:if>
 		</li>
 	</ul>

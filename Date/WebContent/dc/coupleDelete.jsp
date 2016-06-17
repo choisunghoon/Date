@@ -8,4 +8,4 @@
 <c:if test="${ccheck eq 0 }">
  <script>alert("헤어질 상대가 없습니다.");</script>
 </c:if>
-<meta http-equiv="Refresh" content="0;url=mypage.nhn" >
+<meta http-equiv="Refresh" content="0;url=main.nhn" >

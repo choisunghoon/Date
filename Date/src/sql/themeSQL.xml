@@ -41,13 +41,16 @@
         	#likeCount#
         )
     </insert>
+  
+    
+    <select id="getCtgList" resultClass="themeDTO.CtgDataBean" parameterClass="java.util.Map">
+        select ctg_num, ctg_name, ctg_img, r from
+        (select ctg_num, ctg_name, ctg_img, rownum r from
+        (select ctg_num, ctg_name, ctg_img from ctg)) where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
+    </select>
     
     <select id="selectlocnum" resultClass="Integer">
  		select loc_seq.currval from dual
-    </select>
-    
-    <select id="getCtgList" resultClass="themeDTO.CtgDataBean">
-        select * from ctg
     </select>
     
     <select id="getCtg" resultClass="themeDTO.CtgDataBean" parameterClass="int">

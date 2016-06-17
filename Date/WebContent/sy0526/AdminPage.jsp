@@ -25,7 +25,10 @@
     
     <div style="width:100%;float:left;" >
 		<div style="width:12%;float:left;">
-			<a href="#" onclick="callAjax('adphoto.nhn')">포토북 관리</a>		
+			<a href="#" onclick="callAjax('adphoto.nhn')">포토북 관리</a>
+			<a href="#" onclick="callAjax('point.nhn')">포인트 관리</a>	
+			<a href="#" onclick="callAjax('AdminMember.nhn')">회원 관리</a>
+			<a href="#" onclick="callAjax('adminEvent.nhn')">당첨자 관리</a>	
 		</div>
 		<div style="float:left;width:2%">&nbsp;&nbsp;&nbsp;</div>
 		<div id="subMain" style="float:left;width:86%">		

@@ -53,6 +53,6 @@ $("#choose").change(function (e) {
 
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
-<input type="submit" value="전송"/>
+<input type="submit" value="변경"/>
 <input type="button" value="취소" onClick="javascript:history.go(-1)"/>
 </form>

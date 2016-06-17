@@ -20,8 +20,22 @@ public class EventDataBean {
 	private String appcomment;
 	private String appimg;	
 	private int apppw;
+	private int wnumber;
+	private int w;
 
 	
+	public int getW() {
+		return w;
+	}
+	public void setW(int w) {
+		this.w = w;
+	}
+	public int getWnumber() {
+		return wnumber;
+	}
+	public void setWnumber(int wnumber) {
+		this.wnumber = wnumber;
+	}
 	public int getApppw() {
 		return apppw;
 	}
@@ -117,5 +131,4 @@ public class EventDataBean {
 	public void setWcouples(String wcouples) {
 		this.wcouples = wcouples;
 	}
-
 }

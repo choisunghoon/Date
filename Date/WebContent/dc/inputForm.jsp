@@ -22,7 +22,10 @@
             alert("비밀번호를 동일하게 입력하세요");
             return false;
         }
-       
+        if(!userinput.nickname.value) {
+            alert("별명을 입력하세요");
+            return false;
+        }
        
     }
 
