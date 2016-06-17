@@ -34,6 +34,7 @@
 			<a href="#" onclick="callAjax('diaryMenu.nhn')"><img src="syimage/csh.png" /></a>
 			<br />
 			<a href="#" onclick="callAjax('DateMap.nhn')"><img src="syimage/csh.png" /></a>
+			
 		</div>
 		<div style="float:left;width:2%">&nbsp;&nbsp;&nbsp;</div>
 		<div id="subMain" style="float:left;width:86%">		
