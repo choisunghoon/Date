@@ -166,23 +166,18 @@ window.fbAsyncInit = function() {
 <c:if test="${id ne null  and (check eq 'yes')}">
 <%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
 	 ${ id}님 환영합니다.
-<<<<<<< HEAD
-		 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;|&nbsp;	 
-=======
-		 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;|&nbsp;
+		 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div> 
 
->>>>>>> branch 'master' of https://github.com/choisunghoon/Date.git
+		
+
 </c:if>
 <c:if test="${id ne null  and (check eq 'no')}">
 <%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
 	 ${ id}님 환영합니다.
-<<<<<<< HEAD
-		 <a href="logout.nhn">로그아웃</a> 
-=======
-		<li class="top2">
-		 <a href="logout.nhn">로그아웃</a>&nbsp;|&nbsp;
 
->>>>>>> branch 'master' of https://github.com/choisunghoon/Date.git
+		 <a href="logout.nhn">로그아웃</a> 
+
+
 </c:if>
 		</li>
 	</ul>
