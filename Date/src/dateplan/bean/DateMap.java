@@ -23,6 +23,18 @@ public class DateMap {
 				
 		return "/dateboard/test.jsp";
 	}
+	@RequestMapping("dateBoard.nhn")
+	public String dateBoard(HttpServletRequest request,DTO dto){
+		dto= (DTO)sqlMap.queryForObject("selectcos",null);
+		
+		
+		request.setAttribute("dto", dto);
+		
+		
+		
+		
+		return "/dateboard/dateBoard.jsp";
+	}
 	@RequestMapping("datePlan.nhn")
 	public String dateMap2(HttpServletRequest request,DTO dto) throws Exception{
 		
