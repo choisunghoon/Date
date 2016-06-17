@@ -35,7 +35,7 @@
 		<div id="subMain" style="float:left;width:86%">		
 		</div>	
 	</div>
-
+<%@include file="/sy0615/kk.jsp" %>
 
 
 </body>

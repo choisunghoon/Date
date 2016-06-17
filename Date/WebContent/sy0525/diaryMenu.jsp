@@ -59,7 +59,7 @@
           cursor:pointer
       }
       #css_tabs label[for=tab1] {
-          margin-left:35%
+          margin-left:31%
       }
       /* 선택된 라벨, 커서를 올린 라벨 스타일 지정 */
       #css_tabs input:nth-of-type(1):checked ~ label:nth-of-type(1), #css_tabs > label[for=tab1]:hover {
@@ -68,14 +68,6 @@
       }
       #css_tabs input:nth-of-type(2):checked ~ label:nth-of-type(2), #css_tabs > label[for=tab2]:hover {
           background:gold;
-          color:#fff
-      }
-      #css_tabs input:nth-of-type(3):checked ~ label:nth-of-type(3), #css_tabs > label[for=tab3]:hover {
-          background:green;
-          color:#fff
-      }
-      #css_tabs input:nth-of-type(4):checked ~ label:nth-of-type(3), #css_tabs > label[for=tab4]:hover {
-          background:green;
           color:#fff
       }
       /* 실제 내용이 담긴 div 요소 스타일 지정 */
@@ -88,7 +80,7 @@
          
 </style>
  
-<div style="width:200px; height:280; margin-left:44%;">
+<div style="width:200px; height:280; margin-left:37%;">
    <center>사귄 날짜 : <fmt:formatDate value="${cdb.coupledate }" pattern="YYYY-MM-dd" /></center>
    <div style="border:1px solid; width:200px; height:200px; float:left;">
       <c:if test="${cdb.coupleimage eq null }">
@@ -102,18 +94,14 @@
       <a href="diary.nhn?couplename=${couplename }" >이미지 변경</a>
    </center>
    
-</div>
+</div>	
 
-
-<div>
-
-</div>
 <div id="css_tabs">
     <input id="tab1" type="radio" name="tab" checked="checked" />
     <input id="tab2" type="radio" name="tab" />
     <label for="tab1">커플 다이어리</label>
     <label for="tab2" onclick="test()">커플 하트 나무</label>     
-    <div class="tab1_content">
+    <div class="tab1_content" style="width:1100px;">
       <div class="sub_photo">
           <div class="title_area">
              <a href="ex.nhn?couplename=${couplename }" style="margin-left:80%;">게시물 작성</a><br/>
@@ -122,7 +110,7 @@
             </form>
             <c:set var="i" value="1"/>
              <c:forEach var="diary" items="${diary}">
-               <ul class="tbl_area" id="dispRow${i }" style="margin-left:30%;display:none">
+               <ul class="tbl_area" id="dispRow${i }" style="margin-left:22%;display:none">
                		<c:set var="i" value="${i+1 }" />
                   <li style="padding-top:10px;">
                      <center><img src="syimage/${diary.img }" style="width:500px; height:500px;"></center>
@@ -130,7 +118,7 @@
                   <li>
                   <center>${diary.content}</center>
                   </li>
-                  <li style="margin-left:40%;">
+                  <li style="margin-left:42%;">
                      <button onClick="javascript:location.href='DiaryModify.nhn?num=${diary.num}&couplename=${couplename}'">수정</button>
                      <button onClick="javascript:location.href='DiaryDelete.nhn?num=${diary.num}&couplename=${couplename}'">삭제</button>
                   </li>
@@ -138,7 +126,7 @@
                </ul>
             </c:forEach>
             <div id="dispMore" style="display:none;padding-bottom:100px;">
-             <a href="#" onclick="listMore(${totalCnt})" style="margin-left:50%; ">더보기</a>
+             <a href="#" onclick="listMore(${totalCnt})" style="margin-left:45%; ">더보기</a>
             </div>
             <c:forEach end="${totalCnt}" begin="1" var="i">
                <c:if test="${i<=listMore }">
