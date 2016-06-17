@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import ch11.logon.LogonDataBean;
+import event.EventDataBean;
 import upload.bean.PointDataBean;
 
 @Controller
@@ -77,8 +78,34 @@ public class AdminBean {
 	}
 	
 	@RequestMapping("adminEvent.nhn")
-	public String event(){
+	public String event(HttpServletRequest request,HttpSession session,EventDataBean dto)throws Exception{
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
 		
+		List eventList = new ArrayList();
+		int count = 0;
+		
+		String pageNum = request.getParameter("pageNum");
+		int pageSize = 10;
+		if(pageNum == null){
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;
+		
+		eventList = sqlMap.queryForList("getWinEventList", null);
+		count = (Integer)sqlMap.queryForObject("winEventCount", null);
+	
+		
+		request.setAttribute("eventList", eventList);
+		request.setAttribute("count", count);
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("startRow",startRow);
+		request.setAttribute("endRow", endRow);
+		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("id", id);
+	
 		return "/admin/adminEvent.jsp";
 	}
 	

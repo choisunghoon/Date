@@ -2,6 +2,7 @@ package theme.bean;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -57,7 +58,7 @@ public class Theme {
 		String id = (String)session.getAttribute("id");
 		
 		CtgDataBean dto = new CtgDataBean();
-		List ctgList = null;
+		List ctgList = new ArrayList();
 		int count = 0;
 		
 		String pageNum = request.getParameter("pageNum");
@@ -78,7 +79,7 @@ public class Theme {
 		ctgList = sqlMap.queryForList("getCtgList", num);
 		count = (Integer)sqlMap.queryForObject("ctgCount", null);
 		
-		for(int i=0; i<count; i++){
+		for(int i=0; i<ctgList.size(); i++){
 			dto = (CtgDataBean)ctgList.get(i);
 			srclist = dto.getCtg_img().split(",");
 			dto.setCtg_img(path + srclist[0]);
