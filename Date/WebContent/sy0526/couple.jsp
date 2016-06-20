@@ -30,11 +30,12 @@
 <br /><br />
  
 	<div style="width:100%;float:left;" >
-		<div style="width:12%;float:left;margin-left:10px">
-			<a href="#" onclick="callAjax('diaryMenu.nhn')"><img src="syimage/csh.png" /></a>
+		<div style="width:12%;float:left;margin-left:0">
+			<a href="#" onclick="callAjax('diaryMenu.nhn')"><img src="syimage/mm3.png" onmouseover='this.src="syimage/mm4.png"' onmouseout='this.src="syimage/mm3.png"' /></a>
 			<br />
-			<a href="#" onclick="callAjax('DateMap.nhn')"><img src="syimage/csh.png" /></a>
-			
+			<a href="#" onclick="callAjax('DateMap.nhn')"><img src="syimage/mm1.png" onmouseover='this.src="syimage/mm2.png"' onmouseout='this.src="syimage/mm1.png"' /></a>
+			<br />
+			<a href="#" onclick="callAjax('index.nhn')"><img src="syimage/mm5.png" onmouseover='this.src="syimage/mm6.png"' onmouseout='this.src="syimage/mm5.png"' /></a>
 		</div>
 		<div style="float:left;width:2%">&nbsp;&nbsp;&nbsp;</div>
 		<div id="subMain" style="float:left;width:86%">		
