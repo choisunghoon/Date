@@ -43,7 +43,7 @@
 
 
 .placeinfov {margin-top:200px; width:200px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;float:left;margin-right: 20px; }
-.placeinfov_wrap {position:absolute;bottom:28px;width:100%;}
+.placeinfov_wrap {position:absolute;bottom:28px;width:100%;margin-top: 100px;}
 
 .placeinfov:nth-of-type(n){border:0; box-shadow:0px 1px 2px #888;}
 .placeinfov_wrap .after {content:'';margin-left:-12px;left:50%;width:22px;height:12px;background:url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
