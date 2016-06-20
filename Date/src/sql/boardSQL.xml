@@ -11,6 +11,7 @@
 		  	<result property="nickname" column="nickname"/>
 		  	<result property="location" column="location"/>
 		  	<result property="couple" column="couple"/>
+		  	<result property="list" column="list"/>
 		</resultMap>
 	<typeAlias alias="cdto" type="ch11.logon.CoupleDataBean" />
 
@@ -23,12 +24,23 @@
 		  	<result property="point" column="point"/>
 		  	<result property="coupleImage" column="coupleImage"/>
 		</resultMap>
-		
+		<typeAlias alias="adto" type="ch11.logon.AlertDataBean" />
+
+		<!-- 리절트 맵 정의 -->
+	  	<resultMap id="adtoRes" class="adto">
+	  		<result property="num" column="num"/>
+		  	<result property="id" column="id"/>
+		  	<result property="nickname" column="nickname"/>
+		  	<result property="couplename" column="couplename"/>
+		  	<result property="content" column="content"/>
+		  	<result property="readcheck" column="readcheck"/>
+		  	<result property="regdate" column="regdate"/>
+		</resultMap>
 		
 		<!-- insert 쿼리문 정의 -->
 		<insert id="insertMember" parameterClass="dto">
 		
-      		INSERT INTO dc_member
+      		INSERT INTO dc_member(id,pw,nickname,location,couple) 
       		
                 	 VALUES (
                 	 		#id#,
@@ -49,6 +61,17 @@
                          	#id2#,
                          	#point#,
                          	#coupleImage#
+                             )
+		</insert>
+		<insert id="insertAlert" parameterClass="adto">
+		
+      		INSERT INTO dc_alert(num,id,nickname,couplename,content)
+                	 VALUES (
+                	 		alert_seq.nextval,
+                	 		#id#,
+                	 		#nickname#,
+                	 		#couplename#,
+                	 		#content#
                              )
 		</insert>
 		<update id="updateMember" parameterClass="dto">
@@ -130,6 +153,9 @@
 		<!-- select 쿼리문 정의 -->
 		<select id="selectAll" resultMap="dtoRes">
 			SELECT * FROM dc_member 
+		</select>
+		<select id="getAlert" parameterClass="String" resultClass="adto">
+			select *from dc_alert where id=#id# and redcheck='0'
 		</select>
 		
 		

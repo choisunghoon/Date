@@ -2,6 +2,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
 <html>
 <head><title>커플삭제</title>
 <link href="style.css" rel="stylesheet" type="text/css">
@@ -22,7 +23,7 @@
      -->
    </script>
 </head>
-<BODY onload="begin()" >
+<BODY onload="begin()">
 <form name="myform" action="coupleDelete.nhn" method="post" onSubmit="return checkIt()">
 <TABLE class="table" cellSpacing=0 cellPadding=0 width="260" border=0 align="center" >
   

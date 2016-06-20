@@ -8,6 +8,14 @@ public class LogonDataBean{
 	private String nickname;
 	private String location;
 	private String couple;
+	private String list;
+	
+	public String getList() {
+		return list;
+	}
+	public void setList(String list) {
+		this.list = list;
+	}
 	public String getCouple() {
 		return couple;
 	}
