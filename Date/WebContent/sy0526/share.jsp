@@ -27,13 +27,14 @@
 <body>
 
 <div style="width:100%;float:left;" >
-		<div style="width:12%;float:left;">
-			<a href="#" onclick="callAjax('index.nhn')">코스게시판</a>
-			
+		<div style="width:12%;float:left;margin-left:0">
+			<a href="#" onclick="callAjax('.nhn')"><img src="syimage/mm19.png" onmouseover='this.src="syimage/mm20.png"' onmouseout='this.src="syimage/mm19.png"' /></a>
+			<br />
+			<a href="#" onclick="callAjax('.nhn')"><img src="syimage/mm21.png" onmouseover='this.src="syimage/mm22.png"' onmouseout='this.src="syimage/mm21.png"' /></a>
 		</div>
 		<div style="float:left;width:2%">&nbsp;&nbsp;&nbsp;</div>
 		<div id="subMain" style="float:left;width:86%">		
-		</div>	
+		</div>
 	</div>
 <%@include file="/sy0615/kk.jsp" %>
 

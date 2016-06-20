@@ -24,11 +24,11 @@
     
     
     <div style="width:100%;float:left;" >
-		<div style="width:12%;float:left;">
-			<a href="#" onclick="callAjax('adphoto.nhn')">포토북 관리</a>
-			<a href="#" onclick="callAjax('point.nhn')">포인트 관리</a>	
-			<a href="#" onclick="callAjax('AdminMember.nhn')">회원 관리</a>
-			<a href="#" onclick="callAjax('adminEvent.nhn')">당첨자 관리</a>	
+		<div style="width:12%;float:left;margin-left:0">
+			<a href="#" onclick="callAjax('adphoto.nhn')"><img src="syimage/mm9.png" onmouseover='this.src="syimage/mm10.png"' onmouseout='this.src="syimage/mm9.png"' /></a>
+			<a href="#" onclick="callAjax('point.nhn')"><img src="syimage/mm11.png" onmouseover='this.src="syimage/mm12.png"' onmouseout='this.src="syimage/mm11.png"' /></a>	
+			<a href="#" onclick="callAjax('AdminMember.nhn')"><img src="syimage/mm7.png" onmouseover='this.src="syimage/mm8.png"' onmouseout='this.src="syimage/mm7.png"' /></a>
+			<a href="#" onclick="callAjax('adminEvent.nhn')"><img src="syimage/mm13.png" onmouseover='this.src="syimage/mm14.png"' onmouseout='this.src="syimage/mm13.png"' /></a>	
 		</div>
 		<div style="float:left;width:2%">&nbsp;&nbsp;&nbsp;</div>
 		<div id="subMain" style="float:left;width:86%">		
