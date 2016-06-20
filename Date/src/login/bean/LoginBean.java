@@ -10,6 +10,7 @@ import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ch11.logon.CoupleDataBean;
 import ch11.logon.LogonDataBean;
 
 @Controller
@@ -27,11 +28,13 @@ public class LoginBean {
 		//request.setAttribute("check", check);
 		
 			//request.setAttribute("id", id);
-		
 			int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);
-		
+			session.setAttribute("id", id);
 			request.setAttribute("nickcheck", nickcheck);
 
+			
+			
+			
 			return "/sy0526/main.jsp";
 		
 		

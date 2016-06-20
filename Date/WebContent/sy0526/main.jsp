@@ -2,30 +2,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script language="javascript" src="http://connect.facebook.net/ko_KR/all.js" type="text/javascript"></script>
-<html xmlns:fb="http://ogp.me/ns/fb#">
-<head>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<meta charset="UTF-8">
-<script type="text/javascript">
-    function asdf(nhn){
-        $.ajax({
-	        type: "post",
-	        url : nhn,
-	        
-	        success: test,	// 페이지요청 성공시 실행 함수
-	        error: whenError	//페이지요청 실패시 실행함수
-     	});
-    }
-    function test(aaaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-        $(".modal-body").html(aaaa);
-        
-    }
-    function whenError(){
-        alert("Error");
-    }
-  </script>
+
 <style type="text/css">
 body{
 	top:0px;
@@ -89,60 +68,60 @@ li{
 	img {
 		border:0}
 </style>
-</head>
-<body>
-<div id="fb-root"></div>
-<script language="javascript" type="text/javascript">
+<html xmlns:fb="http://ogp.me/ns/fb#">
+    <div id="fb-root"></div>
+  <script type="text/javascript">
+  
 
-window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1136320869764141', // 앱 ID
-      status     : true,          // 로그인 상태를 확인
-      cookie     : true,          // 쿠키허용
-      xfbml      : true           // parse XFBML
-    });
-   
-    FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-        	
-        	
-        	
-        } else if (response.status === 'not_authorized') {
-        
-        	
-        	
-        } else {
-        	
-        	
-        }
-    });
-    
-    FB.Event.subscribe('auth.login', function(response) {
-    	FB.api('/me', function(user) {
-            if (user) {
-            	
-            	
-            	
-                window.location.href = 'loginPro.nhn?fbid='+user.id+'&hidden=fb';
-                
-            }
-        }); 
-    	
-    	//document.location.reload();
-    });
-    FB.Event.subscribe('auth.logout', function(response) {
-    	
-    	
-    	session.invalidate();
-    	document.location.href='main.nhn';
-	});
-   
-  }
 
-  // Load the SDK Asynchronously
- 
-	
-</script>
+  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '1136320869764141', // 앱 ID
+	      status     : true,          // 로그인 상태를 확인
+	      cookie     : true,          // 쿠키허용
+	      xfbml      : true           // parse XFBML
+	    });
+	   
+	    FB.getLoginStatus(function(response) {
+	        if (response.status === 'connected') {
+	        	 
+	        	
+	        	
+	        } else if (response.status === 'not_authorized') {
+	        
+	        	
+	        	
+	        } else {
+	        	
+	        	
+	        }
+	    });
+	    
+	    FB.Event.subscribe('auth.login', function(response) {
+	    	FB.api('/me', function(user) {
+	            if (user) {
+	            	
+	            	
+	                window.location.href = 'loginPro.nhn?id='+user.id+'&hidden=fb';
+	                
+	            }
+	        }); 
+	    	
+	    	//document.location.reload();
+	    });
+	    FB.Event.subscribe('auth.logout', function(response) {
+	    	
+	    	
+	    	session.invalidate();
+	    	document.location.href='main.nhn';
+		});
+	   
+	  }
+
+	  // Load the SDK Asynchronously
+	 
+		
+	</script>
 <c:if test="${id eq 'undefined'}">
 <% 
 	session.invalidate();
@@ -154,6 +133,45 @@ window.fbAsyncInit = function() {
 	alert("별명을 입력하지 않으시면 사이트 이용에 제한이 됩니다.회원정보 변경 메뉴에서 별명을 입력해주세요");
 </script>
 </c:if>
+<script type="text/javascript">
+    function asdf(nhn){
+        $.ajax({
+	        type: "post",
+	        url : nhn,
+	        
+	        success: test,	// 페이지요청 성공시 실행 함수
+	        error: whenError	//페이지요청 실패시 실행함수
+     	});
+    }
+    function test(aaaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $(".modal-body").html(aaaa);
+        
+    }
+    function whenError(){
+        alert("Error");
+    }
+  </script>
+  <body>
+<div class="container">
+
+	<!-- 모달 팝업 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	  <div class="modal-dialog" style="width:80%">
+	    <div class="modal-content">
+	      <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		
+	      </div>
+	      <div class="modal-body">
+		
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+
+</div>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <div id="topmenu">
 	<ul>
 		<li class="top2">
@@ -183,25 +201,6 @@ window.fbAsyncInit = function() {
 	</ul>
 </div>
 
-<div class="container">
-
-	<!-- 모달 팝업 -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-	  <div class="modal-dialog" style="width:80%">
-	    <div class="modal-content">
-	      <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-		
-	      </div>
-	      <div class="modal-body">
-		
-	      </div>
-	      
-	    </div>
-	  </div>
-	</div>
-
-</div>
 <div id="menu">
 	<ul style="margin-left:5%; margin-top:35%;">
 		<li>

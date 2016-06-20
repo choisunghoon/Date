@@ -170,6 +170,7 @@ public class InputBean {
 		
 		request.setAttribute("check1", check1);
 		request.setAttribute("check2", check2);
+		
 		System.out.println("check1:"+check1+"check2:"+check2);
 		return "/dc/coupleinfo.jsp";
 	}
@@ -191,6 +192,14 @@ public class InputBean {
 		cdto.setCoupleName(coupleName);
 		request.setAttribute("id", id);
 		sqlMapper.insert("insertCouple", cdto);
+		
+		AlertDataBean adto=new AlertDataBean();
+		adto.setId(id);
+		adto.setNickname(nickname);
+		adto.setCouplename(coupleName);
+		adto.setContent("coupleRequest");
+		sqlMapper.insert("insertAlert", adto);
+		
 		return "/dc/mypage.jsp";
 	}
 	@RequestMapping("couplex.nhn")
@@ -208,6 +217,7 @@ public class InputBean {
 		sqlMapper.update("memCouple1", cdto.getId1());
 		sqlMapper.update("memCouple1", cdto.getId2());
 		request.setAttribute("id", id);
+	
 		return "/dc/mypage.jsp";
 	}
 

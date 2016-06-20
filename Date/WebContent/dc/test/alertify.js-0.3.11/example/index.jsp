@@ -22,14 +22,31 @@
 	$(document).ready(function() { 
 		alert();
 	});
-	 $(document).ready(function(){
+	 /* $(document).ready(function(){
 	    	window.setInterval('alert()', 60000); //1분마다 alert()를 반복!
 
-	    });
+	    }); */
 		function alert(){
 			reset();
-			alertify.set({ delay: 20000 });
-			alertify.log("<a href='/Date/mypage.nhn' class='alert-link'>커플 신청이 왔습니다.</a>");
+			alertify.set({ delay: 1000*60*60*24 });
+			alertify.log("<a href='/Date/mypage.nhn' class='alert-link'>커플 신청이 왔습니다!</a>");
+			return false;
+		};
+	</script>
+</c:if>
+<c:if test="${check2 eq 1 and couple2.couple eq '1' and viewcheck eq 0}">	
+	<script>
+	$(document).ready(function() { 
+		alert();
+	});
+	 /* $(document).ready(function(){
+	    	window.setInterval('alert()', 60000); //1분마다 alert()를 반복!
+
+	    }); */
+		function alert(){
+			reset();
+			alertify.set({ delay: 1000*10 });
+			alertify.log("<a href='/Date/mypage.nhn' class='alert-link'>상대방이 커플 신청을 수락 했습니다!</a>");
 			return false;
 		};
 	</script>
