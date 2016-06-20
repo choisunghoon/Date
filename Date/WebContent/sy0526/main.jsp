@@ -217,7 +217,7 @@ li{
 		</li>
 		<li>
 			<c:if test="${id != 'admin'}">
-			<a href="personal.nhn"><img src="mainimg/as9.png" onmouseover='this.src="mainimg/as10.png"' onmouseout='this.src="mainimg/as9.png"'></a>
+			<a href="mypage.nhn?fbcheck=no&id=${id}"><img src="mainimg/as9.png" onmouseover='this.src="mainimg/as10.png"' onmouseout='this.src="mainimg/as9.png"'></a>
 			</c:if>
 			<c:if test="${id == 'admin'}">
 			<a href="adminpage.nhn"><img src="mainimg/a12.png" onmouseover='this.src="mainimg/a11.png"' onmouseout='this.src="mainimg/a12.png"'></a>

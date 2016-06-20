@@ -93,6 +93,20 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 </table>
 </form>
 
+<div style="width:100%;float:left;" >
+		<div style="width:12%;float:left;margin-left:0">
+			<ul>
+				<li id="modifyForm.nhn?id=${id }"><img src="syimage/mm23.png" onmouseover='this.src="syimage/mm24.png"' onmouseout='this.src="syimage/mm23.png"' /></a></li>
+				<c:if test="${check eq 'no' }">
+				<li id="deleteForm.nhn?id=${id }"><a>회원 탈퇴</a></li>
+				</c:if>
+			</ul>
+		</div>
+		<div style="float:left;width:2%">&nbsp;&nbsp;&nbsp;</div>
+		<div id="subMain" style="float:left;width:86%">		
+		</div>
+	</div>
+
 
 <script>
 $('ul li').click(function(){
