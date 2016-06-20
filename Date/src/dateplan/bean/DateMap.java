@@ -47,9 +47,9 @@ public class DateMap {
 	@RequestMapping("cosSave.nhn")
 	public String cosSave(HttpServletRequest request,DTO dto) throws Exception{
 			
-			System.out.println(dto.getPlacetitle());
+			
 			sqlMap.insert("insertcos", dto);
-			System.out.println(dto.getPlacetitle());
+			
 		
 		request.setAttribute("dto", dto);
 		
