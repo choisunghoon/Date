@@ -29,11 +29,8 @@ public class DateMap {
 		
 		
 		request.setAttribute("dto", dto);
-		
-		
-		
-		
-		return "/dateboard/dateBoard.jsp";
+
+		return "/dateboard/dateboardd.jsp";
 	}
 	@RequestMapping("datePlan.nhn")
 	public String dateMap2(HttpServletRequest request,DTO dto) throws Exception{
@@ -49,10 +46,10 @@ public class DateMap {
 	}
 	@RequestMapping("cosSave.nhn")
 	public String cosSave(HttpServletRequest request,DTO dto) throws Exception{
-	
-	
+			
+			
 			sqlMap.insert("insertcos", dto);
-			System.out.println(dto.getPlacetitle());
+			
 		
 		request.setAttribute("dto", dto);
 		

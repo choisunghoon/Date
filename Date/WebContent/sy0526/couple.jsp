@@ -16,7 +16,6 @@
     }
     function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
         $("#subMain").html(aaa);
-        
     }
     function whenError2(){
         alert("Error");
