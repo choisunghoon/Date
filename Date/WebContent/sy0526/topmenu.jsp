@@ -43,7 +43,7 @@
 		font-weight:bold;
 		}
 	body{
-		background-color:#FAE6E6 !important;
+		background-color:#FAE6E6;
 		}
 
 </style>
@@ -136,7 +136,7 @@
     }
   </script>
    
-<body>
+<body class="asdf">
 <div class="container">
 
 	<!-- 모달 팝업 -->
