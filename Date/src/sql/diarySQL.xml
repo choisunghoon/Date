@@ -81,5 +81,9 @@
 	<insert id="insertpoint" parameterClass="upload.bean.PointDataBean">
 		insert into dc_point(num,couplename,usePoint,place,regdate) values(dc_point_seq.nextval,#couplename#,#usePoint#,#place#,sysdate)
 	</insert>
+	
+	<insert id="diarypoint" parameterClass="upload.bean.PointDataBean">
+		insert into dc_point(num,couplename,getPoint,place,regdate) values(dc_point_seq.nextval,#couplename#,#getPoint#,#place#,sysdate)
+	</insert>
 </sqlMap>
 

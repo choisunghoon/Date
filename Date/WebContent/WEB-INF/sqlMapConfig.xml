@@ -9,9 +9,7 @@
 	
 
 	<sqlMap resource="/sql/boardSQL.xml"/>
-
-	<sqlMap resource="/sql/eventSQL.xml"/>
-
+	<sqlMap resource="/sql/projectSQL.xml"/>
 	<sqlMap resource="/sql/dateSQL.xml"/>
 	<sqlMap resource="/sql/diarySQL.xml"/>
 	<sqlMap resource="/sql/AdminSQL.xml"/>
