@@ -43,7 +43,7 @@
 		font-weight:bold;
 		}
 	body{
-		background-color:#FAE6E6;
+		background-color:#FAE6E6 !important;
 		}
 
 </style>

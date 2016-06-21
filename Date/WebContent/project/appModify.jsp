@@ -21,7 +21,7 @@ function modify() {
 	});
 }
 function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-    $(".modal-body").html(aaa);	//id가 ajaxReturn인 부분에 넣어라
+    $(".modal-bodyy").html(aaa);	//id가 ajaxReturn인 부분에 넣어라
 }
 function whenError(){
     alert("Error");

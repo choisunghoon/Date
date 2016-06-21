@@ -134,35 +134,7 @@
 
 
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-      $("#save").click(function(){
-          callAjax();
-      });
-    });
-    function callAjax(){
-        $.ajax({
-	        type: "post",
-	        url : "cosSave.nhn",
-	        dataType:'json',
-	        data: {	// url 페이지도 전달할 파라미터
-	        	placetitle : $('#placetitle').val(),
-	        	placeid : $('#placeid').val()
-	        },
-	        success: test,	// 페이지요청 성공시 실행 함수
-	        error: whenError	//페이지요청 실패시 실행함수
-     	});
-    }
-    
-    function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-        $("#ajaxReturn").html(aaa);
-        console.log(resdata);
-    }
-    
-    function whenError(){
-        alert("Error");
-    }
-  </script>
+
 <script>
 // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 
