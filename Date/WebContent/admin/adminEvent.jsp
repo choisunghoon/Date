@@ -3,27 +3,62 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<script>
-	function search(){
-		var sch_value=jQuery('#form_search #sch_value').val();
-		if (sch_value == '') {alert('검색어를 입력하세요.');}
-		else{
-			jQuery('#form_search').submit();
-		}
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=9be7455c7d33a4e2b750d3537e1179d8&libraries=services"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+
+	function check() {
+    	if (document.form.keyword.value == "") {
+        	alert("검색어를 입력하세요.");
+        	document.form.keyword.focus();
+        	return false;
+    	}
+    	else if(document.form.keyword.value != ""){
+    		callAjax('adminEventPro.nhn');
+    		
+    	}
 	}
-</script>
+ 
+    function callAjax(nhn){
+    
+        $.ajax({
+	        type: "post",
+	        url : nhn,
+	        data:{
+	        	states : $('#states').val(),
+	        	keyword: $("#keyword").val()
+	        },
+	        success: refresh,	// 페이지요청 성공시 실행 함수
+	        error: whenError2	//페이지요청 실패시 실행함수
+     	});
+    }
+    function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $("#subMain").html(aaa);
+        
+    }
+    function whenError2(){
+        alert("Error");
+    }
+  </script>
 
 <body>
 <center><h2>당첨자 확인(전체 내역 : ${count})</h2>
-<form id="form_search" method="get" action="point.nhn">
-<select id="sch_type" name="sch_type">
-	<option value="subject" selected="selected">커플 이름</option>
-	<option value="board">게시판</option>
-</select>
-<input type="text" id="sch_value" name="sch_value" />
-<button type="button" onclick="search();">검색</button>
+<div style="width:100%;float:center;" >
+	<div style="width:12%;float:center;">
+		
+		<form name="form" method="post" onSubmit="check()" >
+			<input type="hidden" name="search" value="1">
+			<input type="text" id="keyword" name="keyword" value="" size="15" maxlength="15">
+			
+			
+			<select name="states" id="states">
+				<option value="1">이벤트 이름</option>
+				<option value="2">당첨 커플</option>
+			</select>
+				<input type="button" value="검색" onclick="check()">
+		</form>	
+ 
 <table width="500" border="1" cellspacing="0" cellpadding="0"   align="center">
-
 	<tr height="30" >
 		<td align="center" width="100">이벤트 번호</td>
 		<td align="center" width="150">이벤트 이름</td>
@@ -44,12 +79,13 @@
 	<tr>
 		<td align="center">${eventList.enumber}</td>
 		<td align="center">${eventList.ename}</td>
-		<td align="center">${eventList.edate}~${eventList.sdate}</td>
+		<td align="center">${eventList.sdate}~${eventList.edate}</td>
 		<td align="center">${eventList.wnumber}</td>
 		<td align="center">${eventList.w}</td>
 		<td align="center">${eventList.wcouples}</td>
-
 	</tr>
+	
+	
 	</c:forEach>
 	</c:if>
 	</table>
@@ -66,17 +102,21 @@
    </c:if> 
           
    <c:if test="${startPage > 10}">
-        <a href="point.nhn?pageNum=${startPage - 10 }">[이전]</a>
+        <a href="#" onclick="callAjax('adminEvent.nhn?pageNum=${startPage - 10 }')">[이전]</a>	
    </c:if>
 
    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <a href="point.nhn?pageNum=${i}">[${i}]</a>
+       <a href="#" onclick="callAjax('adminEvent.nhn?pageNum=${i}')">[${i}]</a>
    </c:forEach>
 
    <c:if test="${endPage < pageCount}">
-        <a href="point.nhn?pageNum=${startPage + 10}">[다음]</a>
+        <a href="#" onclick="callAjax('adminEvent.nhn?pageNum=${startPage + 10 }')">[다음]</a>
    </c:if>
 </c:if>
-</form>
 </center>
+	</div>
+		<div style="float:center;width:2%">&nbsp;&nbsp;&nbsp;</div>
+		<div id="subMain" style="float:center;width:86%">		
+		</div>
+	</div>
 </body>

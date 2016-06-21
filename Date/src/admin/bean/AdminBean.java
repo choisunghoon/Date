@@ -59,10 +59,14 @@ public class AdminBean {
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
 		
-		pointList = sqlMap.queryForList("getPointList", null);
+		HashMap<String, Integer> num = new HashMap<String, Integer>();
+		num.put("startRow", startRow);
+		num.put("endRow", endRow);
+		
+		pointList = sqlMap.queryForList("getPointList", num);
 		count = (Integer)sqlMap.queryForObject("pointCount", null);
 		
-		for(int i=0; i<count; i++){
+		for(int i=0; i<pointList.size(); i++){
 			dto = (PointDataBean)pointList.get(i);
 		}
 		
@@ -94,7 +98,12 @@ public class AdminBean {
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
 		
-		eventList = sqlMap.queryForList("getWinEventList", null);
+		HashMap<String, Integer> num = new HashMap<String, Integer>();
+		num.put("startRow", startRow);
+		num.put("endRow", endRow);
+		
+		
+		eventList = sqlMap.queryForList("getWinEventList", num);
 		count = (Integer)sqlMap.queryForObject("winEventCount", null);
 	
 		
@@ -109,17 +118,47 @@ public class AdminBean {
 		return "/admin/adminEvent.jsp";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public String bbsList(HttpServletRequest request, Model model){
+	@RequestMapping("adminEventPro.nhn")
+	public String adminEventPro(HttpServletRequest request, EventDataBean edb){
+		String keyword = request.getParameter("keyword");
+		System.out.println(keyword);
+		int a = Integer.parseInt(request.getParameter("states"));
+		List eventList = new ArrayList();
+		if(a == 1){
+			eventList = sqlMap.queryForList("searchWinEventList", keyword);	
+		}else if(a == 2){
+			eventList = sqlMap.queryForList("searchWinEventList1", keyword);
+		}
+		System.out.println(a);
 		
-		String sch_type = request.getParameter("sch_type");
-		String sch_value = request.getParameter("sch_value");
-		Map mapSearch = new HashMap();
-		mapSearch.put("sch_type", sch_type);
-		mapSearch.put("sch_value", sch_value);
+		request.setAttribute("eventList", eventList);
 		
-		model.addAttribute("mapSearch",mapSearch);
-		return "bbs.list";
+		return "/admin/adminEvent.jsp";
+	}
+	
+	@RequestMapping("pointPro.nhn")
+	public String pointPro(HttpServletRequest request, PointDataBean pdb){
+		String keyword = request.getParameter("keyword");
+		System.out.println(keyword);
+		int a = Integer.parseInt(request.getParameter("states"));
+		String place = "";
+		if(a == 1){
+			place = "포토북";
+		}else if(a == 2){
+			place = "다이어리 공유";
+		}else{
+			place = "코스 공유";
+		}
+		System.out.println(a);
+		pdb.setCouplename(keyword);
+		pdb.setPlace(place);
+		List pointList = new ArrayList();
+		
+		pointList = sqlMap.queryForList("searchWinPointList", pdb);
+		
+		request.setAttribute("pointList", pointList);
+		
+		return "/admin/point.jsp";
 	}
 	
 
