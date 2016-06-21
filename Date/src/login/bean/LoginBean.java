@@ -39,7 +39,7 @@ public class LoginBean {
 				int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			
 			
-				if(checkAlert==1){
+				if(checkAlert!=0){
 					AlertDataBean adto=new AlertDataBean();
 					adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
 					session.setAttribute("adto", adto);
@@ -48,7 +48,7 @@ public class LoginBean {
 			}
 				int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 				System.out.println("메인 체크알럿1"+checkAlert1);
-				if(checkAlert1==1){
+				if(checkAlert1!=0){
 					LogonDataBean dto=new LogonDataBean();
 					dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
 					System.out.println("메인 if dto.getCouple"+dto.getCouple());
@@ -127,7 +127,7 @@ public class LoginBean {
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 		
 		
-			if(checkAlert==1){
+			if(checkAlert!=0){
 				AlertDataBean adto=new AlertDataBean();
 				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
 				session.setAttribute("adto", adto);
@@ -136,7 +136,7 @@ public class LoginBean {
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 			System.out.println("메인 체크알럿1"+checkAlert1);
-			if(checkAlert1==1){
+			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
 				System.out.println("메인 if dto.getCouple"+dto.getCouple());
@@ -163,7 +163,7 @@ public class LoginBean {
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 		
 		
-			if(checkAlert==1){
+			if(checkAlert!=0){
 				AlertDataBean adto=new AlertDataBean();
 				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
 				session.setAttribute("adto", adto);
@@ -172,7 +172,7 @@ public class LoginBean {
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 			System.out.println("메인 체크알럿1"+checkAlert1);
-			if(checkAlert1==1){
+			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
 				System.out.println("메인 if dto.getCouple"+dto.getCouple());
@@ -198,7 +198,7 @@ public class LoginBean {
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 		
 		
-			if(checkAlert==1){
+			if(checkAlert!=0){
 				AlertDataBean adto=new AlertDataBean();
 				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
 				session.setAttribute("adto", adto);
@@ -207,7 +207,7 @@ public class LoginBean {
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 			System.out.println("메인 체크알럿1"+checkAlert1);
-			if(checkAlert1==1){
+			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
 				System.out.println("메인 if dto.getCouple"+dto.getCouple());
@@ -233,7 +233,7 @@ public class LoginBean {
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 		
 		
-			if(checkAlert==1){
+			if(checkAlert!=0){
 				AlertDataBean adto=new AlertDataBean();
 				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
 				session.setAttribute("adto", adto);
@@ -242,7 +242,7 @@ public class LoginBean {
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 			System.out.println("메인 체크알럿1"+checkAlert1);
-			if(checkAlert1==1){
+			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
 				System.out.println("메인 if dto.getCouple"+dto.getCouple());
@@ -269,7 +269,7 @@ public class LoginBean {
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 		
 		
-			if(checkAlert==1){
+			if(checkAlert!=0){
 				AlertDataBean adto=new AlertDataBean();
 				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
 				session.setAttribute("adto", adto);
@@ -278,7 +278,7 @@ public class LoginBean {
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 			System.out.println("메인 체크알럿1"+checkAlert1);
-			if(checkAlert1==1){
+			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
 				System.out.println("메인 if dto.getCouple"+dto.getCouple());

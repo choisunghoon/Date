@@ -122,7 +122,7 @@ public class InputBean {
 	}
 	@RequestMapping("coupleDelete.nhn")
 	public String coupleDelete(HttpSession session,HttpServletRequest request) throws Exception{
-		String id =request.getParameter("id");
+		String id=(String)session.getAttribute("id");
 		int check=(Integer)sqlMapper.queryForObject("getCouple", id);
 		if(check==1){
 			CoupleDataBean cdto=new CoupleDataBean();
@@ -265,8 +265,8 @@ public class InputBean {
 		sqlMapper.update("memCouple1", cdto.getId1());
 		sqlMapper.update("memCouple1", cdto.getId2());
 		sqlMapper.update("readCheck", nickname);
+		sqlMapper.update("coupleComplete", nickname);
 		request.setAttribute("id", id);
-	
 		return "/dc/mypage.jsp";
 	}
 

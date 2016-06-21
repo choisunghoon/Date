@@ -112,6 +112,11 @@
 				set readcheck='2'
 				where id=#id#
 		</update>
+		<update id="coupleComplete" parameterClass="String">
+			update dc_alert
+				set content='couple'
+				where nickname=#nickname#
+		</update>
 		<delete id="deleteCouple" parameterClass="String">
 			delete from dc_couple where id1=#id# or id2=#id#
 		</delete>
@@ -174,6 +179,9 @@
 		</select>
 		<select id="getAlert1" parameterClass="String" resultClass="adto">
 			select *from dc_alert where id=#id# and readcheck='1'
+		</select>
+		<select id="getAlert2" parameterClass="String" resultClass="adto">
+			select *from dc_alert where nickname=#nickname# and readcheck='1'
 		</select>
 		<select id="getNick" parameterClass="String" resultClass="String">
 			select nickname from dc_member where id=#id#
