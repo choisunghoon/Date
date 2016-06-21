@@ -10,15 +10,35 @@
 	</select>
 	
 	<select id="getPointList" resultClass="upload.bean.PointDataBean">
-	    select * from dc_point
+	    select num, couplename, usePoint, getPoint, place, regdate, r from
+	    (select num, couplename, usePoint, getPoint, place, regdate, rownum r from
+	    (select num, couplename, usePoint, getPoint, place, regdate from dc_point)) where r>=#startRow# and <![CDATA[r<=#endRow#]]> order by num desc
 	</select>
 	
 	<select id="winEventCount" resultClass="int">
 	    select count(*) from event
 	</select>
-	
+
 	<select id="getWinEventList" resultClass="event.EventDataBean">
-	    select * from event
+	    select enumber, ename, eimg, wcouples, regdate, edate, sdate, wnumber, w, r from
+	    (select enumber, ename, eimg, wcouples, regdate, edate, sdate, wnumber, w , rownum r from
+	    (select enumber, ename, eimg, wcouples, regdate, edate, sdate, wnumber, w from event)) where r>=#startRow# and <![CDATA[r<=#endRow#]]> order by enumber desc
+	</select>
+	
+	<select id="searchWinEventList" resultClass="event.EventDataBean">
+		select * from event where ename like '%'||#keyword#||'%'
+	</select>
+	
+	<select id="searchWinPointList" resultClass="upload.bean.PointDataBean">
+		select * from dc_point where couplename like '%'||#couplename#||'%' and place = #place#
+	</select>
+	
+	<select id="searchWinEventList1" resultClass="event.EventDataBean">
+		select * from event where  wcouples like '%'||#keyword#||'%'
+	</select>
+	
+	<select id="searchWinEventList2" resultClass="event.EventDataBean">
+		select * from event
 	</select>
 	
 	<delete id="memberDelete" parameterClass="ch11.logon.LogonDataBean">
