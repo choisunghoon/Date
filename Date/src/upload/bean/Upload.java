@@ -30,7 +30,7 @@ public class Upload {
 	}
 	
 	@RequestMapping("/upload2.nhn")
-	public String upload(MultipartHttpServletRequest request,DiaryDataBean ddb) throws Exception{
+	public String upload(MultipartHttpServletRequest request,DiaryDataBean ddb, PointDataBean pidb) throws Exception{
 		int w = Integer.parseInt(request.getParameter("w"));
 		int h = Integer.parseInt(request.getParameter("h"));
 		int wwd= 1000;
@@ -47,6 +47,12 @@ public class Upload {
 		File copy = new File(RealPath+"/"+orgName);
 		file.transferTo(copy);
 		sqlMap.insert("insertDiary",ddb);
+		int getPoint = 5;
+		String place="커플다이어리";
+		pidb.setCouplename(couplename);
+		pidb.setGetPoint(getPoint);
+		pidb.setPlace(place);
+		sqlMap.insert("diarypoint", pidb);
 		request.setAttribute("orgName", orgName);
 		check=1;
 		}
