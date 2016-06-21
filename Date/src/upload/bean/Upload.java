@@ -30,7 +30,7 @@ public class Upload {
 	}
 	
 	@RequestMapping("/upload2.nhn")
-	public String upload(MultipartHttpServletRequest request,DiaryDataBean ddb, PointDataBean pidb) throws Exception{
+	public String upload(MultipartHttpServletRequest request,DiaryDataBean ddb, PointDataBean pidb, CoupleDataBean cdb) throws Exception{
 		int w = Integer.parseInt(request.getParameter("w"));
 		int h = Integer.parseInt(request.getParameter("h"));
 		int wwd= 1000;
@@ -53,6 +53,12 @@ public class Upload {
 		pidb.setGetPoint(getPoint);
 		pidb.setPlace(place);
 		sqlMap.insert("diarypoint", pidb);
+		int point = (Integer)sqlMap.queryForObject("getpoint", cdb);
+		int point2 = point + 5;
+		cdb.setPoint(point2);
+		sqlMap.update("photopoint", cdb);
+		
+		
 		request.setAttribute("orgName", orgName);
 		check=1;
 		}
@@ -245,11 +251,11 @@ public class Upload {
 		ddb.setCouplename(couplename);
 		cdb.setCouplename(couplename);
 		int point = (Integer)sqlMap.queryForObject("getpoint", cdb);
-		int point1 = point - 100;
+		int point1 = point - 300;
 		cdb.setPoint(point1);
 		sqlMap.update("photopoint", cdb);
 		
-		int usePoint= -100;
+		int usePoint= -300;
 		String place="Æ÷ÅäºÏ";
 		pidb.setCouplename(couplename);
 		pidb.setUsePoint(usePoint);
