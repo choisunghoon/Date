@@ -30,8 +30,8 @@
  
 	<div style="width:100%;float:left;" >
 		<div style="width:12%;float:left;">
-			<a href="#" onclick="callAjax('photorequest.nhn?couplename=dfg')">포토북신청하기</a>
-			<a href="#" onclick="callAjax('eventTeb.nhn')">이벤트</a>
+			<a href="#" onclick="callAjax('photorequest.nhn?couplename=dfg')"><img src="syimage/mm15.png" onmouseover='this.src="syimage/mm16.png"' onmouseout='this.src="syimage/mm15.png"' /></a>
+			<a href="#" onclick="callAjax('eventTeb.nhn')"><img src="syimage/mm17.png" onmouseover='this.src="syimage/mm18.png"' onmouseout='this.src="syimage/mm17.png"' /></a>
 		</div>
 		<div style="float:left;width:2%">&nbsp;&nbsp;&nbsp;</div>
 		<div id="subMain" style="float:left;width:86%">		
