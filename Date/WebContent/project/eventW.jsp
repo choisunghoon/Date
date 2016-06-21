@@ -6,7 +6,11 @@
 <head>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script type="text/javascript">  
-function callway(enumber, wnumber){    
+function callway(enumber, wnumber, w){    
+	if(w==1){
+		alert("이미 당첨자가 뽑힌 이벤트 입니다. 수정 및 삭제는 해당 관리자 페이지를 이용해 주세요");
+		return ;
+	}
 	 url = "wWay.nhn?enumber=" + enumber + "&wnumber=" + wnumber
      open(url, "wWay", 
      "toolbar=no, location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
@@ -55,15 +59,17 @@ function callway(enumber, wnumber){
 	<center><h2>당첨자 관리</h2></center>
 	<div class="gallery">
 		<ul>
+		<c:if test="${eventList.w==0}"><c:set var="c" value="red" /></c:if>
 			<c:set var="i" value="1" />
 			<c:forEach var="eventList" items="${eventList}">
 				<c:if test="${(i%3)!=0}">
-					<li><img src="${eventList.eimg}" OnClick="callway(${eventList.enumber}, ${eventList.wnumber})" alt="">${eventList.ename}
-						카운트:${count} i:${i}</li>
+					<li><img src="${eventList.eimg}" OnClick="callway(${eventList.enumber}, ${eventList.wnumber}, ${eventList.w})" alt="">
+					<font color="${c}" >${eventList.ename}</font>
+					</li>
 				</c:if>
 				<c:if test="${(i%3)==0}">
-					<li class="last"><img src="${eventList.eimg}"  OnClick="callway(${eventList.enumber}, ${eventList.wnumber})" alt="">${eventList.ename}
-						카운트:${count} i:${i}</li>
+					<li class="last"><img src="${eventList.eimg}"  OnClick="callway(${eventList.enumber}, ${eventList.wnumber}, ${eventList.w})" alt="">${eventList.ename}					
+					</li>
 				</c:if>
 				<c:set var="i" value="${i+1}" />
 			</c:forEach>
