@@ -5,6 +5,7 @@
 
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=9be7455c7d33a4e2b750d3537e1179d8&libraries=services"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 	function check() {
@@ -20,12 +21,12 @@
 	}
  
     function callAjax(nhn){
-    
         $.ajax({
 	        type: "post",
 	        url : nhn,
 	        data:{
 	        	states : $('#states').val(),
+	        	pick : $('#pick').val(),
 	        	keyword: $("#keyword").val()
 	        },
 	        success: refresh,	// 페이지요청 성공시 실행 함수
@@ -39,6 +40,7 @@
     function whenError2(){
         alert("Error");
     }
+
   </script>
 
 <body>
@@ -56,8 +58,15 @@
 				<option value="2">당첨 커플</option>
 			</select>
 				<input type="button" value="검색" onclick="check()">
+				<select name="pick" id="pick" onchange="callAjax('adminEventPro1.nhn')">
+				<option value="1">추첨</option>
+				<option value="0">미추첨</option>
+			</select>
+			
 		</form>	
- 
+		
+ <div id="subMain" style="float:center;width:86%">	
+ </div>
 <table width="500" border="1" cellspacing="0" cellpadding="0"   align="center">
 	<tr height="30" >
 		<td align="center" width="100">이벤트 번호</td>
@@ -114,9 +123,11 @@
    </c:if>
 </c:if>
 </center>
-	</div>
+	
 		<div style="float:center;width:2%">&nbsp;&nbsp;&nbsp;</div>
-		<div id="subMain" style="float:center;width:86%">		
+		
+</div>
+</div>
+		
 		</div>
-	</div>
 </body>

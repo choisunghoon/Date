@@ -123,15 +123,29 @@ public class AdminBean {
 		String keyword = request.getParameter("keyword");
 		System.out.println(keyword);
 		int a = Integer.parseInt(request.getParameter("states"));
+
 		List eventList = new ArrayList();
+
 		if(a == 1){
 			eventList = sqlMap.queryForList("searchWinEventList", keyword);	
 		}else if(a == 2){
 			eventList = sqlMap.queryForList("searchWinEventList1", keyword);
 		}
-		System.out.println(a);
+
+		request.setAttribute("eventList", eventList);
+		return "/admin/adminEvent.jsp";
+	}
+	
+	@RequestMapping("adminEventPro1.nhn")
+	public String adminEventPro1(HttpServletRequest request, EventDataBean edb){
+		int b = Integer.parseInt(request.getParameter("pick"));
+		edb.setW(b);
+		List eventList = new ArrayList();
+		
+		eventList = sqlMap.queryForList("searchWinEventList3", edb);
 		
 		request.setAttribute("eventList", eventList);
+		
 		
 		return "/admin/adminEvent.jsp";
 	}

@@ -175,7 +175,7 @@ public class Theme {
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String[] src = new String[2];
-		String path = "F:\\workplace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Date\\theme";
+		String path = "C:\\Users\\sam3\\git\\Date\\Date\\WebContent\\theme\\themeimg";
 		int i = 0;
 		while(iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -262,7 +262,7 @@ public class Theme {
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String[] src = new String[2];
-		String path = "F:\\workplace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Date\\theme";
+		String path = "C:\\Users\\sam3\\git\\Date\\Date\\WebContent\\theme\\themeimg";
 		int i = 0;
 		while(iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -384,7 +384,7 @@ public class Theme {
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String[] src = new String[2];
-		String path = "F:\\workplace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Date\\theme";
+		String path = "C:\\Users\\sam3\\git\\Date\\Date\\WebContent\\theme\\themeimg";
 		int i = 0;
 		while(iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -452,7 +452,7 @@ public class Theme {
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String[] src = new String[2];
-		String path = "F:\\workplace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Date\\theme";
+		String path = "C:\\Users\\sam3\\git\\Date\\Date\\WebContent\\theme\\themeimg";
 		int i = 0;
 		while(iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());

@@ -41,7 +41,15 @@
 		select * from event
 	</select>
 	
+	<select id="searchWinEventList3" resultClass="event.EventDataBean">
+		select * from event where w = #w#
+	</select>
+	
 	<delete id="memberDelete" parameterClass="ch11.logon.LogonDataBean">
 		delete from dc_member where id = #id#
 	</delete>
+	
+	<select id="wCount" resultClass="int" parameterClass="event.EventDataBean">
+	    select count(*) from event where w = #w#
+	</select>
 </sqlMap>
