@@ -5,7 +5,23 @@
 <html>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">  
-    function callContent(url,enumber,tab){    
+  function callAjax1(urlname,pageNum){
+      $.ajax({
+	        type: "post",
+	        url : urlname + "?pageNum="+ pageNum,
+	        success: refresh1,	// 페이지요청 성공시 실행 함수
+	        error: whenError21	//페이지요청 실패시 실행함수
+   	});
+  }
+  function refresh1(aaa1){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+      $("#subMain").html(aaa1);
+      
+  }
+  function whenError21(){
+      alert("Error");
+  } 
+  
+  function callContent(url,enumber,tab){    
     	 $.ajax({    		
  	        type: "post", 	
  	        url : url+"?enumber="+enumber+"&tab="+tab,
@@ -15,7 +31,7 @@
     }
 
     function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-        $(".modal-body").html(aaa);	//id가 ajaxReturn인 부분에 넣어라
+        $(".modal-bodyy").html(aaa);	//id가 ajaxReturn인 부분에 넣어라
     }    
     function whenError(){
         alert("Error");
@@ -42,7 +58,7 @@
 	display: block;
 	float: left;
 	width: 350px;
-	margin: 35px 5px 5px 35px;
+	margin: 20px 0px 0px 0px;
 	padding: 0;
 }
 
@@ -55,8 +71,8 @@
 
 .gallery li img {
 	display: block;
-	width: 340px;
-	height: 430px;
+	width: 290px;
+	height: 330px;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -91,12 +107,12 @@
 				<c:forEach var="eventList" items="${eventList}">
 					<c:if test="${(i%3)!=0}">						
 						<li>						
-						<img src="${eventList.eimg}" onclick="callContent('eventContent.nhn',${eventList.enumber},${tab})" id="test" data-toggle="modal" data-target="#myModal" alt="">${eventList.ename}
+						<img src="${eventList.eimg}" onclick="callContent('eventContent.nhn',${eventList.enumber},${tab})" id="test" data-toggle="modal" data-target="#myModaly" alt="">${eventList.ename}
 							카운트:${count} i:${i}</li>
 					</c:if>
 					<c:if test="${(i%3)==0}">
 						<li class="last"><a href="eventContent.nhn"><img
-								src="${eventList.eimg}" alt=""></a>${eventList.ename}
+								src="${eventList.eimg}" alt=""></a>${eventList.ename} ///${urlname}
 							카운트:${count} i:${i}</li>
 					</c:if>
 					<c:set var="i" value="${i+1}" />
@@ -114,29 +130,29 @@
 						</c:if>
 
 						<c:if test="${startPage > 10}">
-							<a href="${urlname}?pageNum=${startPage - 10 }">[이전]</a>
+							<a href="#" onclick="callAjax1(${urlname},${startPage - 10 })">[이전]</a>
 						</c:if>
 
 						<c:forEach var="i" begin="${startPage}" end="${endPage}">
-							<a href="${urlname}?pageNum=${i}">[${i}]</a>
+							<a href="#" onclick="callAjax1(${urlname},${i})">[${i}]</a>
 						</c:forEach>
 
 						<c:if test="${endPage < pageCount}">
-							<a href="${urlname}?pageNum=${startPage + 10}">[다음]</a>
+							<a href="#" onclick="callAjax1(${urlname},${startPage + 10 })">[다음]</a>
 						</c:if>
 					</c:if></li>
 			</ul>
 	</div>
 <!-- 모달 팝업 -->
 	
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+	<div class="modal fade" id="myModaly" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 		<h4 class="modal-title" id="myModalLabel"></h4>
 	      </div>
-	      <div class="modal-body">		   
+	      <div class="modal-bodyy">		   
 	      </div>
 	      <div class="modal-footer">
 			<center><button type="button" class="btn btn-default" data-dismiss="modal" >닫기</button></center>
