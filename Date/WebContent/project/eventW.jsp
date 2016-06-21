@@ -62,8 +62,7 @@ function callway(enumber, wnumber){
 						카운트:${count} i:${i}</li>
 				</c:if>
 				<c:if test="${(i%3)==0}">
-					<li class="last"><a href="eventContent.nhn"><img
-							src="${eventList.eimg}" alt=""></a>${eventList.ename}
+					<li class="last"><img src="${eventList.eimg}"  OnClick="callway(${eventList.enumber}, ${eventList.wnumber})" alt="">${eventList.ename}
 						카운트:${count} i:${i}</li>
 				</c:if>
 				<c:set var="i" value="${i+1}" />

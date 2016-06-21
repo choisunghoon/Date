@@ -78,16 +78,18 @@ function callEvent(url,pageNum,enumber){
 					<tr height="30">
 						<td align="center">${appList.appnumber}</td>
 						<td align="center">${appList.couplename}</td>
-						<td align="center"><c:if test="${appList.apppw!=null}">
-								<img src="/Spring/project/lock.png" width="20" height="20">
+						<td align="center">
+						<c:if test="${appList.apppw!=null}">
+								<img src="/Date/project/lock.png" width="20" height="20">
 								<a href="#"
 									onclick="callApp('confirmPw.nhn',${appList.appnumber},${eto.wnumber},${eto.enumber},${currentPage}, ${tab})">
 									${appList.appsubject}</a>
-							</c:if> <c:if test="${appList.apppw==null}">
+						</c:if> 
+						<c:if test="${appList.apppw==null}">
 								<a href="#"
 									onclick="callApp('appContent.nhn',${appList.appnumber},${eto.wnumber},${eto.enumber},${currentPage}, ${tab})">
 									${appList.appsubject}</a>
-							</c:if></td>
+						</c:if></td>
 					</tr>
 				</c:forEach>
 		</table>
@@ -95,7 +97,7 @@ function callEvent(url,pageNum,enumber){
 	<c:if test="${tab==1}"><button type="button" class="btn btn-default" style="margin-top:5px; margin-left:408px" onclick="callAddApp('addApp.nhn',${eto.enumber})">이벤트 참여하기</button></c:if><br/>
 	<c:if test="${tab==4}">
 	<c:forEach var="i" begin="0" end="${eto.wnumber}">
-	${rwlist[i]}<br/>
+	${wclist[i]}<br/>
 	</c:forEach>
 	</c:if>
 	<div class="page">
