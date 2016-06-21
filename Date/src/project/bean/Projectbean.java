@@ -38,10 +38,8 @@ public class Projectbean {
 		EventDataBean eto = new EventDataBean();
 		List eventList = null;
 		String tab = request.getParameter("tab");
-		System.out.println("tab1: " + tab);
 		if (tab == null)
 			tab = "1";
-		System.out.println("tab2: " + tab);
 		int count = 0;
 		String pageNum = request.getParameter("pageNum");
 		int pageSize = 10;
@@ -61,14 +59,10 @@ public class Projectbean {
 		// if(tab=="2") eventList = sqlMap.queryForList("eventEnd",row);
 		// if(tab=="3")eventList = sqlMap.queryForList("upcomingEvent",row);
 		count = (Integer) sqlMap.queryForObject("countIng", null);
-		System.out.println(count);
 		for (int i =0; i < eventList.size(); i++) {
 			eto = (EventDataBean) eventList.get(i);
 			srclist = eto.getEimg().split(",");
-			System.out.println("srclist: " + srclist[0]);
-			System.out.println("path: " + path);
 			eto.setEimg(path + srclist[0]);
-			System.out.println("eto.getEimg: " + eto.getEimg());
 		}
 		request.setAttribute("currentPage", new Integer(currentPage));
 		request.setAttribute("startRow", new Integer(startRow));
@@ -94,7 +88,6 @@ public class Projectbean {
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
-		System.out.println(pageNum + " ," + currentPage + " ," + startRow + " ," + endRow);
 		Timestamp date = new Timestamp(System.currentTimeMillis());
 		String[] srclist = null;
 		String path = request.getContextPath() + "/project/";
@@ -103,8 +96,6 @@ public class Projectbean {
 		row.put("endRow", endRow);
 		eventList = sqlMap.queryForList("eventEnd", row);
 		count = (Integer) sqlMap.queryForObject("countEnd", null);
-		System.out.println(count);
-		System.out.println("startRow: " + startRow);
 		for (int i = 0; i < eventList.size(); i++) {
 			eto = (EventDataBean) eventList.get(i);
 			srclist = eto.getEimg().split(",");
@@ -134,7 +125,6 @@ public class Projectbean {
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
-		System.out.println(pageNum + " ," + currentPage + " ," + startRow + " ," + endRow);
 		Timestamp date = new Timestamp(System.currentTimeMillis());
 		String[] srclist = null;
 		String path = request.getContextPath() + "/project/";
@@ -143,8 +133,6 @@ public class Projectbean {
 		row.put("endRow", endRow);
 		eventList = sqlMap.queryForList("upcomingEvent", row);
 		count = (Integer) sqlMap.queryForObject("upcomingCount", null);
-		System.out.println(count);
-		System.out.println("startRow: " + startRow);
 		for (int i = 0; i < eventList.size(); i++) {
 			eto = (EventDataBean) eventList.get(i);
 			srclist = eto.getEimg().split(",");
@@ -174,7 +162,6 @@ public class Projectbean {
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
-		System.out.println(pageNum + " ," + currentPage + " ," + startRow + " ," + endRow);
 		Timestamp date = new Timestamp(System.currentTimeMillis());
 		String[] srclist = null;
 		String[] wclist = null;
@@ -184,8 +171,6 @@ public class Projectbean {
 		row.put("endRow", endRow);
 		eventList = sqlMap.queryForList("eventEnd", row);
 		count = (Integer) sqlMap.queryForObject("countEnd", null);
-		System.out.println(count);
-		System.out.println("startRow: " + startRow);
 		for (int i = 0; i < eventList.size(); i++) {
 			eto = (EventDataBean) eventList.get(i);
 			srclist = eto.getEimg().split(",");
@@ -221,7 +206,6 @@ public class Projectbean {
 		while (iterator.hasNext()) {
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 			originalFileName = multipartFile.getOriginalFilename();
-			System.out.println(originalFileName);
 			multipartFile.transferTo(new File(path + originalFileName));
 			src[i] = originalFileName;
 			i++;
@@ -237,7 +221,6 @@ public class Projectbean {
 		String tab = request.getParameter("tab");
 		if (tab == null)
 			tab = "1";
-		System.out.println("enumber:" + enumber);
 		EventDataBean eto = new EventDataBean();
 		String[] srclist = null;
 		List appList = null;
@@ -275,7 +258,7 @@ public class Projectbean {
 	@RequestMapping("addApp.nhn")
 	public String addApp(HttpServletRequest request) {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
-		System.out.println("addapp enumber: " + enumber);
+		
 		request.setAttribute("enumber", new Integer(enumber));
 		return "/project/addApp.jsp";
 	}
@@ -289,7 +272,7 @@ public class Projectbean {
 		//row.put("couplename", eto.getCouplename());
 		//row.put("enumber", eto.getEnumber());
 		test = (Integer) sqlMap.queryForObject("cnCon", eto);
-		System.out.println(test);
+		
 		if (test == 0) {
 			sqlMap.insert("addApp", eto);
 		}
@@ -310,7 +293,6 @@ public class Projectbean {
 		//String memid = "admin";
 		String id = "gnn";
 		EventDataBean app = new EventDataBean();
-		System.out.println("appnumber: " + appnumber);
 		app = (EventDataBean) sqlMap.queryForObject("getAppContent", appnumber);
 		request.setAttribute("appnumber", new Integer(appnumber));
 		request.setAttribute("wnumber", new Integer(wnumber));
@@ -332,7 +314,6 @@ public class Projectbean {
 	@RequestMapping("modifyEvent.nhn")
 	public String modifyEvent(HttpServletRequest request) {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
-		System.out.println("modify enumber:" + enumber);
 		EventDataBean eto = new EventDataBean();
 		String[] srclist = null;
 		String path = request.getContextPath() + "/project/";
@@ -363,14 +344,11 @@ public class Projectbean {
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 			if (multipartFile.isEmpty()) {
 				setsrc = (String) sqlMap.queryForObject("eventImg", enumber);
-				System.out.println("setsrc: " + setsrc);
 				srclist = setsrc.split(",");
 				originalFileName = srclist[i];
-				System.out.println(" srclist[i]" + srclist[i]);
 			} else {
 				originalFileName = multipartFile.getOriginalFilename();
 			}
-			System.out.println(originalFileName);
 			multipartFile.transferTo(new File(path + originalFileName));
 			src[i] = originalFileName;
 			i++;
@@ -408,14 +386,10 @@ public class Projectbean {
 		row.put("endRow", endRow);
 		eventList = sqlMap.queryForList("eventIng", row);
 		count = (Integer) sqlMap.queryForObject("countIng", null);
-		System.out.println(count);
 		for (int i = 0; i < count; i++) {
 			eto = (EventDataBean) eventList.get(i);
 			srclist = eto.getEimg().split(",");
-			System.out.println("srclist: " + srclist[0]);
-			System.out.println("path: " + path);
 			eto.setEimg(path + srclist[0]);
-			System.out.println("eto.getEimg: " + eto.getEimg());
 		}
 		request.setAttribute("currentPage", new Integer(currentPage));
 		request.setAttribute("startRow", new Integer(startRow));
@@ -452,7 +426,6 @@ public class Projectbean {
 		appList = sqlMap.queryForList("eventAppAll", enumber);
 		for (int i = 0; i < wList.length; i++) {
 			wList[i] = ran.nextInt(count) + 1;
-			System.out.println("wList[i]: " + wList[i]);
 			for (int j = 0; j < i; j++) {
 				if (wList[i] == wList[j]) {
 					i--;
@@ -461,7 +434,6 @@ public class Projectbean {
 			}
 			eto = (EventDataBean) appList.get(wList[i]);
 			rList[i] = eto.getCouplename();
-			System.out.println("Couplename: " + rList[i]);
 		}
 		for (int i = 0; i < rList.length; i++) {
 			if (i == 0) {
@@ -470,7 +442,6 @@ public class Projectbean {
 			if (i != 0) {
 				wname = wname + "," + rList[i];
 			}
-			System.out.println("wname: " + wname);
 		}
 		EventDataBean eto1 = new EventDataBean();
 		eto1.setWcouples(wname);
@@ -496,7 +467,6 @@ public class Projectbean {
 		if (pageNum == null) {
 			pageNum = "1";
 		}
-		System.out.println("pageNum: " + pageNum);
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
@@ -524,10 +494,8 @@ public class Projectbean {
 		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
 		String pageNum = request.getParameter("pageNum");
 		String couplename = request.getParameter("couplename");
-		System.out.print(couplename);
 		EventDataBean app = new EventDataBean();
 		app = (EventDataBean) sqlMap.queryForObject("eventContent", enumber);
-		System.out.println("getWCouples: " + app.getWcouples());
 		if (app.getWcouples() == null) {
 			app.setWcouples(couplename);
 		} else {
@@ -567,7 +535,6 @@ public class Projectbean {
 	@RequestMapping("appDelete.nhn")
 	public String appDelete(HttpServletRequest request) {
 		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
-		System.out.println("aaaaaaaaaa :::  "+appnumber);
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		sqlMap.delete("appDelete", appnumber);
 		request.setAttribute("enumber", new Integer(enumber));
@@ -577,7 +544,6 @@ public class Projectbean {
 	@RequestMapping("confirmPw.nhn")
 	public String confirmPw(HttpServletRequest request) {
 		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
-		System.out.println("appnumber11111111:"+appnumber);
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
 		int tab = Integer.parseInt(request.getParameter("tab"));
@@ -595,7 +561,6 @@ public class Projectbean {
 	@RequestMapping("confirmPwPro.nhn")
 	public String confirmPwPro(HttpServletRequest request, EventDataBean eto) {		
 		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
-		System.out.println("appnumber222222222:"+appnumber);
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		int tab = Integer.parseInt(request.getParameter("tab"));	

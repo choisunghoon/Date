@@ -5,10 +5,11 @@
 <html>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">  
-  function callAjax1(urlname,pageNum){
+  function callAjax1(urlname){
+	  
       $.ajax({
 	        type: "post",
-	        url : urlname + "?pageNum="+ pageNum,
+	        url : urlname,
 	        success: refresh1,	// 페이지요청 성공시 실행 함수
 	        error: whenError21	//페이지요청 실패시 실행함수
    	});
@@ -21,7 +22,8 @@
       alert("Error");
   } 
   
-  function callContent(url,enumber,tab){    
+  function callContent(url,enumber,tab){ 
+	  	alert(enumber + "  " + tab );
     	 $.ajax({    		
  	        type: "post", 	
  	        url : url+"?enumber="+enumber+"&tab="+tab,
@@ -58,7 +60,7 @@
 	display: block;
 	float: left;
 	width: 350px;
-	margin: 20px 0px 0px 0px;
+	margin: 10px 10px 15px 0px;
 	padding: 0;
 }
 
@@ -71,8 +73,8 @@
 
 .gallery li img {
 	display: block;
-	width: 290px;
-	height: 330px;
+	width: 340px;
+	height: 430px;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -80,18 +82,20 @@
 <body>
 	<div class="tabpage" style="border-bottom: 1px solid;">
 		<center>
-			<a href="eventTeb.nhn?tab=${1}"><img src="/Spring/project/ing.png"
-				onmouseover='this.src="/Spring/project/ing1.png"'
-				onmouseout='this.src="/Spring/project/ing.png"' width="150"></a> 
-		    <a href="upcoming_event.nhn?tab=${2}"><img src="/Spring/project/upcoming.png"
-				onmouseover='this.src="/Spring/project/upcoming1.png"'
-				onmouseout='this.src="/Spring/project/upcoming.png"' width="150"></a>
-			<a href="end_event.nhn?tab=${3}"><img src="/Spring/project/end.png"
-				onmouseover='this.src="/Spring/project/end1.png"'
-				onmouseout='this.src="/Spring/project/end.png"' width="150"></a>
-			<a href="w_event.nhn?tab=${4}"><img src="/Spring/project/w.png"
-				onmouseover='this.src="/Spring/project/w1.png"'
-				onmouseout='this.src="/Spring/project/w.png"' width="150"></a>
+			<a href="#" onclick="callAjax1('eventTeb.nhn?tab=1')">
+			<img src="/Date/project/ing.png"
+				onmouseover='this.src="/Date/project/ing1.png"'
+				onmouseout='this.src="/Date/project/ing.png"' width="150"></a> 
+		   <a href="#" onclick="callAjax1('upcoming_event.nhn?tab=2')">
+		   <img src="/Date/project/upcoming.png"
+				onmouseover='this.src="/Date/project/upcoming1.png"'
+				onmouseout='this.src="/Date/project/upcoming.png"' width="150"></a>
+			<a href="#" onclick="callAjax1('end_event.nhn?tab=3')"><img src="/Date/project/end.png"
+				onmouseover='this.src="/Date/project/end1.png"'
+				onmouseout='this.src="/Date/project/end.png"' width="150"></a>
+			<a href="#" onclick="callAjax1('w_event.nhn?tab=4')"><img src="/Date/project/w.png"
+				onmouseover='this.src="/Date/project/w1.png"'
+				onmouseout='this.src="/Date/project/w.png"' width="150"></a>
 		</center>
 	</div>
 	<br/><br/>
@@ -108,12 +112,12 @@
 					<c:if test="${(i%3)!=0}">						
 						<li>						
 						<img src="${eventList.eimg}" onclick="callContent('eventContent.nhn',${eventList.enumber},${tab})" id="test" data-toggle="modal" data-target="#myModaly" alt="">${eventList.ename}
-							카운트:${count} i:${i}</li>
+							</li>
 					</c:if>
 					<c:if test="${(i%3)==0}">
-						<li class="last"><a href="eventContent.nhn"><img
-								src="${eventList.eimg}" alt=""></a>${eventList.ename} ///${urlname}
-							카운트:${count} i:${i}</li>
+						<li class="last"><img
+								src="${eventList.eimg}" onclick="callContent('eventContent.nhn',${eventList.enumber},${tab})" id="test" data-toggle="modal" data-target="#myModaly" alt="">${eventList.ename} 
+							</li>
 					</c:if>
 					<c:set var="i" value="${i+1}" />
 				</c:forEach>
@@ -130,15 +134,15 @@
 						</c:if>
 
 						<c:if test="${startPage > 10}">
-							<a href="#" onclick="callAjax1(${urlname},${startPage - 10 })">[이전]</a>
+							<a href="#" onclick="callAjax1('${urlname}?pageNum=${startPage - 10 }')">[이전]</a>
 						</c:if>
 
 						<c:forEach var="i" begin="${startPage}" end="${endPage}">
-							<a href="#" onclick="callAjax1(${urlname},${i})">[${i}]</a>
+							<a href="#" onclick="callAjax1('${urlname}?pageNum=${i}')">[${i}]</a>
 						</c:forEach>
 
 						<c:if test="${endPage < pageCount}">
-							<a href="#" onclick="callAjax1(${urlname},${startPage + 10 })">[다음]</a>
+							<a href="#" onclick="callAjax1('${urlname}?pageNum=${startPage + 10 }')">[다음]</a>
 						</c:if>
 					</c:if></li>
 			</ul>
