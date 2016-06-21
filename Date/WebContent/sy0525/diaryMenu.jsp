@@ -2,7 +2,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<script>
+   function callrefresh(url){
+        $.ajax({
+	        type: "post",
+	        url : url,
+	        success: suc,	// 페이지요청 성공시 실행 함수
+	        error: err	//페이지요청 실패시 실행함수
+     	});
+    }
+    function suc(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $(".re").html(aaa);
+    }
+    function err(){
+        alert("Error");
+    }
+    </script>
+<div class="re">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
@@ -79,7 +95,7 @@
       }
          
 </style>
- 
+  
 <div style="width:200px; height:280; margin-left:37%;">
    <center>사귄 날짜 : <fmt:formatDate value="${cdb.coupledate }" pattern="YYYY-MM-dd" /></center>
    <div style="border:1px solid; width:200px; height:200px; float:left;">
@@ -93,7 +109,7 @@
    <center>
       <a href="diary.nhn?couplename=${couplename }" >이미지 변경</a>
    </center>
-   
+  
 </div>	
 
 <div id="css_tabs">
@@ -104,7 +120,8 @@
     <div class="tab1_content" style="width:1100px;">
       <div class="sub_photo">
           <div class="title_area">
-             <a href="ex.nhn?couplename=${couplename }" style="margin-left:80%;">게시물 작성</a><br/>
+          
+             <a href="#" onclick="callrefresh('ex.nhn?couplename=${couplename }')" style="margin-left:80%;">게시물 작성</a><br/>
              <form name="frmSet">
              <input type="hidden" id="aa" name="listMore" value="${listMore}"/>
             </form>
@@ -171,4 +188,6 @@
         
       </div>  
    </div>
+</div>
+
 </div>
