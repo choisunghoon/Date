@@ -6,7 +6,24 @@
 
 <head>
 
-    
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+ 
+     function callAjax3(url){
+        $.ajax({
+	        type: "post",
+	        url : url,
+	        success: refresh,	// 페이지요청 성공시 실행 함수
+	        error: whenError2	//페이지요청 실패시 실행함수
+     	});
+    }
+    function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $(".modal-body").html(aaa);
+    }
+    function whenError2(){
+        alert("Error");
+    }
+  </script>
    
 
     <title>Thumbnail Gallery - Start Bootstrap Template</title>
@@ -40,7 +57,7 @@
             </div>
 
             <div class="col-lg-3 col-md-4 col-xs-6 thumb" >
-                <a class="thumbnail" href="#" data-toggle="modal" data-target="#myModal">
+                <a class="thumbnail" onclick="callAjax3('dateBoard.nhn')" href="#" data-toggle="modal" data-target="#myModal">
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
                 </a>
             </div>
@@ -123,7 +140,7 @@
 		
 	      </div>
 	      <div class="modal-body">
-		
+			
 	      </div>
 	      
 	    </div>

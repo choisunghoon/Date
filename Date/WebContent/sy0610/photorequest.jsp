@@ -6,7 +6,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 	function checked(point){
-		if(point<100){
+		if(point<300){
 			alert("포인트가 부족합니다!");
 			return false;
 		}

@@ -182,14 +182,14 @@
             
 </c:if>
      <c:if test="${(id ne null) and (check eq 'yes')}">
-
+	<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
             ${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
      
              <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;&nbsp;
              <a href="mypage.nhn?fbcheck=yes&id=${id}">마이페이지</a>
  </c:if>
  <c:if test="${(id ne null) and (check eq 'no')}">
-			
+	<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>		
 		<c:if test="${id eq 'admin' }">
           <a href="adminpage.nhn">관리자페이지</a>
           </c:if>

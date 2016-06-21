@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
    <!DOCTYPE html>
 <html>
 <head>
@@ -472,7 +472,7 @@ function displayPlaces(places) {
       		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
              		   '</div>' + 
              		   '<div class="afterv" style="float:left;"></div>';
-    			
+    			alert(place.title);
                  if(j>5){               	 
              		j=6;
              		alert("5개 이상 선택 하실수 없습니다.");
@@ -676,7 +676,7 @@ function removeAllChildNods(el) {
     }
 }
 </script>
-<form action="cosSave.nhn">
+<form action="cosSave.nhn" method="post">
 <input type="hidden" value="sa" name="btcheck" />
 <div id="img" class="placeinfov_wrap">
 	

@@ -30,7 +30,7 @@ public class Upload {
 	}
 	
 	@RequestMapping("/upload2.nhn")
-	public String upload(MultipartHttpServletRequest request,DiaryDataBean ddb) throws Exception{
+	public String upload(MultipartHttpServletRequest request,DiaryDataBean ddb, PointDataBean pidb, CoupleDataBean cdb) throws Exception{
 		int w = Integer.parseInt(request.getParameter("w"));
 		int h = Integer.parseInt(request.getParameter("h"));
 		int wwd= 1000;
@@ -47,6 +47,18 @@ public class Upload {
 		File copy = new File(RealPath+"/"+orgName);
 		file.transferTo(copy);
 		sqlMap.insert("insertDiary",ddb);
+		int getPoint = 5;
+		String place="커플다이어리";
+		pidb.setCouplename(couplename);
+		pidb.setGetPoint(getPoint);
+		pidb.setPlace(place);
+		sqlMap.insert("diarypoint", pidb);
+		int point = (Integer)sqlMap.queryForObject("getpoint", cdb);
+		int point2 = point + 5;
+		cdb.setPoint(point2);
+		sqlMap.update("photopoint", cdb);
+		
+		
 		request.setAttribute("orgName", orgName);
 		check=1;
 		}
@@ -172,35 +184,6 @@ public class Upload {
 		return "/sy0526/main.jsp";
 	}
 	
-	@RequestMapping("/couple.nhn")
-	public String couple(){
-
-		return "/sy0526/couple.jsp";
-	}
-	
-	@RequestMapping("/share.nhn")
-	public String share(){
-
-		return "/sy0526/share.jsp";
-	}
-	
-	@RequestMapping("/theme.nhn")
-	public String theme(){
-
-		return "/sy0526/theme.jsp";
-	}
-	
-	@RequestMapping("/event.nhn")
-	public String event(){
-
-		return "/sy0526/event.jsp";
-	}
-	
-	@RequestMapping("/personal.nhn")
-	public String personal(){
-
-		return "/sy0526/personal.jsp";
-	}
 	
 	@RequestMapping("/photo.nhn")
 	public String photo(){
@@ -239,11 +222,11 @@ public class Upload {
 		ddb.setCouplename(couplename);
 		cdb.setCouplename(couplename);
 		int point = (Integer)sqlMap.queryForObject("getpoint", cdb);
-		int point1 = point - 100;
+		int point1 = point - 300;
 		cdb.setPoint(point1);
 		sqlMap.update("photopoint", cdb);
 		
-		int usePoint= -100;
+		int usePoint= -300;
 		String place="포토북";
 		pidb.setCouplename(couplename);
 		pidb.setUsePoint(usePoint);

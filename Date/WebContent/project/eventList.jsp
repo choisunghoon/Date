@@ -48,12 +48,12 @@
 				<c:if test="${(i%3)!=0}">
 					<li><a href="eventContent.nhn?enumber=${eventList.enumber}"><img
 							src="${eventList.eimg}" alt=""></a>${eventList.ename}
-						Ä«¿îÆ®:${count} i:${i} teb: ${teb}</li>
+						ì¹´ìš´íŠ¸:${count} i:${i} teb: ${teb}</li>
 				</c:if>
 				<c:if test="${(i%3)==0}">
 					<li class="last"><a href="eventContent.nhn"><img
 							src="${eventList.eimg}" alt=""></a>${eventList.ename}
-						Ä«¿îÆ®:${count} i:${i}</li>
+						ì¹´ìš´íŠ¸:${count} i:${i}</li>
 				</c:if>
 				<c:set var="i" value="${i+1}" />
 			</c:forEach>
@@ -70,7 +70,7 @@
 					</c:if>
 
 					<c:if test="${startPage > 10}">
-						<a href="eventTeb.nhn?pageNum=${startPage - 10 }">[ÀÌÀü]</a>
+						<a href="eventTeb.nhn?pageNum=${startPage - 10 }">[ì´ì „]</a>
 					</c:if>
 
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -78,7 +78,7 @@
 					</c:forEach>
 
 					<c:if test="${endPage < pageCount}">
-						<a href="eventTeb.nhn?pageNum=${startPage + 10}">[´ÙÀ½]</a>
+						<a href="eventTeb.nhn?pageNum=${startPage + 10}">[ë‹¤ìŒ]</a>
 					</c:if>
 				</c:if></li>
 		</ul>

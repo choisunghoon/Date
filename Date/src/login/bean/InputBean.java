@@ -144,6 +144,39 @@ public class InputBean {
 		request.setAttribute("check", check);
 		request.setAttribute("id", id);
 		System.out.println("마페아이디"+id);
+		
+		
+		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
+		if(nc==1){
+			
+			String nickname=(String) sqlMapper.queryForObject("getNick", id);
+			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
+		
+		
+			if(checkAlert==1){
+				AlertDataBean adto=new AlertDataBean();
+				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
+				session.setAttribute("adto", adto);
+				System.out.println(adto.getContent());
+				session.setAttribute("nickname", nickname);
+		}
+			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
+			System.out.println("마이페이지 체크알럿1"+checkAlert1);
+			if(checkAlert1==1){
+				LogonDataBean dto=new LogonDataBean();
+				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
+				System.out.println("마이페이지 if dto.getCouple"+dto.getCouple());
+				
+				
+				if(dto.getCouple().equals("1")){
+					request.setAttribute("couple1", "couple1");
+				}
+			}
+			else
+				request.setAttribute("couple1", "end");
+			}
+		
+		
 		return "/dc/mypage.jsp";
 	}
 	@RequestMapping("coupleinfo.nhn")
@@ -172,6 +205,20 @@ public class InputBean {
 		request.setAttribute("check2", check2);
 		
 		System.out.println("check1:"+check1+"check2:"+check2);
+		
+		int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
+		
+		if(checkAlert1==1){
+			AlertDataBean adto=new AlertDataBean();
+			adto=(AlertDataBean)sqlMapper.queryForObject("getAlert1", id);
+			if(adto.getReadcheck()==1){
+				sqlMapper.update("readCheckEnd", id);
+			}
+		}
+		
+		
+		
+		
 		return "/dc/coupleinfo.jsp";
 	}
 	@RequestMapping("coupleSearchPro.nhn")
@@ -211,11 +258,13 @@ public class InputBean {
 	}
 	@RequestMapping("coupleInput.nhn")
 	public String coupleInput(HttpSession session,HttpServletRequest request) throws Exception{
+		String nickname=(String) session.getAttribute("nickname");
 		String id =request.getParameter("id");
 		CoupleDataBean cdto=new CoupleDataBean();
 		cdto = (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
 		sqlMapper.update("memCouple1", cdto.getId1());
 		sqlMapper.update("memCouple1", cdto.getId2());
+		sqlMapper.update("readCheck", nickname);
 		request.setAttribute("id", id);
 	
 		return "/dc/mypage.jsp";
