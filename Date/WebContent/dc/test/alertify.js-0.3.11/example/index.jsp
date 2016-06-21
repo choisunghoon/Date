@@ -17,7 +17,7 @@
 <body>
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="/Date/dc/test/alertify.js-0.3.11/lib/alertify.min.js"></script>
-<c:if test="${check2 eq 1 and couple2.couple eq '0'}">	
+<c:if test="${adto.content eq 'coupleRequest'}">	
 	<script>
 	$(document).ready(function() { 
 		alert();
@@ -34,18 +34,17 @@
 		};
 	</script>
 </c:if>
-<c:if test="${check2 eq 1 and couple2.couple eq '1' and viewcheck eq 0}">	
+<c:if test="${couple1 eq 'couple1'}">	
 	<script>
 	$(document).ready(function() { 
 		alert();
 	});
 	 /* $(document).ready(function(){
 	    	window.setInterval('alert()', 60000); //1분마다 alert()를 반복!
-
 	    }); */
 		function alert(){
 			reset();
-			alertify.set({ delay: 1000*10 });
+			alertify.set({ delay: 1000*60*60*24 });
 			alertify.log("<a href='/Date/mypage.nhn' class='alert-link'>상대방이 커플 신청을 수락 했습니다!</a>");
 			return false;
 		};

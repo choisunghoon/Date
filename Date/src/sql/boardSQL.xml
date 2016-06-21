@@ -102,6 +102,16 @@
                      where id=#id#
                             
 		</delete>
+		<update id="readCheck" parameterClass="String">
+			update dc_alert
+				set readcheck='1'
+				where nickname=#nickname#
+		</update>
+		<update id="readCheckEnd" parameterClass="String">
+			update dc_alert
+				set readcheck='2'
+				where id=#id#
+		</update>
 		<delete id="deleteCouple" parameterClass="String">
 			delete from dc_couple where id1=#id# or id2=#id#
 		</delete>
@@ -150,13 +160,25 @@
 		<select id="searchNickCheck" parameterClass="dto" resultClass="int">
 			SELECT count(*) FROM dc_member where id=#id# and nickname=#nickname#
 		</select>
-		<!-- select 쿼리문 정의 -->
 		<select id="selectAll" resultMap="dtoRes">
 			SELECT * FROM dc_member 
 		</select>
-		<select id="getAlert" parameterClass="String" resultClass="adto">
-			select *from dc_alert where id=#id# and redcheck='0'
+		<select id="checkAlert" parameterClass="String" resultClass="int">
+			select count(*)from dc_alert where nickname=#nickname# and readcheck='0'
 		</select>
+		<select id="checkAlert1" parameterClass="String" resultClass="int">
+			select count(*)from dc_alert where id=#id# and readcheck='1'
+		</select>
+		<select id="getAlert" parameterClass="String" resultClass="adto">
+			select *from dc_alert where nickname=#nickname# and readcheck='0'
+		</select>
+		<select id="getAlert1" parameterClass="String" resultClass="adto">
+			select *from dc_alert where id=#id# and readcheck='1'
+		</select>
+		<select id="getNick" parameterClass="String" resultClass="String">
+			select nickname from dc_member where id=#id#
+		</select>
+		
 		
 		
 
