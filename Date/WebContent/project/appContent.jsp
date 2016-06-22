@@ -52,14 +52,7 @@
 				<td align="center" width="100">이벤트 신청 내용</td>
 				<td align="center">${app.appcomment}</td>
 			</tr> 
-			<c:if test="${memid=='admin'}">		
-			<tr height="20">
-				<td colspan="2" align="center">
-				<input type="submit" name="addW" value="당첨자로 등록">
-			</tr>		
-			</c:if>
-			<c:if test="${id == app.couplename || tab==1}">		
-			
+			<c:if test="${id == app.couplename || tab==1}">					
 			<tr height="20">
 				<td colspan="2" align="center">
 				 <a href="#" onclick="callAppM(${app.appnumber},${enumber})"><input type="button" value="수정"></a>

@@ -28,7 +28,7 @@
 			<a href="#" onclick="callAjax('adphoto.nhn')"><img src="syimage/mm9.png" onmouseover='this.src="syimage/mm10.png"' onmouseout='this.src="syimage/mm9.png"' /></a>
 			<a href="#" onclick="callAjax('point.nhn')"><img src="syimage/mm11.png" onmouseover='this.src="syimage/mm12.png"' onmouseout='this.src="syimage/mm11.png"' /></a>	
 			<a href="#" onclick="callAjax('AdminMember.nhn')"><img src="syimage/mm7.png" onmouseover='this.src="syimage/mm8.png"' onmouseout='this.src="syimage/mm7.png"' /></a>
-			<a href="#" onclick="callAjax('adminEvent.nhn')"><img src="syimage/mm13.png" onmouseover='this.src="syimage/mm14.png"' onmouseout='this.src="syimage/mm13.png"' /></a>	
+			<a href="#" onclick="callAjax('adminEvent.nhn')"><img src="syimage/mm131.png" onmouseover='this.src="syimage/mm141.png"' onmouseout='this.src="syimage/mm131.png"' /></a>	
 		</div>
 		<div style="float:left;width:2%">&nbsp;&nbsp;&nbsp;</div>
 		<div id="subMain" style="float:left;width:86%">		
