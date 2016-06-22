@@ -451,12 +451,12 @@ function displayPlaces(places) {
     			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
     			'<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
       		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
-      		  '<input type="hidden" name="placeaddress" id="placeaddress" value="'+place.address +'" />'+
+      		  '<input type="hidden" name="placecategory" id="placecategory" value="'+place.category+'" />'+
+      		  '<input type="hidden" name="placelocation" id="placelocation" value="'+place.address +'" />'+
       		  '<input type="hidden" name="placetitle"  id="placetitle" value="'+place.title +'" />'+
       		  '<input type="hidden" name="placeid"  id="placeid" value="'+place.id +'" />'+
       		  '<input type="hidden" name="placelatitude" id="placelatitude" value="'+place.latitude +'" />'+
-    		  '<input type="hidden" name="placelongitude" id="placelongitude" value="'+place.longitude +'" />'+
-      		  
+    		  '<input type="hidden" name="placelongitude" id="placelongitude" value="'+place.longitude +'" />'+  		  
       		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
              		   '</div>' + 
              		   '<div class="afterv" style="float:left;"></div>';

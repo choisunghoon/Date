@@ -4,6 +4,23 @@ import java.sql.Timestamp;
 
 public class DTO {
 	private String placeplaceUrl,placenewAddress,placeaddress,placeid,placephone,placetitle,placelatitude,placelongitude;
+	private String placelocation,placecategory;
+	public String getPlacelocation() {
+		return placelocation;
+	}
+
+	public void setPlacelocation(String placelocation) {
+		this.placelocation = placelocation;
+	}
+
+	public String getPlacecategory() {
+		return placecategory;
+	}
+
+	public void setPlacecategory(String placecategory) {
+		this.placecategory = placecategory;
+	}
+
 	private int num;
 	public int getNum() {
 		return num;

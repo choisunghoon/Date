@@ -27,7 +27,7 @@
 <body>
 
 <div style="width:100%;float:left;" >
-		<div style="width:12%;float:left;margin-left:0">
+		<div style="width:12%;float:left;margin-left:0;margin-top: 40px">
 			<a href="#" onclick="callAjax('.nhn')"><img src="syimage/mm19.png" onmouseover='this.src="syimage/mm20.png"' onmouseout='this.src="syimage/mm19.png"' /></a>
 			<br />
 			<a href="#" onclick="callAjax('.nhn')"><img src="syimage/mm21.png" onmouseover='this.src="syimage/mm22.png"' onmouseout='this.src="syimage/mm21.png"' /></a>

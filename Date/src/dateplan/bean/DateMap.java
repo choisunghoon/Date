@@ -69,9 +69,6 @@ public class DateMap {
 		cosList = sqlMap.queryForList("selectcos", couplename);
 		
 		
-		
-		
-		
 		request.setAttribute("cosList", cosList);
 		
 		return "/dateplan/datecos.jsp";
