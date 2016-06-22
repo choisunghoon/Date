@@ -42,7 +42,7 @@ public class Projectbean {
 			tab = "1";
 		int count = 0;
 		String pageNum = request.getParameter("pageNum");
-		int pageSize = 10;
+		int pageSize = 9;
 		if (pageNum == null) {
 			pageNum = "1";
 		}
@@ -81,7 +81,7 @@ public class Projectbean {
 		String tab = request.getParameter("tab");
 		int count = 0;
 		String pageNum = request.getParameter("pageNum");
-		int pageSize = 6;
+		int pageSize = 9;
 		if (pageNum == null) {
 			pageNum = "1";
 		}
@@ -118,7 +118,7 @@ public class Projectbean {
 		String tab = request.getParameter("tab");
 		int count = 0;
 		String pageNum = request.getParameter("pageNum");
-		int pageSize = 6;
+		int pageSize = 9;
 		if (pageNum == null) {
 			pageNum = "1";
 		}
@@ -155,7 +155,7 @@ public class Projectbean {
 		String tab = request.getParameter("tab");
 		int count = 0;
 		String pageNum = request.getParameter("pageNum");
-		int pageSize = 6;
+		int pageSize = 9;
 		if (pageNum == null) {
 			pageNum = "1";
 		}
@@ -225,7 +225,7 @@ public class Projectbean {
 		String[] wclist = null;
 		List appList = null;
 		String pageNum = request.getParameter("pageNum");
-		int pageSize = 10;
+		int pageSize = 9;
 		int count = 0;
 		if (pageNum == null) {
 			pageNum = "1";
@@ -240,7 +240,8 @@ public class Projectbean {
 		String path = request.getContextPath() + "/project/";
 		eto = (EventDataBean) sqlMap.queryForObject("eventContent", enumber);
 		srclist = eto.getEimg().split(",");
-		wclist = eto.getWcouples().split(",");
+		if(eto.getWcouples() != null){
+		wclist = eto.getWcouples().split(",");}
 	
 		eto.setEimg(path + srclist[1]);
 		appList = sqlMap.queryForList("eventApp", row);
@@ -374,7 +375,7 @@ public class Projectbean {
 		List eventList = null;
 		int count = 0;
 		String pageNum = request.getParameter("pageNum");
-		int pageSize = 10;
+		int pageSize = 9;
 		if (pageNum == null) {
 			pageNum = "1";
 		}
@@ -387,8 +388,8 @@ public class Projectbean {
 		HashMap<String, Integer> row = new HashMap<String, Integer>();
 		row.put("startRow", startRow); 
 		row.put("endRow", endRow);
-		eventList = sqlMap.queryForList("eventIng", row);
-		count = (Integer) sqlMap.queryForObject("countIng", null);
+		eventList = sqlMap.queryForList("eventEnd", row);
+		count = (Integer) sqlMap.queryForObject("countEnd", null);
 		for (int i = 0; i <eventList.size(); i++) {
 			eto = (EventDataBean) eventList.get(i);
 			srclist = eto.getEimg().split(",");
@@ -466,7 +467,7 @@ public class Projectbean {
 		EventDataBean eto = new EventDataBean();
 		List appList = null;
 		String pageNum = request.getParameter("pageNum");
-		int pageSize = 10;
+		int pageSize = 9;
 		if (pageNum == null) {
 			pageNum = "1";
 		}
@@ -577,5 +578,43 @@ public class Projectbean {
 		request.setAttribute("eto", eto);
 		request.setAttribute("check", new Integer(check));
 		return "/project/confirmPwPro.jsp";
+	}
+
+	@RequestMapping("eventWS.nhn")
+	public String eventwSearch(HttpServletRequest request){
+		int w = Integer.parseInt(request.getParameter("w"));		
+		EventDataBean eto = new EventDataBean();
+		List eventList = null;
+		int count = 0;
+		String pageNum = request.getParameter("pageNum");
+		int pageSize = 9;
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;
+		Timestamp date = new Timestamp(System.currentTimeMillis());
+		String[] srclist = null;
+		String path = request.getContextPath() + "/project/";
+		HashMap<String, Integer> row = new HashMap<String, Integer>();
+		row.put("startRow", startRow); 
+		row.put("endRow", endRow);
+		row.put("w", w);
+		eventList = sqlMap.queryForList("eventEndS", row);
+		count = (Integer) sqlMap.queryForObject("countEndS", w);
+		for (int i = 0; i <eventList.size(); i++) {
+			eto = (EventDataBean) eventList.get(i);
+			srclist = eto.getEimg().split(",");
+			eto.setEimg(path + srclist[0]);
+		}
+		request.setAttribute("currentPage", new Integer(currentPage));
+		request.setAttribute("startRow", new Integer(startRow));
+		request.setAttribute("endRow", new Integer(endRow));
+		request.setAttribute("pageSize", new Integer(pageSize));
+		request.setAttribute("eventList", eventList);
+		request.setAttribute("count", new Integer(count));
+		request.setAttribute("w", new Integer(w));
+		return "/project/eventWS.jsp";
 	}
 }

@@ -17,6 +17,11 @@
 		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
 	</select>
 	
+	<select id="eventEndS" resultClass="project.bean.EventDataBean" parameterClass="java.util.Map">
+		<include refid="getEventList"/> where <![CDATA[sdate<=to_char(sysdate,'yyyy-mm-dd')]]> and <![CDATA[edate<=to_char(sysdate,'yyyy-mm-dd')]]> and w=#w#) order by enumber asc) 
+		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
+	</select>
+	
 	<select id="upcomingEvent" resultClass="project.bean.EventDataBean" parameterClass="java.util.Map">
 		<include refid="getEventList"/> where sdate>to_char(sysdate,'yyyy-mm-dd')) order by enumber asc) 
 		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
@@ -34,13 +39,17 @@
 		<include refid="count"/> <![CDATA[sdate<=to_char(sysdate,'yyyy-mm-dd')]]> and <![CDATA[edate<=to_char(sysdate,'yyyy-mm-dd')]]>
 	</select>	
 	
+	<select id="countEndS" resultClass="int" parameterClass="int">
+		<include refid="count"/> <![CDATA[sdate<=to_char(sysdate,'yyyy-mm-dd')]]> and <![CDATA[edate<=to_char(sysdate,'yyyy-mm-dd')]]> and w=#w#
+	</select>	
+	
 	<select id="upcomingCount" resultClass="int" parameterClass="project.bean.EventDataBean">
 		<include refid="count"/> sdate>to_char(sysdate,'yyyy-mm-dd')
 	</select>
 	
 	<insert id="addEvent" parameterClass="project.bean.EventDataBean">
-		insert into event (enumber, ename, eimg, sdate, edate, regdate) values 
-		(event_seq.nextval, #ename#, #eimg#, #sdate#, #edate#, sysdate)
+		insert into event (enumber, ename, eimg, sdate, edate, w, regdate) values 
+		(event_seq.nextval, #ename#, #eimg#, #sdate#, #edate#, #w#, sysdate)
 	</insert>
 	
 	<select id="eventContent" resultClass="project.bean.EventDataBean" parameterClass="int">

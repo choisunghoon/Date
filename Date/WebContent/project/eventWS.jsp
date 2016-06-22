@@ -7,10 +7,10 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">  
-function search(w){alert(w)
+function search(url){alert(w)
 	$.ajax({
 		type : "post",		
-		url : "eventWS.nhn?w="+w,
+		url : url,
 		success : stest, // 페이지요청 성공시 실행 함수
 		error : sError
 	//페이지요청 실패시 실행함수
@@ -23,6 +23,7 @@ function stest(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다.
 function sError(){
     alert("Error");
 }
+
 function callway(enumber, wnumber, w){    
 	if(w==1){
 		alert("이미 당첨자가 뽑힌 이벤트 입니다. 수정 및 삭제는 해당 관리자 페이지를 이용해 주세요");
@@ -73,11 +74,7 @@ function callway(enumber, wnumber, w){
 <title>관리자 - 당첨자 관리</title>
 </head>
 <body>
-	<div id="t">
-	<center><h2>당첨자 관리</h2></center>
-	<button type="button" onclick='search(1)'>당첨자 선발 완료 된 이벤트</button>	
-	<button type="button" onclick='search(0)'>당첨자 선발 가능 이벤트</button>
-	</div>
+	
 	<div class="gallery" id="gallery">
 		<ul>
 			<c:set var="i" value="1" />
@@ -106,15 +103,15 @@ function callway(enumber, wnumber, w){
 					</c:if>
 
 					<c:if test="${startPage > 10}">
-						<a href="eventW.nhn?pageNum=${startPage - 10 }">[이전]</a>
+						<a href="#" onclick="callAjax1('eventWS.nhn?pageNum=${startPage - 10 }&w=${w}')">[이전]</a>
 					</c:if>
 
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						<a href="eventW.nhn?pageNum=${i}">[${i}]</a>
+						<a href="#" onclick="callAjax1('eventWS.nhn?pageNum=${i}&w=${w}')">[${i}]</a>
 					</c:forEach>
 
 					<c:if test="${endPage < pageCount}">
-						<a href="eventW.nhn?pageNum=${startPage + 10}">[다음]</a>
+						<a href="#" onclick="callAjax1('eventWS.nhn?pageNum=${startPage + 10 }&w=${w}')">[다음]</a>
 					</c:if>
 				</c:if></li>
 		</ul>

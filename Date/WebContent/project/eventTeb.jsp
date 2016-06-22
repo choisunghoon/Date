@@ -5,8 +5,7 @@
 <html>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">  
-  function callAjax1(urlname){
-	  
+  function callAjax1(urlname){	  
       $.ajax({
 	        type: "post",
 	        url : urlname,
@@ -23,7 +22,6 @@
   } 
   
   function callContent(url,enumber,tab){ 
-	  	alert(enumber + "  " + tab );
     	 $.ajax({    		
  	        type: "post", 	
  	        url : url+"?enumber="+enumber+"&tab="+tab,

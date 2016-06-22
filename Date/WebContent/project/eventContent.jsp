@@ -96,9 +96,10 @@ function callEvent(url,pageNum,enumber){
 	</c:if>
 	<c:if test="${tab==1}"><button type="button" class="btn btn-default" style="margin-top:5px; margin-left:408px" onclick="callAddApp('addApp.nhn',${eto.enumber})">이벤트 참여하기</button></c:if><br/>
 	<c:if test="${tab==4}">
-	<c:forEach var="i" begin="0" end="${eto.wnumber}">
-	${wclist[i]}<br/>
-	</c:forEach>
+		<c:if test="${eto.w==0}">아직 당첨자를 뽑지 않았습니다!!</c:if>
+		<c:if test="${eto.w==1}"><c:forEach var="i" begin="0" end="${eto.wnumber}">
+			${wclist[i]}<br/>
+		</c:forEach></c:if>
 	</c:if>
 	<div class="page">
 		<c:set var="pageCount"

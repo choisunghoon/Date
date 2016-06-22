@@ -404,6 +404,10 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
       <td align="center" width="100">이벤트 상세 이미지</td>
       <td align="center"><input type="file" name="upload[2]"></td>
     </tr>
+    <tr height="30"> 
+      <td align="center"  width="100">당첨자 수</td>
+      <td align="center"><input type="text" name="w">
+     </tr>    
      <tr>
       <td align="center" width="100">진행 날짜</td>
       <td align="center" width="100">시작 날짜<input type="text" id="start_day" name="sdate" class="forms" style="width:80px;" />
