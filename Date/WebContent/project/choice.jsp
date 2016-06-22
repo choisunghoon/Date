@@ -21,7 +21,7 @@
 				<tr height="30">
 					<td align="center">${appList.appnumber}</td>
 					<td align="center">${appList.couplename}</td>
-					<td align="center"><a href="appContent.nhn?enumber=${enumber}&appnumber=${appList.appnumber}&wnumber=${wnumber}&pageNum=${currentPage}">${appList.appsubject}</a></td>
+					<td align="center"><a href="appContentAdmin.nhn?enumber=${enumber}&appnumber=${appList.appnumber}&wnumber=${wnumber}&pageNum=${currentPage}">${appList.appsubject}</a></td>
 				</tr>
 			</c:forEach>
 		</tr>

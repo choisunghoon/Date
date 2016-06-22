@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">  
-function search(url){alert(w)
+function searchWs(url){alert(w)
 	$.ajax({
 		type : "post",		
 		url : url,
@@ -103,15 +103,15 @@ function callway(enumber, wnumber, w){
 					</c:if>
 
 					<c:if test="${startPage > 10}">
-						<a href="#" onclick="callAjax1('eventWS.nhn?pageNum=${startPage - 10 }&w=${w}')">[이전]</a>
+						<a href="#" onclick="searchWs('eventWS.nhn?pageNum=${startPage - 10 }&w=${w}')">[이전]</a>
 					</c:if>
 
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						<a href="#" onclick="callAjax1('eventWS.nhn?pageNum=${i}&w=${w}')">[${i}]</a>
+						<a href="#" onclick="searchWs('eventWS.nhn?pageNum=${i}&w=${w}')">[${i}]</a>
 					</c:forEach>
 
 					<c:if test="${endPage < pageCount}">
-						<a href="#" onclick="callAjax1('eventWS.nhn?pageNum=${startPage + 10 }&w=${w}')">[다음]</a>
+						<a href="#" onclick="searchWs('eventWS.nhn?pageNum=${startPage + 10 }&w=${w}')">[다음]</a>
 					</c:if>
 				</c:if></li>
 		</ul>

@@ -308,6 +308,28 @@ public class Projectbean {
 		request.setAttribute("tab", tab);
 		return "/project/appContent.jsp";
 	}
+	
+	@RequestMapping("appContentAdmin.nhn")
+	public String appContentAdmin(HttpServletRequest request) {
+		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
+		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
+		int enumber = Integer.parseInt(request.getParameter("enumber"));
+		String tab = request.getParameter("tab");
+		String pageNum = request.getParameter("pageNum");
+		String memid = "admin";
+		//String id = "gnn";
+		EventDataBean app = new EventDataBean();
+		app = (EventDataBean) sqlMap.queryForObject("getAppContent", appnumber);
+		request.setAttribute("appnumber", new Integer(appnumber));
+		request.setAttribute("wnumber", new Integer(wnumber));
+		request.setAttribute("enumber", new Integer(enumber));
+		//request.setAttribute("id", id);
+		request.setAttribute("memid", memid);
+		request.setAttribute("app", app);
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("tab", tab);
+		return "/project/appContentAdmin.jsp";
+	}
 
 	@RequestMapping("test.nhn") // 임의의 관리자 페이지
 	public String test() {
@@ -428,6 +450,7 @@ public class Projectbean {
 		String wname = null;
 		count = (Integer) sqlMap.queryForObject("eventAppCount", enumber);
 		appList = sqlMap.queryForList("eventAppAll", enumber);
+		if(count>0){
 		for (int i = 0; i < wList.length; i++) {
 			wList[i] = ran.nextInt(count) + 1;
 			for (int j = 0; j < i; j++) {
@@ -452,6 +475,7 @@ public class Projectbean {
 		eto1.setEnumber(enumber);
 	    eto1.setW(1);
 		sqlMap.update("addW", eto1);
+		}
 		request.setAttribute("appList", appList);
 		request.setAttribute("rList", rList);
 		request.setAttribute("enumber", new Integer(enumber));

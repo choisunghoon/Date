@@ -74,9 +74,10 @@ function callway(enumber, wnumber, w){
 </head>
 <body>
 	<div id="t">
-	<center><h2>당첨자 관리</h2></center>
-	<button type="button" onclick='search(1)'>당첨자 선발 완료 된 이벤트</button>	
+	<center><h2>당첨자 뽑기 페이지</h2></center>
+	<a href="eventW.nhn"><button type="button">당첨자 이벤트 첫 화면</button></a>
 	<button type="button" onclick='search(0)'>당첨자 선발 가능 이벤트</button>
+	<button type="button" onclick='search(1)'>당첨자 선발 완료 된 이벤트</button>	
 	</div>
 	<div class="gallery" id="gallery">
 		<ul>

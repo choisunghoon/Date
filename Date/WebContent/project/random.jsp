@@ -7,8 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 </head>
 <body>
+<c:if test="${count<=0}">신청 커플이 없습니다.</c:if>
+<c:if test="${count>0}">
 <c:forEach var="i" begin="0" end="${wnumber}">
 ${rList[i]}<br/>
 </c:forEach>
+</c:if>
 </body>
 </html>
