@@ -133,7 +133,8 @@ li{
 <c:if test="${id ne null and nickcheck eq 1}">
 <script>
 	alert("별명을 입력하지 않으시면 사이트 이용에 제한이 됩니다.회원정보 변경 메뉴에서 별명을 입력해주세요");
-</script>
+	<%response.sendRedirect("modifyForm.nhn");%>
+	</script>
 </c:if>
 <script type="text/javascript">
     function asdf(nhn){

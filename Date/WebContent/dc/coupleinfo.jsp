@@ -69,7 +69,7 @@ function date() {
         
     }
    function openConfirmnickname(userinput) {
-       // 아이디를 입력했는지 검사
+       // 별명을 입력했는지 검사
        if (userinput.nickname.value == "") {
            alert("별명 입력하세요");
            return;
@@ -95,17 +95,14 @@ function date() {
        "toolbar=no, location1=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
    }
    function openCoupleImage(userinput) {
-       // 커플명을 입력했는지 검사
-       if (userinput.coupleImage.value == "") {
-           alert("커플명을 입력하세요");
-           return;
-       }
+       
+      
        // url과 사용자 입력 id를 조합합니다.
-       url = "confirmCoupleName.nhn?coupleName=" + userinput.coupleName.value ;
+       url = "diary1.nhn?coupleName=" + userinput.coupleName.value ;
        
        // 새로운 윈도우를 엽니다.
        open(url, "confirm", 
-       "toolbar=no, location1=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
+       "toolbar=no, location1=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=300");
    }
 -->
 
@@ -133,7 +130,7 @@ function date() {
 </c:if>
 <c:if test="${couple2.couple eq '1' }">
 	
-	
+	<form method="post" action="coupleModify.nhn">
 	<b>${couple2.nickname }</b>(${couple2.id})님과 <b>${couple1.nickname }</b>(${couple1.id})님의 커플 정보 입니다.
 	<br/><br/><br/>
    <div style="width:200px; height:280; margin-left:44%;">
@@ -145,16 +142,22 @@ function date() {
     <div style="border:1px solid; width:200px; height:200px; float:left;">
       <c:if test="${coupleData.coupleImage eq null }">
       <img src="syimage/couple.png" class="img-circle">
-       <%@include file="/dc/diary.jsp" %>
+       <center>
+      <input type="button" value="이미지 변경" onClick="openCoupleImage(this.form)">
+   </center>
       </c:if>
       <c:if test="${coupleData.coupleImage ne null }">
       <img src="syimage/${coupleData.coupleImage }" width="200px" height="200px">
-       <%@include file="/dc/diary.jsp" %>
+       <center>
+      <input type="button" value="이미지 변경" onClick="openCoupleImage(this.form)">
+   </center>
       </c:if>
+    <input type="submit" value="커플정보 수정">
+  	<input type="button" value="취소" onClick="javascript:window.location='mypage.nhn'">
    </div>
    <center>
-  
-
+  	
+	</form>
 
    </center>
   </div> 

@@ -32,6 +32,7 @@ public class LoginBean {
 			int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);
 			session.setAttribute("id", id);
 			request.setAttribute("nickcheck", nickcheck);
+			
 			int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
 			if(nc==1){
 				
@@ -43,8 +44,12 @@ public class LoginBean {
 					AlertDataBean adto=new AlertDataBean();
 					adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
 					session.setAttribute("adto", adto);
+					
+					
 					System.out.println(adto.getContent());
 					session.setAttribute("nickname", nickname);
+					int ca=(Integer)sqlMapper.queryForObject("getCouple",id);
+					request.setAttribute("ca", ca);
 			}
 				int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 				System.out.println("메인 체크알럿1"+checkAlert1);
@@ -133,6 +138,8 @@ public class LoginBean {
 				session.setAttribute("adto", adto);
 				System.out.println(adto.getContent());
 				session.setAttribute("nickname", nickname);
+				int ca=(Integer)sqlMapper.queryForObject("getCouple",id);
+				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 			System.out.println("메인 체크알럿1"+checkAlert1);
@@ -169,6 +176,8 @@ public class LoginBean {
 				session.setAttribute("adto", adto);
 				System.out.println(adto.getContent());
 				session.setAttribute("nickname", nickname);
+				int ca=(Integer)sqlMapper.queryForObject("getCouple",id);
+				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 			System.out.println("메인 체크알럿1"+checkAlert1);
@@ -204,6 +213,8 @@ public class LoginBean {
 				session.setAttribute("adto", adto);
 				System.out.println(adto.getContent());
 				session.setAttribute("nickname", nickname);
+				int ca=(Integer)sqlMapper.queryForObject("getCouple",id);
+				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 			System.out.println("메인 체크알럿1"+checkAlert1);
@@ -239,6 +250,8 @@ public class LoginBean {
 				session.setAttribute("adto", adto);
 				System.out.println(adto.getContent());
 				session.setAttribute("nickname", nickname);
+				int ca=(Integer)sqlMapper.queryForObject("getCouple",id);
+				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 			System.out.println("메인 체크알럿1"+checkAlert1);
@@ -275,6 +288,8 @@ public class LoginBean {
 				session.setAttribute("adto", adto);
 				System.out.println(adto.getContent());
 				session.setAttribute("nickname", nickname);
+				int ca=(Integer)sqlMapper.queryForObject("getCouple",id);
+				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 			System.out.println("메인 체크알럿1"+checkAlert1);

@@ -17,15 +17,15 @@
 <body>
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="/Date/dc/test/alertify.js-0.3.11/lib/alertify.min.js"></script>
-<c:if test="${adto.content eq 'coupleRequest'}">	
+<c:if test="${adto.content eq 'coupleRequest' and ca eq 1}">	
 	<script>
 	$(document).ready(function() { 
 		alert();
 	});
-	 /* $(document).ready(function(){
-	    	window.setInterval('alert()', 60000); //1분마다 alert()를 반복!
+	/*  $(document).ready(function(){
+	    	window.setInterval('alert()', 5000); 
 
-	    }); */
+	    });*/
 		function alert(){
 			reset();
 			alertify.set({ delay: 1000*60*60*24 });
@@ -40,7 +40,7 @@
 		alert();
 	});
 	 /* $(document).ready(function(){
-	    	window.setInterval('alert()', 60000); //1분마다 alert()를 반복!
+	    	window.setInterval('alert()', 10000); //10초마다 alert()를 반복!
 	    }); */
 		function alert(){
 			reset();

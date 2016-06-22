@@ -112,6 +112,11 @@
 				set readcheck='2'
 				where id=#id#
 		</update>
+		<update id="readCheckReject" parameterClass="String">
+			update dc_alert
+				set readcheck='3'
+				where nickname=#nickname#
+		</update>
 		<update id="coupleComplete" parameterClass="String">
 			update dc_alert
 				set content='couple'
@@ -186,8 +191,10 @@
 		<select id="getNick" parameterClass="String" resultClass="String">
 			select nickname from dc_member where id=#id#
 		</select>
-		
-		
+		<update id="diaryimgUpdate1" parameterClass="cdto">
+			update dc_couple set coupleImage = #coupleImage# where coupleName=#coupleName#
+		</update>
+			
 		
 
 </sqlMap>

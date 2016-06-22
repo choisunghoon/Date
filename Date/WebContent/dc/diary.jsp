@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8"    pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <style>
 	img{
 		width:200px; height:200px;}
@@ -15,10 +16,10 @@
 		}		
 	}
 </script>
-
-<form name="rg" action="updateImage.nhn" method="post" enctype="multipart/form-data" onsubmit="return checkfile();">
+<form name="rg" action="updateImage1.nhn?coupleName=${coupleName }" method="post" enctype="multipart/form-data" onsubmit="return checkfile();">
 <div id="uploadPreview" style="width:200; height:200; border:1px solid;"></div>
 <input type="file" name="save" id="choose"/>
+
 <script type="text/javascript">
 function readImage(file) {
     var reader = new FileReader();
@@ -50,9 +51,20 @@ $("#choose").change(function (e) {
     if(F && F[0]) for(var i=0; i<F.length; i++) readImage( F[i] );
 });
 </script>
-
+<br>
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
-<input type="submit" value="변경"/>
-<input type="button" value="취소" onClick="javascript:history.go(-1)"/>
+<input type="submit" value="전송"/>
+<input type="button" value="취소" onClick="selfclose()"/>
 </form>
+<script language="javascript">
+  function selfclose()
+    {	self.close();	}
+</script>
+<c:if test="${close eq 'yes' }">
+<script language="javascript">
+	$(document).ready(function() {
+		self.close();
+	});
+</script>
+</c:if>

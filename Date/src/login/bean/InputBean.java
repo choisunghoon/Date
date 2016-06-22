@@ -1,5 +1,6 @@
 package login.bean;
 
+import java.io.File;
 import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import ch11.logon.*;
 
@@ -77,7 +80,8 @@ public class InputBean {
 		request.setAttribute("check", check);
 		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);
 	    request.setAttribute("dto", dto);
-	    
+	    int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);
+	    request.setAttribute("nickcheck", nickcheck);
 		return "/dc/modifyForm.jsp";
 	}
 	
@@ -211,10 +215,11 @@ public class InputBean {
 		if(checkAlert1==1){
 			AlertDataBean adto=new AlertDataBean();
 			adto=(AlertDataBean)sqlMapper.queryForObject("getAlert1", id);
-			if(adto.getReadcheck()==1){
+			if(adto.getContent().equals("couple")){
 				sqlMapper.update("readCheckEnd", id);
 			}
 		}
+		
 		
 		
 		
@@ -252,7 +257,9 @@ public class InputBean {
 	@RequestMapping("couplex.nhn")
 	public String couplex(HttpSession session,HttpServletRequest request) throws Exception{
 		String id =request.getParameter("id");
+		String nickname=(String)sqlMapper.queryForObject("getNick", id);
 		sqlMapper.update("deleteCouple", id);
+		sqlMapper.update("readCheckReject", nickname);
 		request.setAttribute("id", id);
 		return "/dc/mypage.jsp";
 	}
@@ -269,5 +276,31 @@ public class InputBean {
 		request.setAttribute("id", id);
 		return "/dc/mypage.jsp";
 	}
+	@RequestMapping("/diary1.nhn")
+	public String diary(HttpServletRequest request){
+		String coupleName= request.getParameter("coupleName");
+		request.setAttribute("coupleName", coupleName);
+		return "/dc/diary.jsp";
+	}
+	@RequestMapping("/updateImage1.nhn")
+	public String updateImage(MultipartHttpServletRequest request,CoupleDataBean cdb)throws Exception{
 
+		String coupleName = request.getParameter("coupleName");
+		String RealPath = request.getRealPath("\\syimage");
+		MultipartFile file = request.getFile("save");
+		String orgName = file.getOriginalFilename();
+		cdb.setCoupleImage(orgName);
+		cdb.setCoupleName(coupleName);
+		File copy = new File(RealPath+"/"+orgName);
+		file.transferTo(copy);
+		sqlMapper.insert("diaryimgUpdate1",cdb);
+		request.setAttribute("orgName", orgName);
+		request.setAttribute("close", "yes");
+		return "/dc/diary.jsp";
+	}
+	@RequestMapping("/coupleModify.nhn")
+	public String coupleModify(CoupleDataBean cdb,HttpSession session,HttpServletRequest request)throws Exception{
+		
+		return "/dc/mypage.jsp";
+	}
 }
