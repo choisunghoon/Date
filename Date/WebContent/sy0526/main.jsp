@@ -52,7 +52,9 @@ li{
 	}
 #topmenu {
 	margin-top:5px;
-	margin-left:82%;
+	margin-left:74%;
+	}
+	#top2{
 	}
 #topmenu ul li{
 	font-size:15px;
@@ -69,8 +71,8 @@ li{
 		border:0}
 </style>
 <html xmlns:fb="http://ogp.me/ns/fb#">
-    <div id="fb-root"></div>
-  <script type="text/javascript">
+<div id="fb-root"></div>
+<script type="text/javascript">
   
 
 
@@ -121,11 +123,11 @@ li{
 	  // Load the SDK Asynchronously
 	 
 		
-	</script>
+</script>
 <c:if test="${id eq 'undefined'}">
-<% 
-	session.invalidate();
-	response.sendRedirect("main.nhn");
+	<% 
+		session.invalidate();
+		response.sendRedirect("main.nhn");
 	%>
 </c:if>
 <c:if test="${id ne null and nickcheck eq 1}">
@@ -150,59 +152,48 @@ li{
     function whenError(){
         alert("Error");
     }
-  </script>
-  <body>
-<div class="container">
+</script>
+<body>
+	<div class="container">
 
-	<!-- 모달 팝업 -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-	  <div class="modal-dialog" style="width:80%">
-	    <div class="modal-content">
-	      <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-		
-	      </div>
-	      <div class="modal-body">
-		
-	      </div>
-	      
-	    </div>
-	  </div>
+		<!-- 모달 팝업 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+			<div class="modal-dialog" style="width:80%">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					</div>
+				<div class="modal-body">
+				</div>    
+			</div>
+		</div>
 	</div>
-
 </div>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <div id="topmenu">
 	<ul>
 		<li class="top2">
-<c:if test="${id eq null }">
-
-		<a href="#"onclick="asdf('loginForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">일반로그인</a> &nbsp;|&nbsp;
-		 <a href="#" onclick="asdf('inputForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">회원가입</a>&nbsp;|&nbsp;
-		 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
-</c:if>
-<c:if test="${id ne null  and (check eq 'yes')}">
-<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
-	 ${ id}님 환영합니다.
-		 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div> 
-
-		
-
-</c:if>
-<c:if test="${id ne null  and (check eq 'no')}">
-<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
-	 ${ id}님 환영합니다.
-
-		 <a href="logout.nhn">로그아웃</a> 
-
-
-</c:if>
+			<c:if test="${id eq null }">
+				<a href="#"onclick="asdf('loginForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">로그인</a> &nbsp;|&nbsp;
+				<a href="#" onclick="asdf('inputForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">회원가입</a>&nbsp;|&nbsp;
+				<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
+			</c:if>
+			<c:if test="${id ne null  and (check eq 'yes')}">
+			<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
+				${ id}님 환영합니다.
+				&nbsp;|&nbsp;<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div> 
+			</c:if>
+			<c:if test="${id ne null  and (check eq 'no')}">
+			<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
+				${ id}님 환영합니다.
+				&nbsp;|&nbsp;<a href="logout.nhn" style="color:#B8B8B8">로그아웃</a> 
+			</c:if>
 		</li>
 	</ul>
 </div>
 
 <div id="menu">
-	<ul style="margin-left:5%; margin-top:35%;">
+	<ul style="margin-left:5%; margin-top:35.5%;">
 		<li>
 			<a href="couple.nhn"><img src="mainimg/as.png" onmouseover='this.src="mainimg/as1.png"' onmouseout='this.src="mainimg/as.png"' ></a>
 		</li>
@@ -235,7 +226,7 @@ li{
 
 <div id="bestcouple">
 	<a href="#">
-	<img src="mainimg/text.jpg" style="opacity:0.7; margin-left:37%; margin-top:14.5%;">
+	<img src="mainimg/text.jpg" style="opacity:0.7; margin-left:37%; margin-top:15%;">
 	</a>
 </div>
 
