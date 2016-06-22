@@ -163,6 +163,7 @@ public class AdminBean {
 		}else{
 			place = "코스 공유";
 		}
+		
 		System.out.println(a);
 		pdb.setCouplename(keyword);
 		pdb.setPlace(place);

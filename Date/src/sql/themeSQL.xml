@@ -82,7 +82,7 @@
     </select>
     
     <select id="getCos" resultClass="themeDTO.CourseDataBean" parameterClass="int">
-        select cos_name, map_img, content from course where cos_num = #cos_num#
+        select cos_name, map_img, cos_img, content, readCount from course where cos_num = #cos_num#
     </select>
     
     <select id="getPlace" resultClass="themeDTO.LocationDataBean" parameterClass="java.util.Map">
@@ -90,7 +90,7 @@
     </select>
     
     <select id="getPlace1" resultClass="themeDTO.LocationDataBean" parameterClass="int">
-        select step_num, loc_name, loc_content, rate, loc_pic, loc_pic1 from location where loc_num = #loc_num#
+        select step_num, loc_name, loc_content, rate, loc_pic, loc_pic1,readCount from location where loc_num = #loc_num#
     </select>
     
     <select id="deleteProck" resultClass="int" parameterClass="ch11.logon.LogonDataBean">
@@ -107,6 +107,14 @@
     
     <update id="placeModify" parameterClass="themeDTO.LocationDataBean">
         update location set loc_name=#loc_name#, loc_content=#loc_content#, loc_pic=#loc_pic#, loc_pic1=#loc_pic1#, rate=#rate# where loc_num=#loc_num#
+    </update>
+    
+    <update id="cosReadcount" parameterClass="int">
+    	update course set readCount = readCount + 1 where cos_num = #cos_num#
+    </update>
+    
+    <update id="locReadcount" parameterClass="int">
+    	update location set readCount = readCount + 1 where loc_num = #loc_num#
     </update>
     
     <delete id="deleteCtg" parameterClass="themeDTO.CtgDataBean">

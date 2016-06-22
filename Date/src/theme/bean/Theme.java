@@ -75,7 +75,7 @@ public class Theme {
 		num.put("endRow", endRow);
 		
 		String[] srclist = null;
-		String path = request.getContextPath() +"/theme/";
+		String path = request.getContextPath() +"/theme/themeimg/";
 		ctgList = sqlMap.queryForList("getCtgList", num);
 		count = (Integer)sqlMap.queryForObject("ctgCount", null);
 		
@@ -211,7 +211,7 @@ public class Theme {
 		int cos_num;
 		
 		String[] srclist = null;
-		String path = request.getContextPath() +"/theme/";
+		String path = request.getContextPath() +"/theme/themeimg/";
 		courseList = sqlMap.queryForList("getCourseList", ctg_num);
 		count = (Integer)sqlMap.queryForObject("courseCount", ctg_num);
 		
@@ -323,17 +323,17 @@ public class Theme {
 	public String place(HttpServletRequest request,LocationDataBean dto,CourseDataBean dto1){
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
 		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
-		
 		List placeList = null;
 		
 		HashMap<String, Integer> num = new HashMap<String, Integer>();
 		num.put("ctg_num", ctg_num);
 		num.put("cos_num", cos_num);
 		
+		sqlMap.update("cosReadcount", cos_num);
 		dto1 = (CourseDataBean)sqlMap.queryForObject("getCos" , cos_num);
 		
 		String[] srclist = null;
-		String path = request.getContextPath() +"/theme/";
+		String path = request.getContextPath() +"/theme/themeimg/";
 		placeList = sqlMap.queryForList("getPlace", num);
 		
 		for(int i=0; i == 3; i++){
@@ -417,6 +417,7 @@ public class Theme {
 	public String PlaceView(HttpServletRequest request,LocationDataBean dto){
 		int loc_num = Integer.parseInt(request.getParameter("loc_num"));
 		
+		sqlMap.update("locReadcount", loc_num);
 		dto = (LocationDataBean)sqlMap.queryForObject("getPlace1" , loc_num);
 		
 		request.setAttribute("dto", dto);

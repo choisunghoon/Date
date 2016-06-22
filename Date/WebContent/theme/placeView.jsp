@@ -20,13 +20,16 @@
 						<td align="center" width="50">평 점</td>
 						<td align="center">${dto.rate}
 					</td>
+					<tr>
+						<td align="center" width="50">조회수</td>
+						<td align="center" >${dto.readCount}
     				<tr height="30">
     					<td align="center" width="50">장소사진</td>
-						<td align="center" width="700"><img src="theme/${dto.loc_pic}" alt=""></td>
+						<td align="center" width="700"><img src="theme/themeimg/${dto.loc_pic}" alt=""></td>
 					</tr>
 					<tr height="30">
     					<td align="center" width="50">장소사진</td>
-						<td align="center" width="700"><img src="theme/${dto.loc_pic1}" alt=""></td>
+						<td align="center" width="700"><img src="theme/themeimg/${dto.loc_pic1}" alt=""></td>
 					</tr>
 				</table>
 				</br>

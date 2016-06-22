@@ -128,11 +128,15 @@
 	<table border="1" width="500" cellspacing="0" cellpadding="0" align="center">
 		<tr>
 			<td align="center" width="500">지도 img 입력</td>
-			<td align="center" width="500"><img src="theme/${dto1.cos_img}" alt=""></td>
+			<td align="center" width="500">${dto.cos_img}<img src="theme/themeimg/${dto1.cos_img}" alt=""></td>
 		</tr>
 		<tr>
 			<td align="center" width="100">한줄평</td>
 			<td align="center">${dto1.content}</td>
+		</tr>
+		<tr>
+			<td align="center" width="100">조회수</td>
+			<td align="center">${dto1.readCount}</td>
 		</tr>
 		<input type="hidden" name="ctg_num" value="${ctg_num}" />
 		<input type="hidden" name="cos_num" value="${cos_num}" />
@@ -148,13 +152,13 @@
 					<c:if test="${(i%3)!=0}">						
 						<li>
 						<h2><center>코스${placeList.step_num}</center></h2>					
-						<img src="theme/${placeList.loc_pic}" onclick="callContent(${placeList.ctg_num},${placeList.cos_num},${placeList.loc_num})" id="test" data-toggle="modal" data-target="#myModal1" alt="">
+						<img src="theme/themeimg/${placeList.loc_pic}" onclick="callContent(${placeList.ctg_num},${placeList.cos_num},${placeList.loc_num})" id="test" data-toggle="modal" data-target="#myModal1" alt="">
 							</li>
 					</c:if>
 					<c:if test="${(i%3)==0}">
 						<li class="last">
 						<h2><center>코스${placeList.step_num}</center></h2>
-						<img src="theme/${placeList.loc_pic}" onclick="callContent(${placeList.ctg_num},${placeList.cos_num},${placeList.loc_num})" id="test" data-toggle="modal" data-target="#myModal1" alt="">
+						<img src="theme/themeimg/${placeList.loc_pic}" onclick="callContent(${placeList.ctg_num},${placeList.cos_num},${placeList.loc_num})" id="test" data-toggle="modal" data-target="#myModal1" alt="">
 							</li>
 					</c:if>
 					<c:set var="i" value="${i+1}" />
@@ -192,8 +196,10 @@
 	      </div>
 	      <div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		<c:if test="${id == 'admin'}">
 		<button type="button" class="btn btn-default" data-toggle="modal" href="#appModal" onclick="callAddApp()">정보 수정</button>
 		<button type="button" class="btn btn-default" data-toggle="modal" href="#app1Modal" onclick="callAddApp1()">장소 삭제</button>
+		</c:if>
 		<input type="hidden" value="" id="loc_num" />
 		<input type="hidden" value="" id="ctg_num" />
 		<input type="hidden" value="" id="cos_num" />
