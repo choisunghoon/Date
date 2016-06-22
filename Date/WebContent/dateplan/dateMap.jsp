@@ -85,8 +85,18 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 </style>
+<script>
+	function alertw(){
+		alert("저장되었습니다.")
+	}
+</script>
 </head>
 <body>
+<form action="cosSave.nhn" method="post" onsubmit="alertw()">
+<div style="margin-bottom: 10px">
+제목 : <input type="text" name ="subject" id="subject" />
+</div>
+
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=9be7455c7d33a4e2b750d3537e1179d8&libraries=services"></script>
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -94,7 +104,7 @@
         <div class="option">
             <p>
                 
-                키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+                키워드 : <input type="text" value="" id="keyword" size="15"> 
                 <button type="button" onclick="searchPlaces2(); return false;">검색하기</button> 
             </p>
         </div>
@@ -111,8 +121,8 @@
             <span class="category_bg mart"></span>
             문화시설
         </li>  
-        <li id="FD6" data-order="3"> 
-            <span class="category_bg oil"></span>
+        <li id="FD6" data-order="5"> 
+            <span class="category_bg store"></span>
             음식점
         </li>
      <!--   
@@ -130,8 +140,14 @@
         </li>   
          -->   
     </ul>
+    
+    
 </div>
+<input type="hidden" value="sa" name="btcheck" />
+<div id="img" class="placeinfov_wrap">
 
+</div>
+<input type="submit"  value="저장" />
 
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
@@ -310,7 +326,7 @@ function displayPlaces2(places) {
         (function(marker, place) {
             daum.maps.event.addListener(marker, 'rightclick', function() {
 
-            	kor[j] = '<div onclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
+            	kor[j] = '<div ondblclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
                 '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
             	
 			if (place.newAddress) {
@@ -422,7 +438,7 @@ function displayPlaces(places) {
             (function(marker, place) {
                 daum.maps.event.addListener(marker, 'rightclick', function() {
 
-                	kor[j] = '<div onclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
+                	kor[j] = '<div ondblclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
                     '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
                 	
     			if (place.newAddress) {
@@ -444,7 +460,7 @@ function displayPlaces(places) {
       		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
              		   '</div>' + 
              		   '<div class="afterv" style="float:left;"></div>';
-    			alert(place.title);
+    			alert(place.category + " " + place.id);
                  if(j>5){               	 
              		j=6;
              		alert("5개 이상 선택 하실수 없습니다.");
@@ -648,12 +664,8 @@ function removeAllChildNods(el) {
     }
 }
 </script>
-<form action="cosSave.nhn" method="post">
-<input type="hidden" value="sa" name="btcheck" />
-<div id="img" class="placeinfov_wrap">
-	
-</div>
-<input type="submit"  value="저장" />
+
+
 </form>
 
 </body>

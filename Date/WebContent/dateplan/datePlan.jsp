@@ -333,7 +333,7 @@ function displayPlaces2(places) {
         (function(marker, place) {
             daum.maps.event.addListener(marker, 'rightclick', function() {
 
-            	kor[j] = '<div onclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
+            	kor[j] = '<div ondblclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
                 '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
             	
 			if (place.newAddress) {
@@ -440,7 +440,7 @@ function displayPlaces3(places) {
         (function(marker, place) {
             daum.maps.event.addListener(marker, 'rightclick', function() {
 
-            	kor[j] = '<div onclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
+            	kor[j] = '<div ondblclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
                 '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
             	
 			if (place.newAddress) {
@@ -484,7 +484,7 @@ function displayPlaces3(places) {
         })(marker, places[i]);
         (function(marker, place) {
                 	
-                	kor[j] = '<div onclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
+                	kor[j] = '<div ondblclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
                     '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
                 	
     			if (place.newAddress) {
@@ -593,7 +593,7 @@ function displayPlaces(places) {
             (function(marker, place) {
                 daum.maps.event.addListener(marker, 'rightclick', function() {
 
-                	kor[j] = '<div onclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
+                	kor[j] = '<div ondblclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
                     '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
                 	
     			if (place.newAddress) {

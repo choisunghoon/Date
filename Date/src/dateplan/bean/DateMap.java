@@ -1,6 +1,10 @@
 package dateplan.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
@@ -34,9 +38,9 @@ public class DateMap {
 	}
 	@RequestMapping("datePlan.nhn")
 	public String dateMap2(HttpServletRequest request,DTO dto) throws Exception{
+		int num = Integer.parseInt(request.getParameter("num"));
 		
-		
-		dto= (DTO)sqlMap.queryForObject("selectcos",null);
+		dto= (DTO)sqlMap.queryForObject("selectcosnum",num);
 		
 		
 		request.setAttribute("dto", dto);
@@ -46,14 +50,31 @@ public class DateMap {
 	}
 	@RequestMapping("cosSave.nhn")
 	public String cosSave(HttpServletRequest request,DTO dto) throws Exception{
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("selectcpname", id);
+		dto.setCouplename(couplename);
+		sqlMap.insert("insertcos", dto);
 			
-			
-			sqlMap.insert("insertcos", dto);
-			
-		
 		request.setAttribute("dto", dto);
 		
-		return "/dateplan/cosSave.jsp";
+		return "couple.nhn";
+	}
+	@RequestMapping("datecos.nhn")
+	public String datecos(HttpServletRequest request,DTO dto){
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("selectcpname", id);
+		List cosList = new ArrayList();
+		cosList = sqlMap.queryForList("selectcos", couplename);
+		
+		
+		
+		
+		
+		request.setAttribute("cosList", cosList);
+		
+		return "/dateplan/datecos.jsp";
 	}
 	@RequestMapping("cosUpdate.nhn")
 	public String cosUpdate(HttpServletRequest request,DTO dto) throws Exception{

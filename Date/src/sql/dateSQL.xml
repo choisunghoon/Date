@@ -2,13 +2,19 @@
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
 	<insert id="insertcos" parameterClass="dateplan.bean.DTO">
-		insert into dc_dc(num,placetitle,placeid) values(dc_dc_seq.nextval,#placetitle#,#placeid#)
+		insert into dc_dc(num,placetitle,placeid,couplename,subject) values(dc_dc_seq.nextval,#placetitle#,#placeid#,#couplename#,#subject#)
 	</insert>
-	<select id="selectcos" resultClass="dateplan.bean.DTO" parameterClass="dateplan.bean.DTO">
-		select * from dc_dc
+	<select id="selectcosnum" resultClass="dateplan.bean.DTO" parameterClass="int">
+		select * from dc_dc where num = #num#
+	</select>
+	<select id="selectcos" parameterClass="String" resultClass="dateplan.bean.DTO">
+		select * from dc_dc where couplename=#couplename#
 	</select>
 	<update id="updatecos" parameterClass="dateplan.bean.DTO">
 		update dc_dc set placetitle=#placetitle#,placeid=#placeid# where num=#num#
 	</update>
+	<select id="selectcpname" parameterClass="String" resultClass="String">
+		select couplename from dc_couple where id1 = #id# or id2= #id#
+	</select>
 </sqlMap>
 
