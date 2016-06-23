@@ -118,6 +118,45 @@ public class AdminBean {
 		return "/admin/adminEvent.jsp";
 	}
 	
+	@RequestMapping("adminEvent1.nhn")
+	public String adminEvent1(HttpServletRequest request,HttpSession session,EventDataBean dto){
+		
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
+		List eventList = new ArrayList();
+		int count = 0;
+		
+		String pageNum = request.getParameter("pageNum");
+		int pageSize = 10;
+		if(pageNum == null){
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;
+		
+		HashMap<String, Integer> num = new HashMap<String, Integer>();
+		num.put("startRow", startRow);
+		num.put("endRow", endRow);
+		
+		
+		eventList = sqlMap.queryForList("getWinEventList", num);
+		count = (Integer)sqlMap.queryForObject("winEventCount", null);
+	
+		
+		request.setAttribute("eventList", eventList);
+		request.setAttribute("count", count);
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("startRow",startRow);
+		request.setAttribute("endRow", endRow);
+		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("id", id);
+	
+		
+		return "/admin/adminEvent1.jsp";
+	}
+	
 	@RequestMapping("adminEventPro.nhn")
 	public String adminEventPro(HttpServletRequest request, EventDataBean edb){
 		String keyword = request.getParameter("keyword");
@@ -133,7 +172,7 @@ public class AdminBean {
 		}
 
 		request.setAttribute("eventList", eventList);
-		return "/admin/adminEvent.jsp";
+		return "/admin/adminEvent1.jsp";
 	}
 	
 	@RequestMapping("adminEventPro1.nhn")
@@ -147,7 +186,7 @@ public class AdminBean {
 		request.setAttribute("eventList", eventList);
 		
 		
-		return "/admin/adminEvent.jsp";
+		return "/admin/adminEvent1.jsp";
 	}
 	
 	@RequestMapping("pointPro.nhn")

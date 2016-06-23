@@ -8,19 +8,19 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-	function check() {
+	function checkSS() {
     	if (document.form.keyword.value == "") {
         	alert("검색어를 입력하세요.");
         	document.form.keyword.focus();
         	return false;
     	}
     	else if(document.form.keyword.value != ""){
-    		callAjax('adminEventPro.nhn');
+    		callAjaxSS('adminEventPro.nhn');
     		
     	}
 	}
  
-    function callAjax(nhn){
+    function callAjaxSS(nhn){
         $.ajax({
 	        type: "post",
 	        url : nhn,
@@ -29,40 +29,45 @@
 	        	pick : $('#pick').val(),
 	        	keyword: $("#keyword").val()
 	        },
-	        success: refresh,	// 페이지요청 성공시 실행 함수
-	        error: whenError2	//페이지요청 실패시 실행함수
+	        success: refreshSS,	// 페이지요청 성공시 실행 함수
+	        error: whenErrorSS	//페이지요청 실패시 실행함수
      	});
     }
-    function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-        $("#subMain").html(aaa);
+    function refreshSS(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $("#subMain1").html(aaa);
         
     }
-    function whenError2(){
+    function whenErrorSS(){
         alert("Error");
     }
     
-    function callAjax(nhn){
+    function callAjaxSSS(nhn){
         $.ajax({
 	        type: "post",
-	        url : "adminEvent1.nhn",
+	        url : nhn,
 	        data:{
 	        	states : $('#states').val(),
 	        	pick : $('#pick').val(),
 	        	keyword: $("#keyword").val()
 	        },
-	        success: refresh1,	// 페이지요청 성공시 실행 함수
-	        error: whenError2	//페이지요청 실패시 실행함수
+	        success: refreshSSS,	// 페이지요청 성공시 실행 함수
+	        error: whenErrorSSS	//페이지요청 실패시 실행함수
      	});
     }
-    
-    function refresh1(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+    function refreshSSS(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
         $("#subMain").html(aaa);
         
     }
+    function whenErrorSSS(){
+        alert("Error");
+    }
+    
+
 
   </script>
 
 <body>
+<div id="a">
 <center><h2>당첨자 확인(전체 내역 : ${count})</h2>
 		
 		<form name="form" method="post" onSubmit="check()" >
@@ -74,15 +79,17 @@
 				<option value="1">이벤트 이름</option>
 				<option value="2">당첨 커플</option>
 			</select>
-				<input type="button" value="검색" onclick="check()">
-				<select name="pick" id="pick" onchange="callAjax('adminEventPro1.nhn')">
+				<input type="button" value="검색" onclick="checkSS()">
+				<select name="pick" id="pick" onchange="callAjaxSS('adminEventPro1.nhn')">
 				<option value="1">추첨</option>
 				<option value="0">미추첨</option>
 			</select>
 			
 		</form>	
-<div id="subMain" style="float:center;width:86%">	
-<table width="500" border="1" cellspacing="0" cellpadding="0"   align="center">
+		</div>
+<div id="subMain1" style="float:center;width:86%">	
+
+<table width="1000" border="1" cellspacing="0" cellpadding="0"   align="center">
 	<tr height="30" >
 		<td align="center" width="100">이벤트 번호</td>
 		<td align="center" width="150">이벤트 이름</td>
@@ -100,12 +107,12 @@
 	<c:if test="${count != 0}">
 	<c:forEach var="eventList" items="${eventList}">
 	<tr>
-		<td align="center">${eventList.enumber}</td>
-		<td align="center">${eventList.ename}</td>
-		<td align="center">${eventList.sdate}~${eventList.edate}</td>
-		<td align="center">${eventList.wnumber}</td>
-		<td align="center">${eventList.w}</td>
-		<td align="center">${eventList.wcouples}</td>
+		<td align="center" width="100">${eventList.enumber}</td>
+		<td align="center" width="150">${eventList.ename}</td>
+		<td align="center" width="350">${eventList.sdate}~${eventList.edate}</td>
+		<td align="center" width="100">${eventList.wnumber}</td>
+		<td align="center" width="100">${eventList.w}</td>
+		<td align="center" width="200">${eventList.wcouples}</td>
 	</tr>
 	
 	
@@ -125,20 +132,21 @@
    </c:if> 
           
    <c:if test="${startPage > 10}">
-        <a href="#" onclick="callAjax('adminEvent.nhn?pageNum=${startPage - 10 }')">[이전]</a>	
+        <a href="#" onclick="callAjaxSSS('adminEvent.nhn?pageNum=${startPage - 10 }')">[이전]</a>	
    </c:if>
 
    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <a href="#" onclick="callAjax('adminEvent.nhn?pageNum=${i}')">[${i}]</a>
+       <a href="#" onclick="callAjaxSSS('adminEvent.nhn?pageNum=${i}')">[${i}]</a>
    </c:forEach>
 
    <c:if test="${endPage < pageCount}">
-        <a href="#" onclick="callAjax('adminEvent.nhn?pageNum=${startPage + 10 }')">[다음]</a>
+        <a href="#" onclick="callAjaxSSS('adminEvent.nhn?pageNum=${startPage + 10 }')">[다음]</a>
    </c:if>
 </c:if>
 </center>
 	
 		<div style="float:center;width:2%">&nbsp;&nbsp;&nbsp;</div>
+
 
 </div>
 </body>

@@ -36,7 +36,7 @@
 .gallery ul{margin :0; padding :0; list-style :none;}
 .gallery li{display :block; float :left; width :350px; margin :35px 5px 5px 35px; padding :0;}
 .gallery li.last{margin-right :0;}
-.gallery li img{display : block; width : 340px; height : 430px;}
+.gallery li img{display : block; width : 340px; height : 300px;}
 
 </style>
 </head>
@@ -53,10 +53,10 @@
     <c:set var="i" value="1"/>
     <c:forEach var="ctgList" items="${ctgList}">  
      <c:if test="${(i%3)!=0}">
-      <li><a href="course.nhn?ctg_num=${ctgList.ctg_num}"><img src="${ctgList.ctg_img}"></a>${ctgList.ctg_name} 카운트:${count} i:${i}</li>
+      <li><a href="course.nhn?ctg_num=${ctgList.ctg_num}"><img src="${ctgList.ctg_img}"></a><center>${ctgList.ctg_name}</center></li>
      </c:if>
      <c:if test="${(i%3)==0}">
-      <li class="last"><a href="course.nhn?ctg_num=${ctgList.ctg_num}"><img src="${ctgList.ctg_img}"></a>${ctgList.ctg_name} 카운트:${count} i:${i}</li>
+      <li class="last"><a href="course.nhn?ctg_num=${ctgList.ctg_num}"><img src="${ctgList.ctg_img}"></a><center>${ctgList.ctg_name}</center></li>
      </c:if>
      <c:set var="i" value="${i+1}"/>
     </c:forEach>
