@@ -15,7 +15,7 @@
 		height:45px; 
 		opacity:0.7;}
 	.top{
-		padding-left:350px;	
+		padding-left:400px;	
 		}
 	.top1{
 		float:left; 
@@ -25,6 +25,8 @@
 		line-height:50px; 
 		font-size:15px;
 		}
+	.top li{
+		float:left;}
 	.top2{
 		float:left;
 		list-style:none; 
@@ -170,39 +172,42 @@
 <ul class="top">
 		<li class="top1"><a href="couple.nhn">커플 공간</a>&nbsp; |</li>
 		<li class="top1"><a href="share.nhn">코스 & 다이어리 공유</a>&nbsp; |</li>
-		<li class="top1"><a href="theme.nhn">테마별 데이트코스</a>&nbsp; |</li>
+		<li class="top1"><a href="addCtgView.nhn">테마별 데이트코스</a>&nbsp; |</li>
 		<li class="top1"><a href="event.nhn">이벤트 & 포토북</a>&nbsp; |</li>
-		
-		<li class="top1">
-		<c:if test="${id eq null }">
-
-            <a href="#" onclick="asdf('loginForm.nhn')" data-toggle="modal" data-target="#myModal" >로그인</a>&nbsp; /&nbsp; <a href="#" onclick="asdf('inputForm.nhn')" data-toggle="modal" data-target="#myModal" >회원가입</a>&nbsp; /  &nbsp; 
-            <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
-			
-            
-</c:if>
-     <c:if test="${(id ne null) and (check eq 'yes')}">
-	<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
-            ${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
-     
-             <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;&nbsp;
-             <a href="mypage.nhn?fbcheck=yes&id=${id}">마이페이지</a>
- </c:if>
- <c:if test="${(id ne null) and (check eq 'no')}">
-	<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>		
+		<c:if test="${id ne 'admin' }">
+			<c:if test="${check eq 'yes' }">
+				<li class="top1"><a href="mypage.nhn?fbcheck=yes&id=${id}">마이페이지</a></li>
+			</c:if>
+			<c:if test="${check ne 'yes' }">
+				<li class="top1"><a href="mypage.nhn?fbcheck=no&id=${id}">마이페이지</a></li>
+			</c:if>
+		</c:if>
 		<c:if test="${id eq 'admin' }">
-          <a href="adminpage.nhn">관리자페이지</a>
-          </c:if>
-          <c:if test="${id ne 'admin' }">
-          <a href="mypage.nhn?fbcheck=no&id=${id}">마이페이지</a>
-          </c:if>
-          
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${ id}님 환영합니다.&nbsp;&nbsp;|&nbsp;&nbsp;
-          <a href="logout.nhn" style="font-size:15px;">로그아웃</a>
-          
-          
-
- </c:if>
+			<li class="top1"><a href="adminpage.nhn">관리자 페이지</a></li>
+		</c:if>
+		<li class="top1">
+			<c:if test="${id eq null }">
+	            <a href="#" onclick="asdf('loginForm.nhn')" data-toggle="modal" data-target="#myModal"  style="margin-left:100px;">로그인</a>&nbsp; /&nbsp; <a href="#" onclick="asdf('inputForm.nhn')" data-toggle="modal" data-target="#myModal" >회원가입</a>&nbsp; /  &nbsp; 
+	            <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
+			</c:if>
+			<c:if test="${(id ne null) and (check eq 'yes')}">
+				<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
+				${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;&nbsp;
+			</c:if>
+			<c:if test="${(id ne null) and (check eq 'no')}">
+				<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>		
+			<!-- 
+			<c:if test="${id eq 'admin' }">
+	          <a href="adminpage.nhn">관리자페이지</a>
+	          </c:if>
+	          <c:if test="${id ne 'admin' }">
+	          <a href="mypage.nhn?fbcheck=no&id=${id}">마이페이지</a>
+	          </c:if>
+	           -->
+	            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${ id}님 환영합니다.&nbsp;&nbsp;|&nbsp;&nbsp;
+	          <a href="logout.nhn" style="font-size:15px;">로그아웃</a>    
+	        </c:if>
  		</li>
 		
 </ul>
