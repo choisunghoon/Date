@@ -7,6 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>카테고리 입력</title>
 </head>
+<script type="text/javascript">
+function check() {
+	if (document.form.ctg_num.value == "") {
+    	alert("이미 존재하는 카테고리 번호입니다.");
+    	document.form.ctg_num.focus();
+    	return false;
+	}
+}
+</script>
 <body>
 <form method="post" name="test" action="addCtgPro.nhn" ENCTYPE="multipart/form-data">
 	<table width="500" border="1" cellspacing="0" cellpadding="3" align="center">

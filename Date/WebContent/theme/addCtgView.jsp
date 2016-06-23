@@ -60,7 +60,7 @@
      </c:if>
      <c:set var="i" value="${i+1}"/>
     </c:forEach>
-   <li class="page"><c:if test="${count > 0}">
+   <li class="page"><center><c:if test="${count > 0}">
    		<c:set var="pageCount" value="${count / pageSize + (count % pageSize == 0 ? 0 : 1)}" />
    		<c:set var="pageBlock" value="${6}" />
    		<fmt:parseNumber var="result" value="${currentPage / 6}" integerOnly="true" />
@@ -69,7 +69,7 @@
    		<c:if test="${endPage > pageCount}">
    			<c:set var="endPage" value="${pageCount}" />
    		</c:if>
-   		
+   			
    		<c:if test="${startPage > 6}">
    			<a href="addCtgView.nhn?pageNum=${startPage - 6}">[이전]</a>
    		</c:if>
@@ -81,7 +81,7 @@
    		<c:if test="${endPage < pageCount}">
    			<a href="addCtgView.nhn?pageNum=${startPage + 6}">[다음]</a>
    		</c:if>
-   		</c:if></li>
+   		</c:if></center></li>
   </ul>
 </div> 
 
