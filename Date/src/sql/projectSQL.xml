@@ -88,7 +88,7 @@
 	</select>
 	
 	<update id="modifyEvent" parameterClass="project.bean.EventDataBean">
-		update event set ename=#ename#, eimg=#eimg#, sdate=#sdate#, edate=#edate#, regdate=sysdate where enumber=#enumber#
+		update event set ename=#ename#, eimg=#eimg#, sdate=#sdate#, edate=#edate#, w=#w#, regdate=sysdate where enumber=#enumber#
 	</update>
 	 
 	<delete id="deleteEvent" parameterClass="int">

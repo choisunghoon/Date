@@ -407,11 +407,15 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
       <td align="center" width="200">이벤트 상세 이미지</td>
       <td align="center"><img src="${src2}"/><input type="file" name="upload[2]"></td>
     </tr>
+    <tr height="30"> 
+      <td align="center"  width="100">당첨자 수</td>
+      <td align="center"><input type="text" name="w" value="${eto.w}">
+     </tr> 
      <tr>
       <td align="center" width="100">진행 날짜</td>
       <td align="center" >시작 날짜<input type="text" id="start_day" name="sdate" class="forms" style="width:80px;" value="${eto.sdate}" />
-      								  종료 날짜<input type="text" id="end_day" name="edate" class="forms" style="width:80px;" value="${eto.edate}"/>
-      								 <a href="#" onclick="miniSetCalendar(event,'start_day','end_day');return false;">[검색달력]</a>
+      					    종료 날짜<input type="text" id="end_day" name="edate" class="forms" style="width:80px;" value="${eto.edate}"/>
+      					  <a href="#" onclick="miniSetCalendar(event,'start_day','end_day');return false;">[검색달력]</a>
       </td>
     </tr>
     <tr>
