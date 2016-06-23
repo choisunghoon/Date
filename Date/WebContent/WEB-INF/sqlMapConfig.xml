@@ -14,6 +14,7 @@
 	<sqlMap resource="/sql/diarySQL.xml"/>
 	<sqlMap resource="/sql/AdminSQL.xml"/>
 	<sqlMap resource="/sql/themeSQL.xml"/>
+	<sqlMap resource="/sql/shareSQL.xml"/>
 	
 </sqlMapConfig>
 

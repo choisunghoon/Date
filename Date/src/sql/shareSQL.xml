@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+	
+	<select id="shereSelectDiaryBoardAll" resultClass="upload.bean.DiaryDataBean">
+		select * from dc_diary where pool=1 order by num desc
+	</select>
+	
+	<select id="shereSelectCourseBoardAll" resultClass="share.shareCourseDataBean">
+		select * from dc_dc order by num desc
+	</select>
+
+	<update id="shereDiaryUpdateReadCount" parameterClass="int">
+		UPDATE dc_diary SET readcount = readcount + 1 where num=#num# 
+	</update>
+	
+		<update id="shereCourseUpdateReadCount" parameterClass="int">
+		UPDATE dc_dc SET readcount = readcount + 1 where num=#num# 
+	</update>
+
+	<select id="shereDiarySelectNum" parameterClass="int" resultClass="upload.bean.DiaryDataBean">
+		SELECT * FROM dc_diary WHERE num=#num#
+	</select>
+	
+	<select id="shereCourseSelectNum" parameterClass="int" resultClass="dateplan.bean.DTO">
+		SELECT * FROM dc_dc WHERE num=#num#
+	</select>
+	
+	<update id="shereLikeCountUp" parameterClass="java.util.HashMap">	
+		update dc_diary set likecount = likecount +1 where num=#num#
+	</update>
+
+	<update id="shereLikeCountDown" parameterClass="java.util.HashMap">	
+		update dc_diary set likecount = likecount -1 where num=#num#
+	</update>
+	
+	<insert id="shereInsertLike" parameterClass="java.util.HashMap">
+    	INSERT INTO dc_likecount_board (couplename,board_num,shareplace) values (#couplename#,#num#,#place#) 
+    </insert>
+
+	<delete id="shereDeleteLike" parameterClass="java.util.HashMap" >
+		delete from dc_likecount_board where couplename=#couplename# and board_num=#num# and shareplace=#place#
+	</delete>
+
+	<select id="shereDiaryLikePro" resultClass="int" parameterClass="java.util.HashMap">
+		select count(*) from dc_likecount_board where couplename=#couplename# and board_num=#num# and shareplace=#place#
+	</select>
+	
+	<select id="shereSelectLike" resultClass="int" parameterClass="int">
+		 select likecount from dc_diary where num=#num#
+	</select>
+	
+	<insert id="shereGetPoint" parameterClass="java.util.HashMap">
+    	INSERT INTO dc_point (NUM,couplename,getpoint,place) values (dc_point_seq.nextval,#couplename#,1,#place#) 
+    </insert>
+
+	<insert id="shereUsePoint" parameterClass="java.util.HashMap" >	 
+		INSERT INTO dc_point (NUM,couplename,usepoint,place) values (dc_point_seq.nextval,#couplename#,1,#place#)
+	</insert>
+	
+		<update id="sherePointCountUp" parameterClass="java.util.HashMap">	
+		update dc_couple set point = point +1 where couplename=#couplename#
+	</update>
+
+	<update id="sherePointCountDown" parameterClass="java.util.HashMap">	
+		update dc_couple set point = point -1 where couplename=#couplename#
+	</update>
+	
+	<select id="likeLimit" resultClass="int" parameterClass="java.util.HashMap" >
+		 select * from dc_likecount_board where regdate like #reg%# and couplename=#couplename#
+	</select>
+		
+	
+		
+</sqlMap>
