@@ -19,7 +19,7 @@
 					#placelocation#)
 	</insert>
 	<select id="selectcosnum" resultClass="dateplan.bean.DTO" parameterClass="int">
-		select * from dc_dc where num = #num#
+		select * from dc_dc where num=#num#
 	</select>
 	<select id="selectcos" parameterClass="int" resultClass="dateplan.bean.DTO">
 		select * from dc_dc where num=#num#
