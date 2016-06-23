@@ -71,11 +71,11 @@
 	    FB.getLoginStatus(function(response) {
 	        if (response.status === 'connected') {
 	        	 
-	        	
+	        	//페이스북 연결시 실행
 	        	
 	        } else if (response.status === 'not_authorized') {
 	        
-	        	
+	        	//페이스북 연결이 끊어졌을시 실행
 	        	
 	        } else {
 	        	
@@ -86,7 +86,7 @@
 	    FB.Event.subscribe('auth.login', function(response) {
 	    	FB.api('/me', function(user) {
 	            if (user) {
-	            	
+	            	//페이스북 로그인 되었을때 실행
 	            	
 	                window.location.href = 'loginPro.nhn?id='+user.id+'&hidden=fb';
 	                
@@ -96,7 +96,7 @@
 	    	//document.location.reload();
 	    });
 	    FB.Event.subscribe('auth.logout', function(response) {
-	    	
+	    	//페이스북 로그아웃 되었을때 실행
 	    	
 	    	session.invalidate();
 	    	document.location.href='main.nhn';
@@ -186,15 +186,19 @@
 			<li class="top1"><a href="adminpage.nhn">관리자 페이지</a></li>
 		</c:if>
 		<li class="top1">
+			<!-- 비회원일때 -->
 			<c:if test="${id eq null }">
 	            <a href="#" onclick="asdf('loginForm.nhn')" data-toggle="modal" data-target="#myModal"  style="margin-left:100px;">로그인</a>&nbsp; /&nbsp; <a href="#" onclick="asdf('inputForm.nhn')" data-toggle="modal" data-target="#myModal" >회원가입</a>&nbsp; /  &nbsp; 
 	            <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
 			</c:if>
+			<!-- 로그인한 회원이 페이스북 회원일때 
+				 check = 페이스북회원 체크 변수 -->
 			<c:if test="${(id ne null) and (check eq 'yes')}">
 				<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
 				${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
 				<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;&nbsp;
 			</c:if>
+			<!-- 로그인한 회원이 일반 회원일때 -->
 			<c:if test="${(id ne null) and (check eq 'no')}">
 				<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>		
 			<!-- 

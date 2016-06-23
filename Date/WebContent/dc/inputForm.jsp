@@ -45,7 +45,7 @@
         "toolbar=no, location1=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
     }
     function openConfirmnickname() {
-        // 아이디를 입력했는지 검사
+        // 별명을 입력했는지 검사
         var userinput = document.getElementById("nickname").value;
         if (userinput == "") {
             alert("별명 입력하세요");

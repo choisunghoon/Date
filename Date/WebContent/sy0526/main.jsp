@@ -130,6 +130,7 @@ li{
 		response.sendRedirect("main.nhn");
 	%>
 </c:if>
+<!-- 로그인한 회원이 별명을 설정하지 않았을때 -->
 <c:if test="${id ne null and nickcheck eq 1}">
 <script>
 	alert("별명을 입력하지 않으시면 사이트 이용에 제한이 됩니다.회원정보 변경 메뉴에서 별명을 입력해주세요");
@@ -174,16 +175,20 @@ li{
 <div id="topmenu">
 	<ul>
 		<li class="top2">
+			<!-- 비회원일때 -->
 			<c:if test="${id eq null }">
 				<a href="#"onclick="asdf('loginForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">로그인</a> &nbsp;|&nbsp;
 				<a href="#" onclick="asdf('inputForm.nhn')" data-toggle="modal" data-target="#myModal" style="color:#B8B8B8">회원가입</a>&nbsp;|&nbsp;
 				<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
 			</c:if>
+			<!-- 로그인한 회원이 페이스북 회원일때 
+				 check = 페이스북회원 체크 변수 -->
 			<c:if test="${id ne null  and (check eq 'yes')}">
 			<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
 				${ id}님 환영합니다.
 				&nbsp;|&nbsp;<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div> 
 			</c:if>
+			<!-- 로그인한 회원이 일반 회원일때 -->
 			<c:if test="${id ne null  and (check eq 'no')}">
 			<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
 				${ id}님 환영합니다.
