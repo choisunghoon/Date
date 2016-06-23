@@ -25,7 +25,19 @@
 	    (select enumber, ename, eimg, wcouples, regdate, edate, sdate, wnumber, w from event)) where r>=#startRow# and <![CDATA[r<=#endRow#]]> order by enumber desc
 	</select>
 	
+	<select id="s1" resultClass="event.EventDataBean">
+		select * from event 
+	</select>
+	
+	<select id="s2" resultClass="event.EventDataBean">
+		select * from event where w=#way# 
+	</select>
+	
 	<select id="searchWinEventList" resultClass="event.EventDataBean">
+		select * from event where ename like '%'||#keyword#||'%' and w=#way#
+	</select>
+	
+	<select id="searchWinEventListall" resultClass="event.EventDataBean">
 		select * from event where ename like '%'||#keyword#||'%'
 	</select>
 	
@@ -34,6 +46,10 @@
 	</select>
 	
 	<select id="searchWinEventList1" resultClass="event.EventDataBean">
+		select * from event where  wcouples like '%'||#keyword#||'%' and w=#way#
+	</select>
+	
+	<select id="searchWinEventListall1" resultClass="event.EventDataBean">
 		select * from event where  wcouples like '%'||#keyword#||'%'
 	</select>
 	

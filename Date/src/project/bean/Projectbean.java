@@ -332,8 +332,11 @@ public class Projectbean {
 	}
 
 	@RequestMapping("test.nhn") // 임의의 관리자 페이지
-	public String test() {
-
+	public String test(HttpServletRequest request) {
+		int enumber = Integer.parseInt(request.getParameter("enumber"));
+		String pageNum = request.getParameter("pageNum");
+		request.setAttribute("enumber", new Integer(enumber));
+		request.setAttribute("pageNum", pageNum);
 		return "/project/test.jsp";
 	}
 

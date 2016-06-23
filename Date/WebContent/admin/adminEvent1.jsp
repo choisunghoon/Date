@@ -2,16 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=9be7455c7d33a4e2b750d3537e1179d8&libraries=services"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 
-
+</head>
 <body>
-
+<center>
 <div id="subMain1" style="float:center;width:86%">	
-<table width="500" border="1" cellspacing="0" cellpadding="0"   align="center">
+<table width="500" border="1" cellspacing="0" cellpadding="0"   align="center" style="table-layout:fixed;">
 	<tr height="30" >
 		<td align="center" width="100">이벤트 번호</td>
 		<td align="center" width="150">이벤트 이름</td>
@@ -71,3 +73,4 @@
 
 </div>
 </body>
+</html>

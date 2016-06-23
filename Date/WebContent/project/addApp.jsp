@@ -55,7 +55,7 @@
 				<td align="center" width="100">제목</td>
 				<td align="center"><input type="text" id="appsubject" name="appsubject">
 									<input type="hidden" id="enumber" name="enumber" value="${enumber}">
-									<input type="hidden" id="couplename" name="couplename" value="3"></td>
+									<input type="hidden" id="couplename" name="couplename" value="223"></td>
 			</tr>
 			<tr height="30">
 				<td align="center" width="100">비밀번호</td>
