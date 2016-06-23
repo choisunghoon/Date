@@ -118,7 +118,7 @@
 	
 	</c:forEach>
 	</c:if>
-	</table>
+	</table>`
 	<br />
 	
 	<c:if test="${count > 0}">
