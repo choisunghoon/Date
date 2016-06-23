@@ -1,35 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>´ñ±Ûº¸±â</title>
+<title>ëŒ“ê¸€ë³´ê¸°</title>
 </head>
 <body>
 <form method="post" name="appContent" action="appW.nhn?enumber=${enumber}&pageNum=${pageNum}">
 <table border="1" width="500" height="300" cellpadding="0" cellspacing="0"
 			align="center">
 			<tr height="20">
-				<td align="center" width="100">Á¦¸ñ</td>
+				<td align="center" width="100">ì œëª©</td>
 				<td align="center">${app.appsubject}</td>
 			</tr>
 			<tr height="20">
-				<td align="center" width="100">Ä¿ÇÃ ÀÌ¸§</td>
+				<td align="center" width="100">ì»¤í”Œ ì´ë¦„</td>
 				<td align="center"><input type=hidden name="couplename" value="${app.couplename}">
 				<input type="hidden" name="enumber" value="${enumber}">
 				<input type="hidden" name="wnumber" value="${wnumber}">
 				<input type=hidden name="appnumber" value="${app.appnumber}">${app.couplename}</td>
 			</tr>			
 			<tr height="40">
-				<td align="center" width="100">ÀÌº¥Æ® ½ÅÃ» ³»¿ë</td>
+				<td align="center" width="100">ì´ë²¤íŠ¸ ì‹ ì²­ ë‚´ìš©</td>
 				<td align="center">${app.appcomment}</td>
 			</tr> 
 			<tr height="20">
 				<td colspan="2" align="center">
-				<input type="submit" name="addW" value="´çÃ·ÀÚ·Î µî·Ï">
+				<input type="submit" name="addW" value="ë‹¹ì²¨ìë¡œ ë“±ë¡">
 			</tr>		
 		</table>		
 		</form>

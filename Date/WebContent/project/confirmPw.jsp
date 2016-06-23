@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,12 +16,12 @@
  	    	   		
  	       },
  	        url : "confirmPwPro.nhn",
- 	        success: test,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
- 	        error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆÐ½Ã ½ÇÇàÇÔ¼ö
+ 	        success: test,	// íŽ˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+ 	        error: whenError	//íŽ˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
       	});
     }
-    function test(aaa){	// ¿äÃ»¼º°øÇÑ ÆäÀÌÁöÁ¤º¸°¡ aaa º¯¼ö·Î ÄÝ¹éµÈ´Ù. 
-        $(".modal-bodyy").html(aaa);	//id°¡ ajaxReturnÀÎ ºÎºÐ¿¡ ³Ö¾î¶ó
+    function test(aaa){	// ìš”ì²­ì„±ê³µí•œ íŽ˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
+        $(".modal-bodyy").html(aaa);	//idê°€ ajaxReturnì¸ ë¶€ë¶„ì— ë„£ì–´ë¼
     }
     function whenError(){
         alert("Error");
@@ -30,18 +29,18 @@
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>´ñ±Û ºñ¹Ð¹øÈ£ È®ÀÎ</title>
+<title>ëŒ“ê¸€ ë¹„ë°€ë²ˆí˜¸ í™•ì¸</title>
 </head>
 <body>
 <form method="post" name="confirmPw">
-<h2>ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.</h2>
-ºñ¹Ð¹øÈ£ : <input type="password" id="apppw" name="apppw">
+<h2>ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.</h2>
+ë¹„ë°€ë²ˆí˜¸ : <input type="password" id="apppw" name="apppw">
 <input type="hidden" id="appnumber" name="appnumber" value="${appnumber}">
 <input type="hidden" id="wnumber" name="wnumber" value="${wnumber}">
 <input type="hidden" id="enumber" name="enumber" value="${enumber}">
 <input type="hidden" id="pageNum" name="pageNum" value="${pageNum}">
 <input type="hidden" id="tab" name="tab" value="${tab}">
-<button type="button" class="btn btn-default" onclick="confrimPw()">È®ÀÎ</button>
+<button type="button" class="btn btn-default" onclick="confrimPw()">í™•ì¸</button>
 </form>
 </body>
 </html>

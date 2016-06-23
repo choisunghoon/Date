@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 
@@ -48,12 +47,12 @@
 				<c:if test="${(i%3)!=0}">
 					<li><a href="eventContent.nhn?enumber=${eventList.enumber}"><img
 							src="${eventList.eimg}" alt=""></a>${eventList.ename}
-						카운트:${count} i:${i} teb: ${teb}</li>
+						移댁�댄��:${count} i:${i} teb: ${teb}</li>
 				</c:if>
 				<c:if test="${(i%3)==0}">
 					<li class="last"><a href="eventContent.nhn"><img
 							src="${eventList.eimg}" alt=""></a>${eventList.ename}
-						카운트:${count} i:${i}</li>
+						移댁�댄��:${count} i:${i}</li>
 				</c:if>
 				<c:set var="i" value="${i+1}" />
 			</c:forEach>
@@ -70,7 +69,7 @@
 					</c:if>
 
 					<c:if test="${startPage > 10}">
-						<a href="eventTeb.nhn?pageNum=${startPage - 10 }">[이전]</a>
+						<a href="eventTeb.nhn?pageNum=${startPage - 10 }">[�댁��]</a>
 					</c:if>
 
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -78,7 +77,7 @@
 					</c:forEach>
 
 					<c:if test="${endPage < pageCount}">
-						<a href="eventTeb.nhn?pageNum=${startPage + 10}">[다음]</a>
+						<a href="eventTeb.nhn?pageNum=${startPage + 10}">[�ㅼ��]</a>
 					</c:if>
 				</c:if></li>
 		</ul>

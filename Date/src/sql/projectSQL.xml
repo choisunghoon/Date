@@ -48,8 +48,8 @@
 	</select>
 	
 	<insert id="addEvent" parameterClass="project.bean.EventDataBean">
-		insert into event (enumber, ename, eimg, sdate, edate, w, regdate) values 
-		(event_seq.nextval, #ename#, #eimg#, #sdate#, #edate#, #w#, sysdate)
+		insert into event (enumber, ename, eimg, sdate, edate, wnumber, regdate) values 
+		(event_seq.nextval, #ename#, #eimg#, #sdate#, #edate#, #wnumber#, sysdate)
 	</insert>
 	
 	<select id="eventContent" resultClass="project.bean.EventDataBean" parameterClass="int">
@@ -88,7 +88,7 @@
 	</select>
 	
 	<update id="modifyEvent" parameterClass="project.bean.EventDataBean">
-		update event set ename=#ename#, eimg=#eimg#, sdate=#sdate#, edate=#edate#, w=#w#, regdate=sysdate where enumber=#enumber#
+		update event set ename=#ename#, eimg=#eimg#, sdate=#sdate#, edate=#edate#, wnumber=#wnumber#, regdate=sysdate where enumber=#enumber#
 	</update>
 	 
 	<delete id="deleteEvent" parameterClass="int">

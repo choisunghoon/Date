@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,8 +15,8 @@ function confirmPwPro(){
 	    	   		
 	       },
 	        url : "appContent.nhn",
-	        success: test,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
-	        error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+	        success: test,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+	        error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
     	});
   }
     function confrimPwRe(){
@@ -31,8 +30,8 @@ function confirmPwPro(){
 	    	   		
 	       },
 	        url : "confirmPw.nhn",
-	        success: test,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
-	        error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+	        success: test,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+	        error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
      	});
    }
     
@@ -43,13 +42,13 @@ function confirmPwPro(){
    	    	   		
    	       },
    	        url : "eventContent.nhn",
-   	        success: test,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
-   	        error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+   	        success: test,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+   	        error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
         	});
       }
     
-    function test(aaa){	// ¿äÃ»¼º°øÇÑ ÆäÀÌÁöÁ¤º¸°¡ aaa º¯¼ö·Î Äİ¹éµÈ´Ù. 
-        $(".modal-bodyy").html(aaa);	//id°¡ ajaxReturnÀÎ ºÎºĞ¿¡ ³Ö¾î¶ó
+    function test(aaa){	// ìš”ì²­ì„±ê³µí•œ í˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
+        $(".modal-bodyy").html(aaa);	//idê°€ ajaxReturnì¸ ë¶€ë¶„ì— ë„£ì–´ë¼
     }
     function whenError(){
         alert("Error");
@@ -71,9 +70,9 @@ function confirmPwPro(){
 </script>
 </c:if>
 <c:if test="${check==0}">
-<h2>ºñ¹Ğ¹øÈ£°¡ ¸ÂÁö ¾Ê½À´Ï´Ù.</h2>
-<button type="button" class="btn btn-default" onclick='confrimPwRe()'>´Ù½Ã ÀÔ·Â</button>
-<button type="button" class="btn btn-default" onclick='confrimPwCon()'>ÀÌº¥Æ® »ó¼¼ ÆäÀÌÁö·Î</button>	
+<h2>ë¹„ë°€ë²ˆí˜¸ê°€ ë§ì§€ ì•ŠìŠµë‹ˆë‹¤.</h2>
+<button type="button" class="btn btn-default" onclick='confrimPwRe()'>ë‹¤ì‹œ ì…ë ¥</button>
+<button type="button" class="btn btn-default" onclick='confrimPwCon()'>ì´ë²¤íŠ¸ ìƒì„¸ í˜ì´ì§€ë¡œ</button>	
 </c:if>
 </center>
 </body>

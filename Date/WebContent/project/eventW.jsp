@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,12 +10,12 @@ function search(w){alert(w)
 	$.ajax({
 		type : "post",		
 		url : "eventWS.nhn?w="+w,
-		success : stest, // ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
+		success : stest, // í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
 		error : sError
-	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
 	});
 }
-function stest(aaa){	// ¿äÃ»¼º°øÇÑ ÆäÀÌÁöÁ¤º¸°¡ aaa º¯¼ö·Î Äİ¹éµÈ´Ù. 
+function stest(aaa){	// ìš”ì²­ì„±ê³µí•œ í˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
     $("#gallery").html(aaa);
     
 }
@@ -25,7 +24,7 @@ function sError(){
 }
 function callway(enumber, wnumber, w){    
 	if(w==1){
-		alert("ÀÌ¹Ì ´çÃ·ÀÚ°¡ »ÌÈù ÀÌº¥Æ® ÀÔ´Ï´Ù. ¼öÁ¤ ¹× »èÁ¦´Â ÇØ´ç °ü¸®ÀÚ ÆäÀÌÁö¸¦ ÀÌ¿ëÇØ ÁÖ¼¼¿ä");
+		alert("ì´ë¯¸ ë‹¹ì²¨ìê°€ ë½‘íŒ ì´ë²¤íŠ¸ ì…ë‹ˆë‹¤. ìˆ˜ì • ë° ì‚­ì œëŠ” í•´ë‹¹ ê´€ë¦¬ì í˜ì´ì§€ë¥¼ ì´ìš©í•´ ì£¼ì„¸ìš”");
 		return ;
 	}
 	 url = "wWay.nhn?enumber=" + enumber + "&wnumber=" + wnumber
@@ -70,14 +69,14 @@ function callway(enumber, wnumber, w){
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>°ü¸®ÀÚ - ´çÃ·ÀÚ °ü¸®</title>
+<title>ê´€ë¦¬ì - ë‹¹ì²¨ì ê´€ë¦¬</title>
 </head>
 <body>
 	<div id="t">
-	<center><h2>´çÃ·ÀÚ »Ì±â ÆäÀÌÁö</h2></center>
-	<a href="eventW.nhn"><button type="button">´çÃ·ÀÚ ÀÌº¥Æ® Ã¹ È­¸é</button></a>
-	<button type="button" onclick='search(0)'>´çÃ·ÀÚ ¼±¹ß °¡´É ÀÌº¥Æ®</button>
-	<button type="button" onclick='search(1)'>´çÃ·ÀÚ ¼±¹ß ¿Ï·á µÈ ÀÌº¥Æ®</button>	
+	<center><h2>ë‹¹ì²¨ì ë½‘ê¸° í˜ì´ì§€</h2></center>
+	<a href="eventW.nhn"><button type="button">ë‹¹ì²¨ì ì´ë²¤íŠ¸ ì²« í™”ë©´</button></a>
+	<button type="button" onclick='search(0)'>ë‹¹ì²¨ì ì„ ë°œ ê°€ëŠ¥ ì´ë²¤íŠ¸</button>
+	<button type="button" onclick='search(1)'>ë‹¹ì²¨ì ì„ ë°œ ì™„ë£Œ ëœ ì´ë²¤íŠ¸</button>	
 	</div>
 	<div class="gallery" id="gallery">
 		<ul>
@@ -107,7 +106,7 @@ function callway(enumber, wnumber, w){
 					</c:if>
 
 					<c:if test="${startPage > 10}">
-						<a href="eventW.nhn?pageNum=${startPage - 10 }">[ÀÌÀü]</a>
+						<a href="eventW.nhn?pageNum=${startPage - 10 }">[ì´ì „]</a>
 					</c:if>
 
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -115,7 +114,7 @@ function callway(enumber, wnumber, w){
 					</c:forEach>
 
 					<c:if test="${endPage < pageCount}">
-						<a href="eventW.nhn?pageNum=${startPage + 10}">[´ÙÀ½]</a>
+						<a href="eventW.nhn?pageNum=${startPage + 10}">[ë‹¤ìŒ]</a>
 					</c:if>
 				</c:if></li>
 		</ul>

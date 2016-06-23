@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,11 +8,11 @@
       $.ajax({
 	        type: "post",
 	        url : urlname,
-	        success: refresh1,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
-	        error: whenError21	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+	        success: refresh1,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+	        error: whenError21	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
    	});
   }
-  function refresh1(aaa1){	// ¿äÃ»¼º°øÇÑ ÆäÀÌÁöÁ¤º¸°¡ aaa º¯¼ö·Î Äİ¹éµÈ´Ù. 
+  function refresh1(aaa1){	// ìš”ì²­ì„±ê³µí•œ í˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
       $("#subMain").html(aaa1);
       
   }
@@ -25,13 +24,13 @@
     	 $.ajax({    		
  	        type: "post", 	
  	        url : url+"?enumber="+enumber+"&tab="+tab,
- 	        success: test,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
- 	        error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+ 	        success: test,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+ 	        error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
       	});    	 
     }
 
-    function test(aaa){	// ¿äÃ»¼º°øÇÑ ÆäÀÌÁöÁ¤º¸°¡ aaa º¯¼ö·Î Äİ¹éµÈ´Ù. 
-        $(".modal-bodyy").html(aaa);	//id°¡ ajaxReturnÀÎ ºÎºĞ¿¡ ³Ö¾î¶ó
+    function test(aaa){	// ìš”ì²­ì„±ê³µí•œ í˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
+        $(".modal-bodyy").html(aaa);	//idê°€ ajaxReturnì¸ ë¶€ë¶„ì— ë„£ì–´ë¼
     }    
     function whenError(){
         alert("Error");
@@ -98,10 +97,10 @@
 	</div>
 	<br/><br/>
 	<center>
-			<c:if test="${tab==1}"><h2>ÁøÇà ÀÌº¥Æ®</h2><c:set var="urlname" value="eventTeb.nhn"/></c:if> 
-			<c:if test="${tab==2}"><h2>¿¹Á¤ ÀÌº¥Æ®</h2><c:set var="urlname" value="upcoming_event.nhn"/></c:if> 
-			<c:if test="${tab==3}"><h2>Á¾·á ÀÌº¥Æ®</h2><c:set var="urlname" value="end_event.nhn"/></c:if> 
-			<c:if test="${tab==4}"><h2>´çÃ·ÀÚ ÀÌº¥Æ®</h2><c:set var="urlname" value="w_event.nhn"/></c:if> 
+			<c:if test="${tab==1}"><h2>ì§„í–‰ ì´ë²¤íŠ¸</h2><c:set var="urlname" value="eventTeb.nhn"/></c:if> 
+			<c:if test="${tab==2}"><h2>ì˜ˆì • ì´ë²¤íŠ¸</h2><c:set var="urlname" value="upcoming_event.nhn"/></c:if> 
+			<c:if test="${tab==3}"><h2>ì¢…ë£Œ ì´ë²¤íŠ¸</h2><c:set var="urlname" value="end_event.nhn"/></c:if> 
+			<c:if test="${tab==4}"><h2>ë‹¹ì²¨ì ì´ë²¤íŠ¸</h2><c:set var="urlname" value="w_event.nhn"/></c:if> 
 	</center>
     <div class="gallery">
 			<ul>
@@ -132,7 +131,7 @@
 						</c:if>
 
 						<c:if test="${startPage > 10}">
-							<a href="#" onclick="callAjax1('${urlname}?pageNum=${startPage - 10 }')">[ÀÌÀü]</a>
+							<a href="#" onclick="callAjax1('${urlname}?pageNum=${startPage - 10 }')">[ì´ì „]</a>
 						</c:if>
 
 						<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -140,24 +139,24 @@
 						</c:forEach>
 
 						<c:if test="${endPage < pageCount}">
-							<a href="#" onclick="callAjax1('${urlname}?pageNum=${startPage + 10 }')">[´ÙÀ½]</a>
+							<a href="#" onclick="callAjax1('${urlname}?pageNum=${startPage + 10 }')">[ë‹¤ìŒ]</a>
 						</c:if>
 					</c:if></li>
 			</ul>
 	</div>
-<!-- ¸ğ´Ş ÆË¾÷ -->
+<!-- ëª¨ë‹¬ íŒì—… -->
 	
 	<div class="modal fade" id="myModaly" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">¡¿</span><span class="sr-only">Close</span></button>
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">Ã—</span><span class="sr-only">Close</span></button>
 		<h4 class="modal-title" id="myModalLabel"></h4>
 	      </div>
 	      <div class="modal-bodyy">		   
 	      </div>
 	      <div class="modal-footer">
-			<center><button type="button" class="btn btn-default" data-dismiss="modal" >´İ±â</button></center>
+			<center><button type="button" class="btn btn-default" data-dismiss="modal" >ë‹«ê¸°</button></center>
 	      </div>
 	    </div>
 	  </div>

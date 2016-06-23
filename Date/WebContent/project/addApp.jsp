@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,7 +10,7 @@
 		if(c[1].checked==true){
 			if(addApp.apppw.value == "")
 				{
-					alert("ºñ°ø°³¸¦ ¿øÇÏ½Ç °æ¿ì ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼Å¾ß ÇÕ´Ï´Ù!");
+					alert("ë¹„ê³µê°œë¥¼ ì›í•˜ì‹¤ ê²½ìš° ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•´ì£¼ì…”ì•¼ í•©ë‹ˆë‹¤!");
 					
 					return;
 				
@@ -19,7 +18,7 @@
 		}
 		if(c[0].checked==true){
 			if(addApp.apppw.value != ""){
-				alert("ºñ°ø°³¸¦ ¿øÇÏ½Ç °æ¿ì¿¡¸¸ ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼Å¾ß ÇÕ´Ï´Ù!");
+				alert("ë¹„ê³µê°œë¥¼ ì›í•˜ì‹¤ ê²½ìš°ì—ë§Œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•´ì£¼ì…”ì•¼ í•©ë‹ˆë‹¤!");
 				return;
 				}
 		}
@@ -33,40 +32,40 @@
 				"appcomment" : $("#appcomment").val()
 			},
 			url : "addAppPro.nhn",
-			success : test, // ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
+			success : test, // íŽ˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
 			error : whenError
-		//ÆäÀÌÁö¿äÃ» ½ÇÆÐ½Ã ½ÇÇàÇÔ¼ö
+		//íŽ˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
 		});
 	}
-    function test(aaa){	// ¿äÃ»¼º°øÇÑ ÆäÀÌÁöÁ¤º¸°¡ aaa º¯¼ö·Î ÄÝ¹éµÈ´Ù. 
-        $(".modal-bodyy").html(aaa);	//id°¡ ajaxReturnÀÎ ºÎºÐ¿¡ ³Ö¾î¶ó
+    function test(aaa){	// ìš”ì²­ì„±ê³µí•œ íŽ˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
+        $(".modal-bodyy").html(aaa);	//idê°€ ajaxReturnì¸ ë¶€ë¶„ì— ë„£ì–´ë¼
     }    
     function whenError(){
         alert("Error");
     }
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>ÀÌº¥Æ® Âü¿©</title>
+<title>ì´ë²¤íŠ¸ ì°¸ì—¬</title>
 </head>
 <body>
 	<form method="post" name="addApp">
 		<table border="1" width="500" cellpadding="0" cellspacing="0"
 			align="center">
 			<tr height="30">
-				<td align="center" width="100">Á¦¸ñ</td>
+				<td align="center" width="100">ì œëª©</td>
 				<td align="center"><input type="text" id="appsubject" name="appsubject">
 									<input type="hidden" id="enumber" name="enumber" value="${enumber}">
 									<input type="hidden" id="couplename" name="couplename" value="3"></td>
 			</tr>
 			<tr height="30">
-				<td align="center" width="100">ºñ¹Ð¹øÈ£</td>
-				<td align="center"><input type=radio name="apppwC" checked>°ø°³&nbsp;&nbsp; 
-									<input type=radio name="apppwC">ºñ°ø°³<br/>
-									*ºñ°ø°³½Ã ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä!
+				<td align="center" width="100">ë¹„ë°€ë²ˆí˜¸</td>
+				<td align="center"><input type=radio name="apppwC" checked>ê³µê°œ&nbsp;&nbsp; 
+									<input type=radio name="apppwC">ë¹„ê³µê°œ<br/>
+									*ë¹„ê³µê°œì‹œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”!
 								   <input id="apppw" name="apppw" type="text"></td>
 			</tr>			
 			<tr height="30">
-				<td align="center" colspan=2 >ÀÌº¥Æ® ½ÅÃ» ³»¿ë</td>
+				<td align="center" colspan=2 >ì´ë²¤íŠ¸ ì‹ ì²­ ë‚´ìš©</td>
 			</tr>
 			<tr>
 				<td align="center" colspan=2>
@@ -74,7 +73,7 @@
 			</tr>
 			<tr>
 				<td colspan=2 align="center">
-				<button type="button" class="btn btn-default" onclick='checkApp()'>½ÅÃ»</button>				
+				<button type="button" class="btn btn-default" onclick='checkApp()'>ì‹ ì²­</button>				
 			</tr>				
 		</table>
 	</form>

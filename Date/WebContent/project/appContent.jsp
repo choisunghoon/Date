@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,20 +8,20 @@
     	 $.ajax({    		
  	        type: "post", 	 
  	        url : "appModify.nhn?appnumber="+appnumber+"&enumber="+enumber,
- 	        success: test,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
- 	        error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+ 	        success: test,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+ 	        error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
       	});
     }
     function callAppD(appnumber, enumber){  
    	 $.ajax({    		
 	        type: "post", 	 
 	        url : "appDelete.nhn?appnumber="+appnumber+"&enumber="+enumber,
-	        success: test,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
-	        error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+	        success: test,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+	        error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
      	});
    }
-    function test(aaa){	// ¿äÃ»¼º°øÇÑ ÆäÀÌÁöÁ¤º¸°¡ aaa º¯¼ö·Î Äİ¹éµÈ´Ù. 
-        $(".modal-bodyy").html(aaa);	//id°¡ ajaxReturnÀÎ ºÎºĞ¿¡ ³Ö¾î¶ó
+    function test(aaa){	// ìš”ì²­ì„±ê³µí•œ í˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
+        $(".modal-bodyy").html(aaa);	//idê°€ ajaxReturnì¸ ë¶€ë¶„ì— ë„£ì–´ë¼
     }
     function whenError(){
         alert("Error");
@@ -31,32 +30,32 @@
 <head>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>´ñ±Ûº¸±â</title>
+<title>ëŒ“ê¸€ë³´ê¸°</title>
 </head>
 <body>
 <form method="post" name="appContent" action="appW.nhn?enumber=${enumber}&pageNum=${pageNum}">
 <table border="1" width="500" height="300" cellpadding="0" cellspacing="0"
 			align="center">
 			<tr height="20">
-				<td align="center" width="100">Á¦¸ñ</td>
+				<td align="center" width="100">ì œëª©</td>
 				<td align="center">${app.appsubject}</td>
 			</tr>
 			<tr height="20">
-				<td align="center" width="100">Ä¿ÇÃ ÀÌ¸§</td>
+				<td align="center" width="100">ì»¤í”Œ ì´ë¦„</td>
 				<td align="center"><input type=hidden name="couplename" value="${app.couplename}">
 				<input type="hidden" name="enumber" value="${enumber}">
 				<input type="hidden" name="wnumber" value="${wnumber}">
 				<input type=hidden name="appnumber" value="${app.appnumber}">${app.couplename}</td>
 			</tr>			
 			<tr height="40">
-				<td align="center" width="100">ÀÌº¥Æ® ½ÅÃ» ³»¿ë</td>
+				<td align="center" width="100">ì´ë²¤íŠ¸ ì‹ ì²­ ë‚´ìš©</td>
 				<td align="center">${app.appcomment}</td>
 			</tr> 
 			<c:if test="${id == app.couplename || tab==1}">					
 			<tr height="20">
 				<td colspan="2" align="center">
-				 <a href="#" onclick="callAppM(${app.appnumber},${enumber})"><input type="button" value="¼öÁ¤"></a>
-				 <a href="#" onclick="callAppD(${app.appnumber},${enumber})"><input type="button" value="»èÁ¦"></a></td>
+				 <a href="#" onclick="callAppM(${app.appnumber},${enumber})"><input type="button" value="ìˆ˜ì •"></a>
+				 <a href="#" onclick="callAppD(${app.appnumber},${enumber})"><input type="button" value="ì‚­ì œ"></a></td>
 			</tr>		
 			</c:if>
 		</table>		

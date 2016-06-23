@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,13 +6,13 @@
 <script language="JavaScript">
 
 	function wayFn(wWay) {
-		cw = screen.availWidth; //È­¸é ³ĞÀÌ
-		ch = screen.availHeight; //È­¸é ³ôÀÌ
+		cw = screen.availWidth; //í™”ë©´ ë„“ì´
+		ch = screen.availHeight; //í™”ë©´ ë†’ì´
 
-		sw = 800; //¶ç¿ï Ã¢ÀÇ ³ĞÀÌ
-		sh = 500; //¶ç¿ï Ã¢ÀÇ ³ôÀÌ
+		sw = 800; //ë„ìš¸ ì°½ì˜ ë„“ì´
+		sh = 500; //ë„ìš¸ ì°½ì˜ ë†’ì´
 
-		ml = (cw - sw) / 2; //°¡¿îµ¥ ¶ç¿ì±âÀ§ÇÑ Ã¢ÀÇ xÀ§Ä¡
+		ml = (cw - sw) / 2; //ê°€ìš´ë° ë„ìš°ê¸°ìœ„í•œ ì°½ì˜ xìœ„ì¹˜
 		mt = (ch - sh) / 2;
 	//	open.window()
 	
@@ -21,7 +20,7 @@
 	    
 		if(wWay.way.value==1){
 			if (wWay.wnumber.value<=0) {
-		        alert("´çÃ·ÀÚ ¼ö¸¦ 0º¸´Ù Å©°Ô ÀÔ·ÂÇÏ¼¼¿ä");
+		        alert("ë‹¹ì²¨ì ìˆ˜ë¥¼ 0ë³´ë‹¤ í¬ê²Œ ì…ë ¥í•˜ì„¸ìš”");
 		        return false;	}
 		url = "random.nhn?enumber=" + wWay.enumber.value + "&wnumber=" + wWay.wnumber.value;
 		open(url, "way",
@@ -34,7 +33,7 @@
 		
 		if(wWay.way.value==2){
 			if (wWay.wnumber.value<=0) {
-		        alert("´çÃ·ÀÚ ¼ö¸¦ 0º¸´Ù Å©°Ô ÀÔ·ÂÇÏ¼¼¿ä");
+		        alert("ë‹¹ì²¨ì ìˆ˜ë¥¼ 0ë³´ë‹¤ í¬ê²Œ ì…ë ¥í•˜ì„¸ìš”");
 		        return false;	}
 			url = "choice.nhn?enumber=" + wWay.enumber.value + "&wnumber=" + wWay.wnumber.value;
 			open(url, "way",
@@ -46,7 +45,7 @@
 	}
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>´çÃ· ¼±¹ß ¹æ¹ı ¼±ÅÃ</title>
+<title>ë‹¹ì²¨ ì„ ë°œ ë°©ë²• ì„ íƒ</title>
 </head>
 <body>
 	<form name="wWay" method="post">
@@ -55,10 +54,10 @@
 				<td align="center"><p>
 						<input type="hidden" name="enumber" value="${enumber}"> 
 						<input type="hidden" name="wnumber" value="${wnumber}"> 
-						¿¹Á¤ ´çÃ·ÀÚ ¼ö : ${wnumber} <br/>
-						<input type=radio name="way" value="1">·£´ı
-						<input type=radio name="way" value="2">¼±ÅÃ<br/>						
-						<input type="button" name="wayC" value="¼±ÅÃ" OnClick="wayFn(this.form)"><br/></td>
+						ì˜ˆì • ë‹¹ì²¨ì ìˆ˜ : ${wnumber} <br/>
+						<input type=radio name="way" value="1">ëœë¤
+						<input type=radio name="way" value="2">ì„ íƒ<br/>						
+						<input type="button" name="wayC" value="ì„ íƒ" OnClick="wayFn(this.form)"><br/></td>
 			</tr>
 		</table>
 	</form>

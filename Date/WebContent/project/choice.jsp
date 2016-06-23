@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,12 +10,12 @@
 	<table border="1" width="500" cellpadding="0" cellspacing="0"
 		align="center">
 		<tr>
-			<td colspan="3" align="right"> ´çÃ·ÀÚ ¼ö : ${wnumber}&nbsp;</td>
+			<td colspan="3" align="right"> ë‹¹ì²¨ì ìˆ˜ : ${wnumber}&nbsp;</td>
 		</tr>		
 		<tr height="30">
-			<td align="center" width="50">±Û ¹øÈ£</td>
-			<td align="center" width="100">Ä¿ÇÃ ÀÌ¸§</td>
-			<td align="center" width="300">Á¦¸ñ</td>
+			<td align="center" width="50">ê¸€ ë²ˆí˜¸</td>
+			<td align="center" width="100">ì»¤í”Œ ì´ë¦„</td>
+			<td align="center" width="300">ì œëª©</td>
 			<c:forEach var="appList" items="${appList}">
 				<tr height="30">
 					<td align="center">${appList.appnumber}</td>
@@ -40,7 +39,7 @@
 		</c:if>
 
 		<c:if test="${startPage > 10}">
-			<a href="choice.nhn?enumber=${enumber}&wnumber=${wnumber}&pageNum=${startPage - 10 }">[ÀÌÀü]</a>
+			<a href="choice.nhn?enumber=${enumber}&wnumber=${wnumber}&pageNum=${startPage - 10 }">[ì´ì „]</a>
 		</c:if>
 
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -48,13 +47,13 @@
 		</c:forEach>
 
 		<c:if test="${endPage < pageCount}">
-			<a href="choice.nhn?enumber=${enumber}&wnumber=${wnumber}&pageNum=${startPage + 10}">[´ÙÀ½]</a>
+			<a href="choice.nhn?enumber=${enumber}&wnumber=${wnumber}&pageNum=${startPage + 10}">[ë‹¤ìŒ]</a>
 		</c:if>
 	</c:if></center></c:if>
 	
 		<c:if test="${wnumber==0 }">
-		<center><h2>´õ ÀÌ»ó ´çÃ·ÀÚ¸¦ »ÌÀ» ¼ö ¾ø½À´Ï´Ù.</h2>
-		<h2>ÇÊ¿äÇÑ ´çÃ·ÀÚ ¼ö : ${wnumber}</h2></center>
+		<center><h2>ë” ì´ìƒ ë‹¹ì²¨ìë¥¼ ë½‘ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.</h2>
+		<h2>í•„ìš”í•œ ë‹¹ì²¨ì ìˆ˜ : ${wnumber}</h2></center>
 		</c:if>
 </body>
 </html>

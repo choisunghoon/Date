@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="modifyEvent.nhn?enumber=1">수정</a>
-<a href="deleteEvent.nhn?enumber=1">삭제</a>
+<a href="modifyEvent.nhn?enumber=15">수정</a>
+<a href="deleteEvent.nhn?enumber=15">삭제</a>
 </body>
 </html>

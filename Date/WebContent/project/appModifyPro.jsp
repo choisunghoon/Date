@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,13 +9,13 @@ function modifyPro() {
 			type : "post",
 			data : {"enumber" : $("#enumber").val()},
 			url : "eventContent.nhn",
-			success : test, // ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
+			success : test, // í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
 			error : whenError
-		//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+		//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
 		});
 	}
-	function test(aaa){	// ¿äÃ»¼º°øÇÑ ÆäÀÌÁöÁ¤º¸°¡ aaa º¯¼ö·Î Äİ¹éµÈ´Ù. 
-        $(".modal-bodyy").html(aaa);	//id°¡ ajaxReturnÀÎ ºÎºĞ¿¡ ³Ö¾î¶ó
+	function test(aaa){	// ìš”ì²­ì„±ê³µí•œ í˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
+        $(".modal-bodyy").html(aaa);	//idê°€ ajaxReturnì¸ ë¶€ë¶„ì— ë„£ì–´ë¼
     }
     function whenError(){
         alert("Error");
@@ -24,13 +23,13 @@ function modifyPro() {
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>ÀÌº¥Æ® ´ñ±Û ¼öÁ¤</title>
+<title>ì´ë²¤íŠ¸ ëŒ“ê¸€ ìˆ˜ì •</title>
 </head>
 <body>
 <center>
 <input type="hidden" id="enumber" name="enumber" value="${enumber}">
-<h2>¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù!</h2>
-<button type="button" class="btn btn-default" onclick='modifyPro()'>ÀÌº¥Æ® Ã¢À¸·Î</button>		
+<h2>ìˆ˜ì •ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤!</h2>
+<button type="button" class="btn btn-default" onclick='modifyPro()'>ì´ë²¤íŠ¸ ì°½ìœ¼ë¡œ</button>		
 </center>
 </body>
 </html>

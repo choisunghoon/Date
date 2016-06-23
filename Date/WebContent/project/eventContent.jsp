@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,8 +8,8 @@ function callEvent(url,pageNum,enumber){
   	 $.ajax({   		   
 	        type: "post", 	       
 	        url : url+"?pageNum="+pageNum+"&enumber="+enumber,
-	        success: test,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
-	        error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+	        success: test,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+	        error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
     	});
   }
 
@@ -18,8 +17,8 @@ function callEvent(url,pageNum,enumber){
    	 $.ajax({   		   
 	        type: "post", 	       
 	        url : url+"?enumber="+enumber,
-	        success: test,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
-	        error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+	        success: test,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+	        error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
      	});
    }
     
@@ -27,12 +26,12 @@ function callEvent(url,pageNum,enumber){
    	 $.ajax({    		
 	        type: "post", 	 
 	        url : url+"?appnumber="+appnumber+"&wnumber="+wnumber+"&enumber="+enumber+"&pageNum="+pageNum+"&tab="+tab,
-	        success: test,	// ÆäÀÌÁö¿äÃ» ¼º°ø½Ã ½ÇÇà ÇÔ¼ö
-	        error: whenError	//ÆäÀÌÁö¿äÃ» ½ÇÆĞ½Ã ½ÇÇàÇÔ¼ö
+	        success: test,	// í˜ì´ì§€ìš”ì²­ ì„±ê³µì‹œ ì‹¤í–‰ í•¨ìˆ˜
+	        error: whenError	//í˜ì´ì§€ìš”ì²­ ì‹¤íŒ¨ì‹œ ì‹¤í–‰í•¨ìˆ˜
      	});
    }
-    function test(aaa){	// ¿äÃ»¼º°øÇÑ ÆäÀÌÁöÁ¤º¸°¡ aaa º¯¼ö·Î Äİ¹éµÈ´Ù. 
-        $(".modal-bodyy").html(aaa);	//id°¡ ajaxReturnÀÎ ºÎºĞ¿¡ ³Ö¾î¶ó
+    function test(aaa){	// ìš”ì²­ì„±ê³µí•œ í˜ì´ì§€ì •ë³´ê°€ aaa ë³€ìˆ˜ë¡œ ì½œë°±ëœë‹¤. 
+        $(".modal-bodyy").html(aaa);	//idê°€ ajaxReturnì¸ ë¶€ë¶„ì— ë„£ì–´ë¼
     }    
     function whenError(){
         alert("Error");
@@ -45,18 +44,18 @@ function callEvent(url,pageNum,enumber){
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>ÀÌº¥Æ® »ó¼¼ Á¤º¸ ÆäÀÌÁö</title>
+<title>ì´ë²¤íŠ¸ ìƒì„¸ ì •ë³´ í˜ì´ì§€</title>
 </head>
 <body>
 	<table border="1" width="500" cellpadding="0" cellspacing="0"
 		align="center">
 		<tr height="30">
-			<td align="center" width="100">ÀÌº¥Æ® ÀÌ¸§</td>
+			<td align="center" width="100">ì´ë²¤íŠ¸ ì´ë¦„</td>
 			<td align="center">${eto.ename}</td>
 		</tr>
 		<tr>
-			<td align="center" width="150">»Ì´Â ´çÃ·ÀÚ ¼ö : ${eto.wnumber}</td>
-			<td align="center">ÁøÇà ³¯Â¥ : ${eto.sdate}~${eto.edate}</td>
+			<td align="center" width="150">ë½‘ëŠ” ë‹¹ì²¨ì ìˆ˜ : ${eto.wnumber}</td>
+			<td align="center">ì§„í–‰ ë‚ ì§œ : ${eto.sdate}~${eto.edate}</td>
 		</tr>
 		<tr>
 			<td align="center" colspan=2><img src="${eto.eimg}"></td>
@@ -65,15 +64,15 @@ function callEvent(url,pageNum,enumber){
 	<br/>
 	<c:if test="${tab==2}">
 		<center>
-			¾ÆÁ÷ ÀÌº¥Æ®°¡ ÁøÇà±â°£ÀÌ ¾Æ´Õ´Ï´Ù!<br />ÀÌº¥Æ®°¡ ÁøÇà µÇ¸é Âü¿© ºÎÅ¹µå·Á¿ä^__^
+			ì•„ì§ ì´ë²¤íŠ¸ê°€ ì§„í–‰ê¸°ê°„ì´ ì•„ë‹™ë‹ˆë‹¤!<br />ì´ë²¤íŠ¸ê°€ ì§„í–‰ ë˜ë©´ ì°¸ì—¬ ë¶€íƒë“œë ¤ìš”^__^
 		</center>
 	</c:if>
 	<c:if test="${tab==1||tab==3}">
 		<table border="1" width="500" cellpadding="0" cellspacing="0" align="center">			
 			<tr height="30">
-				<td align="center" width="50">±Û ¹øÈ£</td>
-				<td align="center" width="100">Ä¿ÇÃ ÀÌ¸§</td>
-				<td align="center" width="300">Á¦¸ñ</td>
+				<td align="center" width="50">ê¸€ ë²ˆí˜¸</td>
+				<td align="center" width="100">ì»¤í”Œ ì´ë¦„</td>
+				<td align="center" width="300">ì œëª©</td>
 				<c:forEach var="appList" items="${appList}">
 					<tr height="30">
 						<td align="center">${appList.appnumber}</td>
@@ -94,9 +93,9 @@ function callEvent(url,pageNum,enumber){
 				</c:forEach>
 		</table>
 	</c:if>
-	<c:if test="${tab==1}"><button type="button" class="btn btn-default" style="margin-top:5px; margin-left:408px" onclick="callAddApp('addApp.nhn',${eto.enumber})">ÀÌº¥Æ® Âü¿©ÇÏ±â</button></c:if><br/>
+	<c:if test="${tab==1}"><button type="button" class="btn btn-default" style="margin-top:5px; margin-left:408px" onclick="callAddApp('addApp.nhn',${eto.enumber})">ì´ë²¤íŠ¸ ì°¸ì—¬í•˜ê¸°</button></c:if><br/>
 	<c:if test="${tab==4}">
-		<c:if test="${eto.w==0}">¾ÆÁ÷ ´çÃ·ÀÚ¸¦ »ÌÁö ¾Ê¾Ò½À´Ï´Ù!!</c:if>
+		<c:if test="${eto.w==0}">ì•„ì§ ë‹¹ì²¨ìë¥¼ ë½‘ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤!!</c:if>
 		<c:if test="${eto.w==1}"><c:forEach var="i" begin="0" end="${eto.wnumber}">
 			${wclist[i]}<br/>
 		</c:forEach></c:if>
@@ -114,14 +113,14 @@ function callEvent(url,pageNum,enumber){
 		</c:if>
 
 		<c:if test="${startPage > 10}">
-			<a href=# onclick="callEvent('eventContent.nhn',${startPage - 10 },${enumber})">[ÀÌÀü]</a>
+			<a href=# onclick="callEvent('eventContent.nhn',${startPage - 10 },${enumber})">[ì´ì „]</a>
 		</c:if>
 
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
 			<a href=# onclick="callEvent('eventContent.nhn',${i},${enumber})">[${i}]</a>
 		</c:forEach>
 		<c:if test="${endPage < pageCount}">
-			<a href=# onclick="callEvent('eventContent.nhn',${startPage + 10 },${enumber})">[´ÙÀ½]</a>
+			<a href=# onclick="callEvent('eventContent.nhn',${startPage + 10 },${enumber})">[ë‹¤ìŒ]</a>
 		</c:if>
 	</div>
 </body>

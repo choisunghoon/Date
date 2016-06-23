@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <style>
 html { padding:0; margin:0;}
-body, div{font:9pt Dotum, "µ¸¿ò", Arial, sans-serif;}
+body, div{font:9pt Dotum, "ë‹ì›€", Arial, sans-serif;}
 div, img, form { border: 0 none; margin: 0; padding: 0; }
 form input, form select, {vertical-align:middle;}
 /* anchor font */
@@ -27,7 +26,7 @@ a:hover, a:focus, a:active {color:#000;}
 .mini_cal_tbl .empty{border:0;background-color:#e8e7dc}
 </style>
 <script language="JavaScript">
-// ´Ş·ÂÀ» Ãâ·ÂÇÒ ºÎºĞÀÇ ¾ÆÀÌµğ ¼³Àå
+// ë‹¬ë ¥ì„ ì¶œë ¥í•  ë¶€ë¶„ì˜ ì•„ì´ë”” ì„¤ì¥
 var calendarID  = "sdate";
 var calendarID2 = "edate";
 var mode = false;
@@ -38,20 +37,20 @@ var _configSelect;
 var _configTarget;
 var _configSetDay=90;
 
-// ¿À´Ã ³¯Â¥ ±¸ÇÏ±â
+// ì˜¤ëŠ˜ ë‚ ì§œ êµ¬í•˜ê¸°
 var cDate   = new Date();
 var cYear  = cDate.getFullYear();
-var cMonth = parseInt(cDate.getMonth())+1;	// ¿ù °ªÀº ½ÇÁ¦°ª º¸´Ù -1 ÇÑ °ªÀÓ
+var cMonth = parseInt(cDate.getMonth())+1;	// ì›” ê°’ì€ ì‹¤ì œê°’ ë³´ë‹¤ -1 í•œ ê°’ì„
 var cDay	 = cDate.getDate();
 if(!yearS) yearS = 2010;
 if(!yearE) yearE = parseInt(cYear + 2);
 
-// ¼±ÅÃµÈ ÇöÀç ³¯Â¥
+// ì„ íƒëœ í˜„ì¬ ë‚ ì§œ
 var selYear  = cYear;
 var selMonth = cMonth;
 var selDay   = cDay;
 
-// ³¯Â¥ ÀÚ¸®»ç 2ÀÚ¸®·Î º¯°æ
+// ë‚ ì§œ ìë¦¬ì‚¬ 2ìë¦¬ë¡œ ë³€ê²½
 function _setFillZero(d) {
 	var str = new String();
 	if (parseInt(d) < 10) {
@@ -62,7 +61,7 @@ function _setFillZero(d) {
 	return str;
 }
 
-// ³¯Â¥ Æ÷¸ä
+// ë‚ ì§œ í¬ë©§
 function formatDate(date) {
 	var mymonth = date.getMonth() + 1;
 	var myweekday = date.getDate();
@@ -80,7 +79,7 @@ function _setDDayChange(date) {
 	return rtnDate;
 }
 
-// ³âµµ °ü·Ã ÄŞº¸¹Ú½º Ãâ·Â
+// ë…„ë„ ê´€ë ¨ ì½¤ë³´ë°•ìŠ¤ ì¶œë ¥
 function _setYear(pos) {
 	var sel='';
 	var regHTML = ' <select id="chk_year" onchange="_goCalendar(this.value,'+selMonth+',\'\',\''+pos+'\');">';
@@ -93,7 +92,7 @@ function _setYear(pos) {
 	return regHTML;
 }
 
-// ½Ã°£ °ü·Ã ÄŞº¸¹Ú½º Ãâ·Â
+// ì‹œê°„ ê´€ë ¨ ì½¤ë³´ë°•ìŠ¤ ì¶œë ¥
 function _setMonth(pos) {
 	var sel='';
 	var regHTML = '<select id="chk_month" onchange="_goCalendar('+selYear+',this.value,\'\',\''+pos+'\');">';
@@ -111,17 +110,17 @@ function getHoliday(month,day,flag) {
 	var date = String(month) + String(day);
 	var rtn = '';
 
-	// ¾ç·Â°øÈŞÀÏ
+	// ì–‘ë ¥ê³µíœ´ì¼
 	var holidays = new Array();
-	holidays['11']	= "¼³³¯";
-	holidays['12']	= "¼³³¯¿¬ÈŞ";
-	holidays['31']	= "»ïÀÏÀı";
-	holidays['55']	= "¾î¸°ÀÌ³¯";
-	holidays['66']	= "ÇöÃæÀÏ";
-	holidays['717']	= "Á¦ÇåÀı";
-	holidays['815']	= "±¤º¹Àı";
-	holidays['103']	= "°³ÃµÀı";
-	holidays['1225']= "¼ºÅºÀı";
+	holidays['11']	= "ì„¤ë‚ ";
+	holidays['12']	= "ì„¤ë‚ ì—°íœ´";
+	holidays['31']	= "ì‚¼ì¼ì ˆ";
+	holidays['55']	= "ì–´ë¦°ì´ë‚ ";
+	holidays['66']	= "í˜„ì¶©ì¼";
+	holidays['717']	= "ì œí—Œì ˆ";
+	holidays['815']	= "ê´‘ë³µì ˆ";
+	holidays['103']	= "ê°œì²œì ˆ";
+	holidays['1225']= "ì„±íƒ„ì ˆ";
 
 	rtn = holidays[date];
 	if(typeof(rtn) == 'undefined') rtn = '';
@@ -129,13 +128,13 @@ function getHoliday(month,day,flag) {
 	return rtn;
 }
 
-// ÀÌÀü´Ş ´ÙÀ½´Ş
+// ì´ì „ë‹¬ ë‹¤ìŒë‹¬
 function _goCalendar(year,month,day,pos) {
 	if(!year) year = cYear;
 	SetShowCalendar(year,month,day,pos);
 }
 
-// ³¯Â¥ ºñ±³
+// ë‚ ì§œ ë¹„êµ
 function _compareDate(d1, d2) {
 
   var tmpd1 = d1.split("-");
@@ -147,7 +146,7 @@ function _compareDate(d1, d2) {
 	return diff;
 }
 
-// ³¯Â¥ ¼±ÅÃ
+// ë‚ ì§œ ì„ íƒ
 function _selDate(dt,pos) {
 	if(mode) {
 		var diff = 0;
@@ -159,7 +158,7 @@ function _selDate(dt,pos) {
 		if(day2) {
 			diff = _compareDate(dt, day2);
 			if(diff < 0) {
-				alert('¼±ÅÃÇÑ ½ÃÀÛÀÏÀÌ Á¾·áÀÏ º¸´Ù Å®´Ï´Ù');
+				alert('ì„ íƒí•œ ì‹œì‘ì¼ì´ ì¢…ë£Œì¼ ë³´ë‹¤ í½ë‹ˆë‹¤');
 				document.getElementById(sday).value = '';
 			} else {
 				document.getElementById(sday).value = dt;
@@ -172,7 +171,7 @@ function _selDate(dt,pos) {
 		if(day1) {
 			diff = _compareDate(dt, day1);
 			if(diff > 0) {
-				alert('¼±ÅÃÇÑ Á¾·áÀÏÀÌ ½ÃÀÛÀÏº¸´Ù ÀÛ½À´Ï´Ù');
+				alert('ì„ íƒí•œ ì¢…ë£Œì¼ì´ ì‹œì‘ì¼ë³´ë‹¤ ì‘ìŠµë‹ˆë‹¤');
 				document.getElementById(eday).value = '';
 			} else {
 				document.getElementById(eday).value = dt;
@@ -184,7 +183,7 @@ function _selDate(dt,pos) {
 	if(mode)
 		if(document.getElementById(sday).value &&  document.getElementById(eday).value) calRemove();
 
-	// ¼±ÅÃ½Ã ÀÚµ¿ ³¯Â¥ °è»ê Ãâ·Â
+	// ì„ íƒì‹œ ìë™ ë‚ ì§œ ê³„ì‚° ì¶œë ¥
 	//if(_configSelect == "wm_wed_dday" && sday == _configTarget) {
 	//	var dday = _setDDayChange(dt,90);
 	//	jQuery('#'+_configSelect).val(dday);
@@ -197,7 +196,7 @@ function calRemove() {
 	if (document.getElementById('mini_frame')) document.body.removeChild(document.getElementById('mini_frame'));
 }
 
-// ´Ş·Â ¶ç¿ì±â
+// ë‹¬ë ¥ ë„ìš°ê¸°
 function miniSetCalendar(event,sd,ed,ox,oy) {
 	var canvas2 = document[ 'CSS1Compat' == document.compatMode ? 'documentElement' : 'body'];
 	sday = sd;
@@ -262,13 +261,13 @@ var oy = 0 ;
 	}
 }
 
-// ¿ù°£ ÀÏÁ¤ Ãâ·Â
+// ì›”ê°„ ì¼ì • ì¶œë ¥
 function SetShowCalendar (sYear, sMonth, sDay, pos) {
-	var today;	 // ¿À´Ã ³¯Â¥
-	var lnuar;	 // À½·Â
-	var holiday; // °øÈŞÀÏ¿©ºÎ
+	var today;	 // ì˜¤ëŠ˜ ë‚ ì§œ
+	var lnuar;	 // ìŒë ¥
+	var holiday; // ê³µíœ´ì¼ì—¬ë¶€
 	var lastDay	= new Array(0,31,28,31,30,31,30,31,31,30,31,30,31);
-	var weekName = new Array("ÀÏ","È­","¼ö","¸ñ","±İ","Åä");
+	var weekName = new Array("ì¼","í™”","ìˆ˜","ëª©","ê¸ˆ","í† ");
 
 	if (!sYear)  sYear  = cYear;
 	if (!sMonth) sMonth = cMonth;
@@ -303,12 +302,12 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
 			break;
 	}
 
-	var firstDay	= new Date(sYear, sMonth-1, 1);					 // ÇöÀç ´ŞÀÇ 1ÀÏ·Î ³¯ÀÚ °´Ã¼ »ı¼º(¿ùÀº 0ºÎÅÍ 11±îÁöÀÇ Á¤¼ö(1¿ùºÎÅÍ 12¿ù))
-	var firstWeek = firstDay.getDay();										// ÇöÀç ´Ş 1ÀÏÀÇ ¿äÀÏÀ» ±¸ÇÔ (0:ÀÏ¿äÀÏ, 1:¿ù¿äÀÏ)
+	var firstDay	= new Date(sYear, sMonth-1, 1);					 // í˜„ì¬ ë‹¬ì˜ 1ì¼ë¡œ ë‚ ì ê°ì²´ ìƒì„±(ì›”ì€ 0ë¶€í„° 11ê¹Œì§€ì˜ ì •ìˆ˜(1ì›”ë¶€í„° 12ì›”))
+	var firstWeek = firstDay.getDay();										// í˜„ì¬ ë‹¬ 1ì¼ì˜ ìš”ì¼ì„ êµ¬í•¨ (0:ì¼ìš”ì¼, 1:ì›”ìš”ì¼)
 
 	var loopFlag = false;
 
-	if ((sYear % 4)==0) {															 // 4³â¸¶´Ù 1¹øÀÌ¸é (»ç·Î³ª´©¾î ¶³¾îÁö¸é)
+	if ((sYear % 4)==0) {															 // 4ë…„ë§ˆë‹¤ 1ë²ˆì´ë©´ (ì‚¬ë¡œë‚˜ëˆ„ì–´ ë–¨ì–´ì§€ë©´)
 		if ((sYear % 100) == 0) {
 			if ((sYear % 400) == 0) {
 				lastDay[2] = 29;
@@ -317,7 +316,7 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
 			lastDay[2] = 29;
 		}
 	}
-	var intLastDay = lastDay[sMonth];																				// ¸¶Áö¸· ÀÏÀÚ ±¸ÇÔ
+	var intLastDay = lastDay[sMonth];																				// ë§ˆì§€ë§‰ ì¼ì êµ¬í•¨
 
 	var echoHTML = '<div class="mini_calendar">';
 	echoHTML += '<div class="navi">';
@@ -330,40 +329,40 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
 	echoHTML += '<table class="mini_cal_tbl">';
 	echoHTML += '	<thead>';
 	echoHTML += '		<tr>';
-	echoHTML += '			<th class="sun">ÀÏ</th><th>¿ù</th><th>È­</th><th>¼ö</th><th>¸ñ</th><th>±İ</th><th class="sat">Åä</th>';
+	echoHTML += '			<th class="sun">ì¼</th><th>ì›”</th><th>í™”</th><th>ìˆ˜</th><th>ëª©</th><th>ê¸ˆ</th><th class="sat">í† </th>';
 	echoHTML += '		</tr>';
 	echoHTML += '	</thead>';
 	echoHTML += '	<tbody>';
 
-	var pDay	= 1;	 // ´Ş·Â³¯Â¥
-	var eDay	= '';	// ³¯Â¥ Ãâ·Â
+	var pDay	= 1;	 // ë‹¬ë ¥ë‚ ì§œ
+	var eDay	= '';	// ë‚ ì§œ ì¶œë ¥
 
-	for (var i=1; i < 7; i++) {			 // ÁÖ´ÜÀ§ ·çÇÁ ½ÃÀÛ, ÃÖ´ë 6ÁÖ
+	for (var i=1; i < 7; i++) {			 // ì£¼ë‹¨ìœ„ ë£¨í”„ ì‹œì‘, ìµœëŒ€ 6ì£¼
 		echoHTML += '<tr>'
 
-		for (var j=1; j <= 7; j++) {		// ¿äÀÏ´ÜÀ§ ·çÇÁ ½ÃÀÛ, ÀÏ¿äÀÏ ºÎÅÍ
-			// ÀÏ/Åä/ÇØ´çÀÏ »ö»ó ¼³Á¤
+		for (var j=1; j <= 7; j++) {		// ìš”ì¼ë‹¨ìœ„ ë£¨í”„ ì‹œì‘, ì¼ìš”ì¼ ë¶€í„°
+			// ì¼/í† /í•´ë‹¹ì¼ ìƒ‰ìƒ ì„¤ì •
 			if(j == 1)			weekCls = ' sun"';
 			else if(j == 7) weekCls = ' sat"';
 			else						weekCls = '';
 
 			echoHTML += '<td>';
 
-			// Ã¹ÁÖ ½ÃÀÛÀÏÀÌ 1º¸´Ù Å©¸é
+			// ì²«ì£¼ ì‹œì‘ì¼ì´ 1ë³´ë‹¤ í¬ë©´
 			if (firstWeek > 0) {
 				firstWeek--;
 			} else {
-				// ³¯Â¥°¡ ¿ù¸»º¸´Ù Å©´Ù¸é
+				// ë‚ ì§œê°€ ì›”ë§ë³´ë‹¤ í¬ë‹¤ë©´
 				if (pDay <= intLastDay) {
 					today = sYear + "-" + _setFillZero(sMonth).toString() + "-" + _setFillZero(pDay).toString();
-					// ¼±ÅÃµÈ ³¯Â¥¿Í ´Ş·Â ³¯ÀÚ°¡ °°À¸¸é Bold
+					// ì„ íƒëœ ë‚ ì§œì™€ ë‹¬ë ¥ ë‚ ìê°€ ê°™ìœ¼ë©´ Bold
 					if(pDay == sDay) eDay = '<div class="current'+weekCls+'" onclick="_selDate(\''+today+'\',\''+pos+'\')">'+pDay+'</div>';
 					else						 eDay = '<div class="'+weekCls+'" onclick="_selDate(\''+today+'\',\''+pos+'\')">'+pDay+'</div>';
 					echoHTML += eDay;
 				}
 				pDay++;
 
-				// ¸¸¾à ³¯Â¥ °ªÀÌ ¿ù¸» °ªº¸´Ù Å©¸é ·çÇÁ¹® Å»Ãâ
+				// ë§Œì•½ ë‚ ì§œ ê°’ì´ ì›”ë§ ê°’ë³´ë‹¤ í¬ë©´ ë£¨í”„ë¬¸ íƒˆì¶œ
 				if (pDay > intLastDay) {
 					loopFlag = true;
 				}
@@ -389,37 +388,37 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
 }
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>ÀÌº¥Æ® ¼öÁ¤</title>
+<title>ì´ë²¤íŠ¸ ìˆ˜ì •</title>
 </head>
 <body>
 <form method="post" name="modifyEvent" enctype="multipart/form-data" action="modifyEventPro.nhn">
 <table border="1" width="600" cellpadding="0" cellspacing="0" align="center"> 
     <tr height="30"> 
-      <td align="center"  width="200">ÀÌº¥Æ® ÀÌ¸§</td>
+      <td align="center"  width="200">ì´ë²¤íŠ¸ ì´ë¦„</td>
       <td align="center"><input type="text" name="ename" value="${eto.ename}">
       					<input type="hidden" name="enumber" value="${eto.enumber}">
      </tr>
      <tr>
-      <td align="center" width="200">ÀÌº¥Æ® ´ëÇ¥ ÀÌ¹ÌÁö</td>
+      <td align="center" width="200">ì´ë²¤íŠ¸ ëŒ€í‘œ ì´ë¯¸ì§€</td>
       <td align="center"><img src="${src1}"/><input type="file" name="upload[1]"></td>
     </tr>
     <tr>
-      <td align="center" width="200">ÀÌº¥Æ® »ó¼¼ ÀÌ¹ÌÁö</td>
+      <td align="center" width="200">ì´ë²¤íŠ¸ ìƒì„¸ ì´ë¯¸ì§€</td>
       <td align="center"><img src="${src2}"/><input type="file" name="upload[2]"></td>
     </tr>
     <tr height="30"> 
-      <td align="center"  width="100">´çÃ·ÀÚ ¼ö</td>
-      <td align="center"><input type="text" name="w" value="${eto.w}">
+      <td align="center"  width="100">ë‹¹ì²¨ì ìˆ˜</td>
+      <td align="center"><input type="text" name="wnumber" value="${eto.wnumber}">
      </tr> 
      <tr>
-      <td align="center" width="100">ÁøÇà ³¯Â¥</td>
-      <td align="center" >½ÃÀÛ ³¯Â¥<input type="text" id="start_day" name="sdate" class="forms" style="width:80px;" value="${eto.sdate}" />
-      					    Á¾·á ³¯Â¥<input type="text" id="end_day" name="edate" class="forms" style="width:80px;" value="${eto.edate}"/>
-      					  <a href="#" onclick="miniSetCalendar(event,'start_day','end_day');return false;">[°Ë»ö´Ş·Â]</a>
+      <td align="center" width="100">ì§„í–‰ ë‚ ì§œ</td>
+      <td align="center" >ì‹œì‘ ë‚ ì§œ<input type="text" id="start_day" name="sdate" class="forms" style="width:80px;" value="${eto.sdate}" />
+      					    ì¢…ë£Œ ë‚ ì§œ<input type="text" id="end_day" name="edate" class="forms" style="width:80px;" value="${eto.edate}"/>
+      					  <a href="#" onclick="miniSetCalendar(event,'start_day','end_day');return false;">[ê²€ìƒ‰ë‹¬ë ¥]</a>
       </td>
     </tr>
     <tr>
-     <td colspan=2 align="center"><input type="submit" value="¼öÁ¤"></td>
+     <td colspan=2 align="center"><input type="submit" value="ìˆ˜ì •"></td>
     </tr>
 </table>
 </form>
