@@ -58,7 +58,7 @@ public class DateMap {
 			
 		request.setAttribute("dto", dto);
 		
-		return "couple.nhn";
+		return "redirect:couple.nhn";
 	}
 	@RequestMapping("datecos.nhn")
 	public String datecos(HttpServletRequest request,DTO dto){
@@ -95,6 +95,6 @@ public class DateMap {
 		
 		request.setAttribute("dto", dto);
 	
-		return "couple.nhn";
+		return "redirect:couple.nhn";
 	}
 }

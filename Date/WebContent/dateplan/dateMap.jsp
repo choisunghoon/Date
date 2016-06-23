@@ -89,10 +89,13 @@
 	function alertw(){
 		alert("저장되었습니다.")
 	}
+	function submitForm(){
+		document.form1.submit();
+	}
 </script>
 </head>
 <body>
-<form action="cosSave.nhn" method="post" onsubmit="alertw()">
+<form name="form1" action="cosSave.nhn" method="post" onsubmit="alertw()">
 <div style="margin-bottom: 10px">
 제목 : <input type="text" name ="subject" id="subject" />
 </div>
@@ -147,7 +150,7 @@
 <div id="img" class="placeinfov_wrap">
 
 </div>
-<input type="submit"  value="저장" />
+<a href="#" onclick="submitForm()"><img src="button/c8.png" /> </a>
 
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
@@ -162,7 +165,7 @@ var placeOverlay = new daum.maps.CustomOverlay({zIndex:1}),
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
+        level: 3 // 지도의 확대 레벨
     };  
 
 // 지도를 생성합니다    

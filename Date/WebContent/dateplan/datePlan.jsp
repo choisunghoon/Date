@@ -135,6 +135,9 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
 <script>
+function subForm(){
+	document.datePlanForm.submit();
+}
 // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 
 var placeOverlay = new daum.maps.CustomOverlay({zIndex:1}), 
@@ -145,7 +148,7 @@ var placeOverlay = new daum.maps.CustomOverlay({zIndex:1}),
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
+        level: 4 // 지도의 확대 레벨
     };  
 
 // 지도를 생성합니다    
@@ -839,13 +842,13 @@ function removeAllChildNods(el) {
     }
 }
 </script>
-<form action="cosUpdate.nhn" method="post">
+<form name="datePlanForm" action="cosUpdate.nhn" method="post">
 <input type="hidden" value="up" name="btcheck" />
 <div id="img" class="placeinfov_wrap">
 	
 </div>
 <input type="hidden" value="${num}" name="num" />
-<input type="submit"  value="수정" /> 
+<a href="#" onclick="subForm()"><img src="button/c2.png"></a> 
 </form>
 
 </body>
