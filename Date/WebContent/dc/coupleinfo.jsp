@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+
 
 
 
@@ -131,36 +131,37 @@ function date() {
 <c:if test="${couple2.couple eq '1' }">
 	
 	<form method="post" action="coupleModify.nhn">
+	<center>
 	<b>${couple2.nickname }</b>(${couple2.id})님과 <b>${couple1.nickname }</b>(${couple1.id})님의 커플 정보 입니다.
 	<br/><br/><br/>
-   <div style="width:200px; height:280; margin-left:44%;">
+   
  	 커플명   <input type="text" name="coupleName" size="20" maxlength="30" value="${coupleData.coupleName}">     
       	<input type="button" value="커플명 중복확인" OnClick="openCCName(this.form)"><br><br>
-   <center>사귄 날짜 <div id="ddd"><fmt:formatDate  value="${coupleData.coupleDate }" pattern="yyyy-MM-dd"/></div>
+   사귄 날짜 <div id="ddd"><fmt:formatDate  value="${coupleData.coupleDate }" pattern="yy-MM-dd"/></div>
    <input type="button" value="날짜변경" onclick="date()"/><br><br>
-   </center>
-    <div style="border:1px solid; width:200px; height:200px; float:left;">
+   
+    
       <c:if test="${coupleData.coupleImage eq null }">
       <img src="syimage/couple.png" class="img-circle">
-       <center>
+       
       <input type="button" value="이미지 변경" onClick="openCoupleImage(this.form)">
-   </center>
+  
       </c:if>
       <c:if test="${coupleData.coupleImage ne null }">
       <img src="syimage/${coupleData.coupleImage }" width="200px" height="200px">
        <center>
-      <input type="button" value="이미지 변경" onClick="openCoupleImage(this.form)">
-   </center>
+      <input type="button" value="이미지 변경" onClick="openCoupleImage(this.form)"><br>
+  
       </c:if>
     <input type="submit" value="커플정보 수정">
   	<input type="button" value="취소" onClick="javascript:window.location='mypage.nhn'">
-   </div>
-   <center>
+   
+ 
   	
 	</form>
 
    </center>
-  </div> 
+ 
     
   
 </c:if>

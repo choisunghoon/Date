@@ -194,6 +194,15 @@
 		<update id="diaryimgUpdate1" parameterClass="cdto">
 			update dc_couple set coupleImage = #coupleImage# where coupleName=#coupleName#
 		</update>
+		<select id="checkCoupleName" parameterClass="String" resultClass="int">
+			select count(*) from dc_couple where coupleName=#coupleName#
+		</select>
+		<update id="coupleModifyNc" parameterClass="cdto">
+			update dc_couple set coupleDate = #coupleDate# where coupleName=#coupleName#
+		</update>
+		<update id="coupleModify" parameterClass="cdto">
+			update dc_couple set coupleDate = #coupleDate# where coupleName=#coupleName#
+		</update>
 			
 		
 
