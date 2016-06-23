@@ -136,8 +136,8 @@
                   <center>${diary.content}</center>
                   </li>
                   <li style="margin-left:42%;">
-                     <button onClick="javascript:location.href='DiaryModify.nhn?num=${diary.num}&couplename=${couplename}'">수정</button>
-                     <button onClick="javascript:location.href='DiaryDelete.nhn?num=${diary.num}&couplename=${couplename}'">삭제</button>
+                     <button onClick="callrefresh('DiaryModify.nhn?num=${diary.num}&couplename=${couplename}')">수정</button>
+                     <button onClick="callrefresh('DiaryDelete.nhn?num=${diary.num}&couplename=${couplename}')">삭제</button>
                   </li>
             
                </ul>

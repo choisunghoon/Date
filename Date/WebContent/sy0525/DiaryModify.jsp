@@ -103,7 +103,7 @@ $("#choose").change(function (e) {
 <input type="hidden" id="h" name ="h" value=""/>
 
 <input type="submit" value="수정" />
-<input type="button" value="취소" onClick="javascript:location.href='diaryMenu.nhn'" />
+<input type="button" value="취소" onClick="javascript:location.href='couple.nhn'" />
 </form>
 
 </body>
