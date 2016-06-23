@@ -19,7 +19,7 @@
     function callAjax(){
         $.ajax({
 	        type: "post",
-	        url : "shareDiaryLikeCount.nhn?num=${dto.num}&couplename=${dto.couplename}",
+	        url : "shareDiaryLikeCount.nhn?num=${dto.num}&couplename=${couplename}",
 	        
 	        success: test2,	// 페이지요청 성공시 실행 함수
 	        error: whenError	//페이지요청 실패시 실행함수
@@ -28,7 +28,7 @@
     function test2(){
         $.ajax({
 	        type: "post",
-	        url : "shareCount.nhn?num=${dto.num}&likecount=${dto.likecount}",
+	        url : "shareDiaryCount.nhn?num=${dto.num}&likecount=${dto.likecount}",
 	        
 	        success: test,	// 페이지요청 성공시 실행 함수
 	        error: whenError	//페이지요청 실패시 실행함수

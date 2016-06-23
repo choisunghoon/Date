@@ -3,6 +3,55 @@
    <!DOCTYPE html>
 <html>
 <head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#like").click(function(){
+
+    	  callAjax();
+      });
+    });
+
+    function callAjax(){
+        $.ajax({
+	        type: "post",
+	        url : "shareCourseLikeCount.nhn?num=${dto.num}&couplename=${dto.couplename}",
+	        
+	        success: test2,	// 페이지요청 성공시 실행 함수
+	        error: whenError	//페이지요청 실패시 실행함수
+     	});
+    }
+    function test2(){
+        $.ajax({
+	        type: "post",
+	        url : "shareCourseCount.nhn?num=${dto.num}&likecount=${dto.likecount}",
+	        
+	        success: test,	// 페이지요청 성공시 실행 함수
+	        error: whenError	//페이지요청 실패시 실행함수
+     	});
+    }
+    function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $("#ajaxReturn").html(aaa);
+        console.log(resdata);
+    }
+    function whenError(){
+        alert("Error");
+    }
+    function callAjax1(nhn){
+        $.ajax({
+            type: "post",
+            url : nhn,
+            success: refresh,	// 페이지요청 성공시 실행 함수
+            error: whenError2	//페이지요청 실패시 실행함수
+     	});
+    }
+    function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $("#subMain").html(aaa);
+        
+    }
+</script>
+
+
     <meta charset="utf-8">
     <title>카테고리별 장소 검색하기</title>
     <style>
@@ -835,13 +884,27 @@ function removeAllChildNods(el) {
     }
 }
 </script>
+
+
 <form action="cosUpdate.nhn">
 <input type="hidden" value="up" name="btcheck" />
 <div id="img" class="placeinfov_wrap">
 	
 </div>
+
+<br/>
+<br/>
+
+<div id="like" method="post"><center>
+		<input type="button" name="goodLike" value="like" />
+			
+		<span id="ajaxReturn" > ${dto.likecount }</span><br/>
+		   	
+</center></div>
+
 </form>
 
 </body>
+
 
 </html>
