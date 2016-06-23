@@ -2,6 +2,9 @@ package login.bean;
 
 import java.io.File;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -299,8 +302,22 @@ public class InputBean {
 		return "/dc/diary.jsp";
 	}
 	@RequestMapping("/coupleModify.nhn")
-	public String coupleModify(CoupleDataBean cdb,HttpSession session,HttpServletRequest request)throws Exception{
-		
+	public String coupleModify(HttpSession session,HttpServletRequest request)throws Exception{
+		String coupleName = request.getParameter("coupleName");
+		String coupleDate = request.getParameter("coupleDate");
+		String id=(String)session.getAttribute("id");
+		CoupleDataBean cdto=new CoupleDataBean();
+		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
+		Date date=sdf.parse(coupleDate);
+		int ccn=(Integer)sqlMapper.queryForObject("checkCoupleName", coupleName);
+		if(ccn==1){
+			cdto.setCoupleDate(date);
+			System.out.println("date "+date);
+			sqlMapper.update("modifyCoupleNc", cdto);
+		}
+		else if(ccn==0){
+			
+		}
 		return "/dc/mypage.jsp";
 	}
 }
