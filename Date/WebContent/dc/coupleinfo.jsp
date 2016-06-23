@@ -21,7 +21,7 @@
 function date() {
 	
 	var ddd=document.getElementById("ddd");
-	ddd.innerHTML="<input type='text' id='coupleDate' name='coupleDate'>"
+	ddd.innerHTML="<input type='text' id='coupleDate' name='coupleDate'><input type='hidden' name='hidden' value='hidden'>"
 
 		$(function() {
 			$("#coupleDate").datepicker({
@@ -118,7 +118,7 @@ function date() {
 </c:if>
 <body align="center">
 
-<form action="#" method="post">
+
 <c:if test="${check1 eq 1 and couple2.couple eq '0'}">
 상대방의 수락을 기다리는 중입니다.<br>
 커플 신청을 취소하려면 버튼을 클릭하세요.<br><input type="button" value="커플 신청 취소"onclick="window.location='couplex.nhn?&id=${id}'">
@@ -142,7 +142,7 @@ function date() {
    
     
       <c:if test="${coupleData.coupleImage eq null }">
-      <img src="syimage/couple.png" class="img-circle">
+      <img src="syimage/couple.png" class="img-circle"><br>
        
       <input type="button" value="이미지 변경" onClick="openCoupleImage(this.form)">
   

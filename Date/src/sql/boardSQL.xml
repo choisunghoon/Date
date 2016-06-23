@@ -197,11 +197,14 @@
 		<select id="checkCoupleName" parameterClass="String" resultClass="int">
 			select count(*) from dc_couple where coupleName=#coupleName#
 		</select>
-		<update id="coupleModifyNc" parameterClass="cdto">
+		<update id="coupleModifyNcYd" parameterClass="cdto">
 			update dc_couple set coupleDate = #coupleDate# where coupleName=#coupleName#
 		</update>
-		<update id="coupleModify" parameterClass="cdto">
-			update dc_couple set coupleDate = #coupleDate# where coupleName=#coupleName#
+		<update id="coupleModifyYcYd" parameterClass="cdto">
+			update dc_couple set coupleDate = #coupleDate#,coupleName=#coupleName# where id1=#id1# or id2=#id1#
+		</update>
+		<update id="coupleModifyYcNd" parameterClass="cdto">
+			update dc_couple set coupleName=#coupleName# where id1=#id1# or id2=#id1#
 		</update>
 			
 		

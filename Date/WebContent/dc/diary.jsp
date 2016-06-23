@@ -16,12 +16,13 @@
 		}		
 	}
 </script>
-<form name="rg" action="updateImage1.nhn?coupleName=${coupleName }" method="post" enctype="multipart/form-data" onsubmit="return checkfile();">
-<div id="uploadPreview" style="width:200; height:200; border:1px solid;"></div>
+<form name="rg" action="updateImage1.nhn?couplename=${couplename }" method="post" enctype="multipart/form-data" onsubmit="return checkfile();">
+<div id="uploadPreview"></div>
 <input type="file" name="save" id="choose"/>
 
 <script type="text/javascript">
 function readImage(file) {
+	$('#uploadPreview').empty();
     var reader = new FileReader();
     var image  = new Image();
     reader.readAsDataURL(file);  
@@ -32,11 +33,11 @@ function readImage(file) {
             var w = this.width,
                 h = this.height,
                 n = file.name
-                var wwd=420;  
+                var wwd=200;  
                 var hhd=200;  
            document.getElementById('w').value=w;
            document.getElementById('h').value=h;
-
+			
               $('#uploadPreview').append('<img src="'+ this.src +'"> '+'<br>');
     
         };

@@ -305,18 +305,36 @@ public class InputBean {
 	public String coupleModify(HttpSession session,HttpServletRequest request)throws Exception{
 		String coupleName = request.getParameter("coupleName");
 		String coupleDate = request.getParameter("coupleDate");
+		System.out.println(coupleName+"커플네임");
+	
+		String hidden=request.getParameter("hidden");
 		String id=(String)session.getAttribute("id");
 		CoupleDataBean cdto=new CoupleDataBean();
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
-		Date date=sdf.parse(coupleDate);
+
 		int ccn=(Integer)sqlMapper.queryForObject("checkCoupleName", coupleName);
-		if(ccn==1){
-			cdto.setCoupleDate(date);
-			System.out.println("date "+date);
-			sqlMapper.update("modifyCoupleNc", cdto);
+		System.out.println("체크커플네임"+ccn);
+		if(hidden!=null){
+			Date date=sdf.parse(coupleDate);
+			if(ccn==1){
+				cdto.setCoupleName(coupleName);
+				cdto.setCoupleDate(date);
+				System.out.println("date "+date);
+				sqlMapper.update("coupleModifyNcYd", cdto);
+			}
+			else if(ccn==0){
+				cdto.setCoupleDate(date);
+				cdto.setCoupleName(coupleName);
+				cdto.setId1(id);
+				sqlMapper.update("coupleModifyYcYd", cdto);
+			}
 		}
-		else if(ccn==0){
-			
+		if(hidden==null){
+			if(ccn==0){
+				cdto.setCoupleName(coupleName);
+				cdto.setId1(id);
+				sqlMapper.update("coupleModifyYcNd", cdto);
+			}
 		}
 		return "/dc/mypage.jsp";
 	}
