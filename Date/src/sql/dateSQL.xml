@@ -21,11 +21,16 @@
 	<select id="selectcosnum" resultClass="dateplan.bean.DTO" parameterClass="int">
 		select * from dc_dc where num = #num#
 	</select>
-	<select id="selectcos" parameterClass="String" resultClass="dateplan.bean.DTO">
+	<select id="selectcos" parameterClass="int" resultClass="dateplan.bean.DTO">
+		select * from dc_dc where num=#num#
+	</select>
+	
+	<select id="selectcoscop" parameterClass="String" resultClass="dateplan.bean.DTO">
 		select * from dc_dc where couplename=#couplename#
 	</select>
+	
 	<update id="updatecos" parameterClass="dateplan.bean.DTO">
-		update dc_dc set placetitle=#placetitle#,placeid=#placeid# where num=#num#
+		update dc_dc set placetitle=#placetitle#,placeid=#placeid#,placecategory=#placecategory#,placelocation=#placelocation# where num=#num#
 	</update>
 	<select id="selectcpname" parameterClass="String" resultClass="String">
 		select couplename from dc_couple where id1 = #id# or id2= #id#

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
    <!DOCTYPE html>
 <html>
 <head>
@@ -342,11 +342,12 @@ function displayPlaces2(places) {
 			}  else {
 				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
 			    }                
-				
+			alert(place.category);
 			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
 		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
   		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
-  		  '<input type="hidden" name="placeaddress" id="placeaddress" value="'+place.address +'" />'+
+  		  '<input type="hidden" name="placelocation" id="placelocation" value="'+place.address +'" />'+
+  		  '<input type="hidden" name="placecategory" id="placecategory" value="'+place.category +'" />'+
   		  '<input type="hidden" name="placeid"  id="placeid" value="'+place.id +'" />'+
   		  '<input type="hidden" name="placetitle"  id="placeid" value="'+place.title +'" />'+
   		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
@@ -449,11 +450,12 @@ function displayPlaces3(places) {
 			}  else {
 				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
 			    }                
-				
+			alert(place.category);
 			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
 		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
   		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
-  		  '<input type="hidden" name="placeaddress" id="placeaddress" value="'+place.address +'" />'+
+  		  '<input type="hidden" name="placelocation" id="placelocation" value="'+place.address +'" />'+
+  		'<input type="hidden" name="placecategory" id="placecategory" value="'+place.category +'" />'+
   		  '<input type="hidden" name="placeid"  id="placeid" value="'+place.id +'" />'+
   		  '<input type="hidden" name="placetitle"  id="placeid" value="'+place.title +'" />'+
   		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
@@ -493,11 +495,12 @@ function displayPlaces3(places) {
     			}  else {
     				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
    			    }                
-  				
+    			alert(place.category);
     			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
     			'<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
       		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
-      		  '<input type="hidden" name="placeaddress" id="placeaddress" value="'+place.address +'" />'+
+      		  '<input type="hidden" name="placelocation" id="placelocation" value="'+place.address +'" />'+
+      		  '<input type="hidden" name="placecategory" id="placecategory" value="'+place.category +'" />'+
       		  '<input type="hidden" name="placeid" name="placeid" id="placeid" value="'+place.id +'" />'+
       		  '<input type="hidden" name="placetitle"  id="placetitle" value="'+place.title +'" />'+
       		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
@@ -602,11 +605,12 @@ function displayPlaces(places) {
     			}  else {
     				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
    			    }                
-  				
+    			alert(place.id);
     			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
     		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
       		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
-      		  '<input type="hidden" name="placeaddress" id="placeaddress" value="'+place.address +'" />'+
+      		  '<input type="hidden" name="placelocation" id="placelocation" value="'+place.address +'" />'+
+      		  '<input type="hidden" name="placecategory" id="placecategory" value="'+place.category +'" />'+
       		  '<input type="hidden" name="placeid"  id="placeid" value="'+place.id +'" />'+
       		  '<input type="hidden" name="placetitle"  id="placeid" value="'+place.title +'" />'+
       		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
@@ -835,12 +839,13 @@ function removeAllChildNods(el) {
     }
 }
 </script>
-<form action="cosUpdate.nhn">
+<form action="cosUpdate.nhn" method="post">
 <input type="hidden" value="up" name="btcheck" />
 <div id="img" class="placeinfov_wrap">
 	
 </div>
-<input type="submit"  value="수정" />
+<input type="hidden" value="${num}" name="num" />
+<input type="submit"  value="수정" /> 
 </form>
 
 </body>

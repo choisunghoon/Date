@@ -339,7 +339,8 @@ function displayPlaces2(places) {
 			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
 		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
   		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
-  		  '<input type="hidden" name="placeaddress" id="placeaddress" value="'+place.address +'" />'+
+  		  '<input type="hidden" name="placelocation" id="placelocation" value="'+place.address +'" />'+
+  		'<input type="hidden" name="placecategory" id="placecategory" value="'+place.category +'" />'+
   		  '<input type="hidden" name="placeid"  id="placeid" value="'+place.id +'" />'+
   		  '<input type="hidden" name="placetitle"  id="placeid" value="'+place.title +'" />'+
   		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+

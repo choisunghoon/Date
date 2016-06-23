@@ -10,17 +10,14 @@
  float:left; /* optional */
 
 }
-.image .checkbox{
-	position:absolute;
-	margin-left:30px;
-	margin-top:20px;
-	width:100;
-}
+
 .image .text {
 
  position:absolute;
 
  top:40px; /* in conjunction with left property, decides the text position */
+
+
 
  width:250px; /* optional, though better have one */
 
@@ -30,7 +27,6 @@
 
 
 </style>
-
 <script>
 	function callMap(num){
 		$.ajax({
@@ -51,27 +47,20 @@
 		alert("Error");
 	}
 	
-	
 </script>
 
 <div id="cos">
-
 <c:forEach var="cosList" items="${cosList}">
 <div class="image">
-		
-		<div id="checkbox">
-	  		<input style="width: 20px;height: 20px;" type="checkbox" name="num" value="${cosList.num}">
-	  	</div>
-	  	
+	
     <a href="#" onclick="callMap(${cosList.num})" >
     	<img alt="" src="syimage/123.png" style="width:250px;height:150px" />
     </a>
-    	
+
       <div class="text">
-      	
 
        <center>
-       		<font size="6">
+       		<font size="13">
        			<a href="#" onclick="callMap(${cosList.num})" >${cosList.subject}</a>
       	    </font>
        </center>

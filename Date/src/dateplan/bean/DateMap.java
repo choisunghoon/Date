@@ -44,7 +44,7 @@ public class DateMap {
 		
 		
 		request.setAttribute("dto", dto);
-		
+		request.setAttribute("num",num);
 		
 		return "/dateplan/datePlan.jsp";
 	}
@@ -66,24 +66,35 @@ public class DateMap {
 		String id = (String)session.getAttribute("id");
 		String couplename = (String)sqlMap.queryForObject("selectcpname", id);
 		List cosList = new ArrayList();
-		cosList = sqlMap.queryForList("selectcos", couplename);
+		
+		cosList = sqlMap.queryForList("selectcoscop", couplename);
 		
 		
 		request.setAttribute("cosList", cosList);
 		
 		return "/dateplan/datecos.jsp";
 	}
+	@RequestMapping("delcos.nhn")
+	public String delcos(HttpServletRequest request,DTO dto){
+		
+		
+		return "/dateplan/datecos.jsp";
+	}
+	
 	@RequestMapping("cosUpdate.nhn")
 	public String cosUpdate(HttpServletRequest request,DTO dto) throws Exception{
-	
+			
 			DTO sdto= new DTO();
-			sdto = (DTO)sqlMap.queryForObject("selectcos", null);
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("id");
+			int num = Integer.parseInt(request.getParameter("num"));
+			sdto = (DTO)sqlMap.queryForObject("selectcos", num);
 			dto.setNum(sdto.getNum());
-			System.out.println(dto.getPlacetitle());
+			
 			sqlMap.update("updatecos", dto);
 		
 		request.setAttribute("dto", dto);
 	
-		return "/dateplan/cosUpdate.jsp";
+		return "couple.nhn";
 	}
 }
