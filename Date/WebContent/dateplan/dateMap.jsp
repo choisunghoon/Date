@@ -150,7 +150,7 @@
 <div id="img" class="placeinfov_wrap">
 
 </div>
-<a href="#" onclick="submitForm()"><img src="button/c8.png" /> </a>
+<a href="#" onclick="submitForm()"><img src="button/z8.png" /> </a>
 
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
