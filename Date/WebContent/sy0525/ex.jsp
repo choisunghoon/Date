@@ -100,7 +100,7 @@ $("#choose").change(function (e) {
 
 <input type="submit" value="등록" />
 <input type="reset" value="다시작성"/>
-<input type="button" value="취소" onClick="javascript:location.href='diaryMenu.nhn'" />
+<input type="button" value="취소" onClick="javascript:location.href='couple.nhn'" />
 </form>
 
 </body>

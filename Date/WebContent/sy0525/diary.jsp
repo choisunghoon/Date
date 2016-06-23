@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<style>
-	img{
-		width:200px; height:200px;}
-</style>
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 	function checkfile(){
@@ -17,11 +14,12 @@
 </script>
 
 <form name="rg" action="updateImage.nhn?couplename=${couplename }" method="post" enctype="multipart/form-data" onsubmit="return checkfile();">
-<div id="uploadPreview" style="width:200; height:200; border:1px solid;"></div>
+<div id="uploadPreview"></div>
 <input type="file" name="save" id="choose"/>
 
 <script type="text/javascript">
 function readImage(file) {
+	$('#uploadPreview').empty();
     var reader = new FileReader();
     var image  = new Image();
     reader.readAsDataURL(file);  
@@ -32,11 +30,11 @@ function readImage(file) {
             var w = this.width,
                 h = this.height,
                 n = file.name
-                var wwd=420;  
+                var wwd=200;  
                 var hhd=200;  
            document.getElementById('w').value=w;
            document.getElementById('h').value=h;
-
+			
               $('#uploadPreview').append('<img src="'+ this.src +'"> '+'<br>');
     
         };
@@ -55,5 +53,5 @@ $("#choose").change(function (e) {
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
 <input type="submit" value="전송"/>
-<input type="button" value="취소" onClick="javascript:location.href='diaryMenu.nhn'"/>
+<input type="button" value="취소" onClick="javascript:location.href='couple.nhn'"/>
 </form>

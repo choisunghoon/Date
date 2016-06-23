@@ -107,7 +107,7 @@
       </c:if>
    </div>
    <center>
-      <a href="diary.nhn?couplename=${couplename }" >이미지 변경</a>
+      <a href="#" onclick="callrefresh('diary.nhn?couplename=${couplename }')" >이미지 변경</a>
    </center>
   
 </div>	

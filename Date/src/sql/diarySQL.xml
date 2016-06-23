@@ -3,7 +3,7 @@
 <sqlMap>
 
 	<select id="myDiary" resultClass="upload.bean.DiaryDataBean" parameterClass="upload.bean.DiaryDataBean">
-		select * from dc_diary where couplename = #couplename# order by num
+		select * from dc_diary where couplename = #couplename# order by num desc
 	</select>
 	
 	<select id="myDiary1" resultClass="int" parameterClass="upload.bean.DiaryDataBean">

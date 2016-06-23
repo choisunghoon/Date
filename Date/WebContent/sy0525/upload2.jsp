@@ -5,7 +5,7 @@
 	<script>
 			alert("등록되었습니다");
 	</script>
-    <meta http-equiv="Refresh" content="0;url=diaryMenu.nhn" >
+    <meta http-equiv="Refresh" content="0;url=couple.nhn" >
  </c:if>
 
  <c:if test="${check == 2 }">
