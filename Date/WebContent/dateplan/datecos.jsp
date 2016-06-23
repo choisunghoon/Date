@@ -5,7 +5,8 @@
 .image {
 
  position:relative;
- 
+ margin-left:10px;
+ margin-bottom:10px;
  float:left; /* optional */
 
 }
@@ -18,7 +19,7 @@
 
 
 
- width:300px; /* optional, though better have one */
+ width:250px; /* optional, though better have one */
 
 }
 
@@ -50,17 +51,21 @@
 
 <div id="cos">
 <c:forEach var="cosList" items="${cosList}">
-	<a href="#" onclick="callMap(${cosList.num})" >${cosList.subject}</a>
-</c:forEach>
-
-</div>
 <div class="image">
-
-    <img alt="" src="dateplan/test.png" style="width:300px;height:200px" />
+	
+    <a href="#" onclick="callMap(${cosList.num})" >
+    	<img alt="" src="dateplan/test.png" style="width:250px;height:150px" />
+    </a>
 
       <div class="text">
 
-       <center><h3>텍스트를 입력해 주세요.asdfasdfasdfsasdfsdfsdfsdfsdfdfsgdfsggdsfdfgdddgdddfssdfdf</h3></center>
-   </div>
-
+       <center>
+       		<font size="13">
+       			<a href="#" onclick="callMap(${cosList.num})" >${cosList.subject}</a>
+      	    </font>
+       </center>
+      </div>
+	
+</div>
+</c:forEach>
 </div>
