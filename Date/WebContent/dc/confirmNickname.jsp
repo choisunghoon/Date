@@ -23,7 +23,7 @@
     <td align="center"> 
        다른 별명 선택하세요.<p>
        <input type="text" size="10" maxlength="12" name="id"> 
-       <input type="submit" value="별명 중복확인">
+       <a href="javascript:submit()"><img src="button/z12.png"></a>
     </td>
   </tr>
 </table>
@@ -34,7 +34,7 @@
   <tr> 
     <td align="center"> 
       <p>입력하신 ${nickname } 는 사용하실 수 있는 별명입니다. </p>
-      <input type="button" value="닫기" onclick="setnickname()">
+      <a href="javascript:setnickname()"><img src="button/z4.png"></a>
     </td>
   </tr>
 </table>
@@ -48,5 +48,13 @@
     	opener.document.userinput.nickname.value="${nickname}";
 		self.close();
 		}
+		
+function submit(){     
+    
+    document.checkForm.method = "post"     // method 선택, get, post
+    document.checkForm.action = "confirmNickname.nhn";  // submit 하기 위한 페이지 
+    document.checkForm.submit();
+   
+}		
 		-->
 </script>

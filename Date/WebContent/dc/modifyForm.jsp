@@ -173,7 +173,13 @@
        open(url, "confirm", 
        "toolbar=no, location1=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
    }
-
+   function submit(){     
+	    return checkIt();
+	    document.userinput.method = "post"     // method 선택, get, post
+	    document.userinput.action = "modifyPro.nhn";  // submit 하기 위한 페이지 
+	    document.userinput.submit();
+	   
+	}	
 </script>
 
 
@@ -225,7 +231,7 @@
       <td   width="200">사용자 별명</td>
       <td  width="400"> 
         <input type="text" name="nickname" size="15" maxlength="20" value="${ dto.nickname}">
-      	<input type="button" name="confirm_nickname" value="별명중복확인" OnClick="openConfirmnickname(this.form)">
+        <a href="javascript:openConfirmnickname(document.userinput)"><img src="button/z12.png"></a>
       </td>
     </tr>
   <tr> 
@@ -246,8 +252,8 @@
         
     <tr> 
       <td colspan="2" align="center" > 
-       <input type="submit" name="modify" value="수   정" >
-       <input type="button" value="취  소" onclick="javascript:window.location='mypage.nhn'">      
+       <a href="javascript:submit()"><img src="button/z7.png"></a>
+     <a href="mypage.nhn"><img src="button/z6.png"></a>     
       </td>
     </tr>
   </table>

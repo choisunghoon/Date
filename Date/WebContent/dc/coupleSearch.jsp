@@ -43,6 +43,13 @@
        open(url, "confirm", 
        "toolbar=no, location1=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
    }
+function submit(){     
+      
+       document.userinput.method = "post"     // method 선택, get, post
+       document.userinput.action = "coupleSearchPro.nhn";  // submit 하기 위한 페이지 
+       document.userinput.submit();
+      
+  }
 -->
 </script>
 
@@ -65,7 +72,7 @@
     <tr> 
       <td  width="200">상대방 별명</td>
       <td  width="400"><input type="text" name="nickname">
-      	<input type="button" value="별명확인" OnClick="openSNickname(this.form)">
+      <a href="javascript:openSNickname(document.userinput)"><img src="button/z14.png"></a>
       </td>
     </tr>
  
@@ -73,13 +80,14 @@
       <td   width="200">커플명</td>
       <td  width="400"> 
         <input type="text" name="coupleName" size="15" maxlength="30">
-      	<input type="button" value="커플명 중복확인" OnClick="openCCName(this.form)">
+      	<a href="javascript:openCCName(document.userinput)"><img src="button/z12.png"></a>
       </td>
     </tr>
   <tr> 
-      <td colspan="2" align="center" > 
-       <input type="submit" value="커플 신청">
-       <input type="button" value="취  소" onclick="javascript:window.location='mypage.nhn'">      
+      <td colspan="2" align="center" >
+      <a href="javascript:submit()"><img src="button/z15.png"></a> 
+      
+       <a href="mypage.nhn"><img src="button/456.png"></a>     
       </td>
     </tr>
   </table>

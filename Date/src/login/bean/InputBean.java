@@ -201,7 +201,8 @@ public class InputBean {
 			dto2 = (LogonDataBean)sqlMapper.queryForObject("getMember", (String)cdto.getId2());
 			dto1= (LogonDataBean)sqlMapper.queryForObject("getMember", (String)cdto.getId1());
 			
-			request.setAttribute("coupleData", cdto);
+			session.setAttribute("coupleData", cdto);
+		
 		}
 		
 		request.setAttribute("id", id);
@@ -232,7 +233,7 @@ public class InputBean {
 	@RequestMapping("coupleSearchPro.nhn")
 	public String coupleSearchPro(HttpSession session,HttpServletRequest request) throws Exception{
 		
-		String id=request.getParameter("id");
+		String id=(String) session.getAttribute("id");
 		System.out.println("커플서치 아이디"+id);
 		String nickname=request.getParameter("nickname");
 		String coupleName=request.getParameter("coupleName");
@@ -280,8 +281,10 @@ public class InputBean {
 		return "/dc/mypage.jsp";
 	}
 	@RequestMapping("/diary1.nhn")
-	public String diary(HttpServletRequest request){
-		String coupleName= request.getParameter("coupleName");
+	public String diary(HttpServletRequest request,HttpSession session){
+		CoupleDataBean cdto=new CoupleDataBean();
+		cdto=(CoupleDataBean) session.getAttribute("coupleData");
+		String coupleName=cdto.getCoupleName();
 		request.setAttribute("coupleName", coupleName);
 		return "/dc/diary.jsp";
 	}
@@ -293,7 +296,9 @@ public class InputBean {
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
 		cdb.setCoupleImage(orgName);
+		System.out.println("업게이트이미지1"+cdb.getCoupleImage());
 		cdb.setCoupleName(coupleName);
+		System.out.println("커플네임"+cdb.getCoupleName());
 		File copy = new File(RealPath+"/"+orgName);
 		file.transferTo(copy);
 		sqlMapper.insert("diaryimgUpdate1",cdb);

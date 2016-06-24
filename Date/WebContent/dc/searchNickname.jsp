@@ -23,7 +23,7 @@
     <td align="center"> 
        다른 별명 선택하세요.<p>
        <input type="text" size="10" maxlength="12" name="nickname"> 
-       <input type="submit" value="별명 확인">
+       <a href="javascript:submit()"><img src="button/z14.png"></a>
     </td>
   </tr>
 </table>
@@ -35,7 +35,7 @@
   <tr> 
     <td align="center"> 
       <p>${nickname }에게 커플 신청을 합니다.  </p>
-      <input type="button" value="닫기" onclick="setnickname()">
+      <a href="javascript:setnickname()"><img src="button/z4.png"></a>
     </td>
   </tr>
 </table>
@@ -46,7 +46,7 @@
   <tr> 
     <td align="center"> 
       <p>자기 자신에게는 할수 없습니다.  </p>
-      <input type="button" value="닫기" onclick="setnickname()">
+       <a href="javascript:setnickname()"><img src="button/z4.png"></a>
     </td>
   </tr>
 </table>
@@ -56,7 +56,7 @@
     <td align="center"> 
        다른 별명 선택하세요.<p>
        <input type="text" size="10" maxlength="12" name="nickname"> 
-       <input type="submit" value="별명 확인">
+       <a href="javascript:submit()"><img src="button/z14.png"></a>
     </td>
   </tr>
 </table>
@@ -71,5 +71,11 @@
     	
 		self.close();
 		}
+function submit(){     
+    document.userinput.method = "post"     // method 선택, get, post
+    document.userinput.action = "modifyPro.nhn";  // submit 하기 위한 페이지 
+    document.userinput.submit();
+   
+}
 		-->
 </script>

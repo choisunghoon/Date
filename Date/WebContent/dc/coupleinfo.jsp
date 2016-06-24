@@ -104,6 +104,13 @@ function date() {
        open(url, "confirm", 
        "toolbar=no, location1=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=300");
    }
+   function submit(){     
+       
+       document.coupleModify.method = "post"     // method 선택, get, post
+       document.coupleModify.action = "coupleModify.nhn";  // submit 하기 위한 페이지 
+       document.coupleModify.submit();
+      
+  }
 -->
 
 </script>
@@ -122,44 +129,46 @@ function date() {
 	 check1 = 커플을 신청한 회원인지 판별, couple2.couple 커플인 회원인지 판별 -->
 <c:if test="${check1 eq 1 and couple2.couple eq '0'}">
 상대방의 수락을 기다리는 중입니다.<br>
-커플 신청을 취소하려면 버튼을 클릭하세요.<br><input type="button" value="커플 신청 취소"onclick="window.location='couplex.nhn?&id=${id}'">
+커플 신청을 취소하려면 버튼을 클릭하세요.<br><a href="couplex.nhn?&id=${id}"><img src="button/z35.png"></a>
 </c:if>
 
 <!-- 커플 신청을 받은 상태인 회원
 	 check2 = 커플 신청받은 회원인지 판별, couple2.couple 커플인 회원인지 판별 -->
 <c:if test="${check2 eq 1 and couple2.couple eq '0'}">
 <b>${couple1.nickname }</b>(${couple1.id})님으로 부터 커플명 <b>${coupleData.coupleName }</b> (으)로 커플 신청이 왔습니다.
-수락하시려면 버튼을 클릭하세요.<br><input type="button" value="커플 수락" onclick="window.location='coupleInput.nhn?&id=${id}'">
-<input type="button" value="커플 거부" onclick="javascript:window.location='couplex.nhn?&id=${id}'">
+수락하시려면 버튼을 클릭하세요.<br><a href="coupleInput.nhn?&id=${id}"><img src="button/z36.png"></a>
+<a href="couplex.nhn?&id=${id}"><img src="button/z37.png"></a>
 </c:if>
 
 <!-- 커플인 회원 -->
 <c:if test="${couple2.couple eq '1' }">
-	<form method="post" action="coupleModify.nhn">
+	<form method="post" action="coupleModify.nhn"  name="coupleModify">
 	<center>
 	<b>${couple2.nickname }</b>(${couple2.id})님과 <b>${couple1.nickname }</b>(${couple1.id})님의 커플 정보 입니다.
 	<br/><br/><br/>
    
  	 커플명   <input type="text" name="coupleName" size="20" maxlength="30" value="${coupleData.coupleName}">     
-      	<input type="button" value="커플명 중복확인" OnClick="openCCName(this.form)"><br><br>
+      	<a href="javascript:openCCName(document.coupleModify)"><img src="button/z12.png"></a><br><br>
    사귄 날짜 <div id="ddd"><fmt:formatDate  value="${coupleData.coupleDate }" pattern="yy-MM-dd"/></div>
-   <input type="button" value="날짜변경" onclick="date()"/><br><br>
+   <a href="javascript:date()"><img src="button/z21.png"></a><br><br>
    
     
       <c:if test="${coupleData.coupleImage eq null }">
       <img src="syimage/couple.png" class="img-circle"><br>
        
-      <input type="button" value="이미지 변경" onClick="openCoupleImage(this.form)">
+      <a href="javascript:openCoupleImage(document.coupleModify)"><img src="button/z25.png"></a>
   
       </c:if>
       <c:if test="${coupleData.coupleImage ne null }">
       <img src="syimage/${coupleData.coupleImage }" width="200px" height="200px">
        <center>
-      <input type="button" value="이미지 변경" onClick="openCoupleImage(this.form)"><br>
+      <a href="javascript:openCoupleImage(document.coupleModify)"><img src="button/z25.png"></a><br>
   
       </c:if>
-    <input type="submit" value="커플정보 수정">
-  	<input type="button" value="취소" onClick="javascript:window.location='mypage.nhn'">
+     <br><br>
+    <a href="javascript:submit()"><img src="button/z30.png"></a>
+    <a href="mypage.nhn"><img src="button/456.png"></a>
+  	
    
  
   	

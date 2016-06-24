@@ -19,7 +19,14 @@
            document.myform.passwd.focus();
            return false;
          }
-	   }   
+	   }
+       function submit(){     
+    	    return checkIt();
+    	    document.myform.method = "post"     // method 선택, get, post
+    	    document.myform.action = "coupleDelete.nhn";  // submit 하기 위한 페이지 
+    	    document.myform.submit();
+    	   
+    	}	
      -->
    </script>
 </head>
@@ -37,8 +44,9 @@
       <INPUT type=password name="pw"  size="15" maxlength="12"></TD></TR>
   <TR height="30">
     <TD colspan="2" align="middle"  >
-      <INPUT type=submit value="커플삭제"> 
-      <input type="button" value="취  소" onclick="javascript:window.location='mypage.nhn'"></TD></TR>
+    <a href="javascript:submit()"><img src="button/z16.png"></a>
+     <a href="mypage.nhn"><img src="button/z6.png"></a>
+	</TD></TR>
 </TABLE>
 </form>
 </BODY>

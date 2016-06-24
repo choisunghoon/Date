@@ -16,7 +16,7 @@
 		}		
 	}
 </script>
-<form name="rg" action="updateImage1.nhn?couplename=${couplename }" method="post" enctype="multipart/form-data" onsubmit="return checkfile();">
+<form name="rg" action="updateImage1.nhn?coupleName=${coupleName }" method="post" enctype="multipart/form-data" onsubmit="return checkfile();">
 <div id="uploadPreview"></div>
 <input type="file" name="save" id="choose"/>
 
