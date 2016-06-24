@@ -64,7 +64,7 @@
 	<tr>
 	
 	<tr align="center">
-		<td><textarea name="comment" cols="50" rows="4" /></td>
+		<td><textarea name="comment" cols="30" rows="4" /></td>
 		<td><input type="button" name="commentup" value="commentup" href="#" onclick="callAjax1('shareDiaryBoard.nhn')"> 
 	
 	</tr>

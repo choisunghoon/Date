@@ -70,6 +70,7 @@ public class shareBean {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);
+		mv.addObject("num",num);
 		mv.setViewName("/yh/shareDiaryBoardView.jsp");
 		return mv;
 	
@@ -303,10 +304,10 @@ public class shareBean {
 	}
 	
 	@RequestMapping("diaryComment.nhn")
-	public ModelAndView diaryComment(HttpServletRequest request ,HttpSession session){
+	public ModelAndView diaryComment(HttpServletRequest request ,HttpSession session,int num){
 
 		String id = (String)session.getAttribute("id");
-			
+		System.out.println("³Ñ°ª" + " " + num);
 		int currentPage;
 		int totalCount = 0;
 		int blockCount = 10;
@@ -322,7 +323,7 @@ public class shareBean {
 		commentDataBean dto = new commentDataBean();
 		
 		List list = new ArrayList();
-		list = sqlMap.queryForList("SelectDiaryCommentAll",dto);
+		list = sqlMap.queryForList("SelectDiaryCommentAll",num);
 		totalCount = list.size();
 		page = new pagingDTO(currentPage,totalCount,blockCount,blockPage);
 		
@@ -332,6 +333,7 @@ public class shareBean {
 			lastCount = page.getEndCount() +1;
 		list = list.subList(page.getStartCount(),lastCount);
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("num",num);
 		mv.addObject("list",list);
 		mv.addObject("currentPage",currentPage);
 		mv.addObject("pagingHtml",pagingHtml);
