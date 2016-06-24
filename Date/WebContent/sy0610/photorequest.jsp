@@ -4,6 +4,28 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+   function callrefresh(url){
+	   document.ff.submit();
+	   document.ff.submit();
+	   var form = $('#ff')[0];
+	   var formdata = new FormData(form);
+        $.ajax({
+	        type: "post",
+	        url : url,
+	        data : formdata,
+	        success: suc,	// 페이지요청 성공시 실행 함수
+	        error: err	//페이지요청 실패시 실행함수
+     	});
+    }
+    function suc(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $(".re").html(aaa);
+    }
+    function err(){
+        alert("Error");
+    }
+    </script>
+    
 <script type="text/javascript">
 	function checked(point){
 		if(point<300){
@@ -29,9 +51,8 @@
 	<form name="frmSet">
     	<input type="hidden" id="aa" name="listMore" value="${listMore}"/>
 	</form>
-	<form name="ff" action="adminphoto.nhn?couplename=${couplename}" method="post" onsubmit="return checked(${point});">
-	<input type="submit" value="포토북 신청" style="margin-left:70%;"/>
-	
+	<form name="ff" id="ff" method="post" onsubmit="return checked(${point});">
+	<button onClick="callrefresh('adminphoto.nhn?couplename=${couplename}')" style="margin-left:70%;">포토북 신청</button>
 	<c:set var="i" value="1"/>
 		<c:forEach var="diary" items="${diary}">
 			<ul class="tbl_area" id="dispRow${i }" style="display:none; width:800px; margin-left:13%; margin-top:1%;">	

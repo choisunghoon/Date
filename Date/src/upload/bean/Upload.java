@@ -38,7 +38,6 @@ public class Upload {
 		int check;
 		String couplename = request.getParameter("couplename");
 		String RealPath = request.getRealPath("\\syimage");
-		
 		if(w <= wwd && h <= hhd){
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
@@ -202,7 +201,7 @@ public class Upload {
 		int listMore = 3;
 		ddb.setCouplename(couplename);
 		int point = (Integer)sqlMap.queryForObject("getpoint", cdb);
-		
+		System.out.println(point);
 		diary = sqlMap.queryForList("myDiary", ddb);
 		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
 		
@@ -291,6 +290,7 @@ public class Upload {
 		}else{
 			states = "진행완료";
 		}
+		System.out.println(states);
 		pdb.setCouplename(couplename1);
 		pdb.setRegdate(Timestamp.valueOf(regdate1));
 		pdb.setState(states);

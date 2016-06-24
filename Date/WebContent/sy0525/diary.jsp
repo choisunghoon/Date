@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 	function checkfile(){
@@ -13,7 +13,7 @@
 	}
 </script>
 
-<form name="rg" action="updateImage.nhn?couplename=${couplename }" method="post" enctype="multipart/form-data" onsubmit="return checkfile();">
+<form name="rg" id="rg" method="post" enctype="multipart/form-data" onsubmit="return checkfile();">
 <div id="uploadPreview"></div>
 <input type="file" name="save" id="choose"/>
 
@@ -50,8 +50,32 @@ $("#choose").change(function (e) {
 });
 </script>
 
+<script>
+   function callrefresh(url){
+	   document.rg.submit();
+	   var form = $('#rg')[0];
+	   var formdata = new FormData(form);
+	   formdata.append("save",$("#choose")[0].files[0]);
+        $.ajax({
+	        type: "post",
+	        url : url,
+	        data : formdata,
+	        contentType : false,
+	        processData: false,
+	        success: suc,	// 페이지요청 성공시 실행 함수
+	        error: err	//페이지요청 실패시 실행함수
+     	});
+    }
+    function suc(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $(".re").html(aaa);
+    }
+    function err(){
+        alert("Error");
+    }
+    </script>
+
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
-<input type="submit" value="전송"/>
+<button onClick="callrefresh('updateImage.nhn?couplename=${couplename }')">등록</button>
 <input type="button" value="취소" onClick="javascript:location.href='couple.nhn'"/>
 </form>

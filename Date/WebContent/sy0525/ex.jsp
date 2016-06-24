@@ -5,18 +5,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
 
-<form action="upload2.nhn?couplename=${couplename }" method="post" enctype="multipart/form-data" >
+<form id="write" name="write" method="post" enctype="multipart/form-data" >
 	<table border="1" colspadding="0" cellspacing="0">
 		<tr>	
 			<td>
 				제목 
 			</td>
 			<td>
-				<input type="text" name="subject"/>
+				<input type="text" name="subject" id="subject"/>
 			</td> 
 		</tr>
 		<tr>
@@ -45,6 +46,30 @@
     <!-- 
 	<div id="uploadPreview"></div>
  -->
+ <script>
+   function callrefresh(url){
+	   document.write.submit();
+	   var form = $('#write')[0];
+	   var formdata = new FormData(form);
+	   formdata.append("save",$("#choose")[0].files[0]);
+        $.ajax({
+	        type: "post",
+	        url : url,
+	        data : formdata,
+	        contentType : false,
+	        processData: false,
+	        success: suc,	// 페이지요청 성공시 실행 함수
+	        error: err	//페이지요청 실패시 실행함수
+     	});
+    }
+    function suc(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $(".re").html(aaa);
+    }
+    function err(){
+        alert("Error");
+    }
+    </script>
+    
 <script type="text/javascript">
 function readImage(file) {
     var reader = new FileReader();
@@ -98,7 +123,7 @@ $("#choose").change(function (e) {
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
 
-<input type="submit" value="등록" />
+<button onClick="callrefresh('upload2.nhn?couplename=${couplename }')">등록</button>
 <input type="reset" value="다시작성"/>
 <input type="button" value="취소" onClick="javascript:location.href='couple.nhn'" />
 </form>

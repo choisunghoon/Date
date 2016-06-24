@@ -12,5 +12,4 @@
  	<script>
  		alert("이미지크기가 큽니다.");
  	</script>
- 	<meta http-equiv="Refresh" content="0;url=ex.nhn?couplename=${couplename }" >
  </c:if>

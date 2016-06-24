@@ -4,5 +4,5 @@
     <script type="text/javascript">
     	alert("삭제되었습니다!");
     </script>
-    <meta http-equiv="Refresh" content="0;url=diaryMenu.nhn" >
+    <meta http-equiv="Refresh" content="0;url=couple.nhn" >
 

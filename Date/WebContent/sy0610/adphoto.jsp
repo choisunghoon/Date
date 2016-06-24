@@ -25,22 +25,6 @@
         alert("Error");
     }
   </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script language="JavaScript">
 	function openState(regdate,couplename) {
 	    // url과 사용자 입력 id를 조합합니다.
