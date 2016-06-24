@@ -58,7 +58,7 @@ function callEvent(url,pageNum,enumber){
 			<td align="center">진행 날짜 : ${eto.sdate}~${eto.edate}</td>
 		</tr>
 		<tr>
-			<td align="center" colspan=2><img src="${eto.eimg}"></td>
+			<td align="center" colspan=2><img src="${eto.eimg}" width="340" height="430"></td>
 		</tr>
 	</table>
 	<br/>
