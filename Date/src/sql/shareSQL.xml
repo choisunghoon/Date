@@ -7,7 +7,11 @@
 	</select>
 	
 	<select id="shereSelectCourseBoardAll" resultClass="share.shareCourseDataBean">
-		select * from dc_dc order by num desc
+		select * from dc_dc where pool=1 order by num desc
+	</select>
+
+	<select id="SelectDiaryCommentAll" resultClass="share.commentDataBean">
+		select * from dc_sharydiary_comment order by num desc
 	</select>
 
 	<update id="shereDiaryUpdateReadCount" parameterClass="int">

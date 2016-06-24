@@ -3,10 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<title> 게시판</title>
-
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Comment</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -55,48 +55,50 @@
     }
 </script>
 </head>
-
 <body>
-<form name="shareview" method="post">
-	<br/>
-	<br/>
-	<table width="500" border="0" cellspacing="0" cellpadding="0" >
+<form name="comment" method="post">
+	<table width="500" border="1" cellspacing="0" cellpadding="0" >
+	
+	<tr align="center">
+		<td width="500"> ${id} </td>
+	<tr>
+	
+	<tr align="center">
+		<td><textarea name="comment" cols="50" rows="4" /></td>
+		<td><input type="button" name="commentup" value="commentup" href="#" onclick="callAjax1('shareDiaryBoard.nhn')"> 
+	
+	</tr>
+	</table>
+	
+	
+	<table width="500" border="1" cellspacing="0" cellpadding="0" >
 
 	<tr align="center">
-		<td width="90"> ${dto.couplename } </td><td width="230"> ${dto.subject} </td>
-		<td width="90">${dto.num }번글</td><td width="90">조횟수 ${dto.readcount }</td> 
+		<td width="100"> id </td> 
+		<td width="300"> 내용 </td> 
+		<td width="100"> 작성시간 </td>
 	</tr>
-
-	</table>
-	<br/>
-	<table width="500" border="0" cellspacing="0" cellpadding="0">
-	<tr>
-		<td>
-			<img src="syimage/${dto.img }" style="width:500px; height:500px;">	
-			<br/>
-			<br/>
-			
-			${dto.content }
-			
-			<br/>
-			<br/>
-			
-		<div id="like" method="post"><center>
-			<input type="button" name="goodLike" value="like" />
-			
-			<span id="ajaxReturn" > ${dto.likecount }</span><br/>
-		   
-		</center>   
-		</div>	     
-		</td>
+	
+	<c:forEach var="list" items="${list }">
+	<tr align="center">
+		<td>${list.id }</td>
+		<td align="left">&nbsp;
+		<a href="#" onclick=""> 
+		${list.diarycomment}</a></td>
+		<td>${list.regdate}</td>
 	</tr>
-	</table>                                                         
- 		<br/>
- 			<input type="button" name="list" value="목록" class="inputb" href="#" onclick="callAjax('shareDiaryBoard.nhn')"> 
- 		<br/>
- 		<br/>
+	
+	</c:forEach>
 		
- <input type="button" name="commnet" value="comment"  onclick="callAjax('diaryComment.nhn')"> 	
+	<c:if test="${list.size()} <= 0">
+	<tr align="center">
+		<td colspan="5" > 등록된 댓글이 없습니다</td>
+	</tr>
+	</c:if>
+		<tr align="center">
+		<td colspan="5"> ${pagingHtml}</td>
+	</tr>
+</table>        
 </form>
 </body>
 </html>

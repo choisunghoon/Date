@@ -51,7 +51,9 @@ function whenError2(){
 	<tr align="center">
 		<td>${list.num }</td>
 		<td align="left">&nbsp;
-		<a href="#" onclick="callAjax('shareCourseBoardView.nhn?num=${list.num}&couplename=${couplename}')"> ${list.subject}</a></td>
+		<a href="#" onclick="callAjax('shareCourseBoardView.nhn?num=${list.num}&couplename=${couplename}&id=${id}')"> 
+		
+		${list.subject}</a></td>
 		<td align="center"> ${list.couplename}</td>
 		<td>${list.readcount}</td>
 		<td>${list.likecount}</td>

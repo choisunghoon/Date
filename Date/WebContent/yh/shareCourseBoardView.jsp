@@ -8,11 +8,11 @@
     $(document).ready(function(){
       $("#like").click(function(){
 
-    	  callAjax();
+    	  callAjax1();
       });
     });
 
-    function callAjax(){
+    function callAjax1(){
         $.ajax({
 	        type: "post",
 	        url : "shareCourseLikeCount.nhn?num=${dto.num}&couplename=${dto.couplename}",
@@ -37,7 +37,7 @@
     function whenError(){
         alert("Error");
     }
-    function callAjax1(nhn){
+    function callAjax(nhn){
         $.ajax({
             type: "post",
             url : nhn,

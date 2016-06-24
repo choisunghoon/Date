@@ -1,7 +1,6 @@
 package share;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +41,6 @@ public class shareBean {
 		DiaryDataBean dto = new DiaryDataBean();
 		
 		List list = new ArrayList();
-		System.out.println("111");
 		list = sqlMap.queryForList("shereSelectDiaryBoardAll",null);
 		totalCount = list.size();
 		page = new pagingDTO(currentPage,totalCount,blockCount,blockPage);
@@ -304,4 +302,40 @@ public class shareBean {
 		
 	}
 	
+	@RequestMapping("diaryComment.nhn")
+	public ModelAndView diaryComment(HttpServletRequest request ,HttpSession session){
+
+		String id = (String)session.getAttribute("id");
+			
+		int currentPage;
+		int totalCount = 0;
+		int blockCount = 10;
+		int blockPage = 5;
+		if(request.getParameter("currentPage")!=null){
+			currentPage =Integer.parseInt(request.getParameter("currentPage"));
+		}else{
+			currentPage =1;
+		}
+		String pagingHtml;
+		pagingDTO page;
+		
+		commentDataBean dto = new commentDataBean();
+		
+		List list = new ArrayList();
+		list = sqlMap.queryForList("SelectDiaryCommentAll",dto);
+		totalCount = list.size();
+		page = new pagingDTO(currentPage,totalCount,blockCount,blockPage);
+		
+		pagingHtml = page.getPagingHtml().toString();
+		int lastCount = totalCount;
+		if (page.getEndCount() <totalCount)
+			lastCount = page.getEndCount() +1;
+		list = list.subList(page.getStartCount(),lastCount);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list",list);
+		mv.addObject("currentPage",currentPage);
+		mv.addObject("pagingHtml",pagingHtml);
+		mv.setViewName("/yh/diaryComment.jsp");
+		return mv;
+	}
 }
