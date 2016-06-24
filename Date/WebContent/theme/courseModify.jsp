@@ -27,11 +27,15 @@
 			</tr>
     		<tr height="30">
     			<td align="center" width="50">코스 대표사진</td>
-				<td align="center" width="700"><img src="theme/${dto.cos_img}" alt=""><input type="file" name="save[1]"></td>
+				<td align="center" width="700"><img src="theme/themeimg/${dto.cos_img}" alt="">
+				<br/>${dto.cos_img}<input type="file" name="save[1]"></td>
+				<input type="hidden" name="cos_img" value="${dto.cos_img}">
 			</tr>
 			<tr>
 				<td align="center" width="50">코스 지도사진</td>
-				<td align="center" width="700"><img src="theme/${dto.map_img}" alt=""><input type="file" name="save[2]"></td>
+				<td align="center" width="700"><img src="theme/themeimg/${dto.map_img}" alt="">
+				<br/>${dto.map_img}<input type="file" name="save[2]"></td>
+				<input type="hidden" name="map_img" value="${dto.map_img}">
 			</tr>
 			<tr>
 				<td align="center" width="50">코스 설명</td>

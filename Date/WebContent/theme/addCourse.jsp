@@ -18,7 +18,7 @@
     			<td align="center">${ctg_num}</td>
     		<tr>
 				<td align="center" width="50">코스 번호 입력</td>
-				<td align="center"><input type="text" name="cos_num"></td>
+				<td align="center"><input type="text" name="cos_num" value="${cos_num}"></td>
 			</tr>
 				<tr height="30">
 				<td align="center" width="50">코스 이름 입력</td>

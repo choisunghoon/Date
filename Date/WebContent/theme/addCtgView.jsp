@@ -34,7 +34,7 @@
 <style type="text/css">
 .gallery{display :block; width :100%; line-height :1.6em;}
 .gallery ul{margin :0; padding :0; list-style :none;}
-.gallery li{display :block; float :left; width :350px; margin :35px 5px 5px 35px; padding :0;}
+.gallery li{display :inline; float :left; width :350px; margin :35px 5px 5px 35px; padding :0;}
 .gallery li.last{margin-right :0;}
 .gallery li img{display : block; width : 340px; height : 300px;}
 

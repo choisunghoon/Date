@@ -29,7 +29,11 @@ public class Theme {
 	private SqlMapClientTemplate sqlMap;
 	
 	@RequestMapping("addCtg.nhn")
-	public String addCtg(){
+	public String addCtg(HttpServletRequest request){
+		
+		int ctg_num = (Integer)sqlMap.queryForObject("selectCtgNum",null);
+		
+		request.setAttribute("ctg_num", ctg_num);
 		return "/theme/addCtg.jsp";
 	}
 	
@@ -117,12 +121,16 @@ public class Theme {
 		String RealPath = request.getRealPath("theme");
 		File copy = new File(RealPath+"/"+orgName);
 		
+		if(!file.isEmpty()){
 		file.transferTo(copy);
 		request.setAttribute("pic", orgName);
 		dto.setCtg_img(orgName);
 		dto.setCtg_num(ctg_num);
-		
 		sqlMap.update("ctgModify", dto);
+		}else{
+		dto.setCtg_num(ctg_num);
+		sqlMap.update("ctgModify1", dto);	
+		}
 		request.setAttribute("ctg_num", ctg_num);
 		return "/theme/ctgModifyPro.jsp";
 		
@@ -161,7 +169,11 @@ public class Theme {
 	@RequestMapping("addCourse.nhn")
 	public String addCourse(HttpServletRequest request){
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		
+		int cos_num = (Integer)sqlMap.queryForObject("selectCosNum",null);
+		
 		request.setAttribute("ctg_num", ctg_num);
+		request.setAttribute("cos_num", cos_num);
 		return "/theme/addCourse.jsp";
 	}
 	
@@ -256,28 +268,44 @@ public class Theme {
 		
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
 		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
+		String cos_img = request.getParameter("cos_img");
+		String map_img = request.getParameter("map_img");
+		
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-
+		
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String[] src = new String[2];
 		String path = "C:\\Users\\sam3\\git\\Date\\Date\\WebContent\\theme\\themeimg";
 		int i = 0;
-		while(iterator.hasNext()){
-			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
-			originalFileName = multipartFile.getOriginalFilename();
-			multipartFile.transferTo(new File(path + originalFileName));
-			src[i] = originalFileName;
-	        i++;
-	    }
+		String[] srclist = new String[2];
+		CourseDataBean dto1 = new CourseDataBean();
+
+			while(iterator.hasNext()){
+				multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+				if(multipartFile.isEmpty()){
+					dto1 = (CourseDataBean) sqlMap.queryForObject("getCosImg", cos_num);
+					srclist[0] = dto1.getMap_img();
+					System.out.println(srclist[0]);
+					srclist[1] = dto1.getCos_img();
+					System.out.println(srclist[1]);
+					originalFileName = srclist[i];
+				}else{
+				originalFileName = multipartFile.getOriginalFilename();
+				}
+				multipartFile.transferTo(new File(path + originalFileName));
+				src[i] = originalFileName;
+		        i++;
+		    }
+			
+			dto.setMap_img(src[0]);
+			dto.setCos_img(src[1]);
+			dto.setCtg_num(ctg_num);
+			dto.setCos_num(cos_num);
 		
-		dto.setCos_img(src[0]);
-		dto.setMap_img(src[1]);
-		dto.setCtg_num(ctg_num);
-		dto.setCos_num(cos_num);
+			sqlMap.update("courseModify", dto);
 		
-		sqlMap.update("courseModify", dto);
 		request.setAttribute("ctg_num", ctg_num);
 		request.setAttribute("cos_num", cos_num);
 		
@@ -455,9 +483,19 @@ public class Theme {
 		String[] src = new String[2];
 		String path = "C:\\Users\\sam3\\git\\Date\\Date\\WebContent\\theme\\themeimg";
 		int i = 0;
+		String[] srclist = new String[2];
+		LocationDataBean dto1 = new LocationDataBean();
+		
 		while(iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+			if(multipartFile.isEmpty()){
+				dto1 = (LocationDataBean)sqlMap.queryForObject("getLocImg", loc_num);
+				srclist[0] = dto1.getLoc_pic();
+				srclist[1] = dto1.getLoc_pic1();
+				originalFileName = srclist[i];
+			}else{
 			originalFileName = multipartFile.getOriginalFilename();
+			}
 			multipartFile.transferTo(new File(path + originalFileName));
 			src[i] = originalFileName;
 	        i++;

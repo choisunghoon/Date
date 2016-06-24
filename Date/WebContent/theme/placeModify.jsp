@@ -31,11 +31,11 @@
 					</td>
     				<tr height="30">
     					<td align="center" width="50">장소사진</td>
-						<td align="center" width="700"><img src="theme/${dto.loc_pic}" /><input type="file" name="pho"></td>
+						<td align="center" width="700"><img src="theme/themeimg/${dto.loc_pic}" /><input type="file" name="pho"></td>
 					</tr>
 					<tr height="30">
     					<td align="center" width="50">장소사진</td>
-						<td align="center" width="700"><img src="theme/${dto.loc_pic1}" /><input type="file" name="pho1"></td>
+						<td align="center" width="700"><img src="theme/themeimg/${dto.loc_pic1}" /><input type="file" name="pho1"></td>
 					</tr>
 				</table>
 		<center><input type="submit" value="등록"></center>

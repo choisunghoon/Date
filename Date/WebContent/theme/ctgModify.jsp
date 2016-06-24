@@ -8,6 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>카테고리 수정</title>
 </head>
+<script type="text/javascript">
+	function checkSS() {
+    	if (document.test.save.value == "") {
+        	alert("수정할 사진을 선택해주세요.");
+        	return false;
+    	}
+	}
+</script>
 <body>
 <form method="post" name="test" action="ctgModifyPro.nhn?ctg_num=${ctg_num}" ENCTYPE="multipart/form-data">
 	<table width="500" border="1" cellspacing="0" cellpadding="3" align="center">
@@ -24,7 +32,7 @@
 			</tr>
     		<tr height="30">
     			<td align="center" width="50">카테고리 대표사진</td>
-				<td align="center" width="700"><img src="theme/${dto.ctg_img}" alt=""><input type="file" name="save"></td>
+				<td align="center" width="700"><img src="theme/themeimg/${dto.ctg_img}" alt=""><input type="file" name="save" value="${dto.ctg_img}"></td>
 			</tr>
     	</table>
     	<br/>

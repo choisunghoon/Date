@@ -1,26 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link href="style.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Refresh" content="0;url=place.nhn?ctg_num=${ctg_num}&cos_num=${cos_num}" >
 
-<table width="270" border="0" cellspacing="0" cellpadding="5" align="center">
-  <tr> 
-    <td height="39"  align="center">
-	  <font size="+1" ><b>장소 수정</b></font></td>
-  </tr>
-  <tr>
-    <td align="center"> 
-      <p>장소 수정 완료.</p>
-    </td>
-  </tr>
-  <tr>
-    <td align="center"> 
-      <form>
-	    <input type="button" value="상세페이지로" onclick="window.location='place.nhn?ctg_num=${ctg_num}&cos_num=${cos_num}'">
-      </form>
-      5초후에 메인으로 이동합니다.<meta http-equiv="Refresh" content="5;url=place.nhn?ctg_num=${ctg_num}&cos_num=${cos_num}" >
-    </td>
-  </tr>
-</table>
-</body>
 </html>

@@ -24,7 +24,7 @@ function check() {
     		</tr>
     		<tr>
 				<td align="center" width="50">카테고리 번호 입력</td>
-				<td align="center"><input type="text" name="ctg_num"></td>
+				<td align="center"><input type="text" name="ctg_num" value="${ctg_num}"></td>
 			</tr>
 				<tr height="30">
 				<td align="center" width="50">카테고리 이름 입력</td>

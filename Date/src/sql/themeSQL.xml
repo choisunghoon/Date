@@ -53,6 +53,14 @@
  		select loc_seq.currval from dual
     </select>
     
+    <select id="selectCtgNum" resultClass="Integer">
+    	select ctg_seq.NEXTVAL from dual
+    </select>
+    
+    <select id="selectCosNum" resultClass="Integer">
+    	select course_seq.NEXTVAL from dual
+    </select>
+    
     <select id="getCtg" resultClass="themeDTO.CtgDataBean" parameterClass="int">
         select * from ctg where ctg_num = #ctg_num#
     </select>
@@ -63,6 +71,14 @@
     
     <select id="getCourseList" resultClass="themeDTO.CourseDataBean" parameterClass="int">
         select * from course where ctg_num = #ctg_num#
+    </select>
+    
+    <select id="getCosImg" resultClass="themeDTO.CourseDataBean" parameterClass="int">
+    	select map_img, cos_img from course where cos_num=#cos_num#
+    </select>
+    
+    <select id="getLocImg" resultClass="themeDTO.LocationDataBean" parameterClass="int">
+    	select loc_pic, loc_pic1 from location where loc_num=#loc_num#
     </select>
     
     <select id="ctgCount" resultClass="int" parameterClass="themeDTO.CtgDataBean">
@@ -99,6 +115,10 @@
     
     <update id="ctgModify" parameterClass="themeDTO.CtgDataBean">
         update ctg set ctg_name=#ctg_name#, ctg_img=#ctg_img# where ctg_num=#ctg_num#
+    </update>
+    
+    <update id="ctgModify1" parameterClass="themeDTO.CtgDataBean">
+    	update ctg set ctg_name=#ctg_name# where ctg_num=#ctg_num#
     </update>
     
     <update id="courseModify" parameterClass="themeDTO.CourseDataBean">

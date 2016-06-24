@@ -6,6 +6,18 @@
 <html>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">  
+ 	 $(document).ready(function(){
+		  $("#like").click(function(){
+			  callAjax();
+	 	 });
+ 	 });
+ 	 
+ 	 function callAjax(){
+ 		 $.ajax({
+ 			 type:"post",
+ 			 url:nhn
+ 		 });
+ 	 }
     function callContent(ctg_num, cos_num, loc_num ){    
     	 $.ajax({    		
  	        type: "post", 	 
@@ -143,6 +155,9 @@
 	</table>
 </br>
 </br>
+	<div id="like" method="post">
+		<input type="button" name="good" value="좋아요" />
+	</div>
 
 
     <div class="gallery">
