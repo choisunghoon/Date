@@ -55,6 +55,7 @@ public class Upload {
 		pidb.setGetPoint(getPoint);
 		pidb.setPlace(place);
 		sqlMap.insert("diarypoint", pidb);
+		cdb.setCouplename(couplename);
 		int point = (Integer)sqlMap.queryForObject("getpoint", cdb);
 		int point2 = point + 5;
 		cdb.setPoint(point2);
@@ -196,12 +197,11 @@ public class Upload {
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
-		System.out.println(couplename);
 		List diary = null;
 		int listMore = 3;
 		ddb.setCouplename(couplename);
+		cdb.setCouplename(couplename);
 		int point = (Integer)sqlMap.queryForObject("getpoint", cdb);
-		System.out.println(point);
 		diary = sqlMap.queryForList("myDiary", ddb);
 		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
 		
