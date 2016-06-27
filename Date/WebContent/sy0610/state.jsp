@@ -18,7 +18,7 @@
 	        
 	 	});
 	    self.close();
-	    opener.parent.aaa();
+	    opener.parent.callAjax('adphoto.nhn');
 	    // opener.location.load();
 	    
 	}

@@ -62,8 +62,8 @@
 	        error: err	//페이지요청 실패시 실행함수
      	});
     }
-    function suc(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-        $(".re").html(aaa);
+    function suc(aaaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $("#subMain").html(aaaa);
     }
     function err(){
         alert("Error");
