@@ -55,6 +55,7 @@ public class Upload {
 		pidb.setGetPoint(getPoint);
 		pidb.setPlace(place);
 		sqlMap.insert("diarypoint", pidb);
+		cdb.setCouplename(couplename);
 		int point = (Integer)sqlMap.queryForObject("getpoint", cdb);
 		int point2 = point + 5;
 		cdb.setPoint(point2);
