@@ -24,6 +24,8 @@
     function whenError2(){
         alert("Error");
     }
+    
+    
   </script>
 <script language="JavaScript">
 	function openState(regdate,couplename) {
@@ -34,7 +36,7 @@
 	    open(url, "confirm", 
 	    "toolbar=no, location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
 	}
-	
+
 	//function content(regdate,couplename){
 	//	 url = "photocontent.nhn?couplename1="+couplename+"&regdate1="+regdate;
 	//	window.location.href = url;

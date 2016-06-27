@@ -295,7 +295,7 @@ public class Upload {
 		pdb.setRegdate(Timestamp.valueOf(regdate1));
 		pdb.setState(states);
 		sqlMap.update("updatestate", pdb);
-		return "/sy0610/statepro.jsp";
+		return "/sy0610/state.jsp";
 	}
 	
 	@RequestMapping("/photocontent.nhn")

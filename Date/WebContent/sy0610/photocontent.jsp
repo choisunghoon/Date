@@ -13,5 +13,6 @@ couplename  : ${pdb.couplename }<br/>
 	${admin.content }
 
 </c:forEach>
+<input type="button" onclick="">»Æ¿Œ</button>
 
   

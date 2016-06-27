@@ -17,9 +17,10 @@
 	        },
 	        
 	 	});
-	    
 	    self.close();
-	    opener.location.reload();
+	    opener.parent.aaa();
+	    // opener.location.load();
+	    
 	}
 </script>
 
