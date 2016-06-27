@@ -848,7 +848,7 @@ function removeAllChildNods(el) {
 	
 </div>
 <input type="hidden" value="${num}" name="num" />
-<a href="#" onclick="subForm()"><img src="button/z2.png"></a> 
+<a href="#" onclick="subForm()"><img src="button/z34.png" style="margin-top: 2.1%"></a> 
 </form>
 
 </body>
