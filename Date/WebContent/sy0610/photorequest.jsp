@@ -7,7 +7,6 @@
 <script>
    function callrefresh(url){
 	   document.ff.submit();
-	   document.ff.submit();
 	   var form = $('#ff')[0];
 	   var formdata = new FormData(form);
         $.ajax({
@@ -17,6 +16,7 @@
 	        success: suc,	// 페이지요청 성공시 실행 함수
 	        error: err	//페이지요청 실패시 실행함수
      	});
+        alert("Aaa");
     }
     function suc(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
         $(".re").html(aaa);
@@ -34,14 +34,20 @@
 		}
 		else{
 		var i = $('input:checkbox:checked').length;
-		if(i==0){
-			alert("사진을 선택해 주세요!");
-			return false;
-		}else if(i>20){
-			alert("사진의 최대 선택 개수는 20장 입니다!");
-			return false;
+			if(i==0){
+				alert("사진을 선택해 주세요!");
+				return false;
+			}else if(i>20){
+				alert("사진의 최대 선택 개수는 20장 입니다!");
+				return false;
+			}
+			else{
+				var couplename = '${couplename}';				
+				callrefresh('adminphoto.nhn?couplename='+couplename);
+			}
+			
 		}
-		}
+		
 	}
 </script>
 
@@ -52,7 +58,7 @@
     	<input type="hidden" id="aa" name="listMore" value="${listMore}"/>
 	</form>
 	<form name="ff" id="ff" method="post" onsubmit="return checked(${point});">
-	<button onClick="callrefresh('adminphoto.nhn?couplename=${couplename}')" style="margin-left:70%;">포토북 신청</button>
+	<input type="submit" style="margin-left:70%;" value="포토북신청">
 	<c:set var="i" value="1"/>
 		<c:forEach var="diary" items="${diary}">
 			<ul class="tbl_area" id="dispRow${i }" style="display:none; width:800px; margin-left:13%; margin-top:1%;">	
@@ -67,6 +73,8 @@
                   </li>
 			</ul>
 		</c:forEach>
+		<div class="re">
+		</div>
 	<div id="dispMore" style="display:none;">
 		<a href="#" onclick="listMore(${totalCnt})" style="margin-left:50%;">더보기</a>
 	</div>
