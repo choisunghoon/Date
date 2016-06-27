@@ -41,24 +41,12 @@
     function whenError(){
         alert("Error");
     }
-    function callAjax(nhn){
-        $.ajax({
-            type: "post",
-            url : nhn,
-            success: refresh,	// 페이지요청 성공시 실행 함수
-            error: whenError2	//페이지요청 실패시 실행함수
-     	});
-    }
-    function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-        $("#subMain").html(aaa);
-        
-    }
     function callAjax2(nhn){
         $.ajax({
             type: "post",
             url : nhn,
             success: refresh2,	// 페이지요청 성공시 실행 함수
-            error: whenError2	//페이지요청 실패시 실행함수
+            error: whenError	//페이지요청 실패시 실행함수
      	});
     }
     function refresh2(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
@@ -105,14 +93,12 @@
 	</tr>
 	</table>                                                         
  		<br/>
- 			<input type="button" name="list" value="목록" class="inputb" href="#" onclick="callAjax('shareDiaryBoard.nhn')"> 
+ 			<input type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareDiaryBoard.nhn')"/>&nbsp;&nbsp;
+ 			<input type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('aaa.nhn')" /> 
+ 		
  		<br/>
  		<br/>
-		
-			<input type="button" name="comment" value="댓글보기" href="#" onclick="callAjax2('diaryComment.nhn?num=${num}')"> 
-		<br/>
-			<span id="ajaxReturn1" > </span><br/>
-			
+ <span id="ajaxReturn1" > </span><br/>
 </form>
 </body>
 </html>
