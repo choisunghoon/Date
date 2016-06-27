@@ -698,30 +698,33 @@ public class Projectbean {
 			app = (EventDataBean) appList.get(i);
 			wcList = app.getWcouples().split(",");
 		}
+		List list = new ArrayList();
 		for(int i=0; i<wcList.length; i++){
-			System.out.println("ธÞที");
-			System.out.println("wcList[i] :" + wcList[i]);
-			System.out.println("Cwcouples :" + Cwcouples);
-			if(wcList[i].equals(Cwcouples)){
-				
-				for(int j=i; j<wcList.length-1; j++){
-					wcList[j]=wcList[j+1];
-					
-				}
+			if(!(wcList[i].equals(Cwcouples))){				
+				list.add(wcList[i]);				
 			}
 		}
-		String wc = null;
-		for(int i=0; i<wcList.length-1; i++){
-			if(i==0){
-				wc = wcList[i]+",";
+		String wc = (String)list.get(0);
+		//System.out.println(list.size());
+		System.out.println(wc);		
+		if(list.size()!=1){
+			System.out.println("Aaaefdfasdfdsfasfd");
+			for(int i=1; i<list.size(); i++){
+				wc=wc+","+(String)list.get(i);
 			}
-			else if(i==wcList.length-2){
+		}
+		/*for(int i=0; i<wcList.length; i++){
+			if(i==0){
+				if(wcList.length=) wc=wcList[i];
+				else wc = wcList[i]+",";
+			}
+			else if(i==wcList.length-1){
 				wc=wc+wcList[i];
 			}
 			else {
 				wc=wc+wcList[i]+",";
 			}
-		}
+		}*/
 		app.setEnumber(enumber);
 		app.setWcouples(wc);
 		sqlMap.update("deleteWcouples", app);

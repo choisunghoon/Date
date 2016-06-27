@@ -2,22 +2,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script>
-   function callrefresh(url){
-        $.ajax({
-	        type: "post",
-	        url : url,
-	        success: suc,	// 페이지요청 성공시 실행 함수
-	        error: err	//페이지요청 실패시 실행함수
-     	});
-    }
-    function suc(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-        $(".re").html(aaa);
-    }
-    function err(){
-        alert("Error");
-    }
-    </script>
+
 <div class="re">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -107,7 +92,7 @@
       </c:if>
    </div>
    <center>
-      <a href="#" onclick="callrefresh('diary.nhn?couplename=${couplename }')" >이미지 변경</a>
+      <a href="#" onclick="callAjax2('diary.nhn?couplename=${couplename }')" >이미지 변경</a>
    </center>
   
 </div>	
@@ -121,7 +106,7 @@
       <div class="sub_photo">
           <div class="title_area">
           
-             <a href="#" onclick="callrefresh('ex.nhn?couplename=${couplename }')" style="margin-left:80%;">게시물 작성</a><br/>
+             <a href="#" onclick="callAjax2('ex.nhn?couplename=${couplename }')" style="margin-left:80%;">게시물 작성</a><br/>
              <form name="frmSet">
              <input type="hidden" id="aa" name="listMore" value="${listMore}"/>
             </form>
@@ -136,8 +121,8 @@
                   <center>${diary.content}</center>
                   </li>
                   <li style="margin-left:42%;">
-                     <button onClick="callrefresh('DiaryModify.nhn?num=${diary.num}&couplename=${couplename}')">수정</button>
-                     <button onClick="callrefresh('DiaryDelete.nhn?num=${diary.num}&couplename=${couplename}')">삭제</button>
+                     <button onClick="callAjax2('DiaryModify.nhn?num=${diary.num}&couplename=${couplename}')">수정</button>
+                     <button onClick="callAjax2('DiaryDelete.nhn?num=${diary.num}&couplename=${couplename}')">삭제</button>
                   </li>
             
                </ul>

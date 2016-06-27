@@ -7,6 +7,7 @@
 <script type="text/javascript">
  
      function callAjax2(nhn){
+    	 
         $.ajax({
 	        type: "post",
 	        url : nhn,
