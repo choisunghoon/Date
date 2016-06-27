@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 </head>
 <body>
+<c:if test="${count>0 }">
 	<c:if test="${wnumber>0 }">
 	<table border="1" width="500" cellpadding="0" cellspacing="0"
 		align="center">
@@ -55,5 +56,7 @@
 		<center><h2>더 이상 당첨자를 뽑을 수 없습니다.</h2>
 		<h2>필요한 당첨자 수 : ${wnumber}</h2></center>
 		</c:if>
+</c:if>
+<c:if test="${count<=0}">신청 커플이 없습니다.</c:if>		
 </body>
 </html>

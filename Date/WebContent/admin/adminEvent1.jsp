@@ -15,12 +15,13 @@
 <div id="subMain1" style="float:center;width:86%">	
 <table width="500" border="1" cellspacing="0" cellpadding="0"   align="center" style="table-layout:fixed;">
 	<tr height="30" >
-		<td align="center" width="100">이벤트 번호</td>
+		<td align="center" width="50">이벤트 번호</td>
 		<td align="center" width="150">이벤트 이름</td>
-		<td align="center" width="350">진행 날짜</td>
-		<td align="center" width="100">당첨자 수</td>
-		<td align="center" width="100">추첨 유무</td>
+		<td align="center" width="250">진행 날짜</td>
+		<td align="center" width="50">당첨자 수</td>
+		<td align="center" width="50">추첨<br/>유무</td>
 		<td align="center" width="200">당첨 커플 이름</td>
+		<td align="center" width="100">비고</td>
 	</tr>	
 	<c:if test="${count == 0}">
 	<tr>
@@ -37,6 +38,13 @@
 		<td align="center">${eventList.wnumber}</td>
 		<td align="center">${eventList.w}</td>
 		<td align="center">${eventList.wcouples}</td>
+		<td align="center" width="100">
+		<c:if test="${eventList.w==0}">
+		<button type="button" onclick="callAjaxyj2('wWay.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}')">당첨자뽑기</button>
+		</c:if>
+		<c:if test="${eventList.w==1}">
+		<button type="button" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${eventList.enumber}')">당첨자수정및삭제</button>
+		</c:if>
 	</tr>
 	
 	
@@ -69,7 +77,7 @@
 </c:if>
 </center>
 	
-		<div style="float:center;width:2%">&nbsp;&nbsp;&nbsp;</div>
+<div style="float:center;width:2%">&nbsp;&nbsp;&nbsp;</div>
 
 </div>
 </body>

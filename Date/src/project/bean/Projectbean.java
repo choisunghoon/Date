@@ -13,6 +13,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
@@ -34,7 +35,8 @@ public class Projectbean {
 	 */
 
 	@RequestMapping("eventTeb.nhn")
-	public String eventTab(HttpServletRequest request) {
+	public String eventTab(HttpServletRequest request, HttpSession session) {		
+		String id = (String)session.getAttribute("id");
 		EventDataBean eto = new EventDataBean();
 		List eventList = null;
 		String tab = request.getParameter("tab");
@@ -75,7 +77,8 @@ public class Projectbean {
 	}
 
 	@RequestMapping("end_event.nhn")
-	public String event_end(HttpServletRequest request) {
+	public String event_end(HttpServletRequest request,HttpSession session) {
+		String id = (String)session.getAttribute("id");
 		EventDataBean eto = new EventDataBean();
 		List eventList = null;
 		String tab = request.getParameter("tab");
@@ -112,7 +115,8 @@ public class Projectbean {
 	}
 
 	@RequestMapping("upcoming_event.nhn")
-	public String upcoming_event(HttpServletRequest request) {
+	public String upcoming_event(HttpServletRequest request,HttpSession session) {
+		String id = (String)session.getAttribute("id");
 		EventDataBean eto = new EventDataBean();
 		List eventList = null;
 		String tab = request.getParameter("tab");
@@ -149,7 +153,8 @@ public class Projectbean {
 	}
 
 	@RequestMapping("w_event.nhn")
-	public String w_event(HttpServletRequest request){
+	public String w_event(HttpServletRequest request,HttpSession session){
+		String id = (String)session.getAttribute("id");
 		EventDataBean eto = new EventDataBean();
 		List eventList = null;
 		String tab = request.getParameter("tab");
@@ -215,7 +220,8 @@ public class Projectbean {
 	}
 
 	@RequestMapping("eventContent.nhn")
-	public String eventContent(HttpServletRequest request) {
+	public String eventContent(HttpServletRequest request,HttpSession session) {
+		String id = (String)session.getAttribute("id");
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		String tab = request.getParameter("tab");
 		if (tab == null)
@@ -260,15 +266,16 @@ public class Projectbean {
 	}
 
 	@RequestMapping("addApp.nhn")
-	public String addApp(HttpServletRequest request) {
+	public String addApp(HttpServletRequest request,HttpSession session) {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
-		
+		String id = (String)session.getAttribute("id");
 		request.setAttribute("enumber", new Integer(enumber));
 		return "/project/addApp.jsp";
 	}
 
 	@RequestMapping("addAppPro.nhn")
-	public String addAppPro(HttpServletRequest request, EventDataBean eto) {
+	public String addAppPro(HttpServletRequest request, EventDataBean eto,HttpSession session) {
+		String id = (String)session.getAttribute("id");
 		int test = 0;
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		// String cn = "Ä¿ÇÃÀ×";
@@ -288,21 +295,22 @@ public class Projectbean {
 	}
 
 	@RequestMapping("appContent.nhn")
-	public String appContent(HttpServletRequest request) {
+	public String appContent(HttpServletRequest request,HttpSession session) {
+		String id = (String)session.getAttribute("id");
 		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		String tab = request.getParameter("tab");
 		String pageNum = request.getParameter("pageNum");
-		String memid = "admin";
+		//String memid = "admin";
 		//String id = "gnn";
 		EventDataBean app = new EventDataBean();
 		app = (EventDataBean) sqlMap.queryForObject("getAppContent", appnumber);
 		request.setAttribute("appnumber", new Integer(appnumber));
 		request.setAttribute("wnumber", new Integer(wnumber));
 		request.setAttribute("enumber", new Integer(enumber));
-		//request.setAttribute("id", id);
-		request.setAttribute("memid", memid);
+		request.setAttribute("id", id);
+		//request.setAttribute("memid", memid);
 		request.setAttribute("app", app);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("tab", tab);
@@ -545,7 +553,8 @@ public class Projectbean {
 	}
 
 	@RequestMapping("appModify.nhn")
-	public String appModify(HttpServletRequest request) {
+	public String appModify(HttpServletRequest request,HttpSession session) {
+		String id = (String)session.getAttribute("id");
 		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		EventDataBean app = new EventDataBean();
@@ -556,7 +565,8 @@ public class Projectbean {
 	}
 
 	@RequestMapping("appModifyPro.nhn")
-	public String appModifyPro(HttpServletRequest request, EventDataBean app) {
+	public String appModifyPro(HttpServletRequest request, EventDataBean app,HttpSession session) {
+		String id = (String)session.getAttribute("id");
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		request.setAttribute("enumber", new Integer(enumber));
 		sqlMap.update("appModify", app);
@@ -564,7 +574,8 @@ public class Projectbean {
 	}
 
 	@RequestMapping("appDelete.nhn")
-	public String appDelete(HttpServletRequest request) {
+	public String appDelete(HttpServletRequest request,HttpSession session) {
+		String id = (String)session.getAttribute("id");
 		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		sqlMap.delete("appDelete", appnumber);
@@ -573,7 +584,8 @@ public class Projectbean {
 	}
 	
 	@RequestMapping("confirmPw.nhn")
-	public String confirmPw(HttpServletRequest request) {
+	public String confirmPw(HttpServletRequest request,HttpSession session) {
+		String id = (String)session.getAttribute("id");
 		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
@@ -590,7 +602,8 @@ public class Projectbean {
 	}
 	
 	@RequestMapping("confirmPwPro.nhn")
-	public String confirmPwPro(HttpServletRequest request, EventDataBean eto) {		
+	public String confirmPwPro(HttpServletRequest request, EventDataBean eto,HttpSession session) {		
+		String id = (String)session.getAttribute("id");
 		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
@@ -643,5 +656,77 @@ public class Projectbean {
 		request.setAttribute("count", new Integer(count));
 		request.setAttribute("w", new Integer(w));
 		return "/project/eventWS.jsp";
+	}
+	
+	@RequestMapping("modifyWcouples.nhn")
+	public String modifyWcouples(HttpServletRequest request){
+		int enumber = Integer.parseInt(request.getParameter("enumber"));	
+		String wcouples = request.getParameter("wcouples");
+		List appList = sqlMap.queryForList("eventAppAdmin", enumber);
+		EventDataBean app = new EventDataBean();
+		String[] wcList = null;
+		for (int i = 0; i < appList.size(); i++) {
+			app = (EventDataBean) appList.get(i);
+			wcList = app.getWcouples().split(",");
+		}
+		int Lsize = wcList.length;
+		request.setAttribute("enumber", new Integer(enumber));
+		request.setAttribute("Lsize", new Integer(Lsize));
+		request.setAttribute("wcList", wcList);
+		request.setAttribute("wcouples", wcouples);
+		return "/project/modifyWcouples.jsp";
+	}
+	
+	@RequestMapping("deleteWcouples.nhn")
+	public String deleteWcouples(HttpServletRequest request){
+		int enumber = Integer.parseInt(request.getParameter("enumber"));		
+		String wcouples = request.getParameter("wcouples");
+		request.setAttribute("enumber", new Integer(enumber));
+		request.setAttribute("wcouples", wcouples);
+		return "/project/deleteWcouples.jsp";
+	}
+	
+	@RequestMapping("deleteWcouplesPro.nhn")
+	public String deleteWcouplesPro(HttpServletRequest request){
+		int enumber = Integer.parseInt(request.getParameter("enumber"));		
+		String Cwcouples = request.getParameter("wcouples");
+		
+		List appList = sqlMap.queryForList("eventAppAdmin", enumber);
+		EventDataBean app = new EventDataBean();
+		String[] wcList = null;
+		for (int i = 0; i < appList.size(); i++) {
+			app = (EventDataBean) appList.get(i);
+			wcList = app.getWcouples().split(",");
+		}
+		for(int i=0; i<wcList.length; i++){
+			System.out.println("¸Þ·Õ");
+			System.out.println("wcList[i] :" + wcList[i]);
+			System.out.println("Cwcouples :" + Cwcouples);
+			if(wcList[i].equals(Cwcouples)){
+				
+				for(int j=i; j<wcList.length-1; j++){
+					wcList[j]=wcList[j+1];
+					
+				}
+			}
+		}
+		String wc = null;
+		for(int i=0; i<wcList.length-1; i++){
+			if(i==0){
+				wc = wcList[i]+",";
+			}
+			else if(i==wcList.length-2){
+				wc=wc+wcList[i];
+			}
+			else {
+				wc=wc+wcList[i]+",";
+			}
+		}
+		app.setEnumber(enumber);
+		app.setWcouples(wc);
+		sqlMap.update("deleteWcouples", app);
+		request.setAttribute("enumber", new Integer(enumber));
+		request.setAttribute("Cwcouples", Cwcouples);
+		return "/project/deleteWcouplesPro.jsp";
 	}
 }

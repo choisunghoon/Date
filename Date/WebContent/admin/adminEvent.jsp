@@ -96,6 +96,35 @@
 		self.close();
 	}
 	
+	function callAjaxyj2(nhn){
+		cw = screen.availWidth; //화면 넓이
+		ch = screen.availHeight; //화면 높이
+
+		sw = 700; //띄울 창의 넓이
+		sh = 650; //띄울 창의 높이
+
+		ml = (cw - sw) / 2; //가운데 띄우기위한 창의 x위치
+		mt = (ch - sh) / 2;
+	//	open.window()
+
+		url = nhn;
+		open(url, "way",
+				"toolbar=no, location=no,status=no,menubar=no,scrollbars=no,resizable=no,"
+						+ "width=" + sw + ",height=" + sh + ",top=" + mt
+						+ ",left=" + ml);
+		self.close();
+	}
+	
+	function reload(nhn){
+		$.ajax({
+			type : "post",
+			url : nhn,
+			success : refreshSSS, // 페이지요청 성공시 실행 함수
+			error : whenErrorSSS
+		//페이지요청 실패시 실행함수
+		});
+	}
+	
 </script>
 </head>
 <body>
@@ -115,16 +144,18 @@
 				<input type="button" value="검색" onclick="checkSS(this.form)">			
 		</form></center>
 		</div>
-<div id="subMain1" style="float:center;width:86%">	
+<div id="subMain1" style="float:center;width:86%">
+<input type="hidden" onchange="reload('adminEvent.nhn')" value="0" id="chk" />	
 <center>
 <table width="1000" border="1" cellspacing="0" cellpadding="0" align="center" style="table-layout:fixed;">
 	<tr height="auto">
-		<td align="center" width="100">이벤트 번호</td>
+		<td align="center" width="50">이벤트 번호</td>
 		<td align="center" width="150">이벤트 이름</td>
-		<td align="center" width="350">진행 날짜</td>
-		<td align="center" width="100">당첨자 수</td>
-		<td align="center" width="100">추첨 유무</td>
+		<td align="center" width="250">진행 날짜</td>
+		<td align="center" width="50">당첨자 수</td>
+		<td align="center" width="50">추첨<br/>유무</td>
 		<td align="center" width="200">당첨 커플 이름</td>
+		<td align="center" width="100">비고</td>
 	</tr>	
 	<c:if test="${count == 0}">
 	<tr>
@@ -135,15 +166,23 @@
 	<c:if test="${count != 0}">
 	<c:forEach var="eventList" items="${eventList}">
 	<tr>
-		<td align="center" width="100">${eventList.enumber}</td>
+		<td align="center" width="50">${eventList.enumber}</td>
 		<td align="center" width="150"><a href="#" onclick="callAjaxyj('test.nhn?enumber=${eventList.enumber}&pageNum=${currentPage}')" >
 		${eventList.ename}</a></td>
-		<td align="center" width="350">${eventList.sdate}~${eventList.edate}</td>
-		<td align="center" width="100">${eventList.wnumber}</td>
+		<td align="center" width="250">${eventList.sdate}~${eventList.edate}</td>
+		<td align="center" width="50">${eventList.wnumber}</td>
 		<c:if test="${eventList.w==0}"><c:set var="w" value="무"></c:set></c:if>
 		<c:if test="${eventList.w==1}"><c:set var="w" value="유"></c:set></c:if>
-		<td align="center" width="100">${w}</td>
+		<td align="center" width="50">${w}</td>
 		<td align="center" width="200">${eventList.wcouples}</td>
+		<td align="center" width="100">
+		<c:if test="${eventList.w==0}">
+		<button type="button" onclick="callAjaxyj2('wWay.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}')">당첨자뽑기</button>
+		</c:if>
+		<c:if test="${eventList.w==1}">
+		<button type="button" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${eventList.enumber}')">당첨자수정및삭제</button>
+		</c:if>
+		</td>
 	</tr>
 	
 	

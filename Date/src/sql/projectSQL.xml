@@ -67,6 +67,10 @@
 		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
 	</select>
 	
+	<select id="eventAppAdmin" resultClass="project.bean.EventDataBean" parameterClass="int">
+		select * from event where enumber=#enumber#
+	</select>
+	
 	<select id="eventAppAll" resultClass="project.bean.EventDataBean" parameterClass="int">
 		select * from app_event where enumber=#enumber#
 	</select>
@@ -114,5 +118,9 @@
 	<select id="confirmPw" resultClass="int" parameterClass="project.bean.EventDataBean">
 		select count(*) from app_event where apppw=#apppw# and appnumber=#appnumber#
 	</select>
+	
+	<update id="deleteWcouples" parameterClass="project.bean.EventDataBean">
+		update event set wcouples=#wcouples# where enumber=#enumber#
+	</update>
 
 </sqlMap>
