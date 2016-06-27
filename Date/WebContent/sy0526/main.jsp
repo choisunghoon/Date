@@ -131,11 +131,10 @@ li{
 	%>
 </c:if>
 <!-- 로그인한 회원이 별명을 설정하지 않았을때 -->
-<c:if test="${id ne null and nickcheck eq 1}">
+<c:if test="${gologin eq '1'}">
 <script>
-	alert("별명을 입력하지 않으시면 사이트 이용에 제한이 됩니다.회원정보 변경 메뉴에서 별명을 입력해주세요");
-	<%response.sendRedirect("modifyForm.nhn");%>
-	</script>
+	alert("로그인이 필요한 서비스 입니다.");
+</script>
 </c:if>
 <script type="text/javascript">
     function asdf(nhn){
@@ -185,13 +184,12 @@ li{
 				 check = 페이스북회원 체크 변수 -->
 			<c:if test="${id ne null  and (check eq 'yes')}">
 			<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
-				${ id}님 환영합니다.
-				&nbsp;|&nbsp;<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div> 
+			${nickname }님 환영합니다.&nbsp;|&nbsp;<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div> 
 			</c:if>
 			<!-- 로그인한 회원이 일반 회원일때 -->
 			<c:if test="${id ne null  and (check eq 'no')}">
 			<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
-				${ id}님 환영합니다.
+				${nickname }님 환영합니다.
 				&nbsp;|&nbsp;<a href="logout.nhn" style="color:#B8B8B8">로그아웃</a> 
 			</c:if>
 		</li>
@@ -214,7 +212,7 @@ li{
 		</li>
 		<li>
 			<c:if test="${id != 'admin'}">
-			<a href="mypage.nhn?fbcheck=no&id=${id}"><img src="mainimg/as9.png" onmouseover='this.src="mainimg/as10.png"' onmouseout='this.src="mainimg/as9.png"'></a>
+			<a href="mypage.nhn?fbcheck=no"><img src="mainimg/as9.png" onmouseover='this.src="mainimg/as10.png"' onmouseout='this.src="mainimg/as9.png"'></a>
 			</c:if>
 			<c:if test="${id == 'admin'}">
 			<a href="adminpage.nhn"><img src="mainimg/a12.png" onmouseover='this.src="mainimg/a11.png"' onmouseout='this.src="mainimg/a12.png"'></a>

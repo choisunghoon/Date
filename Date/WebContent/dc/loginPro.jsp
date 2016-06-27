@@ -8,7 +8,7 @@
 
 	<c:if test="${ check==0}">
 		<script> 
-		  alert("비밀번호가 맞지 않습니다.");
+		  alert("아이디와 비밀번호를 확인하세요.");
 	      history.go(-1);
 		</script>
 	</c:if>

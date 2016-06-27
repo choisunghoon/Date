@@ -158,7 +158,11 @@
             alert("별명을 입력하세요");
             return false;
         }
-        
+        if(userinput.pw.value){
+    	    document.userinput.method = "post"     // method 선택, get, post
+    		    document.userinput.action = "modifyPro.nhn";  // submit 하기 위한 페이지 
+    		    document.userinput.submit();
+        }
     }
    function openConfirmnickname(userinput) {
        // 아이디를 입력했는지 검사
@@ -175,9 +179,7 @@
    }
    function submit(){     
 	    return checkIt();
-	    document.userinput.method = "post"     // method 선택, get, post
-	    document.userinput.action = "modifyPro.nhn";  // submit 하기 위한 페이지 
-	    document.userinput.submit();
+
 	   
 	}	
 </script>
@@ -204,7 +206,7 @@
 
     <tr> 
       <td  width="200"> 사용자 ID</td>
-      <td  width="400">${ dto.id}</td>
+      <td  width="400">${id }</td>
     </tr>
     <c:if test="${check eq 'no' }">
      <tr> 

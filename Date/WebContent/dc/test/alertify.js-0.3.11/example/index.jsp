@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>alertify.js - example page</title>
+	
 	<link rel="stylesheet" href="/Date/dc/test/alertify.js-0.3.11/themes/alertify.core.css" />
 	<link rel="stylesheet" href="/Date/dc/test/alertify.js-0.3.11/themes/alertify.default.css" id="toggleCSS" />
 	<meta name="viewport" content="width=device-width">

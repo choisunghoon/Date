@@ -195,7 +195,7 @@
 				 check = 페이스북회원 체크 변수 -->
 			<c:if test="${(id ne null) and (check eq 'yes')}">
 				<%@include file="/dc/test/alertify.js-0.3.11/example/index.jsp" %>
-				${ id}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;
+				${nickname }님 환영합니다.&nbsp;|&nbsp;
 				<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>&nbsp;&nbsp;
 			</c:if>
 			<!-- 로그인한 회원이 일반 회원일때 -->
@@ -209,7 +209,7 @@
 	          <a href="mypage.nhn?fbcheck=no&id=${id}">마이페이지</a>
 	          </c:if>
 	           -->
-	            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${ id}님 환영합니다.&nbsp;&nbsp;|&nbsp;&nbsp;
+	            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${nickname }님 환영합니다.&nbsp;|&nbsp;
 	          <a href="logout.nhn" style="font-size:15px;">로그아웃</a>    
 	        </c:if>
  		</li>

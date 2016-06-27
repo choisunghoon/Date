@@ -206,7 +206,9 @@
 		<update id="coupleModifyYcNd" parameterClass="cdto">
 			update dc_couple set coupleName=#coupleName# where id1=#id1# or id2=#id1#
 		</update>
-			
+		<delete id="deleteAlert" parameterClass="String">
+			delete from dc_alert where id=#id# 
+		</delete>	
 		
 
 </sqlMap>

@@ -35,11 +35,11 @@ public class InputBean {
 		HttpSession session=request.getSession();
 		String nomal=request.getParameter("hidden");
 		System.out.println("input nomal"+nomal);
-		if(nomal.equals("fb")){
+		if(nomal.equals("fb")){//페북회원인 경우 db에 아이디값만 저장
 			String id=request.getParameter("id");
 			dto.setId(id);	
 		}dto.setCouple("0");
-		sqlMapper.insert("insertMember", dto);
+		sqlMapper.insert("insertMember", dto);//페북회원이 아닌 경우 inputForm.jsp에서 입력된 값을 db에 저장.
 		return "/dc/inputPro.jsp";
 	}
 	
@@ -80,6 +80,7 @@ public class InputBean {
 		LogonDataBean dto = new LogonDataBean();
 		String check =(String)session.getAttribute("fbcheck");
 		System.out.println("ㅁ인 체크값"+check);
+		request.setAttribute("id", id);
 		request.setAttribute("check", check);
 		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);
 	    request.setAttribute("dto", dto);
@@ -130,15 +131,23 @@ public class InputBean {
 	@RequestMapping("coupleDelete.nhn")
 	public String coupleDelete(HttpSession session,HttpServletRequest request) throws Exception{
 		String id=(String)session.getAttribute("id");
+		String pw=(String)request.getParameter("pw");
 		int check=(Integer)sqlMapper.queryForObject("getCouple", id);
-		if(check==1){
+		LogonDataBean dto=new LogonDataBean();
+		dto.setId(id);
+		dto.setPw(pw);
+		int ucheck=(Integer)sqlMapper.queryForObject("userCheck", dto);
+		if(check==1 & ucheck==1){
 			CoupleDataBean cdto=new CoupleDataBean();
 			cdto = (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
-
+			
 			sqlMapper.update("memCouple0", cdto.getId1());
 			sqlMapper.update("memCouple0", cdto.getId2());
 			sqlMapper.update("deleteCouple", id);
+			sqlMapper.delete("deleteAlert", cdto.getId2());
+			sqlMapper.delete("deleteAlert", cdto.getId1());
 		}
+		request.setAttribute("ucheck", ucheck);
 		request.setAttribute("ccheck", check);
 		request.setAttribute("id", id);
 		return "/dc/coupleDelete.jsp";
@@ -146,12 +155,16 @@ public class InputBean {
 	@RequestMapping("mypage.nhn")
 	public String mypage(HttpSession session,HttpServletRequest request) throws Exception{
 		String check =(String)session.getAttribute("fbcheck");
-		String id =request.getParameter("id");
+		String id =(String) session.getAttribute("id");
 		System.out.println("마페 체크값"+check);
 		request.setAttribute("check", check);
 		request.setAttribute("id", id);
 		System.out.println("마페아이디"+id);
 		
+		if(id==null){
+			request.setAttribute("gologin", "1");
+			return "/sy0526/main.jsp";
+		}
 		
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
 		if(nc==1){
@@ -243,6 +256,11 @@ public class InputBean {
 		if(check==1){
 			dto = (LogonDataBean)sqlMapper.queryForObject("getMemberbyn", nickname);
 			cdto.setId2(dto.getId());
+			int checkcouple=(Integer)sqlMapper.queryForObject("getCouple", dto.getId());
+			if(checkcouple==1){
+				request.setAttribute("fail", "1");
+				return "/dc/mypage.jsp";
+			}
 		}
 		cdto.setId1(id);
 		cdto.setCoupleName(coupleName);

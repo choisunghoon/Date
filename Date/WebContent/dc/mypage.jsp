@@ -152,3 +152,8 @@ function whenError(){
         alert("Error");
     }
   </script>
+<c:if test="${fail eq '1'}">
+ <script type="text/javascript">
+	alert("상대방에게 먼저 커플을 신청한 사람이 있습니다. 순서를 기다리세요.")
+ </script>
+</c:if>

@@ -19,18 +19,22 @@
            document.myform.passwd.focus();
            return false;
          }
+		  else{
+			  document.myform.method = "post"     // method 선택, get, post
+		    	    document.myform.action = "coupleDelete.nhn";  // submit 하기 위한 페이지 
+		    	    document.myform.submit();
+		  }
 	   }
-       function submit(){     
-    	    return checkIt();
-    	    document.myform.method = "post"     // method 선택, get, post
-    	    document.myform.action = "coupleDelete.nhn";  // submit 하기 위한 페이지 
-    	    document.myform.submit();
-    	   
+       function submit(){    
+    	 
+    	   return checkIt(); 
+
+    	    
     	}	
      -->
    </script>
 </head>
-<BODY onload="begin()">
+<BODY>
 <form name="myform" action="coupleDelete.nhn" method="post" onSubmit="return checkIt()">
 <TABLE class="table" cellSpacing=0 cellPadding=0 width="260" border=0 align="center" >
   
