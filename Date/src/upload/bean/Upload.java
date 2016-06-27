@@ -55,10 +55,7 @@ public class Upload {
 		pidb.setGetPoint(getPoint);
 		pidb.setPlace(place);
 		sqlMap.insert("diarypoint", pidb);
-		System.out.println("upload2.nhn :" + couplename);
-		int point = (Integer)sqlMap.queryForObject(""
-				+ ""
-				+ "", cdb);
+		int point = (Integer)sqlMap.queryForObject("getpoint", cdb);
 		int point2 = point + 5;
 		cdb.setPoint(point2);
 		sqlMap.update("photopoint", cdb);
@@ -191,7 +188,6 @@ public class Upload {
 	
 	@RequestMapping("/photo.nhn")
 	public String photo(){
-
 		return "/sy0610/photo.jsp";
 	}
 	
@@ -200,6 +196,7 @@ public class Upload {
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
+		System.out.println(couplename);
 		List diary = null;
 		int listMore = 3;
 		ddb.setCouplename(couplename);

@@ -30,6 +30,7 @@
 <script type="text/javascript">
 	function checked(point){
 		document.frmSet.submit();
+		alert(point);
 		if(point<300){
 			alert("포인트가 부족합니다!");
 			return false;
