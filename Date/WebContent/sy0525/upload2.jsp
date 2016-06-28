@@ -3,12 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
-	
+
 </script>
 <c:if test="${check == 1 }">
 	<script>
 			alert("등록되었습니다");
-			callAjax2('diaryMenu.nhn');		
+					
 	</script>
     
  </c:if>

@@ -24,7 +24,9 @@ public class Upload {
 
 	@RequestMapping("/ex.nhn")
 	public String ex(HttpServletRequest request){
-		String couplename = request.getParameter("couplename");
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
 		System.out.println("ex.nhn :" + couplename);
 		request.setAttribute("couplename", couplename);
 		return "/sy0525/ex.jsp";

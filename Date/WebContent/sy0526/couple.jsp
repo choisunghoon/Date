@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/sy0526/topmenu.jsp" %>
+
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=9be7455c7d33a4e2b750d3537e1179d8&libraries=services"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
 <script type="text/javascript">
- 
      function callAjax2(nhn){
     	 
         $.ajax({
@@ -27,6 +29,11 @@
 		top:0px;}
 </style>
 <body>
+<c:if test="${chk eq '1' }">
+	<script>
+		callAjax2("diaryMenu.nhn");
+	</script>
+</c:if>
 <br /><br />
  
 	<div style="width:100%;float:left;" >

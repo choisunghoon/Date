@@ -7,6 +7,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
+		 
          function test(){
         	 
             var now = new Date();
@@ -54,7 +55,6 @@
           color:#777;
           border:1px solid #ccc;
           border-width:1px 1px 0
-          
       }
       #css_tabs > label:hover {
           cursor:pointer

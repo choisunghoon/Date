@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form id="write" name="write" method="post" enctype="multipart/form-data" >
+<form id="write" name="write" method="post" enctype="multipart/form-data" action="couple.nhn?chk=1" >
 	<table border="1" colspadding="0" cellspacing="0">
 		<tr>	
 			<td>
@@ -48,7 +48,7 @@
  -->
  <script>
    function callrefresh(url){
-	   document.write.submit();
+	   
 	   var form = $('#write')[0];
 	   var formdata = new FormData(form);
 	   formdata.append("save",$("#choose")[0].files[0]);
@@ -60,10 +60,13 @@
 	        processData: false,
 	        success: suc,	// 페이지요청 성공시 실행 함수
 	        error: err	//페이지요청 실패시 실행함수
-     	});
+        });
     }
+    
     function suc(aaaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
         $("#subMain").html(aaaa);
+        
+        
     }
     function err(){
         alert("Error");
@@ -123,7 +126,7 @@ $("#choose").change(function (e) {
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
 
-<button onClick="callrefresh('upload2.nhn?couplename=${couplename }')">등록</button>
+<button type="submit" onsubmit="callrefresh('upload2.nhn?couplename=${couplename }')">등록</button>
 <input type="reset" value="다시작성"/>
 <input type="button" value="취소" onClick="javascript:location.href='couple.nhn'" />
 </form>
