@@ -112,11 +112,10 @@
 				set readcheck='2'
 				where id=#id#
 		</update>
-		<update id="readCheckReject" parameterClass="String">
-			update dc_alert
-				set readcheck='3'
+		<delete id="readCheckReject" parameterClass="String">
+			delete dc_alert
 				where nickname=#nickname#
-		</update>
+		</delete>
 		<update id="coupleComplete" parameterClass="String">
 			update dc_alert
 				set content='couple'

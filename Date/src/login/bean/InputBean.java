@@ -100,19 +100,19 @@ public class InputBean {
 		return "/dc/modifyPro.jsp";
 	}
 	
-	@RequestMapping("deleteForm.nhn")
+	@RequestMapping("deleteForm.nhn")//회원 탈퇴 폼
 	public String deleteForm() throws Exception{
 		
 		return "/dc/deleteForm.jsp";
 	}
-	@RequestMapping("deletePro.nhn")
+	@RequestMapping("deletePro.nhn")//회원 탈퇴
 	public String deletePro(HttpSession session,HttpServletRequest request) throws Exception{
 		String id = (String)session.getAttribute("id");
 		String pw  = request.getParameter("pw");
 		LogonDataBean dto = new LogonDataBean();
 		dto.setId(id);
 		dto.setPw(pw);
-		int check = (Integer)sqlMapper.queryForObject("userCheck", dto);
+		int check = (Integer)sqlMapper.queryForObject("userCheck", dto);//id와 pw가 일치하면 1을 추출
 	    
 	    if(check==1){
 	    	session.invalidate();
@@ -122,12 +122,12 @@ public class InputBean {
 		return "/dc/deletePro.jsp";
 	}
 	
-	@RequestMapping("coupleDeleteForm.nhn")
+	@RequestMapping("coupleDeleteForm.nhn")//커플삭제 폼
 	public String coupleDeleteForm() throws Exception{
 		
 		return "/dc/coupleDeleteForm.jsp";
 	}
-	@RequestMapping("coupleDelete.nhn")
+	@RequestMapping("coupleDelete.nhn")//커플삭제
 	public String coupleDelete(HttpSession session,HttpServletRequest request) throws Exception{
 		String id=(String)session.getAttribute("id");
 		String pw=(String)request.getParameter("pw");
@@ -140,10 +140,10 @@ public class InputBean {
 			CoupleDataBean cdto=new CoupleDataBean();
 			cdto = (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
 			
-			sqlMapper.update("memCouple0", cdto.getId1());
+			sqlMapper.update("memCouple0", cdto.getId1()); //커플 테이블에 있는 회원의 id를 검색해서 커플컬럼의 값을 0으로 바꾼다
 			sqlMapper.update("memCouple0", cdto.getId2());
-			sqlMapper.update("deleteCouple", id);
-			sqlMapper.delete("deleteAlert", cdto.getId2());
+			sqlMapper.update("deleteCouple", id);			//커플 테이블을 id로 검색해서 해당 레코드를 삭제한다.
+			sqlMapper.delete("deleteAlert", cdto.getId2()); //커플 신청,수락등으로 생긴 알림메시지들을 지운다.
 			sqlMapper.delete("deleteAlert", cdto.getId1());
 		}
 		request.setAttribute("ucheck", ucheck);
@@ -151,7 +151,7 @@ public class InputBean {
 		request.setAttribute("id", id);
 		return "/dc/coupleDelete.jsp";
 	}
-	@RequestMapping("mypage.nhn")
+	@RequestMapping("mypage.nhn")// 마이 페이지
 	public String mypage(HttpSession session,HttpServletRequest request) throws Exception{
 		String check =(String)session.getAttribute("fbcheck");
 		String id =(String) session.getAttribute("id");
@@ -160,13 +160,12 @@ public class InputBean {
 		request.setAttribute("id", id);
 		System.out.println("마페아이디"+id);
 		
-		if(id==null){
+		if(id==null){ // 로그인한 회원이 아니라면 이용하지 못하게끔
 			request.setAttribute("gologin", "1");
 			return "/sy0526/main.jsp";
 		}
 		
-		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
-		if(nc==1){
+		else{
 			
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
@@ -193,19 +192,19 @@ public class InputBean {
 			}
 			else
 				request.setAttribute("couple1", "end");
-			}
+		}	
 		
 		
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("coupleinfo.nhn")
+	@RequestMapping("coupleinfo.nhn")//커플정보 수정 
 	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id=request.getParameter("id");
 		LogonDataBean dto2=new LogonDataBean();
 		LogonDataBean dto1=new LogonDataBean();
 		CoupleDataBean cdto=new CoupleDataBean();
-		int check1 = (Integer)sqlMapper.queryForObject("coupleCheck1", id);
+		int check1 = (Integer)sqlMapper.queryForObject("coupleCheck1", id);	// 회원의 id로 커플테이블을 검색해서 레코드가 있으면 1을 추출
 		int check2 = (Integer)sqlMapper.queryForObject("coupleCheck2", id);
 	
 		if(check1==1 || check2==1){
@@ -226,7 +225,7 @@ public class InputBean {
 		
 		System.out.println("check1:"+check1+"check2:"+check2);
 		
-		int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
+		int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id); //id로 alert테이블을 검색. 상대방이 커플신청 메시지를 확인했을때 1을 추출
 		
 		if(checkAlert1==1){
 			AlertDataBean adto=new AlertDataBean();
@@ -242,7 +241,7 @@ public class InputBean {
 		
 		return "/dc/coupleinfo.jsp";
 	}
-	@RequestMapping("coupleSearchPro.nhn")
+	@RequestMapping("coupleSearchPro.nhn")//커플 찾기
 	public String coupleSearchPro(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id=(String) session.getAttribute("id");
@@ -251,11 +250,11 @@ public class InputBean {
 		String coupleName=request.getParameter("coupleName");
 		LogonDataBean dto=new LogonDataBean();
 		CoupleDataBean cdto=new CoupleDataBean();
-		int check=(Integer)sqlMapper.queryForObject("getMemberbync", nickname);
+		int check=(Integer)sqlMapper.queryForObject("getMemberbync", nickname); //nickname으로 멤버 테이블을 검색해서 존재하는 회원이라면 1을 추출 
 		if(check==1){
 			dto = (LogonDataBean)sqlMapper.queryForObject("getMemberbyn", nickname);
 			cdto.setId2(dto.getId());
-			int checkcouple=(Integer)sqlMapper.queryForObject("getCouple", dto.getId());
+			int checkcouple=(Integer)sqlMapper.queryForObject("getCouple", dto.getId());//커플 신청한 상대방이 이미 커플이라면 1을 추출
 			if(checkcouple==1){
 				request.setAttribute("fail", "1");
 				return "/dc/mypage.jsp";
@@ -275,29 +274,29 @@ public class InputBean {
 		
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("couplex.nhn")
+	@RequestMapping("couplex.nhn")//커플 거부
 	public String couplex(HttpSession session,HttpServletRequest request) throws Exception{
 		String id =request.getParameter("id");
 		String nickname=(String)sqlMapper.queryForObject("getNick", id);
-		sqlMapper.update("deleteCouple", id);
-		sqlMapper.update("readCheckReject", nickname);
+		sqlMapper.delete("deleteCouple", id);//커플테이블에서 해당 회원의 id를 포함하는 레코드를 삭제
+		sqlMapper.delete("readCheckReject", nickname);//알림 테이블에서 해당 회원의 nickname를 포함하는 레코드를 삭제
 		request.setAttribute("id", id);
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("coupleInput.nhn")
+	@RequestMapping("coupleInput.nhn")//커플 수락
 	public String coupleInput(HttpSession session,HttpServletRequest request) throws Exception{
 		String nickname=(String) session.getAttribute("nickname");
 		String id =request.getParameter("id");
 		CoupleDataBean cdto=new CoupleDataBean();
 		cdto = (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
-		sqlMapper.update("memCouple1", cdto.getId1());
+		sqlMapper.update("memCouple1", cdto.getId1());//회원의 커플컬럼값을 1로 변경
 		sqlMapper.update("memCouple1", cdto.getId2());
-		sqlMapper.update("readCheck", nickname);
+		sqlMapper.update("readCheck", nickname);//알림테이블의 readcheck값을 1로 변경 
 		sqlMapper.update("coupleComplete", nickname);
 		request.setAttribute("id", id);
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("/diary1.nhn")
+	@RequestMapping("/diary1.nhn")//커플정보에 이미지파일 넣기
 	public String diary(HttpServletRequest request,HttpSession session){
 		CoupleDataBean cdto=new CoupleDataBean();
 		cdto=(CoupleDataBean) session.getAttribute("coupleData");
@@ -305,7 +304,7 @@ public class InputBean {
 		request.setAttribute("coupleName", coupleName);
 		return "/dc/diary.jsp";
 	}
-	@RequestMapping("/updateImage1.nhn")
+	@RequestMapping("/updateImage1.nhn")//이미지파일 업로드
 	public String updateImage(MultipartHttpServletRequest request,CoupleDataBean cdb)throws Exception{
 
 		String coupleName = request.getParameter("coupleName");
@@ -313,7 +312,7 @@ public class InputBean {
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
 		cdb.setCoupleImage(orgName);
-		System.out.println("업게이트이미지1"+cdb.getCoupleImage());
+		System.out.println("업데이트이미지1"+cdb.getCoupleImage());
 		cdb.setCoupleName(coupleName);
 		System.out.println("커플네임"+cdb.getCoupleName());
 		File copy = new File(RealPath+"/"+orgName);
@@ -323,13 +322,13 @@ public class InputBean {
 		request.setAttribute("close", "yes");
 		return "/dc/diary.jsp";
 	}
-	@RequestMapping("/coupleModify.nhn")
+	@RequestMapping("/coupleModify.nhn")//커플정보 수정
 	public String coupleModify(HttpSession session,HttpServletRequest request)throws Exception{
 		String coupleName = request.getParameter("coupleName");
 		String coupleDate = request.getParameter("coupleDate");
 		System.out.println(coupleName+"커플네임");
 	
-		String hidden=request.getParameter("hidden");
+		String hidden=request.getParameter("hidden");//날짜 변경이 있다면 hidden은 null이 아닌 값을 가지게된다.
 		String id=(String)session.getAttribute("id");
 		CoupleDataBean cdto=new CoupleDataBean();
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
@@ -338,13 +337,13 @@ public class InputBean {
 		System.out.println("체크커플네임"+ccn);
 		if(hidden!=null){
 			Date date=sdf.parse(coupleDate);
-			if(ccn==1){
+			if(ccn==1){//커플명 변경이 없다면 실행
 				cdto.setCoupleName(coupleName);
 				cdto.setCoupleDate(date);
 				System.out.println("date "+date);
 				sqlMapper.update("coupleModifyNcYd", cdto);
 			}
-			else if(ccn==0){
+			else if(ccn==0){//커플명을 변경하는 경우 실행
 				cdto.setCoupleDate(date);
 				cdto.setCoupleName(coupleName);
 				cdto.setId1(id);
