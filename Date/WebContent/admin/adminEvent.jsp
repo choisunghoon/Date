@@ -177,10 +177,10 @@
 		<td align="center" width="200">${eventList.wcouples}</td>
 		<td align="center" width="100">
 		<c:if test="${eventList.w==0}">
-		<button type="button" onclick="callAjaxyj2('wWay.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}')">당첨자뽑기</button>
+		<button type="button" onclick="callAjaxyj2('wWay.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')">당첨자뽑기</button>
 		</c:if>
 		<c:if test="${eventList.w==1}">
-		<button type="button" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${eventList.enumber}')">당첨자수정및삭제</button>
+		<button type="button" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')">당첨자수정및삭제</button>
 		</c:if>
 		</td>
 	</tr>

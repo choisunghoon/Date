@@ -4,6 +4,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript">	
+function randomE(){
+window.close();
+	opener.parent.callAjax('adminEvent.nhn');
+}
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 </head>
 <body>
@@ -13,5 +19,7 @@
 ${rList[i]}<br/>
 </c:forEach>
 </c:if>
+<c:set var="chk" value="1" />
+<input type="button" value="닫기" onClick="randomE()">
 </body>
 </html>
