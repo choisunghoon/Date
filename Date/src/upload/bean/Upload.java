@@ -34,6 +34,7 @@ public class Upload {
 	
 	@RequestMapping("/upload2.nhn")
 	public String upload(MultipartHttpServletRequest request,DiaryDataBean ddb, PointDataBean pidb, CoupleDataBean cdb) throws Exception{
+		System.out.println("asdfasdfasf");
 		int w = Integer.parseInt(request.getParameter("w"));
 		int h = Integer.parseInt(request.getParameter("h"));
 		int wwd= 1000;
@@ -179,15 +180,6 @@ public class Upload {
 
 		return "/sy0525/updateImage.jsp";
 	}
-	
-	@RequestMapping("/main22.nhn")
-	public String main(HttpSession session,HttpServletRequest request){
-		session = request.getSession();
-		String id = (String)session.getAttribute("id");
-		request.setAttribute("id", id);
-		return "/sy0526/main.jsp";
-	}
-	
 	
 	@RequestMapping("/photo.nhn")
 	public String photo(){

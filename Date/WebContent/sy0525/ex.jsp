@@ -7,6 +7,72 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+   function callrefresh(couplename){
+	   alert(couplename);
+	   var form = $('#write')[0];
+	   var formdata = new FormData(form);
+	   formdata.append("save",$("#choose")[0].files[0]);
+	   formdata.append("couplename",couplename);
+	   formdata.append("w",$("#w").val());
+	   formdata.append("h",$("#h").val());
+	   formdata.append("subject",$("#subject").val());
+	   formdata.append("content",$("#content").val());
+        $.ajax({
+	        type: "post",
+	        url : "/Date/upload2.nhn",
+	        data : formdata,
+	        contentType : false,
+	        processData: false,
+	        success: suc,	// 페이지요청 성공시 실행 함수
+	        error: err	//페이지요청 실패시 실행함수
+        });
+    } 
+    function suc(aaaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+    	$("#subMain").html(aaaa);        
+    }
+    function err(){
+        alert("Error");
+    }
+    </script>
+    
+<script type="text/javascript">
+function readImage(file) {
+    var reader = new FileReader();
+    var image  = new Image();
+    reader.readAsDataURL(file);  
+    reader.onload = function(_file) {
+        image.src    = _file.target.result;              // url.createObjectURL(file);
+        image.onload = function() {
+            var w = this.width,
+                h = this.height,
+                n = file.name
+                var wwd=1000;  
+                var hhd=1000;  
+           document.getElementById('w').value=w;
+           document.getElementById('h').value=h;
+          if(w > wwd || h > hhd)
+          {  
+              return false;
+          }
+          if(w <= wwd && h <= hhd)
+          {  
+              $('#uploadPreview').append('<img src="'+ this.src +'"> '+w+'x'+h+' '+n+'<br>');
+          }
+        };
+        image.onerror= function() {
+            alert('Invalid file type: '+ file.type);
+        };      
+    };
+}
+$("#choose").change(function (e) {
+    if(this.disabled) return alert('File upload not supported!');
+    var F = this.files;
+    if(F && F[0]) for(var i=0; i<F.length; i++) readImage( F[i] );
+});
+
+ 
+</script>
 </head>
 <body>
 
@@ -39,91 +105,19 @@
     			내용
     		</td>
     		<td>
-    			<textarea name="content" theme="simple" cols="50" rows="10" ></textarea>
+    			<textarea name="content" theme="simple" cols="50" rows="10" id="content" ></textarea>
 			</td>
     	</tr>
     </table>
     <!-- 
 	<div id="uploadPreview"></div>
  -->
- <script>
-   function callrefresh(url){
-	   var form = $('#write')[0];
-	   var formdata = new FormData(form);
-	   formdata.append("save",$("#choose")[0].files[0]);
-        $.ajax({
-	        type: "post",
-	        url : url,
-	        data : formdata,
-	        contentType : false,
-	        processData: false,
-	        success: suc,	// 페이지요청 성공시 실행 함수
-	        error: err	//페이지요청 실패시 실행함수
-        });
-    } 
-    function suc(aaaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-    	alert("aaa");
-    	$("#subMain").html(aaaa);        
-    }
-    function err(){
-        alert("Error");
-    }
-    </script>
-    
-<script type="text/javascript">
-function readImage(file) {
-    var reader = new FileReader();
-    var image  = new Image();
-    reader.readAsDataURL(file);  
-    reader.onload = function(_file) {
-        image.src    = _file.target.result;              // url.createObjectURL(file);
-        image.onload = function() {
-       
-            var w = this.width,
-                h = this.height,
-                n = file.name
-                var wwd=1000;  
-                var hhd=1000;  
-           document.getElementById('w').value=w;
-           document.getElementById('h').value=h;
-          if(w > wwd || h > hhd)
-
-          {  
-  
-              return false;
-          }
-          
-    
-        
-          if(w <= wwd && h <= hhd)
-
-          {  
-             
-
-              $('#uploadPreview').append('<img src="'+ this.src +'"> '+w+'x'+h+' '+n+'<br>');
-         
-          }
-         
-
-          
-        };
-        image.onerror= function() {
-            alert('Invalid file type: '+ file.type);
-        };      
-    };
-}
-$("#choose").change(function (e) {
-    if(this.disabled) return alert('File upload not supported!');
-    var F = this.files;
-    if(F && F[0]) for(var i=0; i<F.length; i++) readImage( F[i] );
-});
-
  
-</script>
+
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
 
-<button onclick="callrefresh('upload2.nhn?couplename=${couplename }')">등록</button>
+<button onclick="callrefresh('${couplename }')">등록</button>
 <input type="reset" value="다시작성"/>
 <input type="button" value="취소" onClick="javascript:location.href='couple.nhn'" />
 </form>

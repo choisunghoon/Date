@@ -6,13 +6,11 @@
 	<script>
 			alert("등록되었습니다");
 			window.location.href="couple.nhn?chk=1";
-	</script>
-    	
+	</script>	
  </c:if>
-
- <c:if test="${check == 2 }">
+<c:if test="${check == 2 }">
  	<script>
  		alert("이미지크기가 큽니다.");
  	</script>
- </c:if>
+</c:if>
  
