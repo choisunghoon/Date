@@ -23,13 +23,13 @@ public class InputBean {
 	@Autowired
 	private SqlMapClientTemplate sqlMapper;
 	
-	@RequestMapping("inputForm.nhn")
+	@RequestMapping("inputForm.nhn")//회원가입 폼 
 	public String inputForm() throws Exception{
 		
 		return "/dc/inputForm.jsp";
 	}
 	
-	@RequestMapping("inputPro.nhn")
+	@RequestMapping("inputPro.nhn")//회원가입 폼에서 넘어온 정보를 db에 입력시키기 위한 함수(처음 접속하는 페북회원인경우 회원가입폼을 거치지 않고 바로 이 함수를 호출)
 	public String inputPro(LogonDataBean dto,HttpServletRequest request) throws Exception{
 		
 		HttpSession session=request.getSession();
@@ -43,60 +43,59 @@ public class InputBean {
 		return "/dc/inputPro.jsp";
 	}
 	
-	@RequestMapping("confirmId.nhn")
+	@RequestMapping("confirmId.nhn")//아이디 중복확인
 	public String confirmId(String id,HttpServletRequest request) throws Exception{
-	    int check = (Integer)sqlMapper.queryForObject("confirmId",id);
+	    int check = (Integer)sqlMapper.queryForObject("confirmId",id);//id가 db에 있다면 1을 추출
 	    request.setAttribute("id", id);
 	    request.setAttribute("check", check);
 		return "/dc/confirmId.jsp";
 	}
-	@RequestMapping("confirmNickname.nhn")
+	@RequestMapping("confirmNickname.nhn")//닉네임 중복확인
 	public String confirmNickname(String nickname,HttpServletRequest request) throws Exception{
-	    int check = (Integer)sqlMapper.queryForObject("confirmNickname",nickname);
+	    int check = (Integer)sqlMapper.queryForObject("confirmNickname",nickname);//nickname이 db에 있다면 1을 추출
 	    request.setAttribute("nickname", nickname);
 	    request.setAttribute("check", check);
 		return "/dc/confirmNickname.jsp";
 	}
-	@RequestMapping("searchNickname.nhn")
+	@RequestMapping("searchNickname.nhn")//닉네임 존재 확인
 	public String searchNickname(String nickname,HttpServletRequest request) throws Exception{
 	    int check = (Integer)sqlMapper.queryForObject("confirmNickname",nickname);
 	    request.setAttribute("nickname", nickname);
 	    request.setAttribute("check", check);
 		return "/dc/searchNickname.jsp";
 	}
-	@RequestMapping("confirmCoupleName.nhn")
+	@RequestMapping("confirmCoupleName.nhn")//커플명 중복 확인
 	public String confirmCoupleName(String coupleName,HttpServletRequest request) throws Exception{
-	    int check = (Integer)sqlMapper.queryForObject("confirmCoupleName",coupleName);
+	    int check = (Integer)sqlMapper.queryForObject("confirmCoupleName",coupleName);//couplename이 db에 있다면 1을 추출
 	    request.setAttribute("coupleName", coupleName);
 	    request.setAttribute("check", check);
 		return "/dc/confirmCoupleName.jsp";
 	}
 	
 	
-	@RequestMapping("modifyForm.nhn")
+	@RequestMapping("modifyForm.nhn")//회원정보 수정 폼
 	public String modifyForm(HttpServletRequest request,HttpSession session) throws Exception{
 				
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("id"); 
 		LogonDataBean dto = new LogonDataBean();
-		String check =(String)session.getAttribute("fbcheck");
+		String check =(String)session.getAttribute("fbcheck");//페북 회원을 판별하는 변수. 페북 회원은 비밀번호 수정을 할 필요가 없기때문에 페북 회원에게는 비밀번호 수정 기능이 비활성화
 		System.out.println("ㅁ인 체크값"+check);
 		request.setAttribute("id", id);
 		request.setAttribute("check", check);
-		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);
+		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);//로그인한 회원의 id로 회원 정보를 추출
 	    request.setAttribute("dto", dto);
-	    int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);
+	    int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);//페북 회원이 로그인했을때 별명이 설정되어있지 않다면 별명을 설정하라는 경고창이 뜨며 다른 페이지로 넘어갈수없다.
 	    request.setAttribute("nickcheck", nickcheck);
 		return "/dc/modifyForm.jsp";
 	}
 	
-	@RequestMapping("modifyPro.nhn")
+	@RequestMapping("modifyPro.nhn")//회원정보 수정
 	public String modifyPro(HttpSession session,LogonDataBean dto) throws Exception{
 		String id = (String)session.getAttribute("id");
 		dto.setId(id);
-		int check=(Integer)sqlMapper.queryForObject("getCouple", id);
-		if(check==1){dto.setCouple("1");}
-		else{dto.setCouple("0");}
-		
+		LogonDataBean odto = new LogonDataBean();
+		odto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);
+		dto.setCouple(odto.getCouple());
 		sqlMapper.update("updateMember", dto);
 		return "/dc/modifyPro.jsp";
 	}
