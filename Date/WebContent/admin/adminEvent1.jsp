@@ -11,22 +11,6 @@
 
 </head>
 <body>
-<div id="a">
-<center><h2>이벤트 전체 리스트(전체 : ${count})</h2>	
-		<form name="form" method="post" onSubmit="check()" >
-			<input type="hidden" name="search" value="1">
-			<input type=radio name="way" id="way" value="3" checked>전체
-			<input type=radio name="way" id="way" value="1">추첨
-			<input type=radio name="way" id="way" value="0">미추첨&nbsp;
-			<input type="text" id="keyword" name="keyword" value="" size="15" maxlength="15">       			
-			<select name="states" id="states">
-				<option value="1">전체</option>
-				<option value="2">이벤트 이름</option>
-				<option value="3">당첨 커플</option>
-			</select>
-				<input type="button" value="검색" onclick="checkSS(this.form)">			
-		</form></center>
-		</div>
 <div id="subMain1" style="float:center;width:86%">
 <input type="hidden" onchange="reload('adminEvent.nhn')" value="0" id="chk" />	
 <center>

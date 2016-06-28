@@ -322,6 +322,7 @@ public class Projectbean {
 		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
+		int Cwcount = Integer.parseInt(request.getParameter("Cwcount"));
 		String tab = request.getParameter("tab");
 		String pageNum = request.getParameter("pageNum");
 		String memid = "admin";
@@ -331,6 +332,7 @@ public class Projectbean {
 		request.setAttribute("appnumber", new Integer(appnumber));
 		request.setAttribute("wnumber", new Integer(wnumber));
 		request.setAttribute("enumber", new Integer(enumber));
+		request.setAttribute("Cwcount", new Integer(Cwcount));
 		//request.setAttribute("id", id);
 		request.setAttribute("memid", memid);
 		request.setAttribute("app", app);
@@ -554,6 +556,7 @@ public class Projectbean {
 		request.setAttribute("appList", appList);
 		request.setAttribute("enumber", new Integer(enumber));
 		request.setAttribute("wnumber", new Integer(wnumber));
+		request.setAttribute("Cwcount", new Integer(Cwcount));
 		request.setAttribute("currentPage", new Integer(currentPage));
 		request.setAttribute("startRow", new Integer(startRow));
 		request.setAttribute("endRow", new Integer(endRow));
@@ -567,6 +570,7 @@ public class Projectbean {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
 		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
+		int Cwcount = Integer.parseInt(request.getParameter("Cwcount"));
 		String pageNum = request.getParameter("pageNum");
 		String couplename = request.getParameter("couplename");
 		EventDataBean app = new EventDataBean();
@@ -577,12 +581,13 @@ public class Projectbean {
 			app.setWcouples(app.getWcouples() + "," + couplename);
 		}
 		app.setEnumber(enumber);
-		if((wnumber-1)==0){
+		if((Cwcount-1)==0){
 		app.setW(1);}
 		sqlMap.update("addW", app);
 		request.setAttribute("enumber", new Integer(enumber));
-		request.setAttribute("wnumber", new Integer(wnumber - 1));
+		request.setAttribute("wnumber", new Integer(wnumber));
 		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("Cwcount", new Integer(Cwcount-1));
 		// request.setAttribute("appnumber", new Integer(appnumber));
 		return "/project/appW.jsp";
 	}

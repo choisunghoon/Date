@@ -7,11 +7,11 @@
 </head>
 <body>
 <c:if test="${count>0 }">
-	<c:if test="${wnumber>0 }">
+	<c:if test="${Cwcount>0 }">
 	<table border="1" width="500" cellpadding="0" cellspacing="0"
 		align="center">
 		<tr>
-			<td colspan="3" align="right"> 당첨자 수 : ${wnumber}&nbsp;</td>
+			<td colspan="3" align="right"> 당첨자 수 : ${Cwcount}&nbsp;</td>
 		</tr>		
 		<tr height="30">
 			<td align="center" width="50">글 번호</td>
@@ -21,7 +21,7 @@
 				<tr height="30">
 					<td align="center">${appList.appnumber}</td>
 					<td align="center">${appList.couplename}</td>
-					<td align="center"><a href="appContentAdmin.nhn?enumber=${enumber}&appnumber=${appList.appnumber}&wnumber=${wnumber}&pageNum=${currentPage}">${appList.appsubject}</a></td>
+					<td align="center"><a href="appContentAdmin.nhn?enumber=${enumber}&appnumber=${appList.appnumber}&wnumber=${wnumber}&pageNum=${currentPage}&Cwcount=${Cwcount}">${appList.appsubject}</a></td>
 				</tr>
 			</c:forEach>
 		</tr>
@@ -40,21 +40,21 @@
 		</c:if>
 
 		<c:if test="${startPage > 10}">
-			<a href="choice.nhn?enumber=${enumber}&wnumber=${wnumber}&pageNum=${startPage - 10 }">[이전]</a>
+			<a href="choice.nhn?enumber=${enumber}&wnumber=${wnumber}&pageNum=${startPage - 10 }&Cwcount=${Cwcount}">[이전]</a>
 		</c:if>
 
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			<a href="choice.nhn?enumber=${enumber}&wnumber=${wnumber}&pageNum=${i}">[${i}]</a>
+			<a href="choice.nhn?enumber=${enumber}&wnumber=${wnumber}&pageNum=${i}&Cwcount=${Cwcount}">[${i}]</a>
 		</c:forEach>
 
 		<c:if test="${endPage < pageCount}">
-			<a href="choice.nhn?enumber=${enumber}&wnumber=${wnumber}&pageNum=${startPage + 10}">[다음]</a>
+			<a href="choice.nhn?enumber=${enumber}&wnumber=${wnumber}&pageNum=${startPage + 10}&Cwcount=${Cwcount}">[다음]</a>
 		</c:if>
 	</c:if></center></c:if>
 	
-		<c:if test="${wnumber==0 }">
+		<c:if test="${Cwcount==0 }">
 		<center><h2>더 이상 당첨자를 뽑을 수 없습니다.</h2>
-		<h2>필요한 당첨자 수 : ${wnumber}</h2></center>
+		<h2>필요한 당첨자 수 : ${Cwcount}</h2></center>
 		</c:if>
 </c:if>
 <c:if test="${count<=0}">신청 커플이 없습니다.</c:if>		

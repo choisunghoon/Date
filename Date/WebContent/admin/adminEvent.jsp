@@ -69,6 +69,17 @@
 		//페이지요청 실패시 실행함수
 		});
 	}
+	
+	function callAjaxyj3(nhn) {
+		$.ajax({
+			type : "post",
+			url : nhn,
+			success : refreshSSS, // 페이지요청 성공시 실행 함수
+			error : whenErrorSSS
+		//페이지요청 실패시 실행함수
+		});
+	}
+	
 	function refreshSSS(aaa) { // 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
 		$("#subMain").html(aaa);
 
@@ -141,9 +152,10 @@
 				<option value="2">이벤트 이름</option>
 				<option value="3">당첨 커플</option>
 			</select>
-				<input type="button" value="검색" onclick="checkSS(this.form)">			
+				<input type="button" value="검색" onclick="checkSS(this.form)">		
 		</form></center>
 		</div>
+		<input type="button" value="이벤트 등록" style="margin-left:905px; margin-bottom:10px;" onClick="callAjaxyj3('addEvent.nhn')">
 <div id="subMain1" style="float:center;width:86%">
 <input type="hidden" onchange="reload('adminEvent.nhn')" value="0" id="chk" />	
 <center>

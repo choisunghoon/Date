@@ -9,23 +9,14 @@
 function checkWcount(nhn) {
 	var a =  document.wWay.wnumber.value-document.wWay.wcount.value;
 	if($("#test").val() > a){
-		alert(a+"보다 작은숙자를 입력하세요");
+		alert(a+"보다 같거나 작은숙자를 입력하세요");
 		return false;
-	}
-	if (a<document.wWay.Cwcount) {
-		alert("뽑을 수 있는 당첨자 수 보다 큽니다.");
-		return false;	
-	}
-	else if (document.wWay.w==1) {
-		alert("이미 모든 당첨자가 뽑혀있습니다.");
-		return false;	
 	}
 	else{
 		 document.wWay.action =nhn;
 	     document.wWay.submit();
 	}
 }
-
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>당첨 선발 방법 선택</title>
@@ -36,17 +27,16 @@ function checkWcount(nhn) {
 </c:if>
 <c:if test="${count>0}">
 	<form name="wWay" method="post">
-		<table width="270" border="0" cellspacing="0" cellpadding="5">
+		<table width="500" border="0" cellspacing="0" cellpadding="5">
 			<tr>
 				<td align="center"><p>
 					<input type="hidden" name="enumber" value="${enumber}"> 
 					<input type="hidden" name="wnumber" value="${wnumber}"> 
 					<input type="hidden" name="w" value="${w}"> 
 					예정 당첨자 수 : ${wnumber}<br/>
-					뽑힌 당첨자 수 : 
-					
-					<input type="hidden" name="wcount" value="${wcount}">${wcount}
-					원하는 당첨자 수 : <input type="text" id="test" name=Cwcount > <br/>					
+					뽑힌 당첨자 수 : 					
+					<input type="hidden" name="wcount" value="${wcount}">${wcount} <br/>	
+					원하는 당첨자 수 :&nbsp;<input type="text" id="test" name=Cwcount > <br/>					
 					<input type="button" name="way" value="랜덤" onClick="checkWcount('random.nhn?enumber=${enumber}&wnumber=${wnumber}')">
 					<input type="button" name="way" value="선택" onClick="checkWcount('choice.nhn?enumber=${enumber}&wnumber=${wnumber}')">				
 				</td>

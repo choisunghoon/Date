@@ -391,6 +391,7 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
 </head>
 <body>
 <form method="post" name="addEvent" enctype="multipart/form-data" action="addEventPro.nhn">
+<div style="margin-top: 100px">
 <table border="1" width="500" cellpadding="0" cellspacing="0" align="center"> 
     <tr height="30"> 
       <td align="center"  width="100">이벤트 이름</td>
@@ -419,6 +420,7 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
      <td colspan=2 align="center"><input type="submit" value="전송"></td>
     </tr>
 </table>
+</div>
 </form>
 </body>
 </html>
