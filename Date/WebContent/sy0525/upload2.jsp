@@ -4,6 +4,7 @@
 <c:if test="${check == 1 }">
 	<script type="text/javascript">
 			alert("등록되었습니다");
+			window.location.replace("couple.nhn?chk=1");
 	</script>	
  </c:if>
  
