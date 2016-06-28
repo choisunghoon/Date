@@ -120,6 +120,7 @@ public class LoginBean {
 	}
 	@RequestMapping("/couple.nhn") //커플페이지 실행시 호출되는 함수
 	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
+		String chk = request.getParameter("chk");
 		String id = (String)session.getAttribute("id");
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
 		if(nc==1){
@@ -151,7 +152,7 @@ public class LoginBean {
 			else
 				request.setAttribute("couple1", "end");
 			}
-		
+		request.setAttribute("chk", chk);
 		return "/sy0526/couple.jsp";
 	}
 	

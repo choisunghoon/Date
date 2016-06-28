@@ -7,7 +7,6 @@
 <script type="text/javascript">
  
      function callAjax2(nhn){
-    	 
         $.ajax({
 	        type: "post",
 	        url : nhn,
@@ -24,7 +23,8 @@
   </script>
 <style>
 	body{
-		top:0px;}
+		top:0px;
+		}
 </style>
 <body>
 <br /><br />
