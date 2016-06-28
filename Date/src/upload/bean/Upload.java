@@ -73,7 +73,7 @@ public class Upload {
 			check = 2;
 		}
 		request.setAttribute("check", check);
-		return "/sy0525/couple.jsp";
+		return "/sy0525/upload2.jsp";
 	}
 	
 	@RequestMapping("/diary.nhn")
