@@ -4,9 +4,10 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <c:if test="${check == 1 }">
 	<script>
-			alert("등록되었습니다");	
+			alert("등록되었습니다");
+			window.location.href="couple.nhn?chk=1";
 	</script>
-    
+    	
  </c:if>
 
  <c:if test="${check == 2 }">
