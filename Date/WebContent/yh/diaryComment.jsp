@@ -16,11 +16,12 @@
 	
 	<tr align="center">
 		<td width="100"> ${id} </td>
-		<td width="300"><textarea name="comment" cols="35" rows="4" /></td>
-		<td width="100"><input type="button" name="commentup" value="commentup" href="#" onclick="callAjax2('diaryCommentUp.nhn?comment=${comment}&num=${num }')"> 
+		<td width="300"><textarea name="diarycomment" id="diarycomment" cols="35" rows="4" /></td>
+		<td width="100"><input type="button" name="commentup" value="commentup" href="#" onclick="callAjax3('CommentUp.nhn')"> 
 	
 	</tr>
 	</table>
+	
 	<table width="500" border="1" cellspacing="0" cellpadding="0" >
 
 	<tr align="center">
@@ -29,17 +30,16 @@
 		<td width="100"> 작성시간 </td>
 	</tr>
 	
-	<c:forEach var="list" items="${commentList }">
+	<c:forEach var="commentList" items="${commentList}">
 	<tr align="center">
-		<td>${commentList.id }</td>
-		<td align="left">&nbsp;
-		<td>${commentList.diarycomment}</td>
-		<td>${commentList.regdate}</td>
+		<td width="100">${commentList.id}</td>
+		<td width="300">&nbsp;${commentList.diarycomment}</td>
+		<td width="100">${commentList.regdate}</td>
 	</tr>
 	
 	</c:forEach>
 
-	<c:if test="${list.size()} <= 0">
+	<c:if test="${commentList.size()} <= 0">
 	<tr align="center">
 		<td colspan="5" > 등록된 게시글이 없습니다</td>
 	</tr>

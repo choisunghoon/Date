@@ -7,21 +7,7 @@
 <head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
-function callAjax(nhn){
-    $.ajax({
-        type: "post",
-        url : nhn,
-        success: refresh,	// 페이지요청 성공시 실행 함수
-        error: whenError2	//페이지요청 실패시 실행함수
- 	});
-}
-function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-    $("#subMain").html(aaa);
-    
-}
-function whenError2(){
-    alert("Error");
-}
+
 
 </script>
 
@@ -65,7 +51,7 @@ function whenError2(){
 		<td colspan="5" > 등록된 게시글이 없습니다</td>
 	</tr>
 	</c:if>
-	<tr align="center">
+	<tr align="center" onclick="return callAjax()">
 		<td colspan="5"> ${pagingHtml}</td>
 	</tr>
 	

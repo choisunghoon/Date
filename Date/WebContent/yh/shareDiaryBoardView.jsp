@@ -39,19 +39,29 @@
         console.log(resdata);
     }
     function whenError(){
-        alert("Error");
+        alert("likeError");
+    }
+    
+    function callAjax3(nhn){
+        $.ajax({
+            type: "post",
+            url : "commentUp.nhn?num=${num}&id=${id}",
+            data : {diarycomment : $('#diarycomment').val()},
+            success: callAjax2,	// 페이지요청 성공시 실행 함수
+            error: whenError2	//페이지요청 실패시 실행함수
+     	});
     }
     function callAjax2(nhn){
         $.ajax({
             type: "post",
-            url : nhn,
+            url : "dairyComment.nhn?num=${dto.num}&id=${id}",
             success: refresh2,	// 페이지요청 성공시 실행 함수
-            error: whenError	//페이지요청 실패시 실행함수
+            error: whenError2	//페이지요청 실패시 실행함수
      	});
     }
     function refresh2(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
         $("#ajaxReturn1").html(aaa);
-        
+        console.log(resdata);
     }
     
 </script>
@@ -94,10 +104,12 @@
 	</table>                                                         
  		<br/>
  			<input type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareDiaryBoard.nhn')"/>&nbsp;&nbsp;
- 			<input type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('aaa.nhn')" /> 
+ 		<br/>
+ 		<br/>
  		
- 		<br/>
- 		<br/>
+</form>
+<form method="post">
+<input type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('dairyComment.nhn')" /> 
  <span id="ajaxReturn1" > </span><br/>
 </form>
 </body>
