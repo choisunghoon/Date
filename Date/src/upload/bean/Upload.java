@@ -34,7 +34,6 @@ public class Upload {
 	
 	@RequestMapping("/upload2.nhn")
 	public String upload(MultipartHttpServletRequest request,DiaryDataBean ddb, PointDataBean pidb, CoupleDataBean cdb) throws Exception{
-		System.out.println("asdfasdfasf");
 		int w = Integer.parseInt(request.getParameter("w"));
 		int h = Integer.parseInt(request.getParameter("h"));
 		int wwd= 1000;
@@ -44,6 +43,7 @@ public class Upload {
 		String id = (String)session.getAttribute("id");
 		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
 		String RealPath = request.getRealPath("\\syimage");
+		
 		if(w <= wwd && h <= hhd){
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
@@ -64,16 +64,16 @@ public class Upload {
 		cdb.setPoint(point2);
 		sqlMap.update("photopoint", cdb);
 		
-		
+		System.out.println("성공");
 		request.setAttribute("orgName", orgName);
 		check=1;
 		}
 		else{
+			System.out.println("실패");
 			check = 2;
 		}
 		request.setAttribute("check", check);
-		request.setAttribute("couplename", couplename);
-		return "/sy0525/upload2.jsp";
+		return "/sy0525/couple.jsp";
 	}
 	
 	@RequestMapping("/diary.nhn")

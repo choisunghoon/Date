@@ -55,10 +55,7 @@ function readImage(file) {
           {  
               return false;
           }
-          if(w <= wwd && h <= hhd)
-          {  
-              $('#uploadPreview').append('<img src="'+ this.src +'"> '+w+'x'+h+' '+n+'<br>');
-          }
+     
         };
         image.onerror= function() {
             alert('Invalid file type: '+ file.type);
@@ -109,7 +106,7 @@ $("#choose").change(function (e) {
 			</td>
     	</tr>
     </table>
-    <!-- 
+<!-- 
 	<div id="uploadPreview"></div>
  -->
  
