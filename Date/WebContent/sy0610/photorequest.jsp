@@ -7,7 +7,6 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
    function callrefresh(url){
-
 	   var form = $('#ff')[0];	   
 	   var formdata = new FormData(form);
 	   document.ff.submit();
