@@ -9,7 +9,7 @@
    function callrefresh(url){
 	   var form = $('#ff')[0];	   
 	   var formdata = new FormData(form);
-	   document.ff.submit();
+	   document.getElementById("ff").submit();
         $.ajax({
 	        type: "post",
 	        url : url,
