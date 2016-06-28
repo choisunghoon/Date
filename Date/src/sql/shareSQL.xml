@@ -14,6 +14,10 @@
 		select * from dc_sharydiary_comment where board_num=#num# order by num desc
 	</select>
 
+	<insert id="SelectDiaryCommentUp" parameterClass="share.commentDataBean">
+		insert into dc_sharydiary_comment(num,id,diarycomment,board_num,regdate) values (dc_sharydiary_comment_seq.nextval,#id#,#diarycomment#,#board_num#,#regdate#) 
+	</insert>
+
 	<update id="shereDiaryUpdateReadCount" parameterClass="int">
 		UPDATE dc_diary SET readcount = readcount + 1 where num=#num# 
 	</update>
