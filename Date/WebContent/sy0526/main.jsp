@@ -103,7 +103,7 @@ li{
 	    	FB.api('/me', function(user) {
 	            if (user) {
 	            	
-	            	
+	            	alert(user.id);
 	                window.location.href = 'loginPro.nhn?id='+user.id+'&hidden=fb';
 	                
 	            }

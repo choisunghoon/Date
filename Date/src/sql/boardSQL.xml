@@ -167,7 +167,7 @@
 		<select id="fbNickCheck" parameterClass="String" resultClass="int">
 			SELECT count(nickname) from dc_member where id=#id#
 		</select>
-		<select id="searchNickCheck" parameterClass="dto" resultClass="int">
+		<select id="NickCheck" parameterClass="dto" resultClass="int">
 			SELECT count(*) FROM dc_member where id=#id# and nickname=#nickname#
 		</select>
 		<select id="selectAll" resultMap="dtoRes">

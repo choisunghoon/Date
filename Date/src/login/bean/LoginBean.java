@@ -19,7 +19,7 @@ public class LoginBean {
 	@Autowired
 	private SqlMapClientTemplate sqlMapper;
 	
-	@RequestMapping("main.nhn")
+	@RequestMapping("main.nhn")//메인페이지가 호출될때 실행되는 함수
 	public String main(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id = (String)session.getAttribute("id");
@@ -70,10 +70,10 @@ public class LoginBean {
 		
 	}
 	
-	@RequestMapping("loginPro.nhn")
+	@RequestMapping("loginPro.nhn")//로그인이 실행될때 호출되는 함수
 	public String loginPro(HttpSession session,LogonDataBean dto,HttpServletRequest request) throws Exception{
 		String nomal=request.getParameter("hidden");	// 히든값을 통해 로그인하는 회원이 페이스북으로 로그인했는지 일반 로그인을 했는지 판별
-		String id=(String) session.getAttribute("id");
+		String id=(String) request.getParameter("id");
 		System.out.println("아이디:"+id);
 		System.out.println("페북판별값:"+nomal);
 		int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id); //로그인하는 회원의 별명이 없을때 1을 추출 
@@ -105,7 +105,7 @@ public class LoginBean {
 		return "/dc/loginPro.jsp";
 	}
 	
-	@RequestMapping("logout.nhn")
+	@RequestMapping("logout.nhn") //로그아웃
 	public String logout(HttpSession session) throws Exception{
 		session.invalidate();
 		
@@ -113,12 +113,12 @@ public class LoginBean {
 	}
 	
 	
-	@RequestMapping("loginForm.nhn")
+	@RequestMapping("loginForm.nhn") //로그인폼
 	public String loginForm(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		return "/dc/loginForm.jsp";
 	}
-	@RequestMapping("/couple.nhn")
+	@RequestMapping("/couple.nhn") //커플페이지 실행시 호출되는 함수
 	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
 		String id = (String)session.getAttribute("id");
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
@@ -155,7 +155,7 @@ public class LoginBean {
 		return "/sy0526/couple.jsp";
 	}
 	
-	@RequestMapping("/share.nhn")
+	@RequestMapping("/share.nhn") //공유 페이지 실행시 호출되는 함수
 	public String share(HttpSession session,HttpServletRequest request) throws Exception{
 		String id = (String)session.getAttribute("id");
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
@@ -192,7 +192,7 @@ public class LoginBean {
 		return "/sy0526/share.jsp";
 	}
 	
-	@RequestMapping("/theme.nhn")
+	@RequestMapping("/theme.nhn") //테마 페이지 호출될때 실행되는 함수
 	public String theme(HttpSession session,HttpServletRequest request) throws Exception{
 		String id = (String)session.getAttribute("id");
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
@@ -229,7 +229,7 @@ public class LoginBean {
 		return "/sy0526/theme.jsp";
 	}
 	
-	@RequestMapping("/event.nhn")
+	@RequestMapping("/event.nhn") //이벤트 페이지 호출될때 실행되는 함수
 	public String event(HttpSession session,HttpServletRequest request) throws Exception{
 		String id = (String)session.getAttribute("id");
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
@@ -267,7 +267,7 @@ public class LoginBean {
 		return "/sy0526/event.jsp";
 	}
 	
-	@RequestMapping("/personal.nhn")
+	@RequestMapping("/personal.nhn") // 개인페이지 실행될때 호출되는 함수
 	public String personal(HttpSession session,HttpServletRequest request) throws Exception{
 		String id = (String)session.getAttribute("id");
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
