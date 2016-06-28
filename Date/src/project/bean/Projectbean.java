@@ -441,8 +441,25 @@ public class Projectbean {
 	public String wWay(HttpServletRequest request) {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
+		int w = Integer.parseInt(request.getParameter("w"));
+		int count = (Integer) sqlMap.queryForObject("eventAppCount", enumber);
+		int wcount = 0;
+		String wcouplesN = (String) sqlMap.queryForObject("wcount", enumber);
+		System.out.println(wcouplesN);
+		if(wcouplesN==null){
+		System.out.println("dldld111");
+		wcount  = 0;
+		}else {
+			String[] wlist = wcouplesN.split(",");
+			wcount = wlist.length;
+			System.out.println("dldld");
+			
+		}
 		request.setAttribute("enumber", new Integer(enumber));
-		request.setAttribute("wnumber", new Integer(wnumber));
+		request.setAttribute("wnumber",new Integer(wnumber));
+		request.setAttribute("w",new Integer(w));
+		request.setAttribute("count", count);
+		request.setAttribute("wcount", new Integer(wcount));
 		return "/project/wWay.jsp";
 	}
 	// 여기까지 git
@@ -451,17 +468,20 @@ public class Projectbean {
 	public String random(HttpServletRequest request) {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
+		int wcount = Integer.parseInt(request.getParameter("wcount"));
+		int Cwcount = Integer.parseInt(request.getParameter("Cwcount"));
+		System.out.println("w: "+wnumber);
+		System.out.println("Cw: "+Cwcount);
 		EventDataBean eto = new EventDataBean();
 		List appList = null;
 		appList = sqlMap.queryForList("eventAppAll", enumber);
-		int[] wList = new int[wnumber];
-		String[] rList = new String[wnumber];
+		int[] wList = new int[Cwcount];
+		String[] rList = new String[Cwcount];
 		int count = (Integer) sqlMap.queryForObject("eventAppCount", enumber);
+		
 		Random ran = new Random();
 		String wname = null;
-		count = (Integer) sqlMap.queryForObject("eventAppCount", enumber);
 		appList = sqlMap.queryForList("eventAppAll", enumber);
-		if(count>0){
 		for (int i = 0; i < wList.length; i++) {
 			wList[i] = ran.nextInt(count) + 1;
 			for (int j = 0; j < i; j++) {
@@ -470,9 +490,11 @@ public class Projectbean {
 					break;
 				}
 			}
+		}
+		for (int i = 0; i < wList.length; i++) {
 			eto = (EventDataBean) appList.get(wList[i]);
 			rList[i] = eto.getCouplename();
-		}
+		}		
 		for (int i = 0; i < rList.length; i++) {
 			if (i == 0) {
 				wname = rList[i];
@@ -482,11 +504,24 @@ public class Projectbean {
 			}
 		}
 		EventDataBean eto1 = new EventDataBean();
+		eto1 = (EventDataBean) sqlMap.queryForObject("eventContent", enumber);
+		if(eto1.getWcouples()==null){
 		eto1.setWcouples(wname);
-		eto1.setEnumber(enumber);
-	    eto1.setW(1);
-		sqlMap.update("addW", eto1);
+		System.out.println("a");
+		}else{
+			System.out.println("bb");
+			eto1.setWcouples(eto1.getWcouples()+","+wname);
 		}
+		eto1.setEnumber(enumber);
+		
+		if((wcount+Cwcount)==wnumber){
+		eto1.setW(1);
+		System.out.println("cc");
+		}else{
+			eto1.setW(0);	
+			System.out.println("dd");
+		}
+		sqlMap.update("addW", eto1);
 		request.setAttribute("appList", appList);
 		request.setAttribute("rList", rList);
 		request.setAttribute("enumber", new Integer(enumber));
@@ -499,6 +534,7 @@ public class Projectbean {
 	public String choice(HttpServletRequest request) {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
+		int Cwcount = Integer.parseInt(request.getParameter("Cwcount"));
 		EventDataBean eto = new EventDataBean();
 		List appList = null;
 		String pageNum = request.getParameter("pageNum");
@@ -541,7 +577,6 @@ public class Projectbean {
 			app.setWcouples(app.getWcouples() + "," + couplename);
 		}
 		app.setEnumber(enumber);
-		//int a = 1;
 		if((wnumber-1)==0){
 		app.setW(1);}
 		sqlMap.update("addW", app);
@@ -661,6 +696,8 @@ public class Projectbean {
 	@RequestMapping("modifyWcouples.nhn")
 	public String modifyWcouples(HttpServletRequest request){
 		int enumber = Integer.parseInt(request.getParameter("enumber"));	
+		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
+		int w = Integer.parseInt(request.getParameter("w"));
 		String wcouples = request.getParameter("wcouples");
 		List appList = sqlMap.queryForList("eventAppAdmin", enumber);
 		EventDataBean app = new EventDataBean();
@@ -674,6 +711,8 @@ public class Projectbean {
 		request.setAttribute("Lsize", new Integer(Lsize));
 		request.setAttribute("wcList", wcList);
 		request.setAttribute("wcouples", wcouples);
+		request.setAttribute("wnumber",new Integer(wnumber));
+		request.setAttribute("w",new Integer(w));
 		return "/project/modifyWcouples.jsp";
 	}
 	

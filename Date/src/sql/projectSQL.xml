@@ -101,7 +101,7 @@
 		
 	<select id="eventImg" resultClass="String" parameterClass="int">
 		select eimg from event where enumber=#enumber#
-	</select> <!-- git 여기  아근데 위에 뭐추가함 -->
+	</select>
 	
 	<update id="addW" parameterClass="project.bean.EventDataBean">
 		update event set wcouples=#wcouples#, w=#w# where enumber=#enumber#
@@ -123,4 +123,7 @@
 		update event set wcouples=#wcouples# where enumber=#enumber#
 	</update>
 
+	<select id="wcount" resultClass="String" parameterClass="int">
+		select wcouples from event where enumber=#enumber#
+	</select>
 </sqlMap>

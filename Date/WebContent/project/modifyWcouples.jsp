@@ -22,6 +22,6 @@
 	</tr>
 	</c:forEach>
 </table>
-<a href="deleteWcouples.nhn?enumber=${enumber}&wcouples=${wcList[i]}"><input type="button" name="way" value="´çÃ·ÀÚ Ãß°¡"></a>
+<a href="wWay.nhn?enumber=${enumber}&wnumber=${wnumber}&w=${w}"><input type="button" name="way" value="´çÃ·ÀÚ Ãß°¡"></a>
 </body>
 </html>

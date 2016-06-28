@@ -11,10 +11,27 @@
 
 </head>
 <body>
+<div id="a">
+<center><h2>이벤트 전체 리스트(전체 : ${count})</h2>	
+		<form name="form" method="post" onSubmit="check()" >
+			<input type="hidden" name="search" value="1">
+			<input type=radio name="way" id="way" value="3" checked>전체
+			<input type=radio name="way" id="way" value="1">추첨
+			<input type=radio name="way" id="way" value="0">미추첨&nbsp;
+			<input type="text" id="keyword" name="keyword" value="" size="15" maxlength="15">       			
+			<select name="states" id="states">
+				<option value="1">전체</option>
+				<option value="2">이벤트 이름</option>
+				<option value="3">당첨 커플</option>
+			</select>
+				<input type="button" value="검색" onclick="checkSS(this.form)">			
+		</form></center>
+		</div>
+<div id="subMain1" style="float:center;width:86%">
+<input type="hidden" onchange="reload('adminEvent.nhn')" value="0" id="chk" />	
 <center>
-<div id="subMain1" style="float:center;width:86%">	
-<table width="500" border="1" cellspacing="0" cellpadding="0"   align="center" style="table-layout:fixed;">
-	<tr height="30" >
+<table width="1000" border="1" cellspacing="0" cellpadding="0" align="center" style="table-layout:fixed;">
+	<tr height="auto">
 		<td align="center" width="50">이벤트 번호</td>
 		<td align="center" width="150">이벤트 이름</td>
 		<td align="center" width="250">진행 날짜</td>
@@ -32,26 +49,30 @@
 	<c:if test="${count != 0}">
 	<c:forEach var="eventList" items="${eventList}">
 	<tr>
-		<td align="center">${eventList.enumber}</td>
-		<td align="center">${eventList.ename}</td>
-		<td align="center">${eventList.sdate}~${eventList.edate}</td>
-		<td align="center">${eventList.wnumber}</td>
-		<td align="center">${eventList.w}</td>
-		<td align="center">${eventList.wcouples}</td>
+		<td align="center" width="50">${eventList.enumber}</td>
+		<td align="center" width="150"><a href="#" onclick="callAjaxyj('test.nhn?enumber=${eventList.enumber}&pageNum=${currentPage}')" >
+		${eventList.ename}</a></td>
+		<td align="center" width="250">${eventList.sdate}~${eventList.edate}</td>
+		<td align="center" width="50">${eventList.wnumber}</td>
+		<c:if test="${eventList.w==0}"><c:set var="w" value="무"></c:set></c:if>
+		<c:if test="${eventList.w==1}"><c:set var="w" value="유"></c:set></c:if>
+		<td align="center" width="50">${w}</td>
+		<td align="center" width="200">${eventList.wcouples}</td>
 		<td align="center" width="100">
 		<c:if test="${eventList.w==0}">
-		<button type="button" onclick="callAjaxyj2('wWay.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}')">당첨자뽑기</button>
+		<button type="button" onclick="callAjaxyj2('wWay.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')">당첨자뽑기</button>
 		</c:if>
 		<c:if test="${eventList.w==1}">
-		<button type="button" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${eventList.enumber}')">당첨자수정및삭제</button>
+		<button type="button" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')">당첨자수정및삭제</button>
 		</c:if>
+		</td>
 	</tr>
 	
 	
 	</c:forEach>
 	</c:if>
-	</table>
-	<br />
+	</table>`
+	<br/>
 	
 	<c:if test="${count > 0}">
    <c:set var="pageCount" value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}"/>
@@ -64,20 +85,21 @@
    </c:if> 
           
    <c:if test="${startPage > 10}">
-        <a href="#" onclick="callAjax('adminEvent1.nhn?pageNum=${startPage - 10 }')">[이전]</a>	
+        <a href="#" onclick="callAjaxSSS('adminEvent.nhn?pageNum=${startPage - 10 }')">[이전]</a>	
    </c:if>
 
    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <a href="#" onclick="callAjax('adminEvent1.nhn?pageNum=${i}')">[${i}]</a>
+       <a href="#" onclick="callAjaxSSS('adminEvent.nhn?pageNum=${i}')">[${i}]</a>
    </c:forEach>
 
    <c:if test="${endPage < pageCount}">
-        <a href="#" onclick="callAjax('adminEvent1.nhn?pageNum=${startPage + 10 }')">[다음]</a>
+        <a href="#" onclick="callAjaxSSS('adminEvent.nhn?pageNum=${startPage + 10 }')">[다음]</a>
    </c:if>
 </c:if>
 </center>
 	
-<div style="float:center;width:2%">&nbsp;&nbsp;&nbsp;</div>
+		<div style="float:center;width:2%">&nbsp;&nbsp;&nbsp;</div>
+
 
 </div>
 </body>
