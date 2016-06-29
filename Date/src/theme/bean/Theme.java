@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import themeDTO.CourseDataBean;
 import themeDTO.CtgDataBean;
+import themeDTO.LikeCountDataBean;
 import themeDTO.LocationDataBean;
 import ch11.logon.LogonDataBean;
 
@@ -411,7 +413,7 @@ public class Theme {
 
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
-		String[] src = new String[2];
+		String[] src = new String[4];
 		String path = "C:\\Users\\sam3\\git\\Date\\Date\\WebContent\\theme\\themeimg";
 		int i = 0;
 		while(iterator.hasNext()){
@@ -424,6 +426,8 @@ public class Theme {
 		
 		dto.setLoc_pic(src[0]);
 		dto.setLoc_pic1(src[1]);
+		dto.setLoc_pic2(src[2]);
+		dto.setLoc_pic3(src[3]);
 		dto.setCtg_num(ctg_num);
 		dto.setCos_num(cos_num);
 		
@@ -480,10 +484,10 @@ public class Theme {
 
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
-		String[] src = new String[2];
+		String[] src = new String[4];
 		String path = "C:\\Users\\sam3\\git\\Date\\Date\\WebContent\\theme\\themeimg";
 		int i = 0;
-		String[] srclist = new String[2];
+		String[] srclist = new String[4];
 		LocationDataBean dto1 = new LocationDataBean();
 		
 		while(iterator.hasNext()){
@@ -492,6 +496,8 @@ public class Theme {
 				dto1 = (LocationDataBean)sqlMap.queryForObject("getLocImg", loc_num);
 				srclist[0] = dto1.getLoc_pic();
 				srclist[1] = dto1.getLoc_pic1();
+				srclist[2] = dto1.getLoc_pic2();
+				srclist[3] = dto1.getLoc_pic3();
 				originalFileName = srclist[i];
 			}else{
 			originalFileName = multipartFile.getOriginalFilename();
@@ -503,6 +509,8 @@ public class Theme {
 		
 		dto.setLoc_pic(src[0]);
 		dto.setLoc_pic1(src[1]);
+		dto.setLoc_pic2(src[2]);
+		dto.setLoc_pic3(src[3]);
 		dto.setCtg_num(ctg_num);
 		dto.setCos_num(cos_num);
 		dto.setLoc_num(loc_num);
@@ -553,6 +561,43 @@ public class Theme {
 		request.setAttribute("cos_num", cos_num);
 		
 		return "/theme/placeDelPro.jsp";
+	}
+	
+	@RequestMapping("likeCount.nhn")
+	public String likeCount(HttpSession session,HttpServletRequest request){
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
+		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
+		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
+		
+		LikeCountDataBean dto = new LikeCountDataBean();
+		CourseDataBean dto1 = new CourseDataBean();
+		
+		dto.setId(id);
+		dto.setCtg_num(ctg_num);
+		dto.setCos_num(cos_num);
+		dto1.setCtg_num(ctg_num);
+		dto1.setCos_num(cos_num);
+
+		int check = (Integer)sqlMap.queryForObject("cosLikeCount",dto);
+		System.out.println("check :"  +check);
+
+		if(check == 1){
+			sqlMap.update("cosLikeCountDown", dto1);
+			sqlMap.delete("deleteCosLike", dto);
+		}else{
+			sqlMap.update("cosLikeCountUp", dto1);
+			sqlMap.insert("insertCosLike",dto);
+		}
+		
+			dto1 = (CourseDataBean) sqlMap.queryForObject("getCosLikeCount",dto1);
+			System.out.println(dto1.getCtg_num());
+			System.out.println(dto1.getCos_num());
+			System.out.println(dto1.getLikeCount());
+			request.setAttribute("dto1", dto1);
+		
+		return "/theme/cosLikeCount.jsp";
 	}
 
 }

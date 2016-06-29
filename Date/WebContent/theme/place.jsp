@@ -6,17 +6,20 @@
 <html>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">  
- 	 $(document).ready(function(){
-		  $("#like").click(function(){
-			  callAjax();
-	 	 });
- 	 });
- 	 
- 	 function callAjax(){
+ 	 function callAjax(ctg_num,cos_num){
  		 $.ajax({
  			 type:"post",
- 			 url:nhn
+ 			 url:"likeCount.nhn",
+ 			 data:{
+ 				 ctg_num : ctg_num,
+ 				 cos_num : cos_num
+ 			 }, 
+ 			 success: test2,
+ 			 error: whenError
  		 });
+ 	 }
+ 	 function test2(aaa){
+ 		 $("#ajaxReturn").html(aaa);
  	 }
     function callContent(ctg_num, cos_num, loc_num ){    
     	 $.ajax({    		
@@ -119,8 +122,7 @@
 
 .gallery li img {
 	display: block;
-	width: 340px;
-	height: 430px;
+	width: 100%;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -155,8 +157,10 @@
 	</table>
 </br>
 </br>
-	<div id="like" method="post">
-		<input type="button" name="good" value="좋아요" />
+	<div id="like"  method="post">
+		<input type="button" name="good" value="좋아요"  onclick="callAjax(${ctg_num},${cos_num})"/>
+		
+		<span id="ajaxReturn">${dto.likeCount}</span><br/>
 	</div>
 
 
