@@ -3,8 +3,10 @@ package upload.bean;
 import java.sql.Timestamp;
 
 public class DiaryDataBean {
+	private Timestamp pool_regdate;
 	private int num;
 	private String couplename;
+	
 	private String subject;
 	private String content;
 	private String img;
@@ -13,6 +15,12 @@ public class DiaryDataBean {
 	private int readcount;
 	private Timestamp regdate;
 	
+	public Timestamp getPool_regdate() {
+		return pool_regdate;
+	}
+	public void setPool_regdate(Timestamp pool_regdate) {
+		this.pool_regdate = pool_regdate;
+	}
 	public int getNum() {
 		return num;
 	}

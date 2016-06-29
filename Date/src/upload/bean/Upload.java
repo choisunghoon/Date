@@ -127,12 +127,10 @@ public class Upload {
 		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
 		String RealPath = request.getRealPath("\\syimage");
 		int num = Integer.parseInt(request.getParameter("num"));
-		String pool = request.getParameter("pool");
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
 		ddb.setNum(num);
 		ddb.setCouplename(couplename);
-		ddb.setPool(pool);
 		if(!file.isEmpty()){
 			ddb.setImg(orgName);
 			File copy = new File(RealPath+"/"+orgName);
@@ -344,6 +342,26 @@ public class Upload {
 		request.setAttribute("ddb", ddb);
 		
 		return "/sy0610/userPhoto.jsp";
+	}
+	
+	@RequestMapping("/diarysharing.nhn")
+	public String diarysharing(HttpSession session, HttpServletRequest request, DiaryDataBean ddb){
+		int check = Integer.parseInt(request.getParameter("check"));
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
+		int num = Integer.parseInt(request.getParameter("num"));
+		ddb.setCouplename(couplename);
+		ddb.setNum(num);
+		String pool = "";
+		if(check == 1){
+		pool = "1";
+		}else{
+		pool = "0";
+		}
+		ddb.setPool(pool);
+		sqlMap.insert("poolshare", ddb);
+		return "/sy0525/diarysharing.jsp";
 	}
 
 }

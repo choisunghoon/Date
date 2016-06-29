@@ -11,14 +11,13 @@
 	</select>
 	
 	<insert id="insertDiary" parameterClass="upload.bean.DiaryDataBean">
-		insert into dc_diary(num,couplename,subject,content,img,regdate,pool) values(
+		insert into dc_diary(num,couplename,subject,content,img,regdate) values(
 		dc_diary_seq.nextval,
 		#couplename#,
 		#subject#,
 		#content#,
 		#img#,
-		sysdate,
-		#pool#
+		sysdate
 		)
 	</insert>
 	
@@ -27,11 +26,11 @@
 	</select>
 	
 	<update id="updateDiary" parameterClass="upload.bean.DiaryDataBean">
-		update dc_diary set subject = #subject#, content=#content#, img=#img#, pool=#pool# where couplename=#couplename# and num=#num#
+		update dc_diary set subject = #subject#, content=#content#, img=#img# where couplename=#couplename# and num=#num#
 	</update>
 	
 	<update id="updateDiary1" parameterClass="upload.bean.DiaryDataBean">
-		update dc_diary set subject = #subject#, content=#content#, pool=#pool# where couplename=#couplename# and num=#num#
+		update dc_diary set subject = #subject#, content=#content# where couplename=#couplename# and num=#num#
 	</update>
 	
 	<delete id="deleteDiary" parameterClass="upload.bean.DiaryDataBean">
@@ -84,6 +83,10 @@
 	
 	<insert id="diarypoint" parameterClass="upload.bean.PointDataBean">
 		insert into dc_point(num,couplename,getPoint,place,regdate) values(dc_point_seq.nextval,#couplename#,#getPoint#,#place#,sysdate)
+	</insert>
+	
+	<insert id="poolshare" parameterClass="upload.bean.DiaryDataBean">
+		update dc_diary set pool=#pool#,pool_regdate=sysdate where couplename=#couplename# and num=#num#
 	</insert>
 </sqlMap>
 
