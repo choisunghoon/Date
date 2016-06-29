@@ -156,7 +156,7 @@
 	      <div class="modal-bodyy">		   
 	      </div>
 	      <div class="modal-footer">
-			<center><button type="button" class="btn btn-default" data-dismiss="modal" >닫기</button></center>
+			<center><a href="#" data-dismiss="modal"><img src="/Date/button/z5.png"></a></center>
 	      </div>
 	    </div>
 	  </div>

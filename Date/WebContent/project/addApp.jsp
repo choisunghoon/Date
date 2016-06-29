@@ -129,7 +129,7 @@
 			</tr>
 			<tr>
 				<td colspan=3 align="center">
-				<button type="button" class="btn btn-default" onclick='checkApp()'>신청</button>				
+				<a href="#" onclick='checkApp()'><img src="/Date/button/z5.png"></a></td>		
 			</tr>				
 		</table>
 	</form>
