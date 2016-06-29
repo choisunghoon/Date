@@ -129,9 +129,23 @@ public class shareBean {
 		DiaryDataBean dto = new DiaryDataBean();
 		dto = (DiaryDataBean)sqlMap.queryForObject("shereDiarySelectNum", num);
 		
+		String id = (String)session.getAttribute("id");
+		String couplename = (String) sqlMap.queryForObject("serchCouplename",id);
+		String place = "다이어리 공유";
+		List list = new ArrayList();
+
+		Map map = new HashMap();
+		map.put("couplename", couplename);
+		map.put("num", num);
+		map.put("place", place);
+		list.add(map);
+		
+		int check = (Integer)sqlMap.queryForObject("shereCourseLikePro",map);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);
 		mv.addObject("num",num);
+		mv.addObject("check",check);
 		mv.setViewName("/yh/shareDiaryBoardView.jsp");
 		return mv;
 	
@@ -174,8 +188,6 @@ public class shareBean {
 	@RequestMapping("shareCourseBoardView.nhn")
 	public ModelAndView shareCourseBoardView(HttpServletRequest request, HttpSession session,int num){
 	
-		System.out.println("넘값"+" " +num);
-
 		sqlMap.update("shereCourseUpdateReadCount", num);
 
 		DTO dto = new DTO();
@@ -199,10 +211,9 @@ public class shareBean {
 		
 		Timestamp regdate = new Timestamp(System.currentTimeMillis());
 		String place = "다이어리 공유";
+		
 		List list = new ArrayList();
 
-		
-		
 		Map map = new HashMap();
 		map.put("couplename", couplename);
 		map.put("num", num);
@@ -242,7 +253,6 @@ public class shareBean {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);
 		mv.addObject("dto1",dto1);
-		mv.addObject("check",check);
 		mv.addObject("num",num);
 		mv.setViewName("/yh/likeCount.jsp");
 		return mv;
@@ -250,7 +260,7 @@ public class shareBean {
 	}
 
 	@RequestMapping("shareCourseCount.nhn")
-	public ModelAndView courseCount(HttpServletRequest request, HttpSession session, int num){
+	public ModelAndView courseCount(HttpServletRequest request, HttpSession session, int num,int check){
 		
 		
 		int likecount = (Integer)sqlMap.queryForObject("shereCourseLike", num);
@@ -259,6 +269,7 @@ public class shareBean {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("likecount",likecount);
 		mv.addObject("num",num);
+		mv.addObject("check",check);
 		mv.setViewName("/yh/likeCount.jsp");
 		return mv;
 	}

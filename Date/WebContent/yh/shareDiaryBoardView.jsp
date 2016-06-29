@@ -93,10 +93,11 @@
 			<br/>
 			
 		<div id="like" method="post"><center>
-			<input type="button" name="goodLike" value="like" />
-			
-			<span id="ajaxReturn" > ${dto.likecount }</span><br/>
-		   
+
+					<input type="button" name="goodLike" value="좋아요" />
+	
+			<span id="ajaxReturn"> ${dto.likecount }</span><br/>
+					
 		</center>   
 		</div>	     
 		</td>

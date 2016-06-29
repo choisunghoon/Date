@@ -104,31 +104,6 @@
 .placeinfov .jibun {color:#999;font-size:11px;margin-top:0;}
 
 
-
-#placesList li {list-style: none;}
-#placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
-#placesList .item span {display: block;margin-top:4px;}
-#placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-#placesList .item .info{padding:10px 0 10px 55px;}
-#placesList .info .gray {color:#8a8a8a;}
-#placesList .info .jibun {padding-left:26px;background:url(http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
-#placesList .info .tel {color:#009900;}
-#placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
-#placesList .item .marker_1 {background-position: 0 -10px;}
-#placesList .item .marker_2 {background-position: 0 -56px;}
-#placesList .item .marker_3 {background-position: 0 -102px}
-#placesList .item .marker_4 {background-position: 0 -148px;}
-#placesList .item .marker_5 {background-position: 0 -194px;}
-#placesList .item .marker_6 {background-position: 0 -240px;}
-#placesList .item .marker_7 {background-position: 0 -286px;}
-#placesList .item .marker_8 {background-position: 0 -332px;}
-#placesList .item .marker_9 {background-position: 0 -378px;}
-#placesList .item .marker_10 {background-position: 0 -423px;}
-#placesList .item .marker_11 {background-position: 0 -470px;}
-#placesList .item .marker_12 {background-position: 0 -516px;}
-#placesList .item .marker_13 {background-position: 0 -562px;}
-#placesList .item .marker_14 {background-position: 0 -608px;}
-#placesList .item .marker_15 {background-position: 0 -654px;}
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
@@ -138,18 +113,7 @@
 
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-    <div id="menu_wrap" class="bg_white">
-        <div class="option">
-            <p>
-                
-                키워드 : <input type="text" value="" id="keyword" size="15"> 
-                <button type="button" onclick="searchPlaces2(); return false;">검색하기</button> 
-            </p>
-        </div>
-        <hr>
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
-    </div>
+
     <ul id="category">
         <li id="CE7" data-order="4"> 
             <span class="category_bg cafe"></span>
@@ -607,8 +571,7 @@ var hidden=[];
 var j = 1;
 function deldiv(i){
 
-	 $("#"+i).remove();
-	j = j-1;
+	
 	
 }
 
@@ -892,19 +855,15 @@ function removeAllChildNods(el) {
 	
 </div>
 
-<br/>
-<br/>
-
-<div id="like" method="post"><center>
+<div id="like" method="post" class=placeinfov_wrap>
 		<input type="button" name="goodLike" value="like" />
 			
 		<span id="ajaxReturn" > ${dto.likecount }</span><br/>
-		   	
-</center></div>
+</div>
 
 </form>
-
 </body>
+
 
 
 </html>
