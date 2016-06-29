@@ -69,15 +69,15 @@
    </c:if> 
           
    <c:if test="${startPage > 10}">
-        <a href="#" onclick="callAjaxSSS('adminEvent.nhn?pageNum=${startPage - 10 }')">[이전]</a>	
+        <a href="#" onclick="callAjaxSSS('adminEvent1.nhn?pageNum=${startPage - 10 }')">[이전]</a>	
    </c:if>
 
    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <a href="#" onclick="callAjaxSSS('adminEvent.nhn?pageNum=${i}')">[${i}]</a>
+       <a href="#" onclick="callAjaxSSS('adminEvent1.nhn?pageNum=${i}')">[${i}]</a>
    </c:forEach>
 
    <c:if test="${endPage < pageCount}">
-        <a href="#" onclick="callAjaxSSS('adminEvent.nhn?pageNum=${startPage + 10 }')">[다음]</a>
+        <a href="#" onclick="callAjaxSSS('adminEvent1.nhn?pageNum=${startPage + 10 }')">[다음]</a>
    </c:if>
 </c:if>
 </center>

@@ -47,8 +47,7 @@ function callEvent(url,pageNum,enumber){
 <title>이벤트 상세 정보 페이지</title>
 </head>
 <body>
-	<table border="1" width="500" cellpadding="0" cellspacing="0"
-		align="center">
+	<table border="1" width="500" cellpadding="0" cellspacing="0" align="center">
 		<tr height="30">
 			<td align="center" width="100">이벤트 이름</td>
 			<td align="center">${eto.ename}</td>
@@ -68,16 +67,16 @@ function callEvent(url,pageNum,enumber){
 		</center>
 	</c:if>
 	<c:if test="${tab==1||tab==3}">
-		<table border="1" width="500" cellpadding="0" cellspacing="0" align="center">			
+		<table border="1" width="500" cellpadding="0" cellspacing="0" align="center" style="margin-left:35px">			
 			<tr height="30">
-				<td align="center" width="50">글 번호</td>
-				<td align="center" width="100">커플 이름</td>
+				<td align="center" width="100">글 번호</td>
+				<td align="center" width="200">커플 이름</td>
 				<td align="center" width="300">제목</td>
 				<c:forEach var="appList" items="${appList}">
 					<tr height="30">
-						<td align="center">${appList.appnumber}</td>
-						<td align="center">${appList.couplename}</td>
-						<td align="center">
+						<td align="center" width="100">${appList.appnumber}</td>
+						<td align="center"  width="200">${appList.couplename} <img src="/Date/project/ee/${appList.appimg}"></td>
+						<td align="center"  width="300">
 						<c:if test="${appList.apppw!=null}">
 								<img src="/Date/project/lock.png" width="20" height="20">
 								<a href="#"
@@ -96,10 +95,12 @@ function callEvent(url,pageNum,enumber){
 	<c:if test="${tab==1}"><button type="button" class="btn btn-default" style="margin-top:5px; margin-left:408px" onclick="callAddApp('addApp.nhn',${eto.enumber})">이벤트 참여하기</button></c:if><br/>
 	<c:if test="${tab==4}">
 		<c:if test="${eto.w==0}">아직 당첨자를 뽑지 않았습니다!!</c:if>
-		<c:if test="${eto.w==1}"><c:forEach var="i" begin="0" end="${eto.wnumber}">
-			${wclist[i]}<br/>
-		</c:forEach></c:if>
+		<c:if test="${eto.w==1}"><center><h2>축하드립니다!!!!!</h2>
+		<c:forEach var="i" begin="0" end="${eto.wnumber}">
+			${i+1}번째 당첨자 : ${wclist[i]} 커플 ^*^<br/>
+		</c:forEach></center></c:if>
 	</c:if>
+	<c:if test="${tab!=4}">
 	<div class="page">
 		<c:set var="pageCount"
 			value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}" />
@@ -123,5 +124,6 @@ function callEvent(url,pageNum,enumber){
 			<a href=# onclick="callEvent('eventContent.nhn',${startPage + 10 },${enumber})">[다음]</a>
 		</c:if>
 	</div>
+	</c:if>
 </body>
 </html>

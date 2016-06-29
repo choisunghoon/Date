@@ -80,7 +80,7 @@
 	</select>	
 
 	<insert id="addApp" parameterClass="project.bean.EventDataBean">
-		insert into app_event (appnumber, enumber, couplename, appsubject, appcomment, apppw, regdate) values (app_event_seq.nextval, #enumber#, #couplename#, #appsubject#, #appcomment#, #apppw#, sysdate)
+		insert into app_event (appnumber, enumber, couplename, appsubject, appcomment, apppw, appimg, regdate) values (app_event_seq.nextval, #enumber#, #couplename#, #appsubject#, #appcomment#, #apppw#, #appimg#, sysdate)
 	</insert>
 	
 	<select id="cnCon" resultClass="int" parameterClass="project.bean.EventDataBean"> 
@@ -108,7 +108,7 @@
 	</update>
 	
 	<update id="appModify" parameterClass="project.bean.EventDataBean">
-		update app_event set appsubject=#appsubject#, appcomment=#appcomment# where appnumber=#appnumber#
+		update app_event set appsubject=#appsubject#, appcomment=#appcomment#, appimg=#appimg# where appnumber=#appnumber#
 	</update>
 	
 	<delete id="appDelete" parameterClass="int">
@@ -125,5 +125,9 @@
 
 	<select id="wcount" resultClass="String" parameterClass="int">
 		select wcouples from event where enumber=#enumber#
+	</select>
+	
+	<select id="getCouplename" resultClass="String" parameterClass="String">
+		select couplename from dc_couple where id1=#id# or id2=#id#
 	</select>
 </sqlMap>

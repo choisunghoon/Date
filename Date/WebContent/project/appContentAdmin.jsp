@@ -21,7 +21,7 @@
 				<input type="hidden" name="enumber" value="${enumber}">
 				<input type="hidden" name="wnumber" value="${wnumber}">
 				<input type="hidden" name="Cwcount" value="${Cwcount}">
-				<input type="hidden" name="appnumber" value="${app.appnumber}">${app.couplename}</td>
+				<input type="hidden" name="appnumber" value="${app.appnumber}">${app.couplename} <img src="${app.appimg}" style="width:32;height:29"></td>
 			</tr>			
 			<tr height="40">
 				<td align="center" width="100">이벤트 신청 내용</td>

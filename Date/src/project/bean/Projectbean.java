@@ -269,7 +269,9 @@ public class Projectbean {
 	public String addApp(HttpServletRequest request,HttpSession session) {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getCouplename",id);
 		request.setAttribute("enumber", new Integer(enumber));
+		request.setAttribute("couplename", couplename);
 		return "/project/addApp.jsp";
 	}
 
@@ -278,12 +280,14 @@ public class Projectbean {
 		String id = (String)session.getAttribute("id");
 		int test = 0;
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
+	
+		System.out.println(eto.getAppimg());
+		
 		// String cn = "Ä¿ÇÃÀ×";
 		//HashMap<String, Integer> row = new HashMap<String, Integer>();
 		//row.put("couplename", eto.getCouplename());
 		//row.put("enumber", eto.getEnumber());
-		test = (Integer) sqlMap.queryForObject("cnCon", eto);
-		
+		test = (Integer) sqlMap.queryForObject("cnCon", eto);		
 		if (test == 0) {
 			sqlMap.insert("addApp", eto);
 		}
@@ -306,6 +310,8 @@ public class Projectbean {
 		//String id = "gnn";
 		EventDataBean app = new EventDataBean();
 		app = (EventDataBean) sqlMap.queryForObject("getAppContent", appnumber);
+		String path = request.getContextPath() + "/project/ee/";
+		app.setAppimg(path+app.getAppimg());
 		request.setAttribute("appnumber", new Integer(appnumber));
 		request.setAttribute("wnumber", new Integer(wnumber));
 		request.setAttribute("enumber", new Integer(enumber));
@@ -329,6 +335,8 @@ public class Projectbean {
 		//String id = "gnn";
 		EventDataBean app = new EventDataBean();
 		app = (EventDataBean) sqlMap.queryForObject("getAppContent", appnumber);
+		String path = request.getContextPath() + "/project/ee/";
+		app.setAppimg(path+app.getAppimg());
 		request.setAttribute("appnumber", new Integer(appnumber));
 		request.setAttribute("wnumber", new Integer(wnumber));
 		request.setAttribute("enumber", new Integer(enumber));
