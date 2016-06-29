@@ -50,6 +50,14 @@
     					<td align="center" width="50">장소사진</td>
 						<td align="center" width="700"><input type="file" name="pho1"></td>
 					</tr>
+					<tr height="30">
+    					<td align="center" width="50">장소사진</td>
+						<td align="center" width="700"><input type="file" name="pho2"></td>
+					</tr>
+					<tr height="30">
+    					<td align="center" width="50">장소사진</td>
+						<td align="center" width="700"><input type="file" name="pho3"></td>
+					</tr>
 				</table>
 		<center><input type="submit" value="등록"></center>
 	</form>

@@ -27,7 +27,7 @@
         )
     </insert>
     <insert id="insertLoc" parameterClass="themeDTO.LocationDataBean">
-        insert into Location(ctg_num, cos_num, loc_num, step_num, loc_name, loc_content, loc_pic, loc_pic1, rate, readCount, likeCount) values(
+        insert into Location(ctg_num, cos_num, loc_num, step_num, loc_name, loc_content, loc_pic, loc_pic1, loc_pic2, loc_pic3, rate, readCount, likeCount) values(
         	#ctg_num#,
         	#cos_num#,
         	loc_seq.NEXTVAL,
@@ -36,13 +36,43 @@
         	#loc_content#,
         	#loc_pic#,
         	#loc_pic1#,
+        	#loc_pic2#,
+        	#loc_pic3#,
         	#rate#,
         	#readCount#,
         	#likeCount#
         )
     </insert>
-  
     
+    <insert id="insertCosLike" parameterClass="themeDTO.LikeCountDataBean">
+    	insert into theme_likeCount(id, ctg_num, cos_num, regdate) values(
+    		#id#,
+    		#ctg_num#,
+    		#cos_num#,
+    		sysdate
+    	)
+    </insert>	
+    
+    <select id="getCosLikeCount" parameterClass="themeDTO.CourseDataBean" resultClass="themeDTO.CourseDataBean">
+    	select likeCount from course where ctg_num=#ctg_num# and cos_num=#cos_num#
+    </select>
+    
+    <delete id="deleteCosLike" parameterClass="themeDTO.LikeCountDataBean">
+    	delete from theme_likeCount where id=#id# and ctg_num=#ctg_num# and cos_num=#cos_num#
+    </delete>
+    
+    <select id="cosLikeCount" resultClass="int" parameterClass="themeDTO.LikeCountDataBean">
+    	select count(*) from theme_likeCount where id=#id# and ctg_num=#ctg_num# and cos_num=#cos_num#
+    </select>
+    
+    <update id="cosLikeCountUp" parameterClass="themeDTO.CourseDataBean">
+    	update course set likeCount = likeCount + 1 where cos_num = #cos_num#
+    </update>
+    
+    <update id="cosLikeCountDown" parameterClass="themeDTO.CourseDataBean">
+    	update course set likeCount = likeCount - 1 where cos_num = #cos_num#
+    </update>
+  
     <select id="getCtgList" resultClass="themeDTO.CtgDataBean" parameterClass="java.util.Map">
         select ctg_num, ctg_name, ctg_img, r from
         (select ctg_num, ctg_name, ctg_img, rownum r from
@@ -102,11 +132,11 @@
     </select>
     
     <select id="getPlace" resultClass="themeDTO.LocationDataBean" parameterClass="java.util.Map">
-        select ctg_num , cos_num , loc_num, step_num, loc_pic from location where ctg_num = #ctg_num# and cos_num = #cos_num# order by #step_num# desc
+        select ctg_num , cos_num , loc_num, step_num, loc_pic from location where ctg_num = #ctg_num# and cos_num = #cos_num# order by #step_num# asc
     </select>
     
     <select id="getPlace1" resultClass="themeDTO.LocationDataBean" parameterClass="int">
-        select step_num, loc_name, loc_content, rate, loc_pic, loc_pic1,readCount from location where loc_num = #loc_num#
+        select step_num, loc_name, loc_content, rate, loc_pic, loc_pic1, loc_pic2, loc_pic3, readCount from location where loc_num = #loc_num#
     </select>
     
     <select id="deleteProck" resultClass="int" parameterClass="ch11.logon.LogonDataBean">

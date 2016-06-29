@@ -1,6 +1,7 @@
 package themeDTO;
 
 public class LocationDataBean {
+
 	public int getCtg_num() {
 		return ctg_num;
 	}
@@ -49,6 +50,18 @@ public class LocationDataBean {
 	public void setLoc_pic1(String loc_pic1) {
 		this.loc_pic1 = loc_pic1;
 	}
+	public String getLoc_pic2() {
+		return loc_pic2;
+	}
+	public void setLoc_pic2(String loc_pic2) {
+		this.loc_pic2 = loc_pic2;
+	}
+	public String getLoc_pic3() {
+		return loc_pic3;
+	}
+	public void setLoc_pic3(String loc_pic3) {
+		this.loc_pic3 = loc_pic3;
+	}
 	public String getRate() {
 		return rate;
 	}
@@ -75,6 +88,8 @@ public class LocationDataBean {
 	private String loc_content;
 	private String loc_pic;
 	private String loc_pic1;
+	private String loc_pic2;
+	private String loc_pic3;
 	private String rate;
 	private int readCount;
 	private int likeCount;
