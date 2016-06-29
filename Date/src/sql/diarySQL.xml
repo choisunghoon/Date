@@ -59,7 +59,7 @@
 	</insert>
 	
 	<select id="adphoto" resultClass="upload.bean.PhotoDataBean">
-		select * from dc_photo
+		select * from dc_photo order by regdate desc
 	</select>
 	
 	<update id="photopoint" parameterClass="upload.bean.CoupleDataBean">

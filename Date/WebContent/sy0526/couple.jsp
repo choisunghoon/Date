@@ -28,7 +28,11 @@
 </style>
 <body>
 <br /><br />
- 
+<c:if test="${chk eq '1' }">
+	<script>
+		callAjax2('diaryMenu.nhn');
+	</script>
+</c:if>
 	<div style="width:100%;float:left;" >
 		<div style="width:12%;float:left;margin-left:0">
 			<a href="#" onclick="callAjax2('diaryMenu.nhn')"><img src="syimage/mm3.png" onmouseover='this.src="syimage/mm4.png"' onmouseout='this.src="syimage/mm3.png"' /></a>

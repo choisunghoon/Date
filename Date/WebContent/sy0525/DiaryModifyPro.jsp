@@ -3,5 +3,5 @@
 
     <script type="text/javascript">
     	alert("수정되었습니다!");
+    	window.location.replace("couple.nhn?chk=1");
     </script>
-        	<meta http-equiv="Refresh" content="0;url=couple.nhn">

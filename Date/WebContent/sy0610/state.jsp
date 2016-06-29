@@ -1,37 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
  
 <script type="text/javascript">
-	function callAjax(){
-		
+	function asdf(){
 	    $.ajax({
-	    	
 	        type: "post",
 	        url : "statepro.nhn",
-	        data: {	// url ÆäÀÌÁöµµ Àü´ŞÇÒ ÆÄ¶ó¹ÌÅÍ
+	        data: {	
 	        	states : $('#states').val(),
 	   			regdate1 : $('#regdate1').val(),
 	        	couplename1 : $('#couplename1').val()
 	        },
-	        
 	 	});
 	    self.close();
 	    opener.parent.callAjax('adphoto.nhn');
 	    // opener.location.load();
-	    
 	}
 </script>
 
 <form name="form" method="post">
 	<select name="states" id="states">
-		<option value="1">½ÅÃ»</option>
-		<option value="2">ÁøÇàÁß</option>
-		<option value="3">ÁøÇà¿Ï·á</option>
+		<option value="1">ì‹ ì²­</option>
+		<option value="2">ì§„í–‰ì¤‘</option>
+		<option value="3">ì§„í–‰ì™„ë£Œ</option>
 	</select>
 	<input type="hidden" value="${regdate }" name="regdate1" id="regdate1" />
 	<input type="hidden" value="${couplename }" name = "couplename1" id="couplename1"/>
-	<input type="button" value="È®ÀÎ"  onclick="callAjax()">
+	<input type="submit" value="í™•ì¸"  onclick="asdf()">
 </form>
     

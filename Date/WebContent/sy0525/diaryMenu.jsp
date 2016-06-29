@@ -2,29 +2,43 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <div class="re">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
-		 
-         function test(){
-        	 
+         function test(){ 
             var now = new Date();
             var then = new Date('${cdb.coupledate }');
             var gap = now.getTime() - then.getTime();
             gap = Math.floor(gap / (1000 * 60 * 60 * 24)) + 1;
             
            // document.write('<div id="dday">D+<span style="font-size:33px;">' + gap + '</span></div>');
-            var b = (gap/100)-Math.floor(gap/100);
-            
-            
+            var b = (gap/100)-Math.floor(gap/100);    
             var a = Math.floor(gap/100);
             if(b<1){
             //   $("#tab2").appendto='<img src="/syimage/a'+a+'.jpg" width="500" height="600"/>';
             }
          }
-          </script>
+         function callContent3(url){ 
+        	 $.ajax({    		
+     	        type: "post", 	
+     	        url : url,
+     	        success: test,	// 페이지요청 성공시 실행 함수
+     	        error: whenError	//페이지요청 실패시 실행함수
+          	});    	 
+        }
+
+        function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+            $(".modal-bodyy3").html(aaa);	//id가 ajaxReturn인 부분에 넣어라
+        }    
+        function whenError(){
+            alert("Error");
+        }
+        
+ </script>
+    
 <style>
 .tbl_area{width:500px;}
    li{list-style:none;}
@@ -92,7 +106,7 @@
       </c:if>
    </div>
    <center>
-      <a href="#" onclick="callAjax2('diary.nhn?couplename=${couplename }')" >이미지 변경</a>
+      <a href="#" onclick="callContent3('diary.nhn?couplename=${couplename }')" id="test" data-toggle="modal" data-target="#myModaly3" >이미지 변경</a>
    </center>
   
 </div>	
@@ -106,7 +120,7 @@
       <div class="sub_photo">
           <div class="title_area">
           
-             <a href="#" onclick="callAjax2('ex.nhn?couplename=${couplename }')" style="margin-left:80%;">게시물 작성</a><br/>
+             <a href="#" onclick="callContent3('ex.nhn?couplename=${couplename }')" id="test" data-toggle="modal" data-target="#myModaly3" style="margin-left:80%;">게시물 작성</a><br/>
              <form name="frmSet">
              <input type="hidden" id="aa" name="listMore" value="${listMore}"/>
             </form>
@@ -121,8 +135,8 @@
                   <center>${diary.content}</center>
                   </li>
                   <li style="margin-left:42%;">
-                     <button onClick="callAjax2('DiaryModify.nhn?num=${diary.num}&couplename=${couplename}')">수정</button>
-                     <button onClick="callAjax2('DiaryDelete.nhn?num=${diary.num}&couplename=${couplename}')">삭제</button>
+                     <button onClick="callContent3('DiaryModify.nhn?num=${diary.num}&couplename=${couplename}')" data-toggle="modal" data-target="#myModaly3">수정</button>
+                     <button onClick="location.href='DiaryDelete.nhn?num=${diary.num}&couplename=${couplename}'">삭제</button>
                   </li>
             
                </ul>
@@ -174,5 +188,25 @@
       </div>  
    </div>
 </div>
-
 </div>
+<div class="modal fade" id="myModaly3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+	  <div class="modal-dialog" style="width:850px">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		<h4 class="modal-title" id="myModalLabel"></h4>
+	      </div>
+	      <div class="modal-bodyy3">		   
+	      </div>
+	      <div class="modal-footer">
+			<center><button type="button" class="btn btn-default" data-dismiss="modal" >닫기</button></center>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://googledrive.com/host/0B-QKv6rUoIcGREtrRTljTlQ3OTg"></script><!-- ie10-viewport-bug-workaround.js -->
+<script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script><!-- holder.js -->	

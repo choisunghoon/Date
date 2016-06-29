@@ -232,6 +232,8 @@ public class LoginBean {
 	
 	@RequestMapping("/event.nhn") //이벤트 페이지 호출될때 실행되는 함수
 	public String event(HttpSession session,HttpServletRequest request) throws Exception{
+		String check = request.getParameter("check");
+		request.setAttribute("check",check);
 		String id = (String)session.getAttribute("id");
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
 		if(nc==1){
@@ -264,7 +266,6 @@ public class LoginBean {
 			else
 				request.setAttribute("couple1", "end");
 			}
-
 		return "/sy0526/event.jsp";
 	}
 	

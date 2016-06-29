@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form action="DiaryModifyPro.nhn?num=${ddb.num}&couplename=${couplename}" method="post" enctype="multipart/form-data" >
+<form action="DiaryModifyPro.nhn?num=${ddb.num}&couplename=${couplename}" method="post" enctype="multipart/form-data" style="margin-left:25px;margin-top:10px;">
 	<table border="1" colspadding="0" cellspacing="0">
 		<tr>	
 			<td>
@@ -101,9 +101,9 @@ $("#choose").change(function (e) {
 </script>
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
-
+<div style="margin-left:375px; margin-top:10px;">
 <input type="submit" value="수정" />
-<input type="button" value="취소" onClick="javascript:location.href='couple.nhn'" />
+</div>
 </form>
 
 </body>

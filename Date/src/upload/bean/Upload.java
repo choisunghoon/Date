@@ -27,7 +27,6 @@ public class Upload {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
-		System.out.println("ex.nhn :" + couplename);
 		request.setAttribute("couplename", couplename);
 		return "/sy0525/ex.jsp";
 	}
@@ -43,7 +42,6 @@ public class Upload {
 		String id = (String)session.getAttribute("id");
 		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
 		String RealPath = request.getRealPath("\\syimage");
-		
 		if(w <= wwd && h <= hhd){
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
@@ -63,8 +61,6 @@ public class Upload {
 		int point2 = point + 5;
 		cdb.setPoint(point2);
 		sqlMap.update("photopoint", cdb);
-		
-		System.out.println("¼º°ø");
 		request.setAttribute("orgName", orgName);
 		check=1;
 		}
@@ -77,8 +73,10 @@ public class Upload {
 	}
 	
 	@RequestMapping("/diary.nhn")
-	public String diary(HttpServletRequest request){
-		String couplename= request.getParameter("couplename");
+	public String diary(HttpSession session,HttpServletRequest request){
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
 		request.setAttribute("couplename", couplename);
 		return "/sy0525/diary.jsp";
 	}
@@ -107,9 +105,13 @@ public class Upload {
 	}
 	
 	@RequestMapping("/DiaryModify.nhn")
-	public String DiaryModify(HttpServletRequest request,DiaryDataBean ddb){
-		String couplename = request.getParameter("couplename");
+	public String DiaryModify(HttpSession session,HttpServletRequest request,DiaryDataBean ddb){
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
 		int num = Integer.parseInt(request.getParameter("num"));
+		System.out.println(num);
+		System.out.println(couplename);
 		ddb.setCouplename(couplename);
 		ddb.setNum(num);
 		ddb = (DiaryDataBean)sqlMap.queryForObject("modifyDiary", ddb);
@@ -119,9 +121,10 @@ public class Upload {
 	}
 	
 	@RequestMapping("/DiaryModifyPro.nhn")
-	public String DiaryModifyPro(MultipartHttpServletRequest request,DiaryDataBean ddb)throws Exception{
-		String couplename = request.getParameter("couplename");
-		
+	public String DiaryModifyPro(HttpSession session,MultipartHttpServletRequest request,DiaryDataBean ddb)throws Exception{
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
 		String RealPath = request.getRealPath("\\syimage");
 		int num = Integer.parseInt(request.getParameter("num"));
 		String pool = request.getParameter("pool");
@@ -129,9 +132,7 @@ public class Upload {
 		String orgName = file.getOriginalFilename();
 		ddb.setNum(num);
 		ddb.setCouplename(couplename);
-		
 		ddb.setPool(pool);
-		System.out.println(orgName);
 		if(!file.isEmpty()){
 			ddb.setImg(orgName);
 			File copy = new File(RealPath+"/"+orgName);
@@ -145,8 +146,10 @@ public class Upload {
 	}
 	
 	@RequestMapping("/DiaryDelete.nhn")
-	public String DiaryDelete(HttpServletRequest request,DiaryDataBean ddb){
-		String couplename = request.getParameter("couplename");
+	public String DiaryDelete(HttpSession session,HttpServletRequest request,DiaryDataBean ddb){
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
 		int num = Integer.parseInt(request.getParameter("num"));
 		request.setAttribute("num", num);
 		request.setAttribute("couplename", couplename);
@@ -154,10 +157,12 @@ public class Upload {
 	}
 	
 	@RequestMapping("/DiaryDeletePro.nhn")
-	public String DiaryDeletePro(HttpServletRequest request,DiaryDataBean ddb){
+	public String DiaryDeletePro(HttpSession session,HttpServletRequest request,DiaryDataBean ddb){
 		int num = Integer.parseInt(request.getParameter("num"));
 		request.setAttribute("num", num);
-		String couplename = request.getParameter("couplename");
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
 		ddb.setCouplename(couplename);
 		ddb.setNum(num);
 		sqlMap.delete("deleteDiary", ddb);
@@ -165,9 +170,12 @@ public class Upload {
 	}
 	
 	@RequestMapping("/updateImage.nhn")
-	public String updateImage(MultipartHttpServletRequest request,CoupleDataBean cdb)throws Exception{
+	public String updateImage(HttpSession session, MultipartHttpServletRequest request,CoupleDataBean cdb)throws Exception{
 
-		String couplename = request.getParameter("couplename");
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
+
 		String RealPath = request.getRealPath("\\syimage");
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
@@ -275,8 +283,8 @@ public class Upload {
 	
 	@RequestMapping("/statepro.nhn")
 	public String statepro(HttpServletRequest request,PhotoDataBean pdb){
-		
 		String couplename1 = request.getParameter("couplename1");
+		System.out.println("asdasdas");
 		String regdate1 = request.getParameter("regdate1");
 		int state = Integer.parseInt(request.getParameter("states"));
 		String states=null;
@@ -322,6 +330,20 @@ public class Upload {
 	@RequestMapping("/adminpage.nhn")
 	public String adminpage(){
 		return "/sy0526/AdminPage.jsp";
+	}
+	
+	@RequestMapping("/userPhoto.nhn")
+	public String userPhoto(HttpSession session, HttpServletRequest request,DiaryDataBean ddb){
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
+		int num = Integer.parseInt(request.getParameter("num"));
+		ddb.setCouplename(couplename);
+		ddb.setNum(num);
+		ddb = (DiaryDataBean)sqlMap.queryForObject("modifyDiary",ddb);
+		request.setAttribute("ddb", ddb);
+		
+		return "/sy0610/userPhoto.jsp";
 	}
 
 }

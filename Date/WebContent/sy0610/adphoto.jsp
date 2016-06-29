@@ -3,27 +3,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript">
-    function callAjax(nhn,regdate,couplename){
-        $.ajax({
-	        type: "post",
-	        url : nhn,
+<script type="text/javascript">    
+    function callContent7(url,regdate,couplename){ 
+   	 $.ajax({    		
+	        type: "post", 	
+	        url : url,
 	        data : {
 	        	regdate1 : regdate,
 	        	couplename1 : couplename
-	        },		
-	        success: refresh,	// 페이지요청 성공시 실행 함수
-	        error: whenError2	//페이지요청 실패시 실행함수
-     	});
-    }
-    function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-        $("#check").html(aaa);
-        
-    }
-    function whenError2(){
-        alert("Error");
-    }
-    
+	        },	
+	        success: test,	// 페이지요청 성공시 실행 함수
+	        error: whenError	//페이지요청 실패시 실행함수
+     	});    	 
+   }
+
+   function test(aaab){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+       $(".modal-bodyy7").html(aaab);	//id가 ajaxReturn인 부분에 넣어라
+   }    
+   function whenError(){
+       alert("Error");
+   }
     
 </script>
 <script language="JavaScript">
@@ -95,7 +94,7 @@
 	</tr>
 	<c:forEach items="${photo}" var="photo">
 		<tr>
-			<td><a href="#" onclick="callAjax('photocontent.nhn','${photo.regdate }','${photo.couplename }')">${photo.couplename }</a></td>
+			<td><a href="#" onclick="callContent7('photocontent.nhn','${photo.regdate }','${photo.couplename }')" data-toggle="modal" data-target="#myModaly7">${photo.couplename }</a></td>
 			<td><fmt:formatDate value="${photo.regdate }" pattern="YYYY-MM-dd" /></td>
 			<td><a href="#" onclick="openState('${photo.regdate }','${photo.couplename }')">${photo.state}</a></td>
 		</tr>
@@ -103,3 +102,24 @@
 </table>
 </form>
 </div>
+<div class="modal fade" id="myModaly7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+	  <div class="modal-dialog" style="width:850px">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		<h4 class="modal-title" id="myModalLabel"></h4>
+	      </div>
+	      <div class="modal-bodyy7">		   
+	      </div>
+	      <div class="modal-footer">
+			<center><button type="button" class="btn btn-default" data-dismiss="modal" >닫기</button></center>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://googledrive.com/host/0B-QKv6rUoIcGREtrRTljTlQ3OTg"></script><!-- ie10-viewport-bug-workaround.js -->
+<script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script><!-- holder.js -->	

@@ -13,9 +13,11 @@
 	}
 </script>
 
-<form name="rg" id="rg" method="post" enctype="multipart/form-data" onsubmit="return checkfile();">
+<form name="rg" id="rg" action = "updateImage.nhn" method="post" enctype="multipart/form-data" onsubmit="return checkfile();" style="margin-left:80px;">
+<center>
 <div id="uploadPreview"></div>
-<input type="file" name="save" id="choose"/>
+</center>
+<input type="file" name="save" id="choose" style="margin-left:305px;"/>
 
 <script type="text/javascript">
 function readImage(file) {
@@ -76,6 +78,7 @@ $("#choose").change(function (e) {
 
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
-<button onClick="callrefresh('updateImage.nhn?couplename=${couplename }')">등록</button>
-<input type="button" value="취소" onClick="javascript:location.href='couple.nhn'"/>
+<div style="margin-left:320px;">
+<input type="submit" value="등록"/>
+</div>
 </form>

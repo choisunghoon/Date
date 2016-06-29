@@ -24,6 +24,22 @@
     function err(){
         alert("Error");
     }
+    
+    function callContent4(url){ 
+   	 $.ajax({    		
+	        type: "post", 	
+	        url : url,
+	        success: test,	// 페이지요청 성공시 실행 함수
+	        error: whenError	//페이지요청 실패시 실행함수
+     	});    	 
+   }
+
+   function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+       $(".modal-bodyy4").html(aaa);	//id가 ajaxReturn인 부분에 넣어라
+   }    
+   function whenError(){
+       alert("Error");
+   }
     </script>
     
 <script type="text/javascript">
@@ -43,9 +59,7 @@
 				return false;
 			}
 			else{
-				var couplename = '${couplename}';	
-				
-				callrefresh('adminphoto.nhn?couplename='+couplename);
+				callrefresh('adminphoto.nhn');
 			}
 			
 		}
@@ -68,10 +82,9 @@
                		<li>
                			
                			<input type="checkbox" name="photocheck" value="${diary.num }" style="width:100px;">
-				        <img src="syimage/${diary.img }" style="width:400px; height:400px;	">
-				        ${diary.subject}
-				        <fmt:formatDate value="${diary.regdate }" pattern="YYYY-MM-dd" />
-                  		
+				        <a href="#" onclick="callContent4('userPhoto.nhn?num=${diary.num}')" id="test" data-toggle="modal" data-target="#myModaly4">
+				        <img src="syimage/${diary.img }" >
+				        </a>
                   </li>
 			</ul>
 		</c:forEach>
@@ -113,3 +126,24 @@
               }
 	</script>
 </form>
+<div class="modal fade" id="myModaly4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+	  <div class="modal-dialog" style="width:850px">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		<h4 class="modal-title" id="myModalLabel"></h4>
+	      </div>
+	      <div class="modal-bodyy4">		   
+	      </div>
+	      <div class="modal-footer">
+			<center><button type="button" class="btn btn-default" data-dismiss="modal" >닫기</button></center>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://googledrive.com/host/0B-QKv6rUoIcGREtrRTljTlQ3OTg"></script><!-- ie10-viewport-bug-workaround.js -->
+<script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script><!-- holder.js -->	

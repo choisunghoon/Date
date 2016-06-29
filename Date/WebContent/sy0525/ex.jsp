@@ -73,8 +73,8 @@ $("#choose").change(function (e) {
 </head>
 <body>
 
-<form id="write" name="write" method="post" enctype="multipart/form-data" >
-	<table border="1" colspadding="0" cellspacing="0">
+<form id="write" action="upload2.nhn" name="write" method="post" enctype="multipart/form-data" style="margin-left:180px;margin-top:10px;">
+	<table border="1" colspadding="0" cellspacing="0" >
 		<tr>	
 			<td>
 				제목 
@@ -113,10 +113,10 @@ $("#choose").change(function (e) {
 
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
-
-<button onclick="callrefresh('${couplename }')">등록</button>
+<div style="margin-left:190px; margin-top:10px;">
+<input type="submit" value="등록" />
 <input type="reset" value="다시작성"/>
-<input type="button" value="취소" onClick="javascript:location.href='couple.nhn'" />
+</div>
 </form>
 
 </body>

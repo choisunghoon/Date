@@ -2,4 +2,5 @@
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
     	alert("포토북이 신청되었습니다!");
+    	window.location.href="event.nhn?check=1";
 </script>
