@@ -13,6 +13,10 @@
 	<select id="SelectDiaryCommentAll" resultClass="share.commentDataBean">
 		select * from dc_sharydiary_comment where board_num=#num# order by num desc
 	</select>
+	
+	<select id="commentCount" resultClass="int" parameterClass="share.commentDataBean">
+		select count(*) from dc_sharydiary_comment where board_num = #num#
+	</select>
 
 	<insert id="SelectDiaryCommentUp" parameterClass="share.commentDataBean">
 		insert into dc_sharydiary_comment(num,id,diarycomment,board_num,regdate) values (dc_sharydiary_comment_seq.nextval,#id#,#diarycomment#,#board_num#,#regdate#) 

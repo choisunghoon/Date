@@ -57,9 +57,14 @@ public class shareBean {
 		
 		List commentList = new ArrayList();
 		commentList = sqlMap.queryForList("SelectDiaryCommentAll",num);
-
+		int totalcount = (Integer)sqlMap.queryForObject("commentCount", num);
+		int listMore = 3;
+		System.out.println(totalcount);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("commentList",commentList);
+		mv.addObject("totalcount",totalcount);
+		mv.addObject("listMore",listMore);
 		mv.setViewName("/yh/diaryComment.jsp");
 		return mv;
 	}

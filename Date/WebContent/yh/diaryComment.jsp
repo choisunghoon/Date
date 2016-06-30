@@ -23,30 +23,30 @@
 	</table>
 	
 	<table width="500" border="1" cellspacing="0" cellpadding="0" >
-
+	 <input type="hidden" id="aa" name="listMore" value="${listMore}"/>
 	<tr align="center">
 		<td width="100"> id </td> 
 		<td width="300"> 내용 </td> 
 		<td width="100"> 작성시간 </td>
 	</tr>
-	
+	<c:set var="i" value="1"/>
 	<c:forEach var="commentList" items="${commentList}">
+	<ul class="tbl_area" id="dispRow${i }" style="margin-left:22%;display:none">
 	<tr align="center">
 		<td width="100">${commentList.id}</td>
 		<td width="300">&nbsp;${commentList.diarycomment}</td>
 		<td width="100">${commentList.regdate}</td>
 	</tr>
+	</c:forEach>	
 	
-	</c:forEach>
-
-	<c:if test="${commentList.size()} <= 0">
+	<c:if test="${totalcount} == 0">
 	<tr align="center">
 		<td colspan="5" > 등록된 게시글이 없습니다</td>
 	</tr>
 	</c:if>
+	
 	</tr>
 </table> 
-<br/>  
 </form>
 </body>
 </html>
