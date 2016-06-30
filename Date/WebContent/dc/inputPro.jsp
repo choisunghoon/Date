@@ -3,4 +3,4 @@
 
 
 
-<% response.sendRedirect("main22.nhn");%>
+<% response.sendRedirect("main.nhn");%>

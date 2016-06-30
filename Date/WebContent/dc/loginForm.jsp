@@ -37,11 +37,11 @@
   <TR height="30">
     <TD width="110"  align=center>아이디</TD>
     <TD width="150"  align=center>
-       <INPUT type="text" name="id" size="15" maxlength="12"></TD></TR>
+       <INPUT type="text" name="id" size="15" maxlength="20"></TD></TR>
   <TR height="30">
     <TD width="110"  align=center>비밀번호</TD>
     <TD width="150"  align=center>
-      <INPUT type=password name="pw"  size="15" maxlength="12"></TD></TR>
+      <INPUT type=password name="pw"  size="15" maxlength="20"></TD></TR>
   <TR height="30">
     <TD colspan="2" align="middle"  >
       <input type="hidden" name="hidden" id="hidden" value="nomal">
