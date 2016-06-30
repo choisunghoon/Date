@@ -96,6 +96,7 @@ public class Upload {
 		cdb = (CoupleDataBean)sqlMap.queryForObject("diaryImage", cdb);
 		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
 		
+		
 		request.setAttribute("couplename", couplename);
 		request.setAttribute("listMore", listMore);
 		request.setAttribute("totalCnt", totalCnt);

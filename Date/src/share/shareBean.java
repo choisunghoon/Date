@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import dateplan.bean.DTO;
+import upload.bean.CoupleDataBean;
 import upload.bean.DiaryDataBean;
 
 @Controller
@@ -47,76 +48,30 @@ public class shareBean {
 		
 		return "/yh/diaryComment.jsp";
 	}
-	
 	@RequestMapping("dairyComment.nhn")
-	public ModelAndView dairyComment(HttpServletRequest request ,HttpSession session,int num){
-
+	public String dairyComment(HttpSession session,HttpServletRequest request,int num){
+		List commentList =null;
+		int listMore = 3;
+		session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		
-		int currentPage;
-		int totalCount = 0;
-		int blockCount = 10;
-		int blockPage = 5;
-		if(request.getParameter("currentPage")!=null){
-			currentPage =Integer.parseInt(request.getParameter("currentPage"));
-		}else{
-			currentPage =1;
-		}
-		String pagingHtml;
-		pagingDTO page;
-		DiaryDataBean dto = new DiaryDataBean();
-		
-		List commentList = new ArrayList();
+		commentDataBean dto = new commentDataBean();
 		commentList = sqlMap.queryForList("SelectDiaryCommentAll",num);
-		totalCount = commentList.size();
-		page = new pagingDTO(currentPage,totalCount,blockCount,blockPage);
+		int totalCount = (Integer)sqlMap.queryForObject("commentCount", num);
 		
-		pagingHtml = page.getPagingHtml().toString();
-		int lastCount = totalCount;
-		if (page.getEndCount() <totalCount)
-			lastCount = page.getEndCount() +1;
-		commentList = commentList.subList(page.getStartCount(),lastCount);
-		
-		System.out.println("´ñ±Û¼öÈ®ÀÎ"+" " +totalCount);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("commentList",commentList);
-		mv.addObject("currentPage",currentPage);
-		mv.addObject("pagingHtml",pagingHtml);
-		mv.setViewName("/yh/diaryComment.jsp");
-		return mv;
+		System.out.println(totalCount);
+		request.setAttribute("listMore", listMore);
+		request.setAttribute("totalcount", totalCount);
+		request.setAttribute("commentList", commentList);
+		return "/yh/diaryComment.jsp";
 	}
 
 	@RequestMapping("shareDiaryBoard.nhn")
 	public ModelAndView shareDiaryBoard(HttpServletRequest request ,HttpSession session){
 
-		int currentPage;
-		int totalCount = 0;
-		int blockCount = 10;
-		int blockPage = 5;
-		if(request.getParameter("currentPage")!=null){
-			currentPage =Integer.parseInt(request.getParameter("currentPage"));
-		}else{
-			currentPage =1;
-		}
-		String pagingHtml;
-		pagingDTO page;
-		commentDataBean dto = new commentDataBean();
-		
 		List list = new ArrayList();
 		list = sqlMap.queryForList("shereSelectDiaryBoardAll",null);
-		totalCount = list.size();
-		page = new pagingDTO(currentPage,totalCount,blockCount,blockPage);
-		
-		pagingHtml = page.getPagingHtml().toString();
-		int lastCount = totalCount;
-		if (page.getEndCount() <totalCount)
-			lastCount = page.getEndCount() +1;
-		list = list.subList(page.getStartCount(),lastCount);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list",list);
-		mv.addObject("currentPage",currentPage);
-		mv.addObject("pagingHtml",pagingHtml);
 		mv.setViewName("/yh/shareDiaryBoardList.jsp");
 		return mv;
 	}
