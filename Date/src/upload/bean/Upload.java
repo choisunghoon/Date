@@ -361,6 +361,7 @@ public class Upload {
 		}
 		ddb.setPool(pool);
 		sqlMap.insert("poolshare", ddb);
+		request.setAttribute("check", check);
 		return "/sy0525/diarysharing.jsp";
 	}
 

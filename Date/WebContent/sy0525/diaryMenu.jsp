@@ -137,7 +137,7 @@
                   <li style="margin-left:42%;">
                      <button onClick="callContent3('DiaryModify.nhn?num=${diary.num}&couplename=${couplename}')" data-toggle="modal" data-target="#myModaly3">수정</button>
                      <button onClick="location.href='DiaryDelete.nhn?num=${diary.num}&couplename=${couplename}'">삭제</button>
-                     <c:if test="${diary.pool eq '0' }">
+                     <c:if test="${diary.pool ne '1' }">
                      	<button onClick="location.href='diarysharing.nhn?num=${diary.num}&check=1'">공유하기</button>
                   	 </c:if>
                   	 <c:if test="${diary.pool eq '1' }">
