@@ -776,10 +776,9 @@ public class Projectbean {
 		String wc = (String)list.get(0);
 		//System.out.println(list.size());
 		System.out.println(wc);		
-		if(list.size()!=1){
-			System.out.println("Aaaefdfasdfdsfasfd");
-			for(int i=1; i<list.size(); i++){
-				wc=wc+","+(String)list.get(i);
+		if (list.size() != 1) {
+			for (int i = 1; i < list.size(); i++) {
+				wc = wc + "," + (String) list.get(i);
 			}
 		}
 		/*for(int i=0; i<wcList.length; i++){
