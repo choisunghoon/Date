@@ -106,7 +106,7 @@
       </c:if>
    </div>
    <center>
-      <a href="#" onclick="callContent3('diary.nhn?couplename=${couplename }')" id="test" data-toggle="modal" data-target="#myModaly3" >이미지 변경</a>
+      <a href="#" onclick="callContent3('diary.nhn?couplename=${couplename }')" id="test" data-toggle="modal" data-target="#myModaly3"><img src="button/z25.png" alt="" style="margin-top:5px;"></a>
    </center>
   
 </div>	
@@ -120,7 +120,7 @@
       <div class="sub_photo">
           <div class="title_area">
           
-             <a href="#" onclick="callContent3('ex.nhn?couplename=${couplename }')" id="test" data-toggle="modal" data-target="#myModaly3" style="margin-left:80%;">게시물 작성</a><br/>
+             <a href="#" onclick="callContent3('ex.nhn?couplename=${couplename }')" id="test" data-toggle="modal" data-target="#myModaly3" style="margin-left:80%; margin-top:10px;"><img src="button/z26.png" alt="" style="margin-top:5px;"></a><br/>
              <form name="frmSet">
              <input type="hidden" id="aa" name="listMore" value="${listMore}"/>
             </form>
@@ -134,9 +134,9 @@
                   <li>
                   <center>${diary.content}</center>
                   </li>
-                  <li style="margin-left:42%;">
-                     <button onClick="callContent3('DiaryModify.nhn?num=${diary.num}&couplename=${couplename}')" data-toggle="modal" data-target="#myModaly3">수정</button>
-                     <button onClick="location.href='DiaryDelete.nhn?num=${diary.num}&couplename=${couplename}'">삭제</button>
+                  <li style="margin-left:29%;">
+                     <a href="#" onClick="callContent3('DiaryModify.nhn?num=${diary.num}&couplename=${couplename}')" data-toggle="modal" data-target="#myModaly3"><img alt="" src="button/z2.png"></a>
+                     <a href="#" onClick="location.href='DiaryDelete.nhn?num=${diary.num}&couplename=${couplename}'"><img alt="" src="button/z3.png"></a>
                      <c:if test="${diary.pool ne '1' }">
                      	<a href="#" onClick="location.href='diarysharing.nhn?num=${diary.num}&check=1'"><img alt="" src="button/z39.png"></a>
                   	 </c:if>

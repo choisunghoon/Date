@@ -78,7 +78,7 @@ $("#choose").change(function (e) {
 
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
-<div style="margin-left:320px;">
-<input type="submit" value="등록"/>
+<div style="margin-left:310px;">
+<input type="image" name="submit" value="submit" src="button/z5.png" />
 </div>
 </form>
