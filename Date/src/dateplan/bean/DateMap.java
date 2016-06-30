@@ -21,6 +21,18 @@ public class DateMap {
 	public String dateMap(HttpServletRequest request) throws Exception{
 				
 		return "/dateplan/dateMap.jsp";
+	}@RequestMapping("datePostscript.nhn")
+	public String datePostscript(HttpServletRequest request,DTO dto) throws Exception{
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("selectcpname", id);
+		List cosList = new ArrayList();
+		
+		cosList = sqlMap.queryForList("selectcoscop", couplename);
+		
+		
+		request.setAttribute("cosList", cosList);
+		return "/dateplan/datePostscript.jsp";
 	}
 	@RequestMapping("index.nhn")
 	public String dateBoard(HttpServletRequest request) throws Exception{
