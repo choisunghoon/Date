@@ -27,8 +27,9 @@ public class DateMap {
 		int num = Integer.parseInt(request.getParameter("num"));
 		
 		dto= (DTO)sqlMap.queryForObject("selectcosnum",num);
-		
-		
+		String[] pid = dto.getPlaceid().split(",");
+		int pidsize = pid.length;
+		request.setAttribute("pidsize", pidsize);
 		request.setAttribute("dto", dto);
 		request.setAttribute("num",num);
 				

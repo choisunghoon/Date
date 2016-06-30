@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    <!DOCTYPE html>
 <html>
 <head>
@@ -84,6 +84,63 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 </style>
+
+<script type="text/javascript">
+var pids = '${pidsize}'
+	alert(pids);
+function readImage(file,j) {
+	$('#imgsel'+j).empty();
+    var reader = new FileReader();
+    var image  = new Image();
+    reader.readAsDataURL(file);  
+    reader.onload = function(_file) {
+        image.src    = _file.target.result;              // url.createObjectURL(file);
+        image.onload = function() {
+       
+            var w = this.width,
+                h = this.height,
+                n = file.name
+                var wwd=300;  
+                var hhd=300;  
+           
+				
+              	$('#imgsel'+j).append('<img width="300" height="300" src="'+ this.src +'"> '+'<br>');
+			  
+        };
+        image.onerror= function() {
+            alert('Invalid file type: '+ file.type);
+        };      
+    };
+}
+
+
+$("#choose1").change(function (e) {
+    if(this.disabled) return alert('File upload not supported!');
+    var F = this.files;
+    if(F && F[0]) for(var i=0; i<F.length; i++) readImage( F[i],1 );
+});
+$("#choose2").change(function (e) {
+    if(this.disabled) return alert('File upload not supported!');
+    var F = this.files;
+    if(F && F[0]) for(var i=0; i<F.length; i++) readImage( F[i],2 );
+});
+$("#choose3").change(function (e) {
+    if(this.disabled) return alert('File upload not supported!');
+    var F = this.files;
+    if(F && F[0]) for(var i=0; i<F.length; i++) readImage( F[i],3 );
+});
+$("#choose4").change(function (e) {
+    if(this.disabled) return alert('File upload not supported!');
+    var F = this.files;
+    if(F && F[0]) for(var i=0; i<F.length; i++) readImage( F[i],4 );
+});
+$("#choose5").change(function (e) {
+    if(this.disabled) return alert('File upload not supported!');
+    var F = this.files;
+    if(F && F[0]) for(var i=0; i<F.length; i++) readImage( F[i],5 );
+});1`
+
+</script>
 </head>
 <body>
 
@@ -841,31 +898,39 @@ function removeAllChildNods(el) {
 </script>
 <form name="datePlanForm" action="cosUpdate.nhn" method="post">
 <input type="hidden" value="up" name="btcheck" />
-<div id="img" class="placeinfov_wrap">
+<div>
+	<div id="img" class="placeinfov_wrap" style="margin-bottom: 20px">
+	
+	</div>
+	
 	
 </div>
 <input type="hidden" value="${num}" name="num" />
-<a href="#" onclick="subForm()"><img src="button/z34.png" style="margin-top: 2.1%"></a> 
-
-<div id="postscript" style="margin-top:20px">
-	<div>
+<a href="#" onclick="subForm()"><img src="button/z34.png" style="margin-top: 2.1%"></a>
+<br /> 
+<div id="postscript" style="margin-top:70px">
 		<div>
-			<div id="sel1" style="float:left;">
-				 
-				<div id="imgsel" style="float:left;">
-					<img src="#" width="300px" height="300px" />
-				</div>
-				
-				<div id="content1" style="float:left;">
-					<textarea rows="15" cols="100"></textarea>
-				</div>
+			<c:forEach var="i" begin="1" end="${pidsize}" step="1">
 				<div>
-					<input type="file" />
+					<div id="sel${i}" style="float:left;">
+						 
+						<div id="imgsel${i}" style="width:300;height:300;float:left;">
+							
+						</div>
+						
+						<div id="content${i}" style="float:left;">
+							<textarea rows="15" cols="100"></textarea>
+						</div>
+						
+						<div>
+							<input type="file" name="save" id="choose${i}" />
+						</div>
+					</div>
 				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
-</div>
+
 </form>
 
 </body>
