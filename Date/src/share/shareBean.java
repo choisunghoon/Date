@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import dateplan.bean.DTO;
+import upload.bean.CoupleDataBean;
 import upload.bean.DiaryDataBean;
 
 @Controller
@@ -47,26 +48,21 @@ public class shareBean {
 		
 		return "/yh/diaryComment.jsp";
 	}
-	
 	@RequestMapping("dairyComment.nhn")
-	public ModelAndView dairyComment(HttpServletRequest request ,HttpSession session,int num){
-
-		String id = (String)session.getAttribute("id");
-
-		DiaryDataBean dto = new DiaryDataBean();
-		
-		List commentList = new ArrayList();
-		commentList = sqlMap.queryForList("SelectDiaryCommentAll",num);
-		int totalcount = (Integer)sqlMap.queryForObject("commentCount", num);
+	public String dairyComment(HttpSession session,HttpServletRequest request,int num){
+		List commentList =null;
 		int listMore = 3;
-		System.out.println(totalcount);
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		commentDataBean dto = new commentDataBean();
+		commentList = sqlMap.queryForList("SelectDiaryCommentAll",num);
+		int totalCount = (Integer)sqlMap.queryForObject("commentCount", num);
 		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("commentList",commentList);
-		mv.addObject("totalcount",totalcount);
-		mv.addObject("listMore",listMore);
-		mv.setViewName("/yh/diaryComment.jsp");
-		return mv;
+		System.out.println(totalCount);
+		request.setAttribute("listMore", listMore);
+		request.setAttribute("totalcount", totalCount);
+		request.setAttribute("commentList", commentList);
+		return "/yh/diaryComment.jsp";
 	}
 
 	@RequestMapping("shareDiaryBoard.nhn")
