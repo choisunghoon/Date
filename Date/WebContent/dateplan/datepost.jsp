@@ -847,8 +847,24 @@ function removeAllChildNods(el) {
 <input type="hidden" value="${num}" name="num" />
 <a href="#" onclick="subForm()"><img src="button/z34.png" style="margin-top: 2.1%"></a> 
 
-<div id="postscript">
-	
+<div id="postscript" style="margin-top:20px">
+	<div>
+		<div>
+			<div id="sel1" style="float:left;">
+				 
+				<div id="imgsel" style="float:left;">
+					<img src="#" width="300px" height="300px" />
+				</div>
+				
+				<div id="content1" style="float:left;">
+					<textarea rows="15" cols="100"></textarea>
+				</div>
+				<div>
+					<input type="file" />
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 </form>
 

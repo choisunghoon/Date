@@ -40,6 +40,8 @@
 			<a href="#" onclick="callAjax2('DateMap.nhn')"><img src="syimage/mm1.png" onmouseover='this.src="syimage/mm2.png"' onmouseout='this.src="syimage/mm1.png"' /></a>
 			<br />
 			<a href="#" onclick="callAjax2('datecos.nhn')"><img src="syimage/mm5.png" onmouseover='this.src="syimage/mm6.png"' onmouseout='this.src="syimage/mm5.png"' /></a>
+			<br />
+			<a href="#" onclick="callAjax2('datePostscript.nhn')"><img src="syimage/mm33.png" onmouseover='this.src="syimage/mm34.png"' onmouseout='this.src="syimage/mm33.png"' /></a>
 		</div>
 		<div style="float:left;width:2%">&nbsp;&nbsp;&nbsp;</div>
 		<div id="subMain" style="float:left;width:86%">		

@@ -38,7 +38,7 @@
 			data : {
 				num : num
 			},
-			url : "datePlan.nhn",
+			url : "datepost.nhn",
 			success : cossuc,
 			error : coserr
 		})

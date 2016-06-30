@@ -21,7 +21,20 @@ public class DateMap {
 	public String dateMap(HttpServletRequest request) throws Exception{
 				
 		return "/dateplan/dateMap.jsp";
-	}@RequestMapping("datePostscript.nhn")
+	}
+	@RequestMapping("datepost.nhn")
+	public String datepost(HttpServletRequest request,DTO dto) throws Exception{
+		int num = Integer.parseInt(request.getParameter("num"));
+		
+		dto= (DTO)sqlMap.queryForObject("selectcosnum",num);
+		
+		
+		request.setAttribute("dto", dto);
+		request.setAttribute("num",num);
+				
+		return "/dateplan/datepost.jsp";
+	}
+	@RequestMapping("datePostscript.nhn")
 	public String datePostscript(HttpServletRequest request,DTO dto) throws Exception{
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
