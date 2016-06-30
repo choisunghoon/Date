@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
+
 	<sql id="getEventList">
 		select enumber, ename, eimg, sdate, edate, wcouples, regdate, wnumber, w, r from 
 		(select enumber, ename, eimg, sdate, edate, wcouples, regdate, wnumber, w, rownum r from 
@@ -67,13 +68,21 @@
 		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
 	</select>
 	
-	<select id="eventAppAdmin" resultClass="project.bean.EventDataBean" parameterClass="int">
-		select * from event where enumber=#enumber#
+	<select id="eventAppAdmin" resultClass="String" parameterClass="int">
+		select wcouples from event where enumber=#enumber#
 	</select>
 	
 	<select id="eventAppAll" resultClass="project.bean.EventDataBean" parameterClass="int">
 		select * from app_event where enumber=#enumber#
 	</select>
+	
+	<select id="selectid" parameterClass="ch11.logon.CoupleDataBean" resultClass="ch11.logon.CoupleDataBean">
+		select * from dc_couple where coupleName=#coupleName#
+	</select>
+	
+	<insert id="insertA" parameterClass="project.bean.EventDataBean">
+		insert into event_a (anumber, enumber, couplename, regdate) values (event_a_seq.nextval, #enumber#, #couplename#, sysdate)
+	</insert>
 	
 	<select id="eventAppCount" resultClass="int" >
 		select count(*) from app_event where enumber=#enumber#

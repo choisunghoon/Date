@@ -22,10 +22,23 @@ public class EventDataBean {
 	private String apppw;
 	private int wnumber;
 	private int w;
+	private int anumber;
+	private int checknum;
 
-	
 	public int getW() {
 		return w;
+	}
+	public int getAnumber() {
+		return anumber;
+	}
+	public void setAnumber(int anumber) {
+		this.anumber = anumber;
+	}
+	public int getChecknum() {
+		return checknum;
+	}
+	public void setChecknum(int checknum) {
+		this.checknum = checknum;
 	}
 	public void setW(int w) {
 		this.w = w;

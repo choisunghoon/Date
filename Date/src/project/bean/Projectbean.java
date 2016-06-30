@@ -1,28 +1,26 @@
 package project.bean;
 
 import java.io.File;
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
+
+import ch11.logon.CoupleDataBean;
+
+
 
 @Controller
 public class Projectbean {
@@ -475,7 +473,7 @@ public class Projectbean {
 	// 여기까지 git
 
 	@RequestMapping("random.nhn")
-	public String random(HttpServletRequest request) {
+	public String random(HttpServletRequest request,CoupleDataBean cdb) {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
 		int wcount = Integer.parseInt(request.getParameter("wcount"));
@@ -532,6 +530,18 @@ public class Projectbean {
 			System.out.println("dd");
 		}
 		sqlMap.update("addW", eto1);
+		//List idid = new ArrayList(); 
+
+		for(int i = 0;i<rList.length;i++){
+			CoupleDataBean cdb2 = new CoupleDataBean();
+			EventDataBean eto2 = new EventDataBean();
+			cdb.setCoupleName(rList[i]);
+			cdb2 = (CoupleDataBean)sqlMap.queryForObject("selectid", cdb);
+			eto2.setCouplename(rList[i]);
+			eto2.setEnumber(enumber);
+			//idid.add(cdb2);
+			sqlMap.insert("insertA",eto2);
+		}
 		request.setAttribute("appList", appList);
 		request.setAttribute("rList", rList);
 		request.setAttribute("enumber", new Integer(enumber));
@@ -590,8 +600,13 @@ public class Projectbean {
 		}
 		app.setEnumber(enumber);
 		if((Cwcount-1)==0){
-		app.setW(1);}
+		app.setW(1);
+		}
 		sqlMap.update("addW", app);
+		EventDataBean eto2 = new EventDataBean();
+		eto2.setCouplename(couplename);
+		eto2.setEnumber(enumber);
+		sqlMap.insert("insertA",eto2);
 		request.setAttribute("enumber", new Integer(enumber));
 		request.setAttribute("wnumber", new Integer(wnumber));
 		request.setAttribute("pageNum", pageNum);
@@ -707,22 +722,24 @@ public class Projectbean {
 	}
 	
 	@RequestMapping("modifyWcouples.nhn")
-	public String modifyWcouples(HttpServletRequest request){
+	public String modifyWcouples(HttpServletRequest request,CoupleDataBean cdb){
 		int enumber = Integer.parseInt(request.getParameter("enumber"));	
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
 		int w = Integer.parseInt(request.getParameter("w"));
 		String wcouples = request.getParameter("wcouples");
-		List appList = sqlMap.queryForList("eventAppAdmin", enumber);
-		EventDataBean app = new EventDataBean();
-		String[] wcList = null;
-		for (int i = 0; i < appList.size(); i++) {
-			app = (EventDataBean) appList.get(i);
-			wcList = app.getWcouples().split(",");
+		String app = (String)sqlMap.queryForObject("eventAppAdmin", enumber);
+		String[] wcList = app.split(",");
+		List idid = new ArrayList(); 
+		for(int i = 0;i<wcList.length;i++){
+			CoupleDataBean cdb2 = new CoupleDataBean();
+			cdb.setCoupleName(wcList[i]);
+			cdb2 = (CoupleDataBean)sqlMap.queryForObject("selectid", cdb);
+			idid.add(cdb2);
 		}
 		int Lsize = wcList.length;
+		request.setAttribute("idid", idid);
 		request.setAttribute("enumber", new Integer(enumber));
 		request.setAttribute("Lsize", new Integer(Lsize));
-		request.setAttribute("wcList", wcList);
 		request.setAttribute("wcouples", wcouples);
 		request.setAttribute("wnumber",new Integer(wnumber));
 		request.setAttribute("w",new Integer(w));

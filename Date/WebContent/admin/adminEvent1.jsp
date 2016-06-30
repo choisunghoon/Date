@@ -47,7 +47,7 @@
 		<button type="button" onclick="callAjaxyj2('wWay.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')">당첨자뽑기</button>
 		</c:if>
 		<c:if test="${eventList.w==1}">
-		<button type="button" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')">당첨자수정및삭제</button>
+		<button type="button" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')">당첨자관리</button>
 		</c:if>
 		</td>
 	</tr>
