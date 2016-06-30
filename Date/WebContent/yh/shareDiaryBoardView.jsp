@@ -58,6 +58,8 @@
             success: refresh2,	// 페이지요청 성공시 실행 함수
             error: whenError2	//페이지요청 실패시 실행함수
      	});
+        
+        
     }
     function refresh2(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
         $("#ajaxReturn1").html(aaa);
