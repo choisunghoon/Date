@@ -5,7 +5,7 @@
 
 
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script>
+<script type="text/javascript">
    function callrefresh(url){
 	   var form = $('#ff')[0];	   
 	   var formdata = new FormData(form);
@@ -33,16 +33,24 @@
 	        error: whenError	//페이지요청 실패시 실행함수
      	});    	 
    }
-
+    function callContent5(url,regdate){ 
+      	 $.ajax({    		
+   	        type: "post", 	
+   	        url : url,
+	   	     data : {
+		        	regdate1 : regdate
+		        },
+   	        success: test,	// 페이지요청 성공시 실행 함수
+   	        error: whenError	//페이지요청 실패시 실행함수
+        	});    	 
+      }
    function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
        $(".modal-bodyy4").html(aaa);	//id가 ajaxReturn인 부분에 넣어라
    }    
    function whenError(){
        alert("Error");
    }
-    </script>
-    
-<script type="text/javascript">
+
 	function checked(point){
 		document.frmSet.submit();
 		if(point<300){
@@ -74,7 +82,12 @@
     	<input type="hidden" id="aa" name="listMore" value="${listMore}"/>
 	</form>
 	<form name="ff" id="ff" method="post" action="adminphoto.nhn?couplename=${couplename }"onsubmit="return checked(${point})">
-	<input type="submit" style="margin-left:70%;" value="포토북신청">
+	<div style="float:left;margin-left:70%;">
+	<input type="image" name="submit" value="submit" src="button/z24.png"/>&nbsp;
+	</div>
+	<div>
+	<a href="#" onclick="callContent4('photocheck.nhn')" id="test" data-toggle="modal" data-target="#myModaly4"><img src="button/z54.png"></a>
+	</div>
 	<c:set var="i" value="1"/>
 		<c:forEach var="diary" items="${diary}" >
 			<ul class="tbl_area" id="dispRow${i }" style="display:none; width:800px; margin-left:13%; margin-top:1%;">	

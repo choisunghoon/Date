@@ -312,12 +312,14 @@ public class Upload {
 		String[] content1 = pdb.getContent().split(",");
 		String[] content2 = pdb.getWriteday().split(",");
 		for(int i=0; i < content.length; i++){
-			
-			pdb.setImg(content[i]);
-			pdb.setContent(content1[i]);
-			pdb.setWriteday(content2[i]);
-			admin.add(pdb);
+			PhotoDataBean pdb2= new PhotoDataBean();
+			pdb2.setImg(content[i]);
+			pdb2.setContent(content1[i]);
+			pdb2.setWriteday(content2[i]);
+			admin.add(pdb2);		
 		}
+		
+		
 		
 		request.setAttribute("pdb", pdb);
 		request.setAttribute("admin", admin);
@@ -364,5 +366,47 @@ public class Upload {
 		request.setAttribute("check", check);
 		return "/sy0525/diarysharing.jsp";
 	}
+	@RequestMapping("/photocheck.nhn")
+	public String photocheck(HttpSession session, HttpServletRequest request, PhotoDataBean pdb){
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
+		pdb.setCouplename(couplename);
+		List photo = null;
+		photo = sqlMap.queryForList("myphoto", pdb);
+		request.setAttribute("photo", photo);
+		return "/sy0630/photocheck.jsp";
+	}
+	
+	@RequestMapping("/photocheckcontent.nhn")
+	public String photocheckcontent(HttpSession session, HttpServletRequest request,PhotoDataBean pdb){
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
+		String regdate = String.valueOf(request.getParameter("regdate1"));
+		pdb.setCouplename(couplename);
+		pdb.setRegdate(Timestamp.valueOf(regdate));
+		pdb = (PhotoDataBean)sqlMap.queryForObject("photocontent", pdb);
+		
+		List aa = new ArrayList();
+		
+		String[] a1 = pdb.getImg().split(",");
+		String[] a2 = pdb.getContent().split(",");
+		String[] a3 = pdb.getWriteday().split(",");
+		for(int i=0; i < a1.length; i++){
+			PhotoDataBean pdd = new PhotoDataBean();
+			pdd.setImg(a1[i]);
+			pdd.setContent(a2[i]);
+			pdd.setWriteday(a3[i]);
+			aa.add(pdd);
+			System.out.println(i +":" +pdd.getImg());
+		}
+		request.setAttribute("aa", aa);
+		request.setAttribute("pdb", pdb);
+
+
+		return "/sy0630/photocheckcontent.jsp";
+	}
+	
 
 }

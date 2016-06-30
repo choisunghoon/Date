@@ -88,5 +88,9 @@
 	<insert id="poolshare" parameterClass="upload.bean.DiaryDataBean">
 		update dc_diary set pool=#pool#,pool_regdate=sysdate where couplename=#couplename# and num=#num#
 	</insert>
+	
+	<select id="myphoto" resultClass="upload.bean.PhotoDataBean" parameterClass="upload.bean.PhotoDataBean">
+		select * from dc_photo where couplename=#couplename# order by regdate desc
+	</select>
 </sqlMap>
 
