@@ -31,12 +31,6 @@
 				</c:if>
 			</td>    	
     	</tr>
-    	<tr align="right">
-    		<td colspan="2">
-    			<input type="checkbox" name="pool" id="pool" value="1">
-    			<label for="pool">공유하기&nbsp;&nbsp;&nbsp;</label>
-    		</td>
-    	</tr>
     	<tr>
     		<td>
     			내용

@@ -116,8 +116,8 @@ $("#choose").change(function (e) {
 <input type="hidden" id="w" name ="w" value=""/>
 <input type="hidden" id="h" name ="h" value=""/>
 <div style="margin-left:190px; margin-top:10px;">
-<input type="submit" value="등록" />
-<input type="reset" value="다시작성"/>
+<input type="image" name="submit" value="submit" src="button/z5.png"/>
+<img src="button/z53.png" onclick="reset()">
 </div>
 </form>
 
