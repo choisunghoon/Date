@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ch11.logon.AlertDataBean;
 import ch11.logon.CoupleDataBean;
 import ch11.logon.LogonDataBean;
+import project.bean.EventDataBean;
 
 @Controller
 public class LoginBean {
@@ -34,10 +35,14 @@ public class LoginBean {
 				String nickname=(String) sqlMapper.queryForObject("getNick", id); //로그인한 회원의 nickname을 추출
 				session.setAttribute("nickname", nickname);
 				int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname); //로그인한 회원의 nickname을 통해 읽지 않은 알림이 있는지 검색.미확인 알림이 있을경우 1을 추출
-				int checkW=(Integer)sqlMapper.queryForObject("checkW", couplen);
-				if(checkW==0){
-					request.setAttribute("checkW", checkW);
-				}
+				EventDataBean eto = new EventDataBean()	;			
+				int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
+				if(checkcount>0){
+					eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
+				if(eto.getChecknum()==0){
+					request.setAttribute("checkW",  eto.getChecknum());
+					request.setAttribute("enumber", eto.getEnumber());
+				}}
 				if(checkAlert!=0){
 					AlertDataBean adto=new AlertDataBean();
 					adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname); //로그인한 회원의 nickname을 통해 알림의 내용을 추출
@@ -63,10 +68,7 @@ public class LoginBean {
 				}
 				else
 					request.setAttribute("couple1", "end");	// 상대방이 커플 수락을 거부했음을 의미
-				
-				if(checkW==1){
 					
-				}			
 			}
 			
 			
@@ -134,10 +136,14 @@ public class LoginBean {
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
 			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
-			int checkW=(Integer)sqlMapper.queryForObject("checkW", couplen);
-			if(checkW==0){
-				request.setAttribute("checkW", checkW);
-			}
+			EventDataBean eto = new EventDataBean()	;			
+			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
+			if(checkcount>0){
+				eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
+			if(eto.getChecknum()==0){
+				request.setAttribute("checkW",  eto.getChecknum());
+				request.setAttribute("enumber", eto.getEnumber());
+			}}
 			if(checkAlert!=0){
 				AlertDataBean adto=new AlertDataBean();
 				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
@@ -172,10 +178,14 @@ public class LoginBean {
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
 		if(nc==1){
 			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
-			int checkW=(Integer)sqlMapper.queryForObject("checkW", couplen);
-			if(checkW==0){
-				request.setAttribute("checkW", checkW);
-			}
+			EventDataBean eto = new EventDataBean()	;			
+			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
+			if(checkcount>0){
+				eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
+			if(eto.getChecknum()==0){
+				request.setAttribute("checkW",  eto.getChecknum());
+				request.setAttribute("enumber", eto.getEnumber());
+			}}
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
@@ -213,10 +223,14 @@ public class LoginBean {
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
 		if(nc==1){
 			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
-			int checkW=(Integer)sqlMapper.queryForObject("checkW", couplen);
-			if(checkW==0){
-				request.setAttribute("checkW", checkW);
-			}
+			EventDataBean eto = new EventDataBean()	;			
+			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
+			if(checkcount>0){
+				eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
+			if(eto.getChecknum()==0){
+				request.setAttribute("checkW",  eto.getChecknum());
+				request.setAttribute("enumber", eto.getEnumber());
+			}}
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
@@ -256,10 +270,14 @@ public class LoginBean {
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
 		if(nc==1){
 			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
-			int checkW=(Integer)sqlMapper.queryForObject("checkW", couplen);
-			if(checkW==0){
-				request.setAttribute("checkW", checkW);
-			}
+			EventDataBean eto = new EventDataBean()	;			
+			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
+			if(checkcount>0){
+				eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
+			if(eto.getChecknum()==0){
+				request.setAttribute("checkW",  eto.getChecknum());
+				request.setAttribute("enumber", eto.getEnumber());
+			}}
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
@@ -296,11 +314,15 @@ public class LoginBean {
 		String id = (String)session.getAttribute("id");
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
 		if(nc==1){
-			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
-			int checkW=(Integer)sqlMapper.queryForObject("checkW", couplen);
-			if(checkW==0){
-				request.setAttribute("checkW", checkW);
-			}
+			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);		
+			EventDataBean eto = new EventDataBean()	;			
+			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
+			if(checkcount>0){
+				eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
+			if(eto.getChecknum()==0){
+				request.setAttribute("checkW",  eto.getChecknum());
+				request.setAttribute("enumber", eto.getEnumber());
+			}}
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);

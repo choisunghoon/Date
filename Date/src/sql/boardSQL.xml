@@ -208,21 +208,22 @@
 		<delete id="deleteAlert" parameterClass="String">
 			delete from dc_alert where id=#id# 
 		</delete>
-		<select id="couplename_dc0" parameterClass="String"	 resultClass="String">
-			select coupleName from dc_dc where coupleName=#coupleName#
-		</select>
-		<update id="couplename_dc" parameterClass="cdto">
-			update dc_dc set coupleName=#coupleName# where id1=#id1# or id2=#id1#
+		
+		<update id="couplename_dc" parameterClass="dateplan.bean.DTO">
+			update dc_dc set couplename=#couplename# where couplename=#subject#
 		</update>
-		<update id="couplename_diary" parameterClass="cdto">
-			update dc_diary set coupleName=#coupleName# where id1=#id1# or id2=#id1#
+		<update id="couplename_diary" parameterClass="upload.bean.DiaryDataBean">
+			update dc_diary set couplename=#couplename# where couplename=#content#
 		</update>
-		<update id="couplename_alert" parameterClass="cdto">
-			update dc_alert set coupleName=#coupleName# where id1=#id1# or id2=#id1#
+		<update id="couplename_alert" parameterClass="adto">
+			update dc_alert set couplename=#couplename# where couplename=#content#
 		</update>
-		<update id="couplename_point" parameterClass="cdto">
-			update dc_point set coupleName=#coupleName# where id1=#id1# or id2=#id1#
+		<update id="couplename_point" parameterClass="upload.bean.PointDataBean">
+			update dc_point set couplename=#couplename# where couplename=#place#
 		</update>	
+		<select id="couplename00" parameterClass="String"	 resultClass="String">
+			select coupleName from dc_couple where id1=#id# or id2=#id#
+		</select>
 		
 
 </sqlMap>

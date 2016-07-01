@@ -20,7 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import ch11.logon.*;
+import dateplan.bean.DTO;
 import event.EventDataBean;
+import upload.bean.DiaryDataBean;
+import upload.bean.PointDataBean;
 
 @Controller
 public class InputBean {
@@ -352,23 +355,52 @@ public class InputBean {
 				sqlMapper.update("coupleModifyNcYd", cdto);
 			}
 			else if(ccn==0){//커플명을 변경하는 경우 실행
+				
 				cdto.setCoupleDate(date);
 				cdto.setCoupleName(coupleName);
 				cdto.setId1(id);
-				
+				String bfcn=(String) sqlMapper.queryForObject("couplename00", id);
 				sqlMapper.update("coupleModifyYcYd", cdto);
-				sqlMapper.queryForObject("couplename_dc0", coupleName);
-				sqlMapper.update("couplename_dc",cdto );
-				sqlMapper.update("couplename_alert",cdto );
-				sqlMapper.update("couplename_diary",cdto );
-				sqlMapper.update("couplename_point",cdto );
+				DTO dcdto=new DTO();
+				dcdto.setSubject(bfcn);
+				dcdto.setCouplename(coupleName);
+				sqlMapper.update("couplename_dc",dcdto );
+				AlertDataBean adto=new AlertDataBean();
+				adto.setContent(bfcn);
+				adto.setCouplename(coupleName);
+				sqlMapper.update("couplename_alert",adto );
+				DiaryDataBean ddto=new DiaryDataBean();
+				ddto.setContent(bfcn);
+				ddto.setCouplename(coupleName);
+				sqlMapper.update("couplename_diary",ddto );
+				PointDataBean pdto=new PointDataBean();
+				pdto.setCouplename(coupleName);
+				pdto.setPlace(bfcn);
+				sqlMapper.update("couplename_point",pdto );
 			}
 		}
 		if(hidden==null){
 			if(ccn==0){
 				cdto.setCoupleName(coupleName);
 				cdto.setId1(id);
-				sqlMapper.update("coupleModifyYcNd", cdto);
+				String bfcn=(String) sqlMapper.queryForObject("couplename00", id);
+				sqlMapper.update("coupleModifyYcYd", cdto);
+				DTO dcdto=new DTO();
+				dcdto.setSubject(bfcn);
+				dcdto.setCouplename(coupleName);
+				sqlMapper.update("couplename_dc",dcdto );
+				AlertDataBean adto=new AlertDataBean();
+				adto.setContent(bfcn);
+				adto.setCouplename(coupleName);
+				sqlMapper.update("couplename_alert",adto );
+				DiaryDataBean ddto=new DiaryDataBean();
+				ddto.setContent(bfcn);
+				ddto.setCouplename(coupleName);
+				sqlMapper.update("couplename_diary",ddto );
+				PointDataBean pdto=new PointDataBean();
+				pdto.setCouplename(coupleName);
+				pdto.setPlace(bfcn);
+				sqlMapper.update("couplename_point",pdto );
 			}
 		}
 		request.setAttribute("success", 1);
