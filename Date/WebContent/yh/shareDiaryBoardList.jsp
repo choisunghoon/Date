@@ -58,7 +58,7 @@ function whenError2(){
 	</tr>
 	</c:forEach>
 		
-	<c:if test="${list.size()} <= 0">
+	<c:if test="${list.size() <= 0} ">
 	<tr align="center">
 		<td colspan="5" > 등록된 게시글이 없습니다</td>
 	</tr>

@@ -11,11 +11,11 @@
 	</select>
 
 	<select id="SelectDiaryCommentAll" resultClass="share.commentDataBean">
-		select * from dc_sharydiary_comment order by num desc
+		select * from dc_sharydiary_comment where board_num=#num# order by num desc
 	</select>
 	
 	<select id="commentCount" resultClass="int" parameterClass="java.lang.Integer">
-		select count(*) from dc_sharydiary_comment 
+		select count(*) from dc_sharydiary_comment  where board_num=#num#
 	</select>
 
 	<insert id="SelectDiaryCommentUp" parameterClass="share.commentDataBean">
