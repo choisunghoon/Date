@@ -173,7 +173,11 @@ public class InputBean {
 			
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
-		
+			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
+			int checkW=(Integer)sqlMapper.queryForObject("checkW", couplen);
+			if(checkW==0){
+				request.setAttribute("checkW", checkW);
+			}
 		
 			if(checkAlert==1){
 				AlertDataBean adto=new AlertDataBean();
@@ -351,7 +355,13 @@ public class InputBean {
 				cdto.setCoupleDate(date);
 				cdto.setCoupleName(coupleName);
 				cdto.setId1(id);
+				
 				sqlMapper.update("coupleModifyYcYd", cdto);
+				sqlMapper.queryForObject("couplename_dc0", coupleName);
+				sqlMapper.update("couplename_dc",cdto );
+				sqlMapper.update("couplename_alert",cdto );
+				sqlMapper.update("couplename_diary",cdto );
+				sqlMapper.update("couplename_point",cdto );
 			}
 		}
 		if(hidden==null){
@@ -361,6 +371,7 @@ public class InputBean {
 				sqlMapper.update("coupleModifyYcNd", cdto);
 			}
 		}
+		request.setAttribute("success", 1);
 		return "/dc/mypage.jsp";
 	}
 	@RequestMapping("mylist.nhn")

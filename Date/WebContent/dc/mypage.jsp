@@ -136,6 +136,9 @@ function whenError(){
  -->
  <script type="text/javascript">
  
+ window.onload = function () {
+	 callAjax("modifyForm.nhn");
+	}
     function callAjax(nhn){
         $.ajax({
 	        type: "post",
