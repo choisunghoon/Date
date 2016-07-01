@@ -1,38 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ page import="java.util.*" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <link type="text/css" rel="stylesheet" href="h.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>jsp를 이용한 달력</title>
 <script type="text/javascript">
-function selectCheck(form){
-	form.submit();
-}
-function monthDown(form){
- if(form.month.value>1){
-	 form.month.value--;
- }else {
-	 form.month.value=12;
-	 form.year.value--;
- }
- form.submit();
-}
-function monthUp(form){
- if(form.month.value<12){
-	 form.month.value++;
- }else {
-	 form.month.value=1;
-	 form.year.value++;
- }
- form.submit();
-}
+	function selectCheck(form){
+		form.submit();
+	}
+	function monthDown(form){
+	 if(form.month.value>1){
+		 form.month.value--;
+	 }else {
+		 form.month.value=12;
+		 form.year.value--;
+	 }
+	 form.submit();
+	}
+	function monthUp(form){
+	 if(form.month.value<12){
+		 form.month.value++;
+	 }else {
+		 form.month.value=1;
+		 form.year.value++;
+	 }
+	 form.submit();
+	}
 </script>
 </head>
 <body>
-<%
+<%--
 //현재 날짜 정보 
 Calendar cr = Calendar.getInstance();
 int year = cr.get(Calendar.YEAR);
@@ -67,34 +68,73 @@ int endDate = cr.getActualMaximum(Calendar.DATE);
 int startDay = cr.get(Calendar.DAY_OF_WEEK);
  
 int count = 0;
-%>
+--%>
 <form method="post" action="calendar.jsp" name="change">
 <table width="400" cellpadding="2" cellspacing="0" border="0" align="center">
  <tr>
    <td width="140" align="right"><input type="button" value="◁" onClick="monthDown(this.form)"></td>
       <td width="120" align="center">
       <select name="year" onchange="selectCheck(this.form)">
-      <%
+      <%--
       for(int i=year-10;i<year+10;i++){
        String selected = (i == year)?"selected":"";
        String color = (i == year)?"#CCCCCC":"#FFFFFF";
          out.print("<option value="+i+" "+selected+" style=background:"+color+">"+i+"</option>");       
       }
-      %>
+      --%>
+      <c:set var="i" value="${year-10 }"/>   
+      <c:forEach  begin="${i }" end="${year+10 }">
+      	<c:if test="${i eq year }">
+      		<c:set var="selected" value="selected"/>
+      	</c:if>
+      	<c:if test="${i ne year }">
+      		<c:set var="selected" value=""/>
+      	</c:if>
+      	<c:if test="${i eq year }">
+      		<c:set var="color" value="#cccccc"/>
+      	</c:if>
+      	<c:if test="${i ne year }">
+      		<c:set var="color" value="#ffffff"/>
+      	</c:if>
+      	<script>
+      	out.print('<option value="${i}" ${selected} style=background:"${color}">${i}</option>');
+      	</script>
+      	
+      </c:forEach>
       </select>
       <select name="month" onchange="selectCheck(this.form)">
-      <%
+      
+      <%--
       for(int i=1;i<=12;i++){
        String selected = (i == month+1)?"selected":"";
        String color = (i == month+1)?"#CCCCCC":"#FFFFFF";
          out.print("<option value="+i+" "+selected+" style=background:"+color+">"+i+"</option>");       
       }
-      %>
+      --%>
+      <c:set var="t" value="1"/>
+      <c:forEach begin="${t}" end="13">
+      <c:if test="${t eq month+1 }">
+      <c:set var="selected" value="selected"/>
+      </c:if>
+      <c:if test="${t ne month+1 }">
+      <c:set var="selected" value=""/>
+      </c:if>
+      <c:if test="${t eq month+1 }">
+      		<c:set var="color" value="#cccccc"/>
+      	</c:if>
+      	<c:if test="${t ne month+1 }">
+      		<c:set var="color" value="#ffffff"/>
+      	</c:if>
+      	<script>
+      	out.print('<option value="${t}" ${selected} style=background:"${color}">${t}</option>');
+      	</script>
+      </c:forEach>
+      
       </select></td>
       <td width="140"><input type="button" value="▷" onClick="monthUp(this.form)"></td>
     </tr>
     <tr>
-      <td align="right" colspan="3"><a href="calendar.jsp"><font size="2">오늘 :  <%=today %></font></a></td>
+      <td align="right" colspan="3"><a href="calendar.jsp"><font size="2">오늘 :  ${today}</font></a></td>
     </tr>
 </table> 
 </form>        
@@ -109,34 +149,67 @@ int count = 0;
   <td><font size="2">토</font></td>
  </tr>
  <tr height="30">
-<%
+<%--
 for (int i=1;i<startDay;i++){
  count++;
-%>
+--%>
+<c:set var="h" value="1"/>
+<c:forEach begin="${h}" end="${startDay }">
+<c:set var="count" value="${count+1 }"/>
         <td>&nbsp;</td>
-<% 
+</c:forEach>
+<%-- 
 }
 for (int i=startDate;i<=endDate;i++){
  String bgcolor = (today.equals(year+":"+(month+1)+":"+i))? "#CCCCCC" : "#FFFFFF";
  String color = (count%7 == 0 || count%7 == 6)? "red" : "black";
  count++;
-%> 
-  <td bgcolor="<%=bgcolor %>"><font size="2" color=<%=color %>><%=i %></font></td>
-<%
+--%> 
+<c:set var="k" value="${startDate}" />
+
+	<c:forEach begin="${k}" end="${endDate+1}">
+	<c:set var="asd" value="${year+':'+(month+1)+':'+k }"/>
+		<c:if test="${today eq asd}">
+			<c:set var="bgcolor" value="#CCCCCC" />
+		</c:if>
+		<c:if test="${today ne (year+':'+(month+1)+':'+k)}">
+			<c:set var="bgcolor" value="#FFFFFF" />
+		</c:if>
+		<c:if test="${count % 7 eq 0 || count % 7 eq 6 }">
+			<c:set var="color" value="red"/>
+		</c:if>
+		<c:if test="${count % 7 ne 0 || count % 7 ne 6 }">
+			<c:set var="color" value="black"/>
+		</c:if>
+		<c:set var="count" value="${count+1 }"/>
+  <td bgcolor="${bgcolor}"><font size="2" color="${color}">${k}</font></td>
+<%--
   if(count%7 == 0 && i < endDate){
-%> 
+--%> 
+	<c:if test="${count % 7 eq 0 && k < endDate }">
  </tr>
  <tr height="30">
-<%
+ </c:if>
+<%--
   }
 }
+
 while(count%7 != 0){
-%>
-       <td>&nbsp;</td>
-<% 
+--%>
+</c:forEach>
+<c:forEach begin="1" end="${count}" step="1" var="b">
+	<c:if test="${b % 7 !=0 }">
+		<td>&nbsp;</td>
+		<c:set var="count" value="${count+1 }"/>
+	</c:if>
+</c:forEach>
+	
+       
+<%-- 
 count++;
  }
-%>
+--%>
+
 </tr>  
 </table>
 </body>

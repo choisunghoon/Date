@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<table border="1" colspadding="0" cellspacing="0" width="500px" style="margin-left:180px;">
+<table border="1" colspadding="0" cellspacing="0" width="500px">
 		<tr>
     		<td>
     			신청날짜
@@ -39,4 +40,4 @@
     	</c:forEach>
 
     </table>
-    <a href="#"onclick="callContent4('photocheck.nhn')">뒤로가기</a>
+    <a href="#"onclick="callContent4('photocheck.nhn')">닫기</a>

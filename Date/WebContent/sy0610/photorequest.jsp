@@ -81,7 +81,7 @@
 	<form name="frmSet">
     	<input type="hidden" id="aa" name="listMore" value="${listMore}"/>
 	</form>
-	<form name="ff" id="ff" method="post" action="adminphoto.nhn?couplename=${couplename }"onsubmit="return checked(${point})">
+	<form name="ff" id="ff" method="post" action="adminphoto.nhn?couplename=${couplename }" onsubmit="return checked(${point})">
 	<div style="float:left;margin-left:70%;">
 	<input type="image" name="submit" value="submit" src="button/z24.png"/>&nbsp;
 	</div>

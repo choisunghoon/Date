@@ -68,12 +68,26 @@ $("#choose").change(function (e) {
     if(F && F[0]) for(var i=0; i<F.length; i++) readImage( F[i] );
 });
 
+function check(){
+	if($("#choose")[0].files[0] == null){
+		alert("파일을 선택해주세요!");	
+		return false
+	}
+	if(!document.write.subject.value){
+		alert("제목을 입력해주세요!");	
+		return false
+	}
+	if(!document.write.content.value){
+		alert("내용을 입력해주세요!");	
+		return false
+	}
+}
  
 </script>
 </head>
 <body>
 
-<form id="write" action="upload2.nhn" name="write" method="post" enctype="multipart/form-data" style="margin-left:180px;margin-top:10px;">
+<form id="write" action="upload2.nhn" onsubmit="return check();"name="write" method="post" enctype="multipart/form-data" style="margin-left:180px;margin-top:10px;">
 	<table border="1" colspadding="0" cellspacing="0" >
 		<tr>	
 			<td>
