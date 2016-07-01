@@ -104,7 +104,7 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 			<a href="#" onclick="callAjax('deleteForm.nhn?id=${id }')"><img src="syimage/mm25.png" onmouseover='this.src="syimage/mm26.png"' onmouseout='this.src="syimage/mm25.png"' /></a>
 			<a href="#" onclick="callAjax('coupleinfo.nhn?id=${id }')"><img src="syimage/mm27.png" onmouseover='this.src="syimage/mm28.png"' onmouseout='this.src="syimage/mm27.png"' /></a>
 			<a href="#" onclick="callAjax('coupleDeleteForm.nhn?id=${id }')"><img src="syimage/mm29.png" onmouseover='this.src="syimage/mm30.png"' onmouseout='this.src="syimage/mm29.png"' /></a>
-			<a href="#" onclick="callAjax('deleteForm.nhn?id=${id }')"><img src="syimage/mm31.png" onmouseover='this.src="syimage/mm32.png"' onmouseout='this.src="syimage/mm31.png"' /></a>
+			<a href="#" onclick="callAjax('mylist.nhn?id=${id }')"><img src="syimage/mm31.png" onmouseover='this.src="syimage/mm32.png"' onmouseout='this.src="syimage/mm31.png"' /></a>
 		</div>
 		<div style="float:left;width:2%">&nbsp;&nbsp;&nbsp;</div>
 		<div id="subMain" style="float:left;width:86%">		

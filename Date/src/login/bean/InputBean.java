@@ -4,7 +4,10 @@ import java.io.File;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import ch11.logon.*;
+import event.EventDataBean;
 
 @Controller
 public class InputBean {
@@ -358,5 +362,43 @@ public class InputBean {
 			}
 		}
 		return "/dc/mypage.jsp";
+	}
+	@RequestMapping("mylist.nhn")
+	public String event(HttpServletRequest request,HttpSession session,EventDataBean dto)throws Exception{
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		LogonDataBean mdto = new LogonDataBean();
+		mdto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);
+		String listnum=mdto.getList();
+		List eventList = new ArrayList();
+		int count = 0;
+		
+		String pageNum = request.getParameter("pageNum");
+		int pageSize = 10;
+		if(pageNum == null){
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;
+		
+		HashMap<String, Integer> num = new HashMap<String, Integer>();
+		num.put("startRow", startRow);
+		num.put("endRow", endRow);
+		
+		
+		eventList = sqlMapper.queryForList("getWinEventList", num);
+		count = (Integer)sqlMapper.queryForObject("winEventCount", null);
+	
+		
+		request.setAttribute("eventList", eventList);
+		request.setAttribute("count", count);
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("startRow",startRow);
+		request.setAttribute("endRow", endRow);
+		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("id", id);
+	
+		return "/dc/mylist.jsp";
 	}
 }
