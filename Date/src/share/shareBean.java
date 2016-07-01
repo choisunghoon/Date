@@ -51,7 +51,7 @@ public class shareBean {
 	@RequestMapping("dairyComment.nhn")
 	public String dairyComment(HttpSession session,HttpServletRequest request,int num){
 		List commentList =null;
-		int listMore = 3;
+		int listMore = 20;
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		commentDataBean dto = new commentDataBean();
@@ -60,7 +60,7 @@ public class shareBean {
 		
 		System.out.println(totalCount);
 		request.setAttribute("listMore", listMore);
-		request.setAttribute("totalcount", totalCount);
+		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("commentList", commentList);
 		return "/yh/diaryComment.jsp";
 	}

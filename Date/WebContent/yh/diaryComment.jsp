@@ -1,12 +1,11 @@
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<div class="re">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 
 </script>
@@ -45,9 +44,7 @@
       #css_tabs > label:hover {
           cursor:pointer
       }
-      #css_tabs label[for=tab1] {
-          margin-left:31%
-      }
+
       /* 선택된 라벨, 커서를 올린 라벨 스타일 지정 */
       #css_tabs input:nth-of-type(1):checked ~ label:nth-of-type(1), #css_tabs > label[for=tab1]:hover {
           background:tomato;
@@ -69,59 +66,73 @@
 
 <body>
 <form name="comment" method="post">
-	<table width="500" border="1" cellspacing="0" cellpadding="0" >
-	
-	<tr align="center">
-		<td width="100"> ${id} </td>
-		<td width="300"><textarea name="diarycomment" id="diarycomment" cols="35" rows="4" /></td>
-		<td width="100"><input type="button" name="commentup" value="commentup" href="#" onclick="callAjax3('CommentUp.nhn')"> 
-	
-	</tr>
-	</table>
-	
-    <div class="tab1_content" style="width:1100px;">
+
+    <div class="tab1_content" >
       <div class="sub_photo">
           <div class="title_area">
           
              <form name="frmSet">
              <input type="hidden" id="aa" name="listMore" value="${listMore}"/>
             </form>
+    <ul class="tbl_area">
+                   <table width="500px"  border="1" cellspacing="0" cellpadding="0" >
+					<tr align="center">
+						<td width="20%"> ${id} </td>
+						<td width="60%"><textarea name="diarycomment" id="diarycomment" cols="35" rows="4" /></td>
+						<td width="20%"><input type="button" name="commentup" value="commentup" href="#" onclick="callAjax3('CommentUp.nhn')"> 
+	
+					</tr>
+				</table>
+  </ul>
             <c:set var="i" value="1"/>
              <c:forEach var="commentList" items="${commentList}">
-               <ul class="tbl_area" id="dispRow${i }" style="margin-left:22%;display:none">
+               <ul class="tbl_area" id="dispRow${i}" style="margin-left:0%;display:none">
                		<c:set var="i" value="${i+1 }" />
-                  <li style="padding-top:10px;">
-                     <center>${commentList.diarycomment}</center>
+                 <li >
+				<table width="500px" border="1" cellspacing="0" cellpadding="0" >
+						<tr align="center">
+						<td width="20%">${commentList.id}</td>
+						<td width="60	%">&nbsp;${commentList.diarycomment}</td>
+						<td width="20%">${commentList.regdate}</td>
+         				</tr>
+                  	</table>
                   </li>
-                  <li>
-                  <center>${commentList.id}</center>
-                  </li>
-            
-               </ul>
+                  </ul>
+
             </c:forEach>
+  <ul class="tbl_area">
+              	<c:if test="${totalCount == 0}">
+              	<table width="500px" border="1" cellspacing="0" cellpadding="0" >
+					<tr align="center">
+				<td > 등록된 댓글이 없습니다</td>
+            	</tr>
+            	</c:if>            
+   </ul>
             <div id="dispMore" style="display:none;padding-bottom:100px;">
-             <a href="#" onclick="listMore(${totalCount})" style="margin-left:45%; ">더보기</a>
+             <a href="#" onclick="listMore(${totalCount})" style="margin-left:45%; ">댓글 20개 더 보기</a>
             </div>
             <c:forEach end="${totalCount}" begin="1" var="i">
                <c:if test="${i<=listMore }">
                   <script>
+       
                     document.getElementById("dispRow${i}").style.display = 'block'; //최대 갯수 보다 작거나 같으면 이미지를 보여준다
                   </script>
                </c:if> 
             </c:forEach>
             <c:if test="${totalCount > listMore }">
                <script>
+
                  document.getElementById("dispMore").style.display = 'block'; //최대갯수보다 화면에 보여주는 이미지 갯수보다 작으면 더보기 버튼을 보여준다
                </script>
             </c:if>
             <script type="text/javascript"> 
               function listMore(totalCount) //더보기 버튼을 눌렀을때 실행되는 함수
               {
-                 
-               var listMore = document.frmSet.listMore.value; //현재 화면에 보여지는 리스트 갯수를 가져온다(3개)
-               
-               var last = Number(listMore) + 3; //더보기를 누르면 3개씩 추가 된다
-               
+            
+               var listMore = document.getElementById("aa").value; //현재 화면에 보여지는 리스트 갯수를 가져온다(3개)
+           
+               var last = Number(listMore) + 20; //더보기를 누르면 3개씩 추가 된다
+           
                for (i=Number(listMore)+1;i<=totalCount;i++) // i=(3+1) -> 최초3개만 보여주니까 다음부턴 4부터 6까지; 4보다 최대 갯수가 같거나 클때 까지; i= 4++
                {
                 if (i<=last) // i가 6보다 작거나 같을경우
@@ -129,9 +140,9 @@
                  document.getElementById("dispRow"+i).style.display = 'block'; //dispRow6 까지 block 처리를 한다
                 }
                }
-               document.frmSet.listMore.value = last;
+               document.getElementById("aa").value = last;
                if (totalCount <= last)
-               {   
+               {
                 document.getElementById("dispMore").style.display = 'none'; //더보기 버튼이 최대갯수보다 크거나 작으면 none 처리
                }
               }
@@ -140,16 +151,10 @@
          </div>
       </div>  
     </div>
-    <div class="tab2_content">
-       <div id="tab2" style="margin-left:33%;padding-bottom:60px;">
-        
-      </div>  
-   </div>
+
 </div>
 </div></form>
 </body>
 </html>
-
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="http://googledrive.com/host/0B-QKv6rUoIcGREtrRTljTlQ3OTg"></script><!-- ie10-viewport-bug-workaround.js -->
-<script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script><!-- holder.js -->	
+	
+	

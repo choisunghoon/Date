@@ -15,7 +15,7 @@
 	</select>
 	
 	<select id="commentCount" resultClass="int" parameterClass="java.lang.Integer">
-		select count(*) from dc_sharydiary_comment where board_num = #num#
+		select count(*) from dc_sharydiary_comment 
 	</select>
 
 	<insert id="SelectDiaryCommentUp" parameterClass="share.commentDataBean">
