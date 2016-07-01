@@ -28,20 +28,25 @@ public class LoginBean {
 			int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id); //로그인한 회원의 nickname이 null인 경우 1을 추출 
 			session.setAttribute("id", id);
 			request.setAttribute("nickcheck", nickcheck);
-			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
 			int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//로그인 유무 확인
 			if(nc==1){
 				
 				String nickname=(String) sqlMapper.queryForObject("getNick", id); //로그인한 회원의 nickname을 추출
 				session.setAttribute("nickname", nickname);
 				int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname); //로그인한 회원의 nickname을 통해 읽지 않은 알림이 있는지 검색.미확인 알림이 있을경우 1을 추출
+				int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
+				if(countCN>0){
+				String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
 				EventDataBean eto = new EventDataBean()	;			
 				int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
 				if(checkcount>0){
 					eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
-				if(eto.getChecknum()==0){
-					request.setAttribute("checkW",  eto.getChecknum());
-					request.setAttribute("enumber", eto.getEnumber());
+					for(int i=0; i<checkcount; i++){
+						if(eto.getChecknum()==0){
+						request.setAttribute("checkW",  eto.getChecknum());
+						request.setAttribute("enumber", eto.getEnumber());
+						}
+					}
 				}}
 				if(checkAlert!=0){
 					AlertDataBean adto=new AlertDataBean();

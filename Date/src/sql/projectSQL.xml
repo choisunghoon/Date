@@ -80,6 +80,10 @@
 		select * from dc_couple where coupleName=#coupleName#
 	</select>
 	
+	<select id="countCN" parameterClass="String" resultClass="int">
+		select count(*) from dc_couple where id1=#id# or id2=#id# 
+	</select>
+	
 	<select id="selectCouplename" parameterClass="String" resultClass="String">
 		select coupleName from dc_couple where id1=#id# or id2=#id#
 	</select>
