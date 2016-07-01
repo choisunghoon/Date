@@ -92,5 +92,9 @@
 	<select id="myphoto" resultClass="upload.bean.PhotoDataBean" parameterClass="upload.bean.PhotoDataBean">
 		select * from dc_photo where couplename=#couplename# order by regdate desc
 	</select>
+	
+	<select id="myphoto1" resultClass="int" parameterClass="upload.bean.PhotoDataBean">
+		select count(*) from dc_photo where couplename=#couplename# order by regdate desc
+	</select>
 </sqlMap>
 

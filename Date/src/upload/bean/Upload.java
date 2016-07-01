@@ -374,7 +374,32 @@ public class Upload {
 		pdb.setCouplename(couplename);
 		List photo = null;
 		photo = sqlMap.queryForList("myphoto", pdb);
+		System.out.println(photo.size());
+		/*
+		pdb = (PhotoDataBean)sqlMap.queryForList("myphoto", pdb);
+		
+		int count = (Integer)sqlMap.queryForObject("myphoto1", pdb);
+		
+		List aa = new ArrayList();
+		
+		String[] a1 = pdb.getImg().split(",");
+		String[] a2 = pdb.getContent().split(",");
+		String[] a3 = pdb.getWriteday().split(",");
+		
+		for(int i=0; i < a1.length; i++){
+			PhotoDataBean pdd = new PhotoDataBean();
+			pdd.setImg(a1[i]);
+			pdd.setContent(a2[i]);
+			pdd.setWriteday(a3[i]);
+			aa.add(pdd);
+			System.out.println(i +":" +pdd.getImg());
+		}
+		
+		request.setAttribute("aa", aa);
+		request.setAttribute("pdb", pdb);
+		*/
 		request.setAttribute("photo", photo);
+
 		return "/sy0630/photocheck.jsp";
 	}
 	
@@ -393,6 +418,7 @@ public class Upload {
 		String[] a1 = pdb.getImg().split(",");
 		String[] a2 = pdb.getContent().split(",");
 		String[] a3 = pdb.getWriteday().split(",");
+		
 		for(int i=0; i < a1.length; i++){
 			PhotoDataBean pdd = new PhotoDataBean();
 			pdd.setImg(a1[i]);
@@ -401,6 +427,7 @@ public class Upload {
 			aa.add(pdd);
 			System.out.println(i +":" +pdd.getImg());
 		}
+		
 		request.setAttribute("aa", aa);
 		request.setAttribute("pdb", pdb);
 

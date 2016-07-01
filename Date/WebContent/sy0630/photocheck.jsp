@@ -4,8 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=9be7455c7d33a4e2b750d3537e1179d8&libraries=services"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
 <script type="text/javascript">
- 
+
      function HereAjax(nhn,regdate,i){
         $.ajax({
 	        type: "post",
@@ -37,6 +39,7 @@
 			</td>
 		</tr>
 		<c:set var="i" value="1"/>
+		<c:set var="igk" value="0"/> 
     	<c:forEach var="photo" items="${photo}">
 		<tr>
     		<td>
@@ -51,14 +54,19 @@
 			</td>
 			 -->
 			 <td>
-			 	<a href="#" onclick="HereAjax('photocheckcontent.nhn','${photo.regdate}',${i })">확인</a>
+			 	<a href="#" onclick="">확인</a>
 			 </td>	
     	</tr>
-    	<tr>
-	    		<td colspan="3" id="here${i}">
-	    			
-	    		</td>
-		</tr>
-		<c:set var="i" value="${i+1}"/>
+    	
+			
+			<c:forTokens items="${photo.img}" delims="," var="photo">
+				<tr><td colspan="3"><img src="syimage/${photo}"></td></tr>
+				<c:forTokens items="${photo.content}" begin="${igk}" end="${igk}" delims="," var="content"><tr><td colspan="3">${content}</td></tr></c:forTokens>
+				<c:forTokens items="${photo.writeday}" begin="${igk}" end="${igk}" delims="," var="writeday"><tr><td colspan="3">${writeday }</td></tr></c:forTokens>
+				<c:set var="igk" value="${igk+1}" />
+				<tr><td>${igk}</td></tr>
+			</c:forTokens>
+				<c:set var="igk" value="0" />
+		
 	</c:forEach>
 </table>
