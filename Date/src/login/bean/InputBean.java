@@ -23,6 +23,7 @@ import ch11.logon.*;
 import dateplan.bean.DTO;
 import event.EventDataBean;
 import upload.bean.DiaryDataBean;
+import upload.bean.PhotoDataBean;
 import upload.bean.PointDataBean;
 
 @Controller
@@ -377,6 +378,10 @@ public class InputBean {
 				pdto.setCouplename(coupleName);
 				pdto.setPlace(bfcn);
 				sqlMapper.update("couplename_point",pdto );
+				PhotoDataBean ptdto=new PhotoDataBean();
+				ptdto.setCouplename(coupleName);
+				ptdto.setImg(bfcn);
+				sqlMapper.update("couplename_photo",ptdto );
 			}
 		}
 		if(hidden==null){

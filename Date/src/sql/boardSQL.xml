@@ -221,6 +221,9 @@
 		<update id="couplename_point" parameterClass="upload.bean.PointDataBean">
 			update dc_point set couplename=#couplename# where couplename=#place#
 		</update>	
+		<update id="couplename_photo" parameterClass="upload.bean.PhotoDataBean">
+			update dc_photo set couplename=#couplename# where couplename=#img#
+		</update>	
 		<select id="couplename00" parameterClass="String"	 resultClass="String">
 			select coupleName from dc_couple where id1=#id# or id2=#id#
 		</select>
