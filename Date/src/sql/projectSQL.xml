@@ -80,6 +80,14 @@
 		select * from dc_couple where coupleName=#coupleName#
 	</select>
 	
+	<select id="selectCouplename" parameterClass="String" resultClass="String">
+		select coupleName from dc_couple where id1=#id# or id2=#id#
+	</select>
+	
+	<select id="checkW" parameterClass="String" resultClass="int">
+		select checknum from event_a where couplename=#couplen#
+	</select>
+		
 	<insert id="insertA" parameterClass="project.bean.EventDataBean">
 		insert into event_a (anumber, enumber, couplename, regdate) values (event_a_seq.nextval, #enumber#, #couplename#, sysdate)
 	</insert>
@@ -138,5 +146,9 @@
 	
 	<select id="getCouplename" resultClass="String" parameterClass="String">
 		select couplename from dc_couple where id1=#id# or id2=#id#
+	</select>
+	
+	<select id="selectCh" resultClass="project.bean.EventDataBean" parameterClass="project.bean.EventDataBean">
+		select * from event_a where couplename=#couplename# 
 	</select>
 </sqlMap>

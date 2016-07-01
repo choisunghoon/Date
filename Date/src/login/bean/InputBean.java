@@ -173,7 +173,11 @@ public class InputBean {
 			
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
-		
+			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
+			int checkW=(Integer)sqlMapper.queryForObject("checkW", couplen);
+			if(checkW==0){
+				request.setAttribute("checkW", checkW);
+			}
 		
 			if(checkAlert==1){
 				AlertDataBean adto=new AlertDataBean();

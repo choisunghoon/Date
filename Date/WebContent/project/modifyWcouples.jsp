@@ -29,23 +29,25 @@ return "모두 선택"; }
 	<tr>
 		<td align="center" width="100">선택</td>
 		<td align="center" width="100">커플이름</td>
-		<td align="center" width="200">id</td>
 		<td align="center" width="100">삭제</td>
 		<td align="center" width="100">알림</td>
 	</tr>
-	<c:forEach var="idid" items="${idid}">
+	<c:forEach var="appList" items="${appList}">
 	<tr>
 		<td align="center" width="100"><input name="checkbox" type="checkbox" value=""></td>
-		<td align="center" width="100">${idid.coupleName}</td>
-		<td align="center" width="200">${idid.id1},${idid.id2}</td>
+		<td align="center" width="100">${appList.couplename}</td>
 		<td align="center" width="100"> 
-		<a href="deleteWcouples.nhn?enumber=${enumber}&wcouples=${idid.coupleName}"><input type="button" name="way" value="삭제"></a>
+		<a href="deleteWcouples.nhn?enumber=${enumber}&wcouples=${appList.couplename}"><input type="button" name="way" value="삭제"></a>
 		</td>	
-		<td align="center" width="100"></td>
+		<td align="center" width="100">
+		<c:if test="${appList.checknum==0}">${무}</c:if>
+		<c:if test="${appList.checknum==1}">${유}</c:if>
+		</td>
 	</tr>
 	</c:forEach>
 </table>
 </form>
 <a href="wWay.nhn?enumber=${enumber}&wnumber=${wnumber}&w=${w}"><input type="button" name="way" value="당첨자 추가"></a>
+<a href="WcoupleA.nhn?enumber=${enumber}&wcouples=${appList.couplename}"><input type="button" value="알림보내기"></a>
 </body>
 </html>

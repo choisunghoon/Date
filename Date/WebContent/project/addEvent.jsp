@@ -411,9 +411,10 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
      </tr>    
      <tr>
       <td align="center" width="100">진행 날짜</td>
-      <td align="center" width="100">시작 날짜<input type="text" id="start_day" name="sdate" class="forms" style="width:80px;" />
-      								  종료 날짜<input type="text" id="end_day" name="edate" class="forms" style="width:80px;"  />
-      								 <a href="#" onclick="miniSetCalendar(event,'start_day','end_day');return false;">[검색달력]</a>
+      <td align="center" width="200">시작 날짜<input type="text" id="start_day" name="sdate" class="forms" style="width:100px;" />
+      								  종료 날짜<input type="text" id="end_day" name="edate" class="forms" style="width:100px;"  />
+      								 <a href="#" onclick="miniSetCalendar(event,'start_day','end_day');return false;">
+      								 <br/>[검색달력]</a>
       </td>
     </tr>
     <tr>
