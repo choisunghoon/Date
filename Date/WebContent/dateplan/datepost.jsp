@@ -896,7 +896,7 @@ function removeAllChildNods(el) {
     }
 }
 </script>
-<form name="datePlanForm" action="cosUpdate.nhn" method="post">
+<form action="datepostSave.nhn?pidsize=${pidsize}" method="post"  enctype="multipart/form-data">
 <input type="hidden" value="up" name="btcheck" />
 <div>
 	<div id="img" class="placeinfov_wrap" style="margin-bottom: 20px">
@@ -905,6 +905,7 @@ function removeAllChildNods(el) {
 	
 	
 </div>
+
 <input type="hidden" value="${num}" name="num" />
 <a href="#" onclick="subForm()"><img src="button/z34.png" style="margin-top: 2.1%"></a>
 <br /> 
@@ -929,7 +930,7 @@ function removeAllChildNods(el) {
 				</div>
 			</c:forEach>
 		</div>
-	</div>
+</div>
 
 </form>
 

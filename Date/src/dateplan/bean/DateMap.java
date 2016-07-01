@@ -1,6 +1,8 @@
 package dateplan.bean;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 
 @Controller
 public class DateMap {
@@ -21,6 +26,32 @@ public class DateMap {
 	public String dateMap(HttpServletRequest request) throws Exception{
 				
 		return "/dateplan/dateMap.jsp";
+	}
+	
+	@RequestMapping("datepostSave.nhn")
+	public String datepostSave(DTO dto,HttpServletRequest request) throws Exception{
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		int pidsize = Integer.parseInt(multipartHttpServletRequest.getParameter("pidsize"));
+		MultipartFile multipartFile = null;
+		String originalFileName = null;
+		String[] src = new String[pidsize];
+		String path ="F:\\git\\Date\\Date\\WebContent\\dateplan\\dateImage\\";
+		int i = 0;
+		while(iterator.hasNext()){
+			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+			originalFileName = multipartFile.getOriginalFilename();
+			multipartFile.transferTo(new File(path + originalFileName));
+			src[i] = originalFileName;
+			i++;
+		}
+		String postsrc="";
+		for(int j=0;j<src.length;j++){
+			postsrc=postsrc+src[i];
+		}
+		dto.setPostsrc(postsrc);
+		sqlMap.update("insertsrc", dto);
+		return "/dateplan/datepostSave.jsp";
 	}
 	@RequestMapping("datepost.nhn")
 	public String datepost(HttpServletRequest request,DTO dto) throws Exception{
