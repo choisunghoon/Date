@@ -53,6 +53,7 @@
 
 <c:if test="${checkW==0}">	
 	<script>
+	var enumber = ${enumber};
 	$(document).ready(function() { 
 		alert();
 	});
@@ -62,7 +63,7 @@
 		function alert(){
 			reset();
 			alertify.set({ delay: 1000*60*60*24 });
-			alertify.log("<a href='/Date/event.nhn' class='alert-link'>이벤트에 당첨되셨습니다!</a>");
+			alertify.log("<a href='/Date/event.nhn' class='alert-link'>이벤트(이벤트 번호: "+enumber+")에 당첨되셨습니다</a>");
 			return false;
 		};
 	</script>
