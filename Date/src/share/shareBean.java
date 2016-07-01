@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import dateplan.bean.DTO;
-import upload.bean.CoupleDataBean;
 import upload.bean.DiaryDataBean;
 
 @Controller
@@ -68,10 +67,33 @@ public class shareBean {
 	@RequestMapping("shareDiaryBoard.nhn")
 	public ModelAndView shareDiaryBoard(HttpServletRequest request ,HttpSession session){
 
+		int currentPage;
+		int totalCount = 0;
+		int blockCount = 10;
+		int blockPage = 5;
+		if(request.getParameter("currentPage")!=null){
+			currentPage =Integer.parseInt(request.getParameter("currentPage"));
+		}else{
+			currentPage =1;
+		}
+		String pagingHtml;
+		pagingDTO page;
+		
 		List list = new ArrayList();
 		list = sqlMap.queryForList("shereSelectDiaryBoardAll",null);
+		totalCount = list.size();
+		page = new pagingDTO(currentPage,totalCount,blockCount,blockPage);
+		
+		pagingHtml = page.getPagingHtml().toString();
+		int lastCount = totalCount;
+		if (page.getEndCount() <totalCount)
+			lastCount = page.getEndCount() +1;
+		list = list.subList(page.getStartCount(),lastCount);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list",list);
+		mv.addObject("pagingHtml",pagingHtml);
+		mv.addObject("currentPage",currentPage);
 		mv.setViewName("/yh/shareDiaryBoardList.jsp");
 		return mv;
 	}
@@ -95,8 +117,9 @@ public class shareBean {
 		map.put("place", place);
 		list.add(map);
 		
-		int check = (Integer)sqlMap.queryForObject("shereCourseLikePro",map);
+		int check = (Integer)sqlMap.queryForObject("shereDiaryLikePro",map);
 		
+		System.out.println(check);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);
 		mv.addObject("num",num);
@@ -119,13 +142,13 @@ public class shareBean {
 			currentPage =1;
 		}
 		String pagingHtml;
-		pagingDTO page;
+		coursePagingTDTO page;
 		shareCourseDataBean dto = new shareCourseDataBean();
 		
 		List list = new ArrayList();
 		list = sqlMap.queryForList("shereSelectCourseBoardAll",null);
 		totalCount = list.size();
-		page = new pagingDTO(currentPage,totalCount,blockCount,blockPage);
+		page = new coursePagingTDTO(currentPage,totalCount,blockCount,blockPage);
 		
 		pagingHtml = page.getPagingHtml().toString();
 		int lastCount = totalCount;
@@ -209,6 +232,7 @@ public class shareBean {
 		mv.addObject("dto",dto);
 		mv.addObject("dto1",dto1);
 		mv.addObject("num",num);
+		mv.addObject("check",check);
 		mv.setViewName("/yh/likeCount.jsp");
 		return mv;
 		
@@ -230,9 +254,14 @@ public class shareBean {
 	}
 	
 	@RequestMapping("shareDiaryCount.nhn")
-	public ModelAndView diaryCount(HttpServletRequest request, HttpSession session, int num){
+	public ModelAndView diaryCount(HttpServletRequest request, HttpSession session, int num,int check){
 		
 		System.out.println("");
+		
+		String id = (String)session.getAttribute("id");
+		String couplename = (String) sqlMap.queryForObject("serchCouplename",id);
+		String place = "다이어리 공유";
+		List list = new ArrayList();
 		
 		int likecount = (Integer)sqlMap.queryForObject("shereDiaryLike", num);
 		System.out.println("좋아요 숫자" + likecount + "글넘버" + num);
@@ -240,6 +269,7 @@ public class shareBean {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("likecount",likecount);
 		mv.addObject("num",num);
+		mv.addObject("check",check);
 		mv.setViewName("/yh/likeCount.jsp");
 		return mv;
 	}

@@ -55,8 +55,12 @@
 	</tr>
 	</c:if>
 
-	</table>
+	<tr align="center">
+		<td colspan="5"> ${pagingHtml}</td>
+	</tr>
             
+	</table>
+
 </form>
 </body>
 </html>

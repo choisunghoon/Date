@@ -1,6 +1,6 @@
 package share;
 
-public class pagingDTO {
+public class coursePagingTDTO {
 
 	private int currentPage;   // 현재페이지
 	private int totalCount;	 // 전체 게시물 수
@@ -15,7 +15,7 @@ public class pagingDTO {
 	private StringBuffer pagingHtml;
 
 	// 페이징 생성자
-	public pagingDTO(int currentPage, int totalCount, int blockCount,
+	public coursePagingTDTO(int currentPage, int totalCount, int blockCount,
 			int blockPage) {
 
 		this.blockCount = blockCount;
@@ -50,7 +50,7 @@ public class pagingDTO {
 		// 이전 block 페이지
 		pagingHtml = new StringBuffer();
 		if (currentPage > blockPage) {
-			pagingHtml.append("<a href='#'  onclick=callAjax('shareDiaryBoard.nhn?currentPage="
+			pagingHtml.append("<a href='#'  onclick=callAjax('shareCourseBoard.nhn?currentPage="
 					+ (startPage - 1) + "')>");
 			pagingHtml.append("이전");
 			pagingHtml.append("</a>");
@@ -69,7 +69,7 @@ public class pagingDTO {
 				pagingHtml.append("</font></b>");
 			} else {
 				pagingHtml
-						.append("&nbsp;<a href='#' onclick=callAjax('shareDiaryBoard.nhn?currentPage=");
+						.append("&nbsp;<a href='#' onclick=callAjax('shareCourseBoard.nhn?currentPage=");
 				pagingHtml.append(i);
 				pagingHtml.append("')>");
 				pagingHtml.append(i);
@@ -83,7 +83,7 @@ public class pagingDTO {
 		
 		// 다음 block 페이지
 		if (totalPage - startPage >= blockPage) {
-			pagingHtml.append("<a href='#' onclick=callAjax('shareDiaryBoard.nhn?currentPage="
+			pagingHtml.append("<a href='#' onclick=callAjax('shareCourseBoard.nhn?currentPage="
 					+ (endPage + 1) + "')>");
 			pagingHtml.append("다음");
 			pagingHtml.append("</a>");

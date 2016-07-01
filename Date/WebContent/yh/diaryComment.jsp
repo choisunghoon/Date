@@ -114,7 +114,7 @@
             <c:forEach end="${totalCount}" begin="1" var="i">
                <c:if test="${i<=listMore }">
                   <script>
-       
+              
                     document.getElementById("dispRow${i}").style.display = 'block'; //최대 갯수 보다 작거나 같으면 이미지를 보여준다
                   </script>
                </c:if> 
