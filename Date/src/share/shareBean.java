@@ -348,6 +348,7 @@ public class shareBean {
 			System.out.println("코스공유 포인트증가 기록");
 			sqlMap.update("sherePointCountUp", map);
 			System.out.println("멤버 좋아요로 획득한 포인트 증가 ");
+			
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);

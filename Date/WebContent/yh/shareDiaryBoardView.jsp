@@ -96,14 +96,15 @@
 			
 		<div id="like" method="post"><center>
 		<span id="ajaxReturn">
-			<c:if test="${check == 1}">
-			<input type="button" name="goodLike" value="이미 눌럿어요" />
-			</c:if>
-			<c:if test="${check != 1}">
-			<input type="button" name="goodLike" value="눌러주세요" />
-			</c:if>
-			 ${dto.likecount }
-		</span><br/>
+		<c:if test="${check==1}">		
+			<input type="button" name="goodLike" value="좋아햇어요" />
+		</c:if>
+	
+		<c:if test="${check!=1}">
+			<input type="button" name="goodLike" value="좋아요" />
+		</c:if>
+			 ${dto.likecount } 	
+		</span>
 					
 		</center>   
 		</div>	     
