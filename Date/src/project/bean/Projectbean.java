@@ -205,7 +205,7 @@ public class Projectbean {
 		String[] src = new String[2];
 		String path = "C:\\Users\\user2\\workspace\\Spring\\WebContent\\project";
 		int i = 0;
-		while (iterator.hasNext()) {
+		while (iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 			originalFileName = multipartFile.getOriginalFilename();
 			multipartFile.transferTo(new File(path + originalFileName));
@@ -722,22 +722,24 @@ public class Projectbean {
 	}
 	
 	@RequestMapping("modifyWcouples.nhn")
-	public String modifyWcouples(HttpServletRequest request,CoupleDataBean cdb){
+	public String modifyWcouples(HttpServletRequest request){
 		int enumber = Integer.parseInt(request.getParameter("enumber"));	
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
 		int w = Integer.parseInt(request.getParameter("w"));
 		String wcouples = request.getParameter("wcouples");
 		String app = (String)sqlMap.queryForObject("eventAppAdmin", enumber);
 		String[] wcList = app.split(",");
-		List idid = new ArrayList(); 
+	//	List idid = new ArrayList(); 
+		List appList = null;
 		for(int i = 0;i<wcList.length;i++){
-			CoupleDataBean cdb2 = new CoupleDataBean();
-			cdb.setCoupleName(wcList[i]);
-			cdb2 = (CoupleDataBean)sqlMap.queryForObject("selectid", cdb);
-			idid.add(cdb2);
+			EventDataBean eto = new EventDataBean();
+			eto.setCouplename(wcList[i]);
+			appList = sqlMap.queryForList("selectCh", eto);
+			
 		}
+		
 		int Lsize = wcList.length;
-		request.setAttribute("idid", idid);
+		request.setAttribute("appList", appList);
 		request.setAttribute("enumber", new Integer(enumber));
 		request.setAttribute("Lsize", new Integer(Lsize));
 		request.setAttribute("wcouples", wcouples);

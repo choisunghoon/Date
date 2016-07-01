@@ -207,7 +207,22 @@
 		</update>
 		<delete id="deleteAlert" parameterClass="String">
 			delete from dc_alert where id=#id# 
-		</delete>	
+		</delete>
+		<select id="couplename_dc0" parameterClass="String"	 resultClass="String">
+			select coupleName from dc_dc where coupleName=#coupleName#
+		</select>
+		<update id="couplename_dc" parameterClass="cdto">
+			update dc_dc set coupleName=#coupleName# where id1=#id1# or id2=#id1#
+		</update>
+		<update id="couplename_diary" parameterClass="cdto">
+			update dc_diary set coupleName=#coupleName# where id1=#id1# or id2=#id1#
+		</update>
+		<update id="couplename_alert" parameterClass="cdto">
+			update dc_alert set coupleName=#coupleName# where id1=#id1# or id2=#id1#
+		</update>
+		<update id="couplename_point" parameterClass="cdto">
+			update dc_point set coupleName=#coupleName# where id1=#id1# or id2=#id1#
+		</update>	
 		
 
 </sqlMap>

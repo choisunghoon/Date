@@ -50,6 +50,23 @@
 		};
 	</script>
 </c:if>
+
+<c:if test="${checkW==0}">	
+	<script>
+	$(document).ready(function() { 
+		alert();
+	});
+	 /* $(document).ready(function(){
+	    	window.setInterval('alert()', 10000); //10초마다 alert()를 반복!
+	    }); */
+		function alert(){
+			reset();
+			alertify.set({ delay: 1000*60*60*24 });
+			alertify.log("<a href='/Date/event.nhn' class='alert-link'>이벤트에 당첨되셨습니다!</a>");
+			return false;
+		};
+	</script>
+</c:if>
 <script>
 function reset () {
 	$("#toggleCSS").attr("href", "/Date/dc/test/alertify.js-0.3.11/themes/alertify.default.css");
