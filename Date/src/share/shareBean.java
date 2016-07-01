@@ -106,13 +106,10 @@ public class shareBean {
 		DiaryDataBean dto = new DiaryDataBean();
 		dto = (DiaryDataBean)sqlMap.queryForObject("shereDiarySelectNum", num);
 		
-		String id = (String)session.getAttribute("id");
-		String couplename = (String) sqlMap.queryForObject("serchCouplename",id);
 		String place = "다이어리 공유";
 		List list = new ArrayList();
 
 		Map map = new HashMap();
-		map.put("couplename", couplename);
 		map.put("num", num);
 		map.put("place", place);
 		list.add(map);
@@ -254,14 +251,21 @@ public class shareBean {
 	}
 	
 	@RequestMapping("shareDiaryCount.nhn")
-	public ModelAndView diaryCount(HttpServletRequest request, HttpSession session, int num,int check){
+	public ModelAndView diaryCount(HttpServletRequest request, HttpSession session, int num){
 		
 		System.out.println("");
 		
-		String id = (String)session.getAttribute("id");
-		String couplename = (String) sqlMap.queryForObject("serchCouplename",id);
 		String place = "다이어리 공유";
+		
 		List list = new ArrayList();
+
+		Map map = new HashMap();
+		map.put("num", num);
+		map.put("place", place);
+		list.add(map);
+		
+		int check = (Integer)sqlMap.queryForObject("shereDiaryLikePro",map);
+		
 		
 		int likecount = (Integer)sqlMap.queryForObject("shereDiaryLike", num);
 		System.out.println("좋아요 숫자" + likecount + "글넘버" + num);
