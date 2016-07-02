@@ -8,16 +8,27 @@
 <script language="JavaScript">
 var checkflag = "false";
 function check(field) {
-if (checkflag == "false") {
-for (i = 0; i < field.length; i++) {
-field[i].checked = true;}
-checkflag = "true";
-return "모두 선택 해제"; }
-else {
-for (i = 0; i < field.length; i++) {
-field[i].checked = false; }
-checkflag = "false";
-return "모두 선택"; }
+	if (checkflag == "false") {
+		for (i = 0; i < field.length; i++) {
+			field[i].checked = true;
+		}
+	checkflag = "true";
+	return "모두 선택 해제"; }
+	else {
+		for (i = 0; i < field.length; i++) {
+			field[i].checked = false;
+		}
+		checkflag = "false";
+	return "모두 선택"; }
+}
+
+function get_chked_values(){
+	  var chked_val = "";
+	  $(":checkbox[name='checkbox']:checked").each(function(pi,po){
+	    chked_val += ","+po.value;
+	  });
+	  if(chked_val!="")chked_val = chked_val.substring(1);
+	  return chked_val;
 }
 </script> 
 <title>당첨자 수정 및 삭제</title>
@@ -34,7 +45,7 @@ return "모두 선택"; }
 	</tr>
 	<c:forEach var="appList" items="${appList}">
 	<tr>
-		<td align="center" width="100"><input name="checkbox" type="checkbox" value=""></td>
+		<td align="center" width="100"><input name="checkbox" type="checkbox" value="${appList.anumber}"></td>
 		<td align="center" width="100">${appList.couplename}</td>
 		<td align="center" width="100"> 
 		<a href="deleteWcouples.nhn?enumber=${enumber}&wcouples=${appList.couplename}"><input type="button" name="way" value="삭제"></a>

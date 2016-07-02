@@ -25,7 +25,7 @@ import ch11.logon.CoupleDataBean;
 @Controller
 public class Projectbean {
 	@Autowired
-	private SqlMapClientTemplate sqlMap;// ÀÚµ¿À¸·Î °ª ¹Ş¾ÆÁÜ
+	private SqlMapClientTemplate sqlMap;// ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ş¾ï¿½ï¿½ï¿½
 	/*
 	 * @SuppressWarnings("null")
 	 * 
@@ -178,13 +178,12 @@ public class Projectbean {
 			eto = (EventDataBean) eventList.get(i);
 			srclist = eto.getEimg().split(",");
 			eto.setEimg(path + srclist[0]);
-		}
+		}		
 		request.setAttribute("currentPage", new Integer(currentPage));
 		request.setAttribute("startRow", new Integer(startRow));
 		request.setAttribute("endRow", new Integer(endRow));
 		request.setAttribute("pageSize", new Integer(pageSize));
-		request.setAttribute("eventList", eventList);
-	
+		request.setAttribute("eventList", eventList);	
 		request.setAttribute("count", new Integer(count));
 		request.setAttribute("tab", (tab));
 		return "/project/eventTeb.jsp";
@@ -245,11 +244,28 @@ public class Projectbean {
 		eto = (EventDataBean) sqlMap.queryForObject("eventContent", enumber);
 		srclist = eto.getEimg().split(",");
 		if(eto.getWcouples() != null){
-		wclist = eto.getWcouples().split(",");}
-	
+		wclist = eto.getWcouples().split(",");
+		}	
 		eto.setEimg(path + srclist[1]);
 		appList = sqlMap.queryForList("eventApp", row);
-		count = (Integer) sqlMap.queryForObject("eventAppCount", enumber);
+		count = (Integer) sqlMap.queryForObject("eventAppCount", enumber);	
+		
+		int countCN = (Integer)sqlMap.queryForObject("countCN", id); //ì»¤í”Œì¸ê°€
+		if(countCN>0){
+		String couplen = (String)sqlMap.queryForObject("selectCouplename", id); //ì»¤í”Œì´ë¦„ë½‘ê¸°
+		EventDataBean eto2 = new EventDataBean();	
+		eto2.setCouplename(couplen);
+		eto2.setEnumber(enumber);
+		EventDataBean eto3 = new EventDataBean();	
+		int checkcount = (Integer)sqlMap.queryForObject("checkcount2", eto2); //ì•Œë¦¼ì„ ë³´ëƒˆë‚˜
+			if(checkcount>0){
+				eto3 = (EventDataBean)sqlMap.queryForObject("checkW2", eto2);	//checknumí™•ì¸			
+				if(eto3.getChecknum()==0){
+					sqlMap.update("checknumU", eto2);
+				}
+			}
+		}	
+		
 		request.setAttribute("eto", eto);
 		request.setAttribute("appList", appList);
 		request.setAttribute("wclist", wclist);
@@ -281,7 +297,7 @@ public class Projectbean {
 	
 		System.out.println(eto.getAppimg());
 		
-		// String cn = "Ä¿ÇÃÀ×";
+		// String cn = "Ä¿ï¿½ï¿½ï¿½ï¿½";
 		//HashMap<String, Integer> row = new HashMap<String, Integer>();
 		//row.put("couplename", eto.getCouplename());
 		//row.put("enumber", eto.getEnumber());
@@ -347,7 +363,7 @@ public class Projectbean {
 		return "/project/appContentAdmin.jsp";
 	}
 
-	@RequestMapping("test.nhn") // ÀÓÀÇÀÇ °ü¸®ÀÚ ÆäÀÌÁö
+	@RequestMapping("test.nhn") // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public String test(HttpServletRequest request) {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		String pageNum = request.getParameter("pageNum");
@@ -470,7 +486,7 @@ public class Projectbean {
 		request.setAttribute("wcount", new Integer(wcount));
 		return "/project/wWay.jsp";
 	}
-	// ¿©±â±îÁö git
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ git
 
 	@RequestMapping("random.nhn")
 	public String random(HttpServletRequest request,CoupleDataBean cdb) {
@@ -776,30 +792,22 @@ public class Projectbean {
 			}
 		}
 		String wc = (String)list.get(0);
-		//System.out.println(list.size());
-		System.out.println(wc);		
 		if (list.size() != 1) {
 			for (int i = 1; i < list.size(); i++) {
 				wc = wc + "," + (String) list.get(i);
 			}
 		}
-		/*for(int i=0; i<wcList.length; i++){
-			if(i==0){
-				if(wcList.length=) wc=wcList[i];
-				else wc = wcList[i]+",";
-			}
-			else if(i==wcList.length-1){
-				wc=wc+wcList[i];
-			}
-			else {
-				wc=wc+wcList[i]+",";
-			}
-		}*/
 		app.setEnumber(enumber);
 		app.setWcouples(wc);
 		sqlMap.update("deleteWcouples", app);
 		request.setAttribute("enumber", new Integer(enumber));
 		request.setAttribute("Cwcouples", Cwcouples);
 		return "/project/deleteWcouplesPro.jsp";
+	}	
+
+	@RequestMapping("WcoupleA.nhn")
+	public String WcoupleA(HttpServletRequest request){
+		
+		return "/project/WcoupleA.jsp";
 	}
 }
