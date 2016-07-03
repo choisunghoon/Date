@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script language="JavaScript">
 var checkflag = "false";
@@ -22,13 +23,30 @@ function check(field) {
 	return "모두 선택"; }
 }
 
-function get_chked_values(){
-	  var chked_val = "";
-	  $(":checkbox[name='checkbox']:checked").each(function(pi,po){
-	    chked_val += ","+po.value;
-	  });
-	  if(chked_val!="")chked_val = chked_val.substring(1);
-	  return chked_val;
+function ajaxExample(){
+	// name이 같은 체크박스의 값들을 배열에 담는다.
+	var checkboxValues = [];
+	$("#checkbox:checked").each(function(i) {
+		checkboxValues.push($(this).val());("완ddddsds료!");
+	});
+	
+	// 사용자 ID(문자열)와 체크박스 값들(배열)을 name/value 형태로 담는다.
+	var allData = { "checkArray": checkboxValues };
+	
+	$.ajax({
+		url:"WcoupleA.nhn?enumber="+ $("#enumber").val(),
+		type:'GET',
+		data: allData,
+		success:function(data){
+			alert(checkArray.get(0));
+			window.opener.location.reload();
+			self.close();
+		},
+		error:function(jqXHR, textStatus, errorThrown){
+			alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+	});
 }
 </script> 
 <title>당첨자 수정 및 삭제</title>
@@ -45,7 +63,9 @@ function get_chked_values(){
 	</tr>
 	<c:forEach var="appList" items="${appList}">
 	<tr>
-		<td align="center" width="100"><input name="checkbox" type="checkbox" value="${appList.anumber}"></td>
+		<td align="center" width="100"><input type="hidden" name="enumber" id="enumber" value="${appList.enumber}">
+		<input name="checkbox" type="checkbox" id="checkbox" value="${appList.anumber}">
+		</td>
 		<td align="center" width="100">${appList.couplename}</td>
 		<td align="center" width="100"> 
 		<a href="deleteWcouples.nhn?enumber=${enumber}&wcouples=${appList.couplename}"><input type="button" name="way" value="삭제"></a>
@@ -57,8 +77,8 @@ function get_chked_values(){
 	</tr>
 	</c:forEach>
 </table>
-</form>
 <a href="wWay.nhn?enumber=${enumber}&wnumber=${wnumber}&w=${w}"><input type="button" name="way" value="당첨자 추가"></a>
-<a href="WcoupleA.nhn?enumber=${enumber}"><input type="button" value="알림보내기"></a>
+<button type="button" onclick='ajaxExample()'>알림보내기</button>	
+</form>
 </body>
 </html>

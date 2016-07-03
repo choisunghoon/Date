@@ -148,7 +148,7 @@ public class LoginBean {
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
-			int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
+			/*int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
 			if(countCN>0){
 			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
 			EventDataBean eto = new EventDataBean()	;			
@@ -167,7 +167,7 @@ public class LoginBean {
 						}
 					}
 				}
-			}
+			}*/
 			if(checkAlert!=0){
 				AlertDataBean adto=new AlertDataBean();
 				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
@@ -201,7 +201,7 @@ public class LoginBean {
 		String id = (String)session.getAttribute("id");
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//�α��� ���� Ȯ��
 		if(nc==1){
-			int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
+			/*int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
 			if(countCN>0){
 			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
 			EventDataBean eto = new EventDataBean()	;			
@@ -220,7 +220,7 @@ public class LoginBean {
 						}
 					}
 				}
-			}
+			}*/
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
@@ -256,7 +256,7 @@ public class LoginBean {
 	public String theme(HttpSession session,HttpServletRequest request) throws Exception{
 		String id = (String)session.getAttribute("id");
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//�α��� ���� Ȯ��
-		if(nc==1){
+		if(nc==1){/*
 			int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
 			if(countCN>0){
 			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
@@ -276,7 +276,7 @@ public class LoginBean {
 						}
 					}
 				}
-			}
+			}*/
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
@@ -371,7 +371,7 @@ public class LoginBean {
 		String id = (String)session.getAttribute("id");
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//�α��� ���� Ȯ��
 		if(nc==1){
-			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);		
+		/*	String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);		
 			EventDataBean eto = new EventDataBean()	;			
 			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
 			if (checkcount > 0) {
@@ -387,7 +387,7 @@ public class LoginBean {
 						}
 					}
 				}
-			}
+			}*/
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);

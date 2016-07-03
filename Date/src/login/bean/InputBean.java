@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import project.bean.EventDataBean;
 import ch11.logon.*;
 import dateplan.bean.DTO;
-import event.EventDataBean;
+
+
 import upload.bean.DiaryDataBean;
 import upload.bean.PhotoDataBean;
 import upload.bean.PointDataBean;
@@ -177,10 +179,25 @@ public class InputBean {
 			
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
+			int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
+			if(countCN>0){
 			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
-			int checkW=(Integer)sqlMapper.queryForObject("checkW", couplen);
-			if(checkW==0){
-				request.setAttribute("checkW", checkW);
+			EventDataBean eto = new EventDataBean()	;			
+			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
+				if(checkcount>0){
+					List etoList = null;
+					etoList = sqlMapper.queryForList("checkW", couplen);
+					for(int j=0; j<etoList.size();j++){
+						eto = (EventDataBean) etoList.get(j);
+						for(int i=0; i<checkcount; i++){
+							if(eto.getChecknum()==0){
+								request.setAttribute("checkW",  eto.getChecknum());
+								request.setAttribute("enumber1", eto.getEnumber());
+								request.setAttribute("ch", 0);
+							}
+						}
+					}
+				}
 			}
 		
 			if(checkAlert==1){
