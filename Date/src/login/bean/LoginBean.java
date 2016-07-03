@@ -1,6 +1,7 @@
 package login.bean;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,12 +42,16 @@ public class LoginBean {
 				EventDataBean eto = new EventDataBean()	;			
 				int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
 					if(checkcount>0){
-						eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
-						for(int i=0; i<checkcount; i++){
-							if(eto.getChecknum()==0){
-								request.setAttribute("checkW",  eto.getChecknum());
-								request.setAttribute("enumber1", eto.getEnumber());
-								request.setAttribute("ch", 0);
+						List etoList = null;
+						etoList = sqlMapper.queryForList("checkW", couplen);
+						for(int j=0; j<etoList.size();j++){
+							eto = (EventDataBean) etoList.get(j);
+							for(int i=0; i<checkcount; i++){
+								if(eto.getChecknum()==0){
+									request.setAttribute("checkW",  eto.getChecknum());
+									request.setAttribute("enumber1", eto.getEnumber());
+									request.setAttribute("ch", 0);
+								}
 							}
 						}
 					}
@@ -149,12 +154,16 @@ public class LoginBean {
 			EventDataBean eto = new EventDataBean()	;			
 			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
 				if(checkcount>0){
-					eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
-					for(int i=0; i<checkcount; i++){
-						if(eto.getChecknum()==0){
-							request.setAttribute("checkW",  eto.getChecknum());
-							request.setAttribute("enumber1", eto.getEnumber());
-							request.setAttribute("ch", 0);
+					List etoList = null;
+					etoList = sqlMapper.queryForList("checkW", couplen);
+					for(int j=0; j<etoList.size();j++){
+						eto = (EventDataBean) etoList.get(j);
+						for(int i=0; i<checkcount; i++){
+							if(eto.getChecknum()==0){
+								request.setAttribute("checkW",  eto.getChecknum());
+								request.setAttribute("enumber1", eto.getEnumber());
+								request.setAttribute("ch", 0);
+							}
 						}
 					}
 				}
@@ -198,12 +207,16 @@ public class LoginBean {
 			EventDataBean eto = new EventDataBean()	;			
 			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
 				if(checkcount>0){
-					eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
-					for(int i=0; i<checkcount; i++){
-						if(eto.getChecknum()==0){
-							request.setAttribute("checkW",  eto.getChecknum());
-							request.setAttribute("enumber1", eto.getEnumber());
-							request.setAttribute("ch", 0);
+					List etoList = null;
+					etoList = sqlMapper.queryForList("checkW", couplen);
+					for(int j=0; j<etoList.size();j++){
+						eto = (EventDataBean) etoList.get(j);
+						for(int i=0; i<checkcount; i++){
+							if(eto.getChecknum()==0){
+								request.setAttribute("checkW",  eto.getChecknum());
+								request.setAttribute("enumber1", eto.getEnumber());
+								request.setAttribute("ch", 0);
+							}
 						}
 					}
 				}
@@ -250,12 +263,16 @@ public class LoginBean {
 			EventDataBean eto = new EventDataBean()	;			
 			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
 				if(checkcount>0){
-					eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
-					for(int i=0; i<checkcount; i++){
-						if(eto.getChecknum()==0){
-							request.setAttribute("checkW",  eto.getChecknum());
-							request.setAttribute("enumber1", eto.getEnumber());
-							request.setAttribute("ch", 0);
+					List etoList = null;
+					etoList = sqlMapper.queryForList("checkW", couplen);
+					for(int j=0; j<etoList.size();j++){
+						eto = (EventDataBean) etoList.get(j);
+						for(int i=0; i<checkcount; i++){
+							if(eto.getChecknum()==0){
+								request.setAttribute("checkW",  eto.getChecknum());
+								request.setAttribute("enumber1", eto.getEnumber());
+								request.setAttribute("ch", 0);
+							}
 						}
 					}
 				}
@@ -304,12 +321,16 @@ public class LoginBean {
 			EventDataBean eto = new EventDataBean()	;			
 			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
 				if(checkcount>0){
-					eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
-					for(int i=0; i<checkcount; i++){
-						if(eto.getChecknum()==0){
-							request.setAttribute("checkW",  eto.getChecknum());
-							request.setAttribute("enumber1", eto.getEnumber());
-							request.setAttribute("ch", 0);
+					List etoList = null;
+					etoList = sqlMapper.queryForList("checkW", couplen);
+					for(int j=0; j<etoList.size();j++){
+						eto = (EventDataBean) etoList.get(j);
+						for(int i=0; i<checkcount; i++){
+							if(eto.getChecknum()==0){
+								request.setAttribute("checkW",  eto.getChecknum());
+								request.setAttribute("enumber1", eto.getEnumber());
+								request.setAttribute("ch", 0);
+							}
 						}
 					}
 				}
@@ -354,11 +375,17 @@ public class LoginBean {
 			EventDataBean eto = new EventDataBean()	;			
 			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
 			if (checkcount > 0) {
-				eto = (EventDataBean) sqlMapper.queryForObject("checkW",couplen);
-				if (eto.getChecknum() == 0) {
-					request.setAttribute("checkW", eto.getChecknum());
-					request.setAttribute("enumber1", eto.getEnumber());
-					request.setAttribute("ch", 0);
+				List etoList = null;
+				etoList = sqlMapper.queryForList("checkW", couplen);
+				for(int j=0; j<etoList.size();j++){
+					eto = (EventDataBean) etoList.get(j);
+					for(int i=0; i<checkcount; i++){
+						if(eto.getChecknum()==0){
+							request.setAttribute("checkW",  eto.getChecknum());
+							request.setAttribute("enumber1", eto.getEnumber());
+							request.setAttribute("ch", 0);
+						}
+					}
 				}
 			}
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
