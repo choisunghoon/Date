@@ -31,25 +31,32 @@ public class DateMap {
 	@RequestMapping("datepostSave.nhn")
 	public String datepostSave(DTO dto,HttpServletRequest request) throws Exception{
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		Iterator iterator = (Iterator) multipartHttpServletRequest.getFiles("save");
 		int pidsize = Integer.parseInt(multipartHttpServletRequest.getParameter("pidsize"));
+		int num = Integer.parseInt(request.getParameter("num"));
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String[] src = new String[pidsize];
-		String path ="F:\\git\\Date\\Date\\WebContent\\dateplan\\dateImage\\";
+		String path = "C:\\Users\\com\\git\\Date\\Date\\WebContent\\dateplan\\dateImage\\";
 		int i = 0;
 		while(iterator.hasNext()){
-			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
-			originalFileName = multipartFile.getOriginalFilename();
+			originalFileName = (String)iterator.next();
 			multipartFile.transferTo(new File(path + originalFileName));
 			src[i] = originalFileName;
+			System.out.println(src[i]);
 			i++;
 		}
 		String postsrc="";
+		System.out.println("src length :" + src.length);
 		for(int j=0;j<src.length;j++){
-			postsrc=postsrc+src[i];
+			if(j==0){
+			postsrc=src[j];
+			}else{
+				postsrc = postsrc +","+ src[j]; 
+			}
 		}
 		dto.setPostsrc(postsrc);
+		dto.setNum(num);
 		sqlMap.update("insertsrc", dto);
 		return "/dateplan/datepostSave.jsp";
 	}
