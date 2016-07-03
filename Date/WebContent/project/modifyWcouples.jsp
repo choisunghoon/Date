@@ -51,14 +51,14 @@ function get_chked_values(){
 		<a href="deleteWcouples.nhn?enumber=${enumber}&wcouples=${appList.couplename}"><input type="button" name="way" value="삭제"></a>
 		</td>	
 		<td align="center" width="100">
-		<c:if test="${appList.checknum==0}">${무}</c:if>
-		<c:if test="${appList.checknum==1}">${유}</c:if>
+		<c:if test="${appList.checknum==0}">무</c:if>
+		<c:if test="${appList.checknum==1}">유</c:if>
 		</td>
 	</tr>
 	</c:forEach>
 </table>
 </form>
 <a href="wWay.nhn?enumber=${enumber}&wnumber=${wnumber}&w=${w}"><input type="button" name="way" value="당첨자 추가"></a>
-<a href="WcoupleA.nhn?enumber=${enumber}&wcouples=${appList.couplename}"><input type="button" value="알림보내기"></a>
+<a href="WcoupleA.nhn?enumber=${enumber}"><input type="button" value="알림보내기"></a>
 </body>
 </html>

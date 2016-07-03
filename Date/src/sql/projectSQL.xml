@@ -157,7 +157,7 @@
 	</select>
 	
 	<select id="selectCh" resultClass="project.bean.EventDataBean" parameterClass="project.bean.EventDataBean">
-		select * from event_a where couplename=#couplename# 
+		select * from event_a where couplename=#couplename# and enumber=#enumber#
 	</select>
 	
 	<select id="checkcount" resultClass="int" parameterClass="String">

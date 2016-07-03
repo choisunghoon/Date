@@ -750,6 +750,7 @@ public class Projectbean {
 		for(int i = 0;i<wcList.length;i++){
 			EventDataBean eto = new EventDataBean();
 			eto.setCouplename(wcList[i]);
+			eto.setEnumber(enumber);
 			appList = sqlMap.queryForList("selectCh", eto);
 			
 		}
