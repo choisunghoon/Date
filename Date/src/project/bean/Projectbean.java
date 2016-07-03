@@ -811,7 +811,8 @@ public class Projectbean {
 	public String WcoupleA(HttpServletRequest request, @RequestParam(value="checkArray[]") List<Integer> arrayParams){
 		List checkArray =arrayParams;
 		int enumber = Integer.parseInt(request.getParameter("enumber"));		
-		//System.out.println((Integer)checkArray.get(0));
+		System.out.println("asdf"+(Integer)checkArray.get(0));
+		System.out.println("asdf"+(Integer)checkArray.get(1));
 		EventDataBean w = new EventDataBean();
 		w.setEnumber(enumber);
 		for(int i=0; i<checkArray.size();i++){
@@ -819,6 +820,6 @@ public class Projectbean {
 			w.setAnumber((Integer)checkArray.get(i));
 			sqlMap.update("updateWn", w);
 		}
-		return "/project/WcoupleA.jsp";
+		return "/project/modifyWcouples.jsp";
 	}
 }
