@@ -24,7 +24,22 @@ public class shareBean {
 	@Autowired
 	private SqlMapClientTemplate sqlMap;
 
+    @RequestMapping("commentDelete.nhn")
+	public String commentDelete(HttpServletRequest request,HttpSession session)throws Exception{
+    	commentDataBean dto = new commentDataBean();
+		String id = (String)session.getAttribute("id");
+		String num = request.getParameter("num");
+		List list = new ArrayList();
+		Map map = new HashMap();
+		map.put("num", num);
+		map.put("id", id);
 
+		int check = (Integer)sqlMap.queryForObject("diaryCommentDelet", map);
+		request.setAttribute("check", check);
+
+		return "/yh/diaryComment.jsp";
+    	
+    }
 	@RequestMapping("commentUp.nhn")
 	public String testpro(HttpServletRequest request ,HttpSession session,int num)throws Exception{
 		
@@ -44,7 +59,7 @@ public class shareBean {
 		dto.setRegdate(new Timestamp(System.currentTimeMillis()));
 		
 		sqlMap.insert("SelectDiaryCommentUp",dto);
-		
+
 		return "/yh/diaryComment.jsp";
 	}
 	@RequestMapping("dairyComment.nhn")
@@ -56,8 +71,8 @@ public class shareBean {
 		commentDataBean dto = new commentDataBean();
 		commentList = sqlMap.queryForList("SelectDiaryCommentAll",num);
 		int totalCount = (Integer)sqlMap.queryForObject("commentCount", num);
-		
 		System.out.println(totalCount);
+
 		request.setAttribute("listMore", listMore);
 		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("commentList", commentList);

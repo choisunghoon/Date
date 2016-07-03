@@ -92,7 +92,9 @@
 				<table width="500px" border="1" cellspacing="0" cellpadding="0" >
 						<tr align="center">
 						<td width="20%">${commentList.id}</td>
-						<td width="60	%">&nbsp;${commentList.diarycomment}</td>
+						<td width="60	%">&nbsp;${commentList.diarycomment}
+					    <input type="button" value="delete" onclick="callAjax('commentDelete.nhn?id=${id}&num=${commentList.num}')"/>
+						</td>
 						<td width="20%">${commentList.regdate}</td>
          				</tr>
                   	</table>
