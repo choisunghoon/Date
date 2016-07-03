@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import dateplan.bean.DTO;
+
 @Controller
 public class Upload {
 	
@@ -374,7 +376,6 @@ public class Upload {
 		pdb.setCouplename(couplename);
 		List photo = null;
 		photo = sqlMap.queryForList("myphoto", pdb);
-		System.out.println(photo.size());
 		/*
 		pdb = (PhotoDataBean)sqlMap.queryForList("myphoto", pdb);
 		
@@ -433,6 +434,39 @@ public class Upload {
 
 
 		return "/sy0630/photocheckcontent.jsp";
+	}
+	
+	@RequestMapping("/bestcouple.nhn")
+	public String bestcouple(HttpServletRequest request,CoupleDataBean cdb,DiaryDataBean ddb){
+		List bestcouple = null;
+		bestcouple = sqlMap.queryForList("bestcouple", null);
+		List dd = new ArrayList();
+		System.out.println(bestcouple.size());
+		for(int i = 0; i<bestcouple.size(); i++){
+			CoupleDataBean cdb1 = new CoupleDataBean();
+			ddb = (DiaryDataBean)bestcouple.get(i);
+			cdb.setCouplename(ddb.getCouplename());
+			cdb1 = (CoupleDataBean)sqlMap.queryForObject("coupleimg", cdb);
+			System.out.println(cdb1.getCoupleimage());
+			System.out.println(i);
+			dd.add(cdb1);
+		}
+		
+		request.setAttribute("dd", dd);
+		request.setAttribute("bestcouple", bestcouple);
+		return "/sy0703/bestcouple.jsp";
+	}
+	
+	@RequestMapping("/latestcourse.nhn")
+	public String latestcourse(DTO dto){
+
+		return "/sy0703/latestcourse.jsp";
+	}
+	
+	@RequestMapping("/bestcourse.nhn")
+	public String bestcourse(DTO dto){
+
+		return "/sy0703/bestcourse.jsp";
 	}
 	
 

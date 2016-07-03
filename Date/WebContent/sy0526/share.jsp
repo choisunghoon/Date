@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@include file="/sy0526/topmenu.jsp" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript">
- 
+<script type="text/javascript"> 
+	var chk = '${chk}';
+	if(chk == 1){
+		callAjax('shareCourseBoard.nhn');
+	}
     function callAjax(nhn){
         $.ajax({
 	        type: "post",
