@@ -747,13 +747,13 @@ public class Projectbean {
 		String app = (String)sqlMap.queryForObject("eventAppAdmin", enumber);
 		String[] wcList = app.split(",");
 	//	List idid = new ArrayList(); 
-		List appList = null;
+		List appList = new ArrayList();
 		for(int i = 0;i<wcList.length;i++){
 			EventDataBean eto = new EventDataBean();
 			eto.setCouplename(wcList[i]);
 			eto.setEnumber(enumber);
-			appList = sqlMap.queryForList("selectCh", eto);
-			
+			eto = (EventDataBean)sqlMap.queryForObject("selectCh", eto);
+			appList.add(eto);
 		}
 		
 		int Lsize = wcList.length;
@@ -805,13 +805,20 @@ public class Projectbean {
 		request.setAttribute("enumber", new Integer(enumber));
 		request.setAttribute("Cwcouples", Cwcouples);
 		return "/project/deleteWcouplesPro.jsp";
-	}	
+	}
 
 	@RequestMapping("WcoupleA.nhn")
-	public String WcoupleA(HttpServletRequest request, @RequestParam(value="checkArray[]") List<String> arrayParams){
+	public String WcoupleA(HttpServletRequest request, @RequestParam(value="checkArray[]") List<Integer> arrayParams){
 		List checkArray =arrayParams;
 		int enumber = Integer.parseInt(request.getParameter("enumber"));		
-		System.out.println("che:"+checkArray.get(0));
+		//System.out.println((Integer)checkArray.get(0));
+		EventDataBean w = new EventDataBean();
+		w.setEnumber(enumber);
+		for(int i=0; i<checkArray.size();i++){
+			w.setEnumber(enumber);
+			w.setAnumber((Integer)checkArray.get(i));
+			sqlMap.update("updateWn", w);
+		}
 		return "/project/WcoupleA.jsp";
 	}
 }

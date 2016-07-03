@@ -171,4 +171,8 @@
 	<update id="checknumU" parameterClass="project.bean.EventDataBean">
 		update event_a set checknum=1 where enumber=#enumber# and couplename=#couplename#
 	</update>
+	
+	<update id="updateWn" parameterClass="project.bean.EventDataBean">
+		update event_a set checknum=-1 where enumber=#enumber# and anumber=#anumber#
+	</update>
 </sqlMap>
