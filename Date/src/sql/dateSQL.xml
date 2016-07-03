@@ -23,7 +23,7 @@
 	</select>
 	
 	<update id="insertsrc" parameterClass="dateplan.bean.DTO">
-		update dc_dc set postsrc=#postsrc# where num=#num#
+		update dc_dc set postsrc=#postsrc#,content=#content# where num=#num#
 	</update>
 	<select id="selectcos" parameterClass="int" resultClass="dateplan.bean.DTO">
 		select * from dc_dc where num=#num#

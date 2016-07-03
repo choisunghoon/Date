@@ -29,10 +29,15 @@ public class DateMap {
 	}
 	
 	@RequestMapping("datepostSave.nhn")
-	public String datepostSave(DTO dto,HttpServletRequest request) throws Exception{
-		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-		Iterator iterator = (Iterator) multipartHttpServletRequest.getFiles("save");
-		int pidsize = Integer.parseInt(multipartHttpServletRequest.getParameter("pidsize"));
+	public String datepostSave(DTO dto,MultipartHttpServletRequest request) throws Exception{
+		
+		Iterator<String> iterator = request.getFileNames();
+		int pidsize = Integer.parseInt(request.getParameter("pidsize"));
+		String[] cont = new String[pidsize];
+		for(int i =0;i<pidsize;i++){
+			cont[i] = request.getParameter("content"+Integer.toString(i+1));
+		}
+		
 		int num = Integer.parseInt(request.getParameter("num"));
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
@@ -40,21 +45,25 @@ public class DateMap {
 		String path = "C:\\Users\\com\\git\\Date\\Date\\WebContent\\dateplan\\dateImage\\";
 		int i = 0;
 		while(iterator.hasNext()){
-			originalFileName = (String)iterator.next();
+			multipartFile = request.getFile(iterator.next());
+			originalFileName = multipartFile.getOriginalFilename();
 			multipartFile.transferTo(new File(path + originalFileName));
 			src[i] = originalFileName;
-			System.out.println(src[i]);
 			i++;
 		}
 		String postsrc="";
-		System.out.println("src length :" + src.length);
+		String content="";
 		for(int j=0;j<src.length;j++){
 			if(j==0){
 			postsrc=src[j];
+			content=cont[j];
+			
 			}else{
-				postsrc = postsrc +","+ src[j]; 
+				postsrc = postsrc +","+ src[j];
+				content = content +"///"+ cont[j]; 
 			}
 		}
+		dto.setContent(content);
 		dto.setPostsrc(postsrc);
 		dto.setNum(num);
 		sqlMap.update("insertsrc", dto);

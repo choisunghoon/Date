@@ -917,12 +917,12 @@ function removeAllChildNods(el) {
 							
 						</div>
 						
-						<div id="content${i}" style="float:left;">
-							<textarea rows="15" cols="100"></textarea>
+						<div  id="content${i}" style="float:left;">
+							<textarea name ="content${i}" rows="15" cols="100"></textarea>
 						</div>
 						
 						<div>
-							<input type="file" name="save" id="choose${i}" />
+							<input type="file" name="save${i}" id="choose${i}" />
 						</div>
 					</div>
 				</div>
