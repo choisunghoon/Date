@@ -155,7 +155,7 @@
 				<input type="button" value="검색" onclick="checkSS(this.form)">		
 		</form></center>
 		</div>
-		<input type="button" value="이벤트 등록" style="margin-left:905px; margin-bottom:10px;" onClick="callAjaxyj3('addEvent.nhn')">
+		<a href="#" onclick="callAjaxyj3('addEvent.nhn')"><img src="/Date/button/z50.png" style="margin-left:905px; margin-bottom:10px;"></a>
 <div id="subMain1" style="float:center;width:86%">
 <input type="hidden" onchange="reload('adminEvent.nhn')" value="0" id="chk" />	
 <center>
@@ -192,7 +192,7 @@
 		<button type="button" onclick="callAjaxyj2('wWay.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')">당첨자뽑기</button>
 		</c:if>
 		<c:if test="${eventList.w==1}">
-		<button type="button" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')">당첨자관리</button>
+		<a href="#" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')"><img src="/Date/button/z49.png"></a>
 		</c:if>
 		</td>
 	</tr>

@@ -57,8 +57,6 @@ public class Projectbean {
 		row.put("startRow", startRow);
 		row.put("endRow", endRow);
 		eventList = sqlMap.queryForList("eventIng", row);
-		// if(tab=="2") eventList = sqlMap.queryForList("eventEnd",row);
-		// if(tab=="3")eventList = sqlMap.queryForList("upcomingEvent",row);
 		count = (Integer) sqlMap.queryForObject("countIng", null);
 		for (int i =0; i < eventList.size(); i++) {
 			eto = (EventDataBean) eventList.get(i);
@@ -746,7 +744,6 @@ public class Projectbean {
 		String wcouples = request.getParameter("wcouples");
 		String app = (String)sqlMap.queryForObject("eventAppAdmin", enumber);
 		String[] wcList = app.split(",");
-	//	List idid = new ArrayList(); 
 		List appList = new ArrayList();
 		for(int i = 0;i<wcList.length;i++){
 			EventDataBean eto = new EventDataBean();
@@ -812,7 +809,7 @@ public class Projectbean {
 		List checkArray =arrayParams;
 		int enumber = Integer.parseInt(request.getParameter("enumber"));		
 		System.out.println("asdf"+(Integer)checkArray.get(0));
-		System.out.println("asdf"+(Integer)checkArray.get(1));
+
 		EventDataBean w = new EventDataBean();
 		w.setEnumber(enumber);
 		for(int i=0; i<checkArray.size();i++){

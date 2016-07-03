@@ -7,10 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 </head>
 <body>
-삭제완료!!
 <c:set var="chk" value="1" />
 <script type="text/javascript">
-	
+	alert("삭제완료!");
 	window.close();
 	opener.parent.callAjax('adminEvent.nhn');
 </script>

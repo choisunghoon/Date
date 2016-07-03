@@ -47,6 +47,7 @@ function ajaxExample(){
 		}
 	});
 }
+
 </script> 
 <title>당첨자 수정 및 삭제</title>
 </head>
@@ -65,11 +66,19 @@ function ajaxExample(){
 		<td align="center" width="100"><input type="hidden" name="enumber" id="enumber" value="${appList.enumber}">
 		<input type="hidden" name="wnumber" id="wnumber" value="wnumber">
 		<input type="hidden" name="w" id="w" value="${w}">
+		<c:if test="${appList.checknum==0}">
 		<input name="checkbox" type="checkbox" id="checkbox" value="${appList.anumber}">
+		</c:if>
 		</td>
+		<c:if test="${appList.checknum==-1 || appList.checknum == 1}">
+		<input name="checkbox" type="hidden" id="checkbox" value="${appList.anumber}">
+		</c:if>
 		<td align="center" width="100">${appList.couplename}</td>
 		<td align="center" width="100"> 
+		<c:if test="${appList.checknum==0}">
 		<a href="deleteWcouples.nhn?enumber=${enumber}&wcouples=${appList.couplename}"><input type="button" name="way" value="삭제"></a>
+		</c:if>
+		<c:if test="${appList.checknum==-1 || appList.checknum == 1}">-</c:if>
 		</td>	
 		<td align="center" width="100">
 		<c:if test="${appList.checknum==0}">무</c:if>
@@ -79,8 +88,8 @@ function ajaxExample(){
 	</tr>
 	</c:forEach>
 </table>
-<a href="wWay.nhn?enumber=${enumber}&wnumber=${wnumber}&w=${w}"><input type="button" name="way" value="당첨자 추가"></a>
-<button type="button" onclick='ajaxExample()'>알림보내기</button>	
+<a href="wWay.nhn?enumber=${enumber}&wnumber=${wnumber}&w=${w}"><img src="/Date/button/z48.png" style="margin-left:25px; margin-bottom:10px;"></a>
+<a href="#" onclick="ajaxExample()"><img src="/Date/button/z47.png" style="margin-left:400px; margin-bottom:10px;"></a>
 </form>
 </body>
 </html>
