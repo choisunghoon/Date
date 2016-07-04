@@ -248,11 +248,15 @@ public class shareBean {
 			sqlMap.update("sherePointCountUp", map);
 			System.out.println("멤버 좋아요로 획득한 포인트 증가 ");
 		}
+		
+		int likecount = (Integer)sqlMap.queryForObject("shereDiaryLike", num);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);
 		mv.addObject("dto1",dto1);
 		mv.addObject("num",num);
 		mv.addObject("check",check);
+		mv.addObject("likecount",likecount);
 		mv.setViewName("/yh/likeCount.jsp");
 		return mv;
 		
@@ -265,34 +269,6 @@ public class shareBean {
 		int likecount = (Integer)sqlMap.queryForObject("shereCourseLike", num);
 		System.out.println("좋아요 숫자" + likecount + "글넘버" + num);
 		DTO dto = new DTO();
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("likecount",likecount);
-		mv.addObject("num",num);
-		mv.addObject("check",check);
-		mv.setViewName("/yh/likeCount.jsp");
-		return mv;
-	}
-	
-	@RequestMapping("shareDiaryCount.nhn")
-	public ModelAndView diaryCount(HttpServletRequest request, HttpSession session, int num){
-		
-		System.out.println("");
-		
-		String place = "다이어리 공유";
-		
-		List list = new ArrayList();
-
-		Map map = new HashMap();
-		map.put("num", num);
-		map.put("place", place);
-		list.add(map);
-		
-		int check = (Integer)sqlMap.queryForObject("shereDiaryLikePro",map);
-		
-		
-		int likecount = (Integer)sqlMap.queryForObject("shereDiaryLike", num);
-		System.out.println("좋아요 숫자" + likecount + "글넘버" + num);
-		DiaryDataBean dto = new DiaryDataBean();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("likecount",likecount);
 		mv.addObject("num",num);

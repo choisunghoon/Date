@@ -21,16 +21,7 @@
 	        type: "post",
 	        url : "shareDiaryLikeCount.nhn?num=${dto.num}&couplename=${couplename}",
 	        
-	        success: test2,	// 페이지요청 성공시 실행 함수
-	        error: whenError	//페이지요청 실패시 실행함수
-     	});
-    }
-    function test2(){
-        $.ajax({
-	        type: "post",
-	        url : "shareDiaryCount.nhn?num=${dto.num}&likecount=${dto.likecount}",
-	        
-	        success: test,	// 페이지요청 성공시 실행 함수
+	        success:test,	// 페이지요청 성공시 실행 함수
 	        error: whenError	//페이지요청 실패시 실행함수
      	});
     }
@@ -95,10 +86,7 @@
 			<br/>
 			
 		<div id="like" method="post"><center>
-
-					<input type="button" name="goodLike" value="좋아요" />
-	
-			<span id="ajaxReturn"> ${dto.likecount }</span><br/>
+			<span id="ajaxReturn"><img src="yh/img/c31.png" type= "button" name="goodLike" style="margin-top:5px;">&nbsp;&nbsp; ${dto.likecount} </span><br/>
 					
 		</center>   
 		</div>	     
@@ -107,12 +95,9 @@
 	</table>                                                         
  		<br/>
  			<input type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareDiaryBoard.nhn')"/>&nbsp;&nbsp;
- 		<br/>
- 		<br/>
- 		
-</form>
-<form method="post">
 <input type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('dairyComment.nhn')" /> 
+<br/>
+<br/>
  <span id="ajaxReturn1" > </span><br/>
 </form>
 </body>

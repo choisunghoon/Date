@@ -87,11 +87,11 @@ function commentError(){
              <input type="hidden" id="aa" name="listMore" value="${listMore}"/>
             </form>
     <ul class="tbl_area">
-                   <table width="500px"  border="1" cellspacing="0" cellpadding="0" >
+                   <table width="500px"  border="0" cellspacing="0" cellpadding="0" >
 					<tr align="center">
-						<td width="20%"> ${id} </td>
-						<td width="60%"><textarea name="diarycomment" id="diarycomment" cols="35" rows="4" /></td>
-						<td width="20%"><input type="button" name="commentup" value="commentup" href="#" onclick="callAjax3('CommentUp.nhn')"> 
+						<td ><textarea name="diarycomment" style="width:100%" id="diarycomment" cols="35" rows="3" /></td>
+						<td ><input type="button" style='width:100%; height:60px; border:60px ;'
+name="commentup" value="commentup" href="#" onclick="callAjax3('CommentUp.nhn')"> 
 	
 					</tr>
 				</table>
@@ -103,11 +103,11 @@ function commentError(){
                  <li >
 				<table width="500px" border="1" cellspacing="0" cellpadding="0" >
 						<tr align="center">
-						<td width="20%">${commentList.id}</td>
-						<td width="60	%">&nbsp;${commentList.diarycomment}
-					    <input type="button" value="delete" onclick="callComment('commentDelete.nhn?id=${id}&commentnum=${commentList.num}')"/>
+						<td width="15%">${commentList.id}</td>
+						<td width="55%">&nbsp;${commentList.diarycomment}
+					    <td><img src="yh/img/c3.png" type="button" value="delete" onclick="callComment('commentDelete.nhn?id=${id}&commentnum=${commentList.num}')"/></td>
 						</td>
-						<td width="20%">${commentList.regdate}</td>
+						<td width="15%"><h6>${commentList.regdate}</h6></td>
          				</tr>
                   	</table>
                   </li>
