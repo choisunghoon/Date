@@ -41,3 +41,4 @@
 		</div>
 	</div>
 </body>
+<%@include file="/sy0615/kk.jsp" %>

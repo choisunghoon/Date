@@ -81,10 +81,10 @@
 		<select id="wheather" style="margin-left:38px; margin-top:20px">
 		</select><br>
 	   <div id="view">
-	   
+	   <p style="font-size:10px; margin-left:11px;"><a href="#" onclick="aa()">보이지 않을시 클릭하세요</a></p>
 	   </div>
 	   <br>
-	   <p style="font-size:10px; margin-left:11px;"><a href="#" onclick="aa()">보이지 않을시 클릭하세요</a></p>
+	   
    	<br>
 </div>
 </body>

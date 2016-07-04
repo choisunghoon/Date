@@ -52,3 +52,4 @@
  
 </body>
 </html>
+<%@include file="/sy0615/kk.jsp" %>
