@@ -201,7 +201,8 @@ public class Projectbean {
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String[] src = new String[2];
-		String path = "C:\\Users\\user2\\workspace\\Spring\\WebContent\\project\\ei";
+		//String path = "C:\\Users\\user2\\workspace\\Spring\\WebContent\\project\\ei\\";
+		String path = request.getContextPath() + "/WebContent/project/ei/";
 		int i = 0;
 		while (iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
