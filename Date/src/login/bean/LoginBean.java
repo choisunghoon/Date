@@ -198,7 +198,7 @@ public class LoginBean {
 	
 	@RequestMapping("/share.nhn") //占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占� 호占쏙옙풔占� 占쌉쇽옙
 	public String share(HttpSession session,HttpServletRequest request) throws Exception{
-		int chk = Integer.parseInt(request.getParameter("chk"));
+		
 		String id = (String)session.getAttribute("id");
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//占싸깍옙占쏙옙 占쏙옙占쏙옙 확占쏙옙
 		if(nc==1){
@@ -251,7 +251,7 @@ public class LoginBean {
 				request.setAttribute("couple1", "end");
 			}
 		
-		request.setAttribute("chk", chk);
+		
 		return "/sy0526/share.jsp";
 	}
 	

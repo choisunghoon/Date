@@ -271,7 +271,7 @@ public class Upload {
 		request.setAttribute("photo", photo);
 		int count = 0;
 		String pageNum = request.getParameter("pageNum");
-		int pageSize = 9;
+		int pageSize = 10;
 		if (pageNum == null) {
 			pageNum = "1";
 		}

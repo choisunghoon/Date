@@ -215,16 +215,16 @@ li{
 <div id="menu">
 	<ul style="margin-left:5%; margin-top:35.5%;">
 		<li>
-			<a href="couple.nhn?chk=1"><img src="mainimg/as.png" onmouseover='this.src="mainimg/as1.png"' onmouseout='this.src="mainimg/as.png"' ></a>
+			<a href="couple.nhn"><img src="mainimg/as.png" onmouseover='this.src="mainimg/as1.png"' onmouseout='this.src="mainimg/as.png"' ></a>
 		</li>
 		<li>
-			<a href="share.nhn?chk=1"><img src="mainimg/as3.png" onmouseover='this.src="mainimg/as4.png"' onmouseout='this.src="mainimg/as3.png"'></a>
+			<a href="share.nhn"><img src="mainimg/as3.png" onmouseover='this.src="mainimg/as4.png"' onmouseout='this.src="mainimg/as3.png"'></a>
 		</li>
 		<li>
-			<a href="addCtgView.nhn?chk=1"><img src="mainimg/as5.png" onmouseover='this.src="mainimg/as6.png"' onmouseout='this.src="mainimg/as5.png"'></a>
+			<a href="addCtgView.nhn"><img src="mainimg/as5.png" onmouseover='this.src="mainimg/as6.png"' onmouseout='this.src="mainimg/as5.png"'></a>
 		</li>
 		<li>
-			<a href="event.nhn?chk=1"><img src="mainimg/as7.png" onmouseover='this.src="mainimg/as8.png"' onmouseout='this.src="mainimg/as7.png"'></a>
+			<a href="event.nhn"><img src="mainimg/as7.png" onmouseover='this.src="mainimg/as8.png"' onmouseout='this.src="mainimg/as7.png"'></a>
 		</li>
 		<li>
 			<c:if test="${id != 'admin'}">

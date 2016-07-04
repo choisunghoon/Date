@@ -127,7 +127,7 @@
 						<c:if test="${endPage > pageCount}">
 							<c:set var="endPage" value="${pageCount}" />
 						</c:if>
-
+						<center>
 						<c:if test="${startPage > 10}">
 							<a href="#" onclick="callAjax24('adphoto.nhn?pageNum=${startPage - 10 }')">[이전]</a>
 						</c:if>
@@ -139,6 +139,7 @@
 						<c:if test="${endPage < pageCount}">
 							<a href="#" onclick="callAjax24('adphoto.nhn?pageNum=${startPage + 10 }')">[다음]</a>
 						</c:if>
+						</center>
 					</c:if>
 </form>
 </div>
