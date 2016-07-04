@@ -26,6 +26,7 @@
 
 	
 	<table width="600" border="1" cellspacing="0" cellpadding="2">
+	<c:if test="${list.size() >= 0}">
 	<tr align="center">
 		<td width="50">글번호</td>
 		<td width="50">제목</td>
@@ -48,8 +49,8 @@
 	</tr>
 	</tbody>
 	</c:forEach>
-		
-	<c:if test="${list.size() <= 0}">
+	</c:if>
+	<c:if test="${non eq 'non'}">
 	<tr align="center">
 		<td colspan="5" > 등록된 게시글이 없습니다</td>
 	</tr>

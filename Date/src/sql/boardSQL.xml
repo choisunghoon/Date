@@ -242,7 +242,9 @@
 		<select id="checkMylist" parameterClass="String" resultClass="int">
 			select count(*) from dc_member where id=#id# and list is null
 		</select>
-		
+		<select id="mylistall" parameterClass="int" resultClass="dateplan.bean.DTO">
+			select *from dc_dc where num=#num#
+		</select>
 		
 
 </sqlMap>

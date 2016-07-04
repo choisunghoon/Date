@@ -295,7 +295,7 @@ public class InputBean {
 		}
 		cdto.setId1(id);
 		cdto.setCoupleName(coupleName);
-		cdto.setCoupleImage("couple.png");
+		cdto.setCoupleImage("couple1.png");
 		request.setAttribute("id", id);
 		sqlMapper.insert("insertCouple", cdto);
 		
@@ -456,13 +456,11 @@ public class InputBean {
 			
 			List list = new ArrayList();
 			for(int i=0;i<arryMylist.length;i++){
-				Map map = new HashMap();
-				map.put("num", arryMylist[i]);
-				map.put("myId", id);
-				list.add(map);	
 				
+				int num=Integer.parseInt(arryMylist[i]);
+				list.add(sqlMapper.queryForObject("mylistall", num));
 			}
-			list = sqlMapper.queryForList("shereSelectCourseBoardAll",null);
+			
 			totalCount = list.size();
 			
 			page = new coursePagingTDTO(currentPage,totalCount,blockCount,blockPage);
