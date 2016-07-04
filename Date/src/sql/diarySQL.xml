@@ -57,8 +57,15 @@
 		insert into dc_photo values(#couplename#, sysdate, #img#, #content#, #writeday#, #state#)		
 	</insert>
 	
-	<select id="adphoto" resultClass="upload.bean.PhotoDataBean">
-		select * from dc_photo order by regdate desc
+	<select id="adphoto" resultClass="upload.bean.PhotoDataBean" parameterClass="java.util.Map">
+		select couplename, regdate, img, content, writeday, state, r from 
+		(select couplename, regdate, img, content, writeday, state, rownum r from 
+		(select couplename, regdate, img, content, writeday, state from dc_photo order by regdate desc))
+		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
+	</select>
+	
+	<select id="adphotocount" resultClass="int">
+		select count(*) from dc_photo
 	</select>
 	
 	<update id="photopoint" parameterClass="upload.bean.CoupleDataBean">
@@ -107,6 +114,21 @@
 	<select id="coupleimg" resultClass="upload.bean.CoupleDataBean" parameterClass="upload.bean.CoupleDataBean">
 		select * from dc_couple where couplename=#couplename#
 	</select>
-
+	
+	<select id="getlatest" resultClass="dateplan.bean.DTO">
+		select * from 
+		(select num, couplename, subject, content, pool,likecount, readcount,regdate, placetitle, placeid, placecategory, placelocation, postsrc, poolsysdate, rownum r from 
+		(select num, couplename, subject, content, pool,likecount, readcount,regdate, placetitle, placeid, placecategory, placelocation, postsrc, poolsysdate from dc_dc where pool='1' order by poolsysdate desc)) where <![CDATA[r<5]]> 
+	</select>
+	
+	<select id="coursecontent" resultClass="dateplan.bean.DTO" parameterClass="dateplan.bean.DTO"> 
+		select * from dc_dc where num=#num#
+	</select>
+	
+	<select id="bestcourse" resultClass="dateplan.bean.DTO">
+		select * from 
+		(select num, couplename, subject, content, pool,likecount, readcount,regdate, placetitle, placeid, placecategory, placelocation, postsrc, poolsysdate, rownum r from 
+		(select num, couplename, subject, content, pool,likecount, readcount,regdate, placetitle, placeid, placecategory, placelocation, postsrc, poolsysdate from dc_dc where pool='1' order by likecount desc)) where <![CDATA[r<5]]>
+	</select>
 </sqlMap>
 

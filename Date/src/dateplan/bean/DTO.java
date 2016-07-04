@@ -5,6 +5,15 @@ import java.sql.Timestamp;
 public class DTO {
 	private String placeplaceUrl,placenewAddress,placeaddress,placeid,placephone,placetitle,placelatitude,placelongitude;
 	private String placelocation,placecategory,postsrc;
+	private Timestamp poolsysdate;
+	public Timestamp getPoolsysdate() {
+		return poolsysdate;
+	}
+
+	public void setPoolsysdate(Timestamp poolsysdate) {
+		this.poolsysdate = poolsysdate;
+	}
+
 	public String getPostsrc() {
 		return postsrc;
 	}

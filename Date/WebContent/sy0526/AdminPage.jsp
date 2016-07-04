@@ -9,6 +9,8 @@
 
 <script type="text/javascript">
 
+		callAjax('adphoto.nhn');
+
     function callAjax(nhn){
         $.ajax({
 	        type: "post",
@@ -25,6 +27,7 @@
     function whenError2(){
         alert("Error");
     }
+
   </script>
   <body>
   <form name="chkF">
@@ -42,13 +45,8 @@
 		<div id="subMain" style="float:left;width:86%">		
 		</div>
 	</div>
-    
-    
+ 
       </form>
-    
-    
-    
-    
-    
+
     </body>
     </html>

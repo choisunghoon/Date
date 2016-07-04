@@ -33,7 +33,7 @@
 </head>
 <body>
 <form method="post" name="confirmPw">
-<h2>비밀번호를 입력해주세요.</h2>
+<center><h2>비밀번호를 입력해주세요.</h2>
 비밀번호 : <input type="password" id="apppw" name="apppw">
 <input type="hidden" id="appnumber" name="appnumber" value="${appnumber}">
 <input type="hidden" id="wnumber" name="wnumber" value="${wnumber}">
@@ -41,6 +41,7 @@
 <input type="hidden" id="pageNum" name="pageNum" value="${pageNum}">
 <input type="hidden" id="tab" name="tab" value="${tab}">
 <button type="button" class="btn btn-default" onclick="confrimPw()">확인</button>
+</center>
 </form>
 </body>
 </html>

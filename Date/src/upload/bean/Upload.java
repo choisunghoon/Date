@@ -3,6 +3,7 @@ package upload.bean;
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -267,8 +268,30 @@ public class Upload {
 	@RequestMapping("/adphoto.nhn")
 	public String adphoto(HttpServletRequest request){
 		List photo = null;
-		photo = sqlMap.queryForList("adphoto", null);
 		request.setAttribute("photo", photo);
+		int count = 0;
+		String pageNum = request.getParameter("pageNum");
+		int pageSize = 10;
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;
+		HashMap<String, Integer> row = new HashMap<String, Integer>();
+		row.put("startRow", startRow);
+		row.put("endRow", endRow);
+		
+		photo = sqlMap.queryForList("adphoto", row);
+		count = (Integer) sqlMap.queryForObject("adphotocount", null);
+		
+		request.setAttribute("currentPage", new Integer(currentPage));
+		request.setAttribute("startRow", new Integer(startRow));
+		request.setAttribute("endRow", new Integer(endRow));
+		request.setAttribute("pageSize", new Integer(pageSize));
+		request.setAttribute("photo", photo);
+		request.setAttribute("count", new Integer(count));
+		
 		return "/sy0610/adphoto.jsp";
 	}
 	
@@ -330,7 +353,9 @@ public class Upload {
 	}
 	
 	@RequestMapping("/adminpage.nhn")
-	public String adminpage(){
+	public String adminpage(HttpServletRequest request){
+		int chk = Integer.parseInt(request.getParameter("chk"));
+		request.setAttribute("chk", chk);
 		return "/sy0526/AdminPage.jsp";
 	}
 	
@@ -441,14 +466,11 @@ public class Upload {
 		List bestcouple = null;
 		bestcouple = sqlMap.queryForList("bestcouple", null);
 		List dd = new ArrayList();
-		System.out.println(bestcouple.size());
 		for(int i = 0; i<bestcouple.size(); i++){
 			CoupleDataBean cdb1 = new CoupleDataBean();
 			ddb = (DiaryDataBean)bestcouple.get(i);
 			cdb.setCouplename(ddb.getCouplename());
 			cdb1 = (CoupleDataBean)sqlMap.queryForObject("coupleimg", cdb);
-			System.out.println(cdb1.getCoupleimage());
-			System.out.println(i);
 			dd.add(cdb1);
 		}
 		
@@ -458,15 +480,50 @@ public class Upload {
 	}
 	
 	@RequestMapping("/latestcourse.nhn")
-	public String latestcourse(DTO dto){
-
+	public String latestcourse(DTO dto, CoupleDataBean cdb, HttpServletRequest request){
+		List latest = null;
+		latest = sqlMap.queryForList("getlatest", null);
+		List couple = new ArrayList();
+		for(int i=0; i<latest.size(); i++){
+			CoupleDataBean cdb1 = new CoupleDataBean();
+			dto = (DTO)latest.get(i);
+			cdb.setCouplename(dto.getCouplename());
+			cdb1 = (CoupleDataBean)sqlMap.queryForObject("coupleimg", cdb);
+			couple.add(cdb1);
+		}
+		
+		request.setAttribute("latest", latest);
+		request.setAttribute("couple", couple);
 		return "/sy0703/latestcourse.jsp";
 	}
 	
 	@RequestMapping("/bestcourse.nhn")
-	public String bestcourse(DTO dto){
-
+	public String bestcourse(DTO dto, CoupleDataBean cdb, HttpServletRequest request){
+		List best = null;
+		best = sqlMap.queryForList("bestcourse", null);
+		List couple = new ArrayList();
+		for(int i=0; i<best.size(); i++){
+			CoupleDataBean cdb1 = new CoupleDataBean();
+			dto = (DTO)best.get(i);
+			cdb.setCouplename(dto.getCouplename());
+			cdb1 = (CoupleDataBean)sqlMap.queryForObject("coupleimg", cdb);
+			couple.add(cdb1);
+		}
+		
+		request.setAttribute("best",best);
+		request.setAttribute("couple",couple);
+		
 		return "/sy0703/bestcourse.jsp";
+	}
+	
+	@RequestMapping("/coursecontent.nhn")
+	public String coursecontent(DTO dto, HttpServletRequest request){
+		int num = Integer.parseInt(request.getParameter("num"));
+		dto.setNum(num);
+		dto = (DTO)sqlMap.queryForObject("coursecontent", dto);
+		request.setAttribute("dto", dto);
+
+		return "/sy0703/coursecontent.jsp";
 	}
 	
 
