@@ -152,7 +152,7 @@
 				<option value="2">이벤트 이름</option>
 				<option value="3">당첨 커플</option>
 			</select>
-				<a href="#" onclick="checkSS(this.form)"><img src="/Date/button/z1.png"></a>
+			<a href="#" onclick="checkSS(this.form)"><img src="/Date/button/z1.png"></a>
 		</form></center>
 		</div>
 		<a href="#" onclick="callAjaxyj3('addEvent.nhn')"><img src="/Date/button/z50.png" style="margin-left:905px; margin-bottom:10px;"></a>
