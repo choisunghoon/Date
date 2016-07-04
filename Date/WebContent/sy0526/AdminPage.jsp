@@ -28,6 +28,7 @@
     function whenError2(){
         alert("Error");
     }
+
   </script>
   <body>
   <form name="chkF">

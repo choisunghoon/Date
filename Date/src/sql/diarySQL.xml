@@ -57,8 +57,15 @@
 		insert into dc_photo values(#couplename#, sysdate, #img#, #content#, #writeday#, #state#)		
 	</insert>
 	
-	<select id="adphoto" resultClass="upload.bean.PhotoDataBean">
-		select * from dc_photo order by regdate desc
+	<select id="adphoto" resultClass="upload.bean.PhotoDataBean" parameterClass="java.util.Map">
+		select couplename, regdate, img, content, writeday, state, r from 
+		(select couplename, regdate, img, content, writeday, state, rownum r from 
+		(select couplename, regdate, img, content, writeday, state from dc_photo order by regdate desc))
+		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
+	</select>
+	
+	<select id="adphotocount" resultClass="int">
+		select count(*) from dc_photo
 	</select>
 	
 	<update id="photopoint" parameterClass="upload.bean.CoupleDataBean">

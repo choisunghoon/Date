@@ -268,8 +268,29 @@ public class Upload {
 	@RequestMapping("/adphoto.nhn")
 	public String adphoto(HttpServletRequest request){
 		List photo = null;
-		photo = sqlMap.queryForList("adphoto", null);
 		request.setAttribute("photo", photo);
+		int count = 0;
+		String pageNum = request.getParameter("pageNum");
+		int pageSize = 9;
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;
+		HashMap<String, Integer> row = new HashMap<String, Integer>();
+		row.put("startRow", startRow);
+		row.put("endRow", endRow);
+		
+		photo = sqlMap.queryForList("adphoto", row);
+		count = (Integer) sqlMap.queryForObject("adphotocount", null);
+		
+		request.setAttribute("currentPage", new Integer(currentPage));
+		request.setAttribute("startRow", new Integer(startRow));
+		request.setAttribute("endRow", new Integer(endRow));
+		request.setAttribute("pageSize", new Integer(pageSize));
+		request.setAttribute("photo", photo);
+		request.setAttribute("count", new Integer(count));
 		
 		return "/sy0610/adphoto.jsp";
 	}
