@@ -53,7 +53,9 @@ function ajaxExample(){
 </head>
 <body>
 <form name="form">
-<input type="button" name="button" value="모두 선택" onClick="this.value=check(this.form.checkbox)">
+<input type="button" name="button" value="모두 선택" onClick="this.value=check(this.form.checkbox)" style="margin-left:40px; margin-top:3px; margin-bottom:5px;">
+<a href="#" onclick="ajaxExample()"><img src="/Date/button/z47.png" style="margin-left:3px;"></a>
+<a href="wWay.nhn?enumber=${enumber}&wnumber=${wnumber}&w=${w}"><img src="/Date/button/z48.png" style="margin-left:340px;"></a>
 <table width="600" border="1" cellspacing="0" cellpadding="0" align="center" style="table-layout:fixed;">
 	<tr>
 		<td align="center" width="100">선택</td>
@@ -88,8 +90,6 @@ function ajaxExample(){
 	</tr>
 	</c:forEach>
 </table>
-<a href="wWay.nhn?enumber=${enumber}&wnumber=${wnumber}&w=${w}"><img src="/Date/button/z48.png" style="margin-left:25px; margin-bottom:10px;"></a>
-<a href="#" onclick="ajaxExample()"><img src="/Date/button/z47.png" style="margin-left:400px; margin-bottom:10px;"></a>
 </form>
 </body>
 </html>
