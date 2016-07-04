@@ -28,6 +28,29 @@
         alert("Error");
     }
  
+    function callAjax5(nhn){
+        $.ajax({
+            type: "post",
+            url : "replyUp.nhn?loc_num=${loc_num}&id=${id}",
+            data : {loc_reply : $('#com').val()},
+            success: callAjax6,	// 페이지요청 성공시 실행 함수
+            error: whenError2	//페이지요청 실패시 실행함수
+     	});
+    }
+    	   function callAjax6(nhn){
+    	        $.ajax({
+    	            type: "post",
+    	            url : "placeReply.nhn?loc_num=${loc_num}&id=${id}",
+    	            success: refresh,	// 페이지요청 성공시 실행 함수
+    	            error: whenError	//페이지요청 실패시 실행함수
+    	     	});
+    	    }
+    function refresh5(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $("#ajaxReturn1").html(aaa);
+        console.log(resdata);
+    }
+    
+    
   </script>
 </head>
 <body>
@@ -37,7 +60,7 @@
 	<tr align="center">
 		<td width="100"> ${id} </td>
 		<td width="300"><textarea name="loc_reply" id="loc_reply" cols="35" rows="4" /></td>
-		<td width="100"><input type="button" name="loc_reply" value="댓글쓰기" href="#" onclick="callAjax('replyUp.nhn')"> 
+		<td width="100"><input type="button" name="loc_reply" id="com" value="댓글쓰기" href="#" onclick="callAjax5('replyUp.nhn')"> 
 	
 	</tr>
 	</table>
