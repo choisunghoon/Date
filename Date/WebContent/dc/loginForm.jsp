@@ -48,11 +48,12 @@
     	<br/><br/>
     	<div class="form-group" style="margin-left:400px;">
   			<label for="inputName" class="col-sm-2 control-label"></label>
-    		<div class="col-sm-6">
+    		<div class="col-sm-4">
   	  		<input type="hidden" name="hidden" value="nomal">
       		<button type="submit" class="btn btn-primary">로그인</button>
     		</div>
-    	</div>    	
+    	</div>
+    	<br/>    	
 	</form>
 
 </BODY>
