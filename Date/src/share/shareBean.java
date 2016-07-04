@@ -28,15 +28,23 @@ public class shareBean {
 	public String commentDelete(HttpServletRequest request,HttpSession session)throws Exception{
     	commentDataBean dto = new commentDataBean();
 		String id = (String)session.getAttribute("id");
-		String num = request.getParameter("num");
+		String commentnum = request.getParameter("commentnum");
+		
 		List list = new ArrayList();
 		Map map = new HashMap();
-		map.put("num", num);
+		map.put("commentnum", commentnum);
 		map.put("id", id);
+		
+		System.out.println("commentnum"+ " " +commentnum);
 
-		int check = (Integer)sqlMap.queryForObject("diaryCommentDelet", map);
+		System.out.println("id"+ " " +id);
+		int check = (Integer)sqlMap.queryForObject("commentCheck", map);
+		if(check !=0){
+		sqlMap.delete("diaryCommentDelet", map);
+		}else{
+		System.out.println("아이디 넘 값이 일치하지않습니다");	
+		}
 		request.setAttribute("check", check);
-
 		return "/yh/diaryComment.jsp";
     	
     }
