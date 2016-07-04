@@ -7,7 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 </head>
 <body>
-등록 완료
-<button onclick="callAjaxyj3('adminEvent.nhn')">닫기</button>	
+<script type="text/javascript">
+alert("이벤트가 등록 되었습니다!");
+window.location.href="event.nhn?chk=2";
+</script>
 </body>
 </html>
