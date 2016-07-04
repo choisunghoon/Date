@@ -7,6 +7,7 @@ public class commentDataBean {
 	private int num;
 	private String id;
 	private String diarycomment;
+	private String coursecomment;
 	private Timestamp regdate;
 	private int board_num;
 	
@@ -39,6 +40,12 @@ public class commentDataBean {
 	}
 	public void setBoard_num(int board_num) {
 		this.board_num = board_num;
+	}
+	public String getCoursecomment() {
+		return coursecomment;
+	}
+	public void setCoursecomment(String coursecomment) {
+		this.coursecomment = coursecomment;
 	}
 
 }

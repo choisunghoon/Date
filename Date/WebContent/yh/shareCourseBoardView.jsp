@@ -42,6 +42,29 @@ $(document).ready(function(){
         $("#subMain").html(aaa);
         
     }
+    function callAjax3(nhn){
+        $.ajax({
+            type: "post",
+            url : "courseCommentUp.nhn?num=${num}&id=${id}",
+            data : {coursecomment : $('#coursecomment').val()},
+            success: callAjax2,	// 페이지요청 성공시 실행 함수
+            error: whenError2	//페이지요청 실패시 실행함수
+     	});
+    }
+    function callAjax2(nhn){
+        $.ajax({
+            type: "post",
+            url : "courseComment.nhn?num=${dto.num}&id=${id}",
+            success: refresh2,	// 페이지요청 성공시 실행 함수
+            error: whenError2	//페이지요청 실패시 실행함수
+     	});
+        
+        
+    }
+    function refresh2(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $("#ajaxReturn1").html(aaa);
+        console.log(resdata);
+    }
 </script>
 
 
@@ -881,7 +904,7 @@ function removeAllChildNods(el) {
 		<tr>
 				<td align="right">
  				<input type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareCourseBoard.nhn')"/>&nbsp;&nbsp;
-				<input type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('CourseComment.nhn')" /> </td>
+				<input type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('courseComment.nhn')" /> </td>
 	
 		<tr>
 			<br/>

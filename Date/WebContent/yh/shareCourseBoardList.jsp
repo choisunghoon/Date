@@ -17,6 +17,7 @@
 
 <body>
 <form method="post">
+
 	<table width="600" border="1" cellspacing="0" cellpadding="2">
 	
 		<tr>

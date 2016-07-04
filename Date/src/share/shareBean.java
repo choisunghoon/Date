@@ -24,7 +24,77 @@ public class shareBean {
 	@Autowired
 	private SqlMapClientTemplate sqlMap;
 
-    @RequestMapping("commentDelete.nhn")
+	
+	//공유 코스 코멘트 리스트 불러오기
+	@RequestMapping("courseComment.nhn")
+	public String courseComment(HttpSession session,HttpServletRequest request,int num){
+		List commentList =null;
+		int listMore = 20;
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		commentDataBean dto = new commentDataBean();
+		commentList = sqlMap.queryForList("SelectCourseCommentAll",num);
+		int totalCount = (Integer)sqlMap.queryForObject("courseCommentCount", num);
+		System.out.println(totalCount);
+
+		request.setAttribute("listMore", listMore);
+		request.setAttribute("totalCount", totalCount);
+		request.setAttribute("commentList", commentList);
+		return "/yh/courseComment.jsp";
+	}
+	
+	//공유코스  코멘트 작성
+	@RequestMapping("courseCommentUp.nhn")
+	public String courseCommentUp(HttpServletRequest request ,HttpSession session,int num)throws Exception{
+		
+		commentDataBean dto = new commentDataBean();
+		
+		String id = (String)session.getAttribute("id");
+		dto.setId(id);
+		System.out.println("아이디"+" " +id);
+		
+		String coursecomment = request.getParameter("coursecomment");
+		dto.setCoursecomment(coursecomment);
+		System.out.println("코멘트값"+" " +coursecomment);
+		
+		dto.setBoard_num(num);
+		System.out.println("넘버값"+" " +num);
+		
+		dto.setRegdate(new Timestamp(System.currentTimeMillis()));
+		
+		sqlMap.insert("SelectCoupseCommentUp",dto);
+
+		return "/yh/courseComment.jsp";
+	}
+	
+	//공유다이어리 코멘트 삭제
+	@RequestMapping("courseCommentDelete.nhn")
+	public String courseCommentDelete(HttpServletRequest request,HttpSession session)throws Exception{
+    	commentDataBean dto = new commentDataBean();
+		String id = (String)session.getAttribute("id");
+		String commentnum = request.getParameter("commentnum");
+		
+		List list = new ArrayList();
+		Map map = new HashMap();
+		map.put("commentnum", commentnum);
+		map.put("id", id);
+		
+		System.out.println("commentnum"+ " " +commentnum);
+
+		System.out.println("id"+ " " +id);
+		int check = (Integer)sqlMap.queryForObject("courseCommentCheck", map);
+		if(check !=0){
+		sqlMap.delete("courseCommentDelet", map);
+		}else{
+		System.out.println("아이디 넘 값이 일치하지않습니다");	
+		}
+		request.setAttribute("check", check);
+		return "/yh/courseComment.jsp";
+    	
+    }
+	
+	//공유다이어리 코멘트 삭제
+	@RequestMapping("commentDelete.nhn")
 	public String commentDelete(HttpServletRequest request,HttpSession session)throws Exception{
     	commentDataBean dto = new commentDataBean();
 		String id = (String)session.getAttribute("id");
@@ -38,7 +108,7 @@ public class shareBean {
 		System.out.println("commentnum"+ " " +commentnum);
 
 		System.out.println("id"+ " " +id);
-		int check = (Integer)sqlMap.queryForObject("commentCheck", map);
+		int check = (Integer)sqlMap.queryForObject("diaryCommentCheck", map);
 		if(check !=0){
 		sqlMap.delete("diaryCommentDelet", map);
 		}else{
@@ -48,8 +118,10 @@ public class shareBean {
 		return "/yh/diaryComment.jsp";
     	
     }
+	
+	//공유다이어리 코멘트 작성
 	@RequestMapping("commentUp.nhn")
-	public String testpro(HttpServletRequest request ,HttpSession session,int num)throws Exception{
+	public String commentUp(HttpServletRequest request ,HttpSession session,int num)throws Exception{
 		
 		commentDataBean dto = new commentDataBean();
 		
@@ -70,6 +142,8 @@ public class shareBean {
 
 		return "/yh/diaryComment.jsp";
 	}
+	
+	//공유다이어리 코멘트 리스트 불러오기
 	@RequestMapping("dairyComment.nhn")
 	public String dairyComment(HttpSession session,HttpServletRequest request,int num){
 		List commentList =null;
@@ -87,6 +161,7 @@ public class shareBean {
 		return "/yh/diaryComment.jsp";
 	}
 
+	//공유다이어리리스트 게시판
 	@RequestMapping("shareDiaryBoard.nhn")
 	public ModelAndView shareDiaryBoard(HttpServletRequest request ,HttpSession session){
 
@@ -121,6 +196,7 @@ public class shareBean {
 		return mv;
 	}
 	
+	//공유다이어리 글일기
 	@RequestMapping("shareDiaryBoardView.nhn")
 	public ModelAndView shareDiaryBoardView(HttpServletRequest request, HttpSession session,int num){
 		
@@ -154,6 +230,7 @@ public class shareBean {
 	
 	}
 	
+	//공유 코스 게시판 리스트
 	@RequestMapping("shareCourseBoard.nhn")
 	public ModelAndView shareCourseBoard(HttpServletRequest request ,HttpSession session){
 		
@@ -188,6 +265,7 @@ public class shareBean {
 		return mv;
 	}
 	
+	//공유 코스 글 읽기
 	@RequestMapping("shareCourseBoardView.nhn")
 	public ModelAndView shareCourseBoardView(HttpServletRequest request, HttpSession session,int num){
 	
@@ -222,6 +300,7 @@ public class shareBean {
 	
 	}
 
+	//공유다이어리 좋아요 기능
 	@RequestMapping("shareDiaryLikeCount.nhn")
 	public ModelAndView DiarylikeCount(int num,HttpServletRequest request, HttpSession session){
 
@@ -313,6 +392,7 @@ public class shareBean {
 			return "/yh/likeLimit.jsp";
 		}
 */
+	//공유 코스 좋아요 기능 
 	@RequestMapping("shareCourseLikeCount.nhn")
 	public ModelAndView shareCourseLikeCount(int num,HttpServletRequest request, HttpSession session){
 

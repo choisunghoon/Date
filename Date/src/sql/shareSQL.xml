@@ -21,6 +21,25 @@
 	<delete id="diaryCommentDelet" parameterClass="java.util.HashMap">
         delete from dc_sharydiary_comment where id=#id# and num=#commentnum#
     </delete>
+    	<!--   -->
+	<select id="SelectCourseCommentAll" resultClass="share.commentDataBean">
+		select * from dc_sharycourse_comment where board_num=#num# order by num desc
+	</select>
+		<!--   -->
+	<select id="courseCommentCount" resultClass="int" parameterClass="java.lang.Integer">
+		select count(*) from dc_sharycourse_comment  where board_num=#num#
+	</select>
+	<!--   -->
+	<insert id="SelectCoupseCommentUp" parameterClass="share.commentDataBean">				
+		insert into dc_sharycourse_comment(num,id,coursecomment,board_num,regdate) values (dc_sharycourse_comment_seq.nextval,#id#,#coursecomment#,#board_num#,#regdate#) 
+	</insert>	
+		<delete id="courseCommentDelet" parameterClass="java.util.HashMap">
+        delete from dc_sharycourse_comment where id=#id# and num=#commentnum#
+    </delete>
+    <!--   -->
+	<select id="courseCommentCheck" resultClass="java.lang.Integer">
+		select * from dc_sharycourse_comment where id=#id# and num=#commentnum#
+	</select>
     <!--   -->
 	<select id="shereSelectDiaryBoardAll" resultClass="upload.bean.DiaryDataBean">
 		select * from dc_diary where pool=1 order by pool_regdate
