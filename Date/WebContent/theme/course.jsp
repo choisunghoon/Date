@@ -56,7 +56,7 @@
 .gallery ul{margin :0; padding :0; list-style :none;}
 .gallery li{display :block; float :left; width :350px; margin :35px 5px 5px 35px; padding :0;}
 .gallery li.last{margin-right :0;}
-.gallery li img{display : block; width : 430px; height : 340px;}
+.gallery li img{display : block; width : 340px; height : 300px;}
 </style>
 </head>
 <body>

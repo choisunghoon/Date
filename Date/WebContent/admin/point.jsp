@@ -43,8 +43,6 @@
 
 <body>
 <center><h2>포인트내역확인(전체 내역 : ${count})</h2>
-<div style="width:100%;float:center;" >
-	<div style="width:12%;float:center;">
 		
 		<form name="form" method="post" onSubmit="check()" >
 			<input type="hidden" name="search" value="1">

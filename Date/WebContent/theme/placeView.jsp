@@ -4,25 +4,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
 <script type="text/javascript">
-	function callAjax(){
+	function callAjax(nhn){
     	$.ajax({
       	  type: "post",
-     	  url : "shareDiaryLikeCount.nhn?num=${dto.num}&couplename=${couplename}",
+     	  url : "replyUp.nhn?loc_num=${loc_num}&id=${id}",
+     	  data : {loc_reply : $('#loc_reply').val()},
         
-          success: refresh,	// 페이지요청 성공시 실행 함수
+          success: callAjax1,	// 페이지요청 성공시 실행 함수
       	  error: whenError	//페이지요청 실패시 실행함수
  		});
-    	
-        function whenError(){
-            alert("Error");
-        }
-        function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-            $("#ajaxReturn1").html(aaa);
-        }
 	}
+	
+    function callAjax1(nhn){
+        $.ajax({
+            type: "post",
+            url : "placeReply.nhn?loc_num=${loc_num}&id=${id}",
+            success: refresh,	// 페이지요청 성공시 실행 함수
+            error: whenError	//페이지요청 실패시 실행함수
+     	});
+    }
+    	
+    function whenError(){
+        alert("Error");
+    }
+    function refresh(aata){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $(".ajaxReturn1").html(aata);
+    }
 </script>
 <body>
-
+	<form name="placeView" method="post">
                 <table width="500" border="1" cellspacing="0" cellpadding="3" align="center">
     				<tr height="30">
     					<td align="center" colspan="2"> 코스 상세 정보</td>
@@ -59,8 +69,10 @@
 						<td align="center" width="700"><img src="theme/themeimg/${dto.loc_pic3}" alt=""></td>
 					</tr>
 				</table>
+			</form>
 				</br>
 				<form method="post">
-					<input type="button" name="reply" value="댓글 보기"  href="#" onclick="callAjax2('dairyComment.nhn')" /> 
- 					<span id="ajaxReturn1" > </span><br/>
+					<input type="button" name="loc_reply" value="댓글 보기"  href="#" onclick="callAjax1('placeReply.nhn')" /> 
+ 					<div class="ajaxReturn1" > 
+ 					</div><br/>
 				</form>
