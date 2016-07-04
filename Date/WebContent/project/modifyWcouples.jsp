@@ -13,14 +13,14 @@ function check(field) {
 		for (i = 0; i < field.length; i++) {
 			field[i].checked = true;
 		}
-	checkflag = "true";
-	return "모두 선택 해제"; }
+	checkflag = 1;
+	return "모두 선택"; }
 	else {
 		for (i = 0; i < field.length; i++) {
 			field[i].checked = false;
 		}
-		checkflag = "false";
-	return "모두 선택"; }
+		checkflag = -1;
+	return "모두 해제"; }
 }
 
 function ajaxExample(){

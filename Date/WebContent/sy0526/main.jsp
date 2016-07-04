@@ -143,6 +143,9 @@ function goMenu(nhn){
     	alert("로그인후 사용가능합니다!")
     	$("#loginb").trigger('click');
     }
+    if(chL==1){
+    	window.location.href=nhn;
+    }
 }
 
 function asdf(nhn){

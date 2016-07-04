@@ -9,7 +9,7 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-	function checkSS(form) {    	
+	function checkSS(form) {    
 		if (document.form.states.value != "1") {
 			if (document.form.keyword.value == "") {
 				alert("검색어를 입력하세요.");
@@ -32,14 +32,15 @@
 		}
 	}
 
-	function callAjaxSS(nhn, way) {
+	function callAjaxSS(nhn) {
 		$.ajax({
 			type : "post",
-			url : nhn + "?way=" + way,
+			url : nhn,
 			data : {
 				states : $('#states').val(),
 				pick : $('#pick').val(),
-				keyword : $("#keyword").val()
+				keyword : $("#keyword").val(),
+				way : $("#way").val()
 			},
 			success : refreshSS, // 페이지요청 성공시 실행 함수
 			error : whenErrorSS
@@ -163,9 +164,9 @@
 	<tr height="auto">
 		<td align="center" width="50">이벤트 번호</td>
 		<td align="center" width="150">이벤트 이름</td>
-		<td align="center" width="250">진행 날짜</td>
+		<td align="center" width="200">진행 날짜</td>
 		<td align="center" width="50">당첨자 수</td>
-		<td align="center" width="50">추첨<br/>유무</td>
+		<td align="center" width="150">추첨<br/>유무</td>
 		<td align="center" width="200">당첨 커플 이름</td>
 		<td align="center" width="100">비고</td>
 	</tr>	
@@ -176,27 +177,26 @@
 	</c:if>
 	
 	<c:if test="${count != 0}">
-	<c:forEach var="eventList" items="${eventList}">
+	<c:forEach var="WList" items="${WList}">
 	<tr>
-		<td align="center" width="50">${eventList.enumber}</td>
-		<td align="center" width="150"><a href="#" onclick="callAjaxyj('test.nhn?enumber=${eventList.enumber}&pageNum=${currentPage}')" >
-		${eventList.ename}</a></td>
-		<td align="center" width="250">${eventList.sdate}~${eventList.edate}</td>
-		<td align="center" width="50">${eventList.wnumber}</td>
-		<c:if test="${eventList.w==0}"><c:set var="w" value="무"></c:set></c:if>
-		<c:if test="${eventList.w==1}"><c:set var="w" value="유"></c:set></c:if>
-		<td align="center" width="50">${w}</td>
-		<td align="center" width="200">${eventList.wcouples}</td>
+		<td align="center" width="50">${WList.enumber}</td>
+		<td align="center" width="150"><a href="#" onclick="callAjaxyj('test.nhn?enumber=${WList.enumber}&pageNum=${currentPage}')" >
+		${WList.ename}</a></td>
+		<td align="center" width="200">${WList.sdate}~${WList.edate}</td>
+		<td align="center" width="50">${WList.wnumber}</td>
+		<c:if test="${WList.w==0}"><c:set var="w" value="무"></c:set></c:if>
+		<c:if test="${WList.w==1}"><c:set var="w" value="유"></c:set></c:if>
+		<td align="center" width="150">${w}<c:if test="${WList.wc!=0}"><br/>필요 당첨자 수:${WList.wc}</c:if></td>
+		<td align="center" width="200">${WList.wcouples}</td>
 		<td align="center" width="100">
-		<c:if test="${eventList.w==0}">
-		<a href="#" onclick="callAjaxyj2('wWay.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')"><img src="/Date/button/z48.png"></a>
+		<c:if test="${WList.w==0}">
+		<a href="#" onclick="callAjaxyj2('wWay.nhn?enumber=${WList.enumber}&wnumber=${WList.wnumber}&w=${WList.w}')"><img src="/Date/button/z48.png"></a>
 		</c:if>
-		<c:if test="${eventList.w==1}">
-		<a href="#" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')"><img src="/Date/button/z49.png"></a>
+		<c:if test="${WList.w==1}">
+		<a href="#" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${WList.enumber}&wnumber=${WList.wnumber}&w=${WList.w}')"><img src="/Date/button/z49.png"></a>
 		</c:if>
 		</td>
 	</tr>
-	
 	
 	</c:forEach>
 	</c:if>

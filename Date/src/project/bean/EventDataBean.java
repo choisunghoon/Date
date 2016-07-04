@@ -24,7 +24,14 @@ public class EventDataBean {
 	private int w;
 	private int anumber;
 	private int checknum;
+	private int wc;
 
+	public int getWc() {
+		return wc;
+	}
+	public void setWc(int wc) {
+		this.wc = wc;
+	}
 	public int getW() {
 		return w;
 	}

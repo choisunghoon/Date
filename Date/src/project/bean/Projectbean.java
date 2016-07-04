@@ -470,12 +470,10 @@ public class Projectbean {
 		String wcouplesN = (String) sqlMap.queryForObject("wcount", enumber);
 		System.out.println(wcouplesN);
 		if(wcouplesN==null){
-		System.out.println("dldld111");
 		wcount  = 0;
 		}else {
 			String[] wlist = wcouplesN.split(",");
 			wcount = wlist.length;
-			System.out.println("dldld");
 			
 		}
 		request.setAttribute("enumber", new Integer(enumber));
@@ -530,23 +528,17 @@ public class Projectbean {
 		eto1 = (EventDataBean) sqlMap.queryForObject("eventContent", enumber);
 		if(eto1.getWcouples()==null){
 		eto1.setWcouples(wname);
-		System.out.println("a");
 		}else{
-			System.out.println("bb");
 			eto1.setWcouples(eto1.getWcouples()+","+wname);
 		}
 		eto1.setEnumber(enumber);
 		
 		if((wcount+Cwcount)==wnumber){
 		eto1.setW(1);
-		System.out.println("cc");
 		}else{
 			eto1.setW(0);	
-			System.out.println("dd");
 		}
 		sqlMap.update("addW", eto1);
-		//List idid = new ArrayList(); 
-
 		for(int i = 0;i<rList.length;i++){
 			CoupleDataBean cdb2 = new CoupleDataBean();
 			EventDataBean eto2 = new EventDataBean();
@@ -554,7 +546,6 @@ public class Projectbean {
 			cdb2 = (CoupleDataBean)sqlMap.queryForObject("selectid", cdb);
 			eto2.setCouplename(rList[i]);
 			eto2.setEnumber(enumber);
-			//idid.add(cdb2);
 			sqlMap.insert("insertA",eto2);
 		}
 		request.setAttribute("appList", appList);
@@ -626,7 +617,6 @@ public class Projectbean {
 		request.setAttribute("wnumber", new Integer(wnumber));
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("Cwcount", new Integer(Cwcount-1));
-		// request.setAttribute("appnumber", new Integer(appnumber));
 		return "/project/appW.jsp";
 	}
 
@@ -668,13 +658,11 @@ public class Projectbean {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
 		int tab = Integer.parseInt(request.getParameter("tab"));
-		//int apppw = Integer.parseInt(request.getParameter("apppw"));
 		String pageNum = request.getParameter("pageNum");
 		request.setAttribute("appnumber", new Integer(appnumber));
 		request.setAttribute("enumber", new Integer(enumber));
 		request.setAttribute("wnumber", new Integer(wnumber));
 		request.setAttribute("tab", new Integer(tab));
-	//	request.setAttribute("apppw", new Integer(apppw));
 		request.setAttribute("pageNum", pageNum);
 		return "/project/confirmPw.jsp";
 	}
@@ -808,8 +796,6 @@ public class Projectbean {
 	public String WcoupleA(HttpServletRequest request, @RequestParam(value="checkArray[]") List<Integer> arrayParams){
 		List checkArray =arrayParams;
 		int enumber = Integer.parseInt(request.getParameter("enumber"));		
-		System.out.println("asdf"+(Integer)checkArray.get(0));
-
 		EventDataBean w = new EventDataBean();
 		w.setEnumber(enumber);
 		for(int i=0; i<checkArray.size();i++){

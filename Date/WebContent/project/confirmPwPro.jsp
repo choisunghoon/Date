@@ -71,8 +71,8 @@ function confirmPwPro(){
 </c:if>
 <c:if test="${check==0}">
 <h2>비밀번호가 맞지 않습니다.</h2>
-<button type="button" class="btn btn-default" onclick='confrimPwRe()'>다시 입력</button>
-<button type="button" class="btn btn-default" onclick='confrimPwCon()'>이벤트 상세 페이지로</button>	
+<a href="#" onclick="confrimPwRe()"><img src="/Date/button/z56.png"></a>
+<a href="#" onclick="confrimPwCon()"><img src="/Date/button/z55.png"></a>
 </c:if>
 </center>
 </body>
