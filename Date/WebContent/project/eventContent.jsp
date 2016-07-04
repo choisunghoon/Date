@@ -94,7 +94,7 @@ function callEvent(url,pageNum,enumber){
 	</c:if>
 	<c:if test="${tab==1}"><button type="button" class="btn btn-default" style="margin-top:5px; margin-left:408px" onclick="callAddApp('addApp.nhn',${eto.enumber})">이벤트 참여하기</button></c:if><br/>
 	<c:if test="${tab==4}">
-		<c:if test="${eto.w==0}">아직 당첨자를 뽑지 않았습니다!!</c:if>
+		<c:if test="${eto.w==0}"><center><h2>아직 당첨자를 뽑지 않았습니다!!</h2></center></c:if>
 		<c:if test="${eto.w==1}"><center><h2>축하드립니다!!!!!</h2>
 		<c:forEach var="i" begin="0" end="${eto.wnumber}">
 			${i+1}번째 당첨자 : ${wclist[i]} 커플 ^*^<br/>

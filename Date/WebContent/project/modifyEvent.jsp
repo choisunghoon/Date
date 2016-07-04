@@ -320,11 +320,11 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
 
 	var echoHTML = '<div class="mini_calendar">';
 	echoHTML += '<div class="navi">';
-	echoHTML += '	<a href="#" onclick="_goCalendar(\''+prevYear+'\',\''+prevMonth+'\',\''+sDay+'\',\''+pos+'\');return false;" class="prev"><img src="images/prev.gif" /></a>';
+	echoHTML += '	<a href="#" onclick="_goCalendar(\''+prevYear+'\',\''+prevMonth+'\',\''+sDay+'\',\''+pos+'\');return false;" class="prev"><img src="/Date/project/prev.gif" /></a>';
 	echoHTML += _setYear(pos);
 	echoHTML += _setMonth(pos);
-	echoHTML += '	<a href="#" onclick="_goCalendar(\''+nextYear+'\',\''+nextMonth+'\',\''+sDay+'\',\''+pos+'\');return false;" class="next"><img src="images/next.gif" /></a>';
-	echoHTML += '	<a href="#" onclick="calRemove();return false;"><img src="images/close.gif" /></a>';
+	echoHTML += '	<a href="#" onclick="_goCalendar(\''+nextYear+'\',\''+nextMonth+'\',\''+sDay+'\',\''+pos+'\');return false;" class="next"><img src="/Date/project/next.gif" /></a>';
+	echoHTML += '	<a href="#" onclick="calRemove();return false;"><img src="/Date/project/close.gif" /></a>';
 	echoHTML += '</div>';
 	echoHTML += '<table class="mini_cal_tbl">';
 	echoHTML += '	<thead>';
@@ -394,19 +394,19 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
 <form method="post" name="modifyEvent" enctype="multipart/form-data" action="modifyEventPro.nhn">
 <table border="1" width="600" cellpadding="0" cellspacing="0" align="center"> 
     <tr height="30"> 
-      <td align="center"  width="200">이벤트 이름</td>
-      <td align="center"><input type="text" name="ename" value="${eto.ename}">
+      <td align="center"  width="100">이벤트 이름</td>
+      <td align="center"  width="500"><input type="text" name="ename" value="${eto.ename}">
       					<input type="hidden" name="enumber" value="${eto.enumber}">
      </tr>
     <tr height="30"> 
       <td align="center"  width="100">당첨자 수</td>
-      <td align="center"><input type="text" name="wnumber" value="${eto.wnumber}">
+      <td align="center"  width="500"><input type="text" name="wnumber" value="${eto.wnumber}">
      </tr> 
      <tr height="30">
       <td align="center" width="100">진행 날짜</td>
-      <td align="center" >시작 날짜<input type="text" id="start_day" name="sdate" class="forms" style="width:80px;" value="${eto.sdate}" />
-      					    종료 날짜<input type="text" id="end_day" name="edate" class="forms" style="width:80px;" value="${eto.edate}"/>
-      					  <a href="#" onclick="miniSetCalendar(event,'start_day','end_day');return false;">[검색달력]</a>
+      <td width="500">시작 날짜<input type="text" id="start_day" name="sdate" class="forms" style="width:80px;" value="${eto.sdate}" />
+      				    종료 날짜<input type="text" id="end_day" name="edate" class="forms" style="width:80px;" value="${eto.edate}"/><br/>
+      					<a href="#" onclick="miniSetCalendar(event,'start_day','end_day');return false;">[검색달력]</a>
       </td>
     </tr>
     <tr height="30">

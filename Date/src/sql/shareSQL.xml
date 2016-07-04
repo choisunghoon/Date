@@ -2,6 +2,10 @@
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
 	
+	<select id="commentCheck" resultClass="java.lang.Integer">
+		select * from dc_sharydiary_comment where id=#id# and num=#commentnum#
+	</select>
+	
 	<select id="shereSelectDiaryBoardAll" resultClass="upload.bean.DiaryDataBean">
 		select * from dc_diary where pool=1 order by pool_regdate desc
 	</select>
@@ -59,8 +63,9 @@
     </insert>
 
     <delete id="diaryCommentDelet" parameterClass="java.util.HashMap">
-        delete from dc_sharydiary_comment where id=#id# and num=#num#
+        delete from dc_sharydiary_comment where id=#id# and num=#commentnum#
     </delete>
+    
 	<delete id="shereDeleteLike" parameterClass="java.util.HashMap" >
 		delete from dc_likecount_board where couplename=#couplename# and board_num=#num# and shareplace=#place#
 	</delete>
@@ -69,7 +74,7 @@
 		select count(*) from dc_likecount_board where couplename=#couplename# and board_num=#num# and shareplace=#place#
 	</select>
 	
-		<select id="shereCourseLikePro" resultClass="int" parameterClass="java.util.HashMap">
+	<select id="shereCourseLikePro" resultClass="int" parameterClass="java.util.HashMap">
 		select count(*) from dc_likecount_board where couplename=#couplename# and board_num=#num# and shareplace=#place#
 	</select>
 	

@@ -9,12 +9,12 @@
 	</sql>
 	
 	<select id="eventIng" resultClass="project.bean.EventDataBean" parameterClass="java.util.Map">
-		<include refid="getEventList"/> where <![CDATA[sdate<=to_char(sysdate,'yyyy-mm-dd')]]> and edate>=to_char(sysdate,'yyyy-mm-dd')) order by enumber asc) 
+		<include refid="getEventList"/> where <![CDATA[sdate<=to_char(sysdate,'yyyy-mm-dd')]]> and edate>=to_char(sysdate,'yyyy-mm-dd')) order by enumber desc) 
 		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
 	</select>
 	
 	<select id="eventEnd" resultClass="project.bean.EventDataBean" parameterClass="java.util.Map">
-		<include refid="getEventList"/> where <![CDATA[sdate<=to_char(sysdate,'yyyy-mm-dd')]]> and <![CDATA[edate<=to_char(sysdate,'yyyy-mm-dd')]]> ) order by enumber asc) 
+		<include refid="getEventList"/> where <![CDATA[sdate<=to_char(sysdate,'yyyy-mm-dd')]]> and <![CDATA[edate<=to_char(sysdate,'yyyy-mm-dd')]]> ) order by enumber desc) 
 		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
 	</select>
 	
@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="upcomingEvent" resultClass="project.bean.EventDataBean" parameterClass="java.util.Map">
-		<include refid="getEventList"/> where sdate>to_char(sysdate,'yyyy-mm-dd')) order by enumber asc) 
+		<include refid="getEventList"/> where sdate>to_char(sysdate,'yyyy-mm-dd')) order by enumber desc) 
 		where r>=#startRow# and <![CDATA[r<=#endRow#]]> 
 	</select>
 	

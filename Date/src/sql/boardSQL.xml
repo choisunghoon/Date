@@ -227,6 +227,21 @@
 		<select id="couplename00" parameterClass="String"	 resultClass="String">
 			select coupleName from dc_couple where id1=#id# or id2=#id#
 		</select>
+		<select id="getmylist" parameterClass="String" resultClass="String">
+			select list from dc_member where id=#id#
+		</select>
+		<update id="mylistPush" parameterClass="java.util.HashMap">
+			update dc_member set list=#mylistPush# where id=#myId#
+		</update>
+		<update id="mylistPush1" parameterClass="java.util.HashMap">
+			update dc_member set list=#list1# where id=#myId#
+		</update>
+		<update id="mylistPush2" parameterClass="java.util.HashMap">
+			update dc_member set list=#listnull# where id=#myId#
+		</update>
+		<select id="checkMylist" parameterClass="String" resultClass="int">
+			select count(*) from dc_member where id=#id# and list is null
+		</select>
 		
 
 </sqlMap>

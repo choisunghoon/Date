@@ -26,7 +26,7 @@ import ch11.logon.CoupleDataBean;
 @Controller
 public class Projectbean {
 	@Autowired
-	private SqlMapClientTemplate sqlMap;// �ڵ����� �� �޾���
+	private SqlMapClientTemplate sqlMap;// 占쌘듸옙占쏙옙占쏙옙 占쏙옙 占쌨억옙占쏙옙
 	/*
 	 * @SuppressWarnings("null")
 	 * 
@@ -52,7 +52,7 @@ public class Projectbean {
 		int endRow = currentPage * pageSize;
 		Timestamp date = new Timestamp(System.currentTimeMillis());
 		String[] srclist = null;
-		String path = request.getContextPath() + "/project/";
+		String path = request.getContextPath() + "/project/ei/";
 		HashMap<String, Integer> row = new HashMap<String, Integer>();
 		row.put("startRow", startRow);
 		row.put("endRow", endRow);
@@ -90,7 +90,7 @@ public class Projectbean {
 		int endRow = currentPage * pageSize;
 		Timestamp date = new Timestamp(System.currentTimeMillis());
 		String[] srclist = null;
-		String path = request.getContextPath() + "/project/";
+		String path = request.getContextPath() + "/project/ei/";
 		HashMap<String, Integer> row = new HashMap<String, Integer>();
 		row.put("startRow", startRow);
 		row.put("endRow", endRow);
@@ -128,7 +128,7 @@ public class Projectbean {
 		int endRow = currentPage * pageSize;
 		Timestamp date = new Timestamp(System.currentTimeMillis());
 		String[] srclist = null;
-		String path = request.getContextPath() + "/project/";
+		String path = request.getContextPath() + "/project/ei/";
 		HashMap<String, Integer> row = new HashMap<String, Integer>();
 		row.put("startRow", startRow);
 		row.put("endRow", endRow);
@@ -167,7 +167,7 @@ public class Projectbean {
 		Timestamp date = new Timestamp(System.currentTimeMillis());
 		String[] srclist = null;
 		
-		String path = request.getContextPath() + "/project/";
+		String path = request.getContextPath() + "/project/ei/";
 		HashMap<String, Integer> row = new HashMap<String, Integer>();
 		row.put("startRow", startRow);
 		row.put("endRow", endRow);
@@ -201,7 +201,7 @@ public class Projectbean {
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String[] src = new String[2];
-		String path = "C:\\Users\\user2\\workspace\\Spring\\WebContent\\project";
+		String path = "C:\\Users\\user2\\workspace\\Spring\\WebContent\\project\\ei";
 		int i = 0;
 		while (iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -239,7 +239,7 @@ public class Projectbean {
 		row.put("startRow", startRow);
 		row.put("endRow", endRow);
 		row.put("enumber", enumber);
-		String path = request.getContextPath() + "/project/";
+		String path = request.getContextPath() + "/project/ei/";
 		eto = (EventDataBean) sqlMap.queryForObject("eventContent", enumber);
 		srclist = eto.getEimg().split(",");
 		if(eto.getWcouples() != null){
@@ -249,16 +249,16 @@ public class Projectbean {
 		appList = sqlMap.queryForList("eventApp", row);
 		count = (Integer) sqlMap.queryForObject("eventAppCount", enumber);	
 		
-		int countCN = (Integer)sqlMap.queryForObject("countCN", id); //커플인가
+		int countCN = (Integer)sqlMap.queryForObject("countCN", id); //而ㅽ뵆�씤媛�
 		if(countCN>0){
-		String couplen = (String)sqlMap.queryForObject("selectCouplename", id); //커플이름뽑기
+		String couplen = (String)sqlMap.queryForObject("selectCouplename", id); //而ㅽ뵆�씠由꾨퐨湲�
 		EventDataBean eto2 = new EventDataBean();	
 		eto2.setCouplename(couplen);
 		eto2.setEnumber(enumber);
 		EventDataBean eto3 = new EventDataBean();	
-		int checkcount = (Integer)sqlMap.queryForObject("checkcount2", eto2); //알림을 보냈나
+		int checkcount = (Integer)sqlMap.queryForObject("checkcount2", eto2); //�븣由쇱쓣 蹂대깉�굹
 			if(checkcount>0){
-				eto3 = (EventDataBean)sqlMap.queryForObject("checkW2", eto2);	//checknum확인			
+				eto3 = (EventDataBean)sqlMap.queryForObject("checkW2", eto2);	//checknum�솗�씤			
 				if(eto3.getChecknum()==0){
 					sqlMap.update("checknumU", eto2);
 				}
@@ -296,7 +296,7 @@ public class Projectbean {
 	
 		System.out.println(eto.getAppimg());
 		
-		// String cn = "Ŀ����";
+		// String cn = "커占쏙옙占쏙옙";
 		//HashMap<String, Integer> row = new HashMap<String, Integer>();
 		//row.put("couplename", eto.getCouplename());
 		//row.put("enumber", eto.getEnumber());
@@ -362,7 +362,7 @@ public class Projectbean {
 		return "/project/appContentAdmin.jsp";
 	}
 
-	@RequestMapping("test.nhn") // ������ ������ ������
+	@RequestMapping("test.nhn") // 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 	public String test(HttpServletRequest request) {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		String pageNum = request.getParameter("pageNum");
@@ -376,7 +376,7 @@ public class Projectbean {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		EventDataBean eto = new EventDataBean();
 		String[] srclist = null;
-		String path = request.getContextPath() + "/project/";
+		String path = request.getContextPath() + "/project/ei/";
 		eto = (EventDataBean) sqlMap.queryForObject("eventContent", enumber);
 		srclist = eto.getEimg().split(",");
 		String src1 = path + srclist[0];
@@ -398,7 +398,7 @@ public class Projectbean {
 		String setsrc = null;
 		String[] srclist = null;
 		String[] src = new String[2];
-		String path = "C:\\Users\\user2\\workspace\\Spring\\WebContent\\project";
+		String path = "C:\\Users\\user2\\workspace\\Spring\\WebContent\\project\\ei";
 		int i = 0;
 		while (iterator.hasNext()) {
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -440,7 +440,7 @@ public class Projectbean {
 		int endRow = currentPage * pageSize;
 		Timestamp date = new Timestamp(System.currentTimeMillis());
 		String[] srclist = null;
-		String path = request.getContextPath() + "/project/";
+		String path = request.getContextPath() + "/project/ei/";
 		HashMap<String, Integer> row = new HashMap<String, Integer>();
 		row.put("startRow", startRow); 
 		row.put("endRow", endRow);
@@ -485,7 +485,7 @@ public class Projectbean {
 		request.setAttribute("wcount", new Integer(wcount));
 		return "/project/wWay.jsp";
 	}
-	// ������� git
+	// 占쏙옙占쏙옙占쏙옙占� git
 
 	@RequestMapping("random.nhn")
 	public String random(HttpServletRequest request,CoupleDataBean cdb) {
@@ -714,7 +714,7 @@ public class Projectbean {
 		int endRow = currentPage * pageSize;
 		Timestamp date = new Timestamp(System.currentTimeMillis());
 		String[] srclist = null;
-		String path = request.getContextPath() + "/project/";
+		String path = request.getContextPath() + "/project/ei/";
 		HashMap<String, Integer> row = new HashMap<String, Integer>();
 		row.put("startRow", startRow); 
 		row.put("endRow", endRow);

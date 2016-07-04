@@ -8,8 +8,8 @@
 </head>
 <body>
 <center>
-<h2><a href="modifyEvent.nhn?enumber=${enumber}&pageNum=${pageNum}">수정</a>
-<a href="deleteEvent.nhn?enumber=${enumber}&pageNum=${pageNum}">삭제</a></h2>
+<a href="modifyEvent.nhn?enumber=${enumber}&pageNum=${pageNum}"><img src="/Date/button/z2.png"></a>
+<a href="deleteEvent.nhn?enumber=${enumber}&pageNum=${pageNum}"><img src="/Date/button/z3.png"></a>
 </center>
 </body>
 </html>

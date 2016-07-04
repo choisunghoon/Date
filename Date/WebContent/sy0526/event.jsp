@@ -9,6 +9,9 @@
 	if(chk == 1){
 		callAjax('photorequest.nhn');
 	}
+	if(chk == 2){
+		callAjax('adminEvent.nhn');
+	}
     function callAjax(nhn){
         $.ajax({
 	        type: "post",

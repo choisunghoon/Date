@@ -16,56 +16,56 @@
 	</select>
 	
 	<select id="winEventCount" resultClass="int">
-	    select count(*) from event
+	    select count(*) from event order by enumber desc
 	</select>
 
-	<select id="getWinEventList" resultClass="event.EventDataBean">
-	    select enumber, ename, eimg, wcouples, regdate, edate, sdate, wnumber, w, r from
-	    (select enumber, ename, eimg, wcouples, regdate, edate, sdate, wnumber, w , rownum r from
-	    (select enumber, ename, eimg, wcouples, regdate, edate, sdate, wnumber, w from event)) where r>=#startRow# and <![CDATA[r<=#endRow#]]> order by enumber desc
+	<select id="getWinEventList" resultClass="project.bean.EventDataBean">
+	    select enumber, ename, eimg, sdate, edate, wcouples, regdate, wnumber, w, r from 
+		(select enumber, ename, eimg, sdate, edate, wcouples, regdate, wnumber, w, rownum r from 
+		(select enumber, ename, eimg, sdate, edate, wcouples, regdate, wnumber, w from event ) order by enumber desc) where r>=#startRow# and <![CDATA[r<=#endRow#]]>
 	</select>
 	
-	<select id="s1" resultClass="event.EventDataBean">
-		select * from event 
+	<select id="s1" resultClass="project.bean.EventDataBean">
+		select * from event order by enumber desc
 	</select>
 	
-	<select id="s2" resultClass="event.EventDataBean">
-		select * from event where w=#way# 
+	<select id="s2" resultClass="project.bean.EventDataBean">
+		select * from event where w=#way# order by enumber desc
 	</select>
 	
-	<select id="searchWinEventList" resultClass="event.EventDataBean">
-		select * from event where ename like '%'||#keyword#||'%' and w=#way#
+	<select id="searchWinEventList" resultClass="project.bean.EventDataBean">
+		select * from event where ename like '%'||#keyword#||'%' and w=#way# order by enumber desc
 	</select>
 	
-	<select id="searchWinEventListall" resultClass="event.EventDataBean">
-		select * from event where ename like '%'||#keyword#||'%'
+	<select id="searchWinEventListall" resultClass="project.bean.EventDataBean">
+		select * from event where ename like '%'||#keyword#||'%' order by enumber desc
 	</select>
 	
 	<select id="searchWinPointList" resultClass="upload.bean.PointDataBean">
-		select * from dc_point where couplename like '%'||#couplename#||'%' and place = #place#
+		select * from dc_point where couplename like '%'||#couplename#||'%' and place = #place# 
 	</select>
 	
-	<select id="searchWinEventList1" resultClass="event.EventDataBean">
-		select * from event where  wcouples like '%'||#keyword#||'%' and w=#way#
+	<select id="searchWinEventList1" resultClass="project.bean.EventDataBean">
+		select * from event where  wcouples like '%'||#keyword#||'%' and w=#way# order by enumber desc
 	</select>
 	
-	<select id="searchWinEventListall1" resultClass="event.EventDataBean">
-		select * from event where  wcouples like '%'||#keyword#||'%'
+	<select id="searchWinEventListall1" resultClass="project.bean.EventDataBean">
+		select * from event where  wcouples like '%'||#keyword#||'%' order by enumber desc
 	</select>
 	
-	<select id="searchWinEventList2" resultClass="event.EventDataBean">
-		select * from event
+	<select id="searchWinEventList2" resultClass="project.bean.EventDataBean">
+		select * from event order by enumber desc
 	</select>
 	
-	<select id="searchWinEventList3" resultClass="event.EventDataBean">
-		select * from event where w = #w#
+	<select id="searchWinEventList3" resultClass="project.bean.EventDataBean">
+		select * from event where w = #w# order by enumber desc
 	</select>
 	
 	<delete id="memberDelete" parameterClass="ch11.logon.LogonDataBean">
 		delete from dc_member where id = #id#
 	</delete>
 	
-	<select id="wCount" resultClass="int" parameterClass="event.EventDataBean">
-	    select count(*) from event where w = #w#
+	<select id="wCount" resultClass="int" parameterClass="project.bean.EventDataBean">
+	    select count(*) from event where w = #w# order by enumber desc
 	</select>
 </sqlMap>
