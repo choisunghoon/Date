@@ -6,13 +6,14 @@
 <html>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">  
- 	 function callAjax(ctg_num,cos_num){
+ 	 function callAjax(ctg_num,cos_num,checkNum){
  		 $.ajax({
  			 type:"post",
  			 url:"likeCount.nhn",
  			 data:{
  				 ctg_num : ctg_num,
- 				 cos_num : cos_num
+ 				 cos_num : cos_num,
+ 				 checkNum : checkNum
  			 }, 
  			 success: test2,
  			 error: whenError
@@ -137,33 +138,47 @@
 <input type="button" value="코스로" align="center" onclick="document.location.href='course.nhn?ctg_num=${ctg_num}'">
 
 </br>
-		<center><h2>${dto1.cos_name}</h2><center>
+		<center><h2>${dto1.cos_name}</h2></center>
 	
-	<table border="1" width="500" cellspacing="0" cellpadding="0" align="center">
+	<table border="0" width="500" cellspacing="0" cellpadding="0" align="center">
 		<tr>
-			<td align="center" width="500">지도 img 입력</td>
 			<td align="center" width="500">${dto.cos_img}<img src="theme/themeimg/${dto1.cos_img}" alt=""></td>
 		</tr>
+	</table>
+	</br>
+	<table border="0" width="700" cellspacing="0" cellpadding="0" align="center">
 		<tr>
-			<td align="center" width="100">한줄평</td>
-			<td align="center">${dto1.content}</td>
+			<td align="center"><b>${dto1.content}</b></td>
+		</tr>
+	</table>
+	</br>
+	<table border="1" width="700" cellspacing="0" cellpadding="0" align="center">
+		<tr>
+			<td align="center">조회수</td>
+			<td align="center">좋아요</td>
 		</tr>
 		<tr>
-			<td align="center" width="100">조회수</td>
+			<td align="center">11</td>
 			<td align="center">${dto1.readCount}</td>
 		</tr>
 		<input type="hidden" name="ctg_num" value="${ctg_num}" />
 		<input type="hidden" name="cos_num" value="${cos_num}" />
+		<input type="hidden" name="checkNum" value="${checkNum}"/>
 	</table>
 </br>
 </br>
+<center>
+<c:if test="${id != 'null' and checkNum != 1}">
 	<div id="like"  method="post">
-		<input type="button" name="good" value="좋아요"  onclick="callAjax(${ctg_num},${cos_num})"/>
-		
-		<span id="ajaxReturn">${dto.likeCount}</span><br/>
+		<span id="ajaxReturn"><a href="#" onclick="callAjax(${ctg_num},${cos_num},${checkNum})"><img src="button/z31.png" alt="" style="margin-top:5px;"></a>${dto.likeCount}</span><br/>
 	</div>
-
-
+</c:if>
+<c:if test="${id != 'null' and checkNum == 1}">
+	<div id="like"  method="post">
+		<span id="ajaxReturn"><a href="#" onclick="callAjax(${ctg_num},${cos_num},${checkNum})"><img src="button/z32.png" alt="" style="margin-top:5px;"></a>${dto.likeCount}</span><br/>
+	</div>
+</c:if>
+</center>
     <div class="gallery">
 			<ul>
 				<c:set var="i" value="1" />

@@ -2,24 +2,27 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=9be7455c7d33a4e2b750d3537e1179d8&libraries=services"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
 <script type="text/javascript">
- 
-     function HereAjax(nhn,regdate,i){
+
+     function HereAjax(nhn,regdate){
         $.ajax({
 	        type: "post",
 	        url : nhn,
 	        data : {
 	        	regdate1 : regdate
 	        },
-	        success: function(aaa){
-	        	$("#here"+i).html(aaa);
-	        },	// 페이지요청 성공시 실행 함수
+	        success: refresh,
 	        error: whenError2	//페이지요청 실패시 실행함수
      	});
     }
-    
+     function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+     	$("#subMain").html(aaa);    	
+     }  
     function whenError2(){
         alert("Error");
     }
@@ -37,6 +40,7 @@
 			</td>
 		</tr>
 		<c:set var="i" value="1"/>
+		<c:set var="igk" value="0"/> 
     	<c:forEach var="photo" items="${photo}">
 		<tr>
     		<td>
@@ -44,21 +48,10 @@
     		</td>  
     		<td>
 				${photo.state }
-			</td> 
-			<!--    
+			</td>    
 			<td>
 				<a href="#" onclick="callContent5('photocheckcontent.nhn','${photo.regdate}')">확인</a>
 			</td>
-			 -->
-			 <td>
-			 	<a href="#" onclick="HereAjax('photocheckcontent.nhn','${photo.regdate}',${i })">확인</a>
-			 </td>	
-    	</tr>
-    	<tr>
-	    		<td colspan="3" id="here${i}">
-	    			
-	    		</td>
-		</tr>
-		<c:set var="i" value="${i+1}"/>
+		
 	</c:forEach>
 </table>

@@ -138,7 +138,7 @@ $("#choose5").change(function (e) {
     if(this.disabled) return alert('File upload not supported!');
     var F = this.files;
     if(F && F[0]) for(var i=0; i<F.length; i++) readImage( F[i],5 );
-});1`
+});
 
 </script>
 </head>
@@ -192,9 +192,7 @@ $("#choose5").change(function (e) {
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
 <script>
-function subForm(){
-	document.datePlanForm.submit();
-}
+
 // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 
 var placeOverlay = new daum.maps.CustomOverlay({zIndex:1}), 
@@ -896,7 +894,7 @@ function removeAllChildNods(el) {
     }
 }
 </script>
-<form name="datePlanForm" action="cosUpdate.nhn" method="post">
+<form action="datepostSave.nhn?pidsize=${pidsize}" method="post"  enctype="multipart/form-data">
 <input type="hidden" value="up" name="btcheck" />
 <div>
 	<div id="img" class="placeinfov_wrap" style="margin-bottom: 20px">
@@ -905,8 +903,9 @@ function removeAllChildNods(el) {
 	
 	
 </div>
+
 <input type="hidden" value="${num}" name="num" />
-<a href="#" onclick="subForm()"><img src="button/z34.png" style="margin-top: 2.1%"></a>
+<input type="image" name="submit" value="submit" src="button/z34.png" />
 <br /> 
 <div id="postscript" style="margin-top:70px">
 		<div>
@@ -918,18 +917,18 @@ function removeAllChildNods(el) {
 							
 						</div>
 						
-						<div id="content${i}" style="float:left;">
-							<textarea rows="15" cols="100"></textarea>
+						<div  id="content${i}" style="float:left;">
+							<textarea name ="content${i}" rows="15" cols="100"></textarea>
 						</div>
 						
 						<div>
-							<input type="file" name="save" id="choose${i}" />
+							<input type="file" name="save${i}" id="choose${i}" />
 						</div>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
-	</div>
+</div>
 
 </form>
 

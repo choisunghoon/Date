@@ -80,12 +80,20 @@
 		select * from dc_couple where coupleName=#coupleName#
 	</select>
 	
+	<select id="countCN" parameterClass="String" resultClass="int">
+		select count(*) from dc_couple where id1=#id# or id2=#id# 
+	</select>
+	
 	<select id="selectCouplename" parameterClass="String" resultClass="String">
 		select coupleName from dc_couple where id1=#id# or id2=#id#
 	</select>
 	
 	<select id="checkW" parameterClass="String" resultClass="project.bean.EventDataBean">
 		select * from event_a where couplename=#couplen#
+	</select>
+	
+	<select id="checkW2" parameterClass="project.bean.EventDataBean" resultClass="project.bean.EventDataBean">
+		select * from event_a where couplename=#couplename# and enumber=#enumber#
 	</select>
 		
 	<insert id="insertA" parameterClass="project.bean.EventDataBean">
@@ -149,10 +157,22 @@
 	</select>
 	
 	<select id="selectCh" resultClass="project.bean.EventDataBean" parameterClass="project.bean.EventDataBean">
-		select * from event_a where couplename=#couplename# 
+		select * from event_a where couplename=#couplename# and enumber=#enumber#
 	</select>
 	
 	<select id="checkcount" resultClass="int" parameterClass="String">
 		select count(*) from event_a where couplename=#couplename# 
 	</select>
+	
+	<select id="checkcount2" resultClass="int" parameterClass="project.bean.EventDataBean">
+		select count(*) from event_a where couplename=#couplename# and enumber=#enumber#
+	</select>
+	
+	<update id="checknumU" parameterClass="project.bean.EventDataBean">
+		update event_a set checknum=1 where enumber=#enumber# and couplename=#couplename#
+	</update>
+	
+	<update id="updateWn" parameterClass="project.bean.EventDataBean">
+		update event_a set checknum=-1 where enumber=#enumber# and anumber=#anumber#
+	</update>
 </sqlMap>

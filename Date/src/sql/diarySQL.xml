@@ -92,5 +92,21 @@
 	<select id="myphoto" resultClass="upload.bean.PhotoDataBean" parameterClass="upload.bean.PhotoDataBean">
 		select * from dc_photo where couplename=#couplename# order by regdate desc
 	</select>
+	
+	<select id="myphoto1" resultClass="int" parameterClass="upload.bean.PhotoDataBean">
+		select count(*) from dc_photo where couplename=#couplename# order by regdate desc
+	</select>
+
+	
+	<select id="bestcouple" resultClass="upload.bean.DiaryDataBean">
+		select couplename from 
+		(select couplename,likecount,rownum r from 
+		(select couplename,sum(likecount) as likecount from dc_diary where pool=1 group by couplename order by likecount desc)) where <![CDATA[r<=5]]> 
+	</select>
+	
+	<select id="coupleimg" resultClass="upload.bean.CoupleDataBean" parameterClass="upload.bean.CoupleDataBean">
+		select * from dc_couple where couplename=#couplename#
+	</select>
+
 </sqlMap>
 

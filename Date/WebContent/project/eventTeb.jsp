@@ -108,12 +108,12 @@
 				<c:forEach var="eventList" items="${eventList}">
 					<c:if test="${(i%3)!=0}">						
 						<li>						
-						<img src="${eventList.eimg}" onclick="callContent('eventContent.nhn',${eventList.enumber},${tab})" id="test" data-toggle="modal" data-target="#myModaly" alt="">${eventList.ename}
+						<img src="${eventList.eimg}" onclick="callContent('eventContent.nhn',${eventList.enumber},${tab})" id="test" data-toggle="modal" data-target="#myModaly" alt="">${eventList.enumber}. ${eventList.ename}
 							</li>
 					</c:if>
 					<c:if test="${(i%3)==0}">
 						<li class="last"><img
-								src="${eventList.eimg}" onclick="callContent('eventContent.nhn',${eventList.enumber},${tab})" id="test" data-toggle="modal" data-target="#myModaly" alt="">${eventList.ename} 
+								src="${eventList.eimg}" onclick="callContent('eventContent.nhn',${eventList.enumber},${tab})" id="test" data-toggle="modal" data-target="#myModaly" alt="">${eventList.enumber}. ${eventList.ename} 
 							</li>
 					</c:if>
 					<c:set var="i" value="${i+1}" />

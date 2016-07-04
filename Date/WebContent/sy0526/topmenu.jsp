@@ -170,10 +170,10 @@
 <div id="topmenu">
 
 <ul class="top">
-		<li class="top1"><a href="couple.nhn">커플 공간</a>&nbsp; |</li>
-		<li class="top1"><a href="share.nhn">코스 & 다이어리 공유</a>&nbsp; |</li>
+		<li class="top1"><a href="couple.nhn?chk=1">커플 공간</a>&nbsp; |</li>
+		<li class="top1"><a href="share.nhn?chk=1">코스 & 다이어리 공유</a>&nbsp; |</li>
 		<li class="top1"><a href="addCtgView.nhn">테마별 데이트코스</a>&nbsp; |</li>
-		<li class="top1"><a href="event.nhn">이벤트 & 포토북</a>&nbsp; |</li>
+		<li class="top1"><a href="event.nhn?chk=1">이벤트 & 포토북</a>&nbsp; |</li>
 		<c:if test="${id ne 'admin' }">
 			<c:if test="${check eq 'yes' }">
 				<li class="top1"><a href="mypage.nhn?fbcheck=yes&id=${id}">마이페이지</a></li>

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import dateplan.bean.DTO;
+
 @Controller
 public class Upload {
 	
@@ -374,7 +376,31 @@ public class Upload {
 		pdb.setCouplename(couplename);
 		List photo = null;
 		photo = sqlMap.queryForList("myphoto", pdb);
+		/*
+		pdb = (PhotoDataBean)sqlMap.queryForList("myphoto", pdb);
+		
+		int count = (Integer)sqlMap.queryForObject("myphoto1", pdb);
+		
+		List aa = new ArrayList();
+		
+		String[] a1 = pdb.getImg().split(",");
+		String[] a2 = pdb.getContent().split(",");
+		String[] a3 = pdb.getWriteday().split(",");
+		
+		for(int i=0; i < a1.length; i++){
+			PhotoDataBean pdd = new PhotoDataBean();
+			pdd.setImg(a1[i]);
+			pdd.setContent(a2[i]);
+			pdd.setWriteday(a3[i]);
+			aa.add(pdd);
+			System.out.println(i +":" +pdd.getImg());
+		}
+		
+		request.setAttribute("aa", aa);
+		request.setAttribute("pdb", pdb);
+		*/
 		request.setAttribute("photo", photo);
+
 		return "/sy0630/photocheck.jsp";
 	}
 	
@@ -393,6 +419,7 @@ public class Upload {
 		String[] a1 = pdb.getImg().split(",");
 		String[] a2 = pdb.getContent().split(",");
 		String[] a3 = pdb.getWriteday().split(",");
+		
 		for(int i=0; i < a1.length; i++){
 			PhotoDataBean pdd = new PhotoDataBean();
 			pdd.setImg(a1[i]);
@@ -401,11 +428,45 @@ public class Upload {
 			aa.add(pdd);
 			System.out.println(i +":" +pdd.getImg());
 		}
+		
 		request.setAttribute("aa", aa);
 		request.setAttribute("pdb", pdb);
 
 
 		return "/sy0630/photocheckcontent.jsp";
+	}
+	
+	@RequestMapping("/bestcouple.nhn")
+	public String bestcouple(HttpServletRequest request,CoupleDataBean cdb,DiaryDataBean ddb){
+		List bestcouple = null;
+		bestcouple = sqlMap.queryForList("bestcouple", null);
+		List dd = new ArrayList();
+		System.out.println(bestcouple.size());
+		for(int i = 0; i<bestcouple.size(); i++){
+			CoupleDataBean cdb1 = new CoupleDataBean();
+			ddb = (DiaryDataBean)bestcouple.get(i);
+			cdb.setCouplename(ddb.getCouplename());
+			cdb1 = (CoupleDataBean)sqlMap.queryForObject("coupleimg", cdb);
+			System.out.println(cdb1.getCoupleimage());
+			System.out.println(i);
+			dd.add(cdb1);
+		}
+		
+		request.setAttribute("dd", dd);
+		request.setAttribute("bestcouple", bestcouple);
+		return "/sy0703/bestcouple.jsp";
+	}
+	
+	@RequestMapping("/latestcourse.nhn")
+	public String latestcourse(DTO dto){
+
+		return "/sy0703/latestcourse.jsp";
+	}
+	
+	@RequestMapping("/bestcourse.nhn")
+	public String bestcourse(DTO dto){
+
+		return "/sy0703/bestcourse.jsp";
 	}
 	
 

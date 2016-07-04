@@ -1,6 +1,7 @@
 package login.bean;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,54 +21,66 @@ public class LoginBean {
 	@Autowired
 	private SqlMapClientTemplate sqlMapper;
 	
-	@RequestMapping("main.nhn")//¸ÞÀÎÆäÀÌÁö°¡ È£ÃâµÉ¶§ ½ÇÇàµÇ´Â ÇÔ¼ö
+	@RequestMapping("main.nhn")//å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ í˜¸å ì™ì˜™î€•å ï¿½ å ì™ì˜™å ì™ì˜™í’”å ï¿½ å ìŒ‰ì‡½ì˜™
 	public String main(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id = (String)session.getAttribute("id");
 
-			int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id); //·Î±×ÀÎÇÑ È¸¿øÀÇ nicknameÀÌ nullÀÎ °æ¿ì 1À» ÃßÃâ 
+			int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id); //å ì‹¸ê¹ì˜™å ì™ì˜™å ì™ì˜™ íšŒå ì™ì˜™å ì™ì˜™ nicknameå ì™ì˜™ nullå ì™ì˜™ å ì™ì˜™å ï¿½ 1å ì™ì˜™ å ì™ì˜™å ì™ì˜™ 
 			session.setAttribute("id", id);
 			request.setAttribute("nickcheck", nickcheck);
-			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
-			int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//·Î±×ÀÎ À¯¹« È®ÀÎ
+			int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//å ì‹¸ê¹ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ í™•å ì™ì˜™
 			if(nc==1){
 				
-				String nickname=(String) sqlMapper.queryForObject("getNick", id); //·Î±×ÀÎÇÑ È¸¿øÀÇ nicknameÀ» ÃßÃâ
+				String nickname=(String) sqlMapper.queryForObject("getNick", id); //å ì‹¸ê¹ì˜™å ì™ì˜™å ì™ì˜™ íšŒå ì™ì˜™å ì™ì˜™ nicknameå ì™ì˜™ å ì™ì˜™å ì™ì˜™
 				session.setAttribute("nickname", nickname);
-				int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname); //·Î±×ÀÎÇÑ È¸¿øÀÇ nicknameÀ» ÅëÇØ ÀÐÁö ¾ÊÀº ¾Ë¸²ÀÌ ÀÖ´ÂÁö °Ë»ö.¹ÌÈ®ÀÎ ¾Ë¸²ÀÌ ÀÖÀ»°æ¿ì 1À» ÃßÃâ
+				int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname); //å ì‹¸ê¹ì˜™å ì™ì˜™å ì™ì˜™ íšŒå ì™ì˜™å ì™ì˜™ nicknameå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì‹¯ëªŒì˜™å ì™ì˜™ å ìŒëŒì˜™å ì™ì˜™ å ì‹¯ì‚¼ì˜™.å ì™ì˜™í™•å ì™ì˜™ å ì‹¯ëªŒì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ï¿½ 1å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+				int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
+				if(countCN>0){System.out.println("aa"+countCN);
+				String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
+				System.out.println("bb"+couplen);
 				EventDataBean eto = new EventDataBean()	;			
 				int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
-				if(checkcount>0){
-					eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
-				if(eto.getChecknum()==0){
-					request.setAttribute("checkW",  eto.getChecknum());
-					request.setAttribute("enumber", eto.getEnumber());
-				}}
+					if(checkcount>0){
+						List etoList = null;
+						etoList = sqlMapper.queryForList("checkW", couplen);
+						for(int j=0; j<etoList.size();j++){
+							eto = (EventDataBean) etoList.get(j);
+							for(int i=0; i<checkcount; i++){
+								if(eto.getChecknum()==0){
+									request.setAttribute("checkW",  eto.getChecknum());
+									request.setAttribute("enumber1", eto.getEnumber());
+									request.setAttribute("ch", 0);
+								}
+							}
+						}
+					}
+				}	
 				if(checkAlert!=0){
 					AlertDataBean adto=new AlertDataBean();
-					adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname); //·Î±×ÀÎÇÑ È¸¿øÀÇ nicknameÀ» ÅëÇØ ¾Ë¸²ÀÇ ³»¿ëÀ» ÃßÃâ
+					adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname); //å ì‹¸ê¹ì˜™å ì™ì˜™å ì™ì˜™ íšŒå ì™ì˜™å ì™ì˜™ nicknameå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì‹¯ëªŒì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 					session.setAttribute("adto", adto);
 					
 					
 					System.out.println(adto.getContent());
 					
-					int ca=(Integer)sqlMapper.queryForObject("getCouple",id); //·Î±×ÀÎÇÑ È¸¿øÀÇ id¸¦ ÅëÇØ È¸¿øÀÌ Ä¿ÇÃ, È¤Àº Ä¿ÇÃ½ÅÃ»À» ÇÑ È¸¿øÀÎÁö °Ë»ö °á°ú°ªÀÌ ÀÖ´Ù¸é 1À» ÃßÃâ 
+					int ca=(Integer)sqlMapper.queryForObject("getCouple",id); //å ì‹¸ê¹ì˜™å ì™ì˜™å ì™ì˜™ íšŒå ì™ì˜™å ì™ì˜™ idå ì™ì˜™ å ì™ì˜™å ì™ì˜™ íšŒå ì™ì˜™å ì™ì˜™ ì»¤å ì™ì˜™, í˜¹å ì™ì˜™ ì»¤å ì‹œì™ì˜™ì²­å ì™ì˜™ å ì™ì˜™ íšŒå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¯ì‚¼ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ï¿½ å ìŒë‹¤ëªŒì˜™ 1å ì™ì˜™ å ì™ì˜™å ì™ì˜™ 
 					request.setAttribute("ca", ca);
 			}
-				int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id); // ·Î±×ÀÎÇÑ È¸¿øÀÇ id¸¦ ÅëÇØ ¾Ë¸²À» °Ë»ö. »ó´ë¹æ¿¡°Ô º¸³½ Ä¿ÇÃ½ÅÃ» ¸Þ½ÃÁö¸¦ »ó´ë¹æÀÌ È®ÀÎÇßÀ»¶§ 1À» ÃßÃâ
-				System.out.println("¸ÞÀÎ Ã¼Å©¾Ë·µ1"+checkAlert1);
+				int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id); // å ì‹¸ê¹ì˜™å ì™ì˜™å ì™ì˜™ íšŒå ì™ì˜™å ì™ì˜™ idå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì‹¯ëªŒì˜™å ì™ì˜™ å ì‹¯ì‚¼ì˜™. å ì™ì˜™å ì¸ì—å ì™ì˜™ å ì™ì˜™å ì™ì˜™ ì»¤å ì‹œì™ì˜™ì²­ å ìŒ¨ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ í™•å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ 1å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+				System.out.println("å ì™ì˜™å ì™ì˜™ ì²´í¬å ì‹¯ë¤„ì˜™1"+checkAlert1);
 				if(checkAlert1!=0){
 					LogonDataBean dto=new LogonDataBean();
 					dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-					System.out.println("¸ÞÀÎ if dto.getCouple"+dto.getCouple());
+					System.out.println("å ì™ì˜™å ì™ì˜™ if dto.getCouple"+dto.getCouple());
 					
 					
-					if(dto.getCouple().equals("1")){	//	·Î±×ÀÎÇÑ È¸¿øÀÇ Ä¿ÇÃ ÄÃ·³°ªÀÌ 1ÀÌ¶ó¸é »ó´ë¹æÀÌ Ä¿ÇÃ¼ö¶ôÀ» ÇßÀ½À» ÀÇ¹Ì
+					if(dto.getCouple().equals("1")){	//	å ì‹¸ê¹ì˜™å ì™ì˜™å ì™ì˜™ íšŒå ì™ì˜™å ì™ì˜™ ì»¤å ì™ì˜™ å ì‹œë¤„ì˜™å ì™ì˜™å ì™ì˜™ 1å ì‹±ë°ì˜™å ï¿½ å ì™ì˜™å ì™ì˜™å ì™ì˜™ ì»¤å ì‹œì‡½ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¤ë±„ì˜™
 						request.setAttribute("couple1", "couple1");
 					}
 				}
 				else
-					request.setAttribute("couple1", "end");	// »ó´ë¹æÀÌ Ä¿ÇÃ ¼ö¶ôÀ» °ÅºÎÇßÀ½À» ÀÇ¹Ì
+					request.setAttribute("couple1", "end");	// å ì™ì˜™å ì™ì˜™å ì™ì˜™ ì»¤å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹ ë¸ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¤ë±„ì˜™
 					
 			}
 			
@@ -78,42 +91,42 @@ public class LoginBean {
 		
 	}
 	
-	@RequestMapping("loginPro.nhn")//·Î±×ÀÎÀÌ ½ÇÇàµÉ¶§ È£ÃâµÇ´Â ÇÔ¼ö
+	@RequestMapping("loginPro.nhn")//å ì‹¸ê¹ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™î€•å ï¿½ í˜¸å ì™ì˜™í’”å ï¿½ å ìŒ‰ì‡½ì˜™
 	public String loginPro(HttpSession session,LogonDataBean dto,HttpServletRequest request) throws Exception{
-		String nomal=request.getParameter("hidden");	// È÷µç°ªÀ» ÅëÇØ ·Î±×ÀÎÇÏ´Â È¸¿øÀÌ ÆäÀÌ½ººÏÀ¸·Î ·Î±×ÀÎÇß´ÂÁö ÀÏ¹Ý ·Î±×ÀÎÀ» Çß´ÂÁö ÆÇº°
+		String nomal=request.getParameter("hidden");	// å ì™ì˜™å ì¹ê°’å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì‹¸ê¹ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ íšŒå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹±ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¸ê¹ì˜™å ì™ì˜™å ìŒ©ëŒì˜™å ì™ì˜™ å ì‹¹ë±„ì˜™ å ì‹¸ê¹ì˜™å ì™ì˜™å ì™ì˜™ å ìŒ©ëŒì˜™å ì™ì˜™ å ì‹¤ë¸ì˜™
 		String id=(String) request.getParameter("id");
-		System.out.println("¾ÆÀÌµð:"+id);
-		System.out.println("ÆäºÏÆÇº°°ª:"+nomal);
-		int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id); //·Î±×ÀÎÇÏ´Â È¸¿øÀÇ º°¸íÀÌ ¾øÀ»¶§ 1À» ÃßÃâ 
+		System.out.println("å ì™ì˜™å ì‹±ë“¸ì˜™:"+id);
+		System.out.println("å ì™ì˜™å ì™ì˜™í“Ÿå ì™ì˜™å ï¿½:"+nomal);
+		int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id); //å ì‹¸ê¹ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ íšŒå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ 1å ì™ì˜™ å ì™ì˜™å ì™ì˜™ 
 		request.setAttribute("nickcheck", nickcheck);
 		
-		if(nomal.equals("nomal")){ //ÀÏ¹Ý ·Î±×ÀÎ È¸¿øÀÎ°æ¿ì
-			int check = (Integer)sqlMapper.queryForObject("userCheck", dto); //id¿Í pw°¡ ÀÏÄ¡ ÇÏ´ÂÁö °Ë»ç. ÀÏÄ¡ÇÏ¸é 1À» ÃßÃâ
+		if(nomal.equals("nomal")){ //å ì‹¹ë±„ì˜™ å ì‹¸ê¹ì˜™å ì™ì˜™ íšŒå ì™ì˜™å ì‹¸ê³¤ì˜™å ï¿½
+			int check = (Integer)sqlMapper.queryForObject("userCheck", dto); //idå ì™ì˜™ pwå ì™ì˜™ å ì™ì˜™ì¹˜ å ì‹¹ëŒì˜™å ì™ì˜™ å ì‹¯ì‚¼ì˜™. å ì™ì˜™ì¹˜å ì‹¹ëªŒì˜™ 1å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 			System.out.println(dto.getId()+dto.getPw());
 			if(check==1){
 				session.setAttribute("id",dto.getId());
-				session.setAttribute("check", "no");	// ÀÏ¹Ý È¸¿øÀÎ°æ¿ì check °ª¿¡ no¸¦ ³Ö´Â´Ù.
+				session.setAttribute("check", "no");	// å ì‹¹ë±„ì˜™ íšŒå ì™ì˜™å ì‹¸ê³¤ì˜™å ï¿½ check å ì™ì˜™å ì™ì˜™ noå ì™ì˜™ å ìŒëŠ”ëŒì˜™.
 				
 				return "redirect:main.nhn";
 			}
 			
-			request.setAttribute("check", check);	//check°ªÀÌ 0ÀÏ °æ¿ì loginPro.jsp·Î ÀÌµ¿ÇÏ¿© ºñ¹Ð¹øÈ£¿Í ¾ÆÀÌµð¸¦ È®ÀÎÇÏ¶ó´Â °æ°íÃ¢À» ¶ç¿ò
+			request.setAttribute("check", check);	//checkå ì™ì˜™å ì™ì˜™ 0å ì™ì˜™ å ì™ì˜™å ï¿½ loginPro.jspå ì™ì˜™ å ì‹±ë“¸ì˜™å ì‹¹ìš¸ì˜™ å ì™ì˜™æ©˜å ì‹«ï½ì˜™å ï¿½ å ì™ì˜™å ì‹±ë“¸ì˜™ í™•å ì™ì˜™å ì‹¹ë°ì˜™å ï¿½ å ì™ì˜™å ì‹œï¿½å ì™ì˜™ å ì™ì˜™å ï¿½
 		}
-		else{	//ÆäºÏ ·Î±×ÀÎ È¸¿øÀÎ °æ¿ì
-			int check = (Integer)sqlMapper.queryForObject("FBuserCheck", id);//ÆäÀÌ½ººÏ ¾ÆÀÌµð°¡ db¿¡ ÀúÀåµÇ¾îÀÖ´Ù¸é 1À» ÃßÃâ. ÀúÀåµÇ¾îÀÖÁö ¾Ê´Ù¸é 0À» ÃßÃâ
+		else{	//å ì™ì˜™å ï¿½ å ì‹¸ê¹ì˜™å ì™ì˜™ íšŒå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ï¿½
+			int check = (Integer)sqlMapper.queryForObject("FBuserCheck", id);//å ì™ì˜™å ì‹±ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹±ë“¸ì˜™ dbå ì™ì˜™ å ì™ì˜™å ì™ì˜™í“¸å ì™ì˜™çµæ‘¸å ï¿½ 1å ì™ì˜™ å ì™ì˜™å ì™ì˜™. å ì™ì˜™å ì™ì˜™í“¸å ì™ì˜™å ì™ì˜™å ï¿½ å ì‹­ë‹¤ëªŒì˜™ 0å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 			session.setAttribute("id", id);
-			session.setAttribute("check", "yes"); //ÆäºÏ È¸¿øÀÎ °æ¿ì check °ª¿¡ yes¸¦ ³Ö´Â´Ù.
-			if(check==1){//ÀúÀåµÇ¾îÀÖ´Ù¸é ¸ÞÀÎÆäÀÌÁö·Î ÀÌµ¿
+			session.setAttribute("check", "yes"); //å ì™ì˜™å ï¿½ íšŒå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ï¿½ check å ì™ì˜™å ì™ì˜™ yeså ì™ì˜™ å ìŒëŠ”ëŒì˜™.
+			if(check==1){//å ì™ì˜™å ì™ì˜™í“¸å ì™ì˜™çµæ‘¸å ï¿½ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹±ë“¸ì˜™
 				return "redirect:main.nhn";
 			}
-			else{//ÀúÀåµÇ¾îÀÖÁö ¾Ê´Ù¸é db¿¡ ÆäºÏ È¸¿øÀÇ Á¤º¸¸¦ ÀúÀåÇÏ±â À§ÇÑ ÆäÀÌÁö·Î ÀÌµ¿
+			else{//å ì™ì˜™å ì™ì˜™í“¸å ì™ì˜™å ì™ì˜™å ï¿½ å ì‹­ë‹¤ëªŒì˜™ dbå ì™ì˜™ å ì™ì˜™å ï¿½ íšŒå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ê¹ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹±ë“¸ì˜™
 				return "redirect:inputPro.nhn?id="+id+"&hidden=fb";
 			}
 		}
 		return "/dc/loginPro.jsp";
 	}
 	
-	@RequestMapping("logout.nhn") //·Î±×¾Æ¿ô
+	@RequestMapping("logout.nhn") //å ì‹¸ê·¸ì•„ìš¸ì˜™
 	public String logout(HttpSession session) throws Exception{
 		session.invalidate();
 		
@@ -121,29 +134,40 @@ public class LoginBean {
 	}
 	
 	
-	@RequestMapping("loginForm.nhn") //·Î±×ÀÎÆû
+	@RequestMapping("loginForm.nhn") //å ì‹¸ê¹ì˜™å ì™ì˜™å ì™ì˜™
 	public String loginForm(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		return "/dc/loginForm.jsp";
 	}
-	@RequestMapping("/couple.nhn") //Ä¿ÇÃÆäÀÌÁö ½ÇÇà½Ã È£ÃâµÇ´Â ÇÔ¼ö
+	@RequestMapping("/couple.nhn") //ì»¤å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ï¿½ í˜¸å ì™ì˜™í’”å ï¿½ å ìŒ‰ì‡½ì˜™
 	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
 		String chk = request.getParameter("chk");
 		String id = (String)session.getAttribute("id");
-		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//·Î±×ÀÎ À¯¹« È®ÀÎ
+		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//å ì‹¸ê¹ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ í™•å ì™ì˜™
 		if(nc==1){
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
+			/*int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
+			if(countCN>0){
 			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
 			EventDataBean eto = new EventDataBean()	;			
 			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
-			if(checkcount>0){
-				eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
-			if(eto.getChecknum()==0){
-				request.setAttribute("checkW",  eto.getChecknum());
-				request.setAttribute("enumber", eto.getEnumber());
-			}}
+				if(checkcount>0){
+					List etoList = null;
+					etoList = sqlMapper.queryForList("checkW", couplen);
+					for(int j=0; j<etoList.size();j++){
+						eto = (EventDataBean) etoList.get(j);
+						for(int i=0; i<checkcount; i++){
+							if(eto.getChecknum()==0){
+								request.setAttribute("checkW",  eto.getChecknum());
+								request.setAttribute("enumber1", eto.getEnumber());
+								request.setAttribute("ch", 0);
+							}
+						}
+					}
+				}
+			}*/
 			if(checkAlert!=0){
 				AlertDataBean adto=new AlertDataBean();
 				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
@@ -154,11 +178,11 @@ public class LoginBean {
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("¸ÞÀÎ Ã¼Å©¾Ë·µ1"+checkAlert1);
+			System.out.println("å ì™ì˜™å ì™ì˜™ ì²´í¬å ì‹¯ë¤„ì˜™1"+checkAlert1);
 			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("¸ÞÀÎ if dto.getCouple"+dto.getCouple());
+				System.out.println("å ì™ì˜™å ì™ì˜™ if dto.getCouple"+dto.getCouple());
 				
 				
 				if(dto.getCouple().equals("1")){
@@ -172,20 +196,32 @@ public class LoginBean {
 		return "/sy0526/couple.jsp";
 	}
 	
-	@RequestMapping("/share.nhn") //°øÀ¯ ÆäÀÌÁö ½ÇÇà½Ã È£ÃâµÇ´Â ÇÔ¼ö
+	@RequestMapping("/share.nhn") //å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ï¿½ í˜¸å ì™ì˜™í’”å ï¿½ å ìŒ‰ì‡½ì˜™
 	public String share(HttpSession session,HttpServletRequest request) throws Exception{
+		int chk = Integer.parseInt(request.getParameter("chk"));
 		String id = (String)session.getAttribute("id");
-		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//·Î±×ÀÎ À¯¹« È®ÀÎ
+		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//å ì‹¸ê¹ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ í™•å ì™ì˜™
 		if(nc==1){
+			/*int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
+			if(countCN>0){
 			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
 			EventDataBean eto = new EventDataBean()	;			
 			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
-			if(checkcount>0){
-				eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
-			if(eto.getChecknum()==0){
-				request.setAttribute("checkW",  eto.getChecknum());
-				request.setAttribute("enumber", eto.getEnumber());
-			}}
+				if(checkcount>0){
+					List etoList = null;
+					etoList = sqlMapper.queryForList("checkW", couplen);
+					for(int j=0; j<etoList.size();j++){
+						eto = (EventDataBean) etoList.get(j);
+						for(int i=0; i<checkcount; i++){
+							if(eto.getChecknum()==0){
+								request.setAttribute("checkW",  eto.getChecknum());
+								request.setAttribute("enumber1", eto.getEnumber());
+								request.setAttribute("ch", 0);
+							}
+						}
+					}
+				}
+			}*/
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
@@ -200,11 +236,11 @@ public class LoginBean {
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("¸ÞÀÎ Ã¼Å©¾Ë·µ1"+checkAlert1);
+			System.out.println("å ì™ì˜™å ì™ì˜™ ì²´í¬å ì‹¯ë¤„ì˜™1"+checkAlert1);
 			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("¸ÞÀÎ if dto.getCouple"+dto.getCouple());
+				System.out.println("å ì™ì˜™å ì™ì˜™ if dto.getCouple"+dto.getCouple());
 				
 				
 				if(dto.getCouple().equals("1")){
@@ -214,23 +250,36 @@ public class LoginBean {
 			else
 				request.setAttribute("couple1", "end");
 			}
+		
+		request.setAttribute("chk", chk);
 		return "/sy0526/share.jsp";
 	}
 	
-	@RequestMapping("/theme.nhn") //Å×¸¶ ÆäÀÌÁö È£ÃâµÉ¶§ ½ÇÇàµÇ´Â ÇÔ¼ö
+	@RequestMapping("/theme.nhn") //å ìŒ“ëªŒì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ í˜¸å ì™ì˜™î€•å ï¿½ å ì™ì˜™å ì™ì˜™í’”å ï¿½ å ìŒ‰ì‡½ì˜™
 	public String theme(HttpSession session,HttpServletRequest request) throws Exception{
 		String id = (String)session.getAttribute("id");
-		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//·Î±×ÀÎ À¯¹« È®ÀÎ
-		if(nc==1){
+		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//å ì‹¸ê¹ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ í™•å ì™ì˜™
+		if(nc==1){/*
+			int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
+			if(countCN>0){
 			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
 			EventDataBean eto = new EventDataBean()	;			
 			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
-			if(checkcount>0){
-				eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
-			if(eto.getChecknum()==0){
-				request.setAttribute("checkW",  eto.getChecknum());
-				request.setAttribute("enumber", eto.getEnumber());
-			}}
+				if(checkcount>0){
+					List etoList = null;
+					etoList = sqlMapper.queryForList("checkW", couplen);
+					for(int j=0; j<etoList.size();j++){
+						eto = (EventDataBean) etoList.get(j);
+						for(int i=0; i<checkcount; i++){
+							if(eto.getChecknum()==0){
+								request.setAttribute("checkW",  eto.getChecknum());
+								request.setAttribute("enumber1", eto.getEnumber());
+								request.setAttribute("ch", 0);
+							}
+						}
+					}
+				}
+			}*/
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
@@ -245,11 +294,11 @@ public class LoginBean {
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("¸ÞÀÎ Ã¼Å©¾Ë·µ1"+checkAlert1);
+			System.out.println("å ì™ì˜™å ì™ì˜™ ì²´í¬å ì‹¯ë¤„ì˜™1"+checkAlert1);
 			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("¸ÞÀÎ if dto.getCouple"+dto.getCouple());
+				System.out.println("å ì™ì˜™å ì™ì˜™ if dto.getCouple"+dto.getCouple());
 				
 				
 				if(dto.getCouple().equals("1")){
@@ -262,22 +311,33 @@ public class LoginBean {
 		return "/sy0526/theme.jsp";
 	}
 	
-	@RequestMapping("/event.nhn") //ÀÌº¥Æ® ÆäÀÌÁö È£ÃâµÉ¶§ ½ÇÇàµÇ´Â ÇÔ¼ö
+	@RequestMapping("/event.nhn") //å ì‹±ë¸ì˜™íŠ¸ å ì™ì˜™å ì™ì˜™å ì™ì˜™ í˜¸å ì™ì˜™î€•å ï¿½ å ì™ì˜™å ì™ì˜™í’”å ï¿½ å ìŒ‰ì‡½ì˜™
 	public String event(HttpSession session,HttpServletRequest request) throws Exception{
 		String chk = request.getParameter("chk");
 		request.setAttribute("chk",chk);
 		String id = (String)session.getAttribute("id");
-		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//·Î±×ÀÎ À¯¹« È®ÀÎ
+		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//å ì‹¸ê¹ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ í™•å ì™ì˜™
 		if(nc==1){
+			int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
+			if(countCN>0){
 			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
 			EventDataBean eto = new EventDataBean()	;			
 			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
-			if(checkcount>0){
-				eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
-			if(eto.getChecknum()==0){
-				request.setAttribute("checkW",  eto.getChecknum());
-				request.setAttribute("enumber", eto.getEnumber());
-			}}
+				if(checkcount>0){
+					List etoList = null;
+					etoList = sqlMapper.queryForList("checkW", couplen);
+					for(int j=0; j<etoList.size();j++){
+						eto = (EventDataBean) etoList.get(j);
+						for(int i=0; i<checkcount; i++){
+							if(eto.getChecknum()==0){
+								request.setAttribute("checkW",  eto.getChecknum());
+								request.setAttribute("enumber1", eto.getEnumber());
+								request.setAttribute("ch", 0);
+							}
+						}
+					}
+				}
+			}
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
@@ -292,11 +352,11 @@ public class LoginBean {
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("¸ÞÀÎ Ã¼Å©¾Ë·µ1"+checkAlert1);
+			System.out.println("å ì™ì˜™å ì™ì˜™ ì²´í¬å ì‹¯ë¤„ì˜™1"+checkAlert1);
 			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("¸ÞÀÎ if dto.getCouple"+dto.getCouple());
+				System.out.println("å ì™ì˜™å ì™ì˜™ if dto.getCouple"+dto.getCouple());
 				
 				
 				if(dto.getCouple().equals("1")){
@@ -309,20 +369,28 @@ public class LoginBean {
 		return "/sy0526/event.jsp";
 	}
 	
-	@RequestMapping("/personal.nhn") // °³ÀÎÆäÀÌÁö ½ÇÇàµÉ¶§ È£ÃâµÇ´Â ÇÔ¼ö
+	@RequestMapping("/personal.nhn") // å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™î€•å ï¿½ í˜¸å ì™ì˜™í’”å ï¿½ å ìŒ‰ì‡½ì˜™
 	public String personal(HttpSession session,HttpServletRequest request) throws Exception{
 		String id = (String)session.getAttribute("id");
-		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//·Î±×ÀÎ À¯¹« È®ÀÎ
+		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//å ì‹¸ê¹ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ í™•å ì™ì˜™
 		if(nc==1){
-			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);		
+		/*	String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);		
 			EventDataBean eto = new EventDataBean()	;			
 			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
-			if(checkcount>0){
-				eto = (EventDataBean)sqlMapper.queryForObject("checkW", couplen);				
-			if(eto.getChecknum()==0){
-				request.setAttribute("checkW",  eto.getChecknum());
-				request.setAttribute("enumber", eto.getEnumber());
-			}}
+			if (checkcount > 0) {
+				List etoList = null;
+				etoList = sqlMapper.queryForList("checkW", couplen);
+				for(int j=0; j<etoList.size();j++){
+					eto = (EventDataBean) etoList.get(j);
+					for(int i=0; i<checkcount; i++){
+						if(eto.getChecknum()==0){
+							request.setAttribute("checkW",  eto.getChecknum());
+							request.setAttribute("enumber1", eto.getEnumber());
+							request.setAttribute("ch", 0);
+						}
+					}
+				}
+			}*/
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
@@ -337,11 +405,11 @@ public class LoginBean {
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("¸ÞÀÎ Ã¼Å©¾Ë·µ1"+checkAlert1);
+			System.out.println("å ì™ì˜™å ì™ì˜™ ì²´í¬å ì‹¯ë¤„ì˜™1"+checkAlert1);
 			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("¸ÞÀÎ if dto.getCouple"+dto.getCouple());
+				System.out.println("å ì™ì˜™å ì™ì˜™ if dto.getCouple"+dto.getCouple());
 				
 				
 				if(dto.getCouple().equals("1")){

@@ -19,10 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import project.bean.EventDataBean;
 import ch11.logon.*;
 import dateplan.bean.DTO;
-import event.EventDataBean;
+
+
 import upload.bean.DiaryDataBean;
+import upload.bean.PhotoDataBean;
 import upload.bean.PointDataBean;
 
 @Controller
@@ -30,73 +33,73 @@ public class InputBean {
 	@Autowired
 	private SqlMapClientTemplate sqlMapper;
 	
-	@RequestMapping("inputForm.nhn")//È¸¿ø°¡ÀÔ Æû 
+	@RequestMapping("inputForm.nhn")//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 
 	public String inputForm() throws Exception{
 		
 		return "/dc/inputForm.jsp";
 	}
 	
-	@RequestMapping("inputPro.nhn")//È¸¿ø°¡ÀÔ Æû¿¡¼­ ³Ñ¾î¿Â Á¤º¸¸¦ db¿¡ ÀÔ·Â½ÃÅ°±â À§ÇÑ ÇÔ¼ö(Ã³À½ Á¢¼ÓÇÏ´Â ÆäºÏÈ¸¿øÀÎ°æ¿ì È¸¿ø°¡ÀÔÆûÀ» °ÅÄ¡Áö ¾Ê°í ¹Ù·Î ÀÌ ÇÔ¼ö¸¦ È£Ãâ)
+	@RequestMapping("inputPro.nhn")//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ dbï¿½ï¿½ ï¿½Ô·Â½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½(Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½È¸ï¿½ï¿½ï¿½Î°ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½)
 	public String inputPro(LogonDataBean dto,HttpServletRequest request) throws Exception{
 		
 		HttpSession session=request.getSession();
 		String nomal=request.getParameter("hidden");
 		System.out.println("input nomal"+nomal);
-		if(nomal.equals("fb")){//ÆäºÏÈ¸¿øÀÎ °æ¿ì db¿¡ ¾ÆÀÌµð°ª¸¸ ÀúÀå
+		if(nomal.equals("fb")){//ï¿½ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ dbï¿½ï¿½ ï¿½ï¿½ï¿½Ìµð°ª¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 			String id=request.getParameter("id");
 			dto.setId(id);	
 		}dto.setCouple("0");
-		sqlMapper.insert("insertMember", dto);//ÆäºÏÈ¸¿øÀÌ ¾Æ´Ñ °æ¿ì inputForm.jsp¿¡¼­ ÀÔ·ÂµÈ °ªÀ» db¿¡ ÀúÀå.
+		sqlMapper.insert("insertMember", dto);//ï¿½ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ inputForm.jspï¿½ï¿½ï¿½ï¿½ ï¿½Ô·Âµï¿½ ï¿½ï¿½ï¿½ï¿½ dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		return "/dc/inputPro.jsp";
 	}
 	
-	@RequestMapping("confirmId.nhn")//¾ÆÀÌµð Áßº¹È®ÀÎ
+	@RequestMapping("confirmId.nhn")//ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½È®ï¿½ï¿½
 	public String confirmId(String id,HttpServletRequest request) throws Exception{
-	    int check = (Integer)sqlMapper.queryForObject("confirmId",id);//id°¡ db¿¡ ÀÖ´Ù¸é 1À» ÃßÃâ
+	    int check = (Integer)sqlMapper.queryForObject("confirmId",id);//idï¿½ï¿½ dbï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	    request.setAttribute("id", id);
 	    request.setAttribute("check", check);
 		return "/dc/confirmId.jsp";
 	}
-	@RequestMapping("confirmNickname.nhn")//´Ð³×ÀÓ Áßº¹È®ÀÎ
+	@RequestMapping("confirmNickname.nhn")//ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ßºï¿½È®ï¿½ï¿½
 	public String confirmNickname(String nickname,HttpServletRequest request) throws Exception{
-	    int check = (Integer)sqlMapper.queryForObject("confirmNickname",nickname);//nicknameÀÌ db¿¡ ÀÖ´Ù¸é 1À» ÃßÃâ
+	    int check = (Integer)sqlMapper.queryForObject("confirmNickname",nickname);//nicknameï¿½ï¿½ dbï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	    request.setAttribute("nickname", nickname);
 	    request.setAttribute("check", check);
 		return "/dc/confirmNickname.jsp";
 	}
-	@RequestMapping("searchNickname.nhn")//´Ð³×ÀÓ Á¸Àç È®ÀÎ
+	@RequestMapping("searchNickname.nhn")//ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 	public String searchNickname(String nickname,HttpServletRequest request) throws Exception{
 	    int check = (Integer)sqlMapper.queryForObject("confirmNickname",nickname);
 	    request.setAttribute("nickname", nickname);
 	    request.setAttribute("check", check);
 		return "/dc/searchNickname.jsp";
 	}
-	@RequestMapping("confirmCoupleName.nhn")//Ä¿ÇÃ¸í Áßº¹ È®ÀÎ
+	@RequestMapping("confirmCoupleName.nhn")//Ä¿ï¿½Ã¸ï¿½ ï¿½ßºï¿½ È®ï¿½ï¿½
 	public String confirmCoupleName(String coupleName,HttpServletRequest request) throws Exception{
-	    int check = (Integer)sqlMapper.queryForObject("confirmCoupleName",coupleName);//couplenameÀÌ db¿¡ ÀÖ´Ù¸é 1À» ÃßÃâ
+	    int check = (Integer)sqlMapper.queryForObject("confirmCoupleName",coupleName);//couplenameï¿½ï¿½ dbï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	    request.setAttribute("coupleName", coupleName);
 	    request.setAttribute("check", check);
 		return "/dc/confirmCoupleName.jsp";
 	}
 	
 	
-	@RequestMapping("modifyForm.nhn")//È¸¿øÁ¤º¸ ¼öÁ¤ Æû
+	@RequestMapping("modifyForm.nhn")//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	public String modifyForm(HttpServletRequest request,HttpSession session) throws Exception{
 				
 		String id = (String)session.getAttribute("id"); 
 		LogonDataBean dto = new LogonDataBean();
-		String check =(String)session.getAttribute("fbcheck");//ÆäºÏ È¸¿øÀ» ÆÇº°ÇÏ´Â º¯¼ö. ÆäºÏ È¸¿øÀº ºñ¹Ð¹øÈ£ ¼öÁ¤À» ÇÒ ÇÊ¿ä°¡ ¾ø±â¶§¹®¿¡ ÆäºÏ È¸¿ø¿¡°Ô´Â ºñ¹Ð¹øÈ£ ¼öÁ¤ ±â´ÉÀÌ ºñÈ°¼ºÈ­
-		System.out.println("¤±ÀÎ Ã¼Å©°ª"+check);
+		String check =(String)session.getAttribute("fbcheck");//ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½Çºï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½â¶§ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½ï¿½"+check);
 		request.setAttribute("id", id);
 		request.setAttribute("check", check);
-		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);//·Î±×ÀÎÇÑ È¸¿øÀÇ id·Î È¸¿ø Á¤º¸¸¦ ÃßÃâ
+		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);//ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ idï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	    request.setAttribute("dto", dto);
-	    int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);//ÆäºÏ È¸¿øÀÌ ·Î±×ÀÎÇßÀ»¶§ º°¸íÀÌ ¼³Á¤µÇ¾îÀÖÁö ¾Ê´Ù¸é º°¸íÀ» ¼³Á¤ÇÏ¶ó´Â °æ°íÃ¢ÀÌ ¶ß¸ç ´Ù¸¥ ÆäÀÌÁö·Î ³Ñ¾î°¥¼ö¾ø´Ù.
+	    int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);//ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ ï¿½ß¸ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	    request.setAttribute("nickcheck", nickcheck);
 		return "/dc/modifyForm.jsp";
 	}
 	
-	@RequestMapping("modifyPro.nhn")//È¸¿øÁ¤º¸ ¼öÁ¤
+	@RequestMapping("modifyPro.nhn")//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public String modifyPro(HttpSession session,LogonDataBean dto) throws Exception{
 		String id = (String)session.getAttribute("id");
 		dto.setId(id);
@@ -107,19 +110,19 @@ public class InputBean {
 		return "/dc/modifyPro.jsp";
 	}
 	
-	@RequestMapping("deleteForm.nhn")//È¸¿ø Å»Åð Æû
+	@RequestMapping("deleteForm.nhn")//È¸ï¿½ï¿½ Å»ï¿½ï¿½ ï¿½ï¿½
 	public String deleteForm() throws Exception{
 		
 		return "/dc/deleteForm.jsp";
 	}
-	@RequestMapping("deletePro.nhn")//È¸¿ø Å»Åð
+	@RequestMapping("deletePro.nhn")//È¸ï¿½ï¿½ Å»ï¿½ï¿½
 	public String deletePro(HttpSession session,HttpServletRequest request) throws Exception{
 		String id = (String)session.getAttribute("id");
 		String pw  = request.getParameter("pw");
 		LogonDataBean dto = new LogonDataBean();
 		dto.setId(id);
 		dto.setPw(pw);
-		int check = (Integer)sqlMapper.queryForObject("userCheck", dto);//id¿Í pw°¡ ÀÏÄ¡ÇÏ¸é 1À» ÃßÃâ
+		int check = (Integer)sqlMapper.queryForObject("userCheck", dto);//idï¿½ï¿½ pwï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï¸ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	    
 	    if(check==1){
 	    	session.invalidate();
@@ -129,12 +132,12 @@ public class InputBean {
 		return "/dc/deletePro.jsp";
 	}
 	
-	@RequestMapping("coupleDeleteForm.nhn")//Ä¿ÇÃ»èÁ¦ Æû
+	@RequestMapping("coupleDeleteForm.nhn")//Ä¿ï¿½Ã»ï¿½ï¿½ï¿½ ï¿½ï¿½
 	public String coupleDeleteForm() throws Exception{
 		
 		return "/dc/coupleDeleteForm.jsp";
 	}
-	@RequestMapping("coupleDelete.nhn")//Ä¿ÇÃ»èÁ¦
+	@RequestMapping("coupleDelete.nhn")//Ä¿ï¿½Ã»ï¿½ï¿½ï¿½
 	public String coupleDelete(HttpSession session,HttpServletRequest request) throws Exception{
 		String id=(String)session.getAttribute("id");
 		String pw=(String)request.getParameter("pw");
@@ -147,10 +150,10 @@ public class InputBean {
 			CoupleDataBean cdto=new CoupleDataBean();
 			cdto = (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
 			
-			sqlMapper.update("memCouple0", cdto.getId1()); //Ä¿ÇÃ Å×ÀÌºí¿¡ ÀÖ´Â È¸¿øÀÇ id¸¦ °Ë»öÇØ¼­ Ä¿ÇÃÄÃ·³ÀÇ °ªÀ» 0À¸·Î ¹Ù²Û´Ù
+			sqlMapper.update("memCouple0", cdto.getId1()); //Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Ö´ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ idï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ø¼ï¿½ Ä¿ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Û´ï¿½
 			sqlMapper.update("memCouple0", cdto.getId2());
-			sqlMapper.update("deleteCouple", id);			//Ä¿ÇÃ Å×ÀÌºíÀ» id·Î °Ë»öÇØ¼­ ÇØ´ç ·¹ÄÚµå¸¦ »èÁ¦ÇÑ´Ù.
-			sqlMapper.delete("deleteAlert", cdto.getId2()); //Ä¿ÇÃ ½ÅÃ»,¼ö¶ôµîÀ¸·Î »ý±ä ¾Ë¸²¸Þ½ÃÁöµéÀ» Áö¿î´Ù.
+			sqlMapper.update("deleteCouple", id);			//Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ idï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ø¼ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+			sqlMapper.delete("deleteAlert", cdto.getId2()); //Ä¿ï¿½ï¿½ ï¿½ï¿½Ã»,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 			sqlMapper.delete("deleteAlert", cdto.getId1());
 		}
 		request.setAttribute("ucheck", ucheck);
@@ -158,16 +161,16 @@ public class InputBean {
 		request.setAttribute("id", id);
 		return "/dc/coupleDelete.jsp";
 	}
-	@RequestMapping("mypage.nhn")// ¸¶ÀÌ ÆäÀÌÁö
+	@RequestMapping("mypage.nhn")// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public String mypage(HttpSession session,HttpServletRequest request) throws Exception{
 		String check =(String)session.getAttribute("fbcheck");
 		String id =(String) session.getAttribute("id");
-		System.out.println("¸¶Æä Ã¼Å©°ª"+check);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½ï¿½"+check);
 		request.setAttribute("check", check);
 		request.setAttribute("id", id);
-		System.out.println("¸¶Æä¾ÆÀÌµð"+id);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½"+id);
 		
-		if(id==null){ // ·Î±×ÀÎÇÑ È¸¿øÀÌ ¾Æ´Ï¶ó¸é ÀÌ¿ëÇÏÁö ¸øÇÏ°Ô²û
+		if(id==null){ // ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°Ô²ï¿½
 			request.setAttribute("gologin", "1");
 			return "/sy0526/main.jsp";
 		}
@@ -176,10 +179,25 @@ public class InputBean {
 			
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
+			int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
+			if(countCN>0){
 			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
-			int checkW=(Integer)sqlMapper.queryForObject("checkW", couplen);
-			if(checkW==0){
-				request.setAttribute("checkW", checkW);
+			EventDataBean eto = new EventDataBean()	;			
+			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
+				if(checkcount>0){
+					List etoList = null;
+					etoList = sqlMapper.queryForList("checkW", couplen);
+					for(int j=0; j<etoList.size();j++){
+						eto = (EventDataBean) etoList.get(j);
+						for(int i=0; i<checkcount; i++){
+							if(eto.getChecknum()==0){
+								request.setAttribute("checkW",  eto.getChecknum());
+								request.setAttribute("enumber1", eto.getEnumber());
+								request.setAttribute("ch", 0);
+							}
+						}
+					}
+				}
 			}
 		
 			if(checkAlert==1){
@@ -190,11 +208,11 @@ public class InputBean {
 				session.setAttribute("nickname", nickname);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("¸¶ÀÌÆäÀÌÁö Ã¼Å©¾Ë·µ1"+checkAlert1);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ë·ï¿½1"+checkAlert1);
 			if(checkAlert1==1){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("¸¶ÀÌÆäÀÌÁö if dto.getCouple"+dto.getCouple());
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ if dto.getCouple"+dto.getCouple());
 				
 				
 				if(dto.getCouple().equals("1")){
@@ -208,14 +226,14 @@ public class InputBean {
 		
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("coupleinfo.nhn")//Ä¿ÇÃÁ¤º¸ ¼öÁ¤ 
+	@RequestMapping("coupleinfo.nhn")//Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id=request.getParameter("id");
 		LogonDataBean dto2=new LogonDataBean();
 		LogonDataBean dto1=new LogonDataBean();
 		CoupleDataBean cdto=new CoupleDataBean();
-		int check1 = (Integer)sqlMapper.queryForObject("coupleCheck1", id);	// È¸¿øÀÇ id·Î Ä¿ÇÃÅ×ÀÌºíÀ» °Ë»öÇØ¼­ ·¹ÄÚµå°¡ ÀÖÀ¸¸é 1À» ÃßÃâ
+		int check1 = (Integer)sqlMapper.queryForObject("coupleCheck1", id);	// È¸ï¿½ï¿½ï¿½ï¿½ idï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½Úµå°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		int check2 = (Integer)sqlMapper.queryForObject("coupleCheck2", id);
 	
 		if(check1==1 || check2==1){
@@ -236,7 +254,7 @@ public class InputBean {
 		
 		System.out.println("check1:"+check1+"check2:"+check2);
 		
-		int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id); //id·Î alertÅ×ÀÌºíÀ» °Ë»ö. »ó´ë¹æÀÌ Ä¿ÇÃ½ÅÃ» ¸Þ½ÃÁö¸¦ È®ÀÎÇßÀ»¶§ 1À» ÃßÃâ
+		int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id); //idï¿½ï¿½ alertï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½Ë»ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½Ã½ï¿½Ã» ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		
 		if(checkAlert1==1){
 			AlertDataBean adto=new AlertDataBean();
@@ -252,20 +270,20 @@ public class InputBean {
 		
 		return "/dc/coupleinfo.jsp";
 	}
-	@RequestMapping("coupleSearchPro.nhn")//Ä¿ÇÃ Ã£±â
+	@RequestMapping("coupleSearchPro.nhn")//Ä¿ï¿½ï¿½ Ã£ï¿½ï¿½
 	public String coupleSearchPro(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id=(String) session.getAttribute("id");
-		System.out.println("Ä¿ÇÃ¼­Ä¡ ¾ÆÀÌµð"+id);
+		System.out.println("Ä¿ï¿½Ã¼ï¿½Ä¡ ï¿½ï¿½ï¿½Ìµï¿½"+id);
 		String nickname=request.getParameter("nickname");
 		String coupleName=request.getParameter("coupleName");
 		LogonDataBean dto=new LogonDataBean();
 		CoupleDataBean cdto=new CoupleDataBean();
-		int check=(Integer)sqlMapper.queryForObject("getMemberbync", nickname); //nicknameÀ¸·Î ¸â¹ö Å×ÀÌºíÀ» °Ë»öÇØ¼­ Á¸ÀçÇÏ´Â È¸¿øÀÌ¶ó¸é 1À» ÃßÃâ 
+		int check=(Integer)sqlMapper.queryForObject("getMemberbync", nickname); //nicknameï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ È¸ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 		if(check==1){
 			dto = (LogonDataBean)sqlMapper.queryForObject("getMemberbyn", nickname);
 			cdto.setId2(dto.getId());
-			int checkcouple=(Integer)sqlMapper.queryForObject("getCouple", dto.getId());//Ä¿ÇÃ ½ÅÃ»ÇÑ »ó´ë¹æÀÌ ÀÌ¹Ì Ä¿ÇÃÀÌ¶ó¸é 1À» ÃßÃâ
+			int checkcouple=(Integer)sqlMapper.queryForObject("getCouple", dto.getId());//Ä¿ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ Ä¿ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			if(checkcouple==1){
 				request.setAttribute("fail", "1");
 				return "/dc/mypage.jsp";
@@ -285,29 +303,29 @@ public class InputBean {
 		
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("couplex.nhn")//Ä¿ÇÃ °ÅºÎ
+	@RequestMapping("couplex.nhn")//Ä¿ï¿½ï¿½ ï¿½Åºï¿½
 	public String couplex(HttpSession session,HttpServletRequest request) throws Exception{
 		String id =request.getParameter("id");
 		String nickname=(String)sqlMapper.queryForObject("getNick", id);
-		sqlMapper.delete("deleteCouple", id);//Ä¿ÇÃÅ×ÀÌºí¿¡¼­ ÇØ´ç È¸¿øÀÇ id¸¦ Æ÷ÇÔÇÏ´Â ·¹ÄÚµå¸¦ »èÁ¦
-		sqlMapper.delete("readCheckReject", nickname);//¾Ë¸² Å×ÀÌºí¿¡¼­ ÇØ´ç È¸¿øÀÇ nickname¸¦ Æ÷ÇÔÇÏ´Â ·¹ÄÚµå¸¦ »èÁ¦
+		sqlMapper.delete("deleteCouple", id);//Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½
+		sqlMapper.delete("readCheckReject", nickname);//ï¿½Ë¸ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ nicknameï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½
 		request.setAttribute("id", id);
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("coupleInput.nhn")//Ä¿ÇÃ ¼ö¶ô
+	@RequestMapping("coupleInput.nhn")//Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public String coupleInput(HttpSession session,HttpServletRequest request) throws Exception{
 		String nickname=(String) session.getAttribute("nickname");
 		String id =request.getParameter("id");
 		CoupleDataBean cdto=new CoupleDataBean();
 		cdto = (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
-		sqlMapper.update("memCouple1", cdto.getId1());//È¸¿øÀÇ Ä¿ÇÃÄÃ·³°ªÀ» 1·Î º¯°æ
+		sqlMapper.update("memCouple1", cdto.getId1());//È¸ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		sqlMapper.update("memCouple1", cdto.getId2());
-		sqlMapper.update("readCheck", nickname);//¾Ë¸²Å×ÀÌºíÀÇ readcheck°ªÀ» 1·Î º¯°æ 
+		sqlMapper.update("readCheck", nickname);//ï¿½Ë¸ï¿½ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ readcheckï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 		sqlMapper.update("coupleComplete", nickname);
 		request.setAttribute("id", id);
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("/diary1.nhn")//Ä¿ÇÃÁ¤º¸¿¡ ÀÌ¹ÌÁöÆÄÀÏ ³Ö±â
+	@RequestMapping("/diary1.nhn")//Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
 	public String diary(HttpServletRequest request,HttpSession session){
 		CoupleDataBean cdto=new CoupleDataBean();
 		cdto=(CoupleDataBean) session.getAttribute("coupleData");
@@ -315,7 +333,7 @@ public class InputBean {
 		request.setAttribute("coupleName", coupleName);
 		return "/dc/diary.jsp";
 	}
-	@RequestMapping("/updateImage1.nhn")//ÀÌ¹ÌÁöÆÄÀÏ ¾÷·Îµå
+	@RequestMapping("/updateImage1.nhn")//ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
 	public String updateImage(MultipartHttpServletRequest request,CoupleDataBean cdb)throws Exception{
 
 		String coupleName = request.getParameter("coupleName");
@@ -323,9 +341,9 @@ public class InputBean {
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
 		cdb.setCoupleImage(orgName);
-		System.out.println("¾÷µ¥ÀÌÆ®ÀÌ¹ÌÁö1"+cdb.getCoupleImage());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ì¹ï¿½ï¿½ï¿½1"+cdb.getCoupleImage());
 		cdb.setCoupleName(coupleName);
-		System.out.println("Ä¿ÇÃ³×ÀÓ"+cdb.getCoupleName());
+		System.out.println("Ä¿ï¿½Ã³ï¿½ï¿½ï¿½"+cdb.getCoupleName());
 		File copy = new File(RealPath+"/"+orgName);
 		file.transferTo(copy);
 		sqlMapper.insert("diaryimgUpdate1",cdb);
@@ -333,28 +351,28 @@ public class InputBean {
 		request.setAttribute("close", "yes");
 		return "/dc/diary.jsp";
 	}
-	@RequestMapping("/coupleModify.nhn")//Ä¿ÇÃÁ¤º¸ ¼öÁ¤
+	@RequestMapping("/coupleModify.nhn")//Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public String coupleModify(HttpSession session,HttpServletRequest request)throws Exception{
 		String coupleName = request.getParameter("coupleName");
 		String coupleDate = request.getParameter("coupleDate");
-		System.out.println(coupleName+"Ä¿ÇÃ³×ÀÓ");
+		System.out.println(coupleName+"Ä¿ï¿½Ã³ï¿½ï¿½ï¿½");
 	
-		String hidden=request.getParameter("hidden");//³¯Â¥ º¯°æÀÌ ÀÖ´Ù¸é hiddenÀº nullÀÌ ¾Æ´Ñ °ªÀ» °¡Áö°ÔµÈ´Ù.
+		String hidden=request.getParameter("hidden");//ï¿½ï¿½Â¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ hiddenï¿½ï¿½ nullï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ÔµÈ´ï¿½.
 		String id=(String)session.getAttribute("id");
 		CoupleDataBean cdto=new CoupleDataBean();
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
 
 		int ccn=(Integer)sqlMapper.queryForObject("checkCoupleName", coupleName);
-		System.out.println("Ã¼Å©Ä¿ÇÃ³×ÀÓ"+ccn);
+		System.out.println("Ã¼Å©Ä¿ï¿½Ã³ï¿½ï¿½ï¿½"+ccn);
 		if(hidden!=null){
 			Date date=sdf.parse(coupleDate);
-			if(ccn==1){//Ä¿ÇÃ¸í º¯°æÀÌ ¾ø´Ù¸é ½ÇÇà
+			if(ccn==1){//Ä¿ï¿½Ã¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 				cdto.setCoupleName(coupleName);
 				cdto.setCoupleDate(date);
 				System.out.println("date "+date);
 				sqlMapper.update("coupleModifyNcYd", cdto);
 			}
-			else if(ccn==0){//Ä¿ÇÃ¸íÀ» º¯°æÇÏ´Â °æ¿ì ½ÇÇà
+			else if(ccn==0){//Ä¿ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				
 				cdto.setCoupleDate(date);
 				cdto.setCoupleName(coupleName);
@@ -377,6 +395,10 @@ public class InputBean {
 				pdto.setCouplename(coupleName);
 				pdto.setPlace(bfcn);
 				sqlMapper.update("couplename_point",pdto );
+				PhotoDataBean ptdto=new PhotoDataBean();
+				ptdto.setCouplename(coupleName);
+				ptdto.setImg(bfcn);
+				sqlMapper.update("couplename_photo",ptdto );
 			}
 		}
 		if(hidden==null){

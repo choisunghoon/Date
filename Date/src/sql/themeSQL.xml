@@ -45,13 +45,42 @@
     </insert>
     
     <insert id="insertCosLike" parameterClass="themeDTO.LikeCountDataBean">
-    	insert into theme_likeCount(id, ctg_num, cos_num, regdate) values(
+    	insert into theme_likeCount(id, ctg_num, cos_num, regdate, checkNum) values(
     		#id#,
     		#ctg_num#,
     		#cos_num#,
-    		sysdate
+    		sysdate,
+    		1
     	)
     </insert>	
+    
+    <select id="getLikeCount" parameterClass="int" resultClass="int">
+    	select count(*) from theme_likeCount where cos_num=#cos_num#
+    </select>
+    
+    <select id="getCheckNum" parameterClass="themeDTO.LikeCountDataBean" resultClass="Integer">
+    	select checkNum from theme_likeCount where id=#id# and ctg_num=#ctg_num# and cos_num=#cos_num#
+    </select>
+    
+    <insert id="replyUp" parameterClass="themeDTO.ReplyDataBean">
+    	insert into reply(num,id,loc_reply,loc_num,regdate) values(
+    		reply_seq.NEXTVAL,
+    		#id#,
+    		#loc_reply#,
+    		#loc_num#,
+    		#regdate#
+    	)
+    </insert>
+    
+    <select id="selectReply" resultClass="themeDTO.ReplyDataBean" parameterClass="java.util.Map">
+    	select num, id, loc_reply, regdate, loc_num, r from
+    	(select num, id, loc_reply, regdate, loc_num, rownum r from
+    	(select num, id, loc_reply, regdate, loc_num from reply)) where loc_num=#loc_num# and r>#startRow# and <![CDATA[r<=#endRow#]]>
+    </select>
+    
+    <select id="replyCount" resultClass="int" parameterClass="java.lang.Integer">
+    	select count(*) from reply where loc_num=#loc_num#
+    </select>
     
     <select id="getCosLikeCount" parameterClass="themeDTO.CourseDataBean" resultClass="themeDTO.CourseDataBean">
     	select likeCount from course where ctg_num=#ctg_num# and cos_num=#cos_num#
@@ -132,7 +161,7 @@
     </select>
     
     <select id="getPlace" resultClass="themeDTO.LocationDataBean" parameterClass="java.util.Map">
-        select ctg_num , cos_num , loc_num, step_num, loc_pic from location where ctg_num = #ctg_num# and cos_num = #cos_num# order by #step_num# asc
+        select ctg_num , cos_num , loc_num, step_num, loc_pic from location where ctg_num = #ctg_num# and cos_num = #cos_num# order by step_num asc
     </select>
     
     <select id="getPlace1" resultClass="themeDTO.LocationDataBean" parameterClass="int">

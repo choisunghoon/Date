@@ -30,7 +30,7 @@
 
 
 </style>
-
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=9be7455c7d33a4e2b750d3537e1179d8&libraries=services"></script>
 <script>
 	function callMap(num){
 		$.ajax({
@@ -42,7 +42,6 @@
 			success : cossuc,
 			error : coserr
 		})
-		
 	}
 	function cossuc(cos){
 		$("#cos").html(cos);
