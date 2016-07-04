@@ -7,7 +7,7 @@
 	</select>
 	
 	<select id="shereSelectDiaryBoardAll" resultClass="upload.bean.DiaryDataBean">
-		select * from dc_diary where pool=1 order by pool_regdate desc
+		select * from dc_diary where pool=1 order by pool_regdate
 	</select>
 	
 	<select id="shereSelectCourseBoardAll" resultClass="share.shareCourseDataBean">
