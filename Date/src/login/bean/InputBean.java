@@ -37,73 +37,73 @@ public class InputBean {
 	@Autowired
 	private SqlMapClientTemplate sqlMapper;
 	
-	@RequestMapping("inputForm.nhn")//�쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕 
+	@RequestMapping("inputForm.nhn")//占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲 
 	public String inputForm() throws Exception{
 		
 		return "/dc/inputForm.jsp";
 	}
 	
-	@RequestMapping("inputPro.nhn")//�쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떬�뼲�삕�뜝占� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 db�뜝�룞�삕 �뜝�뙃�젰�룞�삕�궎�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�뙃�눦�삕(泥섇뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�떕紐뚯삕�뜝�룞�삕野у뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕移섇뜝�룞�삕 �뜝�떗怨ㅼ삕 �뜝�뙐琉꾩삕 �뜝�룞�삕 �뜝�뙃�눦�삕�뜝�룞�삕 �샇�뜝�룞�삕)
+	@RequestMapping("inputPro.nhn")//占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼩占쎈섣占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 db占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈셾占쎌젾占쎈짗占쎌굲占쎄텕占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈셾占쎈닰占쎌굲(筌ｌ꼪�쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼣占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼍筌뤿슣�굲占쎈쐻占쎈짗占쎌굲�뇦�껊쐻占쎈짗占쎌굲 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲燁살꼪�쐻占쎈짗占쎌굲 占쎈쐻占쎈뼏�ⓦ끉�굲 占쎈쐻占쎈솏筌뚭쑴�굲 占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈셾占쎈닰占쎌굲占쎈쐻占쎈짗占쎌굲 占쎌깈占쎈쐻占쎈짗占쎌굲)
 	public String inputPro(LogonDataBean dto,HttpServletRequest request) throws Exception{
 		
 		HttpSession session=request.getSession();
 		String nomal=request.getParameter("hidden");
 		System.out.println("input nomal"+nomal);
-		if(nomal.equals("fb")){//�뜝�룞�삕�뜝�떕紐뚯삕�뜝�룞�삕�뜝占� �뜝�룞�삕�뜝占� db�뜝�룞�삕 �뜝�룞�삕�뜝�떛�뵒媛믩챿�삕 �뜝�룞�삕�뜝�룞�삕
+		if(nomal.equals("fb")){//占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼍筌뤿슣�굲占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� db占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓占쎈탵揶쏅�⑹굻占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 			String id=request.getParameter("id");
 			dto.setId(id);	
 		}dto.setCouple("0");
-		sqlMapper.insert("insertMember", dto);//�뜝�룞�삕�뜝�떕紐뚯삕�뜝�룞�삕�뜝占� �뜝�떍�뙋�삕 �뜝�룞�삕�뜝占� inputForm.jsp�뜝�룞�삕�뜝�룞�삕 �뜝�뙃�젰�벝�삕 �뜝�룞�삕�뜝�룞�삕 db�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕.
+		sqlMapper.insert("insertMember", dto);//占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼍筌뤿슣�굲占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈뼃占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� inputForm.jsp占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈셾占쎌젾占쎈쿈占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 db占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲.
 		return "/dc/inputPro.jsp";
 	}
 	
-	@RequestMapping("confirmId.nhn")//�뜝�룞�삕�뜝�떛�벝�삕 �뜝�뙥釉앹삕�솗�뜝�룞�삕
+	@RequestMapping("confirmId.nhn")//占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓占쎈쿈占쎌굲 占쎈쐻占쎈솯�뇡�빘�굲占쎌넇占쎈쐻占쎈짗占쎌굲
 	public String confirmId(String id,HttpServletRequest request) throws Exception{
-	    int check = (Integer)sqlMapper.queryForObject("confirmId",id);//id�뜝�룞�삕 db�뜝�룞�삕 �뜝�뙇�떎紐뚯삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+	    int check = (Integer)sqlMapper.queryForObject("confirmId",id);//id占쎈쐻占쎈짗占쎌굲 db占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솂占쎈뼄筌뤿슣�굲 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 	    request.setAttribute("id", id);
 	    request.setAttribute("check", check);
 		return "/dc/confirmId.jsp";
 	}
-	@RequestMapping("confirmNickname.nhn")//�뜝�떩�냲�삕�뜝�룞�삕 �뜝�뙥釉앹삕�솗�뜝�룞�삕
+	@RequestMapping("confirmNickname.nhn")//占쎈쐻占쎈뼦占쎈꺋占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솯�뇡�빘�굲占쎌넇占쎈쐻占쎈짗占쎌굲
 	public String confirmNickname(String nickname,HttpServletRequest request) throws Exception{
-	    int check = (Integer)sqlMapper.queryForObject("confirmNickname",nickname);//nickname�뜝�룞�삕 db�뜝�룞�삕 �뜝�뙇�떎紐뚯삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+	    int check = (Integer)sqlMapper.queryForObject("confirmNickname",nickname);//nickname占쎈쐻占쎈짗占쎌굲 db占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솂占쎈뼄筌뤿슣�굲 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 	    request.setAttribute("nickname", nickname);
 	    request.setAttribute("check", check);
 		return "/dc/confirmNickname.jsp";
 	}
-	@RequestMapping("searchNickname.nhn")//�뜝�떩�냲�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �솗�뜝�룞�삕
+	@RequestMapping("searchNickname.nhn")//占쎈쐻占쎈뼦占쎈꺋占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎌넇占쎈쐻占쎈짗占쎌굲
 	public String searchNickname(String nickname,HttpServletRequest request) throws Exception{
 	    int check = (Integer)sqlMapper.queryForObject("confirmNickname",nickname);
 	    request.setAttribute("nickname", nickname);
 	    request.setAttribute("check", check);
 		return "/dc/searchNickname.jsp";
 	}
-	@RequestMapping("confirmCoupleName.nhn")//而ㅵ뜝�떆紐뚯삕 �뜝�뙥釉앹삕 �솗�뜝�룞�삕
+	@RequestMapping("confirmCoupleName.nhn")//�뚣뀿�쐻占쎈뻻筌뤿슣�굲 占쎈쐻占쎈솯�뇡�빘�굲 占쎌넇占쎈쐻占쎈짗占쎌굲
 	public String confirmCoupleName(String coupleName,HttpServletRequest request) throws Exception{
-	    int check = (Integer)sqlMapper.queryForObject("confirmCoupleName",coupleName);//couplename�뜝�룞�삕 db�뜝�룞�삕 �뜝�뙇�떎紐뚯삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+	    int check = (Integer)sqlMapper.queryForObject("confirmCoupleName",coupleName);//couplename占쎈쐻占쎈짗占쎌굲 db占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솂占쎈뼄筌뤿슣�굲 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 	    request.setAttribute("coupleName", coupleName);
 	    request.setAttribute("check", check);
 		return "/dc/confirmCoupleName.jsp";
 	}
 	
 	
-	@RequestMapping("modifyForm.nhn")//�쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕
+	@RequestMapping("modifyForm.nhn")//占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲
 	public String modifyForm(HttpServletRequest request,HttpSession session) throws Exception{
 				
 		String id = (String)session.getAttribute("id"); 
 		LogonDataBean dto = new LogonDataBean();
-		String check =(String)session.getAttribute("fbcheck");//�뜝�룞�삕�뜝占� �쉶�뜝�룞�삕�뜝�룞�삕 �뜝�떎釉앹삕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕. �뜝�룞�삕�뜝占� �쉶�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕艅섇뜝�떕占� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕 �뜝�떗�슂媛� �뜝�룞�삕�뜝�뜦�븣�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝占� �쉶�뜝�룞�삕�뜝�룞�삕�뜝�뙃�뙋�삕 �뜝�룞�삕艅섇뜝�떕占� �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕�솢�뜝�룞�삕�솕
-		System.out.println("�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�룞�삕"+check);
+		String check =(String)session.getAttribute("fbcheck");//占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼄�뇡�빘�굲占쎈쐻占쎈뼣占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲. 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲�뎲�꼪�쐻占쎈뼍�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼏占쎌뒄揶쏉옙 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈쑆占쎈르占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈셾占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲�뎲�꼪�쐻占쎈뼍�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈짗占쎌굲占쎌넞占쎈쐻占쎈짗占쎌굲占쎌넅
+		System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 筌ｋ똾寃뺧옙�쐻占쎈짗占쎌굲"+check);
 		request.setAttribute("id", id);
 		request.setAttribute("check", check);
-		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);//�뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 id�뜝�룞�삕 �쉶�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);//占쎈쐻占쎈뼢繹먮씮�굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 id占쎈쐻占쎈짗占쎌굲 占쎌돳占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 	    request.setAttribute("dto", dto);
-	    int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);//�뜝�룞�삕�뜝占� �쉶�뜝�룞�삕�뜝�룞�삕 �뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떎�뼲�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떗�떎紐뚯삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�씛�삕�뜝占� �뜝�룞�삕�뜝�떆占썲뜝�룞�삕 �뜝�뙥紐뚯삕 �뜝�뙐紐뚯삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떬�뼱媛덂뜝�룞�삕�뜝�룞�삕�뜝�룞�삕.
+	    int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id);//占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼢繹먮씮�굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼄占쎈섣占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼏占쎈뼄筌뤿슣�굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼣占쎌뵛占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뻻�뜝�뜴�쐻占쎈짗占쎌굲 占쎈쐻占쎈솯筌뤿슣�굲 占쎈쐻占쎈솏筌뤿슣�굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼩占쎈선揶쏅뛼�쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲.
 	    request.setAttribute("nickcheck", nickcheck);
 		return "/dc/modifyForm.jsp";
 	}
 	
-	@RequestMapping("modifyPro.nhn")//�쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+	@RequestMapping("modifyPro.nhn")//占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 	public String modifyPro(HttpSession session,LogonDataBean dto) throws Exception{
 		String id = (String)session.getAttribute("id");
 		dto.setId(id);
@@ -114,19 +114,19 @@ public class InputBean {
 		return "/dc/modifyPro.jsp";
 	}
 	
-	@RequestMapping("deleteForm.nhn")//�쉶�뜝�룞�삕 �깉�뜝�룞�삕 �뜝�룞�삕
+	@RequestMapping("deleteForm.nhn")//占쎌돳占쎈쐻占쎈짗占쎌굲 占쎄퉱占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲
 	public String deleteForm() throws Exception{
 		
 		return "/dc/deleteForm.jsp";
 	}
-	@RequestMapping("deletePro.nhn")//�쉶�뜝�룞�삕 �깉�뜝�룞�삕
+	@RequestMapping("deletePro.nhn")//占쎌돳占쎈쐻占쎈짗占쎌굲 占쎄퉱占쎈쐻占쎈짗占쎌굲
 	public String deletePro(HttpSession session,HttpServletRequest request) throws Exception{
 		String id = (String)session.getAttribute("id");
 		String pw  = request.getParameter("pw");
 		LogonDataBean dto = new LogonDataBean();
 		dto.setId(id);
 		dto.setPw(pw);
-		int check = (Integer)sqlMapper.queryForObject("userCheck", dto);//id�뜝�룞�삕 pw�뜝�룞�삕 �뜝�룞�삕移섇뜝�떦紐뚯삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+		int check = (Integer)sqlMapper.queryForObject("userCheck", dto);//id占쎈쐻占쎈짗占쎌굲 pw占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲燁살꼪�쐻占쎈뼣筌뤿슣�굲 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 	    
 	    if(check==1){
 	    	session.invalidate();
@@ -136,12 +136,12 @@ public class InputBean {
 		return "/dc/deletePro.jsp";
 	}
 	
-	@RequestMapping("coupleDeleteForm.nhn")//而ㅵ뜝�떆�궪�삕�뜝�룞�삕 �뜝�룞�삕
+	@RequestMapping("coupleDeleteForm.nhn")//�뚣뀿�쐻占쎈뻻占쎄땔占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲
 	public String coupleDeleteForm() throws Exception{
 		
 		return "/dc/coupleDeleteForm.jsp";
 	}
-	@RequestMapping("coupleDelete.nhn")//而ㅵ뜝�떆�궪�삕�뜝�룞�삕
+	@RequestMapping("coupleDelete.nhn")//�뚣뀿�쐻占쎈뻻占쎄땔占쎌굲占쎈쐻占쎈짗占쎌굲
 	public String coupleDelete(HttpSession session,HttpServletRequest request) throws Exception{
 		String id=(String)session.getAttribute("id");
 		String pw=(String)request.getParameter("pw");
@@ -154,10 +154,10 @@ public class InputBean {
 			CoupleDataBean cdto=new CoupleDataBean();
 			cdto = (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
 			
-			sqlMapper.update("memCouple0", cdto.getId1()); //而ㅵ뜝�룞�삕 �뜝�룞�삕�뜝�떛釉앹삕 �뜝�뙇�뙋�삕 �쉶�뜝�룞�삕�뜝�룞�삕 id�뜝�룞�삕 �뜝�떙�궪�삕�뜝�뙏�눦�삕 而ㅵ뜝�룞�삕�뜝�떆琉꾩삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 0�뜝�룞�삕�뜝�룞�삕 �뜝�뙐袁쇰뙋�삕
+			sqlMapper.update("memCouple0", cdto.getId1()); //�뚣뀿�쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓�뇡�빘�굲 占쎈쐻占쎈솂占쎈솇占쎌굲 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 id占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼑占쎄땔占쎌굲占쎈쐻占쎈솋占쎈닰占쎌굲 �뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈뻻筌뚭쑴�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 0占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솏熬곸눖�솇占쎌굲
 			sqlMapper.update("memCouple0", cdto.getId2());
-			sqlMapper.update("deleteCouple", id);			//而ㅵ뜝�룞�삕 �뜝�룞�삕�뜝�떛釉앹삕�뜝�룞�삕 id�뜝�룞�삕 �뜝�떙�궪�삕�뜝�뙏�눦�삕 �뜝�뙏�뙋�삕 �뜝�룞�삕�뜝�뙓�뱶瑜� �뜝�룞�삕�뜝�룞�삕�뜝�떬�뙋�삕.
-			sqlMapper.delete("deleteAlert", cdto.getId2()); //而ㅵ뜝�룞�삕 �뜝�룞�삕泥�,�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떙紐뚯삕�뜝�뙣�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占�.
+			sqlMapper.update("deleteCouple", id);			//�뚣뀿�쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓�뇡�빘�굲占쎈쐻占쎈짗占쎌굲 id占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼑占쎄땔占쎌굲占쎈쐻占쎈솋占쎈닰占쎌굲 占쎈쐻占쎈솋占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈솓占쎈굡�몴占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼩占쎈솇占쎌굲.
+			sqlMapper.delete("deleteAlert", cdto.getId2()); //�뚣뀿�쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲筌ｏ옙,占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼑筌뤿슣�굲占쎈쐻占쎈솭占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占�.
 			sqlMapper.delete("deleteAlert", cdto.getId1());
 		}
 		request.setAttribute("ucheck", ucheck);
@@ -165,16 +165,16 @@ public class InputBean {
 		request.setAttribute("id", id);
 		return "/dc/coupleDelete.jsp";
 	}
-	@RequestMapping("mypage.nhn")// �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
+	@RequestMapping("mypage.nhn")// 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 	public String mypage(HttpSession session,HttpServletRequest request) throws Exception{
 		String check =(String)session.getAttribute("fbcheck");
 		String id =(String) session.getAttribute("id");
-		System.out.println("�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�룞�삕"+check);
+		System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 筌ｋ똾寃뺧옙�쐻占쎈짗占쎌굲"+check);
 		request.setAttribute("check", check);
 		request.setAttribute("id", id);
-		System.out.println("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕永밧뜝占�"+id);
+		System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲麗몃갊�쐻�뜝占�"+id);
 		
-		if(id==null){ // �뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 �뜝�떍�땲�씛�삕�뜝占� �뜝�떛�슱�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�떦寃뚮�먯삕
+		if(id==null){ // 占쎈쐻占쎈뼢繹먮씮�굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼃占쎈빍占쎌뵛占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈뼓占쎌뒻占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼣野껊슢占쎈Ŋ�굲
 			request.setAttribute("gologin", "1");
 			return "/sy0526/main.jsp";
 		}
@@ -212,11 +212,11 @@ public class InputBean {
 				session.setAttribute("nickname", nickname);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떙琉꾩삕1"+checkAlert1);
+			System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 筌ｋ똾寃뺧옙�쐻占쎈뼑筌뚭쑴�굲1"+checkAlert1);
 			if(checkAlert1==1){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 if dto.getCouple"+dto.getCouple());
+				System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 if dto.getCouple"+dto.getCouple());
 				
 				
 				if(dto.getCouple().equals("1")){
@@ -230,14 +230,14 @@ public class InputBean {
 		
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("coupleinfo.nhn")//而ㅵ뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 
+	@RequestMapping("coupleinfo.nhn")//�뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 
 	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id=request.getParameter("id");
 		LogonDataBean dto2=new LogonDataBean();
 		LogonDataBean dto1=new LogonDataBean();
 		CoupleDataBean cdto=new CoupleDataBean();
-		int check1 = (Integer)sqlMapper.queryForObject("coupleCheck1", id);	// �쉶�뜝�룞�삕�뜝�룞�삕 id�뜝�룞�삕 而ㅵ뜝�룞�삕�뜝�룞�삕�뜝�떛釉앹삕�뜝�룞�삕 �뜝�떙�궪�삕�뜝�뙏�눦�삕 �뜝�룞�삕�뜝�뙓�뱶媛� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+		int check1 = (Integer)sqlMapper.queryForObject("coupleCheck1", id);	// 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 id占쎈쐻占쎈짗占쎌굲 �뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓�뇡�빘�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼑占쎄땔占쎌굲占쎈쐻占쎈솋占쎈닰占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈솓占쎈굡揶쏉옙 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 		int check2 = (Integer)sqlMapper.queryForObject("coupleCheck2", id);
 	
 		if(check1==1 || check2==1){
@@ -258,7 +258,7 @@ public class InputBean {
 		
 		System.out.println("check1:"+check1+"check2:"+check2);
 		
-		int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id); //id�뜝�룞�삕 alert�뜝�룞�삕�뜝�떛釉앹삕�뜝�룞�삕 �뜝�떙�궪�삕. �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 而ㅵ뜝�떆�룞�삕泥� �뜝�뙣�룞�삕�뜝�룞�삕�뜝�룞�삕 �솗�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+		int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id); //id占쎈쐻占쎈짗占쎌굲 alert占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓�뇡�빘�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼑占쎄땔占쎌굲. 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 �뚣뀿�쐻占쎈뻻占쎈짗占쎌굲筌ｏ옙 占쎈쐻占쎈솭占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎌넇占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 		
 		if(checkAlert1==1){
 			AlertDataBean adto=new AlertDataBean();
@@ -274,20 +274,20 @@ public class InputBean {
 		
 		return "/dc/coupleinfo.jsp";
 	}
-	@RequestMapping("coupleSearchPro.nhn")//而ㅵ뜝�룞�삕 李얍뜝�룞�삕
+	@RequestMapping("coupleSearchPro.nhn")//�뚣뀿�쐻占쎈짗占쎌굲 筌≪뼃�쐻占쎈짗占쎌굲
 	public String coupleSearchPro(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id=(String) session.getAttribute("id");
-		System.out.println("而ㅵ뜝�떆�눦�삕移� �뜝�룞�삕�뜝�떛�벝�삕"+id);
+		System.out.println("�뚣뀿�쐻占쎈뻻占쎈닰占쎌굲燁삼옙 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓占쎈쿈占쎌굲"+id);
 		String nickname=request.getParameter("nickname");
 		String coupleName=request.getParameter("coupleName");
 		LogonDataBean dto=new LogonDataBean();
 		CoupleDataBean cdto=new CoupleDataBean();
-		int check=(Integer)sqlMapper.queryForObject("getMemberbync", nickname); //nickname�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�떛釉앹삕�뜝�룞�삕 �뜝�떙�궪�삕�뜝�뙏�눦�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �쉶�뜝�룞�삕�뜝�떛�씛�삕�뜝占� 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 
+		int check=(Integer)sqlMapper.queryForObject("getMemberbync", nickname); //nickname占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓�뇡�빘�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼑占쎄땔占쎌굲占쎈쐻占쎈솋占쎈닰占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼣占쎈솇占쎌굲 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓占쎌뵛占쎌굲占쎈쐻�뜝占� 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 
 		if(check==1){
 			dto = (LogonDataBean)sqlMapper.queryForObject("getMemberbyn", nickname);
 			cdto.setId2(dto.getId());
-			int checkcouple=(Integer)sqlMapper.queryForObject("getCouple", dto.getId());//而ㅵ뜝�룞�삕 �뜝�룞�삕泥��뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떛諭꾩삕 而ㅵ뜝�룞�삕�뜝�떛�씛�삕�뜝占� 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+			int checkcouple=(Integer)sqlMapper.queryForObject("getCouple", dto.getId());//�뚣뀿�쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲筌ｏ옙占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼓獄�袁⑹굲 �뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈뼓占쎌뵛占쎌굲占쎈쐻�뜝占� 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 			if(checkcouple==1){
 				request.setAttribute("fail", "1");
 				return "/dc/mypage.jsp";
@@ -295,7 +295,7 @@ public class InputBean {
 		}
 		cdto.setId1(id);
 		cdto.setCoupleName(coupleName);
-		cdto.setCoupleImage("couple1.png");
+		cdto.setCoupleImage("couple1.jpg");
 		request.setAttribute("id", id);
 		sqlMapper.insert("insertCouple", cdto);
 		
@@ -308,29 +308,29 @@ public class InputBean {
 		
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("couplex.nhn")//而ㅵ뜝�룞�삕 �뜝�떊釉앹삕
+	@RequestMapping("couplex.nhn")//�뚣뀿�쐻占쎈짗占쎌굲 占쎈쐻占쎈뻿�뇡�빘�굲
 	public String couplex(HttpSession session,HttpServletRequest request) throws Exception{
 		String id =request.getParameter("id");
 		String nickname=(String)sqlMapper.queryForObject("getNick", id);
-		sqlMapper.delete("deleteCouple", id);//而ㅵ뜝�룞�삕�뜝�룞�삕�뜝�떛釉앹삕�뜝�룞�삕 �뜝�뙏�뙋�삕 �쉶�뜝�룞�삕�뜝�룞�삕 id�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�뙓�뱶瑜� �뜝�룞�삕�뜝�룞�삕
-		sqlMapper.delete("readCheckReject", nickname);//�뜝�떙紐뚯삕 �뜝�룞�삕�뜝�떛釉앹삕�뜝�룞�삕 �뜝�뙏�뙋�삕 �쉶�뜝�룞�삕�뜝�룞�삕 nickname�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�뙓�뱶瑜� �뜝�룞�삕�뜝�룞�삕
+		sqlMapper.delete("deleteCouple", id);//�뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓�뇡�빘�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솋占쎈솇占쎌굲 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 id占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼣占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈솓占쎈굡�몴占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
+		sqlMapper.delete("readCheckReject", nickname);//占쎈쐻占쎈뼑筌뤿슣�굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓�뇡�빘�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솋占쎈솇占쎌굲 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 nickname占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼣占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈솓占쎈굡�몴占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 		request.setAttribute("id", id);
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("coupleInput.nhn")//而ㅵ뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+	@RequestMapping("coupleInput.nhn")//�뚣뀿�쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 	public String coupleInput(HttpSession session,HttpServletRequest request) throws Exception{
 		String nickname=(String) session.getAttribute("nickname");
 		String id =request.getParameter("id");
 		CoupleDataBean cdto=new CoupleDataBean();
 		cdto = (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
-		sqlMapper.update("memCouple1", cdto.getId1());//�쉶�뜝�룞�삕�뜝�룞�삕 而ㅵ뜝�룞�삕�뜝�떆琉꾩삕�뜝�룞�삕�뜝�룞�삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+		sqlMapper.update("memCouple1", cdto.getId1());//占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 �뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈뻻筌뚭쑴�굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 		sqlMapper.update("memCouple1", cdto.getId2());
-		sqlMapper.update("readCheck", nickname);//�뜝�떙紐뚯삕�뜝�룞�삕�뜝�떛釉앹삕�뜝�룞�삕 readcheck�뜝�룞�삕�뜝�룞�삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 
+		sqlMapper.update("readCheck", nickname);//占쎈쐻占쎈뼑筌뤿슣�굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓�뇡�빘�굲占쎈쐻占쎈짗占쎌굲 readcheck占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 
 		sqlMapper.update("coupleComplete", nickname);
 		request.setAttribute("id", id);
 		return "/dc/mypage.jsp";
 	}
-	@RequestMapping("/diary1.nhn")//而ㅵ뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떛諭꾩삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙇源띿삕
+	@RequestMapping("/diary1.nhn")//�뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼓獄�袁⑹굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솂繹먮씮�굲
 	public String diary(HttpServletRequest request,HttpSession session){
 		CoupleDataBean cdto=new CoupleDataBean();
 		cdto=(CoupleDataBean) session.getAttribute("coupleData");
@@ -338,7 +338,7 @@ public class InputBean {
 		request.setAttribute("coupleName", coupleName);
 		return "/dc/diary.jsp";
 	}
-	@RequestMapping("/updateImage1.nhn")//�뜝�떛諭꾩삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�떥�벝�삕
+	@RequestMapping("/updateImage1.nhn")//占쎈쐻占쎈뼓獄�袁⑹굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼢占쎈쿈占쎌굲
 	public String updateImage(MultipartHttpServletRequest request,CoupleDataBean cdb)throws Exception{
 
 		String coupleName = request.getParameter("coupleName");
@@ -346,9 +346,9 @@ public class InputBean {
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
 		cdb.setCoupleImage(orgName);
-		System.out.println("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�듃�뜝�떛諭꾩삕�뜝�룞�삕1"+cdb.getCoupleImage());
+		System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈뱜占쎈쐻占쎈뼓獄�袁⑹굲占쎈쐻占쎈짗占쎌굲1"+cdb.getCoupleImage());
 		cdb.setCoupleName(coupleName);
-		System.out.println("而ㅵ뜝�떆�냲�삕�뜝�룞�삕"+cdb.getCoupleName());
+		System.out.println("�뚣뀿�쐻占쎈뻻占쎈꺋占쎌굲占쎈쐻占쎈짗占쎌굲"+cdb.getCoupleName());
 		File copy = new File(RealPath+"/"+orgName);
 		file.transferTo(copy);
 		sqlMapper.insert("diaryimgUpdate1",cdb);
@@ -356,28 +356,28 @@ public class InputBean {
 		request.setAttribute("close", "yes");
 		return "/dc/diary.jsp";
 	}
-	@RequestMapping("/coupleModify.nhn")//而ㅵ뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+	@RequestMapping("/coupleModify.nhn")//�뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 	public String coupleModify(HttpSession session,HttpServletRequest request)throws Exception{
 		String coupleName = request.getParameter("coupleName");
 		String coupleDate = request.getParameter("coupleDate");
-		System.out.println(coupleName+"而ㅵ뜝�떆�냲�삕�뜝�룞�삕");
+		System.out.println(coupleName+"�뚣뀿�쐻占쎈뻻占쎈꺋占쎌굲占쎈쐻占쎈짗占쎌굲");
 	
-		String hidden=request.getParameter("hidden");//�뜝�룞�삕吏� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙇�떎紐뚯삕 hidden�뜝�룞�삕 null�뜝�룞�삕 �뜝�떍�뙋�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�뙃�맂�뙋�삕.
+		String hidden=request.getParameter("hidden");//占쎈쐻占쎈짗占쎌굲筌욑옙 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솂占쎈뼄筌뤿슣�굲 hidden占쎈쐻占쎈짗占쎌굲 null占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼃占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈셾占쎈쭆占쎈솇占쎌굲.
 		String id=(String)session.getAttribute("id");
 		CoupleDataBean cdto=new CoupleDataBean();
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
 
 		int ccn=(Integer)sqlMapper.queryForObject("checkCoupleName", coupleName);
-		System.out.println("泥댄겕而ㅵ뜝�떆�냲�삕�뜝�룞�삕"+ccn);
+		System.out.println("筌ｋ똾寃뺠�뚣뀿�쐻占쎈뻻占쎈꺋占쎌굲占쎈쐻占쎈짗占쎌굲"+ccn);
 		if(hidden!=null){
 			Date date=sdf.parse(coupleDate);
-			if(ccn==1){//而ㅵ뜝�떆紐뚯삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�뙐紐뚯삕 �뜝�룞�삕�뜝�룞�삕
+			if(ccn==1){//�뚣뀿�쐻占쎈뻻筌뤿슣�굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈솏筌뤿슣�굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 				cdto.setCoupleName(coupleName);
 				cdto.setCoupleDate(date);
 				System.out.println("date "+date);
 				sqlMapper.update("coupleModifyNcYd", cdto);
 			}
-			else if(ccn==0){//而ㅵ뜝�떆紐뚯삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕
+			else if(ccn==0){//�뚣뀿�쐻占쎈뻻筌뤿슣�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼣占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 				
 				cdto.setCoupleDate(date);
 				cdto.setCoupleName(coupleName);

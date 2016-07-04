@@ -319,7 +319,7 @@ public class shareBean {
 		String id = (String)session.getAttribute("id");
 		String couplename = (String) sqlMap.queryForObject("serchCouplename",id);
 		System.out.println("커플네임"+ couplename);
-		
+		int checkMylist = (Integer)sqlMap.queryForObject("checkMylist",id);
 		pointDataBean dto2 = new pointDataBean();
 		
 		Timestamp regdate = new Timestamp(System.currentTimeMillis());
@@ -332,6 +332,14 @@ public class shareBean {
 		map.put("num", num);
 		map.put("regdate", regdate);
 		map.put("place", place);
+		map.put("myId", id);
+		map.put("listnull", "");
+		if(checkMylist==0){
+			String getMylist=(String)sqlMap.queryForObject("getmylist", id);
+			String arryMylist[]=getMylist.split(",");
+			String mylistPush=getMylist+","+num;
+			map.put("mylistPush", mylistPush);
+		}
 		list.add(map);
 		
 		System.out.println("1couplename"+" "+couplename);
@@ -343,7 +351,20 @@ public class shareBean {
 		
 		int check = (Integer)sqlMap.queryForObject("shereCourseLikePro",map);
 		System.out.println("3check"+" "+check);
-		if (check ==1){
+			if (check ==1){
+			
+			if(checkMylist==0){
+				String getMylist=(String)sqlMap.queryForObject("getmylist", id);
+				String arryMylist[]=getMylist.split(",");
+				for(int i=0;i<arryMylist.length;i++){
+					
+				}
+				
+			}
+			else{
+				sqlMap.update("mylistPush2", map);
+			}
+			
 			sqlMap.update("shereCourseLikeCountDown", map);
 			System.out.println("좋아요 감소");
 			sqlMap.delete("shereDeleteLike", map);
@@ -354,6 +375,12 @@ public class shareBean {
 			System.out.println("멤버 좋아요로 획득한 포인트 감소 ");
 			
 		}else{
+			if(checkMylist==1){
+				sqlMap.update("mylistPush",map);
+			}
+			else{
+				sqlMap.update("mylistPush1", map);
+			}
 			sqlMap.update("shereCourseLikeCountUp", map);
 			System.out.println("좋아요 증가");
 			sqlMap.insert("shereInsertLike", map);

@@ -234,7 +234,7 @@
 			update dc_member set list=#mylistPush# where id=#myId#
 		</update>
 		<update id="mylistPush1" parameterClass="java.util.HashMap">
-			update dc_member set list=#list1# where id=#myId#
+			update dc_member set list=#num# where id=#myId#
 		</update>
 		<update id="mylistPush2" parameterClass="java.util.HashMap">
 			update dc_member set list=#listnull# where id=#myId#
