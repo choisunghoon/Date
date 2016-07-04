@@ -94,6 +94,7 @@ public class AdminBean {
 		if(pageNum == null){
 			pageNum = "1";
 		}
+		System.out.println("pagenum"+pageNum);
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
@@ -106,7 +107,6 @@ public class AdminBean {
 		eventList = sqlMap.queryForList("getWinEventList", num);
 		count = (Integer)sqlMap.queryForObject("winEventCount", null);
 	
-		
 		request.setAttribute("eventList", eventList);
 		request.setAttribute("count", count);
 		request.setAttribute("currentPage", currentPage);

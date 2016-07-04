@@ -92,7 +92,7 @@
 		cw = screen.availWidth; //화면 넓이
 		ch = screen.availHeight; //화면 높이
 
-		sw = 700; //띄울 창의 넓이
+		sw = 800; //띄울 창의 넓이
 		sh = 650; //띄울 창의 높이
 
 		ml = (cw - sw) / 2; //가운데 띄우기위한 창의 x위치
@@ -152,7 +152,7 @@
 				<option value="2">이벤트 이름</option>
 				<option value="3">당첨 커플</option>
 			</select>
-				<input type="button" value="검색" onclick="checkSS(this.form)">		
+				<a href="#" onclick="checkSS(this.form)"><img src="/Date/button/z1.png"></a>
 		</form></center>
 		</div>
 		<a href="#" onclick="callAjaxyj3('addEvent.nhn')"><img src="/Date/button/z50.png" style="margin-left:905px; margin-bottom:10px;"></a>
@@ -189,7 +189,7 @@
 		<td align="center" width="200">${eventList.wcouples}</td>
 		<td align="center" width="100">
 		<c:if test="${eventList.w==0}">
-		<button type="button" onclick="callAjaxyj2('wWay.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')">당첨자뽑기</button>
+		<a href="#" onclick="callAjaxyj2('wWay.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')"><img src="/Date/button/z48.png"></a>
 		</c:if>
 		<c:if test="${eventList.w==1}">
 		<a href="#" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${eventList.enumber}&wnumber=${eventList.wnumber}&w=${eventList.w}')"><img src="/Date/button/z49.png"></a>

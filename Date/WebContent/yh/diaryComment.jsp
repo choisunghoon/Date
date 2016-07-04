@@ -7,6 +7,18 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
+function callComment(nhn){
+    $.ajax({
+        type: "post",
+        url : nhn,
+        success: callAjax2,	// 페이지요청 성공시 실행 함수
+        error: commentError	//페이지요청 실패시 실행함수
+ 	});
+}
+function commentError(){
+    alert("댓글을 삭제할 권한 없습니다.");
+}
+
 
 </script>
 </head>
@@ -93,7 +105,7 @@
 						<tr align="center">
 						<td width="20%">${commentList.id}</td>
 						<td width="60	%">&nbsp;${commentList.diarycomment}
-					    <input type="button" value="delete" onclick="callAjax('commentDelete.nhn?id=${id}&num=${commentList.num}')"/>
+					    <input type="button" value="delete" onclick="callComment('commentDelete.nhn?id=${id}&commentnum=${commentList.num}')"/>
 						</td>
 						<td width="20%">${commentList.regdate}</td>
          				</tr>

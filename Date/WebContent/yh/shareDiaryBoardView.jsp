@@ -28,7 +28,7 @@
     function test2(){
         $.ajax({
 	        type: "post",
-	        url : "shareDiaryCount.nhn?num=${dto.num}&likecount=${dto.likecount}&check=${check}",
+	        url : "shareDiaryCount.nhn?num=${dto.num}&likecount=${dto.likecount}",
 	        
 	        success: test,	// 페이지요청 성공시 실행 함수
 	        error: whenError	//페이지요청 실패시 실행함수
@@ -95,16 +95,10 @@
 			<br/>
 			
 		<div id="like" method="post"><center>
-		<span id="ajaxReturn">
-		<c:if test="${check==1}">		
-			<input type="button" name="goodLike" value="좋아햇어요" />
-		</c:if>
+
+					<input type="button" name="goodLike" value="좋아요" />
 	
-		<c:if test="${check!=1}">
-			<input type="button" name="goodLike" value="좋아요" />
-		</c:if>
-			 ${dto.likecount } 	
-		</span>
+			<span id="ajaxReturn"> ${dto.likecount }</span><br/>
 					
 		</center>   
 		</div>	     
