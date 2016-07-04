@@ -39,10 +39,10 @@
 </script> 
 <c:set var="i" value="0"/>
 <c:forEach var="latest" items="${latest}">
-	<div id="course${i}" style="border:1px solid; width:220px;float:left;margin-left:40px;margin-top:48px;">
+	<div id="course${i}" style="border:1px solid; position:relative; width:220px;float:left;margin-left:40px;margin-top:48px;">
 	<c:forEach begin="${i}" end="${i}" items="${couple}" var="couple">
 	<div id="img${i}" style="margin-left:5px;width:210px; height:300px; border:1px solid">
-	<center><a href="#" onclick="openState('${latest.num}')" ><img src="${couple.coupleimage}"></a></center>
+	<center><a href="#" onclick="openState('${latest.num}')" ><img src="syimage/${couple.coupleimage}"></a></center>
 	</div>
 	</c:forEach>
 	<c:set var="i" value="${i+1 }"/>

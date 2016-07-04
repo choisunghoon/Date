@@ -354,8 +354,6 @@ public class Upload {
 	
 	@RequestMapping("/adminpage.nhn")
 	public String adminpage(HttpServletRequest request){
-		int chk = Integer.parseInt(request.getParameter("chk"));
-		request.setAttribute("chk", chk);
 		return "/sy0526/AdminPage.jsp";
 	}
 	

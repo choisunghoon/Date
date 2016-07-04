@@ -39,9 +39,10 @@
 </script>  
 <c:set var="i" value="0"/>
 <c:forEach var="best" items="${best}">
-	<div id="course${i}" style="border:1px solid; width:220px;float:left; margin-left:40px;margin-top:48px;">
+	<div id="course${i}" style="border:1px solid; position:relative; width:220px;float:left; margin-left:40px;margin-top:48px;">
+	<img src="button/crown.png" style="position:absolute; top:-35px; width:80px; height:66px; left:-36px">
 	<c:forEach begin="${i}" end="${i}" items="${couple}" var="couple">
-	<div id="img${i}" style="margin-left:5px;width:210px; height:300px; border:1px solid">
+	<div id="img${i}" style="margin-left:4px;width:210px; height:300px; border:1px solid">
 	<center><a href="#" onclick="openState('${best.num}')" ><img src="${couple.coupleimage}"></a></center>
 	</div>
 	</c:forEach>

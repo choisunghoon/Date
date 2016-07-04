@@ -5,7 +5,19 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
     
     <script type="text/javascript">
-    
+    function aa(){
+    	if(confirm("날씨를 보기위해선 'Allow-Control-Allow-Origin:*'를 설치해야합니다.      설치하시겠습니까?")){
+    		url = "https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?utm_source=chrome-ntp-icon";
+    	    
+    	    // 새로운 윈도우를 엽니다.
+    	    open(url, "confirm", 
+    	    "toolbar=no, location=no,status=no,menubar=no,scrollbars=no,resizable=no");
+
+		}
+		else{
+			return false;
+		}
+    }
    
 	$(document).ready(function(){
 		
@@ -15,20 +27,21 @@
 			url:'http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108',
 					dataType:'xml',
 					success:function(response){
-						console.log(response);
+						$('#wheather').append('<option value="">');
 						$(response).find('location').each(function(){
 		
 							var city = $(this).find('city').text();
-							
 							$('#wheather').append('<option value='+city+'>'+city);
 							var this2= $(this);
 							$("#wheather").change(function(){ 
 								
-								if(city == $('#wheather option:selected').val()){
+								if($('#wheather option:selected').val() == ""){
 									$("#view").html("");
-									
-									
-
+								}
+								
+								else if(city == $('#wheather option:selected').val()){
+									$("#view").html("");
+						
 									this2.find('data').each(function(){
 										var aa= $(this).find('wf').text();
 										
@@ -71,6 +84,8 @@
 	   <div id="view">
 	   
 	   </div>
+	   <br>
+	   <p style="font-size:10px; margin-left:11px;"><a href="#" onclick="aa()">보이지 않을시 클릭하세요</a></p>
    	<br>
 </div>
 </body>
