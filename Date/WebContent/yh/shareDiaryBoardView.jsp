@@ -107,7 +107,6 @@
 		<div alingn="left">
 		<td><span id="ajaxReturn1" > </span><br/></td>
 		</tr>  
-		</div>
 		<br/>
 
 		<br/>

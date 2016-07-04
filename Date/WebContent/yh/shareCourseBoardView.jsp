@@ -847,8 +847,23 @@ function removeAllChildNods(el) {
 <div id="img" class="placeinfov_wrap">
 	
 </div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<tr>
+<td>${content }</td>
+</tr>
+
 		<div id="like" method="post"><center>
-			<span id="ajaxReturn">
+			<tr>
+			<span id="ajaxReturn" align="center">
 
 			<c:if test="${check ==0 }"> 
 				<img src="yh/img/c31.png" type= "button" name="goodLike" style="margin-top:5px;">&nbsp;&nbsp; ${dto.likecount} 
@@ -857,13 +872,27 @@ function removeAllChildNods(el) {
 				<img src="yh/img/c32.png" type= "button" name="goodLike" style="margin-top:5px;">&nbsp;&nbsp; ${dto.likecount} 
 			</c:if>
 			</span><br/>
-					
+			</tr>		
 					
 		</center>   
-		</div>	     
+		</div>	    
+		
+			<br/>
+		<tr>
+				<td align="right">
+ 				<input type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareCourseBoard.nhn')"/>&nbsp;&nbsp;
+				<input type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('CourseComment.nhn')" /> </td>
+	
+		<tr>
+			<br/>
+				<div alingn="left">
+		<td>	<span id="ajaxReturn1" > </span><br/></td>
+		</tr>  
 </form>
-</body>
+ 
+</form>
 
+</body>
 
 
 </html>
