@@ -242,9 +242,7 @@
 		<select id="checkMylist" parameterClass="String" resultClass="int">
 			select count(*) from dc_member where id=#id# and list is null
 		</select>
-		<select id="shereSelectCourseBoardAll" resultClass="share.shareCourseDataBean">
-			select * from dc_dc where num=1 order by num desc
-		</select>
+		
 		
 
 </sqlMap>
