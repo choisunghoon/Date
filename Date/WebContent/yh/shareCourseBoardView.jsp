@@ -1,39 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-   <!DOCTYPE html>
-<html>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
-      $("#like").click(function(){
+$(document).ready(function(){
+    $("#like").click(function(){
 
-    	  callAjax1();
-      });
+  	  callAjax1();
     });
+  });
 
-    function callAjax1(){
-        $.ajax({
+  function callAjax1(){
+      $.ajax({
 	        type: "post",
-	        url : "shareCourseLikeCount.nhn?num=${dto.num}&couplename=${dto.couplename}",
+	        url : "shareCourseLikeCount.nhn?num=${dto.num}&couplename=${couplename}",
 	        
-	        success: test2,	// 페이지요청 성공시 실행 함수
+	        success:test,	// 페이지요청 성공시 실행 함수
 	        error: whenError	//페이지요청 실패시 실행함수
-     	});
-    }
-    function test2(){
-        $.ajax({
-	        type: "post",
-	        url : "shareCourseCount.nhn?num=${dto.num}&likecount=${dto.likecount}",
-	        
-	        success: test,	// 페이지요청 성공시 실행 함수
-	        error: whenError	//페이지요청 실패시 실행함수
-     	});
-    }
-    function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-        $("#ajaxReturn").html(aaa);
-        console.log(resdata);
-    }
+   	});
+  }
+  function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+      $("#ajaxReturn").html(aaa);
+      console.log(resdata);
+  }
+
     function whenError(){
         alert("Error");
     }
@@ -854,13 +848,20 @@ function removeAllChildNods(el) {
 <div id="img" class="placeinfov_wrap">
 	
 </div>
+		<div id="like" method="post"><center>
+			<span id="ajaxReturn">
 
-<div id="like" method="post" class=placeinfov_wrap>
-		<input type="button" name="goodLike" value="like" />
-			
-		<span id="ajaxReturn" > ${dto.likecount }</span><br/>
-</div>
-
+			<c:if test="${check ==0 }"> 
+				<img src="yh/img/c31.png" type= "button" name="goodLike" style="margin-top:5px;">&nbsp;&nbsp; ${dto.likecount} 
+			</c:if>
+			<c:if test="${check !=0 }"> 
+				<img src="yh/img/c32.png" type= "button" name="goodLike" style="margin-top:5px;">&nbsp;&nbsp; ${dto.likecount} 
+			</c:if>
+			</span><br/>
+					
+					
+		</center>   
+		</div>	     
 </form>
 </body>
 

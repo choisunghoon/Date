@@ -59,7 +59,7 @@
     
 </script>
 </head>
-
+<br/><br/><br/>
 <body>
 <form name="shareview" method="post">
 	<br/>
@@ -83,22 +83,36 @@
 			${dto.content }
 			
 			<br/>
-			<br/>
-			
 		<div id="like" method="post"><center>
-			<span id="ajaxReturn"><img src="yh/img/c31.png" type= "button" name="goodLike" style="margin-top:5px;">&nbsp;&nbsp; ${dto.likecount} </span><br/>
+			<span id="ajaxReturn">
+
+			<c:if test="${check ==0 }"> 
+				<img src="yh/img/c31.png" type= "button" name="goodLike" style="margin-top:5px;">&nbsp;&nbsp; ${dto.likecount} 
+			</c:if>
+			<c:if test="${check !=0 }"> 
+				<img src="yh/img/c32.png" type= "button" name="goodLike" style="margin-top:5px;">&nbsp;&nbsp; ${dto.likecount} 
+			</c:if>
+			</span><br/>
 					
 		</center>   
 		</div>	     
 		</td>
-	</tr>
-	</table>                                                         
- 		<br/>
- 			<input type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareDiaryBoard.nhn')"/>&nbsp;&nbsp;
-<input type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('dairyComment.nhn')" /> 
-<br/>
-<br/>
- <span id="ajaxReturn1" > </span><br/>
+		</tr>                                                       
+ 			<br/><td align="right">
+ 				<input type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareDiaryBoard.nhn')"/>&nbsp;&nbsp;
+				<input type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('dairyComment.nhn')" /> </td>
+		
+		</table>
+		<tr>
+		<br/>
+		<div alingn="left">
+		<td><span id="ajaxReturn1" > </span><br/></td>
+		</tr>  
+		</div>
+		<br/>
+
+		<br/>
+ 			
 </form>
 </body>
 </html>

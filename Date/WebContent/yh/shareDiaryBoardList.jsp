@@ -22,9 +22,9 @@ function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜�
 function whenError2(){
     alert("Error");
 }
-
+	
 </script>
-
+<br/><br/><br/>
 <title>SHARE DIARY BOARD</title>	
 </head>
 
@@ -40,11 +40,11 @@ function whenError2(){
 	
 	<table width="600" border="1" cellspacing="0" cellpadding="2">
 	<tr align="center">
-		<td width="50">글번호</td>
-		<td width="50">제목</td>
-		<td width="50">커플네임</td>
-		<td width="50">조회</td>
-		<td width="50">추천</td>
+		<td width="80">글번호</td>
+		<td width="280">제목</td>
+		<td width="80">커플네임</td>
+		<td width="80">조회</td>
+		<td width="80">좋아요</td>
 	</tr>
 	
 	<c:forEach var="list" items="${list }">
