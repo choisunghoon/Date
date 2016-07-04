@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <title>카테고리별 장소 검색하기</title>
     <style>
+
+
+
 .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:800px;height:350px;}
@@ -905,31 +908,48 @@ function removeAllChildNods(el) {
 </div>
 
 <input type="hidden" value="${num}" name="num" />
+<c:if test="${dto.postcheck eq '0'}">
 <input type="image" name="submit" value="submit" src="button/z34.png" />
 <br /> 
-<div id="postscript" style="margin-top:70px">
-		<div>
-			<c:forEach var="i" begin="1" end="${pidsize}" step="1">
-				<div>
-					<div id="sel${i}" style="float:left;">
-						 
-						<div id="imgsel${i}" style="width:300;height:300;float:left;">
+	<div id="postscript" style="margin-top:70px">
+			<div>
+				<c:forEach var="i" begin="1" end="${pidsize}" step="1">
+					<div>
+						<div id="sel${i}" style="float:left;">
+							 
+							<div id="imgsel${i}" style="width:300;height:300;float:left;">
+								
+							</div>
 							
-						</div>
-						
-						<div  id="content${i}" style="float:left;">
-							<textarea name ="content${i}" rows="15" cols="100"></textarea>
-						</div>
-						
-						<div>
-							<input type="file" name="save${i}" id="choose${i}" />
+							<div  id="content${i}" style="float:left;">
+								<textarea name ="content${i}" rows="15" cols="100"></textarea>
+							</div>
+							
+							<div>
+								<input type="file" name="save${i}" id="choose${i}" />
+							</div>
 						</div>
 					</div>
-				</div>
-			</c:forEach>
-		</div>
-</div>
-
+				</c:forEach>
+			</div>
+	</div>
+</c:if>
+<c:if test="${dto.postcheck eq '1' }">
+	<c:forEach	var="i" begin="0" end="${pidsize-1 }">
+					<div>
+						<div id="sel${i}" style="float:left;margin-top:20px;">
+							 
+							<div id="imgsel${i}" style="width:300;height:300;float:left;margin-right:10px">
+								<img width=300 height="300" src="/Date/dateplan/dateImage/${postsrc[i]}" />
+							</div>
+							
+							<div  id="content${i}" style="float:left;">
+								<textarea readonly="readonly" name ="content${i}" rows="15" cols="100">${content[i] }</textarea>
+							</div>
+						</div>
+				   </div>
+	</c:forEach>
+</c:if>
 </form>
 
 </body>

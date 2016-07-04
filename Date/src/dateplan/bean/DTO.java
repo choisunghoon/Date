@@ -4,10 +4,18 @@ import java.sql.Timestamp;
 
 public class DTO {
 	private String placeplaceUrl,placenewAddress,placeaddress,placeid,placephone,placetitle,placelatitude,placelongitude;
-	private String placelocation,placecategory,postsrc;
+	private String placelocation,placecategory,postsrc,postcheck;
 	private Timestamp poolsysdate;
 	public Timestamp getPoolsysdate() {
 		return poolsysdate;
+	}
+
+	public String getPostcheck() {
+		return postcheck;
+	}
+
+	public void setPostcheck(String postcheck) {
+		this.postcheck = postcheck;
 	}
 
 	public void setPoolsysdate(Timestamp poolsysdate) {

@@ -42,7 +42,7 @@ public class DateMap {
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String[] src = new String[pidsize];
-		String path = "C:\\Users\\com\\git\\Date\\Date\\WebContent\\dateplan\\dateImage\\";
+		String path = "F:\\git\\Date\\Date\\WebContent\\dateplan\\dateImage\\";
 		int i = 0;
 		while(iterator.hasNext()){
 			multipartFile = request.getFile(iterator.next());
@@ -76,8 +76,18 @@ public class DateMap {
 		dto= (DTO)sqlMap.queryForObject("selectcosnum",num);
 		String[] pid = dto.getPlaceid().split(",");
 		int pidsize = pid.length;
+		if(dto.getPostcheck().equals("1")){
+			String[] content = dto.getContent().split("///");
+			String[] postsrc = dto.getPostsrc().split(",");
+			request.setAttribute("content", content);
+			request.setAttribute("postsrc", postsrc);
+		}
+	
 		request.setAttribute("pidsize", pidsize);
 		request.setAttribute("dto", dto);
+		
+		
+		
 		request.setAttribute("num",num);
 				
 		return "/dateplan/datepost.jsp";
@@ -92,7 +102,7 @@ public class DateMap {
 		cosList = sqlMap.queryForList("selectcoscop", couplename);
 		
 		
-		request.setAttribute("cosList", cosList);
+		request.setAttribute("cosList",cosList);
 		return "/dateplan/datePostscript.jsp";
 	}
 	@RequestMapping("index.nhn")
