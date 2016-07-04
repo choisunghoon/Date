@@ -29,7 +29,6 @@
 					success:function(response){
 						$('#wheather').append('<option value="">');
 						$(response).find('location').each(function(){
-		
 							var city = $(this).find('city').text();
 							$('#wheather').append('<option value='+city+'>'+city);
 							var this2= $(this);
