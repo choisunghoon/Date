@@ -107,6 +107,21 @@
 	<select id="coupleimg" resultClass="upload.bean.CoupleDataBean" parameterClass="upload.bean.CoupleDataBean">
 		select * from dc_couple where couplename=#couplename#
 	</select>
-
+	
+	<select id="getlatest" resultClass="dateplan.bean.DTO">
+		select * from 
+		(select num, couplename, subject, content, pool,likecount, readcount,regdate, placetitle, placeid, placecategory, placelocation, postsrc, poolsysdate, rownum r from 
+		(select num, couplename, subject, content, pool,likecount, readcount,regdate, placetitle, placeid, placecategory, placelocation, postsrc, poolsysdate from dc_dc where pool='1' order by poolsysdate desc)) where <![CDATA[r<5]]> 
+	</select>
+	
+	<select id="coursecontent" resultClass="dateplan.bean.DTO" parameterClass="dateplan.bean.DTO"> 
+		select * from dc_dc where num=#num#
+	</select>
+	
+	<select id="bestcourse" resultClass="dateplan.bean.DTO">
+		select * from 
+		(select num, couplename, subject, content, pool,likecount, readcount,regdate, placetitle, placeid, placecategory, placelocation, postsrc, poolsysdate, rownum r from 
+		(select num, couplename, subject, content, pool,likecount, readcount,regdate, placetitle, placeid, placecategory, placelocation, postsrc, poolsysdate from dc_dc where pool='1' order by likecount desc)) where <![CDATA[r<5]]>
+	</select>
 </sqlMap>
 

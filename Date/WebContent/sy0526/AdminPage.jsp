@@ -8,7 +8,10 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script type="text/javascript">
-
+	var chk = '${chk}';
+	if(chk == 1){
+		callAjax('adphoto.nhn');
+	}
     function callAjax(nhn){
         $.ajax({
 	        type: "post",
@@ -42,13 +45,8 @@
 		<div id="subMain" style="float:left;width:86%">		
 		</div>
 	</div>
-    
-    
+ 
       </form>
-    
-    
-    
-    
-    
+
     </body>
     </html>

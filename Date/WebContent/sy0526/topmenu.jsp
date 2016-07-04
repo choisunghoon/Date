@@ -183,7 +183,7 @@
 			</c:if>
 		</c:if>
 		<c:if test="${id eq 'admin' }">
-			<li class="top1"><a href="adminpage.nhn">관리자 페이지</a></li>
+			<li class="top1"><a href="adminpage.nhn?chk=1">관리자 페이지</a></li>
 		</c:if>
 		<li class="top1">
 			<!-- 비회원일때 -->
