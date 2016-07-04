@@ -53,6 +53,17 @@ $("#choose").change(function (e) {
 </script>
 
 <script>
+
+
+	function img(){
+		if(confirm("기본이미지로 변경하시겠습니까?")){
+			document.location.href="default.nhn";
+		}
+		else{
+			window.location.replace("couple.nhn?chk=1");
+		}
+	}
+
    function callrefresh(url){
 	   document.rg.submit();
 	   var form = $('#rg')[0];
@@ -80,5 +91,6 @@ $("#choose").change(function (e) {
 <input type="hidden" id="h" name ="h" value=""/>
 <div style="margin-left:310px;">
 <input type="image" name="submit" value="submit" src="button/z5.png" />
+<input type="button" value="기본이미지로변경" onclick="img()"/>
 </div>
 </form>

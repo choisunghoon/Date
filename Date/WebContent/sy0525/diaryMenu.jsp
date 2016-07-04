@@ -98,12 +98,7 @@
 <div style="width:200px; height:280; margin-left:37%;">
    <center>사귄 날짜 : <fmt:formatDate value="${cdb.coupledate }" pattern="YYYY-MM-dd" /></center>
    <div style="float:left;">
-      <c:if test="${cdb.coupleimage eq null }">
-      <img src="syimage/couple.png">
-      </c:if>
-      <c:if test="${cdb.coupleimage ne null }">
       <center><img src="syimage/${cdb.coupleimage }" style="width:200px;border:1px solid;"></center>
-      </c:if>
    </div>
    <center>
       <a href="#" onclick="callContent3('diary.nhn?couplename=${couplename }')" id="test" data-toggle="modal" data-target="#myModaly3"><img src="button/z25.png" alt="" style="margin-top:5px;"></a>

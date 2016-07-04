@@ -102,6 +102,7 @@
 <div id="check">  
 포토북 신청 확인
 <form method="post"> 
+<div style="height:450px">
 <table class="table14_1" border="1px" cellspadding="0" cellspacing="0" width="600px" style="align:center;">
 	<tr style="height:30px">
 		<th>커플아이디</th>
@@ -116,6 +117,7 @@
 		</tr>
 	</c:forEach>
 </table>
+</div>
 <c:if test="${count > 0}">
 						<c:set var="pageCount"
 							value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}" />

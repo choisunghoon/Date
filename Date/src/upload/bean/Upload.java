@@ -271,7 +271,7 @@ public class Upload {
 		request.setAttribute("photo", photo);
 		int count = 0;
 		String pageNum = request.getParameter("pageNum");
-		int pageSize = 10;
+		int pageSize = 15;
 		if (pageNum == null) {
 			pageNum = "1";
 		}
@@ -524,6 +524,23 @@ public class Upload {
 		request.setAttribute("dto", dto);
 
 		return "/sy0703/coursecontent.jsp";
+	}
+	
+	@RequestMapping("/default.nhn")
+	public String defaultimg(HttpServletRequest request,HttpSession session, CoupleDataBean cdb){
+		
+		session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
+		String coupleimage = "couple1.jpg";
+
+		cdb.setCouplename(couplename);
+		cdb.setCoupleimage(coupleimage);
+		
+		sqlMap.update("defaultimg", cdb);
+
+
+		return "/sy0525/default.jsp";
 	}
 	
 

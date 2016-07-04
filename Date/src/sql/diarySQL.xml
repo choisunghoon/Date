@@ -130,5 +130,9 @@
 		(select num, couplename, subject, content, pool,likecount, readcount,regdate, placetitle, placeid, placecategory, placelocation, postsrc, poolsysdate, rownum r from 
 		(select num, couplename, subject, content, pool,likecount, readcount,regdate, placetitle, placeid, placecategory, placelocation, postsrc, poolsysdate from dc_dc where pool='1' order by likecount desc)) where <![CDATA[r<5]]>
 	</select>
+	
+	<update id="defaultimg" parameterClass="upload.bean.CoupleDataBean">
+		update dc_couple set coupleimage=#coupleimage# where couplename=#couplename#
+	</update>
 </sqlMap>
 
