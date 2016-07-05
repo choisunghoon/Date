@@ -45,10 +45,12 @@
 		<div id="subMain" style="float:left;width:86%">		
 		</div>
 	</div>
-<c:if test="${couplens eq null}">
-	<script>
-		callNo1();
-	</script>
+<c:if test="${id ne 'admin'}">
+	<c:if test="${couplens eq null}">
+		<script>
+			callNo1();
+		</script>
+	</c:if>
 </c:if>
 </body>
 <%@include file="/sy0615/kk.jsp" %>
