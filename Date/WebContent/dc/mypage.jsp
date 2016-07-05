@@ -110,7 +110,6 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 		<div id="subMain" style="float:left;width:86%">		
 		</div>
 	</div>
-
 <!-- 
 <script>
 $('ul li').click(function(){
@@ -135,6 +134,9 @@ function whenError(){
 </script>
  -->
  <script type="text/javascript">
+ function callmy(){
+		$("#mygo").trigger('click');
+	}
  
  window.onload = function () {
 	 callAjax("modifyForm.nhn");

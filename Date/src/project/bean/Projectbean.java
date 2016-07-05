@@ -26,7 +26,7 @@ import ch11.logon.CoupleDataBean;
 @Controller
 public class Projectbean {
 	@Autowired
-	private SqlMapClientTemplate sqlMap;// 占쌘듸옙占쏙옙占쏙옙 占쏙옙 占쌨억옙占쏙옙
+	private SqlMapClientTemplate sqlMap;// �뜝�뙓�벝�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕 �뜝�뙣�뼲�삕�뜝�룞�삕
 	/*
 	 * @SuppressWarnings("null")
 	 * 
@@ -201,8 +201,8 @@ public class Projectbean {
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String[] src = new String[2];
-		//String path = "C:\\Users\\user2\\workspace\\Spring\\WebContent\\project\\ei\\";
-		String path = request.getContextPath() + "/WebContent/project/ei/";
+		String path = "C:\\Users\\user2\\git\\Date\\Date\\WebContent\\project\\ei\\";
+		//String path = request.getContextPath() + "/WebContent/project/ei/";
 		int i = 0;
 		while (iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -250,16 +250,16 @@ public class Projectbean {
 		appList = sqlMap.queryForList("eventApp", row);
 		count = (Integer) sqlMap.queryForObject("eventAppCount", enumber);	
 		
-		int countCN = (Integer)sqlMap.queryForObject("countCN", id); //而ㅽ뵆�씤媛�
+		int countCN = (Integer)sqlMap.queryForObject("countCN", id); //�뚣끋逾놅옙�뵥揶쏉옙
 		if(countCN>0){
-		String couplen = (String)sqlMap.queryForObject("selectCouplename", id); //而ㅽ뵆�씠由꾨퐨湲�
+		String couplen = (String)sqlMap.queryForObject("selectCouplename", id); //�뚣끋逾놅옙�뵠�뵳袁⑦맖疫뀐옙
 		EventDataBean eto2 = new EventDataBean();	
 		eto2.setCouplename(couplen);
 		eto2.setEnumber(enumber);
 		EventDataBean eto3 = new EventDataBean();	
-		int checkcount = (Integer)sqlMap.queryForObject("checkcount2", eto2); //�븣由쇱쓣 蹂대깉�굹
+		int checkcount = (Integer)sqlMap.queryForObject("checkcount2", eto2); //占쎈르�뵳�눘�뱽 癰귣�源됵옙援�
 			if(checkcount>0){
-				eto3 = (EventDataBean)sqlMap.queryForObject("checkW2", eto2);	//checknum�솗�씤			
+				eto3 = (EventDataBean)sqlMap.queryForObject("checkW2", eto2);	//checknum占쎌넇占쎌뵥			
 				if(eto3.getChecknum()==0){
 					sqlMap.update("checknumU", eto2);
 				}
@@ -297,7 +297,7 @@ public class Projectbean {
 	
 		System.out.println(eto.getAppimg());
 		
-		// String cn = "커占쏙옙占쏙옙";
+		// String cn = "而ㅵ뜝�룞�삕�뜝�룞�삕";
 		//HashMap<String, Integer> row = new HashMap<String, Integer>();
 		//row.put("couplename", eto.getCouplename());
 		//row.put("enumber", eto.getEnumber());
@@ -363,7 +363,7 @@ public class Projectbean {
 		return "/project/appContentAdmin.jsp";
 	}
 
-	@RequestMapping("test.nhn") // 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+	@RequestMapping("test.nhn") // �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 	public String test(HttpServletRequest request) {
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		String pageNum = request.getParameter("pageNum");
@@ -484,7 +484,7 @@ public class Projectbean {
 		request.setAttribute("wcount", new Integer(wcount));
 		return "/project/wWay.jsp";
 	}
-	// 占쏙옙占쏙옙占쏙옙占� git
+	// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� git
 
 	@RequestMapping("random.nhn")
 	public String random(HttpServletRequest request,CoupleDataBean cdb) {

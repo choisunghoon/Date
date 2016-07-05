@@ -242,7 +242,8 @@ function asdf(nhn){
       </li>
       <li>
          <c:if test="${id != 'admin'}">
-         <a href="mypage.nhn?fbcheck=no"><img src="mainimg/as9.png" onmouseover='this.src="mainimg/as10.png"' onmouseout='this.src="mainimg/as9.png"'></a>
+       	 <a href="#" Onclick="goMenu('mypage.nhn?fbcheck=no')">
+       	 <img src="mainimg/as9.png" onmouseover='this.src="mainimg/as10.png"' onmouseout='this.src="mainimg/as9.png"'></a>
          </c:if>
          <c:if test="${id == 'admin'}">
          <a href="adminpage.nhn?chk=1"><img src="mainimg/a12.png" onmouseover='this.src="mainimg/a11.png"' onmouseout='this.src="mainimg/a12.png"'></a>

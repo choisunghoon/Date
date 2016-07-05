@@ -6,6 +6,10 @@
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=9be7455c7d33a4e2b750d3537e1179d8&libraries=services"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
+	function callNo(){
+		alert("커플 신청 후 이용해주세요!");
+		window.location.href="mypage.nhn";
+	}
  
 	callAjax2('diaryMenu.nhn')
      function callAjax2(nhn){
@@ -33,6 +37,11 @@
 <c:if test="${chk eq '1' }">
 	<script>
 		callAjax2('diaryMenu.nhn');
+	</script>
+</c:if>
+<c:if test="${ca eq '0' }">
+	<script>
+		callNo();
 	</script>
 </c:if>
 	<div style="width:100%;float:left;" >

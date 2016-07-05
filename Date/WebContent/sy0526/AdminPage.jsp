@@ -11,6 +11,9 @@
 
 		callAjax('adphoto.nhn');
 
+		if(chk == 2){
+			callAjax('adminEvent.nhn');
+		}
     function callAjax(nhn){
         $.ajax({
 	        type: "post",

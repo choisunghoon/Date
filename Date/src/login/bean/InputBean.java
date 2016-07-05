@@ -169,6 +169,7 @@ public class InputBean {
 	public String mypage(HttpSession session,HttpServletRequest request) throws Exception{
 		String check =(String)session.getAttribute("fbcheck");
 		String id =(String) session.getAttribute("id");
+		//int chk = Integer.parseInt(request.getParameter("chk"));
 		System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 筌ｋ똾寃뺧옙�쐻占쎈짗占쎌굲"+check);
 		request.setAttribute("check", check);
 		request.setAttribute("id", id);
@@ -226,8 +227,7 @@ public class InputBean {
 			else
 				request.setAttribute("couple1", "end");
 		}	
-		
-		
+		//request.setAttribute("chk", new Integer(chk));
 		return "/dc/mypage.jsp";
 	}
 	@RequestMapping("coupleinfo.nhn")//�뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 

@@ -21,20 +21,20 @@ public class LoginBean {
 	@Autowired
 	private SqlMapClientTemplate sqlMapper;
 	
-	@RequestMapping("main.nhn")//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 호占쏙옙占� 占쏙옙占쏙옙풔占� 占쌉쇽옙
+	@RequestMapping("main.nhn")//�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �샇�뜝�룞�삕�뺝뜝占� �뜝�룞�삕�뜝�룞�삕�뮅�뜝占� �뜝�뙃�눦�삕
 	public String main(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id = (String)session.getAttribute("id");
 
-			int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id); //占싸깍옙占쏙옙占쏙옙 회占쏙옙占쏙옙 nickname占쏙옙 null占쏙옙 占쏙옙占� 1占쏙옙 占쏙옙占쏙옙 
+			int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id); //�뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 nickname�뜝�룞�삕 null�뜝�룞�삕 �뜝�룞�삕�뜝占� 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 
 			session.setAttribute("id", id);
 			request.setAttribute("nickcheck", nickcheck);
-			int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//占싸깍옙占쏙옙 占쏙옙占쏙옙 확占쏙옙
+			int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//�뜝�떥源띿삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �솗�뜝�룞�삕
 			if(nc==1){
 				
-				String nickname=(String) sqlMapper.queryForObject("getNick", id); //占싸깍옙占쏙옙占쏙옙 회占쏙옙占쏙옙 nickname占쏙옙 占쏙옙占쏙옙
+				String nickname=(String) sqlMapper.queryForObject("getNick", id); //�뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 nickname�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
 				session.setAttribute("nickname", nickname);
-				int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname); //占싸깍옙占쏙옙占쏙옙 회占쏙옙占쏙옙 nickname占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占싯몌옙占쏙옙 占쌍댐옙占쏙옙 占싯삼옙.占쏙옙확占쏙옙 占싯몌옙占쏙옙 占쏙옙占쏙옙占쏙옙占� 1占쏙옙 占쏙옙占쏙옙
+				int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname); //�뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 nickname�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떙紐뚯삕�뜝�룞�삕 �뜝�뙇�뙋�삕�뜝�룞�삕 �뜝�떙�궪�삕.�뜝�룞�삕�솗�뜝�룞�삕 �뜝�떙紐뚯삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
 				int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
 				if(countCN>0){System.out.println("aa"+countCN);
 				String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
@@ -58,29 +58,29 @@ public class LoginBean {
 				}	
 				if(checkAlert!=0){
 					AlertDataBean adto=new AlertDataBean();
-					adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname); //占싸깍옙占쏙옙占쏙옙 회占쏙옙占쏙옙 nickname占쏙옙 占쏙옙占쏙옙 占싯몌옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
+					adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname); //�뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 nickname�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떙紐뚯삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
 					session.setAttribute("adto", adto);
 					
 					
 					System.out.println(adto.getContent());
 					
-					int ca=(Integer)sqlMapper.queryForObject("getCouple",id); //占싸깍옙占쏙옙占쏙옙 회占쏙옙占쏙옙 id占쏙옙 占쏙옙占쏙옙 회占쏙옙占쏙옙 커占쏙옙, 혹占쏙옙 커占시쏙옙청占쏙옙 占쏙옙 회占쏙옙占쏙옙占쏙옙 占싯삼옙 占쏙옙占쏙옙占쏙옙占� 占쌍다몌옙 1占쏙옙 占쏙옙占쏙옙 
+					int ca=(Integer)sqlMapper.queryForObject("getCouple",id); //�뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 id�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 而ㅵ뜝�룞�삕, �샊�뜝�룞�삕 而ㅵ뜝�떆�룞�삕泥��뜝�룞�삕 �뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떙�궪�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�뙇�떎紐뚯삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 
 					request.setAttribute("ca", ca);
 			}
-				int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id); // 占싸깍옙占쏙옙占쏙옙 회占쏙옙占쏙옙 id占쏙옙 占쏙옙占쏙옙 占싯몌옙占쏙옙 占싯삼옙. 占쏙옙占썸에占쏙옙 占쏙옙占쏙옙 커占시쏙옙청 占쌨쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 확占쏙옙占쏙옙占쏙옙占쏙옙 1占쏙옙 占쏙옙占쏙옙
-				System.out.println("占쏙옙占쏙옙 체크占싯뤄옙1"+checkAlert1);
+				int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id); // �뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 id�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떙紐뚯삕�뜝�룞�삕 �뜝�떙�궪�삕. �뜝�룞�삕�뜝�뜽�뿉�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 而ㅵ뜝�떆�룞�삕泥� �뜝�뙣�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �솗�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+				System.out.println("�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떙琉꾩삕1"+checkAlert1);
 				if(checkAlert1!=0){
 					LogonDataBean dto=new LogonDataBean();
 					dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-					System.out.println("占쏙옙占쏙옙 if dto.getCouple"+dto.getCouple());
+					System.out.println("�뜝�룞�삕�뜝�룞�삕 if dto.getCouple"+dto.getCouple());
 					
 					
-					if(dto.getCouple().equals("1")){	//	占싸깍옙占쏙옙占쏙옙 회占쏙옙占쏙옙 커占쏙옙 占시뤄옙占쏙옙占쏙옙 1占싱띰옙占� 占쏙옙占쏙옙占쏙옙 커占시쇽옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占실뱄옙
+					if(dto.getCouple().equals("1")){	//	�뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 而ㅵ뜝�룞�삕 �뜝�떆琉꾩삕�뜝�룞�삕�뜝�룞�삕 1�뜝�떛�씛�삕�뜝占� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 而ㅵ뜝�떆�눦�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떎諭꾩삕
 						request.setAttribute("couple1", "couple1");
 					}
 				}
 				else
-					request.setAttribute("couple1", "end");	// 占쏙옙占쏙옙占쏙옙 커占쏙옙 占쏙옙占쏙옙占쏙옙 占신븝옙占쏙옙占쏙옙占쏙옙 占실뱄옙
+					request.setAttribute("couple1", "end");	// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 而ㅵ뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떊釉앹삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떎諭꾩삕
 					
 			}
 			
@@ -91,42 +91,42 @@ public class LoginBean {
 		
 	}
 	
-	@RequestMapping("loginPro.nhn")//占싸깍옙占쏙옙占쏙옙 占쏙옙占쏙옙占� 호占쏙옙풔占� 占쌉쇽옙
+	@RequestMapping("loginPro.nhn")//�뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뺝뜝占� �샇�뜝�룞�삕�뮅�뜝占� �뜝�뙃�눦�삕
 	public String loginPro(HttpSession session,LogonDataBean dto,HttpServletRequest request) throws Exception{
-		String nomal=request.getParameter("hidden");	// 占쏙옙占썹값占쏙옙 占쏙옙占쏙옙 占싸깍옙占쏙옙占싹댐옙 회占쏙옙占쏙옙 占쏙옙占싱쏙옙占쏙옙占쏙옙占쏙옙 占싸깍옙占쏙옙占쌩댐옙占쏙옙 占싹뱄옙 占싸깍옙占쏙옙占쏙옙 占쌩댐옙占쏙옙 占실븝옙
+		String nomal=request.getParameter("hidden");	// �뜝�룞�삕�뜝�뜾媛믣뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떥源띿삕�뜝�룞�삕�뜝�떦�뙋�삕 �쉶�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�떛�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떥源띿삕�뜝�룞�삕�뜝�뙥�뙋�삕�뜝�룞�삕 �뜝�떦諭꾩삕 �뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙥�뙋�삕�뜝�룞�삕 �뜝�떎釉앹삕
 		String id=(String) request.getParameter("id");
-		System.out.println("占쏙옙占싱듸옙:"+id);
-		System.out.println("占쏙옙占쏙옙퓟占쏙옙占�:"+nomal);
-		int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id); //占싸깍옙占쏙옙占싹댐옙 회占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 1占쏙옙 占쏙옙占쏙옙 
+		System.out.println("�뜝�룞�삕�뜝�떛�벝�삕:"+id);
+		System.out.println("�뜝�룞�삕�뜝�룞�삕�뱹�뜝�룞�삕�뜝占�:"+nomal);
+		int nickcheck = (Integer)sqlMapper.queryForObject("nickCheck", id); //�뜝�떥源띿삕�뜝�룞�삕�뜝�떦�뙋�삕 �쉶�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 
 		request.setAttribute("nickcheck", nickcheck);
 		
-		if(nomal.equals("nomal")){ //占싹뱄옙 占싸깍옙占쏙옙 회占쏙옙占싸곤옙占�
-			int check = (Integer)sqlMapper.queryForObject("userCheck", dto); //id占쏙옙 pw占쏙옙 占쏙옙치 占싹댐옙占쏙옙 占싯삼옙. 占쏙옙치占싹몌옙 1占쏙옙 占쏙옙占쏙옙
+		if(nomal.equals("nomal")){ //�뜝�떦諭꾩삕 �뜝�떥源띿삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�떥怨ㅼ삕�뜝占�
+			int check = (Integer)sqlMapper.queryForObject("userCheck", dto); //id�뜝�룞�삕 pw�뜝�룞�삕 �뜝�룞�삕移� �뜝�떦�뙋�삕�뜝�룞�삕 �뜝�떙�궪�삕. �뜝�룞�삕移섇뜝�떦紐뚯삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
 			System.out.println(dto.getId()+dto.getPw());
 			if(check==1){
 				session.setAttribute("id",dto.getId());
-				session.setAttribute("check", "no");	// 占싹뱄옙 회占쏙옙占싸곤옙占� check 占쏙옙占쏙옙 no占쏙옙 占쌍는댐옙.
+				session.setAttribute("check", "no");	// �뜝�떦諭꾩삕 �쉶�뜝�룞�삕�뜝�떥怨ㅼ삕�뜝占� check �뜝�룞�삕�뜝�룞�삕 no�뜝�룞�삕 �뜝�뙇�뒗�뙋�삕.
 				
 				return "redirect:main.nhn";
 			}
 			
-			request.setAttribute("check", check);	//check占쏙옙占쏙옙 0占쏙옙 占쏙옙占� loginPro.jsp占쏙옙 占싱듸옙占싹울옙 占쏙옙橘占싫ｏ옙占� 占쏙옙占싱듸옙 확占쏙옙占싹띰옙占� 占쏙옙占시�占쏙옙 占쏙옙占�
+			request.setAttribute("check", check);	//check�뜝�룞�삕�뜝�룞�삕 0�뜝�룞�삕 �뜝�룞�삕�뜝占� loginPro.jsp�뜝�룞�삕 �뜝�떛�벝�삕�뜝�떦�슱�삕 �뜝�룞�삕艅섇뜝�떕節륁삕�뜝占� �뜝�룞�삕�뜝�떛�벝�삕 �솗�뜝�룞�삕�뜝�떦�씛�삕�뜝占� �뜝�룞�삕�뜝�떆占썲뜝�룞�삕 �뜝�룞�삕�뜝占�
 		}
-		else{	//占쏙옙占� 占싸깍옙占쏙옙 회占쏙옙占쏙옙 占쏙옙占�
-			int check = (Integer)sqlMapper.queryForObject("FBuserCheck", id);//占쏙옙占싱쏙옙占쏙옙 占쏙옙占싱듸옙 db占쏙옙 占쏙옙占쏙옙퓸占쏙옙獵摸占� 1占쏙옙 占쏙옙占쏙옙. 占쏙옙占쏙옙퓸占쏙옙占쏙옙占� 占십다몌옙 0占쏙옙 占쏙옙占쏙옙
+		else{	//�뜝�룞�삕�뜝占� �뜝�떥源띿삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝占�
+			int check = (Integer)sqlMapper.queryForObject("FBuserCheck", id);//�뜝�룞�삕�뜝�떛�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�떛�벝�삕 db�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�벝�뜝�룞�삕�뜷�뫖�뜝占� 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕. �뜝�룞�삕�뜝�룞�삕�벝�뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�떗�떎紐뚯삕 0�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
 			session.setAttribute("id", id);
-			session.setAttribute("check", "yes"); //占쏙옙占� 회占쏙옙占쏙옙 占쏙옙占� check 占쏙옙占쏙옙 yes占쏙옙 占쌍는댐옙.
-			if(check==1){//占쏙옙占쏙옙퓸占쏙옙獵摸占� 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占싱듸옙
+			session.setAttribute("check", "yes"); //�뜝�룞�삕�뜝占� �쉶�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝占� check �뜝�룞�삕�뜝�룞�삕 yes�뜝�룞�삕 �뜝�뙇�뒗�뙋�삕.
+			if(check==1){//�뜝�룞�삕�뜝�룞�삕�벝�뜝�룞�삕�뜷�뫖�뜝占� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떛�벝�삕
 				return "redirect:main.nhn";
 			}
-			else{//占쏙옙占쏙옙퓸占쏙옙占쏙옙占� 占십다몌옙 db占쏙옙 占쏙옙占� 회占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占싱듸옙
+			else{//�뜝�룞�삕�뜝�룞�삕�벝�뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�떗�떎紐뚯삕 db�뜝�룞�삕 �뜝�룞�삕�뜝占� �쉶�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦源띿삕 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떛�벝�삕
 				return "redirect:inputPro.nhn?id="+id+"&hidden=fb";
 			}
 		}
 		return "/dc/loginPro.jsp";
 	}
 	
-	@RequestMapping("logout.nhn") //占싸그아울옙
+	@RequestMapping("logout.nhn") //�뜝�떥洹몄븘�슱�삕
 	public String logout(HttpSession session) throws Exception{
 		session.invalidate();
 		
@@ -134,55 +134,37 @@ public class LoginBean {
 	}
 	
 	
-	@RequestMapping("loginForm.nhn") //占싸깍옙占쏙옙占쏙옙
+	@RequestMapping("loginForm.nhn") //�뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕
 	public String loginForm(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		return "/dc/loginForm.jsp";
 	}
-	@RequestMapping("/couple.nhn") //커占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占� 호占쏙옙풔占� 占쌉쇽옙
+	@RequestMapping("/couple.nhn") //而ㅵ뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占� �샇�뜝�룞�삕�뮅�뜝占� �뜝�뙃�눦�삕
 	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
 		String chk = request.getParameter("chk");
 		String id = (String)session.getAttribute("id");
-		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//占싸깍옙占쏙옙 占쏙옙占쏙옙 확占쏙옙
+		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//�뜝�떥源띿삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �솗�뜝�룞�삕
+		int ca=0;
 		if(nc==1){
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
-			/*int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
-			if(countCN>0){
-			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
-			EventDataBean eto = new EventDataBean()	;			
-			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
-				if(checkcount>0){
-					List etoList = null;
-					etoList = sqlMapper.queryForList("checkW", couplen);
-					for(int j=0; j<etoList.size();j++){
-						eto = (EventDataBean) etoList.get(j);
-						for(int i=0; i<checkcount; i++){
-							if(eto.getChecknum()==0){
-								request.setAttribute("checkW",  eto.getChecknum());
-								request.setAttribute("enumber1", eto.getEnumber());
-								request.setAttribute("ch", 0);
-							}
-						}
-					}
-				}
-			}*/
+		
 			if(checkAlert!=0){
 				AlertDataBean adto=new AlertDataBean();
 				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
 				session.setAttribute("adto", adto);
 				System.out.println(adto.getContent());
 			
-				int ca=(Integer)sqlMapper.queryForObject("getCouple",id);
+				ca=(Integer)sqlMapper.queryForObject("getCouple",id);
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("占쏙옙占쏙옙 체크占싯뤄옙1"+checkAlert1);
+			System.out.println("�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떙琉꾩삕1"+checkAlert1);
 			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("占쏙옙占쏙옙 if dto.getCouple"+dto.getCouple());
+				System.out.println("�뜝�룞�삕�뜝�룞�삕 if dto.getCouple"+dto.getCouple());
 				
 				
 				if(dto.getCouple().equals("1")){
@@ -193,35 +175,16 @@ public class LoginBean {
 				request.setAttribute("couple1", "end");
 			}
 		request.setAttribute("chk", chk);
+		request.setAttribute("ca", ca);
 		return "/sy0526/couple.jsp";
 	}
 	
-	@RequestMapping("/share.nhn") //占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占� 호占쏙옙풔占� 占쌉쇽옙
+	@RequestMapping("/share.nhn") //�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占� �샇�뜝�룞�삕�뮅�뜝占� �뜝�뙃�눦�삕
 	public String share(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id = (String)session.getAttribute("id");
-		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//占싸깍옙占쏙옙 占쏙옙占쏙옙 확占쏙옙
+		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//�뜝�떥源띿삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �솗�뜝�룞�삕
 		if(nc==1){
-			/*int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
-			if(countCN>0){
-			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
-			EventDataBean eto = new EventDataBean()	;			
-			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
-				if(checkcount>0){
-					List etoList = null;
-					etoList = sqlMapper.queryForList("checkW", couplen);
-					for(int j=0; j<etoList.size();j++){
-						eto = (EventDataBean) etoList.get(j);
-						for(int i=0; i<checkcount; i++){
-							if(eto.getChecknum()==0){
-								request.setAttribute("checkW",  eto.getChecknum());
-								request.setAttribute("enumber1", eto.getEnumber());
-								request.setAttribute("ch", 0);
-							}
-						}
-					}
-				}
-			}*/
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
@@ -236,11 +199,11 @@ public class LoginBean {
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("占쏙옙占쏙옙 체크占싯뤄옙1"+checkAlert1);
+			System.out.println("�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떙琉꾩삕1"+checkAlert1);
 			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("占쏙옙占쏙옙 if dto.getCouple"+dto.getCouple());
+				System.out.println("�뜝�룞�삕�뜝�룞�삕 if dto.getCouple"+dto.getCouple());
 				
 				
 				if(dto.getCouple().equals("1")){
@@ -255,31 +218,11 @@ public class LoginBean {
 		return "/sy0526/share.jsp";
 	}
 	
-	@RequestMapping("/theme.nhn") //占쌓몌옙 占쏙옙占쏙옙占쏙옙 호占쏙옙占� 占쏙옙占쏙옙풔占� 占쌉쇽옙
+	@RequestMapping("/theme.nhn") //�뜝�뙎紐뚯삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �샇�뜝�룞�삕�뺝뜝占� �뜝�룞�삕�뜝�룞�삕�뮅�뜝占� �뜝�뙃�눦�삕
 	public String theme(HttpSession session,HttpServletRequest request) throws Exception{
 		String id = (String)session.getAttribute("id");
-		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//占싸깍옙占쏙옙 占쏙옙占쏙옙 확占쏙옙
-		if(nc==1){/*
-			int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
-			if(countCN>0){
-			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
-			EventDataBean eto = new EventDataBean()	;			
-			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
-				if(checkcount>0){
-					List etoList = null;
-					etoList = sqlMapper.queryForList("checkW", couplen);
-					for(int j=0; j<etoList.size();j++){
-						eto = (EventDataBean) etoList.get(j);
-						for(int i=0; i<checkcount; i++){
-							if(eto.getChecknum()==0){
-								request.setAttribute("checkW",  eto.getChecknum());
-								request.setAttribute("enumber1", eto.getEnumber());
-								request.setAttribute("ch", 0);
-							}
-						}
-					}
-				}
-			}*/
+		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//�뜝�떥源띿삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �솗�뜝�룞�삕
+		if(nc==1){
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
@@ -294,11 +237,11 @@ public class LoginBean {
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("占쏙옙占쏙옙 체크占싯뤄옙1"+checkAlert1);
+			System.out.println("�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떙琉꾩삕1"+checkAlert1);
 			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("占쏙옙占쏙옙 if dto.getCouple"+dto.getCouple());
+				System.out.println("�뜝�룞�삕�뜝�룞�삕 if dto.getCouple"+dto.getCouple());
 				
 				
 				if(dto.getCouple().equals("1")){
@@ -311,12 +254,12 @@ public class LoginBean {
 		return "/sy0526/theme.jsp";
 	}
 	
-	@RequestMapping("/event.nhn") //占싱븝옙트 占쏙옙占쏙옙占쏙옙 호占쏙옙占� 占쏙옙占쏙옙풔占� 占쌉쇽옙
+	@RequestMapping("/event.nhn") //�뜝�떛釉앹삕�듃 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �샇�뜝�룞�삕�뺝뜝占� �뜝�룞�삕�뜝�룞�삕�뮅�뜝占� �뜝�뙃�눦�삕
 	public String event(HttpSession session,HttpServletRequest request) throws Exception{
 		String chk = request.getParameter("chk");
 		request.setAttribute("chk",chk);
 		String id = (String)session.getAttribute("id");
-		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//占싸깍옙占쏙옙 占쏙옙占쏙옙 확占쏙옙
+		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//�뜝�떥源띿삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �솗�뜝�룞�삕
 		if(nc==1){
 			int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
 			if(countCN>0){
@@ -352,11 +295,11 @@ public class LoginBean {
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("占쏙옙占쏙옙 체크占싯뤄옙1"+checkAlert1);
+			System.out.println("�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떙琉꾩삕1"+checkAlert1);
 			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("占쏙옙占쏙옙 if dto.getCouple"+dto.getCouple());
+				System.out.println("�뜝�룞�삕�뜝�룞�삕 if dto.getCouple"+dto.getCouple());
 				
 				
 				if(dto.getCouple().equals("1")){
@@ -369,28 +312,11 @@ public class LoginBean {
 		return "/sy0526/event.jsp";
 	}
 	
-	@RequestMapping("/personal.nhn") // 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占� 호占쏙옙풔占� 占쌉쇽옙
+	@RequestMapping("/personal.nhn") // �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뺝뜝占� �샇�뜝�룞�삕�뮅�뜝占� �뜝�뙃�눦�삕
 	public String personal(HttpSession session,HttpServletRequest request) throws Exception{
 		String id = (String)session.getAttribute("id");
-		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//占싸깍옙占쏙옙 占쏙옙占쏙옙 확占쏙옙
+		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//�뜝�떥源띿삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �솗�뜝�룞�삕
 		if(nc==1){
-		/*	String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);		
-			EventDataBean eto = new EventDataBean()	;			
-			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
-			if (checkcount > 0) {
-				List etoList = null;
-				etoList = sqlMapper.queryForList("checkW", couplen);
-				for(int j=0; j<etoList.size();j++){
-					eto = (EventDataBean) etoList.get(j);
-					for(int i=0; i<checkcount; i++){
-						if(eto.getChecknum()==0){
-							request.setAttribute("checkW",  eto.getChecknum());
-							request.setAttribute("enumber1", eto.getEnumber());
-							request.setAttribute("ch", 0);
-						}
-					}
-				}
-			}*/
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
@@ -405,11 +331,11 @@ public class LoginBean {
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("占쏙옙占쏙옙 체크占싯뤄옙1"+checkAlert1);
+			System.out.println("�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떙琉꾩삕1"+checkAlert1);
 			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("占쏙옙占쏙옙 if dto.getCouple"+dto.getCouple());
+				System.out.println("�뜝�룞�삕�뜝�룞�삕 if dto.getCouple"+dto.getCouple());
 				
 				
 				if(dto.getCouple().equals("1")){
