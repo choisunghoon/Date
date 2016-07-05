@@ -693,7 +693,8 @@ public class Projectbean {
 	@RequestMapping("deleteWcouplesPro.nhn")
 	public String deleteWcouplesPro(HttpServletRequest request){
 		int enumber = Integer.parseInt(request.getParameter("enumber"));		
-		String Cwcouples = request.getParameter("wcouples");		
+		String Cwcouples = request.getParameter("wcouples");
+		System.out.println(Cwcouples);
 		String wName = (String) sqlMap.queryForObject("eventAppAdmin", enumber);
 		System.out.println(wName);
 		EventDataBean app = new EventDataBean();

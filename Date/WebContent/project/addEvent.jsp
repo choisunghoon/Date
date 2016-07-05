@@ -418,7 +418,7 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
       </td>
     </tr>
     <tr>
-     <td colspan=2 align="center"><input type="submit" value="전송"></td>
+     <td colspan=2 align="center"><input type="image" name="submit" value="submit" src="button/z5.png" /></td>
     </tr>
 </table>
 </div>
