@@ -11,11 +11,10 @@
 <script type="text/javascript">
     $(document).ready(function(){
       $("#like").click(function(){
-
+			
     	  callAjax1();
       });
     });
-
     function callAjax1(){
         $.ajax({
 	        type: "post",
@@ -29,7 +28,7 @@
         console.log(resdata);
     }
     function whenError(){
-        alert("likeError");
+        alert("하루 가능한 좋아요 횟수 초과");
     }
     
     function callAjax3(nhn){
@@ -99,13 +98,16 @@
 		</div>	     
 		</td>
 		</tr>                                                       
- 			<br/><td align="right">
+ 		<td align="right">
+ 		<br/><br/>
+ 		
  			 <c:if test="${id=='admin'}">
  				<img src="yh/img/c3.png" type="button" value="delete" onclick="callAjax('deleteDiaryList.nhn?num=${dto.num }')"/>&nbsp;&nbsp;
  			</c:if>
  				<img src="yh/img/z59.png" type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareDiaryBoard.nhn')"/>&nbsp;&nbsp;
 				<img src="yh/img/z57.png" type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('dairyComment.nhn')" /> </td>
-		
+		<input id="likelimit" name="likelimit" value="${likelimit}" type="text">
+		</input>
 		</table>
 		<tr>
 		<br/>

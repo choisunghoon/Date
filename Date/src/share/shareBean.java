@@ -1,6 +1,7 @@
 package share;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -186,26 +187,38 @@ public class shareBean {
 		String id = (String)session.getAttribute("id");
 		String couplename = (String) sqlMap.queryForObject("serchCouplename",id);
 
-		
+		likeDataBean dto1 = new likeDataBean();
 		DiaryDataBean dto = new DiaryDataBean();
 		dto = (DiaryDataBean)sqlMap.queryForObject("shereDiarySelectNum", num);
 		
 		String place = "다이어리 공유";
+		
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		SimpleDateFormat format = new SimpleDateFormat("MM_dd");
+		String reg = format.format(timestamp);
+		
 		List list = new ArrayList();
-
+		
 		Map map = new HashMap();
 		map.put("num", num);
 		map.put("couplename", couplename);
 		map.put("place", place);
+		map.put("reg", reg);
 		list.add(map);
 		
 		int check = (Integer)sqlMap.queryForObject("shereDiaryLikePro",map);
 		
+		int check1 = (Integer)sqlMap.queryForObject("likeLimit",map);
+
 		System.out.println("체크값 몇이냐" +" " +check);
+		System.out.println(" likeLimit 숫자" +" " +check1);
+		System.out.println(" reg 숫자" +" " +reg);
+		System.out.println(" couplename 이름" +" " + couplename);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);
 		mv.addObject("num",num);
 		mv.addObject("check",check);
+		mv.addObject("likelimit",check1);
 		mv.setViewName("/yh/shareDiaryBoardView.jsp");
 		return mv;
 	
@@ -347,17 +360,17 @@ public class shareBean {
 	}
 
 
-/*  하루에 추천수 제한
 	@RequestMapping("likeLimit.nhn")
 	public String likeLimit(HttpServletRequest request, HttpSession session){
 		
 		likeDataBean dto1 = new likeDataBean();
-		
+		String id = (String)session.getAttribute("id");
+		String couplename = (String) sqlMap.queryForObject("serchCouplename",id);
 		
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd");
 		String reg = format.format(timestamp);
-		String couplename= request.getParameter("couplename");
+		
 		System.out.println(reg);
 		System.out.println(couplename);
 		
@@ -369,10 +382,11 @@ public class shareBean {
 		list.add(map);
 		
 		int check = (Integer)sqlMap.queryForObject("likeLimit",map);
-		
-			return "/yh/likeLimit.jsp";
+
+		request.setAttribute("check", check);
+			return "/yh/shartDiaryBoardView.jsp";
 		}
-*/
+
 	//공유 코스 좋아요 기능 
 	@RequestMapping("shareCourseLikeCount.nhn")
 	public ModelAndView shareCourseLikeCount(int num,HttpServletRequest request, HttpSession session){

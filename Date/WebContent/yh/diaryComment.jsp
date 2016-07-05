@@ -95,7 +95,7 @@ function viewimotappimg(){
                    <table width="500px"  border="0" cellspacing="0" cellpadding="0" >
 					<tr align="center">
 						<td ><textarea name="diarycomment" style="width:100%" id="diarycomment" cols="35" rows="2" /></td>
-<input type=hidden id="appimg" name="appimg" value="1.png">
+<input type=hidden id="appimg" name="appimg" value="8.png">
 						<td align="center" style="CURSOR: pointer;" onclick=viewimotappimg(); style="width:32;height:29"><input type="hidden" id="couplename" name="couplename" value="${couplename}">
 				<DIV id=imotappimgImg name="imotiImg" style="width:32"><IMG src="/Date/project/ee/8.png"></DIV></td>
 				<td>

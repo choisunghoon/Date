@@ -26,5 +26,9 @@ public class likeDataBean {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
+	public void setRegdate(String format) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
