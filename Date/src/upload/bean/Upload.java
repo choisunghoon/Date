@@ -104,8 +104,8 @@ public class Upload {
 	           //객체에 날짜가 설정된다.
 	      long day = cal2.getTimeInMillis() - cal.getTimeInMillis() ;
 	      long dday = day/1000/60/60/24 -1;		
-	      //int aa = Integer.parseInt(dday/100 - Math.floor(dday/100));
-	      	
+	      double aa = dday/100 - Math.floor(dday/100);
+	      System.out.println((int)aa);
 	    request.setAttribute("dday", dday);
 		request.setAttribute("couplename", couplename);
 		request.setAttribute("listMore", listMore);
