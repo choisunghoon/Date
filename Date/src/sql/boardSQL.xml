@@ -239,6 +239,9 @@
 		<update id="mylistPush2" parameterClass="java.util.HashMap">
 			update dc_member set list=#listnull# where id=#myId#
 		</update>
+		<update id="mylistPush3" parameterClass="java.util.HashMap">
+			update dc_member set list=#relist# where id=#myId#
+		</update>
 		<select id="checkMylist" parameterClass="String" resultClass="int">
 			select count(*) from dc_member where id=#id# and list is null
 		</select>

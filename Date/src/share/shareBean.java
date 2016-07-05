@@ -401,7 +401,7 @@ public class shareBean {
 		System.out.println("커플네임"+ couplename);
 		int checkMylist = (Integer)sqlMap.queryForObject("checkMylist",id);
 		pointDataBean dto2 = new pointDataBean();
-		
+		System.out.println("체크마이리스트!!!!!!!!!!!!!!!!!!!"+checkMylist);
 		Timestamp regdate = new Timestamp(System.currentTimeMillis());
 		String place = "데이트코스 공유";
 		
@@ -419,7 +419,13 @@ public class shareBean {
 			String arryMylist[]=getMylist.split(",");
 			String mylistPush=getMylist+","+num;
 			map.put("mylistPush", mylistPush);
+			System.out.println(mylistPush+"체크값0 마이리스트푸쉬!!! 기존에 리스트가있을때");
+			String renum=","+num;
+			String relist=getMylist.replace(renum,"");
+			map.put("relist", relist);
 		}
+		
+		
 		list.add(map);
 		
 		System.out.println("1couplename"+" "+couplename);
@@ -433,17 +439,24 @@ public class shareBean {
 		System.out.println("3check"+" "+check);
 			if (check ==1){
 			
-			if(checkMylist==0){
-				String getMylist=(String)sqlMap.queryForObject("getmylist", id);
-				String arryMylist[]=getMylist.split(",");
-				for(int i=0;i<arryMylist.length;i++){
-					
+				if(checkMylist==0)
+				{	
+					String getMylist=(String)sqlMap.queryForObject("getmylist", id);
+					String arryMylist[]=getMylist.split(",");
+					System.out.println("마이리스트렝쓰!!!!!!!!!!"+arryMylist.length);
+					if(arryMylist.length==1){
+						sqlMap.update("mylistPush2",map);
+					}
+					else{
+						String renum=","+num;
+						String relist=getMylist.replace(renum,"");
+						System.out.println("리리스트!!"+relist);
+						System.out.println("리넘!!!!!!!!!!!!!!!!!!!"+renum);
+						sqlMap.update("mylistPush3", map);
+					}
 				}
-				
-			}
-			else{
-				sqlMap.update("mylistPush2", map);
-			}
+			
+			
 			
 			sqlMap.update("shereCourseLikeCountDown", map);
 			System.out.println("좋아요 감소");
@@ -456,10 +469,10 @@ public class shareBean {
 			
 		}else{
 			if(checkMylist==1){
-				sqlMap.update("mylistPush",map);
+				sqlMap.update("mylistPush1",map);
 			}
 			else{
-				sqlMap.update("mylistPush1", map);
+				sqlMap.update("mylistPush", map);
 			}
 			sqlMap.update("shereCourseLikeCountUp", map);
 			System.out.println("좋아요 증가");
