@@ -8,7 +8,7 @@
 <title>댓글보기</title>
 </head>
 <body>
-<form method="post" name="appContent" action="appW.nhn?enumber=${enumber}&pageNum=${pageNum}">
+<form method="post" name="appContent" action="appW.nhn?enumber=${enumber}&pageNum=${pageNum}&w=${w}">
 <table border="1" width="500" height="300" cellpadding="0" cellspacing="0"
 			align="center">
 			<tr height="20">

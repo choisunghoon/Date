@@ -145,8 +145,12 @@
 	</select>
 	
 	<update id="deleteWcouples" parameterClass="project.bean.EventDataBean">
-		update event set wcouples=#wcouples# where enumber=#enumber#
+		update event set wcouples=#wcouples#, w=#w# where enumber=#enumber#
 	</update>
+	
+	<delete id="deleteW" parameterClass="project.bean.EventDataBean">
+		delete from event_a where enumber=#enumber# and couplename=#couplename#
+	</delete>
 
 	<select id="wcount" resultClass="String" parameterClass="int">
 		select wcouples from event where enumber=#enumber#

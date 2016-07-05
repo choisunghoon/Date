@@ -9,7 +9,8 @@
 <body>
 <script type="text/javascript">
 alert("이벤트가 등록 되었습니다!");
-window.location.href="event.nhn?chk=2";
+window.close();
+opener.parent.callAjax('adminEvent.nhn');
 </script>
 </body>
 </html>
