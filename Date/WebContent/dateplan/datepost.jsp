@@ -90,16 +90,7 @@
 
 <script type="text/javascript">
 
-function callUppool(){
-	$.ajax({
-        type: "post",
-        url : url,
-        data :{
-        	num : $('#num').val()
-        },
-        
-	})
-}
+
 var pids = '${pidsize}'
 	
 function readImage(file,j) {
