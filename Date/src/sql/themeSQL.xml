@@ -72,10 +72,28 @@
     	)
     </insert>
     
-    <select id="selectReply" resultClass="themeDTO.ReplyDataBean" parameterClass="java.util.Map">
+    <select id="getPlaceCount" resultClass="int" parameterClass="int">
+    	select count(*) from location where cos_num=#cos_num#
+    </select>
+    
+    <select id="selectReply2" resultClass="themeDTO.ReplyDataBean" parameterClass="java.util.Map">
     	select num, id, loc_reply, regdate, loc_num, r from
     	(select num, id, loc_reply, regdate, loc_num, rownum r from
     	(select num, id, loc_reply, regdate, loc_num from reply)) where loc_num=#loc_num# and r>#startRow# and <![CDATA[r<=#endRow#]]>
+    </select>
+    
+    <select id="selectReply1" resultClass="themeDTO.ReplyDataBean" parameterClass="int">
+    	select * from reply where loc_num=#loc_num#
+    </select>
+    
+    <sql id="getReplyList">
+    	select num, id, loc_reply, regdate, loc_num, r from
+    	(select num, id, loc_reply, regdate, loc_num, rownum r from
+    	(select num, id, loc_reply, regdate, loc_num from reply
+    </sql>
+    
+	<select id="selectReply" resultClass="themeDTO.ReplyDataBean" parameterClass="java.util.Map">
+    	<include refid="getReplyList"/> where loc_num=#loc_num#) order by num asc) where r>=#startRow# and <![CDATA[r<=#endRow#]]>
     </select>
     
     <select id="replyCount" resultClass="int" parameterClass="java.lang.Integer">

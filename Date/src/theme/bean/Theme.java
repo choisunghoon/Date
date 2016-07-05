@@ -364,14 +364,19 @@ public class Theme {
 
 		int count = (Integer) sqlMap.queryForObject("getLikeCount", cos_num);
 		
-		LikeCountDataBean dto2 = new LikeCountDataBean();
-		dto2.setId(id);
-		dto2.setCtg_num(ctg_num);
-		dto2.setCos_num(cos_num);
 		
-		if(count > 0){ 
-			checkNum = (Integer) sqlMap.queryForObject("getCheckNum", dto2);
+		if(id != null){
+			LikeCountDataBean dto2 = new LikeCountDataBean();
+			dto2.setId(id);
+			dto2.setCtg_num(ctg_num);
+			dto2.setCos_num(cos_num);
+		
+			if(count > 0){ 
+				checkNum = (Integer) sqlMap.queryForObject("getCheckNum", dto2);
+			}
 		}
+		
+		int placeCount = (int) sqlMap.queryForObject("getPlaceCount", cos_num);
 		
 		HashMap<String, Integer> num = new HashMap<String, Integer>();
 		num.put("ctg_num", ctg_num);
@@ -395,6 +400,7 @@ public class Theme {
 		request.setAttribute("ctg_num", ctg_num);
 		request.setAttribute("cos_num", cos_num);
 		request.setAttribute("checkNum", checkNum);
+		request.setAttribute("placeCount", placeCount);
 		request.setAttribute("id", id);
 		
 		return "/theme/place.jsp";
@@ -637,74 +643,5 @@ public class Theme {
 		return "/theme/cosLikeCount.jsp";
 	}
 	
-	@RequestMapping("replyUp.nhn")
-	public String replyUp(HttpServletRequest request ,HttpSession session,int loc_num)throws Exception{
-		ReplyDataBean dto1 = new ReplyDataBean();
-		
-		session = request.getSession();
-		String id = (String)session.getAttribute("id");
-		
-		dto1.setId(id);
-		System.out.println("아이디"+" "+id);
-		
-		String loc_reply = request.getParameter("loc_reply");
-		dto1.setLoc_reply(loc_reply);
-		
-		System.out.println("리플"+" "+loc_reply);
-		
-		dto1.setLoc_num(loc_num);
-		System.out.println("넘버값"+" "+loc_num);
-		
-		dto1.setRegdate(new Timestamp(System.currentTimeMillis()));
-		
-		sqlMap.insert("replyUp", dto1);
-		
-		return "/theme/themeReply.jsp";
-	}
-	
-	@RequestMapping("placeReply.nhn")
-	public String placeReply(HttpServletRequest request ,HttpSession session){
-		
-		session = request.getSession();
-		String id = (String)session.getAttribute("id");
-		int loc_num = Integer.parseInt(request.getParameter("loc_num"));
-		System.out.println(loc_num);
-	
-		ReplyDataBean dto1 = new ReplyDataBean();
-		
-		List replyList = new ArrayList();
-		int count = 0;
-		
-		String pageNum = request.getParameter("pageNum");
-		int pageSize = 10;
-		if(pageNum == null){
-			pageNum = "1";
-		}
-		int currentPage = Integer.parseInt(pageNum);
-		System.out.println("pageNum" + pageNum);
-		int startRow = (currentPage - 1) * pageSize + 1;
-		int endRow = currentPage * pageSize;
-		
-		HashMap<String, Integer> num = new HashMap<String, Integer>();
-		num.put("startRow", startRow);
-		num.put("endRow", endRow);
-		num.put("loc_num", loc_num);
-		
-		replyList = sqlMap.queryForList("selectReply", num);
-		count = (Integer)sqlMap.queryForObject("replyCount", loc_num);
-		System.out.println(startRow);
-		System.out.println(endRow);
-		System.out.println(count);
-		request.setAttribute("replyList", replyList);
-		request.setAttribute("count", count);
-		request.setAttribute("currentPage", currentPage);
-		request.setAttribute("startRow",startRow);
-		request.setAttribute("endRow", endRow);
-		request.setAttribute("pageSize", pageSize);
-		request.setAttribute("id", id);
-
-		
-		return "/theme/themeReply.jsp";
-	}
 
 }
