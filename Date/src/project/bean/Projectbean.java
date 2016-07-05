@@ -694,7 +694,7 @@ public class Projectbean {
 	public String deleteWcouplesPro(HttpServletRequest request){
 		int enumber = Integer.parseInt(request.getParameter("enumber"));		
 		String Cwcouples = request.getParameter("wcouples");
-		System.out.println(Cwcouples);
+		/*System.out.println("개짜증난다"+Cwcouples);
 		String wName = (String) sqlMap.queryForObject("eventAppAdmin", enumber);
 		System.out.println(wName);
 		EventDataBean app = new EventDataBean();
@@ -704,7 +704,6 @@ public class Projectbean {
 		for(int i=0; i<wcList.length; i++){
 			if(!(wcList[i].equals(Cwcouples))){				
 				list.add(wcList[i]);
-				System.out.println("wcsdfasfsf");
 			}
 		}
 		String wc = (String)list.get(0);
@@ -713,6 +712,34 @@ public class Projectbean {
 				wc = wc + "," + (String) list.get(i);
 				System.out.println("wc"+wc);
 			}
+		}
+		app.setEnumber(enumber);
+		app.setWcouples(wc);
+		
+		sqlMap.update("deleteWcouples", app);*/
+		
+		
+		String wName = (String) sqlMap.queryForObject("eventAppAdmin", enumber);
+		System.out.println(wName);
+		EventDataBean app = new EventDataBean();
+		String[] wcList = null;
+		wcList = wName.split(",");
+		List list = new ArrayList();
+		for(int i=0; i<wcList.length; i++){
+			if(!(wcList[i].equals(Cwcouples))){				
+				list.add(wcList[i]);
+			}
+		}
+		String wc = null;
+		if(!(list.isEmpty())){
+		wc = (String)list.get(0);
+		if (list.size() != 1) {
+			for (int i = 1; i < list.size(); i++) {
+				wc = wc + "," + (String) list.get(i);
+			}
+		}}
+		if(list.isEmpty()){
+			wc = "";
 		}
 		app.setEnumber(enumber);
 		app.setWcouples(wc);
