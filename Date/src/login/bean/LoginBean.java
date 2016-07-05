@@ -255,11 +255,12 @@ public class LoginBean {
 		String chk = request.getParameter("chk");
 		request.setAttribute("chk",chk);
 		String id = (String)session.getAttribute("id");
+		String couplen = null;
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//�뜝�떥源띿삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �솗�뜝�룞�삕
 		if(nc==1){
 			int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
 			if(countCN>0){
-			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
+			couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
 			EventDataBean eto = new EventDataBean()	;			
 			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
 				if(checkcount>0){
@@ -280,6 +281,7 @@ public class LoginBean {
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
+			session.setAttribute("couplen", couplen);
 		
 			if(checkAlert!=0){
 				AlertDataBean adto=new AlertDataBean();
