@@ -134,5 +134,14 @@
 	<update id="defaultimg" parameterClass="upload.bean.CoupleDataBean">
 		update dc_couple set coupleimage=#coupleimage# where couplename=#couplename#
 	</update>
+	
+	<select id="ff" resultClass="dateplan.bean.DTO">
+		select * from dc_dc where pool=1 order by poolsysdate desc
+	</select>
+	
+	<select id="couplecount" resultClass="int" parameterClass="upload.bean.CoupleDataBean">
+		select count(*) from dc_couple where couplename = #couplename#
+	</select>
+	
 </sqlMap>
 

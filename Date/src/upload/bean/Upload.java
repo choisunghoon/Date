@@ -480,16 +480,19 @@ public class Upload {
 	@RequestMapping("/latestcourse.nhn")
 	public String latestcourse(DTO dto, CoupleDataBean cdb, HttpServletRequest request){
 		List latest = null;
-		latest = sqlMap.queryForList("getlatest", null);
+		latest = sqlMap.queryForList("ff", null);
 		List couple = new ArrayList();
-		for(int i=0; i<latest.size(); i++){
+		
+		for(int i=0; i < latest.size(); i++){
 			CoupleDataBean cdb1 = new CoupleDataBean();
 			dto = (DTO)latest.get(i);
 			cdb.setCouplename(dto.getCouplename());
-			cdb1 = (CoupleDataBean)sqlMap.queryForObject("coupleimg", cdb);
-			couple.add(cdb1);
+			int count = (Integer)sqlMap.queryForObject("couplecount", cdb);
+			if(count == 1){
+				cdb1 = (CoupleDataBean)sqlMap.queryForObject("coupleimg", cdb);
+				couple.add(cdb1);	
+			}
 		}
-		
 		request.setAttribute("latest", latest);
 		request.setAttribute("couple", couple);
 		return "/sy0703/latestcourse.jsp";
@@ -504,12 +507,17 @@ public class Upload {
 			CoupleDataBean cdb1 = new CoupleDataBean();
 			dto = (DTO)best.get(i);
 			cdb.setCouplename(dto.getCouplename());
+			int count = (Integer)sqlMap.queryForObject("couplecount",cdb);
+			if(count == 1){
 			cdb1 = (CoupleDataBean)sqlMap.queryForObject("coupleimg", cdb);
 			couple.add(cdb1);
+			}
 		}
 		
 		request.setAttribute("best",best);
 		request.setAttribute("couple",couple);
+		
+		
 		
 		return "/sy0703/bestcourse.jsp";
 	}

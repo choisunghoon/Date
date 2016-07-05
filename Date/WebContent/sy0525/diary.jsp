@@ -60,7 +60,7 @@ $("#choose").change(function (e) {
 			document.location.href="default.nhn";
 		}
 		else{
-			window.location.replace("couple.nhn?chk=1");
+			return false;
 		}
 	}
 

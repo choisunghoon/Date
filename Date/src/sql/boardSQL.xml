@@ -136,8 +136,8 @@
 		<select id="getMemberbync" parameterClass="String" resultClass="int">
 			SELECT count(*)from dc_member where nickname=#nickname#
 		</select>
-		<select id="getCouple" parameterClass="String" resultClass="int">
-			SELECT count(*) from dc_couple where id1=#id# or id2=#id#
+		<select id="getCouple" parameterClass="String" resultClass="ch11.logon.LogonDataBean">
+			SELECT * from dc_member where id=#id#
 		</select>
 		<select id="confirmId" parameterClass="String" resultClass="int">
 			SELECT count(*) FROM dc_member where id=#id# 

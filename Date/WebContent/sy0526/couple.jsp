@@ -39,7 +39,7 @@
 		callAjax2('diaryMenu.nhn');
 	</script>
 </c:if>
-<c:if test="${ca eq '0' }">
+<c:if test="${ldb.couple eq '0' }">
 	<script>
 		callNo();
 	</script>
