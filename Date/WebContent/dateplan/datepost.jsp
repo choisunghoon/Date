@@ -87,10 +87,24 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 </style>
-
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
-
-
+function callpool(url){
+	$.ajax({
+		type : "post",
+		url : url,
+		success : poolcall,
+		error : poolerr
+		
+	})
+}
+function poolcall(pc){
+	$("#subMain").html(pc);
+	callAjax2('datePostscript.nhn');
+}
+function poolerr(){
+	alert("Error");
+}
 var pids = '${pidsize}'
 	
 function readImage(file,j) {
@@ -895,10 +909,10 @@ function removeAllChildNods(el) {
 <!-- 
 <a href="callUppool"><img alt="" src="button/z39.png"></a>
  -->
-<a href="#" onClick="location.href='poolpro.nhn?num=${dto.num}&check=1'"><img alt="" src="button/z39.png"></a>
+<a href="#" onClick="callpool('poolpro.nhn?num=${dto.num}&check=1')"><img alt="" src="button/z39.png"></a>
 </c:if>
 <c:if test="${dto.pool eq '1' }">
-	<a href="#" onClick="location.href='poolpro.nhn?num=${dto.num}&check=0'"><img alt="" src="button/z38.png"></a>
+	<a href="#" onClick="callpool('poolpro.nhn?num=${dto.num}&check=0')"><img alt="" src="button/z38.png"></a>
 </c:if>
 	<c:forEach	var="i" begin="0" end="${pidsize-1 }">
 		<div>

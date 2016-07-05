@@ -54,8 +54,9 @@
 	
 </script>
 
+<form method="post" action="cosdel.nhn">
 <div id="cos">
-
+<input type="submit" value="삭제" /> 
 <c:forEach var="cosList" items="${cosList}">
 <div class="image">
 		
@@ -80,3 +81,4 @@
 </div>
 </c:forEach>
 </div>
+</form>

@@ -622,6 +622,7 @@ public class Upload {
 			cdb.setPoint(point);
 			sqlMap.update("poolshare1", dto);
 			sqlMap.update("photopoint", cdb);
+			request.setAttribute("check", check);
 		return "/dateplan/poolpro.jsp";
 	}
 	
