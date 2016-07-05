@@ -29,7 +29,7 @@ public class shareBean {
 	@RequestMapping("courseComment.nhn")
 	public String courseComment(HttpSession session,HttpServletRequest request,int num){
 		List commentList =null;
-		int listMore = 20;
+		int listMore = 10;
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		commentDataBean dto = new commentDataBean();
@@ -155,7 +155,7 @@ public class shareBean {
 	@RequestMapping("dairyComment.nhn")
 	public String dairyComment(HttpSession session,HttpServletRequest request,int num){
 		List commentList =null;
-		int listMore = 20;
+		int listMore = 10;
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		commentDataBean dto = new commentDataBean();
