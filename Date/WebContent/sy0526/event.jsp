@@ -6,7 +6,15 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 	
-	callAjax('photorequest.nhn?couplename=dfg')
+	window.onload = function () {
+	 callAjax("photorequest.nhn");
+	}
+	
+	function callNo1(){
+		alert("커플 신청 후 이용해주세요!");
+		window.location.href="mypage.nhn";
+	}
+	
     function callAjax(nhn){
         $.ajax({
 	        type: "post",
@@ -27,15 +35,22 @@
 		top:0px;}
 </style>
 
-<body><br /><br />
+<body><br /><br /><input type="hidden" id="couplen" name="couplen" value="${couplens}">
 	<div style="width:100%;float:left;" >
 		<div style="width:12%;float:left;">
-			<a href="#" onclick="callAjax('photorequest.nhn?couplename=dfg')"><img src="syimage/mm15.png" onmouseover='this.src="syimage/mm16.png"' onmouseout='this.src="syimage/mm15.png"' /></a>
+			<a href="#" onclick="callAjax('photorequest.nhn')"><img src="syimage/mm15.png" onmouseover='this.src="syimage/mm16.png"' onmouseout='this.src="syimage/mm15.png"' /></a>
 			<a href="#" onclick="callAjax('eventTeb.nhn')"><img src="syimage/mm17.png" onmouseover='this.src="syimage/mm18.png"' onmouseout='this.src="syimage/mm17.png"' /></a>
 		</div>
 		<div style="float:left;width:2%">&nbsp;&nbsp;&nbsp;</div>
 		<div id="subMain" style="float:left;width:86%">		
 		</div>
 	</div>
+<c:if test="${id ne 'admin'}">
+	<c:if test="${couplens eq null}">
+		<script>
+			callNo1();
+		</script>
+	</c:if>
+</c:if>
 </body>
 <%@include file="/sy0615/kk.jsp" %>
