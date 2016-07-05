@@ -157,7 +157,7 @@ name="commentup" value="commentup" href="#" onclick="callAjax3('CommentUp.nhn')"
 						<tr align="center">
 						<td width="15%">${commentList.id}</td>
 						<td width="55%" cols="10" rows="3">
-						&nbsp;<img src="/Date/project/ee/${commentList.img}"/>
+						&nbsp;<img src="/Date/yh/ee/${commentList.img}"/>
 						&nbsp;${commentList.diarycomment}
 					    <td><img src="yh/img/c3.png" type="button" value="delete" onclick="callComment('commentDelete.nhn?id=${id}&commentnum=${commentList.num}')"/></td>
 						</td>
