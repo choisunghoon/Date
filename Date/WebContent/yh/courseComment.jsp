@@ -12,11 +12,7 @@ function callComment(nhn){
         type: "post",
         url : nhn,
         success: callAjax2,	// 페이지요청 성공시 실행 함수
-        error: commentError	//페이지요청 실패시 실행함수
  	});
-}
-function commentError(){
-    alert("댓글을 삭제할 권한 없습니다.");
 }
 function setImotappimg(imotappimg){
 	imotappimgImg.innerHTML = imotappimgImg.innerHTML = "<img src=\"/Date/project/ee/" + imotappimg + "\" >";
@@ -159,8 +155,9 @@ name="commentup" value="commentup" href="#" onclick="callAjax3('courseCommentUp.
 						<td width="55%" cols="10" rows="3">
 						&nbsp;<img src="/Date/project/ee/${commentList.img}"/>
 						&nbsp;${commentList.coursecomment}
-					    <td><img src="yh/img/c3.png" type="button" value="delete" onclick="callComment('courseCommentDelete.nhn?id=${id}&commentnum=${commentList.num}')"/></td>
-						</td>
+					  	<c:if test="${id == commentList.id or id=='admin'}">
+					    <td><img src="yh/img/c3.png" type="button" value="delete" onclick="callComment('courseCommentDelete.nhn?commentnum=${commentList.num}')"/></td>
+						</c:if>	</td>
 						<td width="15%"><h6>${commentList.regdate}</h6></td>
          				</tr>
                   	</table>

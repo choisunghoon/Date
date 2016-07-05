@@ -903,10 +903,13 @@ function removeAllChildNods(el) {
 					
 		</center>   
 		</div>	  
-		
+			<br/>
 			<br/>
 		<tr>
 				<td align="right">
+			<c:if test="${id=='admin'}">
+ 				<img src="yh/img/c3.png" type="button" value="delete" onclick="callAjax('deleteCourseList.nhn?num=${dto.num }')"/>&nbsp;&nbsp;
+ 			</c:if>
 				<img src="yh/img/z59.png" type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareCourseBoard.nhn')"/>&nbsp;&nbsp;
 				<img src="yh/img/z57.png" type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('courseComment.nhn')" /> </td>
 		

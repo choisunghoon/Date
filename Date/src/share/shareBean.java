@@ -71,54 +71,27 @@ public class shareBean {
 		return "/yh/courseComment.jsp";
 	}
 	
-	//공유다이어리 코멘트 삭제
+	//공유 코스 코멘트 삭제
 	@RequestMapping("courseCommentDelete.nhn")
 	public String courseCommentDelete(HttpServletRequest request,HttpSession session)throws Exception{
     	commentDataBean dto = new commentDataBean();
 		String id = (String)session.getAttribute("id");
-		String commentnum = request.getParameter("commentnum");
-		
-		List list = new ArrayList();
-		Map map = new HashMap();
-		map.put("commentnum", commentnum);
-		map.put("id", id);
-		
-		System.out.println("commentnum"+ " " +commentnum);
+		String num = request.getParameter("commentnum");
 
-		System.out.println("id"+ " " +id);
-		int check = (Integer)sqlMap.queryForObject("courseCommentCheck", map);
-		if(check !=0){
-		sqlMap.delete("courseCommentDelet", map);
-		}else{
-		System.out.println("아이디 넘 값이 일치하지않습니다");	
-		}
-		request.setAttribute("check", check);
+		sqlMap.delete("courseCommentDelet", num);
+
 		return "/yh/courseComment.jsp";
     	
     }
 	
-	//공유다이어리 코멘트 삭제
+	//공유 다이어리 코멘트 삭제
 	@RequestMapping("commentDelete.nhn")
 	public String commentDelete(HttpServletRequest request,HttpSession session)throws Exception{
     	commentDataBean dto = new commentDataBean();
 		String id = (String)session.getAttribute("id");
-		String commentnum = request.getParameter("commentnum");
+		String num = request.getParameter("commentnum");
 		
-		List list = new ArrayList();
-		Map map = new HashMap();
-		map.put("commentnum", commentnum);
-		map.put("id", id);
-		
-		System.out.println("commentnum"+ " " +commentnum);
-
-		System.out.println("id"+ " " +id);
-		int check = (Integer)sqlMap.queryForObject("diaryCommentCheck", map);
-		if(check !=0){
-		sqlMap.delete("diaryCommentDelet", map);
-		}else{
-		System.out.println("아이디 넘 값이 일치하지않습니다");	
-		}
-		request.setAttribute("check", check);
+		sqlMap.delete("diaryCommentDelet", num);
 		return "/yh/diaryComment.jsp";
     	
     }
@@ -505,6 +478,21 @@ public class shareBean {
 		return mv;
 		
 	}
-		
+	
+	@RequestMapping("deleteDiaryList.nhn")
+	public String deletediaryList(HttpServletRequest request, HttpSession session,int num){
+			
+			sqlMap.delete("deleteShareDiary", num);
+			DiaryDataBean dto = new DiaryDataBean();
+			return "shareDiaryBoard.nhn";
+	}
+
+	@RequestMapping("deleteCourseList.nhn")
+	public String deleteCourseList(HttpServletRequest request, HttpSession session,int num){
+			
+			sqlMap.delete("deleteCourseDiary", num);
+			shareCourseDataBean dto = new shareCourseDataBean();
+			return "shareCourseBoard.nhn";
+	}
 }
 
