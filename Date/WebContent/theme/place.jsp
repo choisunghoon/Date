@@ -144,18 +144,7 @@
 </c:if>
 <a href="#"  onclick="document.location.href='addCtgView.nhn'"><img src="button/z18.png"></a>
 <a href="#"  onclick="document.location.href='course.nhn?ctg_num=${ctg_num}'"><img src="button/z10.png"></a>
-<c:if test="${id != null}">
-<c:if test="${id != 'null' and checkNum != 1}">
-	<div id="like"  method="post">
-		<span id="ajaxReturn"><a href="#" onclick="callAjax(${ctg_num},${cos_num},${checkNum})"><img src="button/z31.png"></a>${dto.likeCount}</span><br/>
-	</div>
-</c:if>
-<c:if test="${id != 'null' and checkNum == 1}">
-	<div id="like"  method="post">
-		<span id="ajaxReturn"><a href="#" onclick="callAjax(${ctg_num},${cos_num},${checkNum})"><img src="button/z32.png"></a>${dto.likeCount}</span><br/>
-	</div>
-</c:if>
-</c:if>
+
 </br>
 		<center><h2>${dto1.cos_name}</h2></center>
 	
@@ -167,24 +156,45 @@
 	</br>
 	<table border="0" width="700" cellspacing="0" cellpadding="0" align="center">
 		<tr>
+			<td align="center"><b>에디터 한마디:</b></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
 			<td align="center"><b>${dto1.content}</b></td>
 		</tr>
 	</table>
 	</br>
-	<table border="1" width="700" cellspacing="0" cellpadding="0" align="center">
+	<table border="1" width="300" cellspacing="0" cellpadding="0" align="center">
 		<tr>
-			<td align="center">조회수</td>
-			<td align="center">좋아요</td>
+			<td align="center" height="20"><b>조회수</b></td>
+			<td align="center" height="20"><b>좋아요</b></td>
 		</tr>
 		<tr>
-			<td align="center">11</td>
-			<td align="center">${dto1.readCount}</td>
+			<td align="center" height="50">${dto1.readCount}</td>
+			<td align="center" height="50">${dto1.likeCount}</td>
 		</tr>
 		<input type="hidden" name="ctg_num" value="${ctg_num}" />
 		<input type="hidden" name="cos_num" value="${cos_num}" />
 		<input type="hidden" name="checkNum" value="${checkNum}"/>
 	</table>
-</br>
+	<br/>
+	<br/>
+	<center>
+<c:if test="${id != null}">
+<c:if test="${id != 'null' and checkNum != 1}">
+	<div id="like"  method="post">
+		<span id="ajaxReturn"><a href="#" onclick="callAjax(${ctg_num},${cos_num},${checkNum})"><img src="button/z31.png"></a>${dto.likeCount}</span>
+	</div>
+</c:if>
+<c:if test="${id != 'null' and checkNum == 1}">
+	<div id="like"  method="post">
+		<span id="ajaxReturn"><a href="#" onclick="callAjax(${ctg_num},${cos_num},${checkNum})"><img src="button/z32.png"></a>${dto.likeCount}</span>
+	</div>
+</c:if>
+</c:if>
+	</center>
 </br>
 </center>
     <div class="gallery">

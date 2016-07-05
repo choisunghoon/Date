@@ -231,11 +231,11 @@ public class AdminBean {
 		int a = Integer.parseInt(request.getParameter("states"));
 		String place = "";
 		if(a == 1){
-			place = "ï¿½ï¿½ï¿½ï¿½ï¿½";
+			place = "Æ÷ÅäºÏ";
 		}else if(a == 2){
-			place = "ï¿½ï¿½ï¿½Ì¾î¸® ï¿½ï¿½ï¿½ï¿½";
+			place = "´ÙÀÌ¾î¸® °øÀ¯";
 		}else{
-			place = "ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½";
+			place = "ÄÚ½º °øÀ¯";
 		}
 		
 		System.out.println(a);
@@ -244,8 +244,10 @@ public class AdminBean {
 		List pointList = new ArrayList();
 		
 		pointList = sqlMap.queryForList("searchWinPointList", pdb);
+		int count1 = (int) sqlMap.queryForObject("searchWinPointCount", pdb);
 		
 		request.setAttribute("pointList", pointList);
+		request.setAttribute("count1", count1);
 		
 		return "/admin/point.jsp";
 	}

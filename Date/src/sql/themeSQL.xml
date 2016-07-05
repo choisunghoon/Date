@@ -175,7 +175,7 @@
     </select>
     
     <select id="getCos" resultClass="themeDTO.CourseDataBean" parameterClass="int">
-        select cos_name, map_img, cos_img, content, readCount from course where cos_num = #cos_num#
+        select cos_name, map_img, cos_img, content, readCount, likeCount from course where cos_num = #cos_num#
     </select>
     
     <select id="getPlace" resultClass="themeDTO.LocationDataBean" parameterClass="java.util.Map">

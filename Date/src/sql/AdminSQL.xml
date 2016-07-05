@@ -45,6 +45,10 @@
 		select * from dc_point where couplename like '%'||#couplename#||'%' and place = #place# 
 	</select>
 	
+	<select id="searchWinPointCount" parameterClass="upload.bean.PointDataBean" resultClass="int">
+		select count(*) from dc_point where couplename like '%'||#couplename#||'%' and place = #place#
+	</select>
+	
 	<select id="searchWinEventList1" resultClass="project.bean.EventDataBean">
 		select * from event where  wcouples like '%'||#keyword#||'%' and w=#way# order by enumber desc
 	</select>
