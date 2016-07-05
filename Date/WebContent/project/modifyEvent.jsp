@@ -418,7 +418,8 @@ function SetShowCalendar (sYear, sMonth, sDay, pos) {
       <td align="center"><img src="${src2}" width="340" height="430"/><input type="file" name="upload[2]"></td>
     </tr>
     <tr>
-     <td colspan=2 align="center"><input type="submit" value="수정"></td>
+     <td colspan=2 align="center">
+     <input type="image" name="submit" value="수정" src="/Date/button/z2.png"></td>
     </tr>
 </table>
 </form>

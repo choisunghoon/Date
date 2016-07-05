@@ -29,7 +29,7 @@
 			</tr> 
 			<tr height="20">
 				<td colspan="2" align="center">
-				<input type="submit" name="addW" value="당첨자로 등록">
+				<input type="image" name="submit" value="당첨자로 등록" src="/Date/button/z51.png"></td>
 			</tr>		
 		</table>		
 		</form>
