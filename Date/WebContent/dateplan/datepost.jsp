@@ -900,7 +900,15 @@ function removeAllChildNods(el) {
 	</div>
 </c:if>
 <c:if test="${dto.postcheck eq '1' }">
+<c:if test="${dto.pool eq '0' }">
+<!-- 
 <a href="callUppool"><img alt="" src="button/z39.png"></a>
+ -->
+<a href="#" onClick="location.href='poolpro.nhn?num=${dto.num}&check=1'"><img alt="" src="button/z39.png"></a>
+</c:if>
+<c:if test="${dto.pool eq '1' }">
+	<a href="#" onClick="location.href='poolpro.nhn?num=${dto.num}&check=0'"><img alt="" src="button/z38.png"></a>
+</c:if>
 	<c:forEach	var="i" begin="0" end="${pidsize-1 }">
 		<div>
 			<div id="sel${i}" style="float:left;margin-top:20px;">

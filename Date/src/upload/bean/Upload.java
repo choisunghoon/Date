@@ -418,7 +418,7 @@ public class Upload {
 		sqlMap.insert("insertpoint",pidb );
 		}
 		ddb.setPool(pool);
-		sqlMap.insert("poolshare", ddb);
+		sqlMap.update("poolshare", ddb);
 		cdb.setPoint(point);
 		sqlMap.update("photopoint", cdb);
 		
@@ -584,6 +584,45 @@ public class Upload {
 
 
 		return "/sy0525/default.jsp";
+	}
+	
+	@RequestMapping("/poolpro.nhn")
+	public String poolpro(HttpServletRequest request, HttpSession session, DTO dto, CoupleDataBean cdb, PointDataBean pidb){
+		int check = Integer.parseInt(request.getParameter("check"));
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
+		int num = Integer.parseInt(request.getParameter("num"));
+		dto.setCouplename(couplename);
+		dto.setNum(num);
+		cdb.setCouplename(couplename);
+		int point1 = (Integer)sqlMap.queryForObject("mypoint", cdb);
+		String pool = "";
+		int point = 0;
+		if(check == 1){
+			pool = "1";
+			point = point1 +5;
+			int getPoint = 5;
+			String place="데이트코스 공유";
+			pidb.setCouplename(couplename);
+			pidb.setGetPoint(getPoint);
+			pidb.setPlace(place);
+			sqlMap.insert("diarypoint", pidb);
+			}else{
+			pool = "0";
+			point = point1 -5;
+			int usePoint= -5;
+			String place="데이트코스 공유 취소";
+			pidb.setCouplename(couplename);
+			pidb.setUsePoint(usePoint);
+			pidb.setPlace(place);
+			sqlMap.insert("insertpoint",pidb );
+			}
+		
+			dto.setPool(pool);
+			cdb.setPoint(point);
+			sqlMap.update("poolshare1", dto);
+			sqlMap.update("photopoint", cdb);
+		return "/dateplan/poolpro.jsp";
 	}
 	
 
