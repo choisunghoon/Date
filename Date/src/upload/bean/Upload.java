@@ -91,10 +91,10 @@ public class Upload {
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
-		System.out.println("diaryMenu.nhn :" + couplename);
 		ddb.setCouplename(couplename);
 		diary = sqlMap.queryForList("myDiary", ddb);
 		cdb.setCouplename(couplename);
+		int point =(Integer)sqlMap.queryForObject("mypoint", cdb);
 		cdb = (CoupleDataBean)sqlMap.queryForObject("diaryImage", cdb);
 		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
 		Calendar cal = Calendar.getInstance();
@@ -104,8 +104,12 @@ public class Upload {
 	           //객체에 날짜가 설정된다.
 	      long day = cal2.getTimeInMillis() - cal.getTimeInMillis() ;
 	      long dday = day/1000/60/60/24 -1;		
-	      double aa = dday/100 - Math.floor(dday/100);
-	      System.out.println((int)aa);
+	      int aa = (int)dday/100 - (int)Math.floor(dday/100);
+	      int bb = (int)Math.floor(dday/100);
+	    
+	    request.setAttribute("point", point);
+	    request.setAttribute("aa", aa);
+	    request.setAttribute("bb", bb);
 	    request.setAttribute("dday", dday);
 		request.setAttribute("couplename", couplename);
 		request.setAttribute("listMore", listMore);

@@ -18,7 +18,7 @@
           //  var a = Math.floor(gap/100);
           //  if(b<1){
            // $("#tab2").appendto='<img src="/syimage/a'+a+'.jpg" width="500" height="600"/>';
-         
+         //}
          }
          
          function callContent3(url){ 
@@ -110,7 +110,8 @@
     <input id="tab1" type="radio" name="tab" checked="checked" />
     <input id="tab2" type="radio" name="tab" />
     <label for="tab1">커플 다이어리</label>
-    <label for="tab2" onclick="test1()">커플 하트 나무</label>     
+    <label for="tab2" onclick="test1()">커플 하트 나무</label>
+    보유 포인트:  ${point }   
     <div class="tab1_content" style="width:1100px;">
       <div class="sub_photo">
           <div class="title_area">
@@ -185,7 +186,10 @@
     </div>
     <div class="tab2_content">
        <div id="tab2" style="margin-left:33%;padding-bottom:60px;">
-        ${dday }
+        D-day ${dday }<br>
+        <c:if test="${bb < 1 }">
+        <img src="syimage/a${aa}.jpg" width="500" height="600"/>
+      	</c:if>
       </div>  
    </div>
 </div>

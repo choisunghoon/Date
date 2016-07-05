@@ -143,5 +143,9 @@
 		select count(*) from dc_couple where couplename = #couplename#
 	</select>
 	
+	<select id="mypoint" resultClass="int" parameterClass="upload.bean.CoupleDataBean">
+		select point from dc_couple where couplename=#couplename#
+	</select>
+	
 </sqlMap>
 
