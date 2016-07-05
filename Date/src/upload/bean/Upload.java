@@ -1,8 +1,12 @@
 package upload.bean;
 
 import java.io.File;
+
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -44,7 +48,7 @@ public class Upload {
 		String id = (String)session.getAttribute("id");
 		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
 		String RealPath = request.getRealPath("\\syimage");
-		if(w <= wwd && h <= hhd){
+	
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
 		ddb.setImg(orgName);
@@ -65,11 +69,7 @@ public class Upload {
 		sqlMap.update("photopoint", cdb);
 		request.setAttribute("orgName", orgName);
 		check=1;
-		}
-		else{
-			System.out.println("½ÇÆÐ");
-			check = 2;
-		}
+		
 		request.setAttribute("check", check);
 		return "/sy0525/upload2.jsp";
 	}
@@ -97,6 +97,18 @@ public class Upload {
 		cdb.setCouplename(couplename);
 		cdb = (CoupleDataBean)sqlMap.queryForObject("diaryImage", cdb);
 		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
+		
+		Calendar today = Calendar.getInstance();
+		Calendar dday = Calendar.getInstance();
+		int myear = 0;
+		int mmonth = 0;
+		int mday = 0;
+		dday.set(myear, mmonth, mday);
+		
+		long day = dday.getTimeInMillis()/(24*60*60*1000);
+		long tday = today.getTimeInMillis()/(24*60*60*1000);
+		
+
 		
 		
 		request.setAttribute("couplename", couplename);
@@ -300,6 +312,7 @@ public class Upload {
 		String couplename = request.getParameter("couplename");
 		String regdate = String.valueOf(request.getParameter("regdate"));
 		request.setAttribute("couplename", couplename);
+		System.out.println(couplename);
 		request.setAttribute("regdate", regdate);
 		return "/sy0610/state.jsp";
 	}
@@ -307,6 +320,7 @@ public class Upload {
 	@RequestMapping("/statepro.nhn")
 	public String statepro(HttpServletRequest request,PhotoDataBean pdb){
 		String couplename1 = request.getParameter("couplename1");
+		System.out.println(couplename1);
 		System.out.println("asdasdas");
 		String regdate1 = request.getParameter("regdate1");
 		int state = Integer.parseInt(request.getParameter("states"));
@@ -322,7 +336,7 @@ public class Upload {
 		pdb.setRegdate(Timestamp.valueOf(regdate1));
 		pdb.setState(states);
 		sqlMap.update("updatestate", pdb);
-		return "/sy0610/statepro.jsp";
+		return "/sy0610/state.jsp";
 	}
 	
 	@RequestMapping("/photocontent.nhn")
