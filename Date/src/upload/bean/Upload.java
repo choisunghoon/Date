@@ -105,7 +105,7 @@ public class Upload {
 	      long day = cal2.getTimeInMillis() - cal.getTimeInMillis() ;
 	      long dday = day/1000/60/60/24 -1;		
 	      //int aa = Integer.parseInt(dday/100 - Math.floor(dday/100));
-	      
+	      	
 	    request.setAttribute("dday", dday);
 		request.setAttribute("couplename", couplename);
 		request.setAttribute("listMore", listMore);
