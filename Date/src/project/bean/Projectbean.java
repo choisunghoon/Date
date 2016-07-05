@@ -470,7 +470,6 @@ public class Projectbean {
 		int count = (Integer) sqlMap.queryForObject("eventAppCount", enumber);
 		int wcount = 0;
 		String wcouplesN = (String) sqlMap.queryForObject("wcount", enumber);
-		System.out.println(wcouplesN);
 		if(wcouplesN==null){
 		wcount  = 0;
 		}else {
@@ -486,77 +485,6 @@ public class Projectbean {
 		return "/project/wWay.jsp";
 	}
 	// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� git
-
-	@RequestMapping("random.nhn")
-	public String random(HttpServletRequest request,CoupleDataBean cdb) {
-		int enumber = Integer.parseInt(request.getParameter("enumber"));
-		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
-		int wcount = Integer.parseInt(request.getParameter("wcount"));
-		int Cwcount = Integer.parseInt(request.getParameter("Cwcount"));
-		System.out.println("w: "+wnumber);
-		System.out.println("Cw: "+Cwcount);
-		EventDataBean eto = new EventDataBean();
-		List appList = null;
-		appList = sqlMap.queryForList("eventAppAll", enumber);
-		int[] wList = new int[Cwcount];
-		String[] rList = new String[Cwcount];
-		int count = (Integer) sqlMap.queryForObject("eventAppCount", enumber);
-		
-		Random ran = new Random();
-		String wname = null;
-		appList = sqlMap.queryForList("eventAppAll", enumber);
-		for (int i = 0; i < wList.length; i++) {
-			wList[i] = ran.nextInt(count) + 1;
-			for (int j = 0; j < i; j++) {
-				if (wList[i] == wList[j]) {
-					i--;
-					break;
-				}
-			}
-		}
-		for (int i = 0; i < wList.length; i++) {
-			eto = (EventDataBean) appList.get(wList[i]);
-			rList[i] = eto.getCouplename();
-		}		
-		for (int i = 0; i < rList.length; i++) {
-			if (i == 0) {
-				wname = rList[i];
-			}
-			if (i != 0) {
-				wname = wname + "," + rList[i];
-			}
-		}
-		EventDataBean eto1 = new EventDataBean();
-		eto1 = (EventDataBean) sqlMap.queryForObject("eventContent", enumber);
-		if(eto1.getWcouples()==null){
-		eto1.setWcouples(wname);
-		}else{
-			eto1.setWcouples(eto1.getWcouples()+","+wname);
-		}
-		eto1.setEnumber(enumber);
-		
-		if((wcount+Cwcount)==wnumber){
-		eto1.setW(1);
-		}else{
-			eto1.setW(0);	
-		}
-		sqlMap.update("addW", eto1);
-		for(int i = 0;i<rList.length;i++){
-			CoupleDataBean cdb2 = new CoupleDataBean();
-			EventDataBean eto2 = new EventDataBean();
-			cdb.setCoupleName(rList[i]);
-			cdb2 = (CoupleDataBean)sqlMap.queryForObject("selectid", cdb);
-			eto2.setCouplename(rList[i]);
-			eto2.setEnumber(enumber);
-			sqlMap.insert("insertA",eto2);
-		}
-		request.setAttribute("appList", appList);
-		request.setAttribute("rList", rList);
-		request.setAttribute("enumber", new Integer(enumber));
-		request.setAttribute("wnumber", new Integer(wnumber));
-		request.setAttribute("count", new Integer(count));
-		return "/project/random.jsp";
-	}
 
 	@RequestMapping("choice.nhn")
 	public String choice(HttpServletRequest request) {
@@ -765,25 +693,24 @@ public class Projectbean {
 	@RequestMapping("deleteWcouplesPro.nhn")
 	public String deleteWcouplesPro(HttpServletRequest request){
 		int enumber = Integer.parseInt(request.getParameter("enumber"));		
-		String Cwcouples = request.getParameter("wcouples");
-		
-		List appList = sqlMap.queryForList("eventAppAdmin", enumber);
+		String Cwcouples = request.getParameter("wcouples");		
+		String wName = (String) sqlMap.queryForObject("eventAppAdmin", enumber);
+		System.out.println(wName);
 		EventDataBean app = new EventDataBean();
 		String[] wcList = null;
-		for (int i = 0; i < appList.size(); i++) {
-			app = (EventDataBean) appList.get(i);
-			wcList = app.getWcouples().split(",");
-		}
+		wcList = wName.split(",");
 		List list = new ArrayList();
 		for(int i=0; i<wcList.length; i++){
 			if(!(wcList[i].equals(Cwcouples))){				
-				list.add(wcList[i]);				
+				list.add(wcList[i]);
+				System.out.println("wcsdfasfsf");
 			}
 		}
 		String wc = (String)list.get(0);
 		if (list.size() != 1) {
 			for (int i = 1; i < list.size(); i++) {
 				wc = wc + "," + (String) list.get(i);
+				System.out.println("wc"+wc);
 			}
 		}
 		app.setEnumber(enumber);

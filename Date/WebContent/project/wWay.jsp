@@ -37,7 +37,6 @@ function checkWcount(nhn) {
 					뽑힌 당첨자 수 : 					
 					<input type="hidden" name="wcount" value="${wcount}">${wcount} <br/>	
 					원하는 당첨자 수 :&nbsp;<input type="text" id="test" name=Cwcount > <br/>					
-					<input type="button" name="way" value="랜덤" onClick="checkWcount('random.nhn?enumber=${enumber}&wnumber=${wnumber}')">
 					<input type="button" name="way" value="선택" onClick="checkWcount('choice.nhn?enumber=${enumber}&wnumber=${wnumber}')">				
 				</td>
 			</tr>

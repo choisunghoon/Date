@@ -7,7 +7,7 @@
 <title>당첨자 삭제</title>
 </head>
 <body>
-<h2>정말 삭제 하시겠습니까?</h2>
+<h2>aaa정말 삭제 하시겠습니까?${wcouples }</h2>
 <a href="deleteWcouplesPro.nhn?enumber=${enumber}&wcouples=${wcouples}"><input type="button" name="way" value="확인"></a>
 </body>
 </html>
