@@ -233,7 +233,7 @@ public class InputBean {
 	@RequestMapping("coupleinfo.nhn")//�뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 
 	public String couple(HttpSession session,HttpServletRequest request) throws Exception{
 		
-		String id=request.getParameter("id");
+		String id =(String) session.getAttribute("id");
 		LogonDataBean dto2=new LogonDataBean();
 		LogonDataBean dto1=new LogonDataBean();
 		CoupleDataBean cdto=new CoupleDataBean();
@@ -310,7 +310,7 @@ public class InputBean {
 	}
 	@RequestMapping("couplex.nhn")//�뚣뀿�쐻占쎈짗占쎌굲 占쎈쐻占쎈뻿�뇡�빘�굲
 	public String couplex(HttpSession session,HttpServletRequest request) throws Exception{
-		String id =request.getParameter("id");
+		String id =(String) session.getAttribute("id");
 		String nickname=(String)sqlMapper.queryForObject("getNick", id);
 		sqlMapper.delete("deleteCouple", id);//�뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓�뇡�빘�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솋占쎈솇占쎌굲 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 id占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼣占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈솓占쎈굡�몴占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 		sqlMapper.delete("readCheckReject", nickname);//占쎈쐻占쎈뼑筌뤿슣�굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓�뇡�빘�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솋占쎈솇占쎌굲 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 nickname占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼣占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈솓占쎈굡�몴占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
@@ -320,7 +320,7 @@ public class InputBean {
 	@RequestMapping("coupleInput.nhn")//�뚣뀿�쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 	public String coupleInput(HttpSession session,HttpServletRequest request) throws Exception{
 		String nickname=(String) session.getAttribute("nickname");
-		String id =request.getParameter("id");
+		String id =(String) session.getAttribute("id");
 		CoupleDataBean cdto=new CoupleDataBean();
 		cdto = (CoupleDataBean)sqlMapper.queryForObject("getCoupleData", id);
 		sqlMapper.update("memCouple1", cdto.getId1());//占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 �뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈뻻筌뚭쑴�굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
