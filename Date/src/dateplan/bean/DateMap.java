@@ -66,6 +66,7 @@ public class DateMap {
 		dto.setContent(content);
 		dto.setPostsrc(postsrc);
 		dto.setNum(num);
+		dto.setPostcheck("1");
 		sqlMap.update("insertsrc", dto);
 		return "/dateplan/datepostSave.jsp";
 	}
@@ -85,9 +86,6 @@ public class DateMap {
 	
 		request.setAttribute("pidsize", pidsize);
 		request.setAttribute("dto", dto);
-		
-		
-		
 		request.setAttribute("num",num);
 				
 		return "/dateplan/datepost.jsp";

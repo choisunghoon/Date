@@ -90,7 +90,7 @@
 
 <script type="text/javascript">
 var pids = '${pidsize}'
-	alert(pids);
+	
 function readImage(file,j) {
 	$('#imgsel'+j).empty();
     var reader = new FileReader();
@@ -359,7 +359,7 @@ function getListItem(index, places) {
     return el;
 }
 function displayPlaces2(places) {
-
+	
     var listEl = document.getElementById('placesList'), 
     menuEl = document.getElementById('menu_wrap'),
     fragment = document.createDocumentFragment(), 
@@ -393,7 +393,7 @@ function displayPlaces2(places) {
             })(marker, places[i]);
         (function(marker, place) {
             daum.maps.event.addListener(marker, 'rightclick', function() {
-
+            	
             	kor[j] = '<div ondblclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
                 '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
             	
@@ -403,7 +403,7 @@ function displayPlaces2(places) {
 			}  else {
 				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
 			    }                
-			alert(place.category);
+			
 			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
 		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
   		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
@@ -500,52 +500,6 @@ function displayPlaces3(places) {
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
         (function(marker, place) {
-            daum.maps.event.addListener(marker, 'rightclick', function() {
-
-            	kor[j] = '<div ondblclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
-                '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
-            	
-			if (place.newAddress) {
-				kor[j] += '    <span title="' + place.newAddress + '">' + place.newAddress + '</span>' +
-                '  <span class="jibun" title="' + place.address + '">(지번 : ' + place.address + ')</span>';
-			}  else {
-				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
-			    }                
-			alert(place.category);
-			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
-		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
-  		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
-  		  '<input type="hidden" name="placelocation" id="placelocation" value="'+place.address +'" />'+
-  		'<input type="hidden" name="placecategory" id="placecategory" value="'+place.category +'" />'+
-  		  '<input type="hidden" name="placeid"  id="placeid" value="'+place.id +'" />'+
-  		  '<input type="hidden" name="placetitle"  id="placeid" value="'+place.title +'" />'+
-  		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
-         		   '</div>' + 
-         		   '<div class="afterv" style="float:left;"></div>';
-			
-             if(j>5){               	 
-         		j=6;
-         		alert("5개 이상 선택 하실수 없습니다.");
-         		return;
-			 }
-           
-            
-            
-           
-             	
-             	
-            $("#img").append(kor[j]);
-            
-            
-         	
-         	
-         	
-         	kortmp='';
-			j++;
-			
-            });
-        })(marker, places[i]);
-        (function(marker, place) {
                 	
                 	kor[j] = '<div ondblclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
                     '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
@@ -556,7 +510,7 @@ function displayPlaces3(places) {
     			}  else {
     				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
    			    }                
-    			alert(place.category);
+    			
     			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
     			'<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
       		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
@@ -625,7 +579,7 @@ function deldiv(i){
 }
 
 function displayPlaces(places) {
-
+	
     // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
     // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
     var order = document.getElementById(currCategory).getAttribute('data-order');
@@ -653,7 +607,7 @@ function displayPlaces(places) {
            
             (function(marker, place) {
                 daum.maps.event.addListener(marker, 'rightclick', function() {
-
+                	
                 	kor[j] = '<div ondblclick="deldiv('+j+')" class="placeinfov" id="'+j+'" style="float:left;">' +
                     '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
                 	
@@ -663,7 +617,7 @@ function displayPlaces(places) {
     			}  else {
     				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
    			    }                
-    			alert(place.id);
+    			
     			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
     		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
       		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
@@ -935,19 +889,20 @@ function removeAllChildNods(el) {
 	</div>
 </c:if>
 <c:if test="${dto.postcheck eq '1' }">
+<a href=""><img alt="" src="button/z39.png"></a>
 	<c:forEach	var="i" begin="0" end="${pidsize-1 }">
-					<div>
-						<div id="sel${i}" style="float:left;margin-top:20px;">
-							 
-							<div id="imgsel${i}" style="width:300;height:300;float:left;margin-right:10px">
-								<img width=300 height="300" src="/Date/dateplan/dateImage/${postsrc[i]}" />
-							</div>
-							
-							<div  id="content${i}" style="float:left;">
-								<textarea readonly="readonly" name ="content${i}" rows="15" cols="100">${content[i] }</textarea>
-							</div>
-						</div>
-				   </div>
+		<div>
+			<div id="sel${i}" style="float:left;margin-top:20px;">
+				 
+				<div id="imgsel${i}" style="width:300;height:300;float:left;margin-right:10px">
+					<img width=300 height="300" src="/Date/dateplan/dateImage/${postsrc[i]}" />
+				</div>
+				
+				<div  id="content${i}" style="float:left;">
+					<textarea readonly="readonly" name ="content${i}" rows="15" cols="100">${content[i]}</textarea>
+				</div>
+			</div>
+	    </div>
 	</c:forEach>
 </c:if>
 </form>
