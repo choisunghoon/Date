@@ -386,7 +386,7 @@ public class Upload {
 	}
 	
 	@RequestMapping("/diarysharing.nhn")
-	public String diarysharing(HttpSession session, HttpServletRequest request, DiaryDataBean ddb){
+	public String diarysharing(HttpSession session, PointDataBean pidb, HttpServletRequest request, DiaryDataBean ddb,CoupleDataBean cdb){
 		int check = Integer.parseInt(request.getParameter("check"));
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
@@ -394,14 +394,37 @@ public class Upload {
 		int num = Integer.parseInt(request.getParameter("num"));
 		ddb.setCouplename(couplename);
 		ddb.setNum(num);
+		cdb.setCouplename(couplename);
+		int point1 = (Integer)sqlMap.queryForObject("mypoint", cdb);
 		String pool = "";
+		int point = 0;
 		if(check == 1){
 		pool = "1";
+		point = point1 +5;
+		int getPoint = 5;
+		String place="커플다이어리 공유";
+		pidb.setCouplename(couplename);
+		pidb.setGetPoint(getPoint);
+		pidb.setPlace(place);
+		sqlMap.insert("diarypoint", pidb);
 		}else{
 		pool = "0";
+		point = point1 -5;
+		int usePoint= -5;
+		String place="커플다이어리 공유 취소";
+		pidb.setCouplename(couplename);
+		pidb.setUsePoint(usePoint);
+		pidb.setPlace(place);
+		sqlMap.insert("insertpoint",pidb );
 		}
 		ddb.setPool(pool);
 		sqlMap.insert("poolshare", ddb);
+		cdb.setPoint(point);
+		sqlMap.update("photopoint", cdb);
+		
+		
+		
+		
 		request.setAttribute("check", check);
 		return "/sy0525/diarysharing.jsp";
 	}
