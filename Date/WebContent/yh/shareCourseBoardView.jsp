@@ -46,7 +46,8 @@ $(document).ready(function(){
         $.ajax({
             type: "post",
             url : "courseCommentUp.nhn?num=${num}&id=${id}",
-            data : {coursecomment : $('#coursecomment').val()},
+            data : {coursecomment : $('#coursecomment').val(),
+         		   img : $('#appimg').val()},
             success: callAjax2,	// 페이지요청 성공시 실행 함수
             error: whenError2	//페이지요청 실패시 실행함수
      	});

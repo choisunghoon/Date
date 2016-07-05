@@ -10,6 +10,7 @@ public class commentDataBean {
 	private String coursecomment;
 	private Timestamp regdate;
 	private int board_num;
+	private String img;
 	
 	public int getNum() {
 		return num;
@@ -46,6 +47,12 @@ public class commentDataBean {
 	}
 	public void setCoursecomment(String coursecomment) {
 		this.coursecomment = coursecomment;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 }

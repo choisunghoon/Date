@@ -60,6 +60,10 @@ public class shareBean {
 		dto.setBoard_num(num);
 		System.out.println("넘버값"+" " +num);
 		
+		String img = request.getParameter("img");
+		dto.setImg(img);
+		System.out.println("이미지"+" " +img);
+		
 		dto.setRegdate(new Timestamp(System.currentTimeMillis()));
 		
 		sqlMap.insert("SelectCoupseCommentUp",dto);
@@ -135,6 +139,10 @@ public class shareBean {
 		
 		dto.setBoard_num(num);
 		System.out.println("넘버값"+" " +num);
+		
+		String img = request.getParameter("img");
+		dto.setImg(img);
+		System.out.println("이미지"+" " +img);
 		
 		dto.setRegdate(new Timestamp(System.currentTimeMillis()));
 		

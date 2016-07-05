@@ -15,7 +15,7 @@
 	</select>
 	<!--   -->
 	<insert id="SelectDiaryCommentUp" parameterClass="share.commentDataBean">
-		insert into dc_sharydiary_comment(num,id,diarycomment,board_num,regdate) values (dc_sharydiary_comment_seq.nextval,#id#,#diarycomment#,#board_num#,#regdate#) 
+		insert into dc_sharydiary_comment(num,id,diarycomment,board_num,regdate,img) values (dc_sharydiary_comment_seq.nextval,#id#,#diarycomment#,#board_num#,#regdate#,#img#) 
 	</insert>
 	<!--   -->
 	<delete id="diaryCommentDelet" parameterClass="java.util.HashMap">
@@ -31,7 +31,7 @@
 	</select>
 	<!--   -->
 	<insert id="SelectCoupseCommentUp" parameterClass="share.commentDataBean">				
-		insert into dc_sharycourse_comment(num,id,coursecomment,board_num,regdate) values (dc_sharycourse_comment_seq.nextval,#id#,#coursecomment#,#board_num#,#regdate#) 
+	insert into dc_sharycourse_comment(num,id,coursecomment,board_num,regdate,img) values (dc_sharycourse_comment_seq.nextval,#id#,#coursecomment#,#board_num#,#regdate#,#img#)
 	</insert>	
 		<delete id="courseCommentDelet" parameterClass="java.util.HashMap">
         delete from dc_sharycourse_comment where id=#id# and num=#commentnum#
@@ -70,7 +70,7 @@
 	</select>
 	<!--   -->
 	<select id="shereSelectCourseBoardAll" resultClass="share.shareCourseDataBean">
-		select * from dc_dc order by num desc
+		select * from dc_dc where pool=1 order by poolsysdate
 	</select>
 	<!--   -->
 	<update id="shereCourseUpdateReadCount" parameterClass="int">

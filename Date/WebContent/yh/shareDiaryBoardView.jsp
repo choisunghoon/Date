@@ -36,7 +36,8 @@
         $.ajax({
             type: "post",
             url : "commentUp.nhn?num=${num}&id=${id}",
-            data : {diarycomment : $('#diarycomment').val()},
+            data : {diarycomment : $('#diarycomment').val(),
+            	   img : $('#appimg').val()},
             success: callAjax2,	// 페이지요청 성공시 실행 함수
             error: whenError2	//페이지요청 실패시 실행함수
      	});

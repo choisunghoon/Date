@@ -20,9 +20,8 @@ function commentError(){
 }
 function setImotappimg(imotappimg){
 	imotappimgImg.innerHTML = imotappimgImg.innerHTML = "<img src=\"/Date/project/ee/" + imotappimg + "\" >";
-	$("#appimg").value = imotappimg;
+	document.diarycomment.appimg.value = imotappimg;
 	imotappimgDiv.style.visibility = "hidden";
-	
 }
 
 function viewimotappimg(){
@@ -87,7 +86,7 @@ function viewimotappimg(){
 <br/>
 <center>
 <body>
-<form name="comment" method="post">
+<form name="diarycomment" method="post">
 
     <div class="tab1_content" >
       <div class="sub_photo">
@@ -100,7 +99,7 @@ function viewimotappimg(){
                    <table width="500px"  border="0" cellspacing="0" cellpadding="0" >
 					<tr align="center">
 						<td ><textarea name="diarycomment" style="width:100%" id="diarycomment" cols="35" rows="2" /></td>
-<input type=hidden id="appimg" name=appimg value='1.png'>
+<input type=hidden id="appimg" name="appimg" value="1.png">
 						<td align="center" style="CURSOR: pointer;" onclick=viewimotappimg(); style="width:32;height:29"><input type="hidden" id="couplename" name="couplename" value="${couplename}">
 				<DIV id=imotappimgImg name="imotiImg" style="width:32"><IMG src="/Date/project/ee/8.png"></DIV></td>
 				<td>
@@ -110,32 +109,32 @@ function viewimotappimg(){
 						<TD style="PADDING-LEFT: 2px">
 							<TABLE cellSpacing=1 cellPadding=0 bgColor=#dedede border=0>
 								<TR bgColor=#ffffff>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('1.png');"><IMG src="/Date/project/ee/1.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('2.png');"><IMG src="/Date/project/ee/2.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('3.png');"><IMG src="/Date/project/ee/3.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('4.png');"><IMG src="/Date/project/ee/4.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('5.png');"><IMG src="/Date/project/ee/5.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('6.png');"><IMG src="/Date/project/ee/6.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('7.png');"><IMG src="/Date/project/ee/7.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('8.png');"><IMG src="/Date/project/ee/8.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('9.png');"><IMG src="/Date/project/ee/9.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('10.png');"><IMG src="/Date/project/ee/10.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('11.png');"><IMG src="/Date/project/ee/11.png"></TD>
-                                	<TD style="CURSOR: pointer;" onclick="setImotappimg('12.png');"><IMG src="/Date/project/ee/12.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('1.png');" id="imotappimg"><IMG src="/Date/project/ee/1.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('2.png');" id="imotappimg"><IMG src="/Date/project/ee/2.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('3.png');" id="imotappimg"><IMG src="/Date/project/ee/3.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('4.png');" id="imotappimg"><IMG src="/Date/project/ee/4.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('5.png');" id="imotappimg"><IMG src="/Date/project/ee/5.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('6.png');" id="imotappimg"><IMG src="/Date/project/ee/6.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('7.png');" id="imotappimg"><IMG src="/Date/project/ee/7.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('8.png');" id="imotappimg"><IMG src="/Date/project/ee/8.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('9.png');" id="imotappimg"><IMG src="/Date/project/ee/9.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('10.png');" id="imotappimg"><IMG src="/Date/project/ee/10.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('11.png');" id="imotappimg"><IMG src="/Date/project/ee/11.png"></TD>
+                                	<TD style="CURSOR: pointer;" onclick="setImotappimg('12.png');" id="imotappimg"><IMG src="/Date/project/ee/12.png"></TD>
                                 </TR>
                                 <TR bgColor=#ffffff>
-                                	<TD style="CURSOR: pointer;" onclick="setImotappimg('13.png');"><IMG src="/Date/project/ee/13.png"></TD>
-                                	<TD style="CURSOR: pointer;" onclick="setImotappimg('14.png');"><IMG src="/Date/project/ee/14.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('15.png');"><IMG src="/Date/project/ee/15.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('16.png');"><IMG src="/Date/project/ee/16.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('17.png');"><IMG src="/Date/project/ee/17.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('18.png');"><IMG src="/Date/project/ee/18.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('19.png');"><IMG src="/Date/project/ee/19.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('20.png');"><IMG src="/Date/project/ee/20.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('25.png');"><IMG src="/Date/project/ee/25.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('22.png');"><IMG src="/Date/project/ee/22.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('24.png');"><IMG src="/Date/project/ee/24.png"></TD>
-									<TD style="CURSOR: pointer;" onclick="setImotappimg('25.png');"><IMG src="/Date/project/ee/25.png"></TD>
+                                	<TD style="CURSOR: pointer;" onclick="setImotappimg('13.png');" id="imotappimg"><IMG src="/Date/project/ee/13.png"></TD>
+                                	<TD style="CURSOR: pointer;" onclick="setImotappimg('14.png');" id="imotappimg"><IMG src="/Date/project/ee/14.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('15.png');" id="imotappimg"><IMG src="/Date/project/ee/15.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('16.png');" id="imotappimg"><IMG src="/Date/project/ee/16.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('17.png');" id="imotappimg"><IMG src="/Date/project/ee/17.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('18.png');" id="imotappimg"><IMG src="/Date/project/ee/18.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('19.png');" id="imotappimg"><IMG src="/Date/project/ee/19.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('20.png');" id="imotappimg"><IMG src="/Date/project/ee/20.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('25.png');" id="imotappimg"><IMG src="/Date/project/ee/25.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('22.png');" id="imotappimg"><IMG src="/Date/project/ee/22.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('24.png');" id="imotappimg"><IMG src="/Date/project/ee/24.png"></TD>
+									<TD style="CURSOR: pointer;" onclick="setImotappimg('25.png');" id="imotappimg"><IMG src="/Date/project/ee/25.png"></TD>
                                 </TR>
 							</TABLE>
 						</TD>
@@ -157,7 +156,9 @@ name="commentup" value="commentup" href="#" onclick="callAjax3('CommentUp.nhn')"
 				<table width="500px" border="1" cellspacing="0" cellpadding="0" >
 						<tr align="center">
 						<td width="15%">${commentList.id}</td>
-						<td width="55%" cols="10" rows="3">&nbsp;${commentList.diarycomment}
+						<td width="55%" cols="10" rows="3">
+						&nbsp;<img src="/Date/project/ee/${commentList.img}"/>
+						&nbsp;${commentList.diarycomment}
 					    <td><img src="yh/img/c3.png" type="button" value="delete" onclick="callComment('commentDelete.nhn?id=${id}&commentnum=${commentList.num}')"/></td>
 						</td>
 						<td width="15%"><h6>${commentList.regdate}</h6></td>
