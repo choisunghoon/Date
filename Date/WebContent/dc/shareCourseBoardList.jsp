@@ -12,7 +12,7 @@
 
 </script>
 </style>
-<title>SHARE COURSE BOARD</title>	
+<title>MY COURSE LIST</title>	
 </head>
 
 <body>
@@ -20,7 +20,7 @@
 	<table width="600" border="1" cellspacing="0" cellpadding="2">
 	
 		<tr>
-			<td align="center" colspan="2"> <h2>SHARE COURSE BOARD</h2></td>
+			<td align="center" colspan="2"> <h2>MY COURSE LIST</h2></td>
 		</tr>
 	</table>
 
