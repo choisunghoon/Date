@@ -97,20 +97,16 @@ public class Upload {
 		cdb.setCouplename(couplename);
 		cdb = (CoupleDataBean)sqlMap.queryForObject("diaryImage", cdb);
 		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
-		
-		Calendar today = Calendar.getInstance();
-		Calendar dday = Calendar.getInstance();
-		int myear = 0;
-		int mmonth = 0;
-		int mday = 0;
-		dday.set(myear, mmonth, mday);
-		
-		long day = dday.getTimeInMillis()/(24*60*60*1000);
-		long tday = today.getTimeInMillis()/(24*60*60*1000);
-		
-
-		
-		
+		Calendar cal = Calendar.getInstance();
+	      Calendar cal2 = Calendar.getInstance();
+	      System.out.println(cdb.getCoupledate().getDate());
+	      cal2.set(cdb.getCoupledate().getYear()+1900, cdb.getCoupledate().getMonth(),cdb.getCoupledate().getDate() );//9월 22일이다. 월은 -1이 된다.
+	           //객체에 날짜가 설정된다.
+	      long day = cal2.getTimeInMillis() - cal.getTimeInMillis() ;
+	      long dday = day/1000/60/60/24 -1;		
+	      //int aa = Integer.parseInt(dday/100 - Math.floor(dday/100));
+	      
+	    request.setAttribute("dday", dday);
 		request.setAttribute("couplename", couplename);
 		request.setAttribute("listMore", listMore);
 		request.setAttribute("totalCnt", totalCnt);
