@@ -873,8 +873,6 @@ function removeAllChildNods(el) {
 	<div id="img" class="placeinfov_wrap" style="margin-bottom: 20px">
 	
 	</div>
-	
-	
 </div>
 
 <input type="hidden" id="num" value="${num}" name="num" />
