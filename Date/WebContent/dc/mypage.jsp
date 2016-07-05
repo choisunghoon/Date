@@ -99,11 +99,42 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 </table>
 </form>
  -->
+  <script type="text/javascript">
+ 
+ window.onload = function () {
+	 callAjax("modifyForm.nhn");
+	 if($("#couplen").val() == ""){
+		 callAjax('coupleinfo.nhn');
+	 }
+	}
+    function callAjax(nhn){
+        $.ajax({
+	        type: "post",
+	        url : nhn,
+	        success: refresh,	// 페이지요청 성공시 실행 함수
+	        error: whenError2	//페이지요청 실패시 실행함수
+     	});
+    }
+    function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+        $("#subMain").html(aaa);
+        
+    }
+    function whenError2(){
+        alert("Error");
+    }
+  </script>
+<c:if test="${fail eq '1'}">
+ <script type="text/javascript">
+	alert("상대방에게 먼저 커플을 신청한 사람이 있습니다. 순서를 기다리세요.")
+ </script>
+</c:if>
+
+<input type="hidden" id="couplen" name="couplen" value="${couplens}">
 <div style="width:100%;float:left;" >
 		<div style="width:12%;float:left;">
 			<a href="#" onclick="callAjax('modifyForm.nhn?id=${id }')"><img src="syimage/mm23.png" onmouseover='this.src="syimage/mm24.png"' onmouseout='this.src="syimage/mm23.png"' /></a>
 			<a href="#" onclick="callAjax('deleteForm.nhn?id=${id }')"><img src="syimage/mm25.png" onmouseover='this.src="syimage/mm26.png"' onmouseout='this.src="syimage/mm25.png"' /></a>
-			<a href="#" onclick="callAjax('coupleinfo.nhn?id=${id }')"><img src="syimage/mm27.png" onmouseover='this.src="syimage/mm28.png"' onmouseout='this.src="syimage/mm27.png"' /></a>
+			<a href="#" id="mygo" onclick="callAjax('coupleinfo.nhn?id=${id }')"><img src="syimage/mm27.png" onmouseover='this.src="syimage/mm28.png"' onmouseout='this.src="syimage/mm27.png"' /></a>
 			<a href="#" onclick="callAjax('coupleDeleteForm.nhn?id=${id }')"><img src="syimage/mm29.png" onmouseover='this.src="syimage/mm30.png"' onmouseout='this.src="syimage/mm29.png"' /></a>
 			<a href="#" onclick="callAjax('mylist.nhn?id=${id }')"><img src="syimage/mm31.png" onmouseover='this.src="syimage/mm32.png"' onmouseout='this.src="syimage/mm31.png"' /></a>
 		</div>
@@ -134,32 +165,3 @@ function whenError(){
 }
 </script>
  -->
- <script type="text/javascript">
- function callmy(){
-		$("#mygo").trigger('click');
-	}
- 
- window.onload = function () {
-	 callAjax("modifyForm.nhn");
-	}
-    function callAjax(nhn){
-        $.ajax({
-	        type: "post",
-	        url : nhn,
-	        success: refresh,	// 페이지요청 성공시 실행 함수
-	        error: whenError2	//페이지요청 실패시 실행함수
-     	});
-    }
-    function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
-        $("#subMain").html(aaa);
-        
-    }
-    function whenError2(){
-        alert("Error");
-    }
-  </script>
-<c:if test="${fail eq '1'}">
- <script type="text/javascript">
-	alert("상대방에게 먼저 커플을 신청한 사람이 있습니다. 순서를 기다리세요.")
- </script>
-</c:if>
