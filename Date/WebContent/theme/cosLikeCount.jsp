@@ -24,7 +24,7 @@
  
 <body>
 		<span>
-		<c:if test="${checkNum eq 1}"><a href="#" onclick="callAjax1(${ctg_num},${cos_num},${checkNum})"><img src="button/z31.png" alt="" style="margin-top:5px;"></a></c:if>
-		<c:if test="${checkNum ne 1}"><a href="#" onclick="callAjax1(${ctg_num},${cos_num},${checkNum})"><img src="button/z32.png" alt="" style="margin-top:5px;"></a></c:if>
+		<c:if test="${checkNum eq 1}"><a href="#" onclick="callAjax1(${ctg_num},${cos_num},${checkNum})"><img src="button/z31.png"></a></c:if>
+		<c:if test="${checkNum ne 1}"><a href="#" onclick="callAjax1(${ctg_num},${cos_num},${checkNum})"><img src="button/z32.png"></a></c:if>
 		</span><br/>
 </body>

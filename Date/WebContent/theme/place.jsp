@@ -62,7 +62,6 @@
       }
     function callAddApp(){    	
    	 $.ajax({
-   		//data : {"enumber" : enumber},
 	        type: "post", 	        
 	        url : "placeModify.nhn?loc_num="+document.getElementById("loc_num").value + "&ctg_num="+ document.getElementById("ctg_num").value + "&cos_num=" + document.getElementById("cos_num").value,
 	        success: test1,	// 페이지요청 성공시 실행 함수
@@ -71,13 +70,20 @@
    	}
     function callAddApp1(){    	
       	 $.ajax({
-      		//data : {"enumber" : enumber},
    	        type: "post", 	        
    	        url : "placeDel.nhn?loc_num="+document.getElementById("loc_num").value + "&ctg_num="+ document.getElementById("ctg_num").value + "&cos_num=" + document.getElementById("cos_num").value,
    	        success: test1,	// 페이지요청 성공시 실행 함수
    	        error: whenError	//페이지요청 실패시 실행함수
         	});
       }
+    function callAddApp2(){    	
+     	 $.ajax({
+  	        type: "post", 	        
+  	        url : "placeReply.nhn?loc_num="+document.getElementById("loc_num").value + "&ctg_num="+ document.getElementById("ctg_num").value + "&cos_num=" + document.getElementById("cos_num").value,
+  	        success: test1,	// 페이지요청 성공시 실행 함수
+  	        error: whenError	//페이지요청 실패시 실행함수
+       	});
+     }
     function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
         $(".modal-body").html(aaa);	//id가 ajaxReturn인 부분에 넣어라
     }
@@ -130,13 +136,26 @@
 </head>
 <body>
 <c:if test="${id == 'admin'}">
-<input type="button" value="코스 삭제" align="center" onclick="callContent3(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal">
-<input type="button" value="코스 수정" align="center" onclick="callContent2(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal">
-<input type="button" value="장소 추가" align="center" onclick="callContent1(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal">
+<a href="#"  onclick="callContent3(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal"><img src="button/z20.png"></a>
+<a href="#"  onclick="callContent2(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal"><img src="button/z22.png"></a>
+<c:if test="${placeCount <= 2}">
+<a href="#"  onclick="callContent1(${ctg_num},${cos_num})" id="test" data-toggle="modal" data-target="#myModal"><img src="button/z23.png"></a>
 </c:if>
-<input type="button" value="카테고리로" align="center" onclick="document.location.href='addCtgView.nhn'">
-<input type="button" value="코스로" align="center" onclick="document.location.href='course.nhn?ctg_num=${ctg_num}'">
-
+</c:if>
+<a href="#"  onclick="document.location.href='addCtgView.nhn'"><img src="button/z18.png"></a>
+<a href="#"  onclick="document.location.href='course.nhn?ctg_num=${ctg_num}'"><img src="button/z10.png"></a>
+<c:if test="${id != null}">
+<c:if test="${id != 'null' and checkNum != 1}">
+	<div id="like"  method="post">
+		<span id="ajaxReturn"><a href="#" onclick="callAjax(${ctg_num},${cos_num},${checkNum})"><img src="button/z31.png"></a>${dto.likeCount}</span><br/>
+	</div>
+</c:if>
+<c:if test="${id != 'null' and checkNum == 1}">
+	<div id="like"  method="post">
+		<span id="ajaxReturn"><a href="#" onclick="callAjax(${ctg_num},${cos_num},${checkNum})"><img src="button/z32.png"></a>${dto.likeCount}</span><br/>
+	</div>
+</c:if>
+</c:if>
 </br>
 		<center><h2>${dto1.cos_name}</h2></center>
 	
@@ -167,17 +186,6 @@
 	</table>
 </br>
 </br>
-<center>
-<c:if test="${id != 'null' and checkNum != 1}">
-	<div id="like"  method="post">
-		<span id="ajaxReturn"><a href="#" onclick="callAjax(${ctg_num},${cos_num},${checkNum})"><img src="button/z31.png" alt="" style="margin-top:5px;"></a>${dto.likeCount}</span><br/>
-	</div>
-</c:if>
-<c:if test="${id != 'null' and checkNum == 1}">
-	<div id="like"  method="post">
-		<span id="ajaxReturn"><a href="#" onclick="callAjax(${ctg_num},${cos_num},${checkNum})"><img src="button/z32.png" alt="" style="margin-top:5px;"></a>${dto.likeCount}</span><br/>
-	</div>
-</c:if>
 </center>
     <div class="gallery">
 			<ul>
@@ -199,6 +207,9 @@
 				</c:forEach>
 			</ul>
 	</div>
+		<br/>
+		<br/>
+
 <!-- 모달 팝업 -->
 	
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
@@ -274,7 +285,6 @@
 	  </div>
 	</div>
 
-	
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

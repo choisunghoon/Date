@@ -361,10 +361,16 @@ public class Theme {
 		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
 		List placeList = null;
 		int checkNum = 0;
+		
+		LikeCountDataBean dto3 = new LikeCountDataBean();
+		dto3.setId(id);
+		dto3.setCos_num(cos_num);
+		dto3.setCtg_num(ctg_num);
 
-		int count = (Integer) sqlMap.queryForObject("getLikeCount", cos_num);
+		int count = (Integer) sqlMap.queryForObject("getLikeCount", dto3);
 		
-		
+		System.out.println(id);
+		System.out.println(count);
 		if(id != null){
 			LikeCountDataBean dto2 = new LikeCountDataBean();
 			dto2.setId(id);
@@ -373,6 +379,8 @@ public class Theme {
 		
 			if(count > 0){ 
 				checkNum = (Integer) sqlMap.queryForObject("getCheckNum", dto2);
+			}else if(count == 0){
+				checkNum = 0;
 			}
 		}
 		
@@ -610,7 +618,7 @@ public class Theme {
 		dto1.setCtg_num(ctg_num);
 		dto1.setCos_num(cos_num);
 		
-		int count = (Integer) sqlMap.queryForObject("getLikeCount", cos_num);
+		int count = (Integer) sqlMap.queryForObject("getLikeCount", dto);
 		
 		LikeCountDataBean dto2 = new LikeCountDataBean();
 		dto2.setId(id);

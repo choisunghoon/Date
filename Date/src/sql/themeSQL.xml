@@ -54,8 +54,8 @@
     	)
     </insert>	
     
-    <select id="getLikeCount" parameterClass="int" resultClass="int">
-    	select count(*) from theme_likeCount where cos_num=#cos_num#
+    <select id="getLikeCount" parameterClass="themeDTO.LikeCountDataBean" resultClass="int">
+    	select count(*) from theme_likeCount where id=#id# and cos_num=#cos_num#
     </select>
     
     <select id="getCheckNum" parameterClass="themeDTO.LikeCountDataBean" resultClass="Integer">
