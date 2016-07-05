@@ -89,6 +89,17 @@
 </style>
 
 <script type="text/javascript">
+
+function callUppool(){
+	$.ajax({
+        type: "post",
+        url : url,
+        data :{
+        	num : $('#num').val()
+        },
+        
+	})
+}
 var pids = '${pidsize}'
 	
 function readImage(file,j) {
@@ -861,7 +872,7 @@ function removeAllChildNods(el) {
 	
 </div>
 
-<input type="hidden" value="${num}" name="num" />
+<input type="hidden" id="num" value="${num}" name="num" />
 <c:if test="${dto.postcheck eq '0'}">
 <input type="image" name="submit" value="submit" src="button/z34.png" />
 <br /> 
@@ -889,7 +900,7 @@ function removeAllChildNods(el) {
 	</div>
 </c:if>
 <c:if test="${dto.postcheck eq '1' }">
-<a href=""><img alt="" src="button/z39.png"></a>
+<a href="callUppool"><img alt="" src="button/z39.png"></a>
 	<c:forEach	var="i" begin="0" end="${pidsize-1 }">
 		<div>
 			<div id="sel${i}" style="float:left;margin-top:20px;">
