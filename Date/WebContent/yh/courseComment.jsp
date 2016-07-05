@@ -77,6 +77,7 @@ function commentError(){
 </style>
 
 <body>
+<br/>
 <form name="comment" method="post">
 
     <div class="tab1_content" >
@@ -87,10 +88,10 @@ function commentError(){
              <input type="hidden" id="aa" name="listMore" value="${listMore}"/>
             </form>
     <ul class="tbl_area">
-                   <table width="500px"  border="0" cellspacing="0" cellpadding="0" >
+                   <table  width="600px"  border="0" cellspacing="0" cellpadding="0" >
 					<tr align="center">
-						<td ><textarea name="coursecomment" style="width:100%" id="coursecomment" cols="35" rows="3" /></td>
-						<td ><input type="button" style='width:100%; height:60px; border:60px ;'
+						<td ><textarea name="coursecomment" style="width:100%" id="coursecomment" cols="35" rows="2" /></td>
+						<td ><img src="yh/img/z61.png"  type="button" style='width:height:70px; border:70px ;'
 name="commentup" value="commentup" href="#" onclick="callAjax3('courseCommentUp.nhn')"> 
 	
 					</tr>
@@ -101,10 +102,10 @@ name="commentup" value="commentup" href="#" onclick="callAjax3('courseCommentUp.
                <ul class="tbl_area" id="dispRow${i}" style="margin-left:0%;display:none">
                		<c:set var="i" value="${i+1 }" />
                  <li >
-				<table width="500px" border="1" cellspacing="0" cellpadding="0" >
+				<table width="600px" border="1" cellspacing="0" cellpadding="0" >
 						<tr align="center">
 						<td width="15%">${commentList.id}</td>
-						<td width="55%">&nbsp;${commentList.coursecomment}
+						<td width="55%" cols="35" rows="3">&nbsp;${commentList.coursecomment}
 					    <td><img src="yh/img/c3.png" type="button" value="delete" onclick="callComment('courseCommentDelete.nhn?id=${id}&commentnum=${commentList.num}')"/></td>
 						</td>
 						<td width="15%"><h6>${commentList.regdate}</h6></td>
@@ -123,7 +124,7 @@ name="commentup" value="commentup" href="#" onclick="callAjax3('courseCommentUp.
             	</c:if>            
    </ul>
             <div id="dispMore" style="display:none;padding-bottom:100px;">
-             <a href="#" onclick="listMore(${totalCount})" style="margin-left:45%; ">댓글 20개 더 보기</a>
+             <a href="#" onclick="listMore(${totalCount})" style="margin-left:80%;CURSOR: pointer">댓글 더 보기</a>
             </div>
             <c:forEach end="${totalCount}" begin="1" var="i">
                <c:if test="${i<=listMore }">
@@ -145,11 +146,11 @@ name="commentup" value="commentup" href="#" onclick="callAjax3('courseCommentUp.
             
                var listMore = document.getElementById("aa").value; //현재 화면에 보여지는 리스트 갯수를 가져온다(3개)
            
-               var last = Number(listMore) + 20; //더보기를 누르면 3개씩 추가 된다
+               var last = Number(listMore) + 10; //더보기를 누르면 3개씩 추가 된다
            
-               for (i=Number(listMore)+1;i<=totalCount;i++) // i=(3+1) -> 최초3개만 보여주니까 다음부턴 4부터 6까지; 4보다 최대 갯수가 같거나 클때 까지; i= 4++
+               for (i=Number(listMore)+1;i<=totalCount;i++) // i=(10+1) -> 최초10개만 보여주니까 다음부턴 11부터 20까지; 11보다 최대 갯수가 같거나 클때 까지; i= 4++
                {
-                if (i<=last) // i가 6보다 작거나 같을경우
+                if (i<=last) // i가 11보다 작거나 같을경우
                 {
                  document.getElementById("dispRow"+i).style.display = 'block'; //dispRow6 까지 block 처리를 한다
                 }

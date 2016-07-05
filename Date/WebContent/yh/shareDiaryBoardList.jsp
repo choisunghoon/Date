@@ -24,7 +24,8 @@ function whenError2(){
 }
 	
 </script>
-<br/><br/><br/>
+<br/><br/>
+<center>
 <title>SHARE DIARY BOARD</title>	
 </head>
 

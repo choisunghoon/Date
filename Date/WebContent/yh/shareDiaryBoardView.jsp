@@ -58,7 +58,8 @@
     
 </script>
 </head>
-<br/><br/><br/>
+<br/><br/>
+<center>
 <body>
 <form name="shareview" method="post">
 	<br/>
@@ -74,13 +75,13 @@
 	<br/>
 	<table width="500" border="0" cellspacing="0" cellpadding="0">
 	<tr>
-		<td>
-			<img src="syimage/${dto.img }" style="width:500px; height:500px;">	
+		<td><center>
+			<img src="syimage/${dto.img }" style="width:500px; height:300px;">	
 			<br/>
 			<br/>
 			
 			${dto.content }
-			
+			</center>
 			<br/>
 		<div id="like" method="post"><center>
 			<span id="ajaxReturn">
@@ -98,8 +99,8 @@
 		</td>
 		</tr>                                                       
  			<br/><td align="right">
- 				<input type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareDiaryBoard.nhn')"/>&nbsp;&nbsp;
-				<input type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('dairyComment.nhn')" /> </td>
+ 				<img src="yh/img/z59.png" type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareDiaryBoard.nhn')"/>&nbsp;&nbsp;
+				<img src="yh/img/z57.png" type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('dairyComment.nhn')" /> </td>
 		
 		</table>
 		<tr>

@@ -73,7 +73,7 @@ $(document).ready(function(){
     <style>
 .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-.map_wrap {position:relative;width:800px;height:350px;}
+.map_wrap {position:relative;width:600px;height:350px;}
 #menu_wrap {position:absolute;top:0;left:100%;bottom:0;width:250px;margin:0 0 0 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
@@ -126,7 +126,10 @@ $(document).ready(function(){
 </style>
 </head>
 <body>
+<center>
 
+<br/>
+<br/>
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
@@ -864,7 +867,6 @@ function removeAllChildNods(el) {
 }
 </script>
 
-
 <form action="cosUpdate.nhn">
 <input type="hidden" value="up" name="btcheck" />
 <div id="img" class="placeinfov_wrap">
@@ -880,34 +882,35 @@ function removeAllChildNods(el) {
 <br/>
 <br/>
 
-<tr>
-<td>${content }</td>
-</tr>
+	<table width="650px"  border="0" cellspacing="0" cellpadding="0" >
+		<tr align="center"><center>
+			<img src="/${dto.postsrc}" style="width:500px; height:300px;"></center>
+			<br/>
+			${dto.content}
 
-		<div id="like" method="post"><center>
-			<tr>
-			<span id="ajaxReturn" align="center">
+		</tr>
 
+		<div id="like" method="post">
+			<span id="ajaxReturn">
 			<c:if test="${check ==0 }"> 
-				<img src="yh/img/c31.png" type= "button" name="goodLike" style="margin-top:5px;">&nbsp;&nbsp; ${dto.likecount} 
+				<img src="yh/img/c31.png" type= "button" name="goodLike" style="margin-top:5px;">&nbsp; ${dto.likecount} 
 			</c:if>
 			<c:if test="${check !=0 }"> 
-				<img src="yh/img/c32.png" type= "button" name="goodLike" style="margin-top:5px;">&nbsp;&nbsp; ${dto.likecount} 
+				<img src="yh/img/c32.png" type= "button" name="goodLike" style="margin-top:5px;">&nbsp; ${dto.likecount} 
 			</c:if>
 			</span><br/>
-			</tr>		
 					
 		</center>   
-		</div>	    
+		</div>	  
 		
 			<br/>
 		<tr>
 				<td align="right">
- 				<input type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareCourseBoard.nhn')"/>&nbsp;&nbsp;
-				<input type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('courseComment.nhn')" /> </td>
-	
+				<img src="yh/img/z59.png" type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareCourseBoard.nhn')"/>&nbsp;&nbsp;
+				<img src="yh/img/z57.png" type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('courseComment.nhn')" /> </td>
+		
 		<tr>
-			<br/>
+			<br/><br/>
 				<div alingn="left">
 		<td>	<span id="ajaxReturn1" > </span><br/></td>
 		</tr>  
