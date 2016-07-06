@@ -132,11 +132,11 @@ $(document).ready(function(){
 <center>
 
 <br/><br/>
-	<table width="800" border="0" cellspacing="0" cellpadding="0" >
+	<table width="700" border="0" cellspacing="0" cellpadding="0" >
 
 	<tr align="center">
-		<td width="120"><a align="left"></a> ${dto.couplename } </a></td><td width="500"> ${dto.subject} </td>
-		<td width="90">${dto.num }번글</td><td width="90">조횟수 ${dto.readcount }</td> 
+		<td width="110"><a align="left"></a> ${dto.couplename } </a></td><td width="500"> ${dto.subject} </td>
+		</td><td width="90">조횟수 ${dto.readcount }</td> 
 	</tr>
 
 	</table><br/>

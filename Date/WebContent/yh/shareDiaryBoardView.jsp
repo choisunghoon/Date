@@ -72,7 +72,7 @@
 
 	<tr align="center">
 		<td width="90"> ${dto.couplename } </td><td width="230"> ${dto.subject} </td>
-		<td width="90">${dto.num }번글</td><td width="90">조횟수 ${dto.readcount }</td> 
+		</td><td width="90">조횟수 ${dto.readcount }</td> 
 	</tr>
 
 	</table>

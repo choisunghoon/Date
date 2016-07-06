@@ -40,22 +40,20 @@ function whenError2(){
 	</table>
 
 	<br/>	
-	<table class="table14_1" width="800" border="1" cellspacing="0" cellpadding="2">
+	<table class="table14_1" width="700" border="1" cellspacing="0" cellpadding="2">
 	<tr align="center">
-		<th width="60">글번호</td>
-		<th width="500">제목</td>
+			<th width="70">조회</td>
+		<th width="460">제목</td>
 		<th width="100">커플네임</td>
-		<th width="70">조회</td>
 		<th width="70">좋아요</td>
 	</tr>
 	
 	<c:forEach var="list" items="${list }">
 	<tr align="center">
-		<td>${list.num }</td>
+		<td>${list.readcount}</td>
 		<td align="left">&nbsp;
 		<a href="#" onclick="callAjax('shareDiaryBoardView.nhn?num=${list.num }&id=${id}')"> ${list.subject}</a></td>
 		<td align="center"> ${list.couplename}</td>
-		<td>${list.readcount}</td>
 		<td>${list.likecount}</td>
 	</tr>
 	</c:forEach>
