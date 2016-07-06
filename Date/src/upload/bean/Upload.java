@@ -104,7 +104,7 @@ public class Upload {
 	           //객체에 날짜가 설정된다.
 	      long day = cal2.getTimeInMillis() - cal.getTimeInMillis() ;
 	      long dday = day/1000/60/60/24 -1;		
-	      int aa = (int)dday/100 - (int)Math.floor(dday/100);
+	      int aa = (int)Math.floor(dday/100) * (-1);
 	      int bb = (int)Math.floor(dday/100);
 	    
 	     System.out.println("이거다"+aa);
