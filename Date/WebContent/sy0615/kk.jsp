@@ -118,7 +118,7 @@
                     yMenuTo     = windows.pageYOffset +10 ;   // 위쪽 위치 
             } else if (isDOM) { 
                     yMenuFrom   = parseInt (divMenu.style.top, 10); 
-                    yMenuTo     = (isNS ? window.pageYOffset : document.body.scrollTop) +10; // 위쪽 위치 
+                    yMenuTo     = (isNS ? window.pageYOffset : document.body.scrollTop) +120; // 위쪽 위치 
             } 
             timeoutNextCheck = 500; 
             if (yMenuFrom != yMenuTo) { 
