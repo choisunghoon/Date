@@ -50,7 +50,7 @@
 		};
 	</script>
 </c:if>
-<c:if test="${checkW==1 and ch==0}">	
+<c:if test="${checkW==-1 and ch==0}">	
 	<script>
 	var enumber1 = ${enumber1};
 	$(document).ready(function() { 

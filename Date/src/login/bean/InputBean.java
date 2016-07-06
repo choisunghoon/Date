@@ -249,6 +249,7 @@ public class InputBean {
 			adto=(AlertDataBean)sqlMapper.queryForObject("getAlert1", id);
 			if(adto.getContent().equals("couple")){
 				sqlMapper.update("readCheckEnd", id);
+				sqlMapper.update("chid", id);
 			}
 		}
 		
@@ -271,7 +272,7 @@ public class InputBean {
 		if(check==1){
 			dto = (LogonDataBean)sqlMapper.queryForObject("getMemberbyn", nickname);
 			cdto.setId2(dto.getId());
-			int checkcouple=(Integer)sqlMapper.queryForObject("getCouple", dto.getId());//�뚣뀿�쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲筌ｏ옙占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼓獄�袁⑹굲 �뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈뼓占쎌뵛占쎌굲占쎈쐻�뜝占� 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
+			int checkcouple=(Integer)sqlMapper.queryForObject("getCouple1", dto.getId());//�뚣뀿�쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲筌ｏ옙占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼓獄�袁⑹굲 �뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈뼓占쎌뵛占쎌굲占쎈쐻�뜝占� 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 			if(checkcouple==1){
 				request.setAttribute("fail", "1");
 				return "/dc/mypage.jsp";

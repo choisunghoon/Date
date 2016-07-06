@@ -47,7 +47,7 @@ public class LoginBean {
 						for(int j=0; j<etoList.size();j++){
 							eto = (EventDataBean) etoList.get(j);
 							for(int i=0; i<checkcount; i++){
-								if(eto.getChecknum()==0){
+								if(eto.getChecknum()==-1){
 									request.setAttribute("checkW",  eto.getChecknum());
 									request.setAttribute("enumber1", eto.getEnumber());
 									request.setAttribute("ch", 0);
@@ -64,7 +64,7 @@ public class LoginBean {
 					
 					System.out.println(adto.getContent());
 					
-					int ca=(Integer)sqlMapper.queryForObject("getCouple",id); //�뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 id�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 而ㅵ뜝�룞�삕, �샊�뜝�룞�삕 而ㅵ뜝�떆�룞�삕泥��뜝�룞�삕 �뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떙�궪�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�뙇�떎紐뚯삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 
+					int ca=(Integer)sqlMapper.queryForObject("getCouple1",id); //�뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 id�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 而ㅵ뜝�룞�삕, �샊�뜝�룞�삕 而ㅵ뜝�떆�룞�삕泥��뜝�룞�삕 �뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떙�궪�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�뙇�떎紐뚯삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 
 					request.setAttribute("ca", ca);
 			}
 				int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id); // �뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 id�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떙紐뚯삕�뜝�룞�삕 �뜝�떙�궪�삕. �뜝�룞�삕�뜝�뜽�뿉�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 而ㅵ뜝�떆�룞�삕泥� �뜝�뙣�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �솗�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕

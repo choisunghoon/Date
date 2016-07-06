@@ -127,24 +127,24 @@ function date() {
 
 <!-- 커플 신청을 한 상태인 회원(상대방이 커플수락 안함)
 	 check1 = 커플을 신청한 회원인지 판별, couple2.couple 커플인 회원인지 판별 -->
-<c:if test="${check1 eq 1 and couple2.couple eq '0'}">
+<c:if test="${check1 == 1 and couple2.couple eq '0'}">
 상대방의 수락을 기다리는 중입니다.<br>
 커플 신청을 취소하려면 버튼을 클릭하세요.<br><a href="couplex.nhn?&id=${id}"><img src="button/z35.png"></a>
 </c:if>
 
 <!-- 커플 신청을 받은 상태인 회원
 	 check2 = 커플 신청받은 회원인지 판별, couple2.couple 커플인 회원인지 판별 -->
-<c:if test="${check2 eq 1 and couple2.couple eq '0'}">
+<c:if test="${check2 == 1 and couple2.couple eq '0'}">
 <b>${couple1.nickname }</b>(${couple1.id})님으로 부터 커플명 <b>${coupleData.coupleName }</b> (으)로 커플 신청이 왔습니다.
 수락하시려면 버튼을 클릭하세요.<br><a href="coupleInput.nhn?&id=${id}"><img src="button/z36.png"></a>
 <a href="couplex.nhn?&id=${id}"><img src="button/z37.png"></a>
 </c:if>
 
 <!-- 커플인 회원 -->
-<c:if test="${couple2.couple eq '1' }">
+<c:if test="${couple2.couple eq'1' }">
 	<form method="post" action="coupleModify.nhn"  name="coupleModify">
 	<center>
-	<b>${couple2.nickname }</b>(${couple2.id})님과 <b>${couple1.nickname }</b>(${couple1.id})님의 커플 정보 입니다.
+	<b>${couple2.nickname }</b>(${ouple2.id})님과 <b>${couple1.nickname }</b>(${couple1.id})님의 커플 정보 입니다.
 	<br/><br/><br/>
    
  	 커플명   <input type="text" name="coupleName" size="20" maxlength="30" value="${coupleData.coupleName}">     
