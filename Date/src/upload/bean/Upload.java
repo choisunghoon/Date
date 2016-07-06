@@ -107,6 +107,7 @@ public class Upload {
 	      int aa = (int)dday/100 - (int)Math.floor(dday/100);
 	      int bb = (int)Math.floor(dday/100);
 	    
+	     System.out.println("¿Ã∞≈¥Ÿ"+aa);
 	    request.setAttribute("point", point);
 	    request.setAttribute("aa", aa);
 	    request.setAttribute("bb", bb);
