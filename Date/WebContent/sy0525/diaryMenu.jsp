@@ -186,7 +186,7 @@
     </div>
     <div class="tab2_content">
        <div id="tab2" style="margin-left:33%;padding-bottom:60px;">
-        D-day ${dday }<br>
+        <h2>D-day ${dday }<br></h2>
         <c:if test="${bb < 1 }">
         <img src="syimage/a${aa}.jpg" width="500" height="600"/>
       	</c:if>

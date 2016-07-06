@@ -139,9 +139,13 @@
 		<select id="getCouple" parameterClass="ch11.logon.LogonDataBean" resultClass="int">
 			SELECT * from dc_member where id=#id#
 		</select>
+		<select id="getCouple3" parameterClass="String" resultClass="ch11.logon.LogonDataBean">
+			SELECT * from dc_member where id=#id#
+		</select>
 		<select id="getCouple1" parameterClass="String" resultClass="int">
 			SELECT couple from dc_member where id=#id#
 		</select>
+		
 		<select id="confirmId" parameterClass="String" resultClass="int">
 			SELECT count(*) FROM dc_member where id=#id# 
 		</select>

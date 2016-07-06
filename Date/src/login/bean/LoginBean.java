@@ -169,7 +169,7 @@ public class LoginBean {
 			else
 				request.setAttribute("couple1", "end");
 			}
-		ldb = (LogonDataBean)sqlMapper.queryForObject("getCouple",id);
+		ldb = (LogonDataBean)sqlMapper.queryForObject("getCouple3",id);
 		request.setAttribute("ldb", ldb);
 		request.setAttribute("chk", chk);
 		return "/sy0526/couple.jsp";
@@ -191,7 +191,7 @@ public class LoginBean {
 				session.setAttribute("adto", adto);
 				System.out.println(adto.getContent());
 				
-				int ca=(Integer)sqlMapper.queryForObject("getCouple",id);
+				int ca=(Integer)sqlMapper.queryForObject("getCouple1",id);
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
