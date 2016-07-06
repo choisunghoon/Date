@@ -14,12 +14,12 @@
         	return false;
     	}
     	else if(document.form.keyword.value != ""){
-    		callAjax('pointPro.nhn');
+    		callAjax1('pointPro.nhn');
     		
     	}
 	}
  
-    function callAjax(nhn){
+    function callAjax1(nhn){
         $.ajax({
 	        type: "post",
 	        url : nhn,
@@ -27,11 +27,11 @@
 	        	keyword: $("#keyword").val(),
 	        	states : $('#states').val()
 	        },
-	        success: refresh,	// 페이지요청 성공시 실행 함수
+	        success: refresh1,	// 페이지요청 성공시 실행 함수
 	        error: whenError2	//페이지요청 실패시 실행함수
      	});
     }
-    function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
+    function refresh1(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
         $("#subMain").html(aaa);
         
     }
@@ -104,15 +104,15 @@
    </c:if> 
           
    <c:if test="${startPage > 10}">
-        <a href="#" onclick="callAjax('point.nhn?pageNum=${startPage - 10 }')">[이전]</a>     
+        <a href="#" onclick="callAjax1('pointPro.nhn?pageNum=${startPage - 10 }&keyword=${keyword}')">[이전]</a>     
    </c:if>
 
    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <a href="#" onclick="callAjax('point.nhn?pageNum=${i}')">[${i}]</a>
+       <a href="#" onclick="callAjax1('pointPro.nhn?pageNum=${i}&keyword=${keyword}')">[${i}]</a>
    </c:forEach>
 
    <c:if test="${endPage < pageCount}">
-        <a href="#" onclick="callAjax('point.nhn?pageNum=${startPage + 10 }')">[다음]</a>
+        <a href="#" onclick="callAjax1('pointPro.nhn?pageNum=${startPage + 10 }&keyword=${keyword}')">[다음]</a>
    </c:if>
 </c:if>
 </form>

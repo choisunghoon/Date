@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import project.bean.EventDataBean;
+import themeDTO.PointSearchDataBean;
 import ch11.logon.LogonDataBean;
 import upload.bean.PointDataBean;
 
@@ -181,44 +182,31 @@ public class AdminBean {
 		System.out.println(keyword);
 		int a = Integer.parseInt(request.getParameter("states"));
 		List WList = new ArrayList();
-		List eventList = new ArrayList();
 		HashMap<Object, Object> row = new HashMap<Object, Object>();
 		row.put("keyword", keyword); 		
 		String[] wc;		
 		if(way==3)
 		{	
 			if(a==1){
-				eventList = sqlMap.queryForList("s1", row);	
+				WList = sqlMap.queryForList("s1", row);	
 			}
 			else if(a == 2){				
-				eventList = sqlMap.queryForList("searchWinEventListall", row);	
+				WList = sqlMap.queryForList("searchWinEventListall", row);	
 			}else if(a == 3){
-				eventList = sqlMap.queryForList("searchWinEventListall1", row);
+				WList = sqlMap.queryForList("searchWinEventListall1", row);
 			}
 		}
 		else{			
 			row.put("way", way);		
 			if(a==1){
-				eventList = sqlMap.queryForList("s2", row);	
+				WList = sqlMap.queryForList("s2", row);	
 			}
 			else if(a == 2){
-				eventList = sqlMap.queryForList("searchWinEventList", row);	
+				WList = sqlMap.queryForList("searchWinEventList", row);	
 			}else if(a == 3){
-				eventList = sqlMap.queryForList("searchWinEventList1", row);
+				WList = sqlMap.queryForList("searchWinEventList1", row);
 			}
 		}
-		EventDataBean wto = new EventDataBean();
-		for(int i = 0;i<eventList.size();i++){
-			wto = (EventDataBean)eventList.get(i);
-			if(wto.getWcouples()==null){				
-				wto.setWc(0);
-			}
-			else if(!(wto.getWcouples().isEmpty())){
-				String[] wlist = wto.getWcouples().split(",");
-				wto.setWc(wto.getWnumber()-wlist.length);
-			}
-			WList.add(wto);
-		}	
 		request.setAttribute("WList", WList);
 		return "/admin/adminEvent1.jsp";
 	}
@@ -238,31 +226,51 @@ public class AdminBean {
 	}
 	
 	@RequestMapping("pointPro.nhn")
-	public String pointPro(HttpServletRequest request, PointDataBean pdb){
+	public String pointPro(HttpServletRequest request, PointDataBean pdb,PointSearchDataBean pdb1){
 		String keyword = request.getParameter("keyword");
 		System.out.println(keyword);
 		int a = Integer.parseInt(request.getParameter("states"));
 		String place = "";
 		if(a == 1){
-			place = "ï¿½ï¿½ï¿½ï¿½ï¿½";
+			place = "Æ÷ÅäºÏ";
 		}else if(a == 2){
-			place = "ï¿½ï¿½ï¿½Ì¾î¸® ï¿½ï¿½ï¿½ï¿½";
+			place = "´ÙÀÌ¾î¸® °øÀ¯";
 		}else{
-			place = "ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½";
+			place = "µ¥ÀÌÆ® ÄÚ½º °øÀ¯";
 		}
 		
 		System.out.println(a);
-		pdb.setCouplename(keyword);
-		pdb.setPlace(place);
+		pdb1.setCouplename(keyword);
+		pdb1.setPlace(place);
 		List pointList = new ArrayList();
 		
-		pointList = sqlMap.queryForList("searchWinPointList", pdb);
-		int count1 = (int) sqlMap.queryForObject("searchWinPointCount", pdb);
+		String pageNum = request.getParameter("pageNum");
+		int pageSize = 10;
+		if(pageNum == null){
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;
+		
+		pdb1.setStartRow(startRow);
+		pdb1.setEndRow(endRow);
+		System.out.println(pdb1.getStartRow());
+		System.out.println(pdb1.getEndRow());
+		
+		pointList = sqlMap.queryForList("searchWinPointList1", pdb1);
+		int count = (int) sqlMap.queryForObject("searchWinPointCount", pdb1);
+		System.out.println(count);
 		
 		request.setAttribute("pointList", pointList);
-		request.setAttribute("count1", count1);
+		request.setAttribute("count", count);
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("startRow",startRow);
+		request.setAttribute("endRow", endRow);
+		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("keyword", keyword);
 		
-		return "/admin/point.jsp";
+		return "/admin/pointPro.jsp";
 	}
 	
 
