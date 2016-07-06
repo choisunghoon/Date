@@ -45,7 +45,7 @@
 	<img src="button/crown.png" style="position:absolute; top:-35px; width:80px; height:66px; left:-36px">
 	<c:forEach begin="${i}" end="${i}" items="${couple}" var="couple">
 	<div id="img${i}" style="margin-left:5px;width:210px; height:300px; border:1px solid">
-	<center><a href="#" onclick="openState('${latest.num}')" ><img src="syimage/${couple.coupleimage}"></a></center>
+	<center><a href="#" onclick="openState('${latest.num}')" ><img  width=210 height=300 src="syimage/${couple.coupleimage}"></a></center>
 	</div>
 	</c:forEach>
 	<c:set var="i" value="${i+1 }"/>

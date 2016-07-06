@@ -7,7 +7,7 @@
 	<img src="button/crown.png" style="position:absolute; top:-35px; width:80px; height:66px; left:-36px">
 	<c:forEach begin="${i}" end="${i}" items="${dd}" var="dd">
 	<div style="margin-left:4px;width:210px; height:300px; border:1px solid">
-		<center><img src="syimage/${dd.coupleimage}" style="width:80%;"></center>
+		<center><img width=210 height=300 src="syimage/${dd.coupleimage}" style="width:80%;"></center>
 	</div>
 	</c:forEach>
 	<c:set var="i" value="${i+1 }"/>
