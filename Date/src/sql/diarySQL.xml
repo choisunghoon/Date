@@ -92,13 +92,13 @@
 		insert into dc_point(num,couplename,getPoint,place,regdate) values(dc_point_seq.nextval,#couplename#,#getPoint#,#place#,sysdate)
 	</insert>
 	
-	<insert id="poolshare" parameterClass="upload.bean.DiaryDataBean">
+	<update id="poolshare" parameterClass="upload.bean.DiaryDataBean">
 		update dc_diary set pool=#pool#,pool_regdate=sysdate where couplename=#couplename# and num=#num#
-	</insert>
+	</update>
 	
-	<insert id="poolshare1" parameterClass="dateplan.bean.DTO">
+	<update id="poolshare1" parameterClass="dateplan.bean.DTO">
 		update dc_dc set pool=#pool#,poolsysdate=sysdate where couplename=#couplename# and num=#num#
-	</insert>
+	</update>
 	
 	<select id="myphoto" resultClass="upload.bean.PhotoDataBean" parameterClass="upload.bean.PhotoDataBean">
 		select * from dc_photo where couplename=#couplename# order by regdate desc
