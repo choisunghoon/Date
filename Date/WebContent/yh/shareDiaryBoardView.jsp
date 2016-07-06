@@ -11,7 +11,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
       $("#like").click(function(){
-		if(document.shareview.likelimit.value > 5){
+		if(document.shareview.likelimit.value >= 5){
 			alert("좋아요 추가는 일5회로 제한합니다.");
 		}else{
 				success:callAjax1();

@@ -16,7 +16,7 @@ function callComment(nhn){
 }
 function setImotappimg(imotappimg){
 	imotappimgImg.innerHTML = imotappimgImg.innerHTML = "<img src=\"/Date/project/ee/" + imotappimg + "\" >";
-	document.diarycomment.appimg.value = imotappimg;
+	$('#appimg').value = imotappimg;
 	imotappimgDiv.style.visibility = "hidden";
 }
 

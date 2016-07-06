@@ -16,7 +16,7 @@ function callComment(nhn){
 }
 function setImotappimg(imotappimg){
 	imotappimgImg.innerHTML = imotappimgImg.innerHTML = "<img src=\"/Date/project/ee/" + imotappimg + "\" >";
-	document.coursecomment.appimg.value = imotappimg;
+	$('#appimg').value = imotappimg;
 	imotappimgDiv.style.visibility = "hidden";
 }
 
@@ -97,9 +97,9 @@ function viewimotappimg(){
 						<td ><textarea name="coursecomment" style="width:100%" id="coursecomment" cols="35" rows="2" /></td>
 						<input type=hidden id="appimg" name="appimg" value="8.png">
 						<td align="center" style="CURSOR: pointer;" onclick=viewimotappimg(); style="width:32;height:29"><input type="hidden" id="couplename" name="couplename" value="${couplename}">
-				<DIV id=imotappimgImg name="imotiImg" style="width:32"><IMG src="/Date/project/ee/8.png"></DIV></td>
+				<DIV id="imotappimgImg" name="imotiImg" style="width:32"><IMG src="/Date/project/ee/8.png"></DIV></td>
 				<td>
-				<DIV id=imotappimgDiv style="Z-INDEX: 1000; VISIBILITY: hidden; WIDTH: 220px; POSITION: absolute; HEIGHT: 40px">
+				<DIV id="imotappimgDiv" style="Z-INDEX: 1000; VISIBILITY: hidden; WIDTH: 220px; POSITION: absolute; HEIGHT: 40px">
 				<TABLE cellSpacing=0 cellPadding=0 border=0>
 					<TR>
 						<TD style="PADDING-LEFT: 2px">

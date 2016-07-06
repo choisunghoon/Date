@@ -32,7 +32,7 @@ function whenError2(){
 
 <body>
 <form method="post">
-	<table class="table14_1" width="600" border="0" cellspacing="0" cellpadding="2">
+	<table class="table14_1" width="700" border="0" cellspacing="0" cellpadding="2">
 	
 		<tr>
 			<td align="center" colspan="0"> <h2> 다이어리 공유 게시판 </h2></td>

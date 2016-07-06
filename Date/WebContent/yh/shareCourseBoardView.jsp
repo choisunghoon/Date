@@ -9,7 +9,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#like").click(function(){
-		if(document.shareview.likelimit.value > 5){
+		if(document.shareview.likelimit.value >= 5){
 			alert("좋아요 추가는 일 5회로 제한합니다.");
 		}else{
 				success:callAjax1();
@@ -132,11 +132,11 @@ $(document).ready(function(){
 <center>
 
 <br/><br/>
-	<table width="1000" border="0" cellspacing="0" cellpadding="0" >
+	<table width="800" border="0" cellspacing="0" cellpadding="0" >
 
 	<tr align="center">
-		<td width="100"><a align="left"></a> ${dto.couplename } </a></td><td width="700"> ${dto.subject} </td>
-		<td width="100">${dto.num }번글</td><td width="100">조횟수 ${dto.readcount }</td> 
+		<td width="120"><a align="left"></a> ${dto.couplename } </a></td><td width="500"> ${dto.subject} </td>
+		<td width="90">${dto.num }번글</td><td width="90">조횟수 ${dto.readcount }</td> 
 	</tr>
 
 	</table><br/>
@@ -897,7 +897,7 @@ function removeAllChildNods(el) {
 
 	<table width="700px"  border="0" cellspacing="0" cellpadding="0" >
 		<tr align="center"><center>
-			<img src="/${dto.postsrc}" style="width:500px; height:300px;"></center>
+			<img src="dateplan/dateImage/${dto.postsrc}" style="width:500px; height:300px;"></center>
 			<br/>
 			${dto.content}
 
