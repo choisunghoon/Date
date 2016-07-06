@@ -5,7 +5,7 @@
 <html>
 <head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
+<link href="/Date/table.css" rel="stylesheet" type="text/css">
 <script language="JavaScript">
 
    var checkflag = "false";
@@ -65,12 +65,12 @@
 <input type="button" name="button" value="모두 선택" onClick="this.value=check(this.form.checkbox)" style="margin-left:43px;">
 <a href="#" onclick="ajaxExample()"><img src="/Date/button/z47.png" style="margin-left:3px;"></a>
 <a href="wWay.nhn?enumber=${enumber}&wnumber=${wnumber}&w=${w}"><img src="/Date/button/z48.png" style="margin-left:340px;"></a>
-<table width="600" border="1" cellspacing="0" cellpadding="0" align="center" style="table-layout:fixed;">
+<table class="table14_1" width="600" border="1" cellspacing="0" cellpadding="0" align="center" style="table-layout:fixed;">
    <tr>
-      <td align="center" width="100">선택</td>
-      <td align="center" width="100">커플이름</td>
-      <td align="center" width="100">삭제</td>
-      <td align="center" width="100">알림</td>
+      <th align="center" width="100">선택</td>
+      <th align="center" width="100">커플이름</td>
+      <th align="center" width="100">삭제</td>
+      <th align="center" width="100">알림</td>
    </tr>
    <c:forEach var="appList" items="${appList}">
    <tr>
