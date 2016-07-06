@@ -30,9 +30,9 @@
 	<br/>
 	<table class="table14_1" width="800" border="1" cellspacing="0" cellpadding="2">
 	<tr align="center">
-		<th width="70">글번호</td>
-		<th width="510">제목</td>
-		<th width="80">커플네임</td>
+		<th width="60">글번호</td>
+		<th width="500">제목</td>
+		<th width="100">커플네임</td>
 		<th width="70">조회</td>
 		<th width="70">좋아요</td>
 	</tr>
