@@ -897,7 +897,7 @@ function removeAllChildNods(el) {
 
 	<table width="700px"  border="0" cellspacing="0" cellpadding="0" >
 		<tr align="center"><center>
-			<img src="dateplan/dateImage/${dto.postsrc}" style="width:500px; height:300px;"></center>
+			</center>
 			<br/>
 			${dto.content}
 
