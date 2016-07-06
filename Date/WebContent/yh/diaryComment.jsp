@@ -91,8 +91,8 @@ function viewimotappimg(){
              <form name="frmSet">
              <input type="hidden" id="aa" name="listMore" value="${listMore}"/>
             </form>
-    <ul class="tbl_area">
-                   <table width="500px"  border="0" cellspacing="0" cellpadding="0" >
+    <ul class="tbl_area"></center>
+                   <table width="700px"  border="0" cellspacing="0" cellpadding="0" >
 					<tr align="center">
 						<td ><textarea name="diarycomment" style="width:100%" id="diarycomment" cols="35" rows="2" /></td>
 <input type=hidden id="appimg" name="appimg" value="8.png">
@@ -142,24 +142,26 @@ function viewimotappimg(){
 name="commentup" value="commentup" href="#" onclick="callAjax3('CommentUp.nhn')"> 
 	
 					</tr>
-				</table>
+				</table><br/>
   </ul>
             <c:set var="i" value="1"/>
              <c:forEach var="commentList" items="${commentList}">
-               <ul class="tbl_area" id="dispRow${i}" style="margin-left:0%;display:none">
+               <ul class="tbl_area" id="dispRow${i}" style="margin-right:23%;display:none">
                		<c:set var="i" value="${i+1 }" />
-                 <li >
-				<table width="500px" border="1" cellspacing="0" cellpadding="0" >
+                <li >
+				<table width="700px" border="1" cellspacing="0" cellpadding="0" >
 						<tr align="center">
-						<td width="15%">${commentList.id}</td>
-						<td width="55%" cols="10" rows="3">
+						<td width="90px">${commentList.id}</td>
+						<td width="420px" cols="10" rows="3">
 						&nbsp;<img src="/Date/yh/ee/${commentList.img}"/>
 						&nbsp;${commentList.diarycomment}
 					    <c:if test="${id == commentList.id or id=='admin'}">
-					    <td><img src="yh/img/c3.png" type="button" value="delete" onclick="callComment('commentDelete.nhn?commentnum=${commentList.num}')"/></td>
-						</c:if>					
+					    <td width="70px"><img src="yh/img/c3.png" type="button" value="delete" onclick="callComment('commentDelete.nhn?commentnum=${commentList.num}')"/></td>
+						</c:if>		
+						<c:if test="${id != commentList.id or id=='admin'}">
+					    <td width="70px"></c:if>				
 						</td>
-						<td width="15%"><h6>${commentList.regdate}</h6></td>
+						<td width="90px"><h6>${commentList.regdate}</h6></td>
          				</tr>
                   	</table>
                   </li>
@@ -175,7 +177,7 @@ name="commentup" value="commentup" href="#" onclick="callAjax3('CommentUp.nhn')"
             	</c:if>            
    </ul>
             <div id="dispMore" style="display:none;padding-bottom:100px;">
-             <a href="#" onclick="listMore(${totalCount})" style="margin-left:35%;CURSOR: pointer">댓글 더 보기</a>
+             <a href="#" onclick="listMore(${totalCount})" style="margin-left:45%;CURSOR: pointer">댓글 더 보기</a>
             </div>
             <c:forEach end="${totalCount}" begin="1" var="i">
                <c:if test="${i<=listMore }">

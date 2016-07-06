@@ -149,8 +149,8 @@ public class shareBean {
 
 		int currentPage;
 		int totalCount = 0;
-		int blockCount = 10;
-		int blockPage = 5;
+		int blockCount = 20;
+		int blockPage = 8;
 		if(request.getParameter("currentPage")!=null){
 			currentPage =Integer.parseInt(request.getParameter("currentPage"));
 		}else{
@@ -231,8 +231,8 @@ public class shareBean {
 		
 		int currentPage;
 		int totalCount = 0;
-		int blockCount = 10;
-		int blockPage = 5;
+		int blockCount = 20;
+		int blockPage = 8;
 		if(request.getParameter("currentPage")!=null){
 			currentPage =Integer.parseInt(request.getParameter("currentPage"));
 		}else{

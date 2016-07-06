@@ -131,7 +131,16 @@ $(document).ready(function(){
 <body>
 <center>
 
-<br/>
+<br/><br/>
+	<table width="1000" border="0" cellspacing="0" cellpadding="0" >
+
+	<tr align="center">
+		<td width="100"><a align="left"></a> ${dto.couplename } </a></td><td width="700"> ${dto.subject} </td>
+		<td width="100">${dto.num }번글</td><td width="100">조횟수 ${dto.readcount }</td> 
+	</tr>
+
+	</table><br/>
+
 <br/>
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -885,7 +894,8 @@ function removeAllChildNods(el) {
 <br/>
 <br/>
 
-	<table width="650px"  border="0" cellspacing="0" cellpadding="0" >
+
+	<table width="700px"  border="0" cellspacing="0" cellpadding="0" >
 		<tr align="center"><center>
 			<img src="/${dto.postsrc}" style="width:500px; height:300px;"></center>
 			<br/>

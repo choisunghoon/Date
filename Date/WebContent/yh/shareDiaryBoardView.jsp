@@ -12,7 +12,7 @@
     $(document).ready(function(){
       $("#like").click(function(){
 		if(document.shareview.likelimit.value > 5){
-			alert("좋아요 숫자 초과");
+			alert("좋아요 추가는 일5회로 제한합니다.");
 		}else{
 				success:callAjax1();
 		}
@@ -68,7 +68,7 @@
 <form name="shareview" method="post">
 	<br/>
 	<br/>
-	<table width="500" border="0" cellspacing="0" cellpadding="0" >
+	<table width="700" border="0" cellspacing="0" cellpadding="0" >
 
 	<tr align="center">
 		<td width="90"> ${dto.couplename } </td><td width="230"> ${dto.subject} </td>
@@ -77,7 +77,7 @@
 
 	</table>
 	<br/>
-	<table width="500" border="0" cellspacing="0" cellpadding="0">
+	<table width="700" border="0" cellspacing="0" cellpadding="0">
 	<tr>
 		<td><center>
 			<img src="syimage/${dto.img }" style="width:500px; height:300px;">	

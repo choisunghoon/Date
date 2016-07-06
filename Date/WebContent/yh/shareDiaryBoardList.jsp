@@ -26,26 +26,26 @@ function whenError2(){
 </script>
 <br/><br/>
 <center>
-<title>SHARE DIARY BOARD</title>	
+<title> 다이어리 공유 게시판 </title>	
 </head>
 
 <body>
 <form method="post">
-	<table width="600" border="1" cellspacing="0" cellpadding="2">
+	<table width="600" border="0" cellspacing="0" cellpadding="2">
 	
 		<tr>
-			<td align="center" colspan="2"> <h2>SHARE DIARY BOARD</h2></td>
+			<td align="center" colspan="0"> <h2> 다이어리 공유 게시판 </h2></td>
 		</tr>
 	</table>
 
-	
-	<table width="600" border="1" cellspacing="0" cellpadding="2">
+	<br/>	
+	<table width="800" border="1" cellspacing="0" cellpadding="2">
 	<tr align="center">
-		<td width="80">글번호</td>
-		<td width="280">제목</td>
+		<td width="70">글번호</td>
+		<td width="510">제목</td>
 		<td width="80">커플네임</td>
-		<td width="80">조회</td>
-		<td width="80">좋아요</td>
+		<td width="70">조회</td>
+		<td width="70">좋아요</td>
 	</tr>
 	
 	<c:forEach var="list" items="${list }">
@@ -64,11 +64,11 @@ function whenError2(){
 		<td colspan="5" > 등록된 게시글이 없습니다</td>
 	</tr>
 	</c:if>
-	<tr align="center">
+	</table><br/>
+		<tr align="center">
 		<td colspan="5"> ${pagingHtml}</td>
 	</tr>
 	
-	</table>
 </form>
 </body>
 </html>
