@@ -154,7 +154,7 @@ public class LoginBean {
 				AlertDataBean adto=new AlertDataBean();
 				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
 				session.setAttribute("adto", adto);	
-				ldb = (LogonDataBean)sqlMapper.queryForObject("getCouple",id);
+				ldb = (LogonDataBean)sqlMapper.queryForObject("getCouple5",id);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 			if(checkAlert1!=0){

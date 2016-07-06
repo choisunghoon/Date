@@ -139,6 +139,9 @@
 		<select id="getCouple" parameterClass="ch11.logon.LogonDataBean" resultClass="int">
 			SELECT * from dc_member where id=#id#
 		</select>
+		<select id="getCouple5" parameterClass="String" resultClass="ch11.logon.LogonDataBean">
+			SELECT * from dc_member where id=#id#
+		</select>
 		<select id="getCouple3" parameterClass="String" resultClass="ch11.logon.LogonDataBean">
 			SELECT * from dc_member where id=#id#
 		</select>
