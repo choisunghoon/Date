@@ -35,7 +35,7 @@
 		top:0px;}
 </style>
 
-<body><br /><br /><input type="hidden" id="couplen" name="couplen" value="${couplens}">
+<body><br /><br /><input type="hidden" id="couplen" name="couplen" value="${couplen}">
 	<div style="width:100%;float:left;" >
 		<div style="width:12%;float:left;">
 			<a href="#" onclick="callAjax('photorequest.nhn')"><img src="syimage/mm15.png" onmouseover='this.src="syimage/mm16.png"' onmouseout='this.src="syimage/mm15.png"' /></a>
@@ -46,7 +46,7 @@
 		</div>
 	</div>
 <c:if test="${id ne 'admin'}">
-	<c:if test="${couplens eq null}">
+	<c:if test="${couplen eq null}">
 		<script>
 			callNo1();
 		</script>

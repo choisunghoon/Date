@@ -192,7 +192,7 @@
 		<c:if test="${WList.w==0}">
 		<a href="#" onclick="callAjaxyj2('wWay.nhn?enumber=${WList.enumber}&wnumber=${WList.wnumber}&w=${WList.w}')"><img src="/Date/button/z48.png"></a>
 		</c:if>
-		<c:if test="${WList.w==1}">
+		<c:if test="${WList.w==1 ||WList.wc> 0}">
 		<a href="#" onclick="callAjaxyj2('modifyWcouples.nhn?enumber=${WList.enumber}&wnumber=${WList.wnumber}&w=${WList.w}')"><img src="/Date/button/z49.png"></a>
 		</c:if>
 		</td>
