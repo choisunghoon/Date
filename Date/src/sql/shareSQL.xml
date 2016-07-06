@@ -68,7 +68,7 @@
 	</select>
 	<!--   -->
 	<select id="shereSelectCourseBoardAll" resultClass="share.shareCourseDataBean">
-		select * from dc_dc where pool=1 order by poolsysdate
+		select * from dc_dc where pool=1 order by poolsysdate desc
 	</select>
 	<!--   -->
 	<update id="shereCourseUpdateReadCount" parameterClass="int">
