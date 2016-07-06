@@ -100,10 +100,13 @@
 </style>
 
 <div id="check">  
-포토북 신청 확인
+<center><h2>포토북 신청 확인</h2></center>
+<center>
 <form method="post"> 
+
 <div style="height:450px">
-<table class="table14_1" border="1px" cellspadding="0" cellspacing="0" width="600px" style="align:center;">
+
+<table class="table14_1" border="1px" cellspadding="0" cellspacing="0" width="800px" style="align:center;">
 	<tr style="height:30px">
 		<th>커플아이디</th>
 		<th>포토북 신청날짜</th>
@@ -117,7 +120,9 @@
 		</tr>
 	</c:forEach>
 </table>
+
 </div>
+
 <c:if test="${count > 0}">
 						<c:set var="pageCount"
 							value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}" />
@@ -144,6 +149,7 @@
 						</center>
 					</c:if>
 </form>
+</center>
 </div>
 <div class="modal fade" id="myModaly7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
 	  <div class="modal-dialog" style="width:850px">
