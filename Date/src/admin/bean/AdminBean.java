@@ -181,31 +181,44 @@ public class AdminBean {
 		System.out.println(keyword);
 		int a = Integer.parseInt(request.getParameter("states"));
 		List WList = new ArrayList();
+		List eventList = new ArrayList();
 		HashMap<Object, Object> row = new HashMap<Object, Object>();
 		row.put("keyword", keyword); 		
 		String[] wc;		
 		if(way==3)
 		{	
 			if(a==1){
-				WList = sqlMap.queryForList("s1", row);	
+				eventList = sqlMap.queryForList("s1", row);	
 			}
 			else if(a == 2){				
-				WList = sqlMap.queryForList("searchWinEventListall", row);	
+				eventList = sqlMap.queryForList("searchWinEventListall", row);	
 			}else if(a == 3){
-				WList = sqlMap.queryForList("searchWinEventListall1", row);
+				eventList = sqlMap.queryForList("searchWinEventListall1", row);
 			}
 		}
 		else{			
 			row.put("way", way);		
 			if(a==1){
-				WList = sqlMap.queryForList("s2", row);	
+				eventList = sqlMap.queryForList("s2", row);	
 			}
 			else if(a == 2){
-				WList = sqlMap.queryForList("searchWinEventList", row);	
+				eventList = sqlMap.queryForList("searchWinEventList", row);	
 			}else if(a == 3){
-				WList = sqlMap.queryForList("searchWinEventList1", row);
+				eventList = sqlMap.queryForList("searchWinEventList1", row);
 			}
 		}
+		EventDataBean wto = new EventDataBean();
+		for(int i = 0;i<eventList.size();i++){
+			wto = (EventDataBean)eventList.get(i);
+			if(wto.getWcouples()==null){				
+				wto.setWc(0);
+			}
+			else if(!(wto.getWcouples().isEmpty())){
+				String[] wlist = wto.getWcouples().split(",");
+				wto.setWc(wto.getWnumber()-wlist.length);
+			}
+			WList.add(wto);
+		}	
 		request.setAttribute("WList", WList);
 		return "/admin/adminEvent1.jsp";
 	}
@@ -231,11 +244,11 @@ public class AdminBean {
 		int a = Integer.parseInt(request.getParameter("states"));
 		String place = "";
 		if(a == 1){
-			place = "Æ÷ÅäºÏ";
+			place = "ï¿½ï¿½ï¿½ï¿½ï¿½";
 		}else if(a == 2){
-			place = "´ÙÀÌ¾î¸® °øÀ¯";
+			place = "ï¿½ï¿½ï¿½Ì¾î¸® ï¿½ï¿½ï¿½ï¿½";
 		}else{
-			place = "ÄÚ½º °øÀ¯";
+			place = "ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½";
 		}
 		
 		System.out.println(a);
