@@ -6,7 +6,7 @@ public class likeDataBean {
 
 	private String couplename;
 	private String board_num;
-	private Timestamp regdate;
+	private String regdate;
 
 	public String getBoard_num() {
 		return board_num;
@@ -20,15 +20,11 @@ public class likeDataBean {
 	public void setCouplename(String couplename) {
 		this.couplename = couplename;
 	}
-	public Timestamp getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(Timestamp regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
-	}
-	public void setRegdate(String format) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

@@ -194,7 +194,7 @@ public class shareBean {
 		String place = "다이어리 공유";
 		
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		SimpleDateFormat format = new SimpleDateFormat("MM_dd");
+		SimpleDateFormat format = new SimpleDateFormat("YYYYMMdd");
 		String reg = format.format(timestamp);
 		
 		List list = new ArrayList();
@@ -211,14 +211,15 @@ public class shareBean {
 		int check1 = (Integer)sqlMap.queryForObject("likeLimit",map);
 
 		System.out.println("체크값 몇이냐" +" " +check);
-		System.out.println(" likeLimit 숫자" +" " +check1);
+		System.out.println(" check1 숫자" +" " +check1);
 		System.out.println(" reg 숫자" +" " +reg);
 		System.out.println(" couplename 이름" +" " + couplename);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);
 		mv.addObject("num",num);
 		mv.addObject("check",check);
-		mv.addObject("likelimit",check1);
+		mv.addObject("couplename",couplename);
+		mv.addObject("check1",check1);
 		mv.setViewName("/yh/shareDiaryBoardView.jsp");
 		return mv;
 	
@@ -272,23 +273,30 @@ public class shareBean {
 		dto = (DTO)sqlMap.queryForObject("shereCourseSelectNum", num);
 		
 		String place = "데이트코스 공유";
-
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		SimpleDateFormat format = new SimpleDateFormat("YYYYMMdd");
+		String reg = format.format(timestamp);
+		
 		List list = new ArrayList();
 
 		Map map = new HashMap();
 		map.put("couplename", couplename);
 		map.put("num", num);
 		map.put("place", place);
+		map.put("reg", reg);
 		list.add(map);
 	
 		int check = (Integer)sqlMap.queryForObject("shereCourseLikePro",map);
 		
+		int check1 = (Integer)sqlMap.queryForObject("likeLimit",map);
 
 		System.out.println("체크값 몇이냐" +" " +check);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);
 		mv.addObject("num",num);
 		mv.addObject("check",check);
+		mv.addObject("couplename",couplename);
+		mv.addObject("check1",check1);
 		mv.setViewName("/yh/shareCourseBoardView.jsp");
 		return mv;
 	
@@ -296,7 +304,7 @@ public class shareBean {
 
 	//공유다이어리 좋아요 기능
 	@RequestMapping("shareDiaryLikeCount.nhn")
-	public ModelAndView DiarylikeCount(int num,HttpServletRequest request, HttpSession session){
+	public ModelAndView DiarylikeCount(int num,HttpServletRequest request, HttpSession session, int check1){
 
 		String id = (String)session.getAttribute("id");
 		String couplename = (String) sqlMap.queryForObject("serchCouplename",id);
@@ -315,7 +323,6 @@ public class shareBean {
 		map.put("regdate", regdate);
 		map.put("place", place);
 		list.add(map);
-		
 		System.out.println("1couplename"+" "+couplename);
 		System.out.println("2num"+" "+num);
 		System.out.println("3regdate"+" "+regdate);
@@ -325,6 +332,7 @@ public class shareBean {
 		
 		int check = (Integer)sqlMap.queryForObject("shereDiaryLikePro",map);
 		System.out.println("3check"+" "+check);
+
 		if (check ==1){
 			sqlMap.update("shereDiaryLikeCountDown", map);
 			System.out.println("좋아요 감소");
@@ -508,5 +516,6 @@ public class shareBean {
 			shareCourseDataBean dto = new shareCourseDataBean();
 			return "shareCourseBoard.nhn";
 	}
+
 }
 

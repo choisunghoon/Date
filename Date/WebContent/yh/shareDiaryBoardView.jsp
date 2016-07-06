@@ -11,16 +11,20 @@
 <script type="text/javascript">
     $(document).ready(function(){
       $("#like").click(function(){
-			
-    	  callAjax1();
+		if(document.shareview.likelimit.value > 5){
+			alert("좋아요 숫자 초과");
+		}else{
+				success:callAjax1();
+		}
       });
     });
     function callAjax1(){
         $.ajax({
 	        type: "post",
-	        url : "shareDiaryLikeCount.nhn?num=${dto.num}&couplename=${couplename}",
+	        url : "shareDiaryLikeCount.nhn?num=${dto.num}&couplename=${couplename}&check1=${check1}",
 	        
 	        success:test,	// 페이지요청 성공시 실행 함수
+	        error: whenError
      	});
     }
     function test(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
@@ -106,7 +110,7 @@
  			</c:if>
  				<img src="yh/img/z59.png" type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareDiaryBoard.nhn')"/>&nbsp;&nbsp;
 				<img src="yh/img/z57.png" type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('dairyComment.nhn')" /> </td>
-		<input id="likelimit" name="likelimit" value="${likelimit}" type="text">
+		<input id="likelimit" name="likelimit" value="${check1}" type="hidden">
 		</input>
 		</table>
 		<tr>

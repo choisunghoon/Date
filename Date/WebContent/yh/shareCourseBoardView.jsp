@@ -9,11 +9,13 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#like").click(function(){
-
-  	  callAjax1();
+		if(document.shareview.likelimit.value > 5){
+			alert("좋아요 추가는 일 5회로 제한합니다.");
+		}else{
+				success:callAjax1();
+		}
     });
   });
-
   function callAjax1(){
       $.ajax({
 	        type: "post",
@@ -868,7 +870,7 @@ function removeAllChildNods(el) {
 }
 </script>
 
-<form action="cosUpdate.nhn">
+<form action="cosUpdate.nhn" name="shareview">
 <input type="hidden" value="up" name="btcheck" />
 <div id="img" class="placeinfov_wrap">
 	
@@ -912,7 +914,7 @@ function removeAllChildNods(el) {
  			</c:if>
 				<img src="yh/img/z59.png" type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareCourseBoard.nhn')"/>&nbsp;&nbsp;
 				<img src="yh/img/z57.png" type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('courseComment.nhn')" /> </td>
-		
+			<input id="likelimit" name="likelimit" value="${check1}" type="hidden">
 		<tr>
 			<br/><br/>
 				<div alingn="left">

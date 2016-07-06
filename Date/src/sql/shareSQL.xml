@@ -124,7 +124,7 @@
 	</update>
 	<!--   -->
 	<select id="likeLimit" resultClass="int" parameterClass="java.util.HashMap" >
-		 select count(*) from dc_likecount_board where regdate like '%reg%' and couplename=#couplename#
+		select count(*) from dc_likecount_board where to_char(regdate,'YYYYMMDD')=#reg# and couplename=#couplename#
 	</select>
 	<!--   -->
 	<select id="serchCouplename" resultClass= "String" parameterClass="String">
