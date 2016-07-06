@@ -52,10 +52,9 @@
 			<select name="states" id="states">
 				<option value="1">포토북</option>
 				<option value="2">다이어리 공유</option>
-				<option value="3">코스 공유</option>
+				<option value="3">데이트 코스 공유</option>
 			</select>
-				<input type="button" value="검색" onclick="check()">
-			
+				<a href="#"  onclick="check()"><img src="button/z1.png"></a>${dto.likeCount}</span>
 		</form>	
 <table width="500" border="1" cellspacing="0" cellpadding="0"   align="center">
 
@@ -71,6 +70,11 @@
 	<c:if test="${count == 0}">
 	<tr>
 		<td colspan="6" align="center">포인트 내역이 없어요</td>
+	</tr>
+	</c:if>
+	<c:if test="${count1 == 0}">
+	<tr>
+		<td colspan="6" align="center">검색 내역이 없어요</td>
 	</tr>
 	</c:if>
 	<c:if test="${count != 0}">

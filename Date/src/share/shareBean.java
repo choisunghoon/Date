@@ -1,6 +1,7 @@
 package share;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,54 +72,27 @@ public class shareBean {
 		return "/yh/courseComment.jsp";
 	}
 	
-	//공유다이어리 코멘트 삭제
+	//공유 코스 코멘트 삭제
 	@RequestMapping("courseCommentDelete.nhn")
 	public String courseCommentDelete(HttpServletRequest request,HttpSession session)throws Exception{
     	commentDataBean dto = new commentDataBean();
 		String id = (String)session.getAttribute("id");
-		String commentnum = request.getParameter("commentnum");
-		
-		List list = new ArrayList();
-		Map map = new HashMap();
-		map.put("commentnum", commentnum);
-		map.put("id", id);
-		
-		System.out.println("commentnum"+ " " +commentnum);
+		String num = request.getParameter("commentnum");
 
-		System.out.println("id"+ " " +id);
-		int check = (Integer)sqlMap.queryForObject("courseCommentCheck", map);
-		if(check !=0){
-		sqlMap.delete("courseCommentDelet", map);
-		}else{
-		System.out.println("아이디 넘 값이 일치하지않습니다");	
-		}
-		request.setAttribute("check", check);
+		sqlMap.delete("courseCommentDelet", num);
+
 		return "/yh/courseComment.jsp";
     	
     }
 	
-	//공유다이어리 코멘트 삭제
+	//공유 다이어리 코멘트 삭제
 	@RequestMapping("commentDelete.nhn")
 	public String commentDelete(HttpServletRequest request,HttpSession session)throws Exception{
     	commentDataBean dto = new commentDataBean();
 		String id = (String)session.getAttribute("id");
-		String commentnum = request.getParameter("commentnum");
+		String num = request.getParameter("commentnum");
 		
-		List list = new ArrayList();
-		Map map = new HashMap();
-		map.put("commentnum", commentnum);
-		map.put("id", id);
-		
-		System.out.println("commentnum"+ " " +commentnum);
-
-		System.out.println("id"+ " " +id);
-		int check = (Integer)sqlMap.queryForObject("diaryCommentCheck", map);
-		if(check !=0){
-		sqlMap.delete("diaryCommentDelet", map);
-		}else{
-		System.out.println("아이디 넘 값이 일치하지않습니다");	
-		}
-		request.setAttribute("check", check);
+		sqlMap.delete("diaryCommentDelet", num);
 		return "/yh/diaryComment.jsp";
     	
     }
@@ -175,8 +149,8 @@ public class shareBean {
 
 		int currentPage;
 		int totalCount = 0;
-		int blockCount = 10;
-		int blockPage = 5;
+		int blockCount = 20;
+		int blockPage = 8;
 		if(request.getParameter("currentPage")!=null){
 			currentPage =Integer.parseInt(request.getParameter("currentPage"));
 		}else{
@@ -213,26 +187,39 @@ public class shareBean {
 		String id = (String)session.getAttribute("id");
 		String couplename = (String) sqlMap.queryForObject("serchCouplename",id);
 
-		
+		likeDataBean dto1 = new likeDataBean();
 		DiaryDataBean dto = new DiaryDataBean();
 		dto = (DiaryDataBean)sqlMap.queryForObject("shereDiarySelectNum", num);
 		
 		String place = "다이어리 공유";
+		
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		SimpleDateFormat format = new SimpleDateFormat("YYYYMMdd");
+		String reg = format.format(timestamp);
+		
 		List list = new ArrayList();
-
+		
 		Map map = new HashMap();
 		map.put("num", num);
 		map.put("couplename", couplename);
 		map.put("place", place);
+		map.put("reg", reg);
 		list.add(map);
 		
 		int check = (Integer)sqlMap.queryForObject("shereDiaryLikePro",map);
 		
+		int check1 = (Integer)sqlMap.queryForObject("likeLimit",map);
+
 		System.out.println("체크값 몇이냐" +" " +check);
+		System.out.println(" check1 숫자" +" " +check1);
+		System.out.println(" reg 숫자" +" " +reg);
+		System.out.println(" couplename 이름" +" " + couplename);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);
 		mv.addObject("num",num);
 		mv.addObject("check",check);
+		mv.addObject("couplename",couplename);
+		mv.addObject("check1",check1);
 		mv.setViewName("/yh/shareDiaryBoardView.jsp");
 		return mv;
 	
@@ -244,8 +231,8 @@ public class shareBean {
 		
 		int currentPage;
 		int totalCount = 0;
-		int blockCount = 10;
-		int blockPage = 5;
+		int blockCount = 20;
+		int blockPage = 8;
 		if(request.getParameter("currentPage")!=null){
 			currentPage =Integer.parseInt(request.getParameter("currentPage"));
 		}else{
@@ -286,23 +273,30 @@ public class shareBean {
 		dto = (DTO)sqlMap.queryForObject("shereCourseSelectNum", num);
 		
 		String place = "데이트코스 공유";
-
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		SimpleDateFormat format = new SimpleDateFormat("YYYYMMdd");
+		String reg = format.format(timestamp);
+		
 		List list = new ArrayList();
 
 		Map map = new HashMap();
 		map.put("couplename", couplename);
 		map.put("num", num);
 		map.put("place", place);
+		map.put("reg", reg);
 		list.add(map);
 	
 		int check = (Integer)sqlMap.queryForObject("shereCourseLikePro",map);
 		
+		int check1 = (Integer)sqlMap.queryForObject("likeLimit",map);
 
 		System.out.println("체크값 몇이냐" +" " +check);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);
 		mv.addObject("num",num);
 		mv.addObject("check",check);
+		mv.addObject("couplename",couplename);
+		mv.addObject("check1",check1);
 		mv.setViewName("/yh/shareCourseBoardView.jsp");
 		return mv;
 	
@@ -310,7 +304,7 @@ public class shareBean {
 
 	//공유다이어리 좋아요 기능
 	@RequestMapping("shareDiaryLikeCount.nhn")
-	public ModelAndView DiarylikeCount(int num,HttpServletRequest request, HttpSession session){
+	public ModelAndView DiarylikeCount(int num,HttpServletRequest request, HttpSession session, int check1){
 
 		String id = (String)session.getAttribute("id");
 		String couplename = (String) sqlMap.queryForObject("serchCouplename",id);
@@ -329,7 +323,6 @@ public class shareBean {
 		map.put("regdate", regdate);
 		map.put("place", place);
 		list.add(map);
-		
 		System.out.println("1couplename"+" "+couplename);
 		System.out.println("2num"+" "+num);
 		System.out.println("3regdate"+" "+regdate);
@@ -339,6 +332,7 @@ public class shareBean {
 		
 		int check = (Integer)sqlMap.queryForObject("shereDiaryLikePro",map);
 		System.out.println("3check"+" "+check);
+
 		if (check ==1){
 			sqlMap.update("shereDiaryLikeCountDown", map);
 			System.out.println("좋아요 감소");
@@ -374,17 +368,17 @@ public class shareBean {
 	}
 
 
-/*  하루에 추천수 제한
 	@RequestMapping("likeLimit.nhn")
 	public String likeLimit(HttpServletRequest request, HttpSession session){
 		
 		likeDataBean dto1 = new likeDataBean();
-		
+		String id = (String)session.getAttribute("id");
+		String couplename = (String) sqlMap.queryForObject("serchCouplename",id);
 		
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd");
 		String reg = format.format(timestamp);
-		String couplename= request.getParameter("couplename");
+		
 		System.out.println(reg);
 		System.out.println(couplename);
 		
@@ -396,10 +390,11 @@ public class shareBean {
 		list.add(map);
 		
 		int check = (Integer)sqlMap.queryForObject("likeLimit",map);
-		
-			return "/yh/likeLimit.jsp";
+
+		request.setAttribute("check", check);
+			return "/yh/shartDiaryBoardView.jsp";
 		}
-*/
+
 	//공유 코스 좋아요 기능 
 	@RequestMapping("shareCourseLikeCount.nhn")
 	public ModelAndView shareCourseLikeCount(int num,HttpServletRequest request, HttpSession session){
@@ -505,6 +500,22 @@ public class shareBean {
 		return mv;
 		
 	}
-		
+	
+	@RequestMapping("deleteDiaryList.nhn")
+	public String deletediaryList(HttpServletRequest request, HttpSession session,int num){
+			
+			sqlMap.delete("deleteShareDiary", num);
+			DiaryDataBean dto = new DiaryDataBean();
+			return "shareDiaryBoard.nhn";
+	}
+
+	@RequestMapping("deleteCourseList.nhn")
+	public String deleteCourseList(HttpServletRequest request, HttpSession session,int num){
+			
+			sqlMap.delete("deleteCourseDiary", num);
+			shareCourseDataBean dto = new shareCourseDataBean();
+			return "shareCourseBoard.nhn";
+	}
+
 }
 

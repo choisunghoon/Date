@@ -60,8 +60,14 @@
 </style>
 </head>
 <body>
+<c:if test="${id == 'admin'}">
+<a href="#" onclick="callContent1(${ctg_num})" id="test" data-toggle="modal" data-target="#myModal"><img src="button/z28.png"></a>
+<a href="#" onclick="callContent(${ctg_num})" id="test" data-toggle="modal" data-target="#myModal"><img src="button/z29.png"></a>
+<a href="#" onclick="callContent2(${ctg_num})" id="test" data-toggle="modal" data-target="#myModal"><img src="button/z19.png"></a>
+</c:if>
+<a href="#" onclick="document.location.href='addCtgView.nhn'"><img src="button/z18.png"></a>
 
-<div class="gallery"> 
+<div class="gallery" style="margin-left:7.5%"> 
   <ul>
     <c:set var="i" value="1"/>
     <c:forEach var="courseList" items="${courseList}">  
@@ -104,9 +110,3 @@
 <script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script><!-- holder.js --> 
 
 </body>
-<c:if test="${id == 'admin'}">
-<input type="button" value="카테고리 수정" align="center" onclick="callContent1(${ctg_num})" id="test" data-toggle="modal" data-target="#myModal">
-<input type="button" value="카테고리 삭제" align="center" onclick="callContent(${ctg_num})" id="test" data-toggle="modal" data-target="#myModal">
-<input type="button" value="코스 추가" align="center" onclick="callContent2(${ctg_num})" id="test" data-toggle="modal" data-target="#myModal">
-</c:if>
-<input type="button" value="카테고리로" align="center" onclick="document.location.href='addCtgView.nhn'">

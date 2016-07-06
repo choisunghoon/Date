@@ -53,7 +53,10 @@ function readImage(file) {
            document.getElementById('h').value=h;
           if(w > wwd || h > hhd)
           {  
-              return false;
+        	  alert("이미지가 큽니다!");
+        	  document.getElementById('choose').value="";
+        	  return false;
+              
           }
      
         };

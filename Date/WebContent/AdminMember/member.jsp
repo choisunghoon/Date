@@ -28,6 +28,7 @@ function reload(nhn){
     }
 function refresh(aaa){	// 요청성공한 페이지정보가 aaa 변수로 콜백된다. 
     $("#refresh").html(aaa);
+    alert("삭제가 완료 되었습니다.");
     
 }
 function whenError2(){

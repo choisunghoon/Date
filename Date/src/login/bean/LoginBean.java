@@ -47,7 +47,7 @@ public class LoginBean {
 						for(int j=0; j<etoList.size();j++){
 							eto = (EventDataBean) etoList.get(j);
 							for(int i=0; i<checkcount; i++){
-								if(eto.getChecknum()==0){
+								if(eto.getChecknum()==-1){
 									request.setAttribute("checkW",  eto.getChecknum());
 									request.setAttribute("enumber1", eto.getEnumber());
 									request.setAttribute("ch", 0);
@@ -64,7 +64,7 @@ public class LoginBean {
 					
 					System.out.println(adto.getContent());
 					
-					int ca=(Integer)sqlMapper.queryForObject("getCouple",id); //�뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 id�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 而ㅵ뜝�룞�삕, �샊�뜝�룞�삕 而ㅵ뜝�떆�룞�삕泥��뜝�룞�삕 �뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떙�궪�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�뙇�떎紐뚯삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 
+					int ca=(Integer)sqlMapper.queryForObject("getCouple1",id); //�뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 id�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 而ㅵ뜝�룞�삕, �샊�뜝�룞�삕 而ㅵ뜝�떆�룞�삕泥��뜝�룞�삕 �뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떙�궪�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�뙇�떎紐뚯삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 
 					request.setAttribute("ca", ca);
 			}
 				int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id); // �뜝�떥源띿삕�뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕 id�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떙紐뚯삕�뜝�룞�삕 �뜝�떙�궪�삕. �뜝�룞�삕�뜝�뜽�뿉�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 而ㅵ뜝�떆�룞�삕泥� �뜝�뙣�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �솗�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 1�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
@@ -154,7 +154,7 @@ public class LoginBean {
 				AlertDataBean adto=new AlertDataBean();
 				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
 				session.setAttribute("adto", adto);	
-				ldb = (LogonDataBean)sqlMapper.queryForObject("getCouple",id);
+				ldb = (LogonDataBean)sqlMapper.queryForObject("getCouple5",id);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
 			if(checkAlert1!=0){
@@ -169,7 +169,7 @@ public class LoginBean {
 			else
 				request.setAttribute("couple1", "end");
 			}
-		ldb = (LogonDataBean)sqlMapper.queryForObject("getCouple",id);
+		ldb = (LogonDataBean)sqlMapper.queryForObject("getCouple3",id);
 		request.setAttribute("ldb", ldb);
 		request.setAttribute("chk", chk);
 		return "/sy0526/couple.jsp";
@@ -191,7 +191,7 @@ public class LoginBean {
 				session.setAttribute("adto", adto);
 				System.out.println(adto.getContent());
 				
-				int ca=(Integer)sqlMapper.queryForObject("getCouple",id);
+				int ca=(Integer)sqlMapper.queryForObject("getCouple1",id);
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
@@ -255,11 +255,12 @@ public class LoginBean {
 		String chk = request.getParameter("chk");
 		request.setAttribute("chk",chk);
 		String id = (String)session.getAttribute("id");
+		String couplen = null;
 		int nc=(Integer)sqlMapper.queryForObject("FBuserCheck", id);	//�뜝�떥源띿삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �솗�뜝�룞�삕
 		if(nc==1){
 			int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
 			if(countCN>0){
-			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
+			couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
 			EventDataBean eto = new EventDataBean()	;			
 			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
 				if(checkcount>0){
@@ -280,6 +281,7 @@ public class LoginBean {
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
 			session.setAttribute("nickname", nickname);
+			session.setAttribute("couplen", couplen);
 		
 			if(checkAlert!=0){
 				AlertDataBean adto=new AlertDataBean();

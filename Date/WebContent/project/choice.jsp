@@ -21,7 +21,7 @@
 				<tr height="30">
 					<td align="center">${appList.appnumber}</td>
 					<td align="center">${appList.couplename}</td>
-					<td align="center"><a href="appContentAdmin.nhn?enumber=${enumber}&appnumber=${appList.appnumber}&wnumber=${wnumber}&pageNum=${currentPage}&Cwcount=${Cwcount}">${appList.appsubject}</a></td>
+					<td align="center"><a href="appContentAdmin.nhn?enumber=${enumber}&appnumber=${appList.appnumber}&wnumber=${wnumber}&pageNum=${currentPage}&Cwcount=${Cwcount}&w=${w}">${appList.appsubject}</a></td>
 				</tr>
 			</c:forEach>
 		</tr>
@@ -53,8 +53,11 @@
 	</c:if></center></c:if>
 	
 		<c:if test="${Cwcount==0 }">
-		<center><h2>더 이상 당첨자를 뽑을 수 없습니다.</h2>
-		<h2>필요한 당첨자 수 : ${Cwcount}</h2></center>
+		<script type="text/javascript">
+alert("작성한 수의 당첨자를 다 뽑았습니다");
+window.close();
+opener.parent.callAjax('adminEvent.nhn');
+</script>
 		</c:if>
 </c:if>
 <c:if test="${count<=0}">신청 커플이 없습니다.</c:if>		

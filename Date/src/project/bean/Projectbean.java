@@ -201,8 +201,9 @@ public class Projectbean {
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String[] src = new String[2];
-		String path = "C:\\Users\\user2\\git\\Date\\Date\\WebContent\\project\\ei\\";
+		//String path = "C:\\Users\\user2\\git\\Date\\Date\\WebContent\\project\\ei\\";
 		//String path = request.getContextPath() + "/WebContent/project/ei/";
+		String path = "C:\\Users\\ss\\git\\Date\\Date\\Date\\WebContent\\project\\ei\\";
 		int i = 0;
 		while (iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -341,6 +342,7 @@ public class Projectbean {
 	public String appContentAdmin(HttpServletRequest request) {
 		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
+		int w = Integer.parseInt(request.getParameter("w"));
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		int Cwcount = Integer.parseInt(request.getParameter("Cwcount"));
 		String tab = request.getParameter("tab");
@@ -360,6 +362,7 @@ public class Projectbean {
 		request.setAttribute("app", app);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("tab", tab);
+		request.setAttribute("w",new Integer(w));
 		return "/project/appContentAdmin.jsp";
 	}
 
@@ -469,7 +472,6 @@ public class Projectbean {
 		int count = (Integer) sqlMap.queryForObject("eventAppCount", enumber);
 		int wcount = 0;
 		String wcouplesN = (String) sqlMap.queryForObject("wcount", enumber);
-		System.out.println(wcouplesN);
 		if(wcouplesN==null){
 		wcount  = 0;
 		}else {
@@ -484,81 +486,10 @@ public class Projectbean {
 		request.setAttribute("wcount", new Integer(wcount));
 		return "/project/wWay.jsp";
 	}
-	// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� git
-
-	@RequestMapping("random.nhn")
-	public String random(HttpServletRequest request,CoupleDataBean cdb) {
-		int enumber = Integer.parseInt(request.getParameter("enumber"));
-		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
-		int wcount = Integer.parseInt(request.getParameter("wcount"));
-		int Cwcount = Integer.parseInt(request.getParameter("Cwcount"));
-		System.out.println("w: "+wnumber);
-		System.out.println("Cw: "+Cwcount);
-		EventDataBean eto = new EventDataBean();
-		List appList = null;
-		appList = sqlMap.queryForList("eventAppAll", enumber);
-		int[] wList = new int[Cwcount];
-		String[] rList = new String[Cwcount];
-		int count = (Integer) sqlMap.queryForObject("eventAppCount", enumber);
-		
-		Random ran = new Random();
-		String wname = null;
-		appList = sqlMap.queryForList("eventAppAll", enumber);
-		for (int i = 0; i < wList.length; i++) {
-			wList[i] = ran.nextInt(count) + 1;
-			for (int j = 0; j < i; j++) {
-				if (wList[i] == wList[j]) {
-					i--;
-					break;
-				}
-			}
-		}
-		for (int i = 0; i < wList.length; i++) {
-			eto = (EventDataBean) appList.get(wList[i]);
-			rList[i] = eto.getCouplename();
-		}		
-		for (int i = 0; i < rList.length; i++) {
-			if (i == 0) {
-				wname = rList[i];
-			}
-			if (i != 0) {
-				wname = wname + "," + rList[i];
-			}
-		}
-		EventDataBean eto1 = new EventDataBean();
-		eto1 = (EventDataBean) sqlMap.queryForObject("eventContent", enumber);
-		if(eto1.getWcouples()==null){
-		eto1.setWcouples(wname);
-		}else{
-			eto1.setWcouples(eto1.getWcouples()+","+wname);
-		}
-		eto1.setEnumber(enumber);
-		
-		if((wcount+Cwcount)==wnumber){
-		eto1.setW(1);
-		}else{
-			eto1.setW(0);	
-		}
-		sqlMap.update("addW", eto1);
-		for(int i = 0;i<rList.length;i++){
-			CoupleDataBean cdb2 = new CoupleDataBean();
-			EventDataBean eto2 = new EventDataBean();
-			cdb.setCoupleName(rList[i]);
-			cdb2 = (CoupleDataBean)sqlMap.queryForObject("selectid", cdb);
-			eto2.setCouplename(rList[i]);
-			eto2.setEnumber(enumber);
-			sqlMap.insert("insertA",eto2);
-		}
-		request.setAttribute("appList", appList);
-		request.setAttribute("rList", rList);
-		request.setAttribute("enumber", new Integer(enumber));
-		request.setAttribute("wnumber", new Integer(wnumber));
-		request.setAttribute("count", new Integer(count));
-		return "/project/random.jsp";
-	}
 
 	@RequestMapping("choice.nhn")
 	public String choice(HttpServletRequest request) {
+		int w = Integer.parseInt(request.getParameter("w"));
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
 		int Cwcount = Integer.parseInt(request.getParameter("Cwcount"));
@@ -587,11 +518,13 @@ public class Projectbean {
 		request.setAttribute("endRow", new Integer(endRow));
 		request.setAttribute("pageSize", new Integer(pageSize));
 		request.setAttribute("count", new Integer(count));
+		request.setAttribute("w",new Integer(w));
 		return "/project/choice.jsp";
 	}
 
 	@RequestMapping("appW.nhn")
 	public String appW(HttpServletRequest request) {
+		int w = Integer.parseInt(request.getParameter("w"));
 		int enumber = Integer.parseInt(request.getParameter("enumber"));
 		int wnumber = Integer.parseInt(request.getParameter("wnumber"));
 		int appnumber = Integer.parseInt(request.getParameter("appnumber"));
@@ -600,23 +533,25 @@ public class Projectbean {
 		String couplename = request.getParameter("couplename");
 		EventDataBean app = new EventDataBean();
 		app = (EventDataBean) sqlMap.queryForObject("eventContent", enumber);
-		if (app.getWcouples() == null) {
-			app.setWcouples(couplename);
-		} else {
-			app.setWcouples(app.getWcouples() + "," + couplename);
-		}
-		app.setEnumber(enumber);
-		if((Cwcount-1)==0){
-		app.setW(1);
-		}
-		sqlMap.update("addW", app);
-		EventDataBean eto2 = new EventDataBean();
-		eto2.setCouplename(couplename);
-		eto2.setEnumber(enumber);
-		sqlMap.insert("insertA",eto2);
+
+			if (app.getWcouples() == null) {
+				app.setWcouples(couplename);
+			} else {
+				app.setWcouples(app.getWcouples() + "," + couplename);
+			}
+			app.setEnumber(enumber);
+			if ((Cwcount - 1) == 0) {
+				app.setW(1);
+			}
+			sqlMap.update("addW", app);
+			EventDataBean eto2 = new EventDataBean();
+			eto2.setCouplename(couplename);
+			eto2.setEnumber(enumber);
+			sqlMap.insert("insertA", eto2);
 		request.setAttribute("enumber", new Integer(enumber));
 		request.setAttribute("wnumber", new Integer(wnumber));
 		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("w",new Integer(w));
 		request.setAttribute("Cwcount", new Integer(Cwcount-1));
 		return "/project/appW.jsp";
 	}
@@ -765,29 +700,58 @@ public class Projectbean {
 	public String deleteWcouplesPro(HttpServletRequest request){
 		int enumber = Integer.parseInt(request.getParameter("enumber"));		
 		String Cwcouples = request.getParameter("wcouples");
-		
-		List appList = sqlMap.queryForList("eventAppAdmin", enumber);
+		/*System.out.println("개짜증난다"+Cwcouples);
+		String wName = (String) sqlMap.queryForObject("eventAppAdmin", enumber);
+		System.out.println(wName);
 		EventDataBean app = new EventDataBean();
 		String[] wcList = null;
-		for (int i = 0; i < appList.size(); i++) {
-			app = (EventDataBean) appList.get(i);
-			wcList = app.getWcouples().split(",");
-		}
+		wcList = wName.split(",");
 		List list = new ArrayList();
 		for(int i=0; i<wcList.length; i++){
 			if(!(wcList[i].equals(Cwcouples))){				
-				list.add(wcList[i]);				
+				list.add(wcList[i]);
 			}
 		}
 		String wc = (String)list.get(0);
 		if (list.size() != 1) {
 			for (int i = 1; i < list.size(); i++) {
 				wc = wc + "," + (String) list.get(i);
+				System.out.println("wc"+wc);
 			}
 		}
 		app.setEnumber(enumber);
 		app.setWcouples(wc);
+		
+		sqlMap.update("deleteWcouples", app);*/
+		
+		
+		String wName = (String) sqlMap.queryForObject("eventAppAdmin", enumber);
+		System.out.println(wName);
+		EventDataBean app = new EventDataBean();
+		String[] wcList = null;
+		wcList = wName.split(",");
+		List list = new ArrayList();
+		for(int i=0; i<wcList.length; i++){
+			if(!(wcList[i].equals(Cwcouples))){				
+				list.add(wcList[i]);
+			}
+		}
+		String wc = null;
+		if(!(list.isEmpty())){
+		wc = (String)list.get(0);
+		if (list.size() != 1) {
+			for (int i = 1; i < list.size(); i++) {
+				wc = wc + "," + (String) list.get(i);
+			}
+		}}
+		if(list.isEmpty()){
+			wc = "";
+		}
+		app.setEnumber(enumber);
+		app.setWcouples(wc);
 		sqlMap.update("deleteWcouples", app);
+		app.setCouplename(Cwcouples);
+		sqlMap.delete("deleteW", app);
 		request.setAttribute("enumber", new Integer(enumber));
 		request.setAttribute("Cwcouples", Cwcouples);
 		return "/project/deleteWcouplesPro.jsp";

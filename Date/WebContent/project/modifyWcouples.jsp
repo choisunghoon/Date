@@ -1,94 +1,105 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<link href="/Date/table.css" rel="stylesheet" type="text/css">
 <script language="JavaScript">
-var checkflag = "false";
-function check(field) {
-	if (checkflag == "false") {
-		for (i = 0; i < field.length; i++) {
-			field[i].checked = true;
-		}
-	checkflag = 1;
-	return "¸ğµÎ ¼±ÅÃ"; }
-	else {
-		for (i = 0; i < field.length; i++) {
-			field[i].checked = false;
-		}
-		checkflag = -1;
-	return "¸ğµÎ ÇØÁ¦"; }
-}
 
-function ajaxExample(){
-	// nameÀÌ °°Àº Ã¼Å©¹Ú½ºÀÇ °ªµéÀ» ¹è¿­¿¡ ´ã´Â´Ù.
-	var checkboxValues = [];
-	$("#checkbox:checked").each(function(i) {
-		checkboxValues.push($(this).val());("¿Ïddddsds·á!");
-	});
-	
-	// »ç¿ëÀÚ ID(¹®ÀÚ¿­)¿Í Ã¼Å©¹Ú½º °ªµé(¹è¿­)À» name/value ÇüÅÂ·Î ´ã´Â´Ù.
-	var allData = { "checkArray": checkboxValues };
-	
-	$.ajax({
-		url:"WcoupleA.nhn?enumber="+ $("#enumber").val(),
-		type:'GET',
-		data: allData,
-		success:function(data){
-			alert("¿Ï·á");
-			window.location.reload("modifyWcouples.nhn?enumber="+$("#enumber").val()+
-					"&wnumber="+$("#wnumber").val()+"&w="+$("#w").val());
-		},
-		error:function(jqXHR, textStatus, errorThrown){
-			alert("¿¡·¯ ¹ß»ı~~ \n" + textStatus + " : " + errorThrown);
-		}
-	});
-}
+   var checkflag = "false";
+   function check(field) {
+      if (checkflag == "false") {
+         for (i = 0; i < field.length; i++) {
+            field[i].checked = true;
+         }
+         checkflag = "true";
+         return "ëª¨ë‘ í•´ì œ";
+      } else {
+         for (i = 0; i < field.length; i++) {
+            field[i].checked = false;
+         }
+         checkflag = "false";
+         return "ëª¨ë‘ ì„ íƒ";
+      }
+   }
 
+   function ajaxExample() {
+      // nameì´ ê°™ì€ ì²´í¬ë°•ìŠ¤ì˜ ê°’ë“¤ì„ ë°°ì—´ì— ë‹´ëŠ”ë‹¤.
+      var checkboxValues = [];
+      $("#checkbox:checked").each(function(i) {
+         checkboxValues.push($(this).val());
+      });
+
+      // ì‚¬ìš©ì ID(ë¬¸ìì—´)ì™€ ì²´í¬ë°•ìŠ¤ ê°’ë“¤(ë°°ì—´)ì„ name/value í˜•íƒœë¡œ ë‹´ëŠ”ë‹¤.
+      var allData = {
+         "checkArray" : checkboxValues
+      };
+
+      $.ajax({
+         url : "WcoupleA.nhn?enumber=" + $("#enumber").val(),
+         type : 'GET',
+         data : allData,
+         success : function(data) {
+            alert("ì™„ë£Œ");
+            window.location.reload("modifyWcouples.nhn?enumber="
+                  + $("#enumber").val() + "&wnumber="
+                  + $("#wnumber").val() + "&w=" + $("#w").val());
+         },
+         error : function(jqXHR, textStatus, errorThrown) {
+            alert("ì—ëŸ¬ ë°œìƒ~~ \n" + textStatus + " : " + errorThrown);
+         }
+      });
+   }
+   
+	function callAjaxyj6(nhn) {
+		window.location.href=nhn;
+		
+	}
 </script> 
-<title>´çÃ·ÀÚ ¼öÁ¤ ¹× »èÁ¦</title>
+<title>ë‹¹ì²¨ì ìˆ˜ì • ë° ì‚­ì œ</title>
 </head>
 <body>
-<form name="form">
-<input type="button" name="button" value="¸ğµÎ ¼±ÅÃ" onClick="this.value=check(this.form.checkbox)" style="margin-left:40px; margin-top:3px; margin-bottom:5px;">
+<form name="form" method="post">
+<input type="button" name="button" value="ëª¨ë‘ ì„ íƒ" onClick="this.value=check(this.form.checkbox)" style="margin-left:43px;">
 <a href="#" onclick="ajaxExample()"><img src="/Date/button/z47.png" style="margin-left:3px;"></a>
 <a href="wWay.nhn?enumber=${enumber}&wnumber=${wnumber}&w=${w}"><img src="/Date/button/z48.png" style="margin-left:340px;"></a>
-<table width="600" border="1" cellspacing="0" cellpadding="0" align="center" style="table-layout:fixed;">
-	<tr>
-		<td align="center" width="100">¼±ÅÃ</td>
-		<td align="center" width="100">Ä¿ÇÃÀÌ¸§</td>
-		<td align="center" width="100">»èÁ¦</td>
-		<td align="center" width="100">¾Ë¸²</td>
-	</tr>
-	<c:forEach var="appList" items="${appList}">
-	<tr>
-		<td align="center" width="100"><input type="hidden" name="enumber" id="enumber" value="${appList.enumber}">
-		<input type="hidden" name="wnumber" id="wnumber" value="wnumber">
-		<input type="hidden" name="w" id="w" value="${w}">
-		<c:if test="${appList.checknum==0}">
-		<input name="checkbox" type="checkbox" id="checkbox" value="${appList.anumber}">
-		</c:if>
-		</td>
-		<c:if test="${appList.checknum==-1 || appList.checknum == 1}">
-		<input name="checkbox" type="hidden" id="checkbox" value="${appList.anumber}">
-		</c:if>
-		<td align="center" width="100">${appList.couplename}</td>
-		<td align="center" width="100"> 
-		<c:if test="${appList.checknum==0}">
-		<a href="deleteWcouples.nhn?enumber=${enumber}&wcouples=${appList.couplename}"><input type="button" name="way" value="»èÁ¦"></a>
-		</c:if>
-		<c:if test="${appList.checknum==-1 || appList.checknum == 1}">-</c:if>
-		</td>	
-		<td align="center" width="100">
-		<c:if test="${appList.checknum==0}">¹«</c:if>
-		<c:if test="${appList.checknum==-1}">À¯(ÀĞÁö¾ÊÀ½)</c:if>
-		<c:if test="${appList.checknum==1}">À¯(ÀĞÁö¾ÊÀ½)</c:if>
-		</td>
-	</tr>
-	</c:forEach>
+<table class="table14_1" width="600" border="1" cellspacing="0" cellpadding="0" align="center" style="table-layout:fixed;">
+   <tr>
+      <th align="center" width="100">ì„ íƒ</td>
+      <th align="center" width="100">ì»¤í”Œì´ë¦„</td>
+      <th align="center" width="100">ì‚­ì œ</td>
+      <th align="center" width="100">ì•Œë¦¼</td>
+   </tr>
+   <c:forEach var="appList" items="${appList}">
+   <tr>
+      <td align="center" width="100"><input type="hidden" name="enumber" id="enumber" value="${appList.enumber}">
+      <input type="hidden" name="wnumber" id="wnumber" value="wnumber">
+      <input type="hidden" name="w" id="w" value="${w}">
+      <c:if test="${appList.checknum==0}">
+      <input name="checkbox" type="checkbox" id="checkbox" value="${appList.anumber}">
+      </c:if>
+      </td>
+      <c:if test="${appList.checknum==-1 || appList.checknum == 1}">
+      <input name="checkbox" type="hidden" id="checkbox" value="${appList.anumber}">
+      </c:if>
+      <td align="center" width="100">${appList.couplename}</td>
+      <td align="center" width="100"> 
+      <c:if test="${appList.checknum==0}">
+      <a href="#" onclick="callAjaxyj6('deleteWcouples.nhn?enumber=${enumber}&wcouples=${appList.couplename}')">
+      <img src="/Date/button/z3.png">
+      </a>      
+      </c:if>
+      <c:if test="${appList.checknum==-1 || appList.checknum == 1}">-</c:if>
+      </td>   
+      <td align="center" width="100">
+      <c:if test="${appList.checknum==0}">ë¬´</c:if>
+      <c:if test="${appList.checknum==-1}">ìœ (ì½ì§€ì•ŠìŒ)</c:if>
+      <c:if test="${appList.checknum==1}">ìœ (ì½ì§€ì•ŠìŒ)</c:if>
+      </td>
+   </tr>
+   </c:forEach>
 </table>
 </form>
 </body>

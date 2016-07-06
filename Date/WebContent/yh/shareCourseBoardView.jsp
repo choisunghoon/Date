@@ -9,11 +9,13 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#like").click(function(){
-
-  	  callAjax1();
+		if(document.shareview.likelimit.value > 5){
+			alert("좋아요 추가는 일 5회로 제한합니다.");
+		}else{
+				success:callAjax1();
+		}
     });
   });
-
   function callAjax1(){
       $.ajax({
 	        type: "post",
@@ -129,7 +131,16 @@ $(document).ready(function(){
 <body>
 <center>
 
-<br/>
+<br/><br/>
+	<table width="1000" border="0" cellspacing="0" cellpadding="0" >
+
+	<tr align="center">
+		<td width="100"><a align="left"></a> ${dto.couplename } </a></td><td width="700"> ${dto.subject} </td>
+		<td width="100">${dto.num }번글</td><td width="100">조횟수 ${dto.readcount }</td> 
+	</tr>
+
+	</table><br/>
+
 <br/>
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -868,7 +879,7 @@ function removeAllChildNods(el) {
 }
 </script>
 
-<form action="cosUpdate.nhn">
+<form action="cosUpdate.nhn" name="shareview">
 <input type="hidden" value="up" name="btcheck" />
 <div id="img" class="placeinfov_wrap">
 	
@@ -883,7 +894,8 @@ function removeAllChildNods(el) {
 <br/>
 <br/>
 
-	<table width="650px"  border="0" cellspacing="0" cellpadding="0" >
+
+	<table width="700px"  border="0" cellspacing="0" cellpadding="0" >
 		<tr align="center"><center>
 			<img src="/${dto.postsrc}" style="width:500px; height:300px;"></center>
 			<br/>
@@ -903,13 +915,16 @@ function removeAllChildNods(el) {
 					
 		</center>   
 		</div>	  
-		
+			<br/>
 			<br/>
 		<tr>
 				<td align="right">
+			<c:if test="${id=='admin'}">
+ 				<img src="yh/img/c3.png" type="button" value="delete" onclick="callAjax('deleteCourseList.nhn?num=${dto.num }')"/>&nbsp;&nbsp;
+ 			</c:if>
 				<img src="yh/img/z59.png" type="button" name="list" value="글 목록" class="inputb" href="#" onclick="callAjax('shareCourseBoard.nhn')"/>&nbsp;&nbsp;
 				<img src="yh/img/z57.png" type="button" name="comment" value="댓글 보기"  href="#" onclick="callAjax2('courseComment.nhn')" /> </td>
-		
+			<input id="likelimit" name="likelimit" value="${check1}" type="hidden">
 		<tr>
 			<br/><br/>
 				<div alingn="left">

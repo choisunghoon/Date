@@ -45,6 +45,16 @@
 		select * from dc_point where couplename like '%'||#couplename#||'%' and place = #place# 
 	</select>
 	
+	<select id="searchWinPointCount" parameterClass="themeDTO.PointSearchDataBean" resultClass="int">
+		select count(*) from dc_point where couplename like '%'||#couplename#||'%' and place = #place# order by num desc
+	</select>
+	
+	<select id="searchWinPointList1" resultClass="themeDTO.PointSearchDataBean" parameterClass="themeDTO.PointSearchDataBean">
+		 select num, couplename, usePoint, getPoint, place, regdate, r from
+	    (select num, couplename, usePoint, getPoint, place, regdate, r  from
+	    (select num, couplename, usePoint, getPoint, place, regdate, rownum r from dc_point where couplename like '%'||#couplename#||'%' and place = #place#)) where r>=#startRow# and <![CDATA[r<=#endRow#]]>  order by num asc
+	</select>
+	
 	<select id="searchWinEventList1" resultClass="project.bean.EventDataBean">
 		select * from event where  wcouples like '%'||#keyword#||'%' and w=#way# order by enumber desc
 	</select>

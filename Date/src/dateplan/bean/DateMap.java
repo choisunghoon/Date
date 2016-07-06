@@ -66,6 +66,7 @@ public class DateMap {
 		dto.setContent(content);
 		dto.setPostsrc(postsrc);
 		dto.setNum(num);
+		dto.setPostcheck("1");
 		sqlMap.update("insertsrc", dto);
 		return "/dateplan/datepostSave.jsp";
 	}
@@ -85,9 +86,6 @@ public class DateMap {
 	
 		request.setAttribute("pidsize", pidsize);
 		request.setAttribute("dto", dto);
-		
-		
-		
 		request.setAttribute("num",num);
 				
 		return "/dateplan/datepost.jsp";
@@ -157,11 +155,15 @@ public class DateMap {
 		
 		return "/dateplan/datecos.jsp";
 	}
-	@RequestMapping("delcos.nhn")
-	public String delcos(HttpServletRequest request,DTO dto){
+	@RequestMapping("cosdel.nhn")
+	public String delcos(HttpServletRequest request){
+		String[] num = request.getParameterValues("num");
+		for(int i=0;i<num.length;i++){
+			sqlMap.delete("cosdel", new Integer(num[i]));
+		}
 		
 		
-		return "/dateplan/datecos.jsp";
+		return "/dateplan/cosdel.jsp";
 	}
 	
 	@RequestMapping("cosUpdate.nhn")
@@ -180,4 +182,5 @@ public class DateMap {
 	
 		return "redirect:couple.nhn";
 	}
+	
 }

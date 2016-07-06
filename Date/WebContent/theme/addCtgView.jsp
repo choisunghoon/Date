@@ -47,7 +47,7 @@
 
 
 
-<div class="gallery"> 
+<div class="gallery" style="margin-left:7.5%"> 
   <ul>
     <c:set var="i" value="1"/>
     <c:forEach var="ctgList" items="${ctgList}">  

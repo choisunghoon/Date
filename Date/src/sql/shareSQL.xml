@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
-	<!--   -->
-	<select id="diaryCommentCheck" resultClass="java.lang.Integer">
-		select * from dc_sharydiary_comment where id=#id# and num=#commentnum#
-	</select>
+	
 	<!--   -->
 	<select id="SelectDiaryCommentAll" resultClass="share.commentDataBean">
 		select * from dc_sharydiary_comment where board_num=#num# order by num desc
@@ -18,8 +15,8 @@
 		insert into dc_sharydiary_comment(num,id,diarycomment,board_num,regdate,img) values (dc_sharydiary_comment_seq.nextval,#id#,#diarycomment#,#board_num#,#regdate#,#img#) 
 	</insert>
 	<!--   -->
-	<delete id="diaryCommentDelet" parameterClass="java.util.HashMap">
-        delete from dc_sharydiary_comment where id=#id# and num=#commentnum#
+	<delete id="diaryCommentDelet" parameterClass="java.lang.String">
+        delete from dc_sharydiary_comment where num=#num#
     </delete>
     	<!--   -->
 	<select id="SelectCourseCommentAll" resultClass="share.commentDataBean">
@@ -33,13 +30,10 @@
 	<insert id="SelectCoupseCommentUp" parameterClass="share.commentDataBean">				
 	insert into dc_sharycourse_comment(num,id,coursecomment,board_num,regdate,img) values (dc_sharycourse_comment_seq.nextval,#id#,#coursecomment#,#board_num#,#regdate#,#img#)
 	</insert>	
-		<delete id="courseCommentDelet" parameterClass="java.util.HashMap">
-        delete from dc_sharycourse_comment where id=#id# and num=#commentnum#
+	<!--   -->
+	<delete id="courseCommentDelet" parameterClass="java.lang.String">
+        delete from dc_sharycourse_comment where num=#num#
     </delete>
-    <!--   -->
-	<select id="courseCommentCheck" resultClass="java.lang.Integer">
-		select * from dc_sharycourse_comment where id=#id# and num=#commentnum#
-	</select>
     <!--   -->
 	<select id="shereSelectDiaryBoardAll" resultClass="upload.bean.DiaryDataBean">
 		select * from dc_diary where pool=1 order by pool_regdate
@@ -52,6 +46,10 @@
 	<select id="shereDiarySelectNum" parameterClass="int" resultClass="upload.bean.DiaryDataBean">
 		SELECT * FROM dc_diary WHERE num=#num#
 	</select>
+	<!--   -->
+	<delete id="deleteShareDiary" parameterClass="java.lang.Integer">
+        delete from dc_diary where num=#num#
+    </delete>
 	<!--   -->
 	<update id="shereDiaryLikeCountUp" parameterClass="java.util.HashMap">	
 		update dc_diary set likecount = likecount +1 where num=#num#
@@ -84,6 +82,10 @@
 	<update id="shereCourseLikeCountUp" parameterClass="java.util.HashMap">	
 		update dc_dc set likecount = likecount +1 where num=#num#
 	</update>
+	<!--   -->
+	<delete id="deleteCourseDiary" parameterClass="java.lang.Integer">
+        delete from dc_dc where num=#num#
+    </delete>
 	<!--   -->
 	<update id="shereCourseLikeCountDown" parameterClass="java.util.HashMap">	
 		update dc_dc set likecount = likecount -1 where num=#num#
@@ -122,7 +124,7 @@
 	</update>
 	<!--   -->
 	<select id="likeLimit" resultClass="int" parameterClass="java.util.HashMap" >
-		 select * from dc_likecount_board where regdate like #reg%# and couplename=#couplename#
+		select count(*) from dc_likecount_board where to_char(regdate,'YYYYMMDD')=#reg# and couplename=#couplename#
 	</select>
 	<!--   -->
 	<select id="serchCouplename" resultClass= "String" parameterClass="String">

@@ -563,7 +563,7 @@ var kortmp='';
 var hidden=[];
 var j = 1;
 function deldiv(i){
-
+	$("#"+i).remove();
 }
 
 function displayPlaces(places) {

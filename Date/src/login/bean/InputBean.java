@@ -169,6 +169,7 @@ public class InputBean {
 	public String mypage(HttpSession session,HttpServletRequest request) throws Exception{
 		String check =(String)session.getAttribute("fbcheck");
 		String id =(String) session.getAttribute("id");
+		String couplen = null;
 		//int chk = Integer.parseInt(request.getParameter("chk"));
 		System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 筌ｋ똾寃뺧옙�쐻占쎈짗占쎌굲"+check);
 		request.setAttribute("check", check);
@@ -184,26 +185,8 @@ public class InputBean {
 			
 			String nickname=(String) sqlMapper.queryForObject("getNick", id);
 			int checkAlert=(Integer)sqlMapper.queryForObject("checkAlert", nickname);
-			int countCN = (Integer)sqlMapper.queryForObject("countCN", id);
-			if(countCN>0){
-			String couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
-			EventDataBean eto = new EventDataBean()	;			
-			int checkcount = (Integer)sqlMapper.queryForObject("checkcount", couplen);
-				if(checkcount>0){
-					List etoList = null;
-					etoList = sqlMapper.queryForList("checkW", couplen);
-					for(int j=0; j<etoList.size();j++){
-						eto = (EventDataBean) etoList.get(j);
-						for(int i=0; i<checkcount; i++){
-							if(eto.getChecknum()==0){
-								request.setAttribute("checkW",  eto.getChecknum());
-								request.setAttribute("enumber1", eto.getEnumber());
-								request.setAttribute("ch", 0);
-							}
-						}
-					}
-				}
-			}
+			couplen = (String)sqlMapper.queryForObject("selectCouplename", id);
+			
 		
 			if(checkAlert==1){
 				AlertDataBean adto=new AlertDataBean();
@@ -227,7 +210,8 @@ public class InputBean {
 			else
 				request.setAttribute("couple1", "end");
 		}	
-		//request.setAttribute("chk", new Integer(chk));
+		request.setAttribute("couplen",couplen);
+		System.out.println("121212121212121"+couplen);
 		return "/dc/mypage.jsp";
 	}
 	@RequestMapping("coupleinfo.nhn")//�뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 
@@ -265,6 +249,7 @@ public class InputBean {
 			adto=(AlertDataBean)sqlMapper.queryForObject("getAlert1", id);
 			if(adto.getContent().equals("couple")){
 				sqlMapper.update("readCheckEnd", id);
+				sqlMapper.update("chid", id);
 			}
 		}
 		
@@ -287,7 +272,7 @@ public class InputBean {
 		if(check==1){
 			dto = (LogonDataBean)sqlMapper.queryForObject("getMemberbyn", nickname);
 			cdto.setId2(dto.getId());
-			int checkcouple=(Integer)sqlMapper.queryForObject("getCouple", dto.getId());//�뚣뀿�쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲筌ｏ옙占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼓獄�袁⑹굲 �뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈뼓占쎌뵛占쎌굲占쎈쐻�뜝占� 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
+			int checkcouple=(Integer)sqlMapper.queryForObject("getCouple1", dto.getId());//�뚣뀿�쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲筌ｏ옙占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼓獄�袁⑹굲 �뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈뼓占쎌뵛占쎌굲占쎈쐻�뜝占� 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 			if(checkcouple==1){
 				request.setAttribute("fail", "1");
 				return "/dc/mypage.jsp";

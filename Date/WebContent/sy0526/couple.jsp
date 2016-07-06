@@ -39,10 +39,12 @@
 		callAjax2('diaryMenu.nhn');
 	</script>
 </c:if>
-<c:if test="${ldb.couple eq '0' }">
-	<script>
-		callNo();
-	</script>
+<c:if test="${id ne 'admin'}">
+	<c:if test="${ldb.couple eq '0' }">
+		<script>
+			callNo();
+		</script>
+	</c:if>
 </c:if>
 	<div style="width:100%;float:left;" >
 		<div style="width:12%;float:left;margin-left:0">

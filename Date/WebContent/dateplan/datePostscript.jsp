@@ -54,7 +54,6 @@
 </script>
 
 <div id="cos">
-
 <c:forEach var="cosList" items="${cosList}">
 <div class="image">
 		

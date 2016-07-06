@@ -12,11 +12,7 @@ function callComment(nhn){
         type: "post",
         url : nhn,
         success: callAjax2,	// 페이지요청 성공시 실행 함수
-        error: commentError	//페이지요청 실패시 실행함수
  	});
-}
-function commentError(){
-    alert("댓글을 삭제할 권한 없습니다.");
 }
 function setImotappimg(imotappimg){
 	imotappimgImg.innerHTML = imotappimgImg.innerHTML = "<img src=\"/Date/project/ee/" + imotappimg + "\" >";
@@ -96,7 +92,7 @@ function viewimotappimg(){
              <input type="hidden" id="aa" name="listMore" value="${listMore}"/>
             </form>
     <ul class="tbl_area">
-                   <table  width="600px"  border="0" cellspacing="0" cellpadding="0" >
+                   <table  width="700px"  border="0" cellspacing="0" cellpadding="0" >
 					<tr align="center">
 						<td ><textarea name="coursecomment" style="width:100%" id="coursecomment" cols="35" rows="2" /></td>
 						<input type=hidden id="appimg" name="appimg" value="8.png">
@@ -150,18 +146,22 @@ name="commentup" value="commentup" href="#" onclick="callAjax3('courseCommentUp.
   </ul>
             <c:set var="i" value="1"/>
              <c:forEach var="commentList" items="${commentList}">
-               <ul class="tbl_area" id="dispRow${i}" style="margin-left:0%;display:none">
+               <ul class="tbl_area" id="dispRow${i}" style="margin-right:27%;display:none">
                		<c:set var="i" value="${i+1 }" />
                  <li >
-				<table width="600px" border="1" cellspacing="0" cellpadding="0" >
+				<table width="700px" border="1" cellspacing="0" cellpadding="0" >
 						<tr align="center">
-						<td width="15%">${commentList.id}</td>
-						<td width="55%" cols="10" rows="3">
+						<td width="90px">${commentList.id}</td>
+						<td width="420px" cols="10" rows="3">
 						&nbsp;<img src="/Date/project/ee/${commentList.img}"/>
 						&nbsp;${commentList.coursecomment}
-					    <td><img src="yh/img/c3.png" type="button" value="delete" onclick="callComment('courseCommentDelete.nhn?id=${id}&commentnum=${commentList.num}')"/></td>
+					  	<c:if test="${id == commentList.id or id=='admin'}">
+					    <td width="70px"><img src="yh/img/c3.png" type="button" value="delete" onclick="callComment('courseCommentDelete.nhn?commentnum=${commentList.num}')"/></td>
+						</c:if>	</td>
+						<c:if test="${id != commentList.id or id=='admin'}">
+					    <td width="70px"></c:if>				
 						</td>
-						<td width="15%"><h6>${commentList.regdate}</h6></td>
+						<td width="90px"><h6>${commentList.regdate}</h6></td>
          				</tr>
                   	</table>
                   </li>
@@ -170,7 +170,7 @@ name="commentup" value="commentup" href="#" onclick="callAjax3('courseCommentUp.
             </c:forEach>
   <ul class="tbl_area">
               	<c:if test="${totalCount == 0}">
-              	<table width="500px" border="1" cellspacing="0" cellpadding="0" >
+              	<table width="700px" border="1" cellspacing="0" cellpadding="0" >
 					<tr align="center">
 				<td > 등록된 댓글이 없습니다</td>
             	</tr>

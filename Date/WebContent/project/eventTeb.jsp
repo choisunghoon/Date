@@ -39,7 +39,6 @@
 <head>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <style>
-
 .gallery {
 	display: block;
 	width: 100%;
@@ -146,7 +145,7 @@
 	</div>
 <!-- 모달 팝업 -->
 	
-	<div class="modal fade" id="myModaly" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+	<div class="modal fade" id="myModaly" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first" back>
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">

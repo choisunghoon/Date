@@ -1,8 +1,12 @@
 package upload.bean;
 
 import java.io.File;
+
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -44,7 +48,7 @@ public class Upload {
 		String id = (String)session.getAttribute("id");
 		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
 		String RealPath = request.getRealPath("\\syimage");
-		if(w <= wwd && h <= hhd){
+	
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
 		ddb.setImg(orgName);
@@ -65,11 +69,7 @@ public class Upload {
 		sqlMap.update("photopoint", cdb);
 		request.setAttribute("orgName", orgName);
 		check=1;
-		}
-		else{
-			System.out.println("실패");
-			check = 2;
-		}
+		
 		request.setAttribute("check", check);
 		return "/sy0525/upload2.jsp";
 	}
@@ -91,14 +91,26 @@ public class Upload {
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
-		System.out.println("diaryMenu.nhn :" + couplename);
 		ddb.setCouplename(couplename);
 		diary = sqlMap.queryForList("myDiary", ddb);
 		cdb.setCouplename(couplename);
+		int point =(Integer)sqlMap.queryForObject("mypoint", cdb);
 		cdb = (CoupleDataBean)sqlMap.queryForObject("diaryImage", cdb);
 		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
-		
-		
+		Calendar cal = Calendar.getInstance();
+	      Calendar cal2 = Calendar.getInstance();
+	      System.out.println(cdb.getCoupledate().getDate());
+	      cal2.set(cdb.getCoupledate().getYear()+1900, cdb.getCoupledate().getMonth(),cdb.getCoupledate().getDate() );//9월 22일이다. 월은 -1이 된다.
+	           //객체에 날짜가 설정된다.
+	      long day = cal2.getTimeInMillis() - cal.getTimeInMillis() ;
+	      long dday = day/1000/60/60/24 -1;		
+	      int aa = (int)dday/100 - (int)Math.floor(dday/100);
+	      int bb = (int)Math.floor(dday/100);
+	    
+	    request.setAttribute("point", point);
+	    request.setAttribute("aa", aa);
+	    request.setAttribute("bb", bb);
+	    request.setAttribute("dday", dday);
 		request.setAttribute("couplename", couplename);
 		request.setAttribute("listMore", listMore);
 		request.setAttribute("totalCnt", totalCnt);
@@ -300,6 +312,7 @@ public class Upload {
 		String couplename = request.getParameter("couplename");
 		String regdate = String.valueOf(request.getParameter("regdate"));
 		request.setAttribute("couplename", couplename);
+		System.out.println(couplename);
 		request.setAttribute("regdate", regdate);
 		return "/sy0610/state.jsp";
 	}
@@ -307,6 +320,7 @@ public class Upload {
 	@RequestMapping("/statepro.nhn")
 	public String statepro(HttpServletRequest request,PhotoDataBean pdb){
 		String couplename1 = request.getParameter("couplename1");
+		System.out.println(couplename1);
 		System.out.println("asdasdas");
 		String regdate1 = request.getParameter("regdate1");
 		int state = Integer.parseInt(request.getParameter("states"));
@@ -322,7 +336,7 @@ public class Upload {
 		pdb.setRegdate(Timestamp.valueOf(regdate1));
 		pdb.setState(states);
 		sqlMap.update("updatestate", pdb);
-		return "/sy0610/statepro.jsp";
+		return "/sy0610/state.jsp";
 	}
 	
 	@RequestMapping("/photocontent.nhn")
@@ -372,7 +386,7 @@ public class Upload {
 	}
 	
 	@RequestMapping("/diarysharing.nhn")
-	public String diarysharing(HttpSession session, HttpServletRequest request, DiaryDataBean ddb){
+	public String diarysharing(HttpSession session, PointDataBean pidb, HttpServletRequest request, DiaryDataBean ddb,CoupleDataBean cdb){
 		int check = Integer.parseInt(request.getParameter("check"));
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
@@ -380,14 +394,37 @@ public class Upload {
 		int num = Integer.parseInt(request.getParameter("num"));
 		ddb.setCouplename(couplename);
 		ddb.setNum(num);
+		cdb.setCouplename(couplename);
+		int point1 = (Integer)sqlMap.queryForObject("mypoint", cdb);
 		String pool = "";
+		int point = 0;
 		if(check == 1){
 		pool = "1";
+		point = point1 +5;
+		int getPoint = 5;
+		String place="커플다이어리 공유";
+		pidb.setCouplename(couplename);
+		pidb.setGetPoint(getPoint);
+		pidb.setPlace(place);
+		sqlMap.insert("diarypoint", pidb);
 		}else{
 		pool = "0";
+		point = point1 -5;
+		int usePoint= -5;
+		String place="커플다이어리 공유 취소";
+		pidb.setCouplename(couplename);
+		pidb.setUsePoint(usePoint);
+		pidb.setPlace(place);
+		sqlMap.insert("insertpoint",pidb );
 		}
 		ddb.setPool(pool);
-		sqlMap.insert("poolshare", ddb);
+		sqlMap.update("poolshare", ddb);
+		cdb.setPoint(point);
+		sqlMap.update("photopoint", cdb);
+		
+		
+		
+		
 		request.setAttribute("check", check);
 		return "/sy0525/diarysharing.jsp";
 	}
@@ -547,6 +584,46 @@ public class Upload {
 
 
 		return "/sy0525/default.jsp";
+	}
+	
+	@RequestMapping("/poolpro.nhn")
+	public String poolpro(HttpServletRequest request, HttpSession session, DTO dto, CoupleDataBean cdb, PointDataBean pidb){
+		int check = Integer.parseInt(request.getParameter("check"));
+		String id = (String)session.getAttribute("id");
+		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
+		int num = Integer.parseInt(request.getParameter("num"));
+		dto.setCouplename(couplename);
+		dto.setNum(num);
+		cdb.setCouplename(couplename);
+		int point1 = (Integer)sqlMap.queryForObject("mypoint", cdb);
+		String pool = "";
+		int point = 0;
+		if(check == 1){
+			pool = "1";
+			point = point1 +5;
+			int getPoint = 5;
+			String place="데이트코스 공유";
+			pidb.setCouplename(couplename);
+			pidb.setGetPoint(getPoint);
+			pidb.setPlace(place);
+			sqlMap.insert("diarypoint", pidb);
+			}else{
+			pool = "0";
+			point = point1 -5;
+			int usePoint= -5;
+			String place="데이트코스 공유 취소";
+			pidb.setCouplename(couplename);
+			pidb.setUsePoint(usePoint);
+			pidb.setPlace(place);
+			sqlMap.insert("insertpoint",pidb );
+			}
+		
+			dto.setPool(pool);
+			cdb.setPoint(point);
+			sqlMap.update("poolshare1", dto);
+			sqlMap.update("photopoint", cdb);
+			request.setAttribute("check", check);
+		return "/dateplan/poolpro.jsp";
 	}
 	
 
