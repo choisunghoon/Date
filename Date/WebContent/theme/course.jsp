@@ -67,7 +67,7 @@
 </c:if>
 <a href="#" onclick="document.location.href='addCtgView.nhn'"><img src="button/z18.png"></a>
 
-<div class="gallery"> 
+<div class="gallery" style="margin-left:7.5%"> 
   <ul>
     <c:set var="i" value="1"/>
     <c:forEach var="courseList" items="${courseList}">  
