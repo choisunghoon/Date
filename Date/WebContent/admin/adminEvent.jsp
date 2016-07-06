@@ -8,6 +8,8 @@
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=9be7455c7d33a4e2b750d3537e1179d8&libraries=services"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<link href="/Date/table.css" rel="stylesheet" type="text/css">
+   
 <script type="text/javascript">
 	function checkSS(form) {    
 		if (document.form.states.value != "1") {
@@ -160,15 +162,15 @@
 <div id="subMain1" style="float:center;width:86%">
 <input type="hidden" onchange="reload('adminEvent.nhn')" value="0" id="chk" />	
 <center>
-<table width="1000" border="1" cellspacing="0" cellpadding="0" align="center" style="table-layout:fixed;">
+<table class="table14_1" width="1000" border="1" cellspacing="0" cellpadding="0" align="center" style="table-layout:fixed;">
 	<tr height="auto">
-		<td align="center" width="50">이벤트 번호</td>
-		<td align="center" width="150">이벤트 이름</td>
-		<td align="center" width="200">진행 날짜</td>
-		<td align="center" width="50">당첨자 수</td>
-		<td align="center" width="150">추첨<br/>유무</td>
-		<td align="center" width="200">당첨 커플 이름</td>
-		<td align="center" width="100">비고</td>
+		<th align="center" width="50">이벤트 번호</td>
+		<th align="center" width="150">이벤트 이름</td>
+		<th align="center" width="200">진행 날짜</td>
+		<th align="center" width="50">당첨자 수</td>
+		<th align="center" width="150">추첨<br/>유무</td>
+		<th align="center" width="200">당첨 커플 이름</td>
+		<th align="center" width="100">비고</td>
 	</tr>	
 	<c:if test="${count == 0}">
 	<tr>

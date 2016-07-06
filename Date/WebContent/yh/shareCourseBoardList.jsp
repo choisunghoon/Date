@@ -14,13 +14,13 @@
 </style>
 <title> 코스 공유 게시판 </title>	
 </head>
-
+<link href="/Date/table.css" rel="stylesheet" type="text/css">
 <body>
 <br/><br/>
 <center>
 <form method="post">
 
-	<table width="900" border="0" cellspacing="0" cellpadding="2">
+	<table class="table14_1" width="900" border="0" cellspacing="0" cellpadding="2">
 	
 		<tr>
 			<td align="center" colspan="0"> <h2>코스 공유 게시판</h2></td>
@@ -28,13 +28,13 @@
 	</table>
 
 	<br/>
-	<table width="800" border="1" cellspacing="0" cellpadding="2">
+	<table class="table14_1" width="800" border="1" cellspacing="0" cellpadding="2">
 	<tr align="center">
-		<td width="70">글번호</td>
-		<td width="510">제목</td>
-		<td width="80">커플네임</td>
-		<td width="70">조회</td>
-		<td width="70">좋아요</td>
+		<th width="70">글번호</td>
+		<th width="510">제목</td>
+		<th width="80">커플네임</td>
+		<th width="70">조회</td>
+		<th width="70">좋아요</td>
 	</tr>
 	
 	<c:forEach var="list" items="${list }">
