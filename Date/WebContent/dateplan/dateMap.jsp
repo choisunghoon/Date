@@ -464,7 +464,6 @@ function displayPlaces(places) {
       		  '<input type="hidden" name="placephone" value="'+place.phone +'" />'+
              		   '</div>' + 
              		   '<div class="afterv" style="float:left;"></div>';
-    			alert(place.category + " " + place.id);
                  if(j>5){               	 
              		j=6;
              		alert("5개 이상 선택 하실수 없습니다.");

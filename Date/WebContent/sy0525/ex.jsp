@@ -37,7 +37,7 @@
     </script>
     
 <script type="text/javascript">
-function readImage(file) {
+function readImage(file) { // 선택된 파일을 읽어오는 함수
     var reader = new FileReader();
     var image  = new Image();
     reader.readAsDataURL(file);  

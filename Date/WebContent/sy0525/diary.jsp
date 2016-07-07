@@ -20,7 +20,7 @@
 <input type="file" name="save" id="choose" style="margin-left:305px;"/>
 
 <script type="text/javascript">
-function readImage(file) {
+function readImage(file) { // 선택된 파일을  읽어오는 함수
 	$('#uploadPreview').empty();
     var reader = new FileReader();
     var image  = new Image();

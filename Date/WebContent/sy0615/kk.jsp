@@ -22,7 +22,7 @@
 	$(document).ready(function(){
 		
 		
-		$.ajax({
+		$.ajax({	// 기상청 xml 파일 파싱
 			
 			url:'http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108',
 					dataType:'xml',

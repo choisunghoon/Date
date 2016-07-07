@@ -99,7 +99,6 @@ public class Upload {
 		int totalCnt = (Integer)sqlMap.queryForObject("myDiary1", ddb);
 		Calendar cal = Calendar.getInstance();
 	      Calendar cal2 = Calendar.getInstance();
-	      System.out.println(cdb.getCoupledate().getDate());
 	      cal2.set(cdb.getCoupledate().getYear()+1900, cdb.getCoupledate().getMonth(),cdb.getCoupledate().getDate() );//9월 22일이다. 월은 -1이 된다.
 	           //객체에 날짜가 설정된다.
 	      long day = cal2.getTimeInMillis() - cal.getTimeInMillis() ;
@@ -107,7 +106,6 @@ public class Upload {
 	      int aa = (int)Math.floor(dday/100) * (-1);
 	      int bb = (int)Math.floor(dday/100);
 	    
-	     System.out.println("이거다"+aa);
 	    request.setAttribute("point", point);
 	    request.setAttribute("aa", aa);
 	    request.setAttribute("bb", bb);
@@ -126,8 +124,6 @@ public class Upload {
 		String id = (String)session.getAttribute("id");
 		String couplename = (String)sqlMap.queryForObject("getcouplename", id);
 		int num = Integer.parseInt(request.getParameter("num"));
-		System.out.println(num);
-		System.out.println(couplename);
 		ddb.setCouplename(couplename);
 		ddb.setNum(num);
 		ddb = (DiaryDataBean)sqlMap.queryForObject("modifyDiary", ddb);
@@ -313,7 +309,6 @@ public class Upload {
 		String couplename = request.getParameter("couplename");
 		String regdate = String.valueOf(request.getParameter("regdate"));
 		request.setAttribute("couplename", couplename);
-		System.out.println(couplename);
 		request.setAttribute("regdate", regdate);
 		return "/sy0610/state.jsp";
 	}
@@ -321,8 +316,6 @@ public class Upload {
 	@RequestMapping("/statepro.nhn")
 	public String statepro(HttpServletRequest request,PhotoDataBean pdb){
 		String couplename1 = request.getParameter("couplename1");
-		System.out.println(couplename1);
-		System.out.println("asdasdas");
 		String regdate1 = request.getParameter("regdate1");
 		int state = Integer.parseInt(request.getParameter("states"));
 		String states=null;
@@ -437,29 +430,6 @@ public class Upload {
 		pdb.setCouplename(couplename);
 		List photo = null;
 		photo = sqlMap.queryForList("myphoto", pdb);
-		/*
-		pdb = (PhotoDataBean)sqlMap.queryForList("myphoto", pdb);
-		
-		int count = (Integer)sqlMap.queryForObject("myphoto1", pdb);
-		
-		List aa = new ArrayList();
-		
-		String[] a1 = pdb.getImg().split(",");
-		String[] a2 = pdb.getContent().split(",");
-		String[] a3 = pdb.getWriteday().split(",");
-		
-		for(int i=0; i < a1.length; i++){
-			PhotoDataBean pdd = new PhotoDataBean();
-			pdd.setImg(a1[i]);
-			pdd.setContent(a2[i]);
-			pdd.setWriteday(a3[i]);
-			aa.add(pdd);
-			System.out.println(i +":" +pdd.getImg());
-		}
-		
-		request.setAttribute("aa", aa);
-		request.setAttribute("pdb", pdb);
-		*/
 		request.setAttribute("photo", photo);
 
 		return "/sy0630/photocheck.jsp";
@@ -487,7 +457,6 @@ public class Upload {
 			pdd.setContent(a2[i]);
 			pdd.setWriteday(a3[i]);
 			aa.add(pdd);
-			System.out.println(i +":" +pdd.getImg());
 		}
 		
 		request.setAttribute("aa", aa);

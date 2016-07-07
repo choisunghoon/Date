@@ -7,20 +7,7 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
-         function test1(){ 
-            var now = new Date();
-            var then = new Date('${cdb.coupledate }');
-            var gap = now.getTime() - then.getTime();
-            gap = Math.floor(gap / (1000 * 60 * 60 * 24)) + 1;
-           
-           // $("#tab2").append('<div id="dday">D+<span style="font-size:33px;">' + gap + '</span></div>');
-           // var b = (gap/100)-Math.floor(gap/100);    
-          //  var a = Math.floor(gap/100);
-          //  if(b<1){
-           // $("#tab2").appendto='<img src="/syimage/a'+a+'.jpg" width="500" height="600"/>';
-         //}
-         }
-         
+
          function callContent3(url){ 
         	 $.ajax({    		
      	        type: "post", 	

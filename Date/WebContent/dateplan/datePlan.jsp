@@ -345,7 +345,6 @@ function displayPlaces2(places) {
 			}  else {
 				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
 			    }                
-			alert(place.category);
 			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
 		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
   		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
@@ -453,7 +452,6 @@ function displayPlaces3(places) {
 			}  else {
 				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
 			    }                
-			alert(place.category);
 			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
 		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
   		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
@@ -498,7 +496,6 @@ function displayPlaces3(places) {
     			}  else {
     				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
    			    }                
-    			alert(place.category);
     			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
     			'<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
       		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
@@ -605,7 +602,6 @@ function displayPlaces(places) {
     			}  else {
     				kor[j] += '    <span title="' + place.address + '">' + place.address + '</span>';
    			    }                
-    			alert(place.id);
     			kor[j] += '    <span class="tel">' + place.phone + '</span>' + 
     		  '<input type="hidden" name="placeplaceUrl" id="placeplaceUrl" value="'+place.placeUrl+'" />'+
       		  '<input type="hidden" name="placenewAddress" id="placenewAddress" value="'+place.newAddress+'" />'+
