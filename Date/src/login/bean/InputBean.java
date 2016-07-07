@@ -200,9 +200,6 @@ public class InputBean {
 			if(checkAlert1==1){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 if dto.getCouple"+dto.getCouple());
-				
-				
 				if(dto.getCouple().equals("1")){
 					request.setAttribute("couple1", "couple1");
 				}
@@ -211,7 +208,6 @@ public class InputBean {
 				request.setAttribute("couple1", "end");
 		}	
 		request.setAttribute("couplen",couplen);
-		System.out.println("121212121212121"+couplen);
 		return "/dc/mypage.jsp";
 	}
 	@RequestMapping("coupleinfo.nhn")//�뚣뀿�쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 

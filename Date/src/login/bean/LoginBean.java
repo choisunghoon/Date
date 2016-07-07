@@ -289,7 +289,7 @@ public class LoginBean {
 				session.setAttribute("adto", adto);
 				System.out.println(adto.getContent());
 				
-				int ca=(Integer)sqlMapper.queryForObject("getCouple",id);
+				int ca=(Integer)sqlMapper.queryForObject("getCouple5",id);
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
