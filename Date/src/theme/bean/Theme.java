@@ -34,19 +34,19 @@ public class Theme {
 	@Autowired
 	private SqlMapClientTemplate sqlMap;
 	
-	@RequestMapping("addCtg.nhn")
+	@RequestMapping("addCtg.nhn")	//카테고리를 추가하는 view페이지
 	public String addCtg(HttpServletRequest request){
 		
-		int ctg_num = (Integer)sqlMap.queryForObject("selectCtgNum",null);
+		int ctg_num = (Integer)sqlMap.queryForObject("selectCtgNum",null);	//ctg_num을 불러오는 쿼리문
 		
 		request.setAttribute("ctg_num", ctg_num);
 		return "/theme/addCtg.jsp";
 	}
 	
-	@RequestMapping("addCtgPro.nhn")
+	@RequestMapping("addCtgPro.nhn")	//파일 업로드, addCtg 페이지에서 입력한 정보를 DB에 입력하는 페이지
 	public String addCtgPro(MultipartHttpServletRequest request,CtgDataBean dto) throws Exception{
 		
-		MultipartFile file = request.getFile("save");
+		MultipartFile file = request.getFile("save");	//파일 업로드
 		String orgName = file.getOriginalFilename();
 		String RealPath = request.getRealPath("theme");
 		File copy = new File(RealPath+"/"+orgName);
@@ -55,23 +55,23 @@ public class Theme {
 		request.setAttribute("pic", orgName);
 		dto.setCtg_img(orgName);
 		
-		sqlMap.insert("insertCtg", dto);
+		sqlMap.insert("insertCtg", dto);	//카테고리 정보를 DB에 입력하는 쿼리
 		
 		request.setAttribute("dto", dto);
 		
 		return "/theme/addCtgPro.jsp";
 	}
 	
-	@RequestMapping("addCtgView.nhn")
+	@RequestMapping("addCtgView.nhn")	//카테고리 view 페이지
 	public String addCtgView(HttpServletRequest request,HttpSession session){
 		session = request.getSession();
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("id");	//id값을 세션으로 가져온다.
 		
 		CtgDataBean dto = new CtgDataBean();
 		List ctgList = new ArrayList();
 		int count = 0;
 		
-		String pageNum = request.getParameter("pageNum");
+		String pageNum = request.getParameter("pageNum");	//페이징
 		int pageSize = 6;
 		if(pageNum == null){
 			pageNum = "1";
@@ -86,8 +86,8 @@ public class Theme {
 		
 		String[] srclist = null;
 		String path = request.getContextPath() +"/theme/themeimg/";
-		ctgList = sqlMap.queryForList("getCtgList", num);
-		count = (Integer)sqlMap.queryForObject("ctgCount", null);
+		ctgList = sqlMap.queryForList("getCtgList", num);	// 입력된 카테고리 정보를 불러오는 쿼리문
+		count = (Integer)sqlMap.queryForObject("ctgCount", null);	//ctg DB의 count를 가져오는 쿼리문
 		
 		for(int i=0; i<ctgList.size(); i++){
 			dto = (CtgDataBean)ctgList.get(i);
@@ -106,11 +106,11 @@ public class Theme {
 		return "/theme/addCtgView.jsp";
 	}
 	
-	@RequestMapping("ctgModify.nhn")
+	@RequestMapping("ctgModify.nhn")	//카테고리 수정페이지
 	public String ctgModify(HttpServletRequest request,CtgDataBean dto){
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
 		
-		dto = (CtgDataBean)sqlMap.queryForObject("getCtg", ctg_num);
+		dto = (CtgDataBean)sqlMap.queryForObject("getCtg", ctg_num);	//카테고리 정보를 가져오는 쿼리문
 		
 		request.setAttribute("dto", dto);
 		request.setAttribute("ctg_num", ctg_num);
@@ -118,22 +118,22 @@ public class Theme {
 		return "/theme/ctgModify.jsp";
 	}
 	
-	@RequestMapping("ctgModifyPro.nhn")
+	@RequestMapping("ctgModifyPro.nhn")	// 가져온 카테고리 정보를 수정하는 페이지
 	public String ctgModifyPro(MultipartHttpServletRequest request,CtgDataBean dto)throws Exception{
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
 		
-		MultipartFile file = request.getFile("save");
+		MultipartFile file = request.getFile("save");	//파일업로드
 		String orgName = file.getOriginalFilename();
 		String RealPath = request.getRealPath("theme");
 		File copy = new File(RealPath+"/"+orgName);
 		
-		if(!file.isEmpty()){
+		if(!file.isEmpty()){	//파일값이 없을 경우 기존에 있는 이름을 dto에 저장한다.
 		file.transferTo(copy);
 		request.setAttribute("pic", orgName);
 		dto.setCtg_img(orgName);
 		dto.setCtg_num(ctg_num);
-		sqlMap.update("ctgModify", dto);
-		}else{
+		sqlMap.update("ctgModify", dto);	//카테고리를 수정하는 쿼리문
+		}else{	//입력된 파일 값이 있을경우 입력된 파일값을 dto에 입력한다.
 		dto.setCtg_num(ctg_num);
 		sqlMap.update("ctgModify1", dto);	
 		}
@@ -142,7 +142,7 @@ public class Theme {
 		
 	}
 	
-	@RequestMapping("ctgDel.nhn")
+	@RequestMapping("ctgDel.nhn")	//카테고리를 삭제 뷰 페이지
 	public String ctgDel(HttpSession session,HttpServletRequest request,LogonDataBean dto){
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
 		session = request.getSession();
@@ -154,7 +154,7 @@ public class Theme {
 		return "/theme/ctgDel.jsp";
 	}
 	
-	@RequestMapping("ctgDelPro.nhn")
+	@RequestMapping("ctgDelPro.nhn")	//카테고리를 삭제하는 페이지
 	public String ctgDelPro(HttpSession session,HttpServletRequest request,LogonDataBean dto,CtgDataBean dto1){
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
@@ -164,30 +164,30 @@ public class Theme {
 		dto.setId(id);
 		dto.setPw(pw);
 
-		int check = (Integer)sqlMap.queryForObject("deleteProck",dto);
+		int check = (Integer)sqlMap.queryForObject("deleteProck",dto);	//로그인된 아이디가 DB에 있는지 확인하는 쿼리문
 		if(check == 1){
-			sqlMap.delete("deleteCtg",dto1);
+			sqlMap.delete("deleteCtg",dto1);	//카테고리를 삭제하는 쿼리문
 		}
 		request.setAttribute("check", check);
 		return "/theme/ctgDelPro.jsp";
 	}
 	
-	@RequestMapping("addCourse.nhn")
+	@RequestMapping("addCourse.nhn")	//코스를 입력하는 뷰페이지
 	public String addCourse(HttpServletRequest request){
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
 		
-		int cos_num = (Integer)sqlMap.queryForObject("selectCosNum",null);
+		int cos_num = (Integer)sqlMap.queryForObject("selectCosNum",null);	//cos_num값을 가져오는 쿼리문
 		
 		request.setAttribute("ctg_num", ctg_num);
 		request.setAttribute("cos_num", cos_num);
 		return "/theme/addCourse.jsp";
 	}
 	
-	@RequestMapping("addCoursePro.nhn")
+	@RequestMapping("addCoursePro.nhn")	//입력받은 정보를 course DB에 입력하는 페이지
 	public String addCoursePro(HttpServletRequest request,CourseDataBean dto) throws Exception{
 		
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
-		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;// 파일업로드
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 
 		MultipartFile multipartFile = null;
@@ -195,7 +195,7 @@ public class Theme {
 		String[] src = new String[2];
 		String path = "C:\\Users\\sam3\\git\\Date\\Date\\WebContent\\theme\\themeimg";
 		int i = 0;
-		while(iterator.hasNext()){
+		while(iterator.hasNext()){	//값이 있는지 반복자로 확인후 src배열에 집어넣는다.
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 			originalFileName = multipartFile.getOriginalFilename();
 			multipartFile.transferTo(new File(path + originalFileName));
@@ -203,11 +203,11 @@ public class Theme {
 	        i++;
 	    }
 		
-		dto.setCos_img(src[0]);
-		dto.setMap_img(src[1]);
+		dto.setCos_img(src[0]);	//배열에 저장된 첫번째 값을 dto에 저장한다.
+		dto.setMap_img(src[1]); //배열에 저장된 두번쨰 값을 dto에 저장한다.
 		dto.setCtg_num(ctg_num);
 		
-		sqlMap.insert("insertCos", dto);
+		sqlMap.insert("insertCos", dto);	//코스를 DB에 저장하는 쿼리문
 		
 		request.setAttribute("dto", dto);
 		request.setAttribute("ctg_num", ctg_num);
@@ -293,9 +293,7 @@ public class Theme {
 				if(multipartFile.isEmpty()){
 					dto1 = (CourseDataBean) sqlMap.queryForObject("getCosImg", cos_num);
 					srclist[0] = dto1.getMap_img();
-					System.out.println(srclist[0]);
 					srclist[1] = dto1.getCos_img();
-					System.out.println(srclist[1]);
 					originalFileName = srclist[i];
 				}else{
 				originalFileName = multipartFile.getOriginalFilename();
@@ -369,8 +367,6 @@ public class Theme {
 
 		int count = (Integer) sqlMap.queryForObject("getLikeCount", dto3);
 		
-		System.out.println(id);
-		System.out.println(count);
 		if(id != null){
 			LikeCountDataBean dto2 = new LikeCountDataBean();
 			dto2.setId(id);
@@ -607,8 +603,6 @@ public class Theme {
 		int cos_num = Integer.parseInt(request.getParameter("cos_num"));
 		int checkNum = Integer.parseInt(request.getParameter("checkNum"));
 		
-		System.out.println("check" + checkNum);
-		
 		LikeCountDataBean dto = new LikeCountDataBean();
 		CourseDataBean dto1 = new CourseDataBean();
 		
@@ -633,11 +627,9 @@ public class Theme {
 
 		int check = (Integer)sqlMap.queryForObject("cosLikeCount",dto);
 		if(check == 1){
-			System.out.println("1");
 			sqlMap.update("cosLikeCountDown", dto1);
 			sqlMap.delete("deleteCosLike", dto);
 		}else{
-			System.out.println("-1");
 			sqlMap.update("cosLikeCountUp", dto1);
 			sqlMap.insert("insertCosLike",dto);
 		}

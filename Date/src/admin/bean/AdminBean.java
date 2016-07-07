@@ -46,12 +46,12 @@ public class AdminBean {
 	@RequestMapping("point.nhn")
 	public String point(HttpServletRequest request,HttpSession session,PointDataBean dto) throws Exception{
 		session = request.getSession();
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("id");	//세션으로 아이디값을 가져옴
 		
 		List pointList = new ArrayList();
 		int count = 0;
 		
-		String pageNum = request.getParameter("pageNum");
+		String pageNum = request.getParameter("pageNum");	//페이징
 		int pageSize = 10;
 		if(pageNum == null){
 			pageNum = "1";
@@ -64,8 +64,8 @@ public class AdminBean {
 		num.put("startRow", startRow);
 		num.put("endRow", endRow);
 		
-		pointList = sqlMap.queryForList("getPointList", num);
-		count = (Integer)sqlMap.queryForObject("pointCount", null);
+		pointList = sqlMap.queryForList("getPointList", num);	//포인트 DB의 전체 결과를 가져오는 쿼리문
+		count = (Integer)sqlMap.queryForObject("pointCount", null);	//포인트 DB의 전체 결과의 count값을 가져오는 쿼리문
 		
 		for(int i=0; i<pointList.size(); i++){
 			dto = (PointDataBean)pointList.get(i);
@@ -227,11 +227,12 @@ public class AdminBean {
 	
 	@RequestMapping("pointPro.nhn")
 	public String pointPro(HttpServletRequest request, PointDataBean pdb,PointSearchDataBean pdb1){
-		String keyword = request.getParameter("keyword");
-		System.out.println(keyword);
-		int a = Integer.parseInt(request.getParameter("states"));
+		String keyword = request.getParameter("keyword");	//검색어
+		int a = Integer.parseInt(request.getParameter("states"));	//상태값
+		
 		String place = "";
-		if(a == 1){
+		
+		if(a == 1){	//체크박스를 선택할때 넘어오는 상태값
 			place = "포토북";
 		}else if(a == 2){
 			place = "다이어리 공유";
@@ -239,12 +240,11 @@ public class AdminBean {
 			place = "데이트 코스 공유";
 		}
 		
-		System.out.println(a);
 		pdb1.setCouplename(keyword);
 		pdb1.setPlace(place);
 		List pointList = new ArrayList();
 		
-		String pageNum = request.getParameter("pageNum");
+		String pageNum = request.getParameter("pageNum");	//페이징
 		int pageSize = 10;
 		if(pageNum == null){
 			pageNum = "1";
@@ -255,12 +255,9 @@ public class AdminBean {
 		
 		pdb1.setStartRow(startRow);
 		pdb1.setEndRow(endRow);
-		System.out.println(pdb1.getStartRow());
-		System.out.println(pdb1.getEndRow());
 		
-		pointList = sqlMap.queryForList("searchWinPointList1", pdb1);
-		int count = (int) sqlMap.queryForObject("searchWinPointCount", pdb1);
-		System.out.println(count);
+		pointList = sqlMap.queryForList("searchWinPointList1", pdb1);	//검색 결과를 가져오는 쿼리문
+		int count = (int) sqlMap.queryForObject("searchWinPointCount", pdb1);	//검색 결과의 카운트를 가져오는 쿼리문
 		
 		request.setAttribute("pointList", pointList);
 		request.setAttribute("count", count);
