@@ -36,7 +36,6 @@ public class shareBean {
 		commentDataBean dto = new commentDataBean();
 		commentList = sqlMap.queryForList("SelectCourseCommentAll",num);
 		int totalCount = (Integer)sqlMap.queryForObject("courseCommentCount", num);
-		System.out.println(totalCount);
 
 		request.setAttribute("listMore", listMore);
 		request.setAttribute("totalCount", totalCount);
@@ -52,18 +51,14 @@ public class shareBean {
 		
 		String id = (String)session.getAttribute("id");
 		dto.setId(id);
-		System.out.println("아이디"+" " +id);
 		
 		String coursecomment = request.getParameter("coursecomment");
 		dto.setCoursecomment(coursecomment);
-		System.out.println("코멘트값"+" " +coursecomment);
 		
 		dto.setBoard_num(num);
-		System.out.println("넘버값"+" " +num);
 		
 		String img = request.getParameter("img");
 		dto.setImg(img);
-		System.out.println("이미지"+" " +img);
 		
 		dto.setRegdate(new Timestamp(System.currentTimeMillis()));
 		
@@ -105,18 +100,14 @@ public class shareBean {
 		
 		String id = (String)session.getAttribute("id");
 		dto.setId(id);
-		System.out.println("아이디"+" " +id);
 		
 		String diarycomment = request.getParameter("diarycomment");
 		dto.setDiarycomment(diarycomment);
-		System.out.println("코멘트값"+" " +diarycomment);
 		
 		dto.setBoard_num(num);
-		System.out.println("넘버값"+" " +num);
 		
 		String img = request.getParameter("img");
 		dto.setImg(img);
-		System.out.println("이미지"+" " +img);
 		
 		dto.setRegdate(new Timestamp(System.currentTimeMillis()));
 		
@@ -135,7 +126,6 @@ public class shareBean {
 		commentDataBean dto = new commentDataBean();
 		commentList = sqlMap.queryForList("SelectDiaryCommentAll",num);
 		int totalCount = (Integer)sqlMap.queryForObject("commentCount", num);
-		System.out.println(totalCount);
 
 		request.setAttribute("listMore", listMore);
 		request.setAttribute("totalCount", totalCount);
@@ -210,10 +200,6 @@ public class shareBean {
 		
 		int check1 = (Integer)sqlMap.queryForObject("likeLimit",map);
 
-		System.out.println("체크값 몇이냐" +" " +check);
-		System.out.println(" check1 숫자" +" " +check1);
-		System.out.println(" reg 숫자" +" " +reg);
-		System.out.println(" couplename 이름" +" " + couplename);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);
 		mv.addObject("num",num);
@@ -290,7 +276,6 @@ public class shareBean {
 		
 		int check1 = (Integer)sqlMap.queryForObject("likeLimit",map);
 
-		System.out.println("체크값 몇이냐" +" " +check);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);
 		mv.addObject("num",num);
@@ -308,7 +293,6 @@ public class shareBean {
 
 		String id = (String)session.getAttribute("id");
 		String couplename = (String) sqlMap.queryForObject("serchCouplename",id);
-		System.out.println("커플네임"+ couplename);
 		
 		pointDataBean dto2 = new pointDataBean();
 		
@@ -323,35 +307,24 @@ public class shareBean {
 		map.put("regdate", regdate);
 		map.put("place", place);
 		list.add(map);
-		System.out.println("1couplename"+" "+couplename);
-		System.out.println("2num"+" "+num);
-		System.out.println("3regdate"+" "+regdate);
 		
 		DiaryDataBean dto = new DiaryDataBean();
 		likeDataBean dto1 = new likeDataBean();
 		
 		int check = (Integer)sqlMap.queryForObject("shereDiaryLikePro",map);
-		System.out.println("3check"+" "+check);
 
 		if (check ==1){
 			sqlMap.update("shereDiaryLikeCountDown", map);
-			System.out.println("좋아요 감소");
 			sqlMap.delete("shereDeleteLike", map);
-			System.out.println("이글의 좋아요멤버삭제");
 			sqlMap.insert("shereUsePoint", map);
-			System.out.println("다이어리공유 포인트감소 기록");
 			sqlMap.update("sherePointCountDown", map);
-			System.out.println("멤버 좋아요로 획득한 포인트 감소 ");
 			
 		}else{
 			sqlMap.update("shereDiaryLikeCountUp", map);
-			System.out.println("좋아요 증가");
 			sqlMap.insert("shereInsertLike", map);
-			System.out.println("이글의 좋아요멤버추가");
 			sqlMap.insert("shereGetPoint", map);
-			System.out.println("다이어리공유 포인트증가 기록");
 			sqlMap.update("sherePointCountUp", map);
-			System.out.println("멤버 좋아요로 획득한 포인트 증가 ");
+
 		}
 		
 		int likecount = (Integer)sqlMap.queryForObject("shereDiaryLike", num);
@@ -378,9 +351,7 @@ public class shareBean {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd");
 		String reg = format.format(timestamp);
-		
-		System.out.println(reg);
-		System.out.println(couplename);
+
 		
 		List list = new ArrayList();
 
@@ -401,10 +372,8 @@ public class shareBean {
 
 		String id = (String)session.getAttribute("id");
 		String couplename = (String) sqlMap.queryForObject("serchCouplename",id);
-		System.out.println("커플네임"+ couplename);
 		int checkMylist = (Integer)sqlMap.queryForObject("checkMylist",id);
 		pointDataBean dto2 = new pointDataBean();
-		System.out.println("체크마이리스트!!!!!!!!!!!!!!!!!!!"+checkMylist);
 		Timestamp regdate = new Timestamp(System.currentTimeMillis());
 		String place = "데이트코스 공유";
 		
@@ -422,7 +391,6 @@ public class shareBean {
 			String arryMylist[]=getMylist.split(",");
 			String mylistPush=getMylist+","+num;
 			map.put("mylistPush", mylistPush);
-			System.out.println(mylistPush+"체크값0 마이리스트푸쉬!!! 기존에 리스트가있을때");
 			String renum=","+num;
 			String relist=getMylist.replace(renum,"");
 			map.put("relist", relist);
@@ -431,44 +399,32 @@ public class shareBean {
 		
 		list.add(map);
 		
-		System.out.println("1couplename"+" "+couplename);
-		System.out.println("2num"+" "+num);
-		System.out.println("3regdate"+" "+regdate);
-		
 		shareCourseDataBean dto = new shareCourseDataBean();
 		likeDataBean dto1 = new likeDataBean();
 		
 		int check = (Integer)sqlMap.queryForObject("shereCourseLikePro",map);
-		System.out.println("3check"+" "+check);
+
 			if (check ==1){
 			
 				if(checkMylist==0)
 				{	
 					String getMylist=(String)sqlMap.queryForObject("getmylist", id);
 					String arryMylist[]=getMylist.split(",");
-					System.out.println("마이리스트렝쓰!!!!!!!!!!"+arryMylist.length);
 					if(arryMylist.length==1){
 						sqlMap.update("mylistPush2",map);
 					}
 					else{
 						String renum=","+num;
 						String relist=getMylist.replace(renum,"");
-						System.out.println("리리스트!!"+relist);
-						System.out.println("리넘!!!!!!!!!!!!!!!!!!!"+renum);
 						sqlMap.update("mylistPush3", map);
 					}
 				}
 			
 			
-			
 			sqlMap.update("shereCourseLikeCountDown", map);
-			System.out.println("좋아요 감소");
 			sqlMap.delete("shereDeleteLike", map);
-			System.out.println("이글의 좋아요멤버삭제");
 			sqlMap.insert("shereUsePoint", map);
-			System.out.println("코스공유 포인트감소 기록");
 			sqlMap.update("sherePointCountDown", map);
-			System.out.println("멤버 좋아요로 획득한 포인트 감소 ");
 			
 		}else{
 			if(checkMylist==1){
@@ -478,13 +434,9 @@ public class shareBean {
 				sqlMap.update("mylistPush", map);
 			}
 			sqlMap.update("shereCourseLikeCountUp", map);
-			System.out.println("좋아요 증가");
 			sqlMap.insert("shereInsertLike", map);
-			System.out.println("이글의 좋아요멤버추가");
 			sqlMap.insert("shereGetPoint", map);
-			System.out.println("코스공유 포인트증가 기록");
 			sqlMap.update("sherePointCountUp", map);
-			System.out.println("멤버 좋아요로 획득한 포인트 증가 ");
 			
 		}
 		

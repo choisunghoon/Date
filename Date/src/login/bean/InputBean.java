@@ -48,7 +48,6 @@ public class InputBean {
 		
 		HttpSession session=request.getSession();
 		String nomal=request.getParameter("hidden");
-		System.out.println("input nomal"+nomal);
 		if(nomal.equals("fb")){//占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼍筌뤿슣�굲占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� db占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓占쎈탵揶쏅�⑹굻占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 			String id=request.getParameter("id");
 			dto.setId(id);	
@@ -93,7 +92,6 @@ public class InputBean {
 		String id = (String)session.getAttribute("id"); 
 		LogonDataBean dto = new LogonDataBean();
 		String check =(String)session.getAttribute("fbcheck");//占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼄�뇡�빘�굲占쎈쐻占쎈뼣占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲. 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲�뎲�꼪�쐻占쎈뼍�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼏占쎌뒄揶쏉옙 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈쑆占쎈르占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈셾占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲�뎲�꼪�쐻占쎈뼍�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈짗占쎌굲占쎌넞占쎈쐻占쎈짗占쎌굲占쎌넅
-		System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 筌ｋ똾寃뺧옙�쐻占쎈짗占쎌굲"+check);
 		request.setAttribute("id", id);
 		request.setAttribute("check", check);
 		dto = (LogonDataBean)sqlMapper.queryForObject("getMember", id);//占쎈쐻占쎈뼢繹먮씮�굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 id占쎈쐻占쎈짗占쎌굲 占쎌돳占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
@@ -194,7 +192,6 @@ public class InputBean {
 				session.setAttribute("nickname", nickname);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 筌ｋ똾寃뺧옙�쐻占쎈뼑筌뚭쑴�굲1"+checkAlert1);
 			if(checkAlert1==1){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
