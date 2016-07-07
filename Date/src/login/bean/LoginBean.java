@@ -199,8 +199,6 @@ public class LoginBean {
 			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("�뜝�룞�삕�뜝�룞�삕 if dto.getCouple"+dto.getCouple());
-				
 				
 				if(dto.getCouple().equals("1")){
 					request.setAttribute("couple1", "couple1");
@@ -227,19 +225,16 @@ public class LoginBean {
 				AlertDataBean adto=new AlertDataBean();
 				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
 				session.setAttribute("adto", adto);
-				System.out.println(adto.getContent());
 				
 				int ca=(Integer)sqlMapper.queryForObject("getCouple",id);
 				request.setAttribute("ca", ca);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
-			System.out.println("�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떙琉꾩삕1"+checkAlert1);
+			
 			if(checkAlert1!=0){
 				LogonDataBean dto=new LogonDataBean();
 				dto=(LogonDataBean)sqlMapper.queryForObject("getMember", id);
-				System.out.println("�뜝�룞�삕�뜝�룞�삕 if dto.getCouple"+dto.getCouple());
-				
-				
+			
 				if(dto.getCouple().equals("1")){
 					request.setAttribute("couple1", "couple1");
 				}

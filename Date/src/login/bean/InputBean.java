@@ -171,10 +171,9 @@ public class InputBean {
 		String id =(String) session.getAttribute("id");
 		String couplen = null;
 		//int chk = Integer.parseInt(request.getParameter("chk"));
-		System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 筌ｋ똾寃뺧옙�쐻占쎈짗占쎌굲"+check);
 		request.setAttribute("check", check);
 		request.setAttribute("id", id);
-		System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲麗몃갊�쐻�뜝占�"+id);
+	
 		
 		if(id==null){ // 占쎈쐻占쎈뼢繹먮씮�굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎌돳占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼃占쎈빍占쎌뵛占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈뼓占쎌뒻占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼣野껊슢占쎈Ŋ�굲
 			request.setAttribute("gologin", "1");
@@ -192,7 +191,6 @@ public class InputBean {
 				AlertDataBean adto=new AlertDataBean();
 				adto=(AlertDataBean) sqlMapper.queryForObject("getAlert", nickname);
 				session.setAttribute("adto", adto);
-				System.out.println(adto.getContent());
 				session.setAttribute("nickname", nickname);
 		}
 			int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id);
@@ -236,8 +234,6 @@ public class InputBean {
 		request.setAttribute("check1", check1);
 		request.setAttribute("check2", check2);
 		
-		System.out.println("check1:"+check1+"check2:"+check2);
-		
 		int checkAlert1=(Integer)sqlMapper.queryForObject("checkAlert1", id); //id占쎈쐻占쎈짗占쎌굲 alert占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓�뇡�빘�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼑占쎄땔占쎌굲. 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 �뚣뀿�쐻占쎈뻻占쎈짗占쎌굲筌ｏ옙 占쎈쐻占쎈솭占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎌넇占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 1占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 		
 		if(checkAlert1==1){
@@ -259,7 +255,6 @@ public class InputBean {
 	public String coupleSearchPro(HttpSession session,HttpServletRequest request) throws Exception{
 		
 		String id=(String) session.getAttribute("id");
-		System.out.println("�뚣뀿�쐻占쎈뻻占쎈닰占쎌굲燁삼옙 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼓占쎈쿈占쎌굲"+id);
 		String nickname=request.getParameter("nickname");
 		String coupleName=request.getParameter("coupleName");
 		LogonDataBean dto=new LogonDataBean();
@@ -327,9 +322,7 @@ public class InputBean {
 		MultipartFile file = request.getFile("save");
 		String orgName = file.getOriginalFilename();
 		cdb.setCoupleImage(orgName);
-		System.out.println("占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈뱜占쎈쐻占쎈뼓獄�袁⑹굲占쎈쐻占쎈짗占쎌굲1"+cdb.getCoupleImage());
 		cdb.setCoupleName(coupleName);
-		System.out.println("�뚣뀿�쐻占쎈뻻占쎈꺋占쎌굲占쎈쐻占쎈짗占쎌굲"+cdb.getCoupleName());
 		File copy = new File(RealPath+"/"+orgName);
 		file.transferTo(copy);
 		sqlMapper.insert("diaryimgUpdate1",cdb);
@@ -341,7 +334,6 @@ public class InputBean {
 	public String coupleModify(HttpSession session,HttpServletRequest request)throws Exception{
 		String coupleName = request.getParameter("coupleName");
 		String coupleDate = request.getParameter("coupleDate");
-		System.out.println(coupleName+"�뚣뀿�쐻占쎈뻻占쎈꺋占쎌굲占쎈쐻占쎈짗占쎌굲");
 	
 		String hidden=request.getParameter("hidden");//占쎈쐻占쎈짗占쎌굲筌욑옙 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈솂占쎈뼄筌뤿슣�굲 hidden占쎈쐻占쎈짗占쎌굲 null占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뼃占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈셾占쎈쭆占쎈솇占쎌굲.
 		String id=(String)session.getAttribute("id");
@@ -349,13 +341,11 @@ public class InputBean {
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
 
 		int ccn=(Integer)sqlMapper.queryForObject("checkCoupleName", coupleName);
-		System.out.println("筌ｋ똾寃뺠�뚣뀿�쐻占쎈뻻占쎈꺋占쎌굲占쎈쐻占쎈짗占쎌굲"+ccn);
 		if(hidden!=null){
 			Date date=sdf.parse(coupleDate);
 			if(ccn==1){//�뚣뀿�쐻占쎈뻻筌뤿슣�굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈솏筌뤿슣�굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 				cdto.setCoupleName(coupleName);
 				cdto.setCoupleDate(date);
-				System.out.println("date "+date);
 				sqlMapper.update("coupleModifyNcYd", cdto);
 			}
 			else if(ccn==0){//�뚣뀿�쐻占쎈뻻筌뤿슣�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈뼣占쎈솇占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占� 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
