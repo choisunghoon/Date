@@ -215,7 +215,7 @@ public class Theme {
 		return "/theme/addCoursePro.jsp";
 	}
 	
-	@RequestMapping("course.nhn")
+	@RequestMapping("course.nhn") //코스를 보여주는 뷰페이지
 	public String course(HttpServletRequest request,HttpSession session){
 		
 		session = request.getSession();
@@ -230,8 +230,8 @@ public class Theme {
 		
 		String[] srclist = null;
 		String path = request.getContextPath() +"/theme/themeimg/";
-		courseList = sqlMap.queryForList("getCourseList", ctg_num);
-		count = (Integer)sqlMap.queryForObject("courseCount", ctg_num);
+		courseList = sqlMap.queryForList("getCourseList", ctg_num);	//코스 DB에 저장된 정보를 가져오는 쿼리문
+		count = (Integer)sqlMap.queryForObject("courseCount", ctg_num);	//DB에 저장된 count값을 가져오는 쿼리문
 		
 		cos_num = (Integer)dto.getCos_num();
 		
@@ -250,7 +250,7 @@ public class Theme {
 		return "/theme/course.jsp";
 	}
 	
-	@RequestMapping("courseModify.nhn")
+	@RequestMapping("courseModify.nhn")	//코스를 수정하는 뷰페이지
 	public String courseModify(HttpServletRequest request,CourseDataBean dto){
 		
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
@@ -260,7 +260,7 @@ public class Theme {
 		num.put("ctg_num", ctg_num);
 		num.put("cos_num", cos_num);
 		
-		dto = (CourseDataBean)sqlMap.queryForObject("getCourse", num);
+		dto = (CourseDataBean)sqlMap.queryForObject("getCourse", num);	//코스정보를 가져오는 쿼리문
 		
 		request.setAttribute("dto", dto);
 		request.setAttribute("ctg_num", ctg_num);
@@ -269,7 +269,7 @@ public class Theme {
 		return "/theme/courseModify.jsp";
 	}
 	
-	@RequestMapping("courseModifyPro.nhn")
+	@RequestMapping("courseModifyPro.nhn")	//코스를 수정하는 페이지
 	public String courseModifyPro(HttpServletRequest request,CourseDataBean dto)throws Exception{
 		
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
@@ -277,7 +277,7 @@ public class Theme {
 		String cos_img = request.getParameter("cos_img");
 		String map_img = request.getParameter("map_img");
 		
-		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;	//파일업로드
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		
 		MultipartFile multipartFile = null;
@@ -291,7 +291,7 @@ public class Theme {
 			while(iterator.hasNext()){
 				multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 				if(multipartFile.isEmpty()){
-					dto1 = (CourseDataBean) sqlMap.queryForObject("getCosImg", cos_num);
+					dto1 = (CourseDataBean) sqlMap.queryForObject("getCosImg", cos_num);	//cos_img를 가져오는 쿼리문
 					srclist[0] = dto1.getMap_img();
 					srclist[1] = dto1.getCos_img();
 					originalFileName = srclist[i];
@@ -308,7 +308,7 @@ public class Theme {
 			dto.setCtg_num(ctg_num);
 			dto.setCos_num(cos_num);
 		
-			sqlMap.update("courseModify", dto);
+			sqlMap.update("courseModify", dto);	//코스를 수정하는 쿼리문
 		
 		request.setAttribute("ctg_num", ctg_num);
 		request.setAttribute("cos_num", cos_num);
@@ -316,7 +316,7 @@ public class Theme {
 		return "/theme/courseModifyPro.jsp";
 	}
 	
-	@RequestMapping("cosDel.nhn")
+	@RequestMapping("cosDel.nhn")	//코스를 삭제하는 뷰페이지
 	public String cosDel(HttpServletRequest request){
 		
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
@@ -328,7 +328,7 @@ public class Theme {
 		return "/theme/cosDel.jsp";
 	}
 	
-	@RequestMapping("cosDelPro.nhn")
+	@RequestMapping("cosDelPro.nhn")	//코스를 삭제하는 페이지
 	public String cosDelPro(HttpSession session,HttpServletRequest request,LogonDataBean dto,CourseDataBean dto1){
 		
 		session = request.getSession();
@@ -341,9 +341,9 @@ public class Theme {
 		dto1.setCtg_num(ctg_num);
 		dto1.setCos_num(cos_num);
 		
-		int check = (Integer)sqlMap.queryForObject("deleteProck",dto);
+		int check = (Integer)sqlMap.queryForObject("deleteProck",dto);	//DB에 아이디 값이 있으면 check값이 1이 된다.
 		if(check == 1){
-			sqlMap.delete("deleteCos",dto1);
+			sqlMap.delete("deleteCos",dto1);	//check값이 1일때 코스를 삭제하는 쿼리문
 		}
 		request.setAttribute("check", check);
 		request.setAttribute("ctg_num", ctg_num);
@@ -351,7 +351,7 @@ public class Theme {
 		return "/theme/cosDelPro.jsp";
 	}
 	
-	@RequestMapping("place.nhn")
+	@RequestMapping("place.nhn")	//코스 상세정보를 보여주는 페이지
 	public String place(HttpSession session,HttpServletRequest request,LocationDataBean dto,CourseDataBean dto1){
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
@@ -410,7 +410,7 @@ public class Theme {
 		return "/theme/place.jsp";
 	}
 	
-	@RequestMapping("addPlace.nhn")
+	@RequestMapping("addPlace.nhn")	//장소를 추가하는 뷰페이지
 	public String addPlace(HttpServletRequest request,LocationDataBean dto) throws Exception{
 		
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
@@ -431,7 +431,7 @@ public class Theme {
 		
 	}
 	
-	@RequestMapping("addPlacePro.nhn")
+	@RequestMapping("addPlacePro.nhn")	//장소를 추가하는 페이지
 	public String addPlacePro(HttpServletRequest request,LocationDataBean dto) throws Exception{
 		
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
@@ -475,7 +475,7 @@ public class Theme {
 	}
 	
 	
-	@RequestMapping("placeView.nhn")
+	@RequestMapping("placeView.nhn")	//상세정보를 보여주는 뷰페이지
 	public String PlaceView(HttpServletRequest request,LocationDataBean dto){
 		int loc_num = Integer.parseInt(request.getParameter("loc_num"));
 		
@@ -487,7 +487,7 @@ public class Theme {
 		return "/theme/placeView.jsp";
 	}
 	
-	@RequestMapping("placeModify.nhn")
+	@RequestMapping("placeModify.nhn")	//상세정보를 수정하는 뷰페이지
 	public String placeModify(HttpServletRequest request,LocationDataBean dto){
 		
 		int loc_num = Integer.parseInt(request.getParameter("loc_num"));
@@ -504,7 +504,7 @@ public class Theme {
 		return "/theme/placeModify.jsp";
 	}
 	
-	@RequestMapping("placeModifyPro.nhn")
+	@RequestMapping("placeModifyPro.nhn")	//장소를 수정하는 페이지
 	public String placeModifyPro(HttpServletRequest request,LocationDataBean dto) throws Exception{
 		
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
@@ -554,7 +554,7 @@ public class Theme {
 		return "/theme/placeModifyPro.jsp";
 	}
 	
-	@RequestMapping("placeDel.nhn")
+	@RequestMapping("placeDel.nhn")	//장소를 삭제하는 뷰페이지
 	public String placeDel(HttpServletRequest request){
 		
 		int ctg_num = Integer.parseInt(request.getParameter("ctg_num"));
@@ -568,7 +568,7 @@ public class Theme {
 		return "/theme/placeDel.jsp";
 	}
 	
-	@RequestMapping("placeDelPro.nhn")
+	@RequestMapping("placeDelPro.nhn")	//장소를 삭제하는 페이지
 	public String placeDelPro(HttpSession session,HttpServletRequest request,LogonDataBean dto,LocationDataBean dto1){
 		
 		session = request.getSession();
@@ -594,7 +594,7 @@ public class Theme {
 		return "/theme/placeDelPro.jsp";
 	}
 	
-	@RequestMapping("likeCount.nhn")
+	@RequestMapping("likeCount.nhn")	//좋아요를 처리하는 페이지
 	public String likeCount(HttpSession session,HttpServletRequest request){
 		session = request.getSession();
 		String id = (String)session.getAttribute("id");
